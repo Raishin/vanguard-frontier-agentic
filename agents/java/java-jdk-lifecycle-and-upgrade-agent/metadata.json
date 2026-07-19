@@ -1,0 +1,41 @@
+{
+  "id": "java-jdk-lifecycle-and-upgrade-agent",
+  "name": "Java JDK Lifecycle and Upgrade Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "java",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of a Java estate's JDK lifecycle and upgrade posture — vendor/version identification, support and license-boundary exposure, language/API compatibility blockers, and a prioritized, evidence-gated upgrade path. Reads build files and source only; never asserts vendor dates from memory.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.oracle.com/java/technologies/java-se-support-roadmap.html",
+    "https://openjdk.org/projects/jdk/",
+    "https://adoptium.net/support/",
+    "https://docs.oracle.com/en/java/javase/"
+  ],
+  "security_notes": "Static review only — reads `pom.xml`/`build.gradle`, toolchain and CI config, `Dockerfile` base images, and source; never runs a build, invokes a JDK, or contacts a live system. Never requests license keys, Oracle account identifiers, contract/pricing data, or customer data. Time-sensitive vendor lifecycle facts are cited from the companion skill's verified reference (primary source = the vendor roadmap page) and are never asserted from memory — an out-of-date date produces confidently-wrong upgrade advice.",
+  "last_verified": "2026-07-17",
+  "path": "agents/java/java-jdk-lifecycle-and-upgrade-agent/",
+  "harness_variants": {
+    "codex": "agents/java/java-jdk-lifecycle-and-upgrade-agent/harnesses/codex.toml",
+    "copilot": "agents/java/java-jdk-lifecycle-and-upgrade-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/java/java-jdk-lifecycle-and-upgrade-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/java/java-jdk-lifecycle-and-upgrade-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/java/java-jdk-lifecycle-and-upgrade-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/java/java-jdk-lifecycle-and-upgrade-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/java/java-jdk-lifecycle-and-upgrade-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "java-jdk-lifecycle-and-upgrade"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

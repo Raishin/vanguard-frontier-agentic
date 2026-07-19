@@ -1,0 +1,41 @@
+{
+  "id": "java-application-server-exit-agent",
+  "name": "Java Application Server Exit Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "java",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Board-legible replatform-vs-renew exit call for a proprietary Java app-server and Oracle-JDK estate: synthesizes specialist findings (JDK lifecycle, jakarta debt, EJB/JAX-WS/SOAP, container-readiness) and user costs into per-component modernize/rehost/replatform/retire decisions plus a wave plan; refuses payback without supplied costs. Reads reports and sanitized costs only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.oracle.com/middleware/weblogic/",
+    "https://www.ibm.com/support/pages/lifecycle",
+    "https://access.redhat.com/support/policy/updates/jboss_notes",
+    "https://jakarta.ee/about/faq/"
+  ],
+  "security_notes": "Static review only — reads inventory exports, specialist agent reports, sanitized configuration, and user-supplied cost figures; never builds, runs, invokes a JDK, or contacts a live application server, license-management system, or vendor account. Never requests or embeds licence pricing, subscription tiers, contract terms, or customer/tenant headcount — those are user-supplied inputs only, never assumed or hardcoded.",
+  "last_verified": "2026-07-17",
+  "path": "agents/java/java-application-server-exit-agent/",
+  "harness_variants": {
+    "codex": "agents/java/java-application-server-exit-agent/harnesses/codex.toml",
+    "copilot": "agents/java/java-application-server-exit-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/java/java-application-server-exit-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/java/java-application-server-exit-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/java/java-application-server-exit-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/java/java-application-server-exit-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/java/java-application-server-exit-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "java-application-server-exit"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

@@ -1,3 +1,310 @@
+## 🛡️ v3.4.0 — *Provenance · Policy · Portability*
+_Released 2026-07-19_
+
+> _Curated multi-cloud, zero-trust agent marketplace — `AWS` · `Azure` · `OCI` · `GCP` · `Terraform`._
+> Least privilege, live evidence, safe rollback paths.
+
+**Release type:** New capabilities — review the sections below before upgrading.
+
+* **java:** add Java/JVM agent board (provider onboarding + Phase 1 tranche) ([`3cc79b3`](https://github.com/Raishin/vanguard-frontier-agentic/commit/3cc79b3106d0c17f0eb7da614e74b4e047bdf547))
+Introduce a new `java` provider and the first tranche of an adversarially-scoped,
+static-review Java/JVM agent board. This is Phase 1 of a 15-agent board whose
+composition was decided by a scorecard over 55 candidates plus an adversarial
+hearing that merged five duplicate pairs, cut a standalone board chair, and
+demoted native-image/observability candidates to skills.
+
+Provider onboarding:
+- Add `java` to the provider enum in schemas/agent.schema.json and
+  schemas/skill.schema.json, and to ALLOWED_PROVIDERS in tests/validate-catalog.py.
+- Add `java` to the Developer Platforms taxonomy in scripts/generate-docs-data.mjs.
+- Add a `provider:java` codex model-policy rule (gpt-5.5), matching the other
+  language/stack boards; project via model-policy:apply.
+- Document the board in docs/language-stack-boards.md and docs/taxonomy.md.
+
+Board (maestro + 3 static-review specialists, 1:1 companion skills):
+- java-maestro-agent — routes only; refuses production-mutation and out-of-board tasks.
+- java-jdk-lifecycle-and-upgrade-agent — JDK vendor/version + support/license-boundary
+  exposure and phased upgrade planning; never asserts vendor dates from memory
+  (fail-closed reference with a refresh protocol).
+- java-jpa-hibernate-performance-agent — N+1, JOIN FETCH vs @EntityGraph vs @BatchSize
+  vs DTO, pagination-with-fetch, open-in-view, HikariCP sizing.
+- java-deserialization-and-parser-security-agent — ObjectInputStream gadget chains,
+  SnakeYAML Constructor, Jackson polymorphic default typing, XML XXE.
+
+Each agent is execution_tier: static-review with all seven harness adapters and a
+progressive-disclosure companion skill (SKILL.md + narrow references). Adds the
+java-maestro routing fixture, the java-application-review-engineer install role,
+and regenerates catalogs, manifests, docs data, and the asset-integrity manifest.
+
+Gates: npm run validate (all green), codespell, and markdownlint pass; positive
+probe (export CLI installs the board + bundles skills) and negative probes
+(schema rejects bad provider/missing field; routing gate rejects unknown agent)
+verified.
+* **java:** add JEP-anchored LTS-to-LTS migration reference to the JDK lifecycle skill ([`50002dc`](https://github.com/Raishin/vanguard-frontier-agentic/commit/50002dc091e59ea171d334125bd96dff9add64f0))
+Enrich the java-jdk-lifecycle-and-upgrade skill (0.1.0 -> 0.2.0) with a new,
+Oracle/OpenJDK-grounded reference that maps each supported LTS-to-LTS corridor:
+
+- references/lts-migration-and-language-features.md — corridors 8->11, 11->17,
+  17->21, 21->25. Per corridor: breaking removals and strong-encapsulation
+  milestones, deprecated-for-removal APIs (with replacements), and the
+  language/API features finalized in that corridor — every row anchored to its
+  JEP number with an openjdk.org/jeps/<n> citation and a fail-closed
+  "verify at use" header. JDK 25 (GA 2025-09-16, LTS) facts confirmed against
+  the official JDK 25 delta; preview/incubating features (Structured
+  Concurrency, Stable Values, Primitive Types in Patterns, Vector API) are
+  flagged as NOT final so they are never recommended as a safe upgrade payload.
+- Keeps support-end/license *dates* out of this file — those stay fail-closed in
+  jdk-support-and-license-boundaries.md. This file carries only permanent,
+  release-anchored JEP facts.
+
+Wire it into SKILL.md (References list + a HIGH operating rule that requires
+JEP-anchoring and forbids asserting a JEP-to-version mapping from memory; trigger
+conditions updated to the current corridor set). Cross-routes GC, virtual-thread,
+framework-floor, and Oracle-license concerns to their owning agents to stay DRY.
+
+Regenerated catalog/skill-manifest.json and catalog/skills.json for the version
+bump; refreshed catalog/asset-integrity.json last. npm run validate, codespell,
+and markdownlint all green.
+* **java:** complete the 15-agent Java/JVM board (Phase 2 — 11 specialists) ([`43ac332`](https://github.com/Raishin/vanguard-frontier-agentic/commit/43ac332e9fb3e7fcb457441d214fe38012dd59aa))
+Adds the remaining 11 static-review specialists that complete the adversarially
+scoped Java board (now 1 maestro + 14 specialists), each owning one distinct,
+evidence-gated decision with a 1:1 progressive-disclosure companion skill and all
+seven harness adapters:
+
+- java-spring-security-agent — Spring Security 6 filter-chain authorization,
+  method-security precedence, CSRF, Actuator exposure (references, does not own,
+  the deserialization RCE verdict).
+- java-deserialization sibling boundary preserved; auth/authz + management-endpoint
+  candidates merged in.
+- java-concurrency-and-virtual-thread-agent — virtual-thread adoption correctness,
+  carrier pinning gated on JDK version, downstream-resource bounding.
+- java-jvm-performance-and-gc-agent — GC/allocation review with a hardened refusal:
+  no positive GC-switch recommendation without supplied pause/allocation evidence.
+- java-container-and-kubernetes-readiness-agent — JVM-in-container sizing
+  (MaxRAMPercentage vs -Xmx, off-heap headroom, GC-pause vs liveness probe).
+- java-framework-production-readiness-agent — Spring Boot/Quarkus/Micronaut
+  ship/don't-ship; delegates security and JDK-lifecycle to their owners.
+- java-transaction-and-consistency-agent — @Transactional boundaries + dual-write
+  (save-then-send) → outbox/saga; Kafka wiring stays with the Kafka agent.
+- java-database-migration-safety-agent — Flyway/Liquibase rolling/blue-green safety.
+- java-kafka-reliability-agent — delivery semantics (idempotence vs exactly-once),
+  consumer dedup, lag, ordering.
+- java-resilience-pattern-agent — resilience4j aspect order; blocks retry on a
+  non-idempotent write without a dedup key.
+- java-test-architecture-agent — JUnit5 isolation/parallel gating, Testcontainers,
+  ArchUnit.
+- java-application-server-exit-agent — the single portfolio/ROI agent; consumes
+  supplied cost figures only, refuses a payback number without them, never
+  hardcodes vendor pricing or tenant data.
+
+Expands the java-maestro taxonomy + routing table to all 14 domains and
+regenerates only the Java routing fixture (other providers untouched); updates the
+java-application-review-engineer install role to 15/15; refreshes the project
+README (board table, narrative, Powers list, directory tree), the language-stack
+board doc, and the domain README; adds "disjointness" to the codespell allowlist;
+and regenerates catalogs, manifests, docs data, the Kiro power, model assignments,
+and the asset-integrity manifest.
+
+Gates: npm run validate (all green — 645 routing scenarios, 632 skills, 609
+agents), codespell, and markdownlint pass. Probes: the install role installs all
+15 agents + 15 skills, and the maestro routes representative tasks to the new
+specialists.
+* **java:** resolve plugin-scanner false positive on app-server-exit agent ([`47ffcb4`](https://github.com/Raishin/vanguard-frontier-agentic/commit/47ffcb4b554c1981056f6883267a5cb4231622b5))
+The plugin-scanner HARDCODED_SECRET rule matched the substring "sk-reduction-per-dollar"
+inside the phrase "risk-reduction-per-dollar" — the sk-... API-key pattern
+(sk-(?:proj-|ant-)?[A-Za-z0-9_-]{20,}) fired on legitimate advisory prose in the
+java-application-server-exit agent. There is no secret; the agent's entire contract
+forbids hardcoding pricing or credentials.
+
+Reword "risk-reduction-per-dollar" to "risk-reduction per dollar" across the agent's
+AGENT.md, all seven harness adapters, and its skill reference so no contiguous
+20+ character run follows "sk-". Verified with the scanner locally: HARDCODED_SECRET
+findings drop from 2 to 0, and a sweep of the whole java board with the scanner's
+own SECRET_PATTERNS shows no remaining matches. Fixed at the source rather than
+suppressing the scanner, keeping secret-detection active on agent code. Regenerates
+the skill manifest and asset-integrity manifest.
+* **vfa-tui:** classify java board assets in coverage provider inference ([`7500c04`](https://github.com/Raishin/vanguard-frontier-agentic/commit/7500c04a79904a6f5d465d9c485078b7c9df6825))
+The TUI coverage engine's infer_provider() mapped only a subset of
+provider path prefixes and fell through to Provider::Generic for the
+rest. With the new java board, canonical agents/java/... and
+skills/java/... asset IDs rendered and filtered as Generic instead of
+Java, misreporting Java installation coverage in the workspace matrix.
+
+Add the java path arm (mirroring the php arm added alongside it) plus
+positive/negative unit probes: java IDs now classify as Provider::Java,
+and an unmapped prefix still falls back to Generic.
+* **vfa-tui:** register java in the Rust Provider enum; bump MSRV to 1.97 ([`40d0024`](https://github.com/Raishin/vanguard-frontier-agentic/commit/40d002427dc160dac95efc3f751ec2b67db99c4f))
+The vfa-tui Rust code deserializes catalog/agents.json and catalog/skills.json
+with a strict kebab-case Provider enum in src/models/provider.rs that did not
+include `java`. After the Java board landed, the TUI failed to load the catalog
+("unknown variant `java`"), breaking 18 cargo tests. CI stayed green only because
+the vfa-tui Gate job is path-filtered to tools/vfa-tui/** and the catalog-only
+commits never triggered it — a latent break.
+
+- Add the `Java` variant to the Provider enum (kebab-case → "java"), grouped with
+  the other language board (`Dotnet`). cargo fmt/clippy/test now pass (774+ tests).
+- Document this location as a hard, load-bearing step in the CLAUDE.md
+  "Adding a new provider" checklist (it was missing — the schema provider enums
+  are cosmetic/ungated, but the Rust enum breaks a functional gate).
+- Bump rust-version pin 1.96 -> 1.97 and verify on rustc 1.97.1 (current stable;
+  CI uses dtolnay/rust-toolchain stable, so the MSRV bump is safe). fmt, clippy
+  (-D warnings), and the full test suite pass on 1.97.1.
+
+Refreshes the asset-integrity manifest for the CLAUDE.md change.
+
+---
+
+### 📥 Install
+```bash
+npm install @raishin/vanguard-frontier-agentic@3.4.0
+```
+
+### 🔐 Supply-chain provenance
+Every release ships a build attestation (SLSA provenance) and an SBOM. Verify the tag with `gh attestation verify` before installing.
+
+**Full changelog:** https://github.com/Raishin/vanguard-frontier-agentic/compare/v3.3.0...v3.4.0
+
+## 🛡️ v3.3.0 — *Provenance · Policy · Portability*
+_Released 2026-07-17_
+
+> _Curated multi-cloud, zero-trust agent marketplace — `AWS` · `Azure` · `OCI` · `GCP` · `Terraform`._
+> Least privilege, live evidence, safe rollback paths.
+
+**Release type:** New capabilities — review the sections below before upgrading.
+
+* **agents:** add revenue-critical-journey-integrity cross-tier review agent + skill ([`abf0b5c`](https://github.com/Raishin/vanguard-frontier-agentic/commit/abf0b5c1076eb8ea070637b9a1ef0effc4a1d259))
+Add a generic-provider static-review agent and companion skill that own the
+cross-tier SEAMS of revenue-critical journeys (checkout, payment submission,
+account creation, login) — the failure class no single-tier frontend, backend,
+or mobile reviewer owns:
+
+- idempotency of money-moving/account-creating requests (duplicate charges),
+- server-side re-validation of client-enforced rules (bypass),
+- webhook duplicate/out-of-order handling (double fulfillment),
+- retry-storm safeguards (bounded backoff-with-jitter),
+- advisory PCI DSS SAQ-scope judgment by integration model.
+
+Fills a documented gap: the browser-fenced frontend pci-payment-ui-security-review
+skill explicitly excludes idempotency/retry/backend/SAQ-eligibility. Ships under
+the existing `generic` provider, so it carries no new-provider registration tax.
+
+Scope is fenced to the cross-tier seam (tier-internal findings hand off to the
+owning agent); posture is static-review, least-privilege (Read/Grep/Glob), and
+never touches live/sandbox payment systems or reproduces cardholder data.
+
+The companion skill revenue-critical-journey-integrity-review ships 6
+progressive-disclosure references grounded only in primary sources (Stripe
+idempotency + webhook best-practices, PCI SSC FAQ/SAQ-A update, AWS
+Well-Architected retry mitigation, OWASP A01 + Input Validation, Baymard), with
+an official-sources ledger that quarantines unverified industry figures.
+
+Registers all 7 harness variants, adds the agent+skill to the frontend-engineer
+and qa-test-quality-engineer install roles, and regenerates catalog indexes,
+plugin/marketplace manifests, model-assignments, docs data, README counts, and
+the asset-integrity manifest. Full `npm run validate` (22 gates), codespell, and
+markdownlint pass.
+* **php:** add PHP review board (maestro + 4 specialists) as a new provider ([`ffd1e6c`](https://github.com/Raishin/vanguard-frontier-agentic/commit/ffd1e6c57248527b7823a96982f5604a79e77f93))
+Stand up the PHP board — the phased next slice after the cross-tier
+revenue-critical agent — as a dedicated `php` provider, registered across all
+non-derived touchpoints (agent + skill schema enums, validate-catalog
+ALLOWED_PROVIDERS, generate-docs-data taxonomy, and the hand-written
+docs/taxonomy.md + docs/language-stack-boards.md lists).
+
+php-maestro-agent classifies an inbound PHP task and routes to the narrowest of
+four static-review specialists, never rendering a verdict itself and refusing
+live-mutation requests:
+
+- php-application-security-agent — user-reachable unserialize() object
+  injection (allowed_classes is insufficient), session fixation/hijacking
+  (session_regenerate_id, use_strict_mode, cookie flags), unsafe file uploads.
+- composer-supply-chain-agent — composer audit advisory + exit-code CI gating,
+  abandoned/advisory policy, composer.lock integrity and drift.
+- php-runtime-upgrade-readiness-agent — EOL/security-only exposure against
+  php.net's four-year lifecycle (an EOL runtime is a blocking finding), plus
+  OPcache and PHP-FPM production hardening.
+- wordpress-security-agent — REST register_rest_route permission_callback
+  (required since WP 5.5), dynamic-block render_callback output escaping, and
+  nonce/capability/sanitize-escape discipline.
+
+Each specialist ships a companion skill with progressive-disclosure references
+grounded only in primary sources (php.net, getcomposer.org, OWASP,
+developer.wordpress.org); PHP EOL dates are encoded verbatim from php.net's
+supported-versions page and lifecycle judgment never consults the wall clock,
+so findings stay deterministic. All agents are static-review, least-privilege
+(Read/Grep/Glob) — no execution, no payload runs, no package installs.
+
+Includes the self-baselined php-maestro-routing fixtures (8 scenarios, generated
+from the grader), a php-platform-engineer install role, all seven harness
+variants per agent, and regenerated catalog indexes, plugin/marketplace
+manifests, model-assignments, Kiro power, docs data, README counts, and the
+asset-integrity manifest. Full `npm run validate` (22 gates), codespell, and
+markdownlint pass; no other provider's routing fixtures were modified.
+* **php:** address Codex review — lifecycle date comparison, WP REST nonce scope, doc-tool grounding, maestro routing coverage ([`4b31937`](https://github.com/Raishin/vanguard-frontier-agentic/commit/4b319372c5967a1c58e751fe58c422dd6ca4fc15))
+Resolve five review findings on the revenue-critical agent and the PHP board:
+
+- php-runtime lifecycle (P1): the agent now determines a version's *current*
+  phase by comparing php.net-published cutoff dates against the review date
+  (the current date, or an explicitly supplied review/support-horizon date),
+  while the published dates remain fixed ground truth from php.net. The prior
+  "never the wall clock" rule left it unable to determine the present phase or
+  transition a branch security-only -> EOL as time passes. Updated AGENT.md,
+  the php-version-lifecycle reference, agent+skill metadata (catalog synced),
+  and regenerated the harness variants.
+
+- wordpress-security (P2): scope the explicit-nonce requirement to non-REST
+  handlers (form POSTs, admin-post/admin-ajax). For register_rest_route the
+  REST infrastructure verifies the wp_rest nonce automatically under cookie
+  auth, so the requirement there is a capability-checking permission_callback,
+  not a redundant in-handler nonce — a missing nonce silently demotes to
+  anonymous and is a finding only when the callback assumes an authed user.
+
+- revenue-critical (P2): reframe the Context7 protocol so the bundled,
+  versioned references are the ground truth (the skill's own grant is
+  read-only Read/Grep/Glob); Context7/official-doc tools are used when the
+  harness provides them, and an uncovered processor is labeled inference.
+
+- php maestro routing (P2 x2): hand-tune the taxonomy with real domain
+  vocabulary (unserialize/session/upload, PHP-FPM/max_children/OPcache,
+  composer audit/lockfile/packagist, permission_callback/render_callback/
+  nonce) so realistic phrasing routes instead of going unclassified, and
+  extend live_guard_intent to gate production deploys and database migrations
+  (they now return live-guard-gate with an empty route rather than misrouting
+  to a static specialist). Added six fixtures exercising the real routes and
+  the production-mutation refusal and re-baselined expected from the grader;
+  the PHP board now has 14 routing scenarios.
+
+Full `npm run validate` (22 gates), codespell, and markdownlint pass.
+* **vfa-tui:** register php provider in enum, coverage inference, and property tests ([`2c1f2a1`](https://github.com/Raishin/vanguard-frontier-agentic/commit/2c1f2a12d9dc3d35b36d30a42afc5dffb0af3bdc))
+The TUI reads catalog/agents.json and catalog/skills.json and deserializes the
+provider field into the strict Provider enum, which lacked a php variant (no
+serde(other) fallback). After the new php board landed, loading the catalog
+would fail on the unknown variant, so the TUI would not detect the php agents
+and skills at all.
+
+- Add the Php variant to the Provider enum (src/models/provider.rs); kebab-case
+  serde makes it serialize/deserialize as "php".
+- Map "php" -> Provider::Php in infer_provider (src/federation/coverage.rs) so
+  federation coverage attributes php assets to Php instead of the Generic
+  fallback.
+- Add Provider::Php to the arb_provider() property-test generator
+  (src/catalog/store.rs) so the fuzzy-search, combined-filter, and
+  reverse-lookup property tests exercise the new variant.
+
+Verified on Rust 1.97.1: cargo fmt --check, cargo clippy --all-targets
+-- -D warnings, and cargo test (173 passed, 0 failed) all green.
+
+---
+
+### 📥 Install
+```bash
+npm install @raishin/vanguard-frontier-agentic@3.3.0
+```
+
+### 🔐 Supply-chain provenance
+Every release ships a build attestation (SLSA provenance) and an SBOM. Verify the tag with `gh attestation verify` before installing.
+
+**Full changelog:** https://github.com/Raishin/vanguard-frontier-agentic/compare/v3.2.0...v3.3.0
+
 ## 🛡️ v3.2.0 — *Provenance · Policy · Portability*
 _Released 2026-07-11_
 
@@ -7920,7 +8227,7 @@ Collateral: regenerate asset-integrity.json, plugin manifests
 
 ## 🔴 v2.0.0 — *Zero-Trust Scope Enforcement* &mdash; 2026-05-16
 
-> _Provider-scoped exports are now strict and auditable. 594 agents · 617 skills · 40 providers · 31 roles_
+> _Provider-scoped exports are now strict and auditable. 615 agents · 638 skills · 42 providers · 33 roles_
 >
 > This release closes a class of privilege-escalation bugs in the export CLI and hardens the
 > entire provider-scope boundary from user input through to CI attestation.

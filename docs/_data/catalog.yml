@@ -2,17 +2,17 @@
 # Do NOT edit manually — run: node scripts/generate-docs-data.mjs
 # This file is the single source of truth for all catalog counts in Jekyll docs.
 
-agents: 594
-skills: 617
-providers: 40
+agents: 615
+skills: 638
+providers: 42
 mcp_references: 3
 rules: 1
-install_roles: 31
-validation_gates: 20
-agent_directories: 43
-skill_directories: 44
+install_roles: 33
+validation_gates: 22
+agent_directories: 46
+skill_directories: 46
 maestro_scenarios: 357
-version: "3.0.2"
+version: "3.3.0"
 
 # Provider list (flat)
 provider_list:
@@ -38,6 +38,7 @@ provider_list:
   - "huawei"
   - "ionos"
   - "istio"
+  - "java"
   - "kubernetes"
   - "kyverno"
   - "legal"
@@ -49,6 +50,7 @@ provider_list:
   - "oci"
   - "opentelemetry"
   - "ovhcloud"
+  - "php"
   - "prometheus"
   - "salesforce"
   - "sap"
@@ -131,8 +133,12 @@ provider_taxonomy:
         agents: 1
       - name: "dotnet"
         agents: 10
+      - name: "java"
+        agents: 15
+      - name: "php"
+        agents: 5
       - name: "generic"
-        agents: 10
+        agents: 11
       - name: "multi-cloud"
         agents: 3
   - category: "ERP & Finance"
@@ -180,6 +186,7 @@ role_list:
   - "cloud-solutions-architect"
   - "dotnet-application-review-engineer"
   - "frontend-engineer"
+  - "java-application-review-engineer"
   - "kubernetes-admission-security-engineer"
   - "kubernetes-application-platform-engineer"
   - "kubernetes-developer-platform-engineer"
@@ -196,6 +203,7 @@ role_list:
   - "microsoft-data-analytics-engineer"
   - "microsoft-security-compliance-engineer"
   - "netsuite-platform-advisor"
+  - "php-platform-engineer"
   - "qa-test-quality-engineer"
   - "salesforce-portfolio-architect"
   - "sap-transformation-operations"

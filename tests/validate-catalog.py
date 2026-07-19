@@ -52,6 +52,7 @@ ALLOWED_PROVIDERS = {
     "frontend",
     "marketing",
     "dotnet",
+    "java",
     "hr",
     "legal",
     "salesforce",
@@ -62,6 +63,7 @@ ALLOWED_PROVIDERS = {
     "microsoft",
     "databricks",
     "snowflake",
+    "php",
 }
 ALLOWED_HARNESSES = {"codex", "copilot", "claude-code", "cursor", "gemini", "kiro", "other"}
 ALLOWED_SOURCE_TYPES = {"original", "adapted", "reference-only"}

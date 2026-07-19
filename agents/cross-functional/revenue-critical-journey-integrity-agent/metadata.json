@@ -1,0 +1,42 @@
+{
+  "id": "revenue-critical-journey-integrity-agent",
+  "name": "Revenue-Critical Journey Integrity Agent",
+  "type": "agent",
+  "provider": "generic",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static-review agent for the cross-tier seams of revenue-critical journeys (checkout, payment submission, account creation, login) — idempotency of money-moving and account-creating requests, server-side re-validation of client-enforced rules, webhook duplicate/out-of-order handling, retry-storm safeguards, and PCI DSS SAQ-scope judgment — catching cross-tier failures no single-tier frontend, backend, or mobile reviewer owns.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.stripe.com/api/idempotent_requests",
+    "https://docs.stripe.com/webhooks/best-practices",
+    "https://www.pcisecuritystandards.org/faqs/1443/",
+    "https://blog.pcisecuritystandards.org/important-updates-announced-for-merchants-validating-to-self-assessment-questionnaire-a",
+    "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/rel_mitigate_interaction_failure_limit_retries.html",
+    "https://baymard.com/lists/cart-abandonment-rate"
+  ],
+  "security_notes": "Static/read-only review only. Reviews source, configuration, and API contracts for cross-tier journey-integrity gaps; never transmits, requests, stores, or reproduces cardholder data (PAN/CVV), API keys, session tokens, or webhook signing secrets — any credential- or PAN-shaped string is a finding to redact-and-flag, never to echo. PCI DSS SAQ-scope output is an advisory scoping opinion to inform a Qualified Security Assessor or the merchant's own validation, never a compliance attestation or an assessment of record. Never executes payment flows, replays webhooks, or issues requests against any live, sandbox, or staging payment system.",
+  "last_verified": "2026-07-16",
+  "path": "agents/cross-functional/revenue-critical-journey-integrity-agent",
+  "harness_variants": {
+    "codex": "agents/cross-functional/revenue-critical-journey-integrity-agent/harnesses/codex.toml",
+    "copilot": "agents/cross-functional/revenue-critical-journey-integrity-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/cross-functional/revenue-critical-journey-integrity-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/cross-functional/revenue-critical-journey-integrity-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/cross-functional/revenue-critical-journey-integrity-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/cross-functional/revenue-critical-journey-integrity-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/cross-functional/revenue-critical-journey-integrity-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "revenue-critical-journey-integrity-review"
+  ],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

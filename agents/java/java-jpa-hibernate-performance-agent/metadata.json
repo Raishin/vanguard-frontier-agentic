@@ -1,0 +1,41 @@
+{
+  "id": "java-jpa-hibernate-performance-agent",
+  "name": "Java JPA/Hibernate Performance Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "java",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of JPA/Hibernate data access for fetch-strategy correctness and reliability — N+1 exposure, JOIN FETCH vs @EntityGraph vs @BatchSize vs DTO projection, LazyInitializationException and open-in-view misuse, pagination-with-fetch cartesian products, and JDBC connection-pool (HikariCP) sizing. Reads source and mapping only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.jboss.org/hibernate/orm/current/userguide/html_single/Hibernate_User_Guide.html",
+    "https://jakarta.ee/specifications/persistence/",
+    "https://docs.spring.io/spring-data/jpa/reference/",
+    "https://github.com/brettwooldridge/HikariCP/wiki/About-Pool-Sizing"
+  ],
+  "security_notes": "Static review only — reads entity classes, mappings/annotations, repository and query code, and sanitized `application.properties`/`application.yml`; never opens a database connection, runs a query, or executes migrations. Never requests connection strings, database credentials, tenant identifiers, or customer data; ask for source with placeholders.",
+  "last_verified": "2026-07-17",
+  "path": "agents/java/java-jpa-hibernate-performance-agent/",
+  "harness_variants": {
+    "codex": "agents/java/java-jpa-hibernate-performance-agent/harnesses/codex.toml",
+    "copilot": "agents/java/java-jpa-hibernate-performance-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/java/java-jpa-hibernate-performance-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/java/java-jpa-hibernate-performance-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/java/java-jpa-hibernate-performance-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/java/java-jpa-hibernate-performance-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/java/java-jpa-hibernate-performance-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "java-jpa-hibernate-performance"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

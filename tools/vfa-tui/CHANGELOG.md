@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.5](https://github.com/Raishin/vanguard-frontier-agentic/compare/vfa-tui-v0.0.4...vfa-tui-v0.0.5) - 2026-07-19
+
+### Fixed
+
+- *(vfa-tui)* classify java board assets in coverage provider inference
+- *(vfa-tui)* register java in the Rust Provider enum; bump MSRV to 1.97
+
+### Other
+
+- Merge remote-tracking branch 'origin/master' into claude/java-agent-board-design-ym9ahq
+
+## [0.0.4](https://github.com/Raishin/vanguard-frontier-agentic/compare/vfa-tui-v0.0.3...vfa-tui-v0.0.4) - 2026-07-17
+
+### Fixed
+
+- *(vfa-tui)* register php provider in enum, coverage inference, and property tests
+
 ## [0.0.3](https://github.com/Raishin/vanguard-frontier-agentic/compare/vfa-tui-v0.0.2...vfa-tui-v0.0.3) - 2026-07-11
 
 ### Added

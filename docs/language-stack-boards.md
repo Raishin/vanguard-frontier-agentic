@@ -6,7 +6,7 @@ alongside the provider boards (`aws`, `azure`, `gcp`, and others) and share the
 same `provider` faceting axis: each shipped topical board has its own dedicated
 `provider` enum value.
 
-This document covers the current boards: `frontend`, `.NET`, `legal`, `hr`, `marketing`,
+This document covers the current boards: `frontend`, `.NET`, `Java`, `PHP`, `legal`, `hr`, `marketing`,
 `salesforce`, `netsuite`, `accounting`, `finance`, `sap` (SAP S/4HANA + BTP
 enterprise board), `microsoft` (Microsoft 365 / Dynamics 365), `databricks`,
 and `snowflake` (data and analytics platforms). It also describes how to use
@@ -32,9 +32,9 @@ install role so users can pull the full set with a single `--role` flag.
 
 | Dimension | Provider board (e.g. `aws`) | Language/stack board (e.g. `dotnet`) |
 |-----------|----------------------------|--------------------------------------|
-| `provider` field | `aws`, `azure`, `gcp`, … | dedicated board name (`dotnet`, `legal`, `hr`, `marketing`, `salesforce`, `netsuite`, `accounting`, `finance`, `sap`, `microsoft`, `databricks`, `snowflake`) |
+| `provider` field | `aws`, `azure`, `gcp`, … | dedicated board name (`dotnet`, `php`, `legal`, `hr`, `marketing`, `salesforce`, `netsuite`, `accounting`, `finance`, `sap`, `microsoft`, `databricks`, `snowflake`) |
 | Directory | `agents/aws/` | `agents/dotnet/`, `agents/legal/`, … |
-| ID prefix | `aws-*` | `dotnet-*`, `legal-*`, `hr-*`, `marketing-*`, `salesforce-*`, `netsuite-*`, `sap-*`, `microsoft-*`, `databricks-*`, `snowflake-*`, etc. |
+| ID prefix | `aws-*` | `dotnet-*`, `php-*`, `legal-*`, `hr-*`, `marketing-*`, `salesforce-*`, `netsuite-*`, `sap-*`, `microsoft-*`, `databricks-*`, `snowflake-*`, etc. |
 | Subject scope | Cloud service surface | Language/runtime or professional function |
 | Execution tier | Varies by agent | `static-review` (all language/stack boards) |
 | Faceting axis | `provider` enum | `provider` enum (dedicated value) plus shared ID prefix |
@@ -50,9 +50,9 @@ together.
 
 The `provider` field is a faceting axis. It started as a cloud/platform axis,
 but it also carries non-cloud topical boards: each shipped board gets its own
-dedicated `provider` enum value. `dotnet`, `hr`, `legal`, `marketing`,
+dedicated `provider` enum value. `dotnet`, `java`, `hr`, `legal`, `marketing`,
 `salesforce`, `netsuite`, `accounting`, `finance`, `sap`, `microsoft`,
-`databricks`, and `snowflake` are all first-class `provider` values, listed in
+`databricks`, `snowflake`, and `php` are all first-class `provider` values, listed in
 `docs/taxonomy.md` under **Providers** and accepted by the schema and catalog
 validators.
 
@@ -120,6 +120,65 @@ agents/dotnet/
 Each agent reads source and sanitized configuration only. No agent runs
 `dotnet build`, `dotnet test`, `dotnet ef`, contacts a live system, or edits
 project files.
+
+---
+
+### Java
+
+The `java` board covers adversarial, evidence-first static review of Java and
+JVM enterprise applications: JDK-estate lifecycle and upgrade risk, virtual-thread
+adoption correctness, JVM performance and GC diagnosis, containerized-JVM sizing,
+framework production-readiness (Spring Boot / Quarkus / Micronaut), Spring
+Security authorization and endpoint exposure, untrusted deserialization/parser
+RCE surface, JPA/Hibernate fetch performance, transaction and cross-resource
+consistency, schema-migration deploy safety, Kafka delivery semantics,
+resilience-pattern composition, JVM test architecture, and the
+application-server license-exit portfolio decision.
+
+| Property | Value |
+|----------|-------|
+| `provider` | `java` |
+| ID prefix | `java-*` |
+| Agent directory | `agents/java/` |
+| Skill directory | `skills/java/` |
+| Agents | 15 |
+| Skills | 15 (1:1 companion skill per agent) |
+| Install role | `java-application-review-engineer` |
+| Execution tier | `static-review` (all agents) |
+
+**Agent directory layout**
+
+```
+agents/java/
+  java-maestro-agent/
+  java-jdk-lifecycle-and-upgrade-agent/
+  java-concurrency-and-virtual-thread-agent/
+  java-jvm-performance-and-gc-agent/
+  java-container-and-kubernetes-readiness-agent/
+  java-framework-production-readiness-agent/
+  java-spring-security-agent/
+  java-deserialization-and-parser-security-agent/
+  java-jpa-hibernate-performance-agent/
+  java-transaction-and-consistency-agent/
+  java-database-migration-safety-agent/
+  java-kafka-reliability-agent/
+  java-resilience-pattern-agent/
+  java-test-architecture-agent/
+  java-application-server-exit-agent/
+```
+
+**Example agents**
+
+| Agent | Scope |
+|-------|-------|
+| `java-maestro-agent` | Router; classifies a Java/JVM task and dispatches the narrowest specialist or a parallel team of up to four. Never answers Java questions itself. |
+| `java-jdk-lifecycle-and-upgrade-agent` | JDK-estate upgrade/hold decision: flags a fleet approaching an LTS support or license boundary and prescribes an upgrade path, gated on supplied vendor-verified dates. |
+| `java-jpa-hibernate-performance-agent` | JPA/Hibernate fetch-strategy correctness: N+1 risk, `JOIN FETCH` vs `@EntityGraph` vs `@BatchSize` vs DTO projection, and `open-in-view` misuse. |
+| `java-deserialization-and-parser-security-agent` | Untrusted-deserialization/parser RCE surface: `ObjectInputStream` gadget chains, SnakeYAML `Constructor`, and Jackson polymorphic default typing without a validator. |
+
+Each agent reads source and sanitized configuration only. No agent runs a build,
+executes tests, opens a database or broker connection, contacts a live system, or
+edits project files.
 
 ---
 
@@ -304,6 +363,52 @@ and declare `provider: marketing` in `metadata.json`.
 
 ---
 
+### PHP
+
+The `PHP` board covers static review of PHP applications and the surrounding
+PHP ecosystem: application security (session fixation, insecure
+deserialization, file-upload exploits), Composer dependency supply-chain
+governance, runtime version/EOL readiness with OPcache and PHP-FPM hardening,
+and WordPress plugin/theme/REST API/block-editor security.
+
+| Property | Value |
+|----------|-------|
+| `provider` | `php` |
+| ID prefix | `php-*` (plus `composer-*`, `wordpress-*` for ecosystem-specific agents) |
+| Agent directory | `agents/php/` |
+| Skill directory | `skills/php/` |
+| Agents | 5 |
+| Skills | 5 (1:1 companion skill per agent) |
+| Install role | `php-platform-engineer` |
+| Execution tier | `static-review` (all agents) |
+
+**Agent directory layout**
+
+```
+agents/php/
+  php-maestro-agent/
+  php-application-security-agent/
+  composer-supply-chain-agent/
+  php-runtime-upgrade-readiness-agent/
+  wordpress-security-agent/
+```
+
+**Example agents**
+
+| Agent | Scope |
+|-------|-------|
+| `php-maestro-agent` | Router; classifies a PHP task and dispatches the narrowest specialist. Never answers PHP questions itself. |
+| `php-application-security-agent` | Session fixation, insecure deserialization, and file-upload exploit review in PHP application code. |
+| `composer-supply-chain-agent` | Composer dependency audit: lockfile integrity, known-vulnerable packages, source trust. |
+| `php-runtime-upgrade-readiness-agent` | PHP runtime end-of-life exposure, OPcache and PHP-FPM configuration hardening review. |
+| `wordpress-security-agent` | WordPress REST API and block-editor (Gutenberg) security review. |
+
+Each agent reads source, sanitized configuration, and dependency manifests
+only. No agent runs `composer install`, `php`, `wp-cli`, contacts a live
+system, or edits project files.
+
+---
+
 ## How to use language/stack boards
 
 ### Discovery via install roles
@@ -317,6 +422,7 @@ set for a given function.
 | `dotnet-application-review-engineer` | `.NET` | 10 | 10 |
 | `legal-hr-risk-reviewer` | `legal` + `hr` | 28 | 5 (2 board-specific + 3 cross-functional) |
 | `marketing-governance-reviewer` | `marketing` | 14 | 14 |
+| `php-platform-engineer` | `php` | 5 | 5 |
 | `sap-transformation-operations` | `sap` | 40 | 46 |
 | `microsoft-365-d365-platform-advisor` | `microsoft` | 40 | 40 |
 | `azure-databricks-platform-engineer` | `databricks` | 3 | 3 |
@@ -333,7 +439,8 @@ npx vfa-export-agents --platform claude-code --role marketing-governance-reviewe
 ### Routing
 
 Each board includes a maestro router agent (`dotnet-maestro-agent`,
-`legal-maestro-agent`, `hr-maestro-agent`, `marketing-maestro-agent`). Address
+`legal-maestro-agent`, `hr-maestro-agent`, `marketing-maestro-agent`,
+`php-maestro-agent`). Address
 the maestro with the task; it classifies the work and dispatches the narrowest
 specialist or a small parallel team. Do not reach past the maestro and invoke a
 specialist directly unless you already know which specialist applies.
@@ -506,6 +613,7 @@ read-only tier. This is a design constraint, not a default.
 | `legal` | `static-review` | Reads sanitized excerpts; never contacts regulators, triggers legal systems, or makes binding legal determinations |
 | `hr` | `static-review` | Reads sanitized excerpts; never terminates, disciplines, denies leave or accommodation, or sends employee communications |
 | `marketing` | `static-review` (specialists) / `read-only-runtime` (maestro) | Reads sanitized configuration and evidence; never mutates CMP, tag-manager, or ad-platform state |
+| `php` | `static-review` | Reads sanitized PHP source, configuration, and dependency files; never executes payloads, installs packages, or mutates runtime or production. |
 | `sap` | `static-review` | Reads sanitized SAP configuration and ABAP/BTP artifacts; never contacts SAP systems, triggers transports, or mutates landscape data |
 | `microsoft` | `static-review` | Reads sanitized Microsoft 365 and Dynamics 365 configuration; never mutates tenant state, sends messages, or contacts Graph API |
 | `databricks` | `static-review` | Reads sanitized notebooks, job configs, and lakehouse metadata; never runs jobs, mutates clusters, or contacts Databricks REST APIs |

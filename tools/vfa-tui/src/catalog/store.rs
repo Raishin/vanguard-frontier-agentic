@@ -1116,6 +1116,7 @@ mod prop_tests {
             Just(Provider::Gcp),
             Just(Provider::Claude),
             Just(Provider::Kubernetes),
+            Just(Provider::Php),
         ]
     }
 

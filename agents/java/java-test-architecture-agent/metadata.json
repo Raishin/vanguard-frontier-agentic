@@ -1,0 +1,42 @@
+{
+  "id": "java-test-architecture-agent",
+  "name": "Java Test Architecture Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "java",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of JVM test suite architecture and non-flakiness — JUnit 5 lifecycle/isolation, Testcontainers discipline (singleton reuse vs per-test, Wait strategies vs sleep), ArchUnit rules with FreezingArchRule, and test-quality smells via AssertJ/Mockito. Absorbs JVM flaky-test triage. Reads source and sanitized config only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://junit.org/junit5/docs/current/user-guide/",
+    "https://java.testcontainers.org/",
+    "https://www.archunit.org/userguide/html/000_Index.html",
+    "https://assertj.github.io/doc/",
+    "https://site.mockito.org/"
+  ],
+  "security_notes": "Static review only — reads JUnit 5 test source, Testcontainers module usage, ArchUnit rule definitions, and sanitized build/test configuration (pom.xml/build.gradle test blocks, junit-platform.properties, ~/.testcontainers.properties excerpts); never invokes a JDK, runs mvn/gradle test, starts a JUnit runner, opens a Docker/Testcontainers daemon connection, hits a database or broker, or contacts any live system. Never requests connection strings, database credentials, tenant identifiers, or customer data — ask for source with placeholders.",
+  "last_verified": "2026-07-17",
+  "path": "agents/java/java-test-architecture-agent/",
+  "harness_variants": {
+    "codex": "agents/java/java-test-architecture-agent/harnesses/codex.toml",
+    "copilot": "agents/java/java-test-architecture-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/java/java-test-architecture-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/java/java-test-architecture-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/java/java-test-architecture-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/java/java-test-architecture-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/java/java-test-architecture-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "java-test-architecture"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

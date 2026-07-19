@@ -1,0 +1,41 @@
+{
+  "id": "java-framework-production-readiness-agent",
+  "name": "Java Framework Production Readiness Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "java",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review issuing a single ship / do-not-ship production-readiness verdict for a Spring Boot, Quarkus, or Micronaut service against a framework-specific checklist (config, health/liveness/readiness, graceful shutdown, jakarta namespace + JDK floor, build-time DI/AOT safety, config validation, BOM alignment). Reads source and sanitized configuration only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.spring.io/spring-boot/",
+    "https://quarkus.io/guides/",
+    "https://docs.micronaut.io/latest/guide/",
+    "https://jakarta.ee/specifications/"
+  ],
+  "security_notes": "Static review only — reads build files (pom.xml/build.gradle), application.properties/application.yml and profile variants, source annotations, and CI/Dockerfile config; never builds, runs, invokes a JDK, opens a database/broker connection, or contacts a live health endpoint. Never requests live secret values, connection strings, credentials, tenant identifiers, or customer data — ask for sanitized files with values redacted/placeholdered. Framework EOL/support-window facts are fail-closed: cited from the companion skill's verified reference or marked unknown, never asserted from memory.",
+  "last_verified": "2026-07-17",
+  "path": "agents/java/java-framework-production-readiness-agent/",
+  "harness_variants": {
+    "codex": "agents/java/java-framework-production-readiness-agent/harnesses/codex.toml",
+    "copilot": "agents/java/java-framework-production-readiness-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/java/java-framework-production-readiness-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/java/java-framework-production-readiness-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/java/java-framework-production-readiness-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/java/java-framework-production-readiness-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/java/java-framework-production-readiness-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "java-framework-production-readiness"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

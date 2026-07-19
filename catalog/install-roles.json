@@ -805,6 +805,44 @@
         "dotnet-aspire-cloud-native-review"
       ]
     },
+    "java-application-review-engineer": {
+      "label": "Java Application Review Engineer",
+      "description": "Adversarial, evidence-first static review of Java/JVM applications: JDK-estate lifecycle and upgrade risk, virtual-thread and concurrency correctness, JVM performance and GC, containerized-JVM sizing, Spring/Quarkus/Micronaut production readiness, Spring Security authorization and Actuator exposure, untrusted-deserialization/parser security, JPA/Hibernate data-access performance, transaction and cross-resource consistency, schema-migration deploy safety, Kafka delivery reliability, resilience-pattern composition, JVM test architecture, and the application-server license-exit portfolio decision. A java-maestro router plus static-review specialists; every agent reads source and sanitized configuration only and never builds, runs, invokes a JDK, opens a database or broker connection, or contacts a live system.",
+      "agents": [
+        "java-maestro-agent",
+        "java-application-server-exit-agent",
+        "java-concurrency-and-virtual-thread-agent",
+        "java-container-and-kubernetes-readiness-agent",
+        "java-database-migration-safety-agent",
+        "java-deserialization-and-parser-security-agent",
+        "java-framework-production-readiness-agent",
+        "java-jdk-lifecycle-and-upgrade-agent",
+        "java-jpa-hibernate-performance-agent",
+        "java-jvm-performance-and-gc-agent",
+        "java-kafka-reliability-agent",
+        "java-resilience-pattern-agent",
+        "java-spring-security-agent",
+        "java-test-architecture-agent",
+        "java-transaction-and-consistency-agent"
+      ],
+      "skills": [
+        "java-maestro",
+        "java-application-server-exit",
+        "java-concurrency-and-virtual-thread",
+        "java-container-and-kubernetes-readiness",
+        "java-database-migration-safety",
+        "java-deserialization-and-parser-security",
+        "java-framework-production-readiness",
+        "java-jdk-lifecycle-and-upgrade",
+        "java-jpa-hibernate-performance",
+        "java-jvm-performance-and-gc",
+        "java-kafka-reliability",
+        "java-resilience-pattern",
+        "java-spring-security",
+        "java-test-architecture",
+        "java-transaction-and-consistency"
+      ]
+    },
     "kubernetes-admission-security-engineer": {
       "label": "Kubernetes Admission Security Engineer",
       "description": "API and image admission control: Kyverno, native ValidatingAdmissionPolicy (CEL), Pod Security Admission, image signature verification, RBAC privilege-escalation review, and live admission policy mutation guards. Anchors the cluster's deny-by-default story.",
@@ -1115,7 +1153,8 @@
         "rpa-workflow-resilience-review-agent",
         "helm-chart-quality-review-agent",
         "kubernetes-manifest-quality-review-agent",
-        "llm-ai-pipeline-test-review-agent"
+        "llm-ai-pipeline-test-review-agent",
+        "revenue-critical-journey-integrity-agent"
       ],
       "skills": [
         "playwright-e2e-suite-review",
@@ -1127,7 +1166,8 @@
         "rpa-workflow-resilience-review",
         "helm-chart-quality-review",
         "kubernetes-manifest-quality-review",
-        "llm-ai-pipeline-test-review"
+        "llm-ai-pipeline-test-review",
+        "revenue-critical-journey-integrity-review"
       ]
     },
     "salesforce-portfolio-architect": {
@@ -1502,7 +1542,8 @@
         "visual-regression-agent",
         "vue-specialist-agent",
         "web-performance-core-vitals-agent",
-        "web-platform-foundation-agent"
+        "web-platform-foundation-agent",
+        "revenue-critical-journey-integrity-agent"
       ],
       "skills": [
         "ai-generated-frontend-code-review",
@@ -1563,7 +1604,26 @@
         "vue-router-navigation-security-review",
         "vue-ssr-security-review",
         "vue-state-store-security-review",
-        "wcag-22-accessibility-audit"
+        "wcag-22-accessibility-audit",
+        "revenue-critical-journey-integrity-review"
+      ]
+    },
+    "php-platform-engineer": {
+      "label": "PHP Platform Engineer",
+      "description": "Static-review board for PHP platform engineering — PHP application security (unserialize/session/upload), Composer dependency supply-chain governance, runtime version/EOL readiness with OPcache/PHP-FPM hardening, and WordPress plugin/theme/REST/block security — routed by the PHP maestro to the narrowest specialist. Advisory only: never executes payloads, installs packages, or mutates runtime or production.",
+      "agents": [
+        "php-maestro-agent",
+        "php-application-security-agent",
+        "composer-supply-chain-agent",
+        "php-runtime-upgrade-readiness-agent",
+        "wordpress-security-agent"
+      ],
+      "skills": [
+        "php-maestro",
+        "php-session-upload-deserialization-review",
+        "composer-audit-supply-chain-review",
+        "php-runtime-eol-opcache-fpm-review",
+        "wordpress-rest-block-security-review"
       ]
     }
   }

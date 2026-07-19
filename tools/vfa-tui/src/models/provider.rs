@@ -27,6 +27,7 @@ pub enum Provider {
     Generic,
     Frontend,
     Dotnet,
+    Java,
     Hr,
     Legal,
     Salesforce,
@@ -53,6 +54,7 @@ pub enum Provider {
     Sigstore,
     Snowflake,
     Velero,
+    Php,
 }
 
 impl std::fmt::Display for Provider {

@@ -1,0 +1,40 @@
+{
+  "id": "java-maestro-agent",
+  "name": "Java Maestro",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "java",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Router agent for the Java board. Classifies a Java/JVM task and dispatches the narrowest static-review specialist, or a parallel team of up to four for multi-domain tasks. Routes only — never answers Java questions itself.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.oracle.com/en/java/",
+    "https://spring.io/projects/spring-boot",
+    "https://jakarta.ee/specifications/"
+  ],
+  "security_notes": "Routing only — performs no review itself, never runs code, never requests secrets, connection strings, tokens, keystores, tenant identifiers, or customer data. Every dispatched Java specialist is static-review (reads source and sanitized configuration only).",
+  "last_verified": "2026-07-17",
+  "path": "agents/java/java-maestro-agent/",
+  "harness_variants": {
+    "codex": "agents/java/java-maestro-agent/harnesses/codex.toml",
+    "copilot": "agents/java/java-maestro-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/java/java-maestro-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/java/java-maestro-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/java/java-maestro-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/java/java-maestro-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/java/java-maestro-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "java-maestro"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

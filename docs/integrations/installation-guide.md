@@ -293,6 +293,8 @@ This repo ships **{{ site.data.catalog.providers }} Powers** under `powers/`, on
 | `powers/vanguard-prometheus` | Prometheus (observability) |
 | `powers/vanguard-backstage` | Backstage (developer portal) |
 | `powers/vanguard-dotnet` | .NET (language/runtime) |
+| `powers/vanguard-frontend` | Frontend (web platform) |
+| `powers/vanguard-php` | PHP (language/runtime) |
 | `powers/vanguard-generic` | Generic (cross-platform) |
 | `powers/vanguard-multi-cloud` | Multi-cloud |
 | `powers/vanguard-hr` | HR (professional function) |
