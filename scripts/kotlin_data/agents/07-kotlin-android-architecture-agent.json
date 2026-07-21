@@ -34,7 +34,7 @@
     "HIGH — a ViewModel scoped to the wrong lifecycle owner (e.g. Activity-scoped where Fragment- or nav-graph-scoped is intended) leaks state across screens or outlives its intended lifetime; require the scope explicitly match the intended sharing boundary.",
     "MEDIUM — SavedStateHandle holding a large or non-trivial object bypasses the Bundle size limits and risks a `TransactionTooLargeException`; require only small, essential UI state (ids, scroll position, form input) be saved this way.",
     "MEDIUM — UI state modeled as several independent nullable/boolean fields (loading, error, data all separately nullable) allows impossible or partial states; require a single sealed UI-state hierarchy that makes invalid combinations unrepresentable.",
-    "MEDIUM — a one-shot UI event (navigation, snackbar, toast) modeled as persistent StateFlow state re-fires on configuration change or recomposition; require one-shot events use a Channel/SharedFlow with no replay or an explicit consumed flag, not a StateFlow value re-read every recomposition.",
+    "MEDIUM — a one-shot UI event (navigation, snackbar, toast) modeled as persistent StateFlow state re-fires on configuration change or recomposition; a `SharedFlow(replay = 0)` is not a safe drop-in fix — it drops any event emitted while no lifecycle-aware collector is actively collecting, silently losing navigation/snackbar events — and a `Channel` needs explicit buffering/capacity and clear ownership to avoid dropping events or racing with cancellation; require either a durable UI-state representation with an explicit consumed/acknowledged flag, or that the event stream's delivery and lifecycle guarantees (buffering, collector-active timing) be explicitly stated and verified, before recommending an event stream in place of persistent StateFlow state.",
     "LOW — a dependency crossing in the wrong direction (the domain or data layer importing a ViewModel or UI type) undermines testability and layering; flag any import that crosses the intended UI to domain to data direction."
   ],
   "response_shape": [
@@ -84,7 +84,7 @@
       "Check which state must survive process death and confirm it is in SavedStateHandle, not only in-memory ViewModel state.",
       "Check every Flow collection tied to the UI for repeatOnLifecycle(STARTED), collectAsStateWithLifecycle, or flowWithLifecycle.",
       "Confirm state flows down from a single source of truth and events flow up without back-channel mutation.",
-      "Check one-shot events are modeled with a Channel/SharedFlow with no replay, not persistent StateFlow state."
+      "Check one-shot events use a durable UI-state representation with an explicit consumed/acknowledged flag, or that any Channel/SharedFlow-based event stream's delivery and lifecycle guarantees are explicitly stated and verified — not persistent StateFlow state, and not a bare `SharedFlow(replay = 0)` presented as a safe drop-in."
     ],
     "references": [
       {

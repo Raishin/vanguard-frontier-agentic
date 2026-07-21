@@ -177,6 +177,6 @@
   },
   "live_guards": [],
   "gate_mode": "live-guard-gate",
-  "live_guard_intent": "(destroy|delete|terminate|rollout to prod|rollout to production|approve.*production|promote.*to (?:prod|production)|key destruction|policy change in prod|mutate (?:rbac|iam|policy)|change-set.*apply|live (?:apply|push|deploy)|force[- ]push.*main|drop\\s+(?:table|database)|swap\\s+production\\s+slot)",
+  "live_guard_intent": "(destroy|delete|terminate|rollout to prod|rollout to production|approve.*production|promote.*to (?:prod|production)|key destruction|policy change in prod|mutate (?:rbac|iam|policy)|change-set.*apply|live (?:apply|push|deploy)|force[- ]push.*main|drop\\s+(?:table|database)|swap\\s+production\\s+slot|publish.*(?:maven|artifact|library|package|registry)|deploy.*(?:prod|production|staging|play store|app store)|sign(?:ing)?\\s+(?:the|a|our|this)\\s+(?:release|artifact|apk|aab|jar|bundle|build)|(?:upload|push).*(?:play store|app store|maven central)|release.*to\\s+(?:prod|production|maven))",
   "parallel_threshold": 0.8
 }

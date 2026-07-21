@@ -203,7 +203,7 @@ coroutine/Compose/KMP test architecture.
 | Skill directory | `skills/kotlin/` |
 | Agents | 16 |
 | Skills | 16 (1:1 companion skill per agent) |
-| Install roles | `kotlin-backend-engineer`, `android-kotlin-engineer`, `kotlin-multiplatform-engineer`, `kotlin-platform-build-engineer`, `kotlin-library-maintainer`, `kotlin-security-engineer` |
+| Install roles | `kotlin-backend-engineer`, `android-kotlin-engineer`, `kotlin-multiplatform-engineer`, `kotlin-platform-build-engineer`, `kotlin-library-maintainer`, `kotlin-security-engineer`, `kotlin-engineering-leader` |
 | Execution tier | `static-review` (all agents) |
 
 **Agent directory layout**
