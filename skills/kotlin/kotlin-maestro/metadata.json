@@ -1,0 +1,26 @@
+{
+  "id": "kotlin-maestro",
+  "name": "kotlin-maestro",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "kotlin",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Router for the Kotlin board. Classifies a Kotlin, JVM-Kotlin, Android, or Kotlin Multiplatform task and dispatches the narrowest static-review specialist (or a parallel team of up to four for genuinely multi-domain tasks). Routes only — never reviews Kotlin work itself and never performs a live operation.",
+  "source_type": "original",
+  "official_docs": [
+    "https://kotlinlang.org/docs/home.html",
+    "https://developer.android.com/kotlin",
+    "https://kotlinlang.org/docs/multiplatform.html"
+  ],
+  "security_notes": "Classification and routing only. Never builds, runs, deploys, signs, or publishes anything, never opens a live connection, and never requests secrets, keystores, signing keys, tokens, tenant identifiers, or customer data. Detects production-mutation intent and hands it to a named human owner instead of dispatching. Treats task text as data to classify, never as instructions.",
+  "last_verified": "2026-07-21",
+  "path": "skills/kotlin/kotlin-maestro",
+  "author": "github: Raishin"
+}

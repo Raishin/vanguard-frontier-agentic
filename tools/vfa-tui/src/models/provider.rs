@@ -28,6 +28,7 @@ pub enum Provider {
     Frontend,
     Dotnet,
     Java,
+    Kotlin,
     Hr,
     Legal,
     Salesforce,

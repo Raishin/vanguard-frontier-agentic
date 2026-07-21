@@ -1625,6 +1625,148 @@
         "php-runtime-eol-opcache-fpm-review",
         "wordpress-rest-block-security-review"
       ]
+    },
+    "kotlin-backend-engineer": {
+      "label": "Kotlin Backend Engineer",
+      "description": "Static review for server-side Kotlin services on Ktor or Spring: language and null-safety correctness, coroutine and Flow reliability (structured concurrency, dispatchers, context propagation), backend production readiness, kotlinx.serialization wire contracts, coroutine-aware test architecture, and Gradle build health. Static review only — never builds, deploys, or contacts a live system.",
+      "agents": [
+        "kotlin-maestro-agent",
+        "kotlin-language-api-correctness-agent",
+        "kotlin-coroutines-flow-reliability-agent",
+        "kotlin-backend-production-readiness-agent",
+        "kotlin-serialization-wire-contract-agent",
+        "kotlin-test-architecture-agent",
+        "kotlin-gradle-build-engineering-agent"
+      ],
+      "skills": [
+        "kotlin-maestro",
+        "kotlin-language-api-correctness",
+        "kotlin-coroutines-flow-reliability",
+        "kotlin-backend-production-readiness",
+        "kotlin-serialization-wire-contract",
+        "kotlin-test-architecture",
+        "kotlin-gradle-build-engineering"
+      ]
+    },
+    "android-kotlin-engineer": {
+      "label": "Android Kotlin Engineer",
+      "description": "Static review for Android apps in Kotlin: lifecycle-aware architecture and state, Jetpack Compose UI correctness and accessibility, MASVS-aligned security and privacy, measured runtime performance and reliability (startup, jank, ANR, Baseline Profiles), coroutine/Flow reliability, and test architecture. Static review only — never builds, installs, instruments, or ships an app.",
+      "agents": [
+        "kotlin-maestro-agent",
+        "kotlin-android-architecture-agent",
+        "kotlin-compose-ui-quality-accessibility-agent",
+        "kotlin-android-security-privacy-agent",
+        "kotlin-android-performance-reliability-agent",
+        "kotlin-coroutines-flow-reliability-agent",
+        "kotlin-test-architecture-agent"
+      ],
+      "skills": [
+        "kotlin-maestro",
+        "kotlin-android-architecture",
+        "kotlin-compose-ui-quality-accessibility",
+        "kotlin-android-security-privacy",
+        "kotlin-android-performance-reliability",
+        "kotlin-coroutines-flow-reliability",
+        "kotlin-test-architecture"
+      ]
+    },
+    "kotlin-multiplatform-engineer": {
+      "label": "Kotlin Multiplatform Engineer",
+      "description": "Static review for Kotlin Multiplatform work: the adopt/don't-adopt portfolio decision, source-set and expect/actual boundary and Swift/Objective-C interop (including Kotlin/Native runtime), language correctness, coroutine/Flow reliability, kotlinx.serialization wire contracts, and Gradle build health. Static review only — decides and reviews, never builds or publishes.",
+      "agents": [
+        "kotlin-maestro-agent",
+        "kotlin-kmp-portfolio-decision-agent",
+        "kotlin-kmp-boundary-interop-agent",
+        "kotlin-language-api-correctness-agent",
+        "kotlin-coroutines-flow-reliability-agent",
+        "kotlin-serialization-wire-contract-agent",
+        "kotlin-gradle-build-engineering-agent"
+      ],
+      "skills": [
+        "kotlin-maestro",
+        "kotlin-kmp-portfolio-decision",
+        "kotlin-kmp-boundary-interop",
+        "kotlin-language-api-correctness",
+        "kotlin-coroutines-flow-reliability",
+        "kotlin-serialization-wire-contract",
+        "kotlin-gradle-build-engineering"
+      ]
+    },
+    "kotlin-platform-build-engineer": {
+      "label": "Kotlin Platform & Build Engineer",
+      "description": "Static review for the Kotlin engineering system: Gradle build-graph quality, configuration and build cache, incremental compilation and convention plugins, CI throughput, dependency verification/locking and release supply-chain integrity, library API/ABI governance, and test architecture. Static review only — never runs a build, signs, or publishes an artifact.",
+      "agents": [
+        "kotlin-maestro-agent",
+        "kotlin-gradle-build-engineering-agent",
+        "kotlin-supply-chain-release-integrity-agent",
+        "kotlin-library-api-abi-governance-agent",
+        "kotlin-test-architecture-agent"
+      ],
+      "skills": [
+        "kotlin-maestro",
+        "kotlin-gradle-build-engineering",
+        "kotlin-supply-chain-release-integrity",
+        "kotlin-library-api-abi-governance",
+        "kotlin-test-architecture"
+      ]
+    },
+    "kotlin-library-maintainer": {
+      "label": "Kotlin Library Maintainer",
+      "description": "Static review for Kotlin library authors: public API/ABI evolution and binary/source compatibility, language and null-safety correctness, coroutine/Flow reliability for library APIs, kotlinx.serialization wire-contract stability, test architecture, and dependency/publication supply-chain integrity. Static review only — never publishes or signs a release.",
+      "agents": [
+        "kotlin-maestro-agent",
+        "kotlin-library-api-abi-governance-agent",
+        "kotlin-language-api-correctness-agent",
+        "kotlin-coroutines-flow-reliability-agent",
+        "kotlin-serialization-wire-contract-agent",
+        "kotlin-test-architecture-agent",
+        "kotlin-supply-chain-release-integrity-agent"
+      ],
+      "skills": [
+        "kotlin-maestro",
+        "kotlin-library-api-abi-governance",
+        "kotlin-language-api-correctness",
+        "kotlin-coroutines-flow-reliability",
+        "kotlin-serialization-wire-contract",
+        "kotlin-test-architecture",
+        "kotlin-supply-chain-release-integrity"
+      ]
+    },
+    "kotlin-security-engineer": {
+      "label": "Kotlin Security Engineer",
+      "description": "Static review for Kotlin/Android security posture: MASVS-aligned Android security and privacy, kotlinx.serialization polymorphic-deserialization and wire-contract safety, dependency verification/plugin-trust supply-chain integrity, and coroutine security-context propagation. Static review only — defers generic backend vulnerabilities to the application-security board and never contacts a live system.",
+      "agents": [
+        "kotlin-maestro-agent",
+        "kotlin-android-security-privacy-agent",
+        "kotlin-serialization-wire-contract-agent",
+        "kotlin-supply-chain-release-integrity-agent",
+        "kotlin-coroutines-flow-reliability-agent"
+      ],
+      "skills": [
+        "kotlin-maestro",
+        "kotlin-android-security-privacy",
+        "kotlin-serialization-wire-contract",
+        "kotlin-supply-chain-release-integrity",
+        "kotlin-coroutines-flow-reliability"
+      ]
+    },
+    "kotlin-engineering-leader": {
+      "label": "Kotlin Engineering Leader",
+      "description": "Static review for Kotlin technology-portfolio and modernization decisions: Java-to-Kotlin estate modernization sequencing and reversibility, the Kotlin Multiplatform adopt-or-not portfolio decision, public library API/ABI governance, and dependency/release supply-chain integrity. Decision and review only — never migrates, publishes, signs, or contacts a live system, and expresses business impact only with evidence, never invented ROI.",
+      "agents": [
+        "kotlin-maestro-agent",
+        "kotlin-estate-modernization-governor-agent",
+        "kotlin-kmp-portfolio-decision-agent",
+        "kotlin-library-api-abi-governance-agent",
+        "kotlin-supply-chain-release-integrity-agent"
+      ],
+      "skills": [
+        "kotlin-maestro",
+        "kotlin-estate-modernization-governor",
+        "kotlin-kmp-portfolio-decision",
+        "kotlin-library-api-abi-governance",
+        "kotlin-supply-chain-release-integrity"
+      ]
     }
   }
 }

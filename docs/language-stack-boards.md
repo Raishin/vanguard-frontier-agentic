@@ -6,7 +6,7 @@ alongside the provider boards (`aws`, `azure`, `gcp`, and others) and share the
 same `provider` faceting axis: each shipped topical board has its own dedicated
 `provider` enum value.
 
-This document covers the current boards: `frontend`, `.NET`, `Java`, `PHP`, `legal`, `hr`, `marketing`,
+This document covers the current boards: `frontend`, `.NET`, `Java`, `Kotlin`, `PHP`, `legal`, `hr`, `marketing`,
 `salesforce`, `netsuite`, `accounting`, `finance`, `sap` (SAP S/4HANA + BTP
 enterprise board), `microsoft` (Microsoft 365 / Dynamics 365), `databricks`,
 and `snowflake` (data and analytics platforms). It also describes how to use
@@ -175,6 +175,67 @@ agents/java/
 | `java-jdk-lifecycle-and-upgrade-agent` | JDK-estate upgrade/hold decision: flags a fleet approaching an LTS support or license boundary and prescribes an upgrade path, gated on supplied vendor-verified dates. |
 | `java-jpa-hibernate-performance-agent` | JPA/Hibernate fetch-strategy correctness: N+1 risk, `JOIN FETCH` vs `@EntityGraph` vs `@BatchSize` vs DTO projection, and `open-in-view` misuse. |
 | `java-deserialization-and-parser-security-agent` | Untrusted-deserialization/parser RCE surface: `ObjectInputStream` gadget chains, SnakeYAML `Constructor`, and Jackson polymorphic default typing without a validator. |
+
+Each agent reads source and sanitized configuration only. No agent runs a build,
+executes tests, opens a database or broker connection, contacts a live system, or
+edits project files.
+
+---
+
+### Kotlin
+
+The `kotlin` board covers adversarial, evidence-first static review of Kotlin
+across the JVM, Android, and Kotlin Multiplatform: language and null-safety
+correctness, coroutine and Flow reliability, public library API/ABI governance,
+Ktor and Kotlin-on-Spring backend production readiness, kotlinx.serialization
+wire contracts, Java-to-Kotlin estate modernization, Android lifecycle-aware
+architecture, Jetpack Compose UI quality and accessibility, MASVS-aligned Android
+security and privacy, measured Android runtime performance, the Kotlin
+Multiplatform adopt-or-not decision and its source-set/interop boundary, Gradle
+build engineering, Kotlin dependency and release supply-chain integrity, and
+coroutine/Compose/KMP test architecture.
+
+| Property | Value |
+|----------|-------|
+| `provider` | `kotlin` |
+| ID prefix | `kotlin-*` |
+| Agent directory | `agents/kotlin/` |
+| Skill directory | `skills/kotlin/` |
+| Agents | 16 |
+| Skills | 16 (1:1 companion skill per agent) |
+| Install roles | `kotlin-backend-engineer`, `android-kotlin-engineer`, `kotlin-multiplatform-engineer`, `kotlin-platform-build-engineer`, `kotlin-library-maintainer`, `kotlin-security-engineer` |
+| Execution tier | `static-review` (all agents) |
+
+**Agent directory layout**
+
+```
+agents/kotlin/
+  kotlin-maestro-agent/
+  kotlin-estate-modernization-governor-agent/
+  kotlin-language-api-correctness-agent/
+  kotlin-coroutines-flow-reliability-agent/
+  kotlin-library-api-abi-governance-agent/
+  kotlin-backend-production-readiness-agent/
+  kotlin-serialization-wire-contract-agent/
+  kotlin-android-architecture-agent/
+  kotlin-compose-ui-quality-accessibility-agent/
+  kotlin-android-security-privacy-agent/
+  kotlin-android-performance-reliability-agent/
+  kotlin-kmp-portfolio-decision-agent/
+  kotlin-kmp-boundary-interop-agent/
+  kotlin-gradle-build-engineering-agent/
+  kotlin-supply-chain-release-integrity-agent/
+  kotlin-test-architecture-agent/
+```
+
+**Example agents**
+
+| Agent | Scope |
+|-------|-------|
+| `kotlin-maestro-agent` | Router; classifies a Kotlin/JVM/Android/KMP task and dispatches the narrowest specialist or a parallel team of up to four. Routes only — never reviews Kotlin work itself, and ejects Java-, cloud-, observability-, and signing-owned work to the right board. |
+| `kotlin-coroutines-flow-reliability-agent` | Structured concurrency, cancellation cooperation, dispatcher/blocking confinement, cold-vs-hot Flow semantics, and context propagation across suspension — including the coroutine-aware persistence and trace/MDC/security-context hazards. |
+| `kotlin-android-security-privacy-agent` | MASVS-aligned static review of exported components, deep links, WebView exposure, cleartext traffic, secret storage, backup exposure, permission minimization, and PII in logs. |
+| `kotlin-kmp-portfolio-decision-agent` | The whether-to-share-code-at-all decision: organizational topology, roadmap alignment, platform differentiation, and reversibility — able to recommend against Kotlin Multiplatform. |
 
 Each agent reads source and sanitized configuration only. No agent runs a build,
 executes tests, opens a database or broker connection, contacts a live system, or

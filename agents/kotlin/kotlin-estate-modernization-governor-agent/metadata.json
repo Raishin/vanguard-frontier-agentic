@@ -1,0 +1,41 @@
+{
+  "id": "kotlin-estate-modernization-governor-agent",
+  "name": "Kotlin Estate Modernization Governor Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "kotlin",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of Java-to-Kotlin migration strategy: strangler-fig module-by-module vs file-by-file sequencing, the mixed Java/Kotlin interop-boundary null-safety debt, reversibility of each migration step, when a module should not migrate, and J2K converter-output governance. Reads module and dependency inventories only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://kotlinlang.org/docs/mixing-java-kotlin-intellij.html",
+    "https://kotlinlang.org/docs/java-interop.html",
+    "https://kotlinlang.org/docs/comparison-to-java.html",
+    "https://developer.android.com/kotlin/add-kotlin"
+  ],
+  "security_notes": "Static review only — reads module inventories, dependency graphs, sanitized source diffs, and J2K converter output; never builds, runs, or executes the actual migration (invoking the converter, merging, deploying), never opens a live connection, and never requests real credentials. Claims about a module's actual runtime churn, ownership, or business justification are flagged as needing confirmation from the owning team rather than asserted from the artifacts alone. Never requests secrets, credentials, or customer data.",
+  "last_verified": "2026-07-21",
+  "path": "agents/kotlin/kotlin-estate-modernization-governor-agent/",
+  "harness_variants": {
+    "codex": "agents/kotlin/kotlin-estate-modernization-governor-agent/harnesses/codex.toml",
+    "copilot": "agents/kotlin/kotlin-estate-modernization-governor-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/kotlin/kotlin-estate-modernization-governor-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/kotlin/kotlin-estate-modernization-governor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/kotlin/kotlin-estate-modernization-governor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/kotlin/kotlin-estate-modernization-governor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/kotlin/kotlin-estate-modernization-governor-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "kotlin-estate-modernization-governor"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

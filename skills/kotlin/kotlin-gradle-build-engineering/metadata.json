@@ -1,0 +1,27 @@
+{
+  "id": "kotlin-gradle-build-engineering",
+  "name": "kotlin-gradle-build-engineering",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "kotlin",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review of Gradle build-graph quality and CI throughput for Kotlin/KMP projects: configuration-cache and build-cache correctness, task-graph/configuration-avoidance, kapt vs KSP annotation processing, and convention-plugin centralization. Reads Gradle build files and build-scan evidence only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.gradle.org/current/userguide/configuration_cache.html",
+    "https://docs.gradle.org/current/userguide/build_cache.html",
+    "https://kotlinlang.org/docs/ksp-overview.html",
+    "https://docs.gradle.org/current/userguide/sharing_build_logic_between_subprojects.html"
+  ],
+  "security_notes": "Static review only — reads Gradle build files, convention-plugin sources, and sanitized build-scan/cache-hit evidence; never invokes Gradle, runs a build, or reads a live build-cache node. Throughput claims (cache-hit rate, build-time improvement) that are not backed by build-scan evidence are flagged as needing measurement rather than asserted. Never requests secrets, credentials, or customer data.",
+  "last_verified": "2026-07-21",
+  "path": "skills/kotlin/kotlin-gradle-build-engineering",
+  "author": "github: Raishin"
+}

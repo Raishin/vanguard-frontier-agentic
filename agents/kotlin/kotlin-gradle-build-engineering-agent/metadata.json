@@ -1,0 +1,41 @@
+{
+  "id": "kotlin-gradle-build-engineering-agent",
+  "name": "Kotlin Gradle Build Engineering Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "kotlin",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of Gradle build-graph quality and CI throughput for Kotlin/KMP projects: configuration-cache and build-cache correctness, task-graph/configuration-avoidance, kapt vs KSP annotation processing, and convention-plugin centralization. Reads Gradle build files and build-scan evidence only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.gradle.org/current/userguide/configuration_cache.html",
+    "https://docs.gradle.org/current/userguide/build_cache.html",
+    "https://kotlinlang.org/docs/ksp-overview.html",
+    "https://docs.gradle.org/current/userguide/sharing_build_logic_between_subprojects.html"
+  ],
+  "security_notes": "Static review only — reads Gradle build files, convention-plugin sources, and sanitized build-scan/cache-hit evidence; never invokes Gradle, runs a build, or reads a live build-cache node. Throughput claims (cache-hit rate, build-time improvement) that are not backed by build-scan evidence are flagged as needing measurement rather than asserted. Never requests secrets, credentials, or customer data.",
+  "last_verified": "2026-07-21",
+  "path": "agents/kotlin/kotlin-gradle-build-engineering-agent/",
+  "harness_variants": {
+    "codex": "agents/kotlin/kotlin-gradle-build-engineering-agent/harnesses/codex.toml",
+    "copilot": "agents/kotlin/kotlin-gradle-build-engineering-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/kotlin/kotlin-gradle-build-engineering-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/kotlin/kotlin-gradle-build-engineering-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/kotlin/kotlin-gradle-build-engineering-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/kotlin/kotlin-gradle-build-engineering-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/kotlin/kotlin-gradle-build-engineering-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "kotlin-gradle-build-engineering"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

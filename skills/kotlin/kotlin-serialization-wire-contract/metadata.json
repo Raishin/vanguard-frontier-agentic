@@ -1,0 +1,27 @@
+{
+  "id": "kotlin-serialization-wire-contract",
+  "name": "kotlin-serialization-wire-contract",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "kotlin",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review of kotlinx.serialization wire-contract safety and schema evolution: encodeDefaults/explicitNulls defaults, @EncodeDefault overrides, strict-decode unknown-key rejection, sealed-class closed polymorphism and class discriminators, and breaking-change detection for optional/required-field evolution. Reads source and serializer configuration only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://github.com/Kotlin/kotlinx.serialization",
+    "https://kotlinlang.org/api/kotlinx.serialization/",
+    "https://github.com/Kotlin/kotlinx.serialization/blob/master/docs/json.md",
+    "https://github.com/Kotlin/kotlinx.serialization/blob/master/docs/polymorphism.md"
+  ],
+  "security_notes": "Static review only — reads Kotlin `@Serializable` classes, `Json {}` configuration, and sanitized sample payloads; never builds, runs, or sends/receives real wire traffic, and never handles production payloads or customer data. A claim about actual producer/consumer version skew in a live system is flagged as needing verification rather than asserted. Never requests secrets, credentials, or customer data.",
+  "last_verified": "2026-07-21",
+  "path": "skills/kotlin/kotlin-serialization-wire-contract",
+  "author": "github: Raishin"
+}

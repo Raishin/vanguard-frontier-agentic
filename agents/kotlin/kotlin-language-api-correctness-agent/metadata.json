@@ -1,0 +1,41 @@
+{
+  "id": "kotlin-language-api-correctness-agent",
+  "name": "Kotlin Language and API Correctness Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "kotlin",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of Kotlin language-level correctness: nullability and Java-interop platform types, inline functions with reified generics past JVM erasure, @JvmInline value-class boxing, statically-dispatched extension functions vs member precedence, and lateinit use-before-init hazards. Reads source only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://kotlinlang.org/docs/null-safety.html",
+    "https://kotlinlang.org/docs/java-interop.html",
+    "https://kotlinlang.org/docs/inline-functions.html",
+    "https://kotlinlang.org/docs/inline-classes.html"
+  ],
+  "security_notes": "Static review only — reads Kotlin source and sanitized Java-interop signatures; never compiles, runs, or executes code to observe an actual NullPointerException, boxing allocation, or dispatch outcome. A runtime-behavior claim not confirmed by the visible source is flagged as needing verification rather than asserted. Never requests secrets, credentials, or customer data.",
+  "last_verified": "2026-07-21",
+  "path": "agents/kotlin/kotlin-language-api-correctness-agent/",
+  "harness_variants": {
+    "codex": "agents/kotlin/kotlin-language-api-correctness-agent/harnesses/codex.toml",
+    "copilot": "agents/kotlin/kotlin-language-api-correctness-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/kotlin/kotlin-language-api-correctness-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/kotlin/kotlin-language-api-correctness-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/kotlin/kotlin-language-api-correctness-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/kotlin/kotlin-language-api-correctness-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/kotlin/kotlin-language-api-correctness-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "kotlin-language-api-correctness"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

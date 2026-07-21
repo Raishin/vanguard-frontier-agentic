@@ -53,6 +53,7 @@ ALLOWED_PROVIDERS = {
     "marketing",
     "dotnet",
     "java",
+    "kotlin",
     "hr",
     "legal",
     "salesforce",

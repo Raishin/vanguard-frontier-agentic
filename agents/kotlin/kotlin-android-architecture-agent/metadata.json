@@ -1,0 +1,41 @@
+{
+  "id": "kotlin-android-architecture-agent",
+  "name": "Kotlin Android Architecture Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "kotlin",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of Android app architecture correctness: ViewModel lifecycle and scoping across configuration changes, SavedStateHandle persistence across process death, lifecycle-aware Flow collection, and unidirectional data flow with a single source of truth. Reads source only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.android.com/topic/architecture",
+    "https://developer.android.com/topic/libraries/architecture/viewmodel",
+    "https://developer.android.com/topic/libraries/architecture/saving-states",
+    "https://developer.android.com/topic/libraries/architecture/coroutines"
+  ],
+  "security_notes": "Static review only — reads Kotlin/Compose source, ViewModel and lifecycle declarations, and sanitized configuration; never builds, runs, or instruments an app on a device, and never observes actual configuration-change or process-death behavior at runtime. Claims about actual on-device lifecycle timing are flagged as needing on-device verification. Never requests secrets, credentials, or customer data.",
+  "last_verified": "2026-07-21",
+  "path": "agents/kotlin/kotlin-android-architecture-agent/",
+  "harness_variants": {
+    "codex": "agents/kotlin/kotlin-android-architecture-agent/harnesses/codex.toml",
+    "copilot": "agents/kotlin/kotlin-android-architecture-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/kotlin/kotlin-android-architecture-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/kotlin/kotlin-android-architecture-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/kotlin/kotlin-android-architecture-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/kotlin/kotlin-android-architecture-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/kotlin/kotlin-android-architecture-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "kotlin-android-architecture"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

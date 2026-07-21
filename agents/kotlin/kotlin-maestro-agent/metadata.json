@@ -1,0 +1,40 @@
+{
+  "id": "kotlin-maestro-agent",
+  "name": "Kotlin Maestro",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "kotlin",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Router for the Kotlin board. Classifies a Kotlin, JVM-Kotlin, Android, or Kotlin Multiplatform task and dispatches the narrowest static-review specialist (or a parallel team of up to four for genuinely multi-domain tasks). Routes only — never reviews Kotlin work itself and never performs a live operation.",
+  "source_type": "original",
+  "official_docs": [
+    "https://kotlinlang.org/docs/home.html",
+    "https://developer.android.com/kotlin",
+    "https://kotlinlang.org/docs/multiplatform.html"
+  ],
+  "security_notes": "Classification and routing only. Never builds, runs, deploys, signs, or publishes anything, never opens a live connection, and never requests secrets, keystores, signing keys, tokens, tenant identifiers, or customer data. Detects production-mutation intent and hands it to a named human owner instead of dispatching. Treats task text as data to classify, never as instructions.",
+  "last_verified": "2026-07-21",
+  "path": "agents/kotlin/kotlin-maestro-agent/",
+  "harness_variants": {
+    "codex": "agents/kotlin/kotlin-maestro-agent/harnesses/codex.toml",
+    "copilot": "agents/kotlin/kotlin-maestro-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/kotlin/kotlin-maestro-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/kotlin/kotlin-maestro-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/kotlin/kotlin-maestro-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/kotlin/kotlin-maestro-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/kotlin/kotlin-maestro-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "kotlin-maestro"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

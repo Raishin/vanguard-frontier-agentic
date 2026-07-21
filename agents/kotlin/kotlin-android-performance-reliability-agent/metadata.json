@@ -1,0 +1,41 @@
+{
+  "id": "kotlin-android-performance-reliability-agent",
+  "name": "Kotlin Android Performance and Reliability Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "kotlin",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of measured Android runtime performance and reliability evidence: cold/warm startup via StartupTimingMetric and CompilationMode, frame jank via FrameTimingMetric/JankStats, Baseline Profile coverage, ANR root causes, and Macrobenchmark regression-gating thresholds. Reads benchmark reports and source only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.android.com/topic/performance/benchmarking/macrobenchmark-overview",
+    "https://developer.android.com/topic/performance/baselineprofiles/overview",
+    "https://developer.android.com/topic/performance/vitals/anr",
+    "https://developer.android.com/topic/performance/jankstats"
+  ],
+  "security_notes": "Static review only — reads Macrobenchmark/JankStats reports, Baseline Profile rules, and Kotlin/Gradle source; never runs a benchmark, builds an APK, or instruments a device itself, and never asserts a performance number that isn't backed by a supplied report. Any performance or reliability claim without a supplied benchmark artifact is flagged as unknown rather than asserted. Never requests secrets, credentials, or customer data.",
+  "last_verified": "2026-07-21",
+  "path": "agents/kotlin/kotlin-android-performance-reliability-agent/",
+  "harness_variants": {
+    "codex": "agents/kotlin/kotlin-android-performance-reliability-agent/harnesses/codex.toml",
+    "copilot": "agents/kotlin/kotlin-android-performance-reliability-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/kotlin/kotlin-android-performance-reliability-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/kotlin/kotlin-android-performance-reliability-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/kotlin/kotlin-android-performance-reliability-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/kotlin/kotlin-android-performance-reliability-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/kotlin/kotlin-android-performance-reliability-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "kotlin-android-performance-reliability"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}
