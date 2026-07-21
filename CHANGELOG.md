@@ -1,3 +1,91 @@
+## 🛡️ v3.5.0 — *Provenance · Policy · Portability*
+_Released 2026-07-21_
+
+> _Curated multi-cloud, zero-trust agent marketplace — `AWS` · `Azure` · `OCI` · `GCP` · `Terraform`._
+> Least privilege, live evidence, safe rollback paths.
+
+**Release type:** New capabilities — review the sections below before upgrading.
+
+* **kotlin:** add adversarial Kotlin agent board (16 agents + companion skills) ([`a918e72`](https://github.com/Raishin/vanguard-frontier-agentic/commit/a918e72400bd8cf62ac17e5a90dd6452a61c98e8))
+Add a static-review Kotlin board spanning JVM-Kotlin language correctness,
+coroutines/Flow reliability, Ktor + Kotlin-on-Spring backend readiness,
+kotlinx.serialization wire contracts, library API/ABI governance,
+Java-to-Kotlin estate modernization, Android (architecture, Compose UI +
+accessibility, MASVS security/privacy, runtime performance), Kotlin
+Multiplatform (portfolio decision + boundary/interop incl. Kotlin/Native),
+Gradle build engineering, dependency/release supply-chain integrity, and
+coroutine/Compose/KMP test architecture. One maestro router plus 15
+specialists, each with a 1:1 companion skill and distinct topic references.
+
+- Register the kotlin provider across the schemas, validate-catalog
+  allowlist, vfa-tui Provider enum + coverage mapping, docs-data taxonomy,
+  and the hand-written taxonomy/board docs.
+- Add a deterministic generator (scripts/gen_kotlin_agents.py) that renders
+  agents, harness variants, and companion skills from per-agent data files.
+- Add the maestro routing fixture, seven install-role bundles, and refresh
+  all catalogs, plugin/cursor manifests, Kiro power, model policy, README
+  counts, and the asset-integrity manifest.
+
+Every agent is execution_tier static-review: reads source and sanitized
+config only; never builds, runs, deploys, signs, publishes, or contacts a
+live system. Business impact is evidence-bounded, never invented ROI.
+
+Gates: npm run validate (all gates), codespell, markdownlint, and cargo
+fmt/clippy/test (173 passed) all green.
+* **catalog-sync:** upsert existing ids in update-catalog helper ([`d2458a4`](https://github.com/Raishin/vanguard-frontier-agentic/commit/d2458a483a782b4473b82ad84c4ab4bf29fdf218))
+update-catalog-new-agents.py was add-only: editing an existing agent or
+skill's metadata.json (summary, official_docs, security_notes, harnesses,
+version, companion_skills) never re-synced catalog/agents.json or
+catalog/skills.json, so exporters and the TUI could serve stale metadata.
+
+Make it upsert — new ids are appended, existing ids are refreshed only
+when their projected form diverges, and an already-synced tree is a
+strict no-op. It does not prune ids whose metadata.json was deleted;
+removal stays a deliberate manual step. Update the Kotlin generator
+docstring to describe the new behaviour.
+
+Addresses the catalog-synchronization review finding on PR #130.
+* **kotlin:** address PR review + complete provider registration for docs/README ([`7bfc52d`](https://github.com/Raishin/vanguard-frontier-agentic/commit/7bfc52dec915bf1a9a7a033ab89ab3df7e6d1117))
+Provider registration completeness (hand-maintained, non-generated lists):
+- README: add Kotlin to the board prose list, the board table, the directory
+  tree, the Powers list, and a dedicated Kotlin board description section.
+- docs/integrations/installation-guide.md: add the vanguard-kotlin Kiro Power row.
+- docs/language-stack-boards.md: include the kotlin-engineering-leader install role.
+- (Rust TUI already complete: Provider enum variant + infer_provider mapping;
+  the display-name path is generic.)
+
+PR review fixes:
+- gen_kotlin_agents.py: wrap the multi-line board-rule strings in explicit
+  parentheses (silences CodeQL implicit-string-concatenation), and stop emitting
+  policy-controlled codex model/reasoning fields — model-policy:apply projects
+  them, so regeneration no longer conflicts with catalog/model-policy.json. Add a
+  workflow note that update-catalog is add-only (re-sync changed cataloged fields).
+- kotlin-maestro routing fixture: expand live_guard_intent to gate the declared
+  production-mutation verbs (publish to a registry, deploy to prod, sign a release,
+  push to a store) while leaving review requests (build/​migrate) routable; add two
+  adversarial gate fixtures.
+- Data-file accuracy: cleartext default is targetSdkVersion-governed (not device
+  OS); recommend current Keystore-backed storage rather than the deprecated
+  EncryptedSharedPreferences; model JVM default arguments at the callee; do not
+  require an explicit Turbine timeout (finite default exists); do not present
+  SharedFlow(replay=0) as a lossless one-shot-event fix; drop the maestro refusal
+  trigger that contradicted its ignore-injection-and-route rule.
+
+Catalogs, manifests, model policy, and asset integrity regenerated. All gates
+green: npm run validate, codespell, markdownlint, and the cargo suite.
+
+---
+
+### 📥 Install
+```bash
+npm install @raishin/vanguard-frontier-agentic@3.5.0
+```
+
+### 🔐 Supply-chain provenance
+Every release ships a build attestation (SLSA provenance) and an SBOM. Verify the tag with `gh attestation verify` before installing.
+
+**Full changelog:** https://github.com/Raishin/vanguard-frontier-agentic/compare/v3.4.0...v3.5.0
+
 ## 🛡️ v3.4.0 — *Provenance · Policy · Portability*
 _Released 2026-07-19_
 
@@ -8227,7 +8315,7 @@ Collateral: regenerate asset-integrity.json, plugin manifests
 
 ## 🔴 v2.0.0 — *Zero-Trust Scope Enforcement* &mdash; 2026-05-16
 
-> _Provider-scoped exports are now strict and auditable. 615 agents · 638 skills · 42 providers · 33 roles_
+> _Provider-scoped exports are now strict and auditable. 631 agents · 654 skills · 43 providers · 40 roles_
 >
 > This release closes a class of privilege-escalation bugs in the export CLI and hardens the
 > entire provider-scope boundary from user input through to CI attestation.
