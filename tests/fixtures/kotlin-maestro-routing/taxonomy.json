@@ -1,0 +1,182 @@
+{
+  "provider": "kotlin",
+  "domains": {
+    "android-architecture": {
+      "keywords": [
+        "architecture",
+        "ViewModel",
+        "SavedStateHandle",
+        "lifecycle-aware",
+        "Flow"
+      ],
+      "agent": "kotlin-android-architecture-agent"
+    },
+    "android-performance-reliability": {
+      "keywords": [
+        "performance",
+        "reliability",
+        "StartupTimingMetric",
+        "CompilationMode",
+        "FrameTimingMetric",
+        "JankStats"
+      ],
+      "agent": "kotlin-android-performance-reliability-agent"
+    },
+    "android-security-privacy": {
+      "keywords": [
+        "security",
+        "privacy",
+        "MASVS",
+        "deep-link",
+        "App Links",
+        "WebView",
+        "cleartext-traffic"
+      ],
+      "agent": "kotlin-android-security-privacy-agent"
+    },
+    "backend-production-readiness": {
+      "keywords": [
+        "backend",
+        "production",
+        "readiness",
+        "Ktor",
+        "on-Spring",
+        "Netty",
+        "CIO"
+      ],
+      "agent": "kotlin-backend-production-readiness-agent"
+    },
+    "compose-ui-quality-accessibility": {
+      "keywords": [
+        "compose",
+        "ui",
+        "quality",
+        "accessibility",
+        "Jetpack Compose UI",
+        "Stable",
+        "Immutable",
+        "side-effect",
+        "API"
+      ],
+      "agent": "kotlin-compose-ui-quality-accessibility-agent"
+    },
+    "coroutines-flow-reliability": {
+      "keywords": [
+        "coroutines",
+        "flow",
+        "reliability",
+        "StateFlow",
+        "SharedFlow",
+        "coroutine-aware"
+      ],
+      "agent": "kotlin-coroutines-flow-reliability-agent"
+    },
+    "estate-modernization-governor": {
+      "keywords": [
+        "estate",
+        "modernization",
+        "Java",
+        "to-Kotlin",
+        "strangler-fig",
+        "module-by",
+        "file-by"
+      ],
+      "agent": "kotlin-estate-modernization-governor-agent"
+    },
+    "gradle-build-engineering": {
+      "keywords": [
+        "gradle",
+        "build",
+        "engineering",
+        "build-graph",
+        "configuration-cache"
+      ],
+      "agent": "kotlin-gradle-build-engineering-agent"
+    },
+    "kmp-boundary-interop": {
+      "keywords": [
+        "boundary",
+        "interop",
+        "Kotlin Multiplatform",
+        "source-set",
+        "platform-API",
+        "cross-target",
+        "Swift"
+      ],
+      "agent": "kotlin-kmp-boundary-interop-agent"
+    },
+    "kmp-portfolio-decision": {
+      "keywords": [
+        "portfolio",
+        "decision",
+        "Decides",
+        "Kotlin Multiplatform",
+        "Must"
+      ],
+      "agent": "kotlin-kmp-portfolio-decision-agent"
+    },
+    "language-api-correctness": {
+      "keywords": [
+        "language",
+        "api",
+        "correctness",
+        "language-level",
+        "Java",
+        "JVM",
+        "JvmInline"
+      ],
+      "agent": "kotlin-language-api-correctness-agent"
+    },
+    "library-api-abi-governance": {
+      "keywords": [
+        "library",
+        "api",
+        "abi",
+        "governance",
+        "public-API",
+        "Java",
+        "binary-compatibility",
+        "Explicit API"
+      ],
+      "agent": "kotlin-library-api-abi-governance-agent"
+    },
+    "serialization-wire-contract": {
+      "keywords": [
+        "serialization",
+        "wire",
+        "contract",
+        "wire-contract",
+        "EncodeDefault",
+        "strict-decode",
+        "unknown-key",
+        "sealed-class"
+      ],
+      "agent": "kotlin-serialization-wire-contract-agent"
+    },
+    "supply-chain-release-integrity": {
+      "keywords": [
+        "supply",
+        "chain",
+        "release",
+        "integrity",
+        "Gradle",
+        "verification-metadata",
+        "Maven"
+      ],
+      "agent": "kotlin-supply-chain-release-integrity-agent"
+    },
+    "test-architecture": {
+      "keywords": [
+        "test",
+        "architecture",
+        "Flow",
+        "Compose"
+      ],
+      "agent": "kotlin-test-architecture-agent"
+    }
+  },
+  "live_guards": [],
+  "gate_mode": "live-guard-gate",
+  "live_guard_intent": "(destroy|delete|terminate|rollout to prod|rollout to production|approve.*production|promote.*to (?:prod|production)|key destruction|policy change in prod|mutate (?:rbac|iam|policy)|change-set.*apply|live (?:apply|push|deploy)|force[- ]push.*main|drop\\s+(?:table|database)|swap\\s+production\\s+slot|publish.*(?:maven|artifact|library|package|registry)|deploy.*(?:prod|production|staging|play store|app store)|sign(?:ing)?\\s+(?:the|a|our|this)\\s+(?:release|artifact|apk|aab|jar|bundle|build)|(?:upload|push).*(?:play store|app store|maven central)|release.*to\\s+(?:prod|production|maven))",
+  "parallel_threshold": 0.8
+}

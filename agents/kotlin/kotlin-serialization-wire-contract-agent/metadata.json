@@ -1,0 +1,41 @@
+{
+  "id": "kotlin-serialization-wire-contract-agent",
+  "name": "Kotlin Serialization and Wire Contract Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "kotlin",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of kotlinx.serialization wire-contract safety and schema evolution: encodeDefaults/explicitNulls defaults, @EncodeDefault overrides, strict-decode unknown-key rejection, sealed-class closed polymorphism and class discriminators, and breaking-change detection for optional/required-field evolution. Reads source and serializer configuration only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://github.com/Kotlin/kotlinx.serialization",
+    "https://kotlinlang.org/api/kotlinx.serialization/",
+    "https://github.com/Kotlin/kotlinx.serialization/blob/master/docs/json.md",
+    "https://github.com/Kotlin/kotlinx.serialization/blob/master/docs/polymorphism.md"
+  ],
+  "security_notes": "Static review only — reads Kotlin `@Serializable` classes, `Json {}` configuration, and sanitized sample payloads; never builds, runs, or sends/receives real wire traffic, and never handles production payloads or customer data. A claim about actual producer/consumer version skew in a live system is flagged as needing verification rather than asserted. Never requests secrets, credentials, or customer data.",
+  "last_verified": "2026-07-21",
+  "path": "agents/kotlin/kotlin-serialization-wire-contract-agent/",
+  "harness_variants": {
+    "codex": "agents/kotlin/kotlin-serialization-wire-contract-agent/harnesses/codex.toml",
+    "copilot": "agents/kotlin/kotlin-serialization-wire-contract-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/kotlin/kotlin-serialization-wire-contract-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/kotlin/kotlin-serialization-wire-contract-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/kotlin/kotlin-serialization-wire-contract-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/kotlin/kotlin-serialization-wire-contract-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/kotlin/kotlin-serialization-wire-contract-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "kotlin-serialization-wire-contract"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

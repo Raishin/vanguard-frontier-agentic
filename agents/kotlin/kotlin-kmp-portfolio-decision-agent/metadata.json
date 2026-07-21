@@ -1,0 +1,41 @@
+{
+  "id": "kotlin-kmp-portfolio-decision-agent",
+  "name": "Kotlin KMP Portfolio Decision Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "kotlin",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Decides whether a product and org should adopt Kotlin Multiplatform at all, and how much to share, weighing team topology, roadmap alignment, platform differentiation, hiring/skills, lifecycle cost, and reversibility. Must be able to recommend against KMP; never designs the implementation.",
+  "source_type": "original",
+  "official_docs": [
+    "https://kotlinlang.org/docs/multiplatform.html",
+    "https://www.jetbrains.com/help/kotlin-multiplatform-dev/multiplatform-discover-project.html",
+    "https://kotlinlang.org/docs/multiplatform-expect-actual.html",
+    "https://kotlinlang.org/docs/multiplatform-connect-to-apis.html"
+  ],
+  "security_notes": "Static analysis only — reasons from user-supplied product, team, and codebase context; never runs, builds, or migrates code, and never has access to real org data beyond what the user provides in the conversation. Claims about team capacity, roadmap timelines, or business priority that aren't confirmed by the user are flagged as assumption. Never requests secrets, credentials, or customer data.",
+  "last_verified": "2026-07-21",
+  "path": "agents/kotlin/kotlin-kmp-portfolio-decision-agent/",
+  "harness_variants": {
+    "codex": "agents/kotlin/kotlin-kmp-portfolio-decision-agent/harnesses/codex.toml",
+    "copilot": "agents/kotlin/kotlin-kmp-portfolio-decision-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/kotlin/kotlin-kmp-portfolio-decision-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/kotlin/kotlin-kmp-portfolio-decision-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/kotlin/kotlin-kmp-portfolio-decision-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/kotlin/kotlin-kmp-portfolio-decision-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/kotlin/kotlin-kmp-portfolio-decision-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "kotlin-kmp-portfolio-decision"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

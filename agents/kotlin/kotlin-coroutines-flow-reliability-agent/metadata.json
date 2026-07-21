@@ -1,0 +1,41 @@
+{
+  "id": "kotlin-coroutines-flow-reliability-agent",
+  "name": "Kotlin Coroutines and Flow Reliability Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "kotlin",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of Kotlin coroutine and Flow reliability: structured concurrency and cancellation cooperation, dispatcher selection and blocking calls, cold Flow vs hot StateFlow/SharedFlow semantics, backpressure, and context propagation across suspension — including the coroutine-aware persistence and telemetry/MDC/security-context hazards. Reads source only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://kotlinlang.org/docs/coroutines-guide.html",
+    "https://kotlinlang.org/docs/flow.html",
+    "https://kotlinlang.org/docs/coroutine-context-and-dispatchers.html",
+    "https://kotlin.github.io/kotlinx.coroutines/"
+  ],
+  "security_notes": "Static review only — reads Kotlin source and sanitized configuration; never builds, runs, or invokes a JVM/Android runtime, never opens a live connection, and never executes coroutine code to observe timing. Runtime-ordering and race claims that cannot be confirmed from source are flagged as needing verification rather than asserted. Never requests secrets, credentials, or customer data.",
+  "last_verified": "2026-07-21",
+  "path": "agents/kotlin/kotlin-coroutines-flow-reliability-agent/",
+  "harness_variants": {
+    "codex": "agents/kotlin/kotlin-coroutines-flow-reliability-agent/harnesses/codex.toml",
+    "copilot": "agents/kotlin/kotlin-coroutines-flow-reliability-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/kotlin/kotlin-coroutines-flow-reliability-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/kotlin/kotlin-coroutines-flow-reliability-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/kotlin/kotlin-coroutines-flow-reliability-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/kotlin/kotlin-coroutines-flow-reliability-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/kotlin/kotlin-coroutines-flow-reliability-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "kotlin-coroutines-flow-reliability"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

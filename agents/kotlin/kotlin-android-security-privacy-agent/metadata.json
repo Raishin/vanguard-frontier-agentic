@@ -1,0 +1,41 @@
+{
+  "id": "kotlin-android-security-privacy-agent",
+  "name": "Kotlin Android Security and Privacy Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "kotlin",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "MASVS-aligned static review of Android app security and privacy posture: exported components and intent surfaces, deep-link/App Links validation, WebView exposure, cleartext-traffic and network-security-config, local storage and secrets, backup exposure, runtime-permission minimization, and PII in logs. Reads manifest, source, and sanitized config only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://mas.owasp.org/MASVS/",
+    "https://developer.android.com/privacy-and-security/security-tips",
+    "https://developer.android.com/training/articles/security-config",
+    "https://developer.android.com/guide/topics/manifest/manifest-intro"
+  ],
+  "security_notes": "Static review only — reads AndroidManifest.xml, Kotlin/Java source, Gradle config, and sanitized resource files; never builds, installs, runs, or instruments an app, never opens a live connection, and never handles real secrets or user data. Findings about runtime behavior (what an installed app actually exposes) are flagged as needing on-device verification. Never requests keystores, signing keys, credentials, or customer data.",
+  "last_verified": "2026-07-21",
+  "path": "agents/kotlin/kotlin-android-security-privacy-agent/",
+  "harness_variants": {
+    "codex": "agents/kotlin/kotlin-android-security-privacy-agent/harnesses/codex.toml",
+    "copilot": "agents/kotlin/kotlin-android-security-privacy-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/kotlin/kotlin-android-security-privacy-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/kotlin/kotlin-android-security-privacy-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/kotlin/kotlin-android-security-privacy-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/kotlin/kotlin-android-security-privacy-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/kotlin/kotlin-android-security-privacy-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "kotlin-android-security-privacy"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

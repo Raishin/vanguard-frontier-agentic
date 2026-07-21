@@ -1,0 +1,27 @@
+{
+  "id": "kotlin-android-architecture",
+  "name": "kotlin-android-architecture",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "kotlin",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review of Android app architecture correctness: ViewModel lifecycle and scoping across configuration changes, SavedStateHandle persistence across process death, lifecycle-aware Flow collection, and unidirectional data flow with a single source of truth. Reads source only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.android.com/topic/architecture",
+    "https://developer.android.com/topic/libraries/architecture/viewmodel",
+    "https://developer.android.com/topic/libraries/architecture/saving-states",
+    "https://developer.android.com/topic/libraries/architecture/coroutines"
+  ],
+  "security_notes": "Static review only — reads Kotlin/Compose source, ViewModel and lifecycle declarations, and sanitized configuration; never builds, runs, or instruments an app on a device, and never observes actual configuration-change or process-death behavior at runtime. Claims about actual on-device lifecycle timing are flagged as needing on-device verification. Never requests secrets, credentials, or customer data.",
+  "last_verified": "2026-07-21",
+  "path": "skills/kotlin/kotlin-android-architecture",
+  "author": "github: Raishin"
+}

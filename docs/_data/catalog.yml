@@ -2,17 +2,17 @@
 # Do NOT edit manually — run: node scripts/generate-docs-data.mjs
 # This file is the single source of truth for all catalog counts in Jekyll docs.
 
-agents: 615
-skills: 638
-providers: 42
+agents: 631
+skills: 654
+providers: 43
 mcp_references: 3
 rules: 1
-install_roles: 33
+install_roles: 40
 validation_gates: 22
-agent_directories: 46
-skill_directories: 46
+agent_directories: 47
+skill_directories: 47
 maestro_scenarios: 357
-version: "3.3.0"
+version: "3.4.0"
 
 # Provider list (flat)
 provider_list:
@@ -39,6 +39,7 @@ provider_list:
   - "ionos"
   - "istio"
   - "java"
+  - "kotlin"
   - "kubernetes"
   - "kyverno"
   - "legal"
@@ -135,6 +136,8 @@ provider_taxonomy:
         agents: 10
       - name: "java"
         agents: 15
+      - name: "kotlin"
+        agents: 16
       - name: "php"
         agents: 5
       - name: "generic"
@@ -175,6 +178,7 @@ provider_taxonomy:
 # Role list
 role_list:
   - "accounting-finance-advisor"
+  - "android-kotlin-engineer"
   - "azure-databricks-platform-engineer"
   - "azure-snowflake-platform-engineer"
   - "cloud-ai-platform-engineer"
@@ -187,6 +191,12 @@ role_list:
   - "dotnet-application-review-engineer"
   - "frontend-engineer"
   - "java-application-review-engineer"
+  - "kotlin-backend-engineer"
+  - "kotlin-engineering-leader"
+  - "kotlin-library-maintainer"
+  - "kotlin-multiplatform-engineer"
+  - "kotlin-platform-build-engineer"
+  - "kotlin-security-engineer"
   - "kubernetes-admission-security-engineer"
   - "kubernetes-application-platform-engineer"
   - "kubernetes-developer-platform-engineer"

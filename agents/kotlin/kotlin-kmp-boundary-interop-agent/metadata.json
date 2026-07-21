@@ -1,0 +1,41 @@
+{
+  "id": "kotlin-kmp-boundary-interop-agent",
+  "name": "Kotlin KMP Boundary and Interop Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "kotlin",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of Kotlin Multiplatform source-set architecture, expect/actual design, platform-API-leakage prevention, cross-target dependency compatibility, Swift/Objective-C interop, and Kotlin/Native runtime concerns including the new memory manager and freezing deprecation. Reads source and build config only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://kotlinlang.org/docs/native-memory-manager.html",
+    "https://kotlinlang.org/docs/multiplatform-expect-actual.html",
+    "https://kotlinlang.org/docs/native-objc-interop.html",
+    "https://www.jetbrains.com/help/kotlin-multiplatform-dev/multiplatform-hierarchy.html"
+  ],
+  "security_notes": "Static review only — reads Kotlin Multiplatform source, Gradle source-set configuration, and sanitized build files; never builds, compiles, or runs a target (JVM/Native/JS/Wasm), never invokes Xcode or an iOS toolchain, and never executes generated Swift/Objective-C bridging code. Claims about a specific Kotlin/Gradle version's behavior that aren't confirmed by the supplied build files are flagged as assumption. Never requests secrets, credentials, or customer data.",
+  "last_verified": "2026-07-21",
+  "path": "agents/kotlin/kotlin-kmp-boundary-interop-agent/",
+  "harness_variants": {
+    "codex": "agents/kotlin/kotlin-kmp-boundary-interop-agent/harnesses/codex.toml",
+    "copilot": "agents/kotlin/kotlin-kmp-boundary-interop-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/kotlin/kotlin-kmp-boundary-interop-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/kotlin/kotlin-kmp-boundary-interop-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/kotlin/kotlin-kmp-boundary-interop-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/kotlin/kotlin-kmp-boundary-interop-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/kotlin/kotlin-kmp-boundary-interop-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "kotlin-kmp-boundary-interop"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

@@ -10829,6 +10829,469 @@
     "companion_skills": []
   },
   {
+    "id": "kotlin-android-architecture-agent",
+    "name": "Kotlin Android Architecture Agent",
+    "type": "agent",
+    "provider": "kotlin",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of Android app architecture correctness: ViewModel lifecycle and scoping across configuration changes, SavedStateHandle persistence across process death, lifecycle-aware Flow collection, and unidirectional data flow with a single source of truth. Reads source only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.android.com/topic/architecture",
+      "https://developer.android.com/topic/libraries/architecture/viewmodel",
+      "https://developer.android.com/topic/libraries/architecture/saving-states",
+      "https://developer.android.com/topic/libraries/architecture/coroutines"
+    ],
+    "security_notes": "Static review only — reads Kotlin/Compose source, ViewModel and lifecycle declarations, and sanitized configuration; never builds, runs, or instruments an app on a device, and never observes actual configuration-change or process-death behavior at runtime. Claims about actual on-device lifecycle timing are flagged as needing on-device verification. Never requests secrets, credentials, or customer data.",
+    "last_verified": "2026-07-21",
+    "path": "agents/kotlin/kotlin-android-architecture-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "kotlin-android-architecture"
+    ]
+  },
+  {
+    "id": "kotlin-android-performance-reliability-agent",
+    "name": "Kotlin Android Performance and Reliability Agent",
+    "type": "agent",
+    "provider": "kotlin",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of measured Android runtime performance and reliability evidence: cold/warm startup via StartupTimingMetric and CompilationMode, frame jank via FrameTimingMetric/JankStats, Baseline Profile coverage, ANR root causes, and Macrobenchmark regression-gating thresholds. Reads benchmark reports and source only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.android.com/topic/performance/benchmarking/macrobenchmark-overview",
+      "https://developer.android.com/topic/performance/baselineprofiles/overview",
+      "https://developer.android.com/topic/performance/vitals/anr",
+      "https://developer.android.com/topic/performance/jankstats"
+    ],
+    "security_notes": "Static review only — reads Macrobenchmark/JankStats reports, Baseline Profile rules, and Kotlin/Gradle source; never runs a benchmark, builds an APK, or instruments a device itself, and never asserts a performance number that isn't backed by a supplied report. Any performance or reliability claim without a supplied benchmark artifact is flagged as unknown rather than asserted. Never requests secrets, credentials, or customer data.",
+    "last_verified": "2026-07-21",
+    "path": "agents/kotlin/kotlin-android-performance-reliability-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "kotlin-android-performance-reliability"
+    ]
+  },
+  {
+    "id": "kotlin-android-security-privacy-agent",
+    "name": "Kotlin Android Security and Privacy Agent",
+    "type": "agent",
+    "provider": "kotlin",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "MASVS-aligned static review of Android app security and privacy posture: exported components and intent surfaces, deep-link/App Links validation, WebView exposure, cleartext-traffic and network-security-config, local storage and secrets, backup exposure, runtime-permission minimization, and PII in logs. Reads manifest, source, and sanitized config only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://mas.owasp.org/MASVS/",
+      "https://developer.android.com/privacy-and-security/security-tips",
+      "https://developer.android.com/training/articles/security-config",
+      "https://developer.android.com/guide/topics/manifest/manifest-intro"
+    ],
+    "security_notes": "Static review only — reads AndroidManifest.xml, Kotlin/Java source, Gradle config, and sanitized resource files; never builds, installs, runs, or instruments an app, never opens a live connection, and never handles real secrets or user data. Findings about runtime behavior (what an installed app actually exposes) are flagged as needing on-device verification. Never requests keystores, signing keys, credentials, or customer data.",
+    "last_verified": "2026-07-21",
+    "path": "agents/kotlin/kotlin-android-security-privacy-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "kotlin-android-security-privacy"
+    ]
+  },
+  {
+    "id": "kotlin-backend-production-readiness-agent",
+    "name": "Kotlin Backend Production Readiness Agent",
+    "type": "agent",
+    "provider": "kotlin",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of production readiness for Ktor servers and the Kotlin-on-Spring coroutine surface: server lifecycle/monitoring events, Netty/CIO graceful-shutdown configuration, StatusPages typed error mapping, resource cleanup on shutdown, and correctly routing the coroutine-context-loss hazard behind suspend WebFlux handlers. Reads source and sanitized config only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://ktor.io/docs/server-events.html",
+      "https://ktor.io/docs/server-lifecycle.html",
+      "https://docs.spring.io/spring-framework/reference/languages/kotlin/coroutines.html",
+      "https://ktor.io/docs/server-status-pages.html"
+    ],
+    "security_notes": "Static review only — reads Ktor/Spring Kotlin source, routing/plugin configuration, and sanitized YAML/config; never builds, runs, deploys, or opens a live connection to a server, and never observes actual shutdown/startup timing. A readiness claim that depends on runtime behavior (actual drain time, real health-check response) is flagged as needing verification against a running instance rather than asserted. Never requests secrets, credentials, or customer data.",
+    "last_verified": "2026-07-21",
+    "path": "agents/kotlin/kotlin-backend-production-readiness-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "kotlin-backend-production-readiness"
+    ]
+  },
+  {
+    "id": "kotlin-compose-ui-quality-accessibility-agent",
+    "name": "Kotlin Compose UI Quality and Accessibility Agent",
+    "type": "agent",
+    "provider": "kotlin",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of Jetpack Compose UI correctness and accessibility: recomposition stability (@Stable/@Immutable, unstable parameters), correct side-effect API usage, remember/derivedStateOf scoping, state hoisting, and mandatory semantics/contentDescription and touch-target accessibility. Reads source only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.android.com/develop/ui/compose/performance/stability",
+      "https://developer.android.com/develop/ui/compose/side-effects",
+      "https://developer.android.com/develop/ui/compose/accessibility",
+      "https://developer.android.com/develop/ui/compose/state"
+    ],
+    "security_notes": "Static review only — reads Compose source and sanitized resources; never builds, runs, or renders the UI, never captures a live Layout Inspector or recomposition-count trace, and never invokes a device or emulator. Claims about actual measured recomposition counts or frame timing are flagged as needing profiler/Macrobenchmark verification rather than asserted. Never requests secrets, credentials, or customer data.",
+    "last_verified": "2026-07-21",
+    "path": "agents/kotlin/kotlin-compose-ui-quality-accessibility-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "kotlin-compose-ui-quality-accessibility"
+    ]
+  },
+  {
+    "id": "kotlin-coroutines-flow-reliability-agent",
+    "name": "Kotlin Coroutines and Flow Reliability Agent",
+    "type": "agent",
+    "provider": "kotlin",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of Kotlin coroutine and Flow reliability: structured concurrency and cancellation cooperation, dispatcher selection and blocking calls, cold Flow vs hot StateFlow/SharedFlow semantics, backpressure, and context propagation across suspension — including the coroutine-aware persistence and telemetry/MDC/security-context hazards. Reads source only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://kotlinlang.org/docs/coroutines-guide.html",
+      "https://kotlinlang.org/docs/flow.html",
+      "https://kotlinlang.org/docs/coroutine-context-and-dispatchers.html",
+      "https://kotlin.github.io/kotlinx.coroutines/"
+    ],
+    "security_notes": "Static review only — reads Kotlin source and sanitized configuration; never builds, runs, or invokes a JVM/Android runtime, never opens a live connection, and never executes coroutine code to observe timing. Runtime-ordering and race claims that cannot be confirmed from source are flagged as needing verification rather than asserted. Never requests secrets, credentials, or customer data.",
+    "last_verified": "2026-07-21",
+    "path": "agents/kotlin/kotlin-coroutines-flow-reliability-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "kotlin-coroutines-flow-reliability"
+    ]
+  },
+  {
+    "id": "kotlin-estate-modernization-governor-agent",
+    "name": "Kotlin Estate Modernization Governor Agent",
+    "type": "agent",
+    "provider": "kotlin",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of Java-to-Kotlin migration strategy: strangler-fig module-by-module vs file-by-file sequencing, the mixed Java/Kotlin interop-boundary null-safety debt, reversibility of each migration step, when a module should not migrate, and J2K converter-output governance. Reads module and dependency inventories only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://kotlinlang.org/docs/mixing-java-kotlin-intellij.html",
+      "https://kotlinlang.org/docs/java-interop.html",
+      "https://kotlinlang.org/docs/comparison-to-java.html",
+      "https://developer.android.com/kotlin/add-kotlin"
+    ],
+    "security_notes": "Static review only — reads module inventories, dependency graphs, sanitized source diffs, and J2K converter output; never builds, runs, or executes the actual migration (invoking the converter, merging, deploying), never opens a live connection, and never requests real credentials. Claims about a module's actual runtime churn, ownership, or business justification are flagged as needing confirmation from the owning team rather than asserted from the artifacts alone. Never requests secrets, credentials, or customer data.",
+    "last_verified": "2026-07-21",
+    "path": "agents/kotlin/kotlin-estate-modernization-governor-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "kotlin-estate-modernization-governor"
+    ]
+  },
+  {
+    "id": "kotlin-gradle-build-engineering-agent",
+    "name": "Kotlin Gradle Build Engineering Agent",
+    "type": "agent",
+    "provider": "kotlin",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of Gradle build-graph quality and CI throughput for Kotlin/KMP projects: configuration-cache and build-cache correctness, task-graph/configuration-avoidance, kapt vs KSP annotation processing, and convention-plugin centralization. Reads Gradle build files and build-scan evidence only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.gradle.org/current/userguide/configuration_cache.html",
+      "https://docs.gradle.org/current/userguide/build_cache.html",
+      "https://kotlinlang.org/docs/ksp-overview.html",
+      "https://docs.gradle.org/current/userguide/sharing_build_logic_between_subprojects.html"
+    ],
+    "security_notes": "Static review only — reads Gradle build files, convention-plugin sources, and sanitized build-scan/cache-hit evidence; never invokes Gradle, runs a build, or reads a live build-cache node. Throughput claims (cache-hit rate, build-time improvement) that are not backed by build-scan evidence are flagged as needing measurement rather than asserted. Never requests secrets, credentials, or customer data.",
+    "last_verified": "2026-07-21",
+    "path": "agents/kotlin/kotlin-gradle-build-engineering-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "kotlin-gradle-build-engineering"
+    ]
+  },
+  {
+    "id": "kotlin-kmp-boundary-interop-agent",
+    "name": "Kotlin KMP Boundary and Interop Agent",
+    "type": "agent",
+    "provider": "kotlin",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of Kotlin Multiplatform source-set architecture, expect/actual design, platform-API-leakage prevention, cross-target dependency compatibility, Swift/Objective-C interop, and Kotlin/Native runtime concerns including the new memory manager and freezing deprecation. Reads source and build config only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://kotlinlang.org/docs/native-memory-manager.html",
+      "https://kotlinlang.org/docs/multiplatform-expect-actual.html",
+      "https://kotlinlang.org/docs/native-objc-interop.html",
+      "https://www.jetbrains.com/help/kotlin-multiplatform-dev/multiplatform-hierarchy.html"
+    ],
+    "security_notes": "Static review only — reads Kotlin Multiplatform source, Gradle source-set configuration, and sanitized build files; never builds, compiles, or runs a target (JVM/Native/JS/Wasm), never invokes Xcode or an iOS toolchain, and never executes generated Swift/Objective-C bridging code. Claims about a specific Kotlin/Gradle version's behavior that aren't confirmed by the supplied build files are flagged as assumption. Never requests secrets, credentials, or customer data.",
+    "last_verified": "2026-07-21",
+    "path": "agents/kotlin/kotlin-kmp-boundary-interop-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "kotlin-kmp-boundary-interop"
+    ]
+  },
+  {
+    "id": "kotlin-kmp-portfolio-decision-agent",
+    "name": "Kotlin KMP Portfolio Decision Agent",
+    "type": "agent",
+    "provider": "kotlin",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Decides whether a product and org should adopt Kotlin Multiplatform at all, and how much to share, weighing team topology, roadmap alignment, platform differentiation, hiring/skills, lifecycle cost, and reversibility. Must be able to recommend against KMP; never designs the implementation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://kotlinlang.org/docs/multiplatform.html",
+      "https://www.jetbrains.com/help/kotlin-multiplatform-dev/multiplatform-discover-project.html",
+      "https://kotlinlang.org/docs/multiplatform-expect-actual.html",
+      "https://kotlinlang.org/docs/multiplatform-connect-to-apis.html"
+    ],
+    "security_notes": "Static analysis only — reasons from user-supplied product, team, and codebase context; never runs, builds, or migrates code, and never has access to real org data beyond what the user provides in the conversation. Claims about team capacity, roadmap timelines, or business priority that aren't confirmed by the user are flagged as assumption. Never requests secrets, credentials, or customer data.",
+    "last_verified": "2026-07-21",
+    "path": "agents/kotlin/kotlin-kmp-portfolio-decision-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "kotlin-kmp-portfolio-decision"
+    ]
+  },
+  {
+    "id": "kotlin-language-api-correctness-agent",
+    "name": "Kotlin Language and API Correctness Agent",
+    "type": "agent",
+    "provider": "kotlin",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of Kotlin language-level correctness: nullability and Java-interop platform types, inline functions with reified generics past JVM erasure, @JvmInline value-class boxing, statically-dispatched extension functions vs member precedence, and lateinit use-before-init hazards. Reads source only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://kotlinlang.org/docs/null-safety.html",
+      "https://kotlinlang.org/docs/java-interop.html",
+      "https://kotlinlang.org/docs/inline-functions.html",
+      "https://kotlinlang.org/docs/inline-classes.html"
+    ],
+    "security_notes": "Static review only — reads Kotlin source and sanitized Java-interop signatures; never compiles, runs, or executes code to observe an actual NullPointerException, boxing allocation, or dispatch outcome. A runtime-behavior claim not confirmed by the visible source is flagged as needing verification rather than asserted. Never requests secrets, credentials, or customer data.",
+    "last_verified": "2026-07-21",
+    "path": "agents/kotlin/kotlin-language-api-correctness-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "kotlin-language-api-correctness"
+    ]
+  },
+  {
+    "id": "kotlin-library-api-abi-governance-agent",
+    "name": "Kotlin Library API and ABI Governance Agent",
+    "type": "agent",
+    "provider": "kotlin",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of Kotlin library public-API evolution and binary/source compatibility for libraries consumed by both Kotlin and Java: binary-compatibility-validator .api snapshots and apiCheck gating, Explicit API mode, @JvmOverloads/@JvmStatic/@JvmName surface shaping, and ABI-sensitive data-class and inline-function changes. Reads source and build config only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://kotlinlang.org/docs/whatsnew1420.html",
+      "https://github.com/Kotlin/binary-compatibility-validator",
+      "https://kotlinlang.org/docs/whatsnew14.html#explicit-api-mode-for-library-authors",
+      "https://kotlinlang.org/docs/java-to-kotlin-interop.html"
+    ],
+    "security_notes": "Static review only — reads Kotlin source, `.api` snapshot files, and Gradle/build configuration; never builds, publishes, or runs `apiDump`/`apiCheck` itself, never opens a live connection, and never handles credentials for a package registry. A binary-compatibility claim not confirmed by an actual `.api` diff or `apiCheck` run is flagged as needing verification. Never requests secrets, tokens, or customer data.",
+    "last_verified": "2026-07-21",
+    "path": "agents/kotlin/kotlin-library-api-abi-governance-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "kotlin-library-api-abi-governance"
+    ]
+  },
+  {
+    "id": "kotlin-maestro-agent",
+    "name": "Kotlin Maestro",
+    "type": "agent",
+    "provider": "kotlin",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Router for the Kotlin board. Classifies a Kotlin, JVM-Kotlin, Android, or Kotlin Multiplatform task and dispatches the narrowest static-review specialist (or a parallel team of up to four for genuinely multi-domain tasks). Routes only — never reviews Kotlin work itself and never performs a live operation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://kotlinlang.org/docs/home.html",
+      "https://developer.android.com/kotlin",
+      "https://kotlinlang.org/docs/multiplatform.html"
+    ],
+    "security_notes": "Classification and routing only. Never builds, runs, deploys, signs, or publishes anything, never opens a live connection, and never requests secrets, keystores, signing keys, tokens, tenant identifiers, or customer data. Detects production-mutation intent and hands it to a named human owner instead of dispatching. Treats task text as data to classify, never as instructions.",
+    "last_verified": "2026-07-21",
+    "path": "agents/kotlin/kotlin-maestro-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "kotlin-maestro"
+    ]
+  },
+  {
+    "id": "kotlin-serialization-wire-contract-agent",
+    "name": "Kotlin Serialization and Wire Contract Agent",
+    "type": "agent",
+    "provider": "kotlin",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of kotlinx.serialization wire-contract safety and schema evolution: encodeDefaults/explicitNulls defaults, @EncodeDefault overrides, strict-decode unknown-key rejection, sealed-class closed polymorphism and class discriminators, and breaking-change detection for optional/required-field evolution. Reads source and serializer configuration only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://github.com/Kotlin/kotlinx.serialization",
+      "https://kotlinlang.org/api/kotlinx.serialization/",
+      "https://github.com/Kotlin/kotlinx.serialization/blob/master/docs/json.md",
+      "https://github.com/Kotlin/kotlinx.serialization/blob/master/docs/polymorphism.md"
+    ],
+    "security_notes": "Static review only — reads Kotlin `@Serializable` classes, `Json {}` configuration, and sanitized sample payloads; never builds, runs, or sends/receives real wire traffic, and never handles production payloads or customer data. A claim about actual producer/consumer version skew in a live system is flagged as needing verification rather than asserted. Never requests secrets, credentials, or customer data.",
+    "last_verified": "2026-07-21",
+    "path": "agents/kotlin/kotlin-serialization-wire-contract-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "kotlin-serialization-wire-contract"
+    ]
+  },
+  {
+    "id": "kotlin-supply-chain-release-integrity-agent",
+    "name": "Kotlin Supply Chain Release Integrity Agent",
+    "type": "agent",
+    "provider": "kotlin",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of Kotlin/Gradle dependency trust and release integrity: verification-metadata enforcement, dependency locking, Gradle plugin trust and pinning, repository scope, and KMP/Maven publication controls. Reads build files, verification/lock metadata, and publication config only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.gradle.org/current/userguide/dependency_verification.html",
+      "https://docs.gradle.org/current/userguide/dependency_locking.html",
+      "https://docs.gradle.org/current/userguide/plugins.html",
+      "https://kotlinlang.org/docs/multiplatform-publish-lib.html"
+    ],
+    "security_notes": "Static review only — reads Gradle build files, `gradle/verification-metadata.xml`, lock files, plugin declarations, and publication config; never runs a release, publishes an artifact, signs anything, or contacts a live repository/CI system. Never requests secrets, credentials, signing keys, tenant identifiers, or customer data.",
+    "last_verified": "2026-07-21",
+    "path": "agents/kotlin/kotlin-supply-chain-release-integrity-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "kotlin-supply-chain-release-integrity"
+    ]
+  },
+  {
+    "id": "kotlin-test-architecture-agent",
+    "name": "Kotlin Test Architecture Agent",
+    "type": "agent",
+    "provider": "kotlin",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of Kotlin coroutine/Flow/Compose/Android/KMP test architecture and determinism: runTest virtual-time usage, test-dispatcher choice and advance discipline, Dispatchers.setMain/resetMain hygiene, Turbine Flow testing, and Compose/Robolectric-vs-instrumented boundary choice. Reads test source and build config only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-test/",
+      "https://github.com/cashapp/turbine",
+      "https://developer.android.com/develop/ui/compose/testing",
+      "https://developer.android.com/training/testing/local-tests"
+    ],
+    "security_notes": "Static review only — reads Kotlin/Android test source, Gradle test configuration, and sanitized CI logs; never runs the test suite, invokes a device/emulator, or opens a live connection. A claim that a specific flake is caused by real-time dependence rather than another factor is flagged as needing reproduction to confirm. Never requests secrets, credentials, or customer data.",
+    "last_verified": "2026-07-21",
+    "path": "agents/kotlin/kotlin-test-architecture-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "kotlin-test-architecture"
+    ]
+  },
+  {
     "id": "kubecost-chargeback-allocation-review-agent",
     "name": "Kubecost Chargeback and Allocation Review",
     "type": "agent",

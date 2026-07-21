@@ -1,0 +1,27 @@
+{
+  "id": "kotlin-coroutines-flow-reliability",
+  "name": "kotlin-coroutines-flow-reliability",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "kotlin",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review of Kotlin coroutine and Flow reliability: structured concurrency and cancellation cooperation, dispatcher selection and blocking calls, cold Flow vs hot StateFlow/SharedFlow semantics, backpressure, and context propagation across suspension — including the coroutine-aware persistence and telemetry/MDC/security-context hazards. Reads source only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://kotlinlang.org/docs/coroutines-guide.html",
+    "https://kotlinlang.org/docs/flow.html",
+    "https://kotlinlang.org/docs/coroutine-context-and-dispatchers.html",
+    "https://kotlin.github.io/kotlinx.coroutines/"
+  ],
+  "security_notes": "Static review only — reads Kotlin source and sanitized configuration; never builds, runs, or invokes a JVM/Android runtime, never opens a live connection, and never executes coroutine code to observe timing. Runtime-ordering and race claims that cannot be confirmed from source are flagged as needing verification rather than asserted. Never requests secrets, credentials, or customer data.",
+  "last_verified": "2026-07-21",
+  "path": "skills/kotlin/kotlin-coroutines-flow-reliability",
+  "author": "github: Raishin"
+}

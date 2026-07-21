@@ -1,0 +1,41 @@
+{
+  "id": "kotlin-compose-ui-quality-accessibility-agent",
+  "name": "Kotlin Compose UI Quality and Accessibility Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "kotlin",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of Jetpack Compose UI correctness and accessibility: recomposition stability (@Stable/@Immutable, unstable parameters), correct side-effect API usage, remember/derivedStateOf scoping, state hoisting, and mandatory semantics/contentDescription and touch-target accessibility. Reads source only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.android.com/develop/ui/compose/performance/stability",
+    "https://developer.android.com/develop/ui/compose/side-effects",
+    "https://developer.android.com/develop/ui/compose/accessibility",
+    "https://developer.android.com/develop/ui/compose/state"
+  ],
+  "security_notes": "Static review only — reads Compose source and sanitized resources; never builds, runs, or renders the UI, never captures a live Layout Inspector or recomposition-count trace, and never invokes a device or emulator. Claims about actual measured recomposition counts or frame timing are flagged as needing profiler/Macrobenchmark verification rather than asserted. Never requests secrets, credentials, or customer data.",
+  "last_verified": "2026-07-21",
+  "path": "agents/kotlin/kotlin-compose-ui-quality-accessibility-agent/",
+  "harness_variants": {
+    "codex": "agents/kotlin/kotlin-compose-ui-quality-accessibility-agent/harnesses/codex.toml",
+    "copilot": "agents/kotlin/kotlin-compose-ui-quality-accessibility-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/kotlin/kotlin-compose-ui-quality-accessibility-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/kotlin/kotlin-compose-ui-quality-accessibility-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/kotlin/kotlin-compose-ui-quality-accessibility-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/kotlin/kotlin-compose-ui-quality-accessibility-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/kotlin/kotlin-compose-ui-quality-accessibility-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "kotlin-compose-ui-quality-accessibility"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

@@ -33,7 +33,7 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "0481c3caba2b3a75c449024b1671222a27234bab85cb3250ba12a7b90b916338",
+      "aggregate_sha256": "cb557880af66e27b992bfe28b06f0d2362d48d415e123b8f69685e32140560fb",
       "files": [
         {
           "path": "agents/AGENTS.md",
@@ -17256,6 +17256,731 @@
           "bytes": 2391
         },
         {
+          "path": "agents/kotlin/kotlin-android-architecture-agent/AGENT.md",
+          "sha256": "a4eb3b29ba0c2a4cf1ab1abdc94351adc3f8803fb97205f326bc3a6812ac4154",
+          "bytes": 7936
+        },
+        {
+          "path": "agents/kotlin/kotlin-android-architecture-agent/harnesses/claude-code.agent.md",
+          "sha256": "dca791ebe56e0bdc1f84ed2d05cbe4784ff5baff3493a674227f0e93a7fd6a22",
+          "bytes": 7319
+        },
+        {
+          "path": "agents/kotlin/kotlin-android-architecture-agent/harnesses/codex.toml",
+          "sha256": "abf79da74c190dcec73c83b524d4ab48d029a555a053a28724d773b4d7c8bd85",
+          "bytes": 5411
+        },
+        {
+          "path": "agents/kotlin/kotlin-android-architecture-agent/harnesses/copilot.agent.md",
+          "sha256": "50b59abf2c6231bf2b2fd4fcc77a27d4bdd2ce06abb1343568197a50afd4bd31",
+          "bytes": 7441
+        },
+        {
+          "path": "agents/kotlin/kotlin-android-architecture-agent/harnesses/cursor.agent.md",
+          "sha256": "dca791ebe56e0bdc1f84ed2d05cbe4784ff5baff3493a674227f0e93a7fd6a22",
+          "bytes": 7319
+        },
+        {
+          "path": "agents/kotlin/kotlin-android-architecture-agent/harnesses/gemini.agent.md",
+          "sha256": "dca791ebe56e0bdc1f84ed2d05cbe4784ff5baff3493a674227f0e93a7fd6a22",
+          "bytes": 7319
+        },
+        {
+          "path": "agents/kotlin/kotlin-android-architecture-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "7b17a3d9b67e186f5152c10da5ea23c7e1794b8f0d7a8e468ccc281d14776aee",
+          "bytes": 7395
+        },
+        {
+          "path": "agents/kotlin/kotlin-android-architecture-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "dca791ebe56e0bdc1f84ed2d05cbe4784ff5baff3493a674227f0e93a7fd6a22",
+          "bytes": 7319
+        },
+        {
+          "path": "agents/kotlin/kotlin-android-architecture-agent/metadata.json",
+          "sha256": "36516201fa4c79bc3e906dbc3e1a8603638da6598beba9ec7547886946ed15be",
+          "bytes": 2276
+        },
+        {
+          "path": "agents/kotlin/kotlin-android-performance-reliability-agent/AGENT.md",
+          "sha256": "9632113cf7732a7cc8814185a27a97fbc4fe98a5562df6ac041bd402dd3164db",
+          "bytes": 7889
+        },
+        {
+          "path": "agents/kotlin/kotlin-android-performance-reliability-agent/harnesses/claude-code.agent.md",
+          "sha256": "a585c4055ff97b2ac94d909c22e1758d9fbc8b2ee245fc689680ae3626ef3b6b",
+          "bytes": 7261
+        },
+        {
+          "path": "agents/kotlin/kotlin-android-performance-reliability-agent/harnesses/codex.toml",
+          "sha256": "fc3db395600c05e37b3fa10ab1842afae0911b3bf124181e66289192c2d403c1",
+          "bytes": 5100
+        },
+        {
+          "path": "agents/kotlin/kotlin-android-performance-reliability-agent/harnesses/copilot.agent.md",
+          "sha256": "93108f03d9e21b14ee1ef699b6e55f0a4607fbf48fa7e4626c9c0598becacf71",
+          "bytes": 7383
+        },
+        {
+          "path": "agents/kotlin/kotlin-android-performance-reliability-agent/harnesses/cursor.agent.md",
+          "sha256": "a585c4055ff97b2ac94d909c22e1758d9fbc8b2ee245fc689680ae3626ef3b6b",
+          "bytes": 7261
+        },
+        {
+          "path": "agents/kotlin/kotlin-android-performance-reliability-agent/harnesses/gemini.agent.md",
+          "sha256": "a585c4055ff97b2ac94d909c22e1758d9fbc8b2ee245fc689680ae3626ef3b6b",
+          "bytes": 7261
+        },
+        {
+          "path": "agents/kotlin/kotlin-android-performance-reliability-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "5110ea445f0c4b8fc2061f15811a4ba0af3300a4e4da7dba28600c983053f257",
+          "bytes": 7333
+        },
+        {
+          "path": "agents/kotlin/kotlin-android-performance-reliability-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "a585c4055ff97b2ac94d909c22e1758d9fbc8b2ee245fc689680ae3626ef3b6b",
+          "bytes": 7261
+        },
+        {
+          "path": "agents/kotlin/kotlin-android-performance-reliability-agent/metadata.json",
+          "sha256": "b8205794241b29b9dc4699b0db9834f80f061ca1f37dfd0e335c750ff97819a5",
+          "bytes": 2486
+        },
+        {
+          "path": "agents/kotlin/kotlin-android-security-privacy-agent/AGENT.md",
+          "sha256": "61a31c6f02572b7499b0c23dcf6ac999474c8c069609a4c4d5934607443eed1a",
+          "bytes": 8842
+        },
+        {
+          "path": "agents/kotlin/kotlin-android-security-privacy-agent/harnesses/claude-code.agent.md",
+          "sha256": "37d03a93bfc43ab881c5c1aa6cdd3aa2b5927709f5c2a13395f95fc4de659cbc",
+          "bytes": 8221
+        },
+        {
+          "path": "agents/kotlin/kotlin-android-security-privacy-agent/harnesses/codex.toml",
+          "sha256": "63371e957ae49794afa3d3f872c45b968e3c494b3d999d891e64ce1d0ad6f16d",
+          "bytes": 6067
+        },
+        {
+          "path": "agents/kotlin/kotlin-android-security-privacy-agent/harnesses/copilot.agent.md",
+          "sha256": "943fd21b11ed25fdb3a6f5816c3102e1fadfee3aab762cbc9d72d514a9c02900",
+          "bytes": 8343
+        },
+        {
+          "path": "agents/kotlin/kotlin-android-security-privacy-agent/harnesses/cursor.agent.md",
+          "sha256": "37d03a93bfc43ab881c5c1aa6cdd3aa2b5927709f5c2a13395f95fc4de659cbc",
+          "bytes": 8221
+        },
+        {
+          "path": "agents/kotlin/kotlin-android-security-privacy-agent/harnesses/gemini.agent.md",
+          "sha256": "37d03a93bfc43ab881c5c1aa6cdd3aa2b5927709f5c2a13395f95fc4de659cbc",
+          "bytes": 8221
+        },
+        {
+          "path": "agents/kotlin/kotlin-android-security-privacy-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "28bf542432ce3a2b73f73b1ea97fb8310d736b38b450cb709023d6751c8a4d2f",
+          "bytes": 8306
+        },
+        {
+          "path": "agents/kotlin/kotlin-android-security-privacy-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "37d03a93bfc43ab881c5c1aa6cdd3aa2b5927709f5c2a13395f95fc4de659cbc",
+          "bytes": 8221
+        },
+        {
+          "path": "agents/kotlin/kotlin-android-security-privacy-agent/metadata.json",
+          "sha256": "043626851f135ed9b73187db7117da5c32402fb218e33a7b9c2f26da268421b9",
+          "bytes": 2391
+        },
+        {
+          "path": "agents/kotlin/kotlin-backend-production-readiness-agent/AGENT.md",
+          "sha256": "f06108e37d1527f55578b3fc99d0df7c3eca50048bcda67db2d32ebf5a151452",
+          "bytes": 10024
+        },
+        {
+          "path": "agents/kotlin/kotlin-backend-production-readiness-agent/harnesses/claude-code.agent.md",
+          "sha256": "53655ab28e933c75d4c688d082b5456491bc312cfbee68da02bc432065e36a8c",
+          "bytes": 9399
+        },
+        {
+          "path": "agents/kotlin/kotlin-backend-production-readiness-agent/harnesses/codex.toml",
+          "sha256": "c08758ecaeb7df9764230161f986e90a11f1698bdb830ff9ecba9c7c87f366a5",
+          "bytes": 5943
+        },
+        {
+          "path": "agents/kotlin/kotlin-backend-production-readiness-agent/harnesses/copilot.agent.md",
+          "sha256": "1009324dc2602ebc7a0a5bca74a89beb2368412d42128df148669d7474caeb80",
+          "bytes": 9521
+        },
+        {
+          "path": "agents/kotlin/kotlin-backend-production-readiness-agent/harnesses/cursor.agent.md",
+          "sha256": "53655ab28e933c75d4c688d082b5456491bc312cfbee68da02bc432065e36a8c",
+          "bytes": 9399
+        },
+        {
+          "path": "agents/kotlin/kotlin-backend-production-readiness-agent/harnesses/gemini.agent.md",
+          "sha256": "53655ab28e933c75d4c688d082b5456491bc312cfbee68da02bc432065e36a8c",
+          "bytes": 9399
+        },
+        {
+          "path": "agents/kotlin/kotlin-backend-production-readiness-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "d87ee4a8ad5ad0982bf883f49d4a7e059b659715784c77578d2a8a2c129d2d1e",
+          "bytes": 9476
+        },
+        {
+          "path": "agents/kotlin/kotlin-backend-production-readiness-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "53655ab28e933c75d4c688d082b5456491bc312cfbee68da02bc432065e36a8c",
+          "bytes": 9399
+        },
+        {
+          "path": "agents/kotlin/kotlin-backend-production-readiness-agent/metadata.json",
+          "sha256": "320b2767875fc2a92d593ca23e57bf0c06e9686b1493499a7aae81d394fd7709",
+          "bytes": 2468
+        },
+        {
+          "path": "agents/kotlin/kotlin-compose-ui-quality-accessibility-agent/AGENT.md",
+          "sha256": "d871aa7ff52b896ee5e1d1ba9a43ad058c334ca6529c8ac0a5e2d5988e1bdbaf",
+          "bytes": 8299
+        },
+        {
+          "path": "agents/kotlin/kotlin-compose-ui-quality-accessibility-agent/harnesses/claude-code.agent.md",
+          "sha256": "97038faadfbed45340a9f539174e231da345827a8af453510d1a6c57c87702bb",
+          "bytes": 7670
+        },
+        {
+          "path": "agents/kotlin/kotlin-compose-ui-quality-accessibility-agent/harnesses/codex.toml",
+          "sha256": "943d8cad2b7ad311b48bbcc9827eb48af4f52a598de3a4967bbd5440b339421d",
+          "bytes": 5373
+        },
+        {
+          "path": "agents/kotlin/kotlin-compose-ui-quality-accessibility-agent/harnesses/copilot.agent.md",
+          "sha256": "0bf4930b25a9780be78648508fcbf55ab8373d98602ab3dcf1b6ebaa1c128ce8",
+          "bytes": 7792
+        },
+        {
+          "path": "agents/kotlin/kotlin-compose-ui-quality-accessibility-agent/harnesses/cursor.agent.md",
+          "sha256": "97038faadfbed45340a9f539174e231da345827a8af453510d1a6c57c87702bb",
+          "bytes": 7670
+        },
+        {
+          "path": "agents/kotlin/kotlin-compose-ui-quality-accessibility-agent/harnesses/gemini.agent.md",
+          "sha256": "97038faadfbed45340a9f539174e231da345827a8af453510d1a6c57c87702bb",
+          "bytes": 7670
+        },
+        {
+          "path": "agents/kotlin/kotlin-compose-ui-quality-accessibility-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "57bce1d873c96d3196ee1d6df621e639c5366fb9caf98cfbb74d3c2092abf1a4",
+          "bytes": 7742
+        },
+        {
+          "path": "agents/kotlin/kotlin-compose-ui-quality-accessibility-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "97038faadfbed45340a9f539174e231da345827a8af453510d1a6c57c87702bb",
+          "bytes": 7670
+        },
+        {
+          "path": "agents/kotlin/kotlin-compose-ui-quality-accessibility-agent/metadata.json",
+          "sha256": "f1d717defbd2c644887dc3eb8f54cc85e0c881d0796d2f418f5c6cbe6723b352",
+          "bytes": 2442
+        },
+        {
+          "path": "agents/kotlin/kotlin-coroutines-flow-reliability-agent/AGENT.md",
+          "sha256": "622bbbaa27df4d334dae4b35a9ca640609e2f0a8fb6f5bb815003792b6d80467",
+          "bytes": 8243
+        },
+        {
+          "path": "agents/kotlin/kotlin-coroutines-flow-reliability-agent/harnesses/claude-code.agent.md",
+          "sha256": "1a70c20d74034ea1f4fa4735174b92cdd5f7403f6977d10ccbe5460fec82bc0d",
+          "bytes": 7619
+        },
+        {
+          "path": "agents/kotlin/kotlin-coroutines-flow-reliability-agent/harnesses/codex.toml",
+          "sha256": "b091f8c8930966de6772be85f731b748eb0f70430140b51db7d92c46f15cccb2",
+          "bytes": 5332
+        },
+        {
+          "path": "agents/kotlin/kotlin-coroutines-flow-reliability-agent/harnesses/copilot.agent.md",
+          "sha256": "8b442c253b766b11fd6e609b9ce743c9e3c744c36519b8cccc969be2c0d41c66",
+          "bytes": 7741
+        },
+        {
+          "path": "agents/kotlin/kotlin-coroutines-flow-reliability-agent/harnesses/cursor.agent.md",
+          "sha256": "1a70c20d74034ea1f4fa4735174b92cdd5f7403f6977d10ccbe5460fec82bc0d",
+          "bytes": 7619
+        },
+        {
+          "path": "agents/kotlin/kotlin-coroutines-flow-reliability-agent/harnesses/gemini.agent.md",
+          "sha256": "1a70c20d74034ea1f4fa4735174b92cdd5f7403f6977d10ccbe5460fec82bc0d",
+          "bytes": 7619
+        },
+        {
+          "path": "agents/kotlin/kotlin-coroutines-flow-reliability-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "b2a6b31d808e2a0f613e076909caff3606e9f3921cf9753c80ec23e6b0a29292",
+          "bytes": 7691
+        },
+        {
+          "path": "agents/kotlin/kotlin-coroutines-flow-reliability-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "1a70c20d74034ea1f4fa4735174b92cdd5f7403f6977d10ccbe5460fec82bc0d",
+          "bytes": 7619
+        },
+        {
+          "path": "agents/kotlin/kotlin-coroutines-flow-reliability-agent/metadata.json",
+          "sha256": "49e7634120350bff0cf29b4ad2c085775f76a1975bce81381a4d04ed7b61592d",
+          "bytes": 2365
+        },
+        {
+          "path": "agents/kotlin/kotlin-estate-modernization-governor-agent/AGENT.md",
+          "sha256": "81ea35f9d40138ffffe00f2bd06c8bb1cf7a94c213af78179d185b891462a9f6",
+          "bytes": 8215
+        },
+        {
+          "path": "agents/kotlin/kotlin-estate-modernization-governor-agent/harnesses/claude-code.agent.md",
+          "sha256": "fcac408a9c977dcccfec2c77b691650f3085679deb7d2f92f6146e2104ded133",
+          "bytes": 7589
+        },
+        {
+          "path": "agents/kotlin/kotlin-estate-modernization-governor-agent/harnesses/codex.toml",
+          "sha256": "3caa06baa34fa69b2f1bca6507f258e5b22f3ea3d9f0220afb0730fd05a1c824",
+          "bytes": 5341
+        },
+        {
+          "path": "agents/kotlin/kotlin-estate-modernization-governor-agent/harnesses/copilot.agent.md",
+          "sha256": "95b4ce000437b5c9c8a88b2995dbafb7e8aee13bd023300be57a5b78c48bedb9",
+          "bytes": 7711
+        },
+        {
+          "path": "agents/kotlin/kotlin-estate-modernization-governor-agent/harnesses/cursor.agent.md",
+          "sha256": "fcac408a9c977dcccfec2c77b691650f3085679deb7d2f92f6146e2104ded133",
+          "bytes": 7589
+        },
+        {
+          "path": "agents/kotlin/kotlin-estate-modernization-governor-agent/harnesses/gemini.agent.md",
+          "sha256": "fcac408a9c977dcccfec2c77b691650f3085679deb7d2f92f6146e2104ded133",
+          "bytes": 7589
+        },
+        {
+          "path": "agents/kotlin/kotlin-estate-modernization-governor-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "ae173c15d5488bffff61642c2017b1a292c8828f00f34bd5efc75c5e1b5be964",
+          "bytes": 7668
+        },
+        {
+          "path": "agents/kotlin/kotlin-estate-modernization-governor-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "fcac408a9c977dcccfec2c77b691650f3085679deb7d2f92f6146e2104ded133",
+          "bytes": 7589
+        },
+        {
+          "path": "agents/kotlin/kotlin-estate-modernization-governor-agent/metadata.json",
+          "sha256": "50149ff2e42a95edc95e052196df7042423ad42ad4ebeb86a422d8e4d522e577",
+          "bytes": 2483
+        },
+        {
+          "path": "agents/kotlin/kotlin-gradle-build-engineering-agent/AGENT.md",
+          "sha256": "ae5b59450e1002bf733f978eedebafefb0040dabf6bd6e44f7253b62c16a6b85",
+          "bytes": 7999
+        },
+        {
+          "path": "agents/kotlin/kotlin-gradle-build-engineering-agent/harnesses/claude-code.agent.md",
+          "sha256": "358f5502607dd7ce8598fb95cc76ccddcb8a101df1474f11561c296c754c3d6a",
+          "bytes": 7378
+        },
+        {
+          "path": "agents/kotlin/kotlin-gradle-build-engineering-agent/harnesses/codex.toml",
+          "sha256": "064c65ecc644f64e03daed1cb255e00db9a2fd85f43cdf6e361dd19ae8793a3b",
+          "bytes": 5416
+        },
+        {
+          "path": "agents/kotlin/kotlin-gradle-build-engineering-agent/harnesses/copilot.agent.md",
+          "sha256": "7bc3c2f87300cad907ca40cd058596b18fefd7e5edf3e35201e7bf72acfcac92",
+          "bytes": 7500
+        },
+        {
+          "path": "agents/kotlin/kotlin-gradle-build-engineering-agent/harnesses/cursor.agent.md",
+          "sha256": "358f5502607dd7ce8598fb95cc76ccddcb8a101df1474f11561c296c754c3d6a",
+          "bytes": 7378
+        },
+        {
+          "path": "agents/kotlin/kotlin-gradle-build-engineering-agent/harnesses/gemini.agent.md",
+          "sha256": "358f5502607dd7ce8598fb95cc76ccddcb8a101df1474f11561c296c754c3d6a",
+          "bytes": 7378
+        },
+        {
+          "path": "agents/kotlin/kotlin-gradle-build-engineering-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "cb957d902f5bfa30aba63cad63d1494f6bc45763b77c6a62d0571ff1bae86064",
+          "bytes": 7456
+        },
+        {
+          "path": "agents/kotlin/kotlin-gradle-build-engineering-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "358f5502607dd7ce8598fb95cc76ccddcb8a101df1474f11561c296c754c3d6a",
+          "bytes": 7378
+        },
+        {
+          "path": "agents/kotlin/kotlin-gradle-build-engineering-agent/metadata.json",
+          "sha256": "ef63d07ea743f11663fa7e0983d6b85f7bf25c7af6ddd461c7129e1389ac2c8d",
+          "bytes": 2335
+        },
+        {
+          "path": "agents/kotlin/kotlin-kmp-boundary-interop-agent/AGENT.md",
+          "sha256": "153e9ff031ed6350ea0ca0c334b631e76712e8689e8d03712ce9bcd706ec71a2",
+          "bytes": 8082
+        },
+        {
+          "path": "agents/kotlin/kotlin-kmp-boundary-interop-agent/harnesses/claude-code.agent.md",
+          "sha256": "fc97a8cfc03f00ca49cb7cd78fe1fc751e264420bce81e9fa75703b2a3488bea",
+          "bytes": 7465
+        },
+        {
+          "path": "agents/kotlin/kotlin-kmp-boundary-interop-agent/harnesses/codex.toml",
+          "sha256": "2f33e4a4be877c0c2ce8dbbb3a272d49fe0a8260d6b26f371c8d5bfa031982ae",
+          "bytes": 5452
+        },
+        {
+          "path": "agents/kotlin/kotlin-kmp-boundary-interop-agent/harnesses/copilot.agent.md",
+          "sha256": "5f4baac27a43c51814aa13a9080670e44000c0585e3f5bd5bc81ff309073100a",
+          "bytes": 7587
+        },
+        {
+          "path": "agents/kotlin/kotlin-kmp-boundary-interop-agent/harnesses/cursor.agent.md",
+          "sha256": "fc97a8cfc03f00ca49cb7cd78fe1fc751e264420bce81e9fa75703b2a3488bea",
+          "bytes": 7465
+        },
+        {
+          "path": "agents/kotlin/kotlin-kmp-boundary-interop-agent/harnesses/gemini.agent.md",
+          "sha256": "fc97a8cfc03f00ca49cb7cd78fe1fc751e264420bce81e9fa75703b2a3488bea",
+          "bytes": 7465
+        },
+        {
+          "path": "agents/kotlin/kotlin-kmp-boundary-interop-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "ba5f5f8e35dc6de04425c22f01915be39c027dde0b4fc8fade6e0445c3f8f3c6",
+          "bytes": 7537
+        },
+        {
+          "path": "agents/kotlin/kotlin-kmp-boundary-interop-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "fc97a8cfc03f00ca49cb7cd78fe1fc751e264420bce81e9fa75703b2a3488bea",
+          "bytes": 7465
+        },
+        {
+          "path": "agents/kotlin/kotlin-kmp-boundary-interop-agent/metadata.json",
+          "sha256": "fcb08e7ce5576aa54d87e2e13df18a115dc6db663887cb72c9008baac9ab75a4",
+          "bytes": 2372
+        },
+        {
+          "path": "agents/kotlin/kotlin-kmp-portfolio-decision-agent/AGENT.md",
+          "sha256": "665491c39e33cd8b503a8ab08c9c534f7db6e375ee0767c4c16c396caf1bb7ce",
+          "bytes": 7613
+        },
+        {
+          "path": "agents/kotlin/kotlin-kmp-portfolio-decision-agent/harnesses/claude-code.agent.md",
+          "sha256": "f8e4e20c28bc35f33532c5f2acdb8d2197333f0a143dedd506d94ac2d9fe2222",
+          "bytes": 6994
+        },
+        {
+          "path": "agents/kotlin/kotlin-kmp-portfolio-decision-agent/harnesses/codex.toml",
+          "sha256": "35fcf50ed5f9bcd859131b36681e4780669c267189ff1682e6c120201566b943",
+          "bytes": 5021
+        },
+        {
+          "path": "agents/kotlin/kotlin-kmp-portfolio-decision-agent/harnesses/copilot.agent.md",
+          "sha256": "67f9a02c97c53059db126c662d36ba269a2ee681e9a1a888c3c2ca033a4be19d",
+          "bytes": 7116
+        },
+        {
+          "path": "agents/kotlin/kotlin-kmp-portfolio-decision-agent/harnesses/cursor.agent.md",
+          "sha256": "f8e4e20c28bc35f33532c5f2acdb8d2197333f0a143dedd506d94ac2d9fe2222",
+          "bytes": 6994
+        },
+        {
+          "path": "agents/kotlin/kotlin-kmp-portfolio-decision-agent/harnesses/gemini.agent.md",
+          "sha256": "f8e4e20c28bc35f33532c5f2acdb8d2197333f0a143dedd506d94ac2d9fe2222",
+          "bytes": 6994
+        },
+        {
+          "path": "agents/kotlin/kotlin-kmp-portfolio-decision-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "d5ac85903bfe8b56e2046cd2c45203246aa097c171206060922368cba8c4d087",
+          "bytes": 7070
+        },
+        {
+          "path": "agents/kotlin/kotlin-kmp-portfolio-decision-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "f8e4e20c28bc35f33532c5f2acdb8d2197333f0a143dedd506d94ac2d9fe2222",
+          "bytes": 6994
+        },
+        {
+          "path": "agents/kotlin/kotlin-kmp-portfolio-decision-agent/metadata.json",
+          "sha256": "e8acd9b54b3b4598c03119e954a10f59328e663747d2e29982979ab45adbf742",
+          "bytes": 2303
+        },
+        {
+          "path": "agents/kotlin/kotlin-language-api-correctness-agent/AGENT.md",
+          "sha256": "07fee0d53ec13a2cdb3ec16427e49c18bd66fd5e7773f4dca32fe744af21d4b4",
+          "bytes": 8915
+        },
+        {
+          "path": "agents/kotlin/kotlin-language-api-correctness-agent/harnesses/claude-code.agent.md",
+          "sha256": "fbf426b9a425120f6f493ac35b0018f359657914c54102cca6e48905b5530fba",
+          "bytes": 8294
+        },
+        {
+          "path": "agents/kotlin/kotlin-language-api-correctness-agent/harnesses/codex.toml",
+          "sha256": "af1458e84946105cd72f6abae50fcf580fe06aaf365b04f017d9cf88c3195427",
+          "bytes": 5606
+        },
+        {
+          "path": "agents/kotlin/kotlin-language-api-correctness-agent/harnesses/copilot.agent.md",
+          "sha256": "de27cfa1bb1fad34d39d9dccef1a48d285d0872bca2ed362020c8445168d7692",
+          "bytes": 8416
+        },
+        {
+          "path": "agents/kotlin/kotlin-language-api-correctness-agent/harnesses/cursor.agent.md",
+          "sha256": "fbf426b9a425120f6f493ac35b0018f359657914c54102cca6e48905b5530fba",
+          "bytes": 8294
+        },
+        {
+          "path": "agents/kotlin/kotlin-language-api-correctness-agent/harnesses/gemini.agent.md",
+          "sha256": "fbf426b9a425120f6f493ac35b0018f359657914c54102cca6e48905b5530fba",
+          "bytes": 8294
+        },
+        {
+          "path": "agents/kotlin/kotlin-language-api-correctness-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "b4a53b04196b3d3f487e8ed794ecc1f09a5f5efe3402165b10981dc22ac63be0",
+          "bytes": 8367
+        },
+        {
+          "path": "agents/kotlin/kotlin-language-api-correctness-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "fbf426b9a425120f6f493ac35b0018f359657914c54102cca6e48905b5530fba",
+          "bytes": 8294
+        },
+        {
+          "path": "agents/kotlin/kotlin-language-api-correctness-agent/metadata.json",
+          "sha256": "a767c59cef27089c7ee25f93b7870d1cceff7e5bbfeea228521bcc11c7823dc0",
+          "bytes": 2247
+        },
+        {
+          "path": "agents/kotlin/kotlin-library-api-abi-governance-agent/AGENT.md",
+          "sha256": "fa5f21480ad68a44c0858811500f213f7fe087553b26e3c14d80f33a3efe630e",
+          "bytes": 10082
+        },
+        {
+          "path": "agents/kotlin/kotlin-library-api-abi-governance-agent/harnesses/claude-code.agent.md",
+          "sha256": "c808e1c6143309c1a3bc2a543e3898aa3621e0498dd29272500bbddbf5d44b0b",
+          "bytes": 9459
+        },
+        {
+          "path": "agents/kotlin/kotlin-library-api-abi-governance-agent/harnesses/codex.toml",
+          "sha256": "a9d7a84cfb64150a6cb019585ac001d4beb620d3fc82b58aa71155212d9dde46",
+          "bytes": 6210
+        },
+        {
+          "path": "agents/kotlin/kotlin-library-api-abi-governance-agent/harnesses/copilot.agent.md",
+          "sha256": "3093e72c7039774167f5de396d22d307b62b7afc2f801c9877b601f827a78ac5",
+          "bytes": 9581
+        },
+        {
+          "path": "agents/kotlin/kotlin-library-api-abi-governance-agent/harnesses/cursor.agent.md",
+          "sha256": "c808e1c6143309c1a3bc2a543e3898aa3621e0498dd29272500bbddbf5d44b0b",
+          "bytes": 9459
+        },
+        {
+          "path": "agents/kotlin/kotlin-library-api-abi-governance-agent/harnesses/gemini.agent.md",
+          "sha256": "c808e1c6143309c1a3bc2a543e3898aa3621e0498dd29272500bbddbf5d44b0b",
+          "bytes": 9459
+        },
+        {
+          "path": "agents/kotlin/kotlin-library-api-abi-governance-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "c0a99c115ab5acc5e4903ea387776d56f50feab13707bed71d40fb36378e76f6",
+          "bytes": 9531
+        },
+        {
+          "path": "agents/kotlin/kotlin-library-api-abi-governance-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "c808e1c6143309c1a3bc2a543e3898aa3621e0498dd29272500bbddbf5d44b0b",
+          "bytes": 9459
+        },
+        {
+          "path": "agents/kotlin/kotlin-library-api-abi-governance-agent/metadata.json",
+          "sha256": "97791b616356ca1ee556f90134327711c1e1cb75ab40e554411851541426c917",
+          "bytes": 2420
+        },
+        {
+          "path": "agents/kotlin/kotlin-maestro-agent/AGENT.md",
+          "sha256": "332250cea2d26a6114a9ed4c5e321c1e2d72912c6998c05bea51a0eb9ce027ba",
+          "bytes": 4272
+        },
+        {
+          "path": "agents/kotlin/kotlin-maestro-agent/README.md",
+          "sha256": "319188b54b59cd13c1ab42514086626ea709c8439e566990e30e88f985136a45",
+          "bytes": 4162
+        },
+        {
+          "path": "agents/kotlin/kotlin-maestro-agent/harnesses/claude-code.agent.md",
+          "sha256": "af140b258f96d07e1efa33ba40e721153701eb641a1111451130fa361f4dff36",
+          "bytes": 3668
+        },
+        {
+          "path": "agents/kotlin/kotlin-maestro-agent/harnesses/codex.toml",
+          "sha256": "71c030a01f9de06281b3f0c8c9c78a22d3633648fc4ce2772bf309568cfcbe09",
+          "bytes": 3915
+        },
+        {
+          "path": "agents/kotlin/kotlin-maestro-agent/harnesses/copilot.agent.md",
+          "sha256": "9e3e3a2e36d5cbf62d0b1b2802c66d71bde83c165c922640345c7032cb6b7266",
+          "bytes": 3790
+        },
+        {
+          "path": "agents/kotlin/kotlin-maestro-agent/harnesses/cursor.agent.md",
+          "sha256": "af140b258f96d07e1efa33ba40e721153701eb641a1111451130fa361f4dff36",
+          "bytes": 3668
+        },
+        {
+          "path": "agents/kotlin/kotlin-maestro-agent/harnesses/gemini.agent.md",
+          "sha256": "af140b258f96d07e1efa33ba40e721153701eb641a1111451130fa361f4dff36",
+          "bytes": 3668
+        },
+        {
+          "path": "agents/kotlin/kotlin-maestro-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "f15ba4476017ed20fe515a87c7652a2bcf47f9a0b90059b022ba980566c198e8",
+          "bytes": 3725
+        },
+        {
+          "path": "agents/kotlin/kotlin-maestro-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "af140b258f96d07e1efa33ba40e721153701eb641a1111451130fa361f4dff36",
+          "bytes": 3668
+        },
+        {
+          "path": "agents/kotlin/kotlin-maestro-agent/metadata.json",
+          "sha256": "e3a50044c8fc1e62c148f41ef338e03d90519933782b79b31fb4c4e4cf328622",
+          "bytes": 1980
+        },
+        {
+          "path": "agents/kotlin/kotlin-serialization-wire-contract-agent/AGENT.md",
+          "sha256": "930f4f9cc517ad2153d6a18bc4ba63c199101e5910dbcc9aa7799cbf112af588",
+          "bytes": 9958
+        },
+        {
+          "path": "agents/kotlin/kotlin-serialization-wire-contract-agent/harnesses/claude-code.agent.md",
+          "sha256": "f43b27b990902b16857404e5c2cac80fb7281efac0eed4672b361085bd0f7506",
+          "bytes": 9334
+        },
+        {
+          "path": "agents/kotlin/kotlin-serialization-wire-contract-agent/harnesses/codex.toml",
+          "sha256": "6e03d8dc141375b4106b25679ff8974ee6e0ada218c16cb2ef982b6fe1ec82cb",
+          "bytes": 6030
+        },
+        {
+          "path": "agents/kotlin/kotlin-serialization-wire-contract-agent/harnesses/copilot.agent.md",
+          "sha256": "2961a674803afb633d05ea0efef7bee845688f117b5e0cbd9682366f93c48c67",
+          "bytes": 9456
+        },
+        {
+          "path": "agents/kotlin/kotlin-serialization-wire-contract-agent/harnesses/cursor.agent.md",
+          "sha256": "f43b27b990902b16857404e5c2cac80fb7281efac0eed4672b361085bd0f7506",
+          "bytes": 9334
+        },
+        {
+          "path": "agents/kotlin/kotlin-serialization-wire-contract-agent/harnesses/gemini.agent.md",
+          "sha256": "f43b27b990902b16857404e5c2cac80fb7281efac0eed4672b361085bd0f7506",
+          "bytes": 9334
+        },
+        {
+          "path": "agents/kotlin/kotlin-serialization-wire-contract-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "3f2c00b88491a718a8fb75b004b96a541dbe517e1d43c5e4c15d69394f1228df",
+          "bytes": 9410
+        },
+        {
+          "path": "agents/kotlin/kotlin-serialization-wire-contract-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "f43b27b990902b16857404e5c2cac80fb7281efac0eed4672b361085bd0f7506",
+          "bytes": 9334
+        },
+        {
+          "path": "agents/kotlin/kotlin-serialization-wire-contract-agent/metadata.json",
+          "sha256": "16e68d30d5f32291b41043344342c1e41dac97ddae7eaf2e93853086175e5d53",
+          "bytes": 2431
+        },
+        {
+          "path": "agents/kotlin/kotlin-supply-chain-release-integrity-agent/AGENT.md",
+          "sha256": "69dc51e2e611d0cf4d28504360aa917929a680aaca553c0d3b3bd36077d9166a",
+          "bytes": 8495
+        },
+        {
+          "path": "agents/kotlin/kotlin-supply-chain-release-integrity-agent/harnesses/claude-code.agent.md",
+          "sha256": "40acdb5b382c5845cc7dd3d84a9c126a161a8392a52abf4ea35f52d65a6b6851",
+          "bytes": 7868
+        },
+        {
+          "path": "agents/kotlin/kotlin-supply-chain-release-integrity-agent/harnesses/codex.toml",
+          "sha256": "16a629faa22a075c70bfa57b21868e0104de2f2e8c731fff6e35a7446f5571c9",
+          "bytes": 5855
+        },
+        {
+          "path": "agents/kotlin/kotlin-supply-chain-release-integrity-agent/harnesses/copilot.agent.md",
+          "sha256": "9e3bdd59e4080964f46f06df21e1d6e7205783da1907bce318fed30996d7166c",
+          "bytes": 7990
+        },
+        {
+          "path": "agents/kotlin/kotlin-supply-chain-release-integrity-agent/harnesses/cursor.agent.md",
+          "sha256": "40acdb5b382c5845cc7dd3d84a9c126a161a8392a52abf4ea35f52d65a6b6851",
+          "bytes": 7868
+        },
+        {
+          "path": "agents/kotlin/kotlin-supply-chain-release-integrity-agent/harnesses/gemini.agent.md",
+          "sha256": "40acdb5b382c5845cc7dd3d84a9c126a161a8392a52abf4ea35f52d65a6b6851",
+          "bytes": 7868
+        },
+        {
+          "path": "agents/kotlin/kotlin-supply-chain-release-integrity-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "1cee06e4140a14dc690f29ca6f4b5622ac3767035b40788af7be80bf065dd8ee",
+          "bytes": 7944
+        },
+        {
+          "path": "agents/kotlin/kotlin-supply-chain-release-integrity-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "40acdb5b382c5845cc7dd3d84a9c126a161a8392a52abf4ea35f52d65a6b6851",
+          "bytes": 7868
+        },
+        {
+          "path": "agents/kotlin/kotlin-supply-chain-release-integrity-agent/metadata.json",
+          "sha256": "69cece7a8e205688f29ca84ff49547d2cb97befa27ea91e96142581a10b6a4ef",
+          "bytes": 2310
+        },
+        {
+          "path": "agents/kotlin/kotlin-test-architecture-agent/AGENT.md",
+          "sha256": "fc405fb061541c9ff5c6025ac0b0c4eb1ad537a64b7a815b5276f565991b3e27",
+          "bytes": 8602
+        },
+        {
+          "path": "agents/kotlin/kotlin-test-architecture-agent/harnesses/claude-code.agent.md",
+          "sha256": "4020b44e4131ed4fbfcbd8f52181909eff75a2d6ce48d888a47840b4c3153849",
+          "bytes": 7988
+        },
+        {
+          "path": "agents/kotlin/kotlin-test-architecture-agent/harnesses/codex.toml",
+          "sha256": "4741b8e3a9ceb67b0ff8eb4d9243bce5f2516c6a602f5042563f81c683d8bca3",
+          "bytes": 6001
+        },
+        {
+          "path": "agents/kotlin/kotlin-test-architecture-agent/harnesses/copilot.agent.md",
+          "sha256": "8777f29bb3d66ed6b4c91955b1c1b203a1a3f68c09bc1b308c84d55824224b52",
+          "bytes": 8110
+        },
+        {
+          "path": "agents/kotlin/kotlin-test-architecture-agent/harnesses/cursor.agent.md",
+          "sha256": "4020b44e4131ed4fbfcbd8f52181909eff75a2d6ce48d888a47840b4c3153849",
+          "bytes": 7988
+        },
+        {
+          "path": "agents/kotlin/kotlin-test-architecture-agent/harnesses/gemini.agent.md",
+          "sha256": "4020b44e4131ed4fbfcbd8f52181909eff75a2d6ce48d888a47840b4c3153849",
+          "bytes": 7988
+        },
+        {
+          "path": "agents/kotlin/kotlin-test-architecture-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "6f0a6e311da78038c83c10664e01e4927078b55f57a056ab828d393af69d328b",
+          "bytes": 8064
+        },
+        {
+          "path": "agents/kotlin/kotlin-test-architecture-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "4020b44e4131ed4fbfcbd8f52181909eff75a2d6ce48d888a47840b4c3153849",
+          "bytes": 7988
+        },
+        {
+          "path": "agents/kotlin/kotlin-test-architecture-agent/metadata.json",
+          "sha256": "9ee936431f5b1fc340969595dc5ce868380a46350926f6506978b4eca777c9f8",
+          "bytes": 2226
+        },
+        {
           "path": "agents/kubernetes/README.md",
           "sha256": "35b94ce8cfe1a64a4b70092fed26e3979f429c36e96956ae7365693fa8b45515",
           "bytes": 8914
@@ -29821,7 +30546,7 @@
     },
     {
       "tree": "schemas",
-      "aggregate_sha256": "bb8163ca6d30f83d9216d63b2a74b6a47b90ec892da88b76ce48d2cd58ce519a",
+      "aggregate_sha256": "245c63fea05c25c692e18cde8da467690af73ac7d199958e9eded991791569cf",
       "files": [
         {
           "path": "schemas/AGENTS.md",
@@ -29835,8 +30560,8 @@
         },
         {
           "path": "schemas/agent.schema.json",
-          "sha256": "c124215e0d5ad4c0171457cd6db27461298c6d736352d80d0bdd211147710107",
-          "bytes": 3492
+          "sha256": "813d7089ca2e1963c53bd99fc00c296b762157419c38c9132d275cea07ae8f39",
+          "bytes": 3510
         },
         {
           "path": "schemas/attestation.schema.json",
@@ -29875,14 +30600,14 @@
         },
         {
           "path": "schemas/skill.schema.json",
-          "sha256": "edbcfe39dca4fa4acf3f557369a46f2d26a3e776b3d0133a0e8e8826a0720a6a",
-          "bytes": 2399
+          "sha256": "77bc2139a370a7d6e3aa623ec052a4dc8c7d0aab5600b651cbd74c1eac641860",
+          "bytes": 2417
         }
       ]
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "e146b67f5524f158a97055b3a15c7eccad79552ffc7b42fd238f374db949a46b",
+      "aggregate_sha256": "3261a5f9156325fe08412ca63da8021a26cdcedf15ddad5a478bb90d494f52c3",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -29891,8 +30616,8 @@
         },
         {
           "path": "catalog/agents.json",
-          "sha256": "cbd82a9e2950d0ae32ea143183fe9694880afc03682da554053cb32728ee0abc",
-          "bytes": 1021227
+          "sha256": "54691b035260ca91c3dcca59f6fea123426e4a369d9f862652f2eed0e83d4ad5",
+          "bytes": 1046732
         },
         {
           "path": "catalog/index.json",
@@ -29901,8 +30626,8 @@
         },
         {
           "path": "catalog/install-roles.json",
-          "sha256": "dc44383967ecfe96e428ef27e3af6e7a78403906bcd90fd6b11043e0615b9d08",
-          "bytes": 80993
+          "sha256": "3e626c555ce52c85cb642db7eb05a0e0ef33530a6b7c48f960931d098a573ba1",
+          "bytes": 88653
         },
         {
           "path": "catalog/mcp-references.json",
@@ -29911,8 +30636,8 @@
         },
         {
           "path": "catalog/model-assignments.json",
-          "sha256": "6c4ba07a84e08d48dd0430808fe031182e02ca618d5ffbf7027a896479a67b0c",
-          "bytes": 586538
+          "sha256": "f2ebab0d27e2175cd693dd6ad8d92aaba1faef1f09e93f212db01168c637c988",
+          "bytes": 601718
         },
         {
           "path": "catalog/model-policy.json",
@@ -29931,19 +30656,19 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "26d2c5bd2c84c283bb67606e977c8b8f984a82e15a3be27f0653b39fb2b34e5e",
-          "bytes": 864356
+          "sha256": "865f592105dfc4f2d4a84ccb56ede87b7b17619bd9107a674785ae3cfc47412c",
+          "bytes": 892299
         },
         {
           "path": "catalog/skills.json",
-          "sha256": "ad88e72cdda414220c5065b4981fb89ae89d89d06ca0f7a5086b280987ca79dc",
-          "bytes": 1009036
+          "sha256": "b2099c6fd7a52d12ade04268dbebb6aee1834bba226a209abde0b7691483267f",
+          "bytes": 1033551
         }
       ]
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "ac361a92cd51482456fe591cb29e6d2bfa07992e2b40bc444e0e1e3f01c3ae8d",
+      "aggregate_sha256": "9a2cdce8cc1a8867ccfe8f808e98af3fd5fb6384fba9db1dd75f276b698fc047",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -29964,6 +30689,11 @@
           "path": "scripts/gen_azure_live_guards.py",
           "sha256": "249b9fa1045f71182a2f9804b0bfc45f8fa636a3de99d54f23d8ac2f398e931e",
           "bytes": 64623
+        },
+        {
+          "path": "scripts/gen_kotlin_agents.py",
+          "sha256": "21e2a6089b6d5e1fada01d3f5e74e9aee1af662439f296fbd3fcd6882cc6adcf",
+          "bytes": 19980
         },
         {
           "path": "scripts/gen_netsuite_agents.py",
@@ -29987,8 +30717,8 @@
         },
         {
           "path": "scripts/generate-docs-data.mjs",
-          "sha256": "cfa03677045ef07da70ef10257ee058148b09b54c48b2efa78151533c6770132",
-          "bytes": 4767
+          "sha256": "58ff80e664a76c5e859293436a3c6e7d3fad350b5585ee51bf7acfa0c37b59eb",
+          "bytes": 4777
         },
         {
           "path": "scripts/generate-kiro-powers.mjs",
@@ -30009,6 +30739,86 @@
           "path": "scripts/install-codex-home.mjs",
           "sha256": "07189e47956afbf0a316112c6f3988558a35a33de22e3d850af6969b7354f01f",
           "bytes": 3493
+        },
+        {
+          "path": "scripts/kotlin_data/agents/00-kotlin-maestro-agent.json",
+          "sha256": "b8d7f0b949ee85ad95c84630acaeef227b2e95aa1b6a3de9c6d2cad1365ab158",
+          "bytes": 8745
+        },
+        {
+          "path": "scripts/kotlin_data/agents/01-kotlin-estate-modernization-governor-agent.json",
+          "sha256": "53610ef94130352440e68e9d8ebad1ddf74099941c3ceb7301c95f8031592ed4",
+          "bytes": 15152
+        },
+        {
+          "path": "scripts/kotlin_data/agents/02-kotlin-language-api-correctness-agent.json",
+          "sha256": "084026f4abc00b3e92e29e195e78851218855306c59943e36efcf733bb92b38b",
+          "bytes": 15891
+        },
+        {
+          "path": "scripts/kotlin_data/agents/03-kotlin-coroutines-flow-reliability-agent.json",
+          "sha256": "b70e32b407d84ae1d469a64f3c183fdab461452c20e4d503766ea0a335ca8f8a",
+          "bytes": 14721
+        },
+        {
+          "path": "scripts/kotlin_data/agents/04-kotlin-library-api-abi-governance-agent.json",
+          "sha256": "ea353a76c774ae9e525d972de52feb16a8986e7c8c19fdacf47ad683f6eec7d2",
+          "bytes": 18299
+        },
+        {
+          "path": "scripts/kotlin_data/agents/05-kotlin-backend-production-readiness-agent.json",
+          "sha256": "45bf429d37467cb3d57f058277cf226895dda378eb4759ff811506d49b93a1f6",
+          "bytes": 17967
+        },
+        {
+          "path": "scripts/kotlin_data/agents/06-kotlin-serialization-wire-contract-agent.json",
+          "sha256": "5faa6f5ab111c9d113841606aa7410d815d2c2ea7e2a2b11e03e31dcb52e132e",
+          "bytes": 17987
+        },
+        {
+          "path": "scripts/kotlin_data/agents/07-kotlin-android-architecture-agent.json",
+          "sha256": "f48c210a6bbb1cc292b367540238f5a78812dc3eb16a4bed0d9e8c194fe05ae1",
+          "bytes": 14007
+        },
+        {
+          "path": "scripts/kotlin_data/agents/08-kotlin-compose-ui-quality-accessibility-agent.json",
+          "sha256": "350be8974f31e729abdca642f2c70c75f07b62c461e5194dbf34cc9671a0f2b8",
+          "bytes": 14601
+        },
+        {
+          "path": "scripts/kotlin_data/agents/09-kotlin-android-security-privacy-agent.json",
+          "sha256": "4a21b510d37654db75116e0d46a0e1f3fd0b4b7746f99c6ac28adb62b2632208",
+          "bytes": 15507
+        },
+        {
+          "path": "scripts/kotlin_data/agents/10-kotlin-android-performance-reliability-agent.json",
+          "sha256": "b216df2baa2de080bbd7c79cddddc0326c8723761de9b2a7991508ca63902f37",
+          "bytes": 13539
+        },
+        {
+          "path": "scripts/kotlin_data/agents/11-kotlin-kmp-portfolio-decision-agent.json",
+          "sha256": "92b52bc1c36347775620038f067447e2d1e0ff7e0456fb1e992cc7f24d839a7f",
+          "bytes": 13896
+        },
+        {
+          "path": "scripts/kotlin_data/agents/12-kotlin-kmp-boundary-interop-agent.json",
+          "sha256": "c97bc14621c8013df40767273b2253ac3fe1c2624140786fb3962386150baf50",
+          "bytes": 14723
+        },
+        {
+          "path": "scripts/kotlin_data/agents/13-kotlin-gradle-build-engineering-agent.json",
+          "sha256": "931f30263448e8d02d5f85f98291371cfa5a8b6386917849917641e3bd5dbad3",
+          "bytes": 15270
+        },
+        {
+          "path": "scripts/kotlin_data/agents/14-kotlin-supply-chain-release-integrity-agent.json",
+          "sha256": "dd3f9fe4a734152a3fd3d82680a873d1d1b90063dd828555c8a242f3419787d5",
+          "bytes": 15442
+        },
+        {
+          "path": "scripts/kotlin_data/agents/15-kotlin-test-architecture-agent.json",
+          "sha256": "c8b6ef001988c70f6d2427d7575ce655c779d0962c2a8fb3883d553d9d30fef5",
+          "bytes": 15646
         },
         {
           "path": "scripts/model-policy.mjs",
@@ -30147,19 +30957,19 @@
         },
         {
           "path": "scripts/update-catalog-new-agents.py",
-          "sha256": "7a3c4143f2b32c45b76561e15e0aa509581d15d4430c932b9cef0ef29552ba42",
-          "bytes": 3461
+          "sha256": "76685176d0873a748155080d43f7a8e1ef97074d6f8624f42a8ea4bdf46828e3",
+          "bytes": 4722
         }
       ]
     },
     {
       "tree": "powers",
-      "aggregate_sha256": "21408b670794e630a3da50abe6028897bc60877e32d18502d427f093e16c3683",
+      "aggregate_sha256": "2ad12a194484ec9fd1e5db52ca7d26031916592bc186123eedcdccdc737843cc",
       "files": [
         {
           "path": "powers/README.md",
-          "sha256": "f706e80c4bd271415a280b1e28b1b7cc84685b6daafe6357231e84cda8611fc4",
-          "bytes": 4852
+          "sha256": "a3c4da054c46aaac443f8c6b609dc27f0dfe5d086597ff8cafb43d5334231b46",
+          "bytes": 4887
         },
         {
           "path": "powers/vanguard-accounting/POWER.md",
@@ -30275,6 +31085,11 @@
           "path": "powers/vanguard-java/POWER.md",
           "sha256": "9f2d93ebdfb83b953c0d2ecbac23202bd3314a723c42901169fcef7b471ef87a",
           "bytes": 2490
+        },
+        {
+          "path": "powers/vanguard-kotlin/POWER.md",
+          "sha256": "e6003caabe91da418f4cbc4173c333510a4388e1a4f8943f79e44f9c51ff5a19",
+          "bytes": 2514
         },
         {
           "path": "powers/vanguard-kubernetes/POWER.md",
@@ -30406,7 +31221,7 @@
     },
     {
       "tree": ".claude-plugin",
-      "aggregate_sha256": "7366465a82dea995c1821bf8b8eb5fa0c0ec0db602ea3700d0fc35c12112831d",
+      "aggregate_sha256": "a12bcb233e1f3c0d4a11f2a43193493327c6cb19b62f91ef8229bf6cac2c702f",
       "files": [
         {
           "path": ".claude-plugin/README.md",
@@ -30415,19 +31230,19 @@
         },
         {
           "path": ".claude-plugin/marketplace.json",
-          "sha256": "721bc1b0db080351097919e680ee6195e7eba400c08b9384ed0739e6e8f753db",
+          "sha256": "eeebb0aebd0da9c5dd8ef55d4d8fabab9bf579076e6114f85fd0d32e295a04c8",
           "bytes": 834
         },
         {
           "path": ".claude-plugin/plugin.json",
-          "sha256": "10d9ed72543bed579a7d3ccfa030f0291a6098e3829e2c57e91a269e0d15bc55",
-          "bytes": 56520
+          "sha256": "e4f68aac65ddbc611a0d07d431c43f9b3947376b0b17a73391f2f397e233ebd7",
+          "bytes": 57996
         }
       ]
     },
     {
       "tree": ".cursor-plugin",
-      "aggregate_sha256": "fd32e7eef370beae0d46695b7405497d5211469a5a5b8534f4aaad1690d801c2",
+      "aggregate_sha256": "db8915ab101df1639b0707c6b9a7efc0ddc1942e694ffdbee05a088b243b9a3a",
       "files": [
         {
           "path": ".cursor-plugin/README.md",
@@ -30436,8 +31251,8 @@
         },
         {
           "path": ".cursor-plugin/plugin.json",
-          "sha256": "43da27334d74276354e8e2edf2d89257d7bb45af2eb9f5609a8e7e0c2d747067",
-          "bytes": 53421
+          "sha256": "07f1f7786d8229840019a29906b8f3db8601a417be390bad599577e52e1d5cc8",
+          "bytes": 54817
         }
       ]
     },
@@ -30475,7 +31290,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "2de262fbd6561086801cb90ab035dc13a970ee5da01ffa682486c0b5a624b1b3",
+      "aggregate_sha256": "71446b0ba1d0f91cebb55b979de831f5b6e6390d5ff358b0f59554ff3a416b0f",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -35533,6 +36348,221 @@
           "bytes": 4304
         },
         {
+          "path": "tests/fixtures/kotlin-maestro-routing/expected/001-happy-android-architecture.json",
+          "sha256": "ebe05d05f0ad08b0fa5655e5f0b40011c48bb2de411779bc7a7ae890e01f816f",
+          "bytes": 81
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/expected/002-happy-android-performance-reliability.json",
+          "sha256": "95328b8cb9cef75ee268117cf47f51b8857a14e48c8c64e4ec866755e8a15a36",
+          "bytes": 92
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/expected/003-happy-android-security-privacy.json",
+          "sha256": "07cbc1a2540ecef4d4c628a4f5d9a9b829d06472dd586f4558f1b26c428c1c57",
+          "bytes": 85
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/expected/004-happy-backend-production-readiness.json",
+          "sha256": "9a609cf14c47aaeb2df3b0e4fac34511a5b23f3cd8385fd9ef744be8b90842ae",
+          "bytes": 89
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/expected/005-happy-compose-ui-quality-accessibility.json",
+          "sha256": "8b35a86a1def2ca0aae184ae03b3b13294a1c16f3b29dc8399755034c238c4a5",
+          "bytes": 93
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/expected/006-happy-coroutines-flow-reliability.json",
+          "sha256": "9c834dcfda81034f8f4b5ba2305e857bf5111e75ed449af3835b14e226e71948",
+          "bytes": 88
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/expected/007-happy-estate-modernization-governor.json",
+          "sha256": "aff034f00b7e4261fbbe81e29063a182a5ed4f94787914eb7e7a9f758b904bc7",
+          "bytes": 90
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/expected/008-happy-gradle-build-engineering.json",
+          "sha256": "79e52ac72534a8b86fda9932964b26f5e416dba54b0a40becbabf0a20c89cdf9",
+          "bytes": 85
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/expected/009-happy-kmp-boundary-interop.json",
+          "sha256": "b4f70684c9bcf2e83260647aba2601f5a685bb024f002a9a62fc2c07995eafd9",
+          "bytes": 81
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/expected/010-happy-kmp-portfolio-decision.json",
+          "sha256": "d16b9a5df255f9ffc5e87f5ef067a3066bc487baa518d440a09b9ff4446f8a7b",
+          "bytes": 83
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/expected/011-happy-language-api-correctness.json",
+          "sha256": "41bc9fa6fa3f072c0dab14689c8eafe478e91cfe7586baa5a25652281ac99031",
+          "bytes": 85
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/expected/012-happy-library-api-abi-governance.json",
+          "sha256": "a288d295b05a68b2b7775cc7728b8bb15c5a224f3a744d08b55acabfcccd19ea",
+          "bytes": 87
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/expected/013-happy-serialization-wire-contract.json",
+          "sha256": "3a18348c482c70da810ab6b38dcde6c53d131b05de34179a4e7e5ea55a9d0f92",
+          "bytes": 88
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/expected/014-happy-supply-chain-release-integrity.json",
+          "sha256": "a074293947f08a05c71c0fcc0e4e5bef6957096d68513458d6374195fb7bf97b",
+          "bytes": 91
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/expected/015-happy-test-architecture.json",
+          "sha256": "eb9621f73d711def2bc94da46716ff165336d457a86ed69ce9f017c6d3860b17",
+          "bytes": 78
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/expected/adv-ambiguous.json",
+          "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
+          "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/expected/adv-instruction-injection.json",
+          "sha256": "ebe05d05f0ad08b0fa5655e5f0b40011c48bb2de411779bc7a7ae890e01f816f",
+          "bytes": 81
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/expected/adv-mutation-deploy.json",
+          "sha256": "afff694c3caedc66e4594db672259a8685cc4e57e02666d83fa03ea8125fabd6",
+          "bytes": 47
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/expected/adv-mutation-publish.json",
+          "sha256": "afff694c3caedc66e4594db672259a8685cc4e57e02666d83fa03ea8125fabd6",
+          "bytes": 47
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/expected/adv-persona-replacement.json",
+          "sha256": "ebe05d05f0ad08b0fa5655e5f0b40011c48bb2de411779bc7a7ae890e01f816f",
+          "bytes": 81
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/expected/adv-secrets-bait.json",
+          "sha256": "ebe05d05f0ad08b0fa5655e5f0b40011c48bb2de411779bc7a7ae890e01f816f",
+          "bytes": 81
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/inputs/001-happy-android-architecture.json",
+          "sha256": "0c8d696f58cd3f37a8ffa347a954322b914080bb9986e0a7d28072cc4b0cebc6",
+          "bytes": 170
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/inputs/002-happy-android-performance-reliability.json",
+          "sha256": "d6bf8ace99a186a7f911472f67711d1a32cb0108da0415135ec772cede51b651",
+          "bytes": 186
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/inputs/003-happy-android-security-privacy.json",
+          "sha256": "20739fa2734cdae5b2f3cb1bf76353793827d82dd1fd177de37d852d71739b4e",
+          "bytes": 154
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/inputs/004-happy-backend-production-readiness.json",
+          "sha256": "38f3a6c6cb87927bdd5b8487805ab0979c841f559699a42914b30405b79955c4",
+          "bytes": 164
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/inputs/005-happy-compose-ui-quality-accessibility.json",
+          "sha256": "8b233df4171edae99fbccb400a4a89067be3f8a2e6eb66937f6cd7807643cd3f",
+          "bytes": 164
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/inputs/006-happy-coroutines-flow-reliability.json",
+          "sha256": "9564c630fd2411f39369e68dbe576cdf09532a970b2728765b80f088fbc06f43",
+          "bytes": 166
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/inputs/007-happy-estate-modernization-governor.json",
+          "sha256": "14755174b2c4f6ad4ae44496c8cb188982fd372d5a6b1a403fcaf6f0b20b83b6",
+          "bytes": 167
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/inputs/008-happy-gradle-build-engineering.json",
+          "sha256": "60a2294bd700241ce177775ff90573a1a05970bb2a393cd27771b1f5cbfb6faa",
+          "bytes": 161
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/inputs/009-happy-kmp-boundary-interop.json",
+          "sha256": "1d840e8042178c35286581e1342f3ed59ed9a872c23c31bd1ac5005b682ccfb1",
+          "bytes": 155
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/inputs/010-happy-kmp-portfolio-decision.json",
+          "sha256": "8e591e2eabebb4f33a275ef74a0a086451d77b58cf5a7fe8865e4945ea954406",
+          "bytes": 156
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/inputs/011-happy-language-api-correctness.json",
+          "sha256": "90413ff35ac4cd145cef95324e11973311731f2a1a9aa8e7a5ac2737d03a9aa3",
+          "bytes": 167
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/inputs/012-happy-library-api-abi-governance.json",
+          "sha256": "823b2dbfcc35e52e8cf85d314ed4676bbd1e389a61efe63e792fc8e209d438d2",
+          "bytes": 156
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/inputs/013-happy-serialization-wire-contract.json",
+          "sha256": "2b4420f8cb1f80d7f0c82e701e1f601e72ac4270572fdb6a1ae9b97f57e123c7",
+          "bytes": 162
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/inputs/014-happy-supply-chain-release-integrity.json",
+          "sha256": "73778b5dc5abaa385f87f26c691e2f8115d8fbd15abf0a44c5010b033383b918",
+          "bytes": 158
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/inputs/015-happy-test-architecture.json",
+          "sha256": "3baf3abd90d37aaca5e8b640ae75ee05c33371cda813d34b57264c2192fa3a01",
+          "bytes": 129
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/inputs/adv-ambiguous.json",
+          "sha256": "719b82ca90bbc8d2f22dbfe237a98cd4e0cd50056835f5c65ca03aa21947c177",
+          "bytes": 113
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/inputs/adv-instruction-injection.json",
+          "sha256": "ee0c724a48565096d9e05f71eab3d1f76007b672c1018c6af6d0da7d5829f547",
+          "bytes": 200
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/inputs/adv-mutation-deploy.json",
+          "sha256": "77821cee453f41b918573cd01ba1d5d4afb9d1f94c8892aa581cc7bc745f84c2",
+          "bytes": 144
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/inputs/adv-mutation-publish.json",
+          "sha256": "cc626d8104034b05d662964f4e1cfa3756ee318cc96659abbb5c6c54a355b7c6",
+          "bytes": 184
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/inputs/adv-persona-replacement.json",
+          "sha256": "ff64f9d6d9aff8887cb0db0778ab3dedab0f4eaf8c93803ab906332a6eeed226",
+          "bytes": 189
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/inputs/adv-secrets-bait.json",
+          "sha256": "2977015b3d9d23807cce6eb83182e0d26fc54e4ab165e57973e7e195267fe9bc",
+          "bytes": 179
+        },
+        {
+          "path": "tests/fixtures/kotlin-maestro-routing/taxonomy.json",
+          "sha256": "b446370a2253584ca35769ae8779db80f447e709a38bc7bfe839d15f6459a42c",
+          "bytes": 4737
+        },
+        {
           "path": "tests/fixtures/kubernetes-maestro-routing/expected/001-happy-external-secrets-operator-review.json",
           "sha256": "a543bbb57bc9eb697a7deb04941877629df7262ca63aeb802204f200aa8d1d1f",
           "bytes": 86
@@ -38409,8 +39439,8 @@
         },
         {
           "path": "tests/validate-catalog.py",
-          "sha256": "d4a189b7c497f8d3925aa57d9f947a97dbc014ce93f1c7063699ed3786b3bc95",
-          "bytes": 14731
+          "sha256": "8801677afa424278de5f4a7cfb8dbf56f7de1e0734a4f38258a8768a78422f61",
+          "bytes": 14745
         },
         {
           "path": "tests/validate-codex-marketplace.py",
@@ -38498,8 +39528,8 @@
   "root_files": [
     {
       "path": "README.md",
-      "sha256": "4ec6521a5f8f0b2cef482e33d3d95bc3b63b7cb613303bdef08ab2aaa3bc137c",
-      "bytes": 96123
+      "sha256": "519cdf6b20363384139db130c57c6557af89b852d39b5f87904a65568ac225a3",
+      "bytes": 98673
     },
     {
       "path": "SECURITY.md",
@@ -38547,5 +39577,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "8a3c22d8e21c1ec6e62fe220d29fc57447531eb11fbbea4a7b821c2ab794916a"
+  "aggregate_sha256": "cc3329e4bb75cdcaae9d0cf196018af64eef9be128da2d3b51eab0db1313b72d"
 }

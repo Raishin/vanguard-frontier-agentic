@@ -1,0 +1,41 @@
+{
+  "id": "kotlin-supply-chain-release-integrity-agent",
+  "name": "Kotlin Supply Chain Release Integrity Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "kotlin",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of Kotlin/Gradle dependency trust and release integrity: verification-metadata enforcement, dependency locking, Gradle plugin trust and pinning, repository scope, and KMP/Maven publication controls. Reads build files, verification/lock metadata, and publication config only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.gradle.org/current/userguide/dependency_verification.html",
+    "https://docs.gradle.org/current/userguide/dependency_locking.html",
+    "https://docs.gradle.org/current/userguide/plugins.html",
+    "https://kotlinlang.org/docs/multiplatform-publish-lib.html"
+  ],
+  "security_notes": "Static review only — reads Gradle build files, `gradle/verification-metadata.xml`, lock files, plugin declarations, and publication config; never runs a release, publishes an artifact, signs anything, or contacts a live repository/CI system. Never requests secrets, credentials, signing keys, tenant identifiers, or customer data.",
+  "last_verified": "2026-07-21",
+  "path": "agents/kotlin/kotlin-supply-chain-release-integrity-agent/",
+  "harness_variants": {
+    "codex": "agents/kotlin/kotlin-supply-chain-release-integrity-agent/harnesses/codex.toml",
+    "copilot": "agents/kotlin/kotlin-supply-chain-release-integrity-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/kotlin/kotlin-supply-chain-release-integrity-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/kotlin/kotlin-supply-chain-release-integrity-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/kotlin/kotlin-supply-chain-release-integrity-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/kotlin/kotlin-supply-chain-release-integrity-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/kotlin/kotlin-supply-chain-release-integrity-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "kotlin-supply-chain-release-integrity"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

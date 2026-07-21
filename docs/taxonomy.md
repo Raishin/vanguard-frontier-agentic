@@ -33,6 +33,7 @@
 - `marketing`
 - `dotnet`
 - `java`
+- `kotlin`
 - `hr`
 - `legal`
 - `salesforce`

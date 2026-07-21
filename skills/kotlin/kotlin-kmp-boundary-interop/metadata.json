@@ -1,0 +1,27 @@
+{
+  "id": "kotlin-kmp-boundary-interop",
+  "name": "kotlin-kmp-boundary-interop",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "kotlin",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review of Kotlin Multiplatform source-set architecture, expect/actual design, platform-API-leakage prevention, cross-target dependency compatibility, Swift/Objective-C interop, and Kotlin/Native runtime concerns including the new memory manager and freezing deprecation. Reads source and build config only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://kotlinlang.org/docs/native-memory-manager.html",
+    "https://kotlinlang.org/docs/multiplatform-expect-actual.html",
+    "https://kotlinlang.org/docs/native-objc-interop.html",
+    "https://www.jetbrains.com/help/kotlin-multiplatform-dev/multiplatform-hierarchy.html"
+  ],
+  "security_notes": "Static review only — reads Kotlin Multiplatform source, Gradle source-set configuration, and sanitized build files; never builds, compiles, or runs a target (JVM/Native/JS/Wasm), never invokes Xcode or an iOS toolchain, and never executes generated Swift/Objective-C bridging code. Claims about a specific Kotlin/Gradle version's behavior that aren't confirmed by the supplied build files are flagged as assumption. Never requests secrets, credentials, or customer data.",
+  "last_verified": "2026-07-21",
+  "path": "skills/kotlin/kotlin-kmp-boundary-interop",
+  "author": "github: Raishin"
+}

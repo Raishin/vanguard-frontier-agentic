@@ -1,0 +1,27 @@
+{
+  "id": "kotlin-library-api-abi-governance",
+  "name": "kotlin-library-api-abi-governance",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "kotlin",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review of Kotlin library public-API evolution and binary/source compatibility for libraries consumed by both Kotlin and Java: binary-compatibility-validator .api snapshots and apiCheck gating, Explicit API mode, @JvmOverloads/@JvmStatic/@JvmName surface shaping, and ABI-sensitive data-class and inline-function changes. Reads source and build config only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://kotlinlang.org/docs/whatsnew1420.html",
+    "https://github.com/Kotlin/binary-compatibility-validator",
+    "https://kotlinlang.org/docs/whatsnew14.html#explicit-api-mode-for-library-authors",
+    "https://kotlinlang.org/docs/java-to-kotlin-interop.html"
+  ],
+  "security_notes": "Static review only — reads Kotlin source, `.api` snapshot files, and Gradle/build configuration; never builds, publishes, or runs `apiDump`/`apiCheck` itself, never opens a live connection, and never handles credentials for a package registry. A binary-compatibility claim not confirmed by an actual `.api` diff or `apiCheck` run is flagged as needing verification. Never requests secrets, tokens, or customer data.",
+  "last_verified": "2026-07-21",
+  "path": "skills/kotlin/kotlin-library-api-abi-governance",
+  "author": "github: Raishin"
+}

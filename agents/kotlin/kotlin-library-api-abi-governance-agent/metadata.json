@@ -1,0 +1,41 @@
+{
+  "id": "kotlin-library-api-abi-governance-agent",
+  "name": "Kotlin Library API and ABI Governance Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "kotlin",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of Kotlin library public-API evolution and binary/source compatibility for libraries consumed by both Kotlin and Java: binary-compatibility-validator .api snapshots and apiCheck gating, Explicit API mode, @JvmOverloads/@JvmStatic/@JvmName surface shaping, and ABI-sensitive data-class and inline-function changes. Reads source and build config only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://kotlinlang.org/docs/whatsnew1420.html",
+    "https://github.com/Kotlin/binary-compatibility-validator",
+    "https://kotlinlang.org/docs/whatsnew14.html#explicit-api-mode-for-library-authors",
+    "https://kotlinlang.org/docs/java-to-kotlin-interop.html"
+  ],
+  "security_notes": "Static review only — reads Kotlin source, `.api` snapshot files, and Gradle/build configuration; never builds, publishes, or runs `apiDump`/`apiCheck` itself, never opens a live connection, and never handles credentials for a package registry. A binary-compatibility claim not confirmed by an actual `.api` diff or `apiCheck` run is flagged as needing verification. Never requests secrets, tokens, or customer data.",
+  "last_verified": "2026-07-21",
+  "path": "agents/kotlin/kotlin-library-api-abi-governance-agent/",
+  "harness_variants": {
+    "codex": "agents/kotlin/kotlin-library-api-abi-governance-agent/harnesses/codex.toml",
+    "copilot": "agents/kotlin/kotlin-library-api-abi-governance-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/kotlin/kotlin-library-api-abi-governance-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/kotlin/kotlin-library-api-abi-governance-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/kotlin/kotlin-library-api-abi-governance-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/kotlin/kotlin-library-api-abi-governance-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/kotlin/kotlin-library-api-abi-governance-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "kotlin-library-api-abi-governance"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

@@ -339,6 +339,7 @@ fn infer_provider(asset_id: &str) -> Provider {
             "generic" => Provider::Generic,
             "frontend" => Provider::Frontend,
             "java" => Provider::Java,
+            "kotlin" => Provider::Kotlin,
             "php" => Provider::Php,
             _ => Provider::Generic,
         }

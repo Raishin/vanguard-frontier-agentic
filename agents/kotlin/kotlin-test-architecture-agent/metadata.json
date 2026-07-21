@@ -1,0 +1,41 @@
+{
+  "id": "kotlin-test-architecture-agent",
+  "name": "Kotlin Test Architecture Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "kotlin",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of Kotlin coroutine/Flow/Compose/Android/KMP test architecture and determinism: runTest virtual-time usage, test-dispatcher choice and advance discipline, Dispatchers.setMain/resetMain hygiene, Turbine Flow testing, and Compose/Robolectric-vs-instrumented boundary choice. Reads test source and build config only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-test/",
+    "https://github.com/cashapp/turbine",
+    "https://developer.android.com/develop/ui/compose/testing",
+    "https://developer.android.com/training/testing/local-tests"
+  ],
+  "security_notes": "Static review only — reads Kotlin/Android test source, Gradle test configuration, and sanitized CI logs; never runs the test suite, invokes a device/emulator, or opens a live connection. A claim that a specific flake is caused by real-time dependence rather than another factor is flagged as needing reproduction to confirm. Never requests secrets, credentials, or customer data.",
+  "last_verified": "2026-07-21",
+  "path": "agents/kotlin/kotlin-test-architecture-agent/",
+  "harness_variants": {
+    "codex": "agents/kotlin/kotlin-test-architecture-agent/harnesses/codex.toml",
+    "copilot": "agents/kotlin/kotlin-test-architecture-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/kotlin/kotlin-test-architecture-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/kotlin/kotlin-test-architecture-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/kotlin/kotlin-test-architecture-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/kotlin/kotlin-test-architecture-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/kotlin/kotlin-test-architecture-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "kotlin-test-architecture"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}
