@@ -1,5 +1,16 @@
 #!/usr/bin/env python3
-"""Add all new agent and skill metadata.json entries to catalog JSON files."""
+"""Upsert agent and skill metadata.json entries into the catalog JSON files.
+
+Adds a catalog entry for any agent/skill whose id is missing, AND refreshes the
+cataloged fields of any id whose adjacent ``metadata.json`` has since diverged
+(summary, official_docs, security_notes, harnesses, version, companion_skills,
+…). Runs as a strict no-op when the catalog already matches every metadata.json,
+so it is safe to re-run at any point in the generation workflow.
+
+It does NOT prune: a catalog entry whose ``metadata.json`` was deleted is left
+untouched — removal is a deliberate, separate operation, never a side effect of
+a sync.
+"""
 
 from __future__ import annotations
 
@@ -39,54 +50,72 @@ def metadata_to_catalog_entry(m: dict, kind: str) -> dict:
     return entry
 
 
+def sync_catalog(catalog: list[dict], glob_pat: str, kind: str) -> tuple[list[str], list[str]]:
+    """Upsert projected metadata entries into ``catalog`` in place.
+
+    New ids are appended; existing ids are refreshed only when their projected
+    form differs from what the catalog already holds (dict equality ignores key
+    order, so a re-sync fires on a real value change, never on formatting). An
+    already-synced tree yields ``([], [])`` and leaves ``catalog`` untouched.
+    """
+    by_id = {e["id"]: e for e in catalog}
+    added: list[str] = []
+    updated: list[str] = []
+    for meta_path in sorted(ROOT.glob(glob_pat)):
+        m = json.loads(meta_path.read_text(encoding="utf-8"))
+        if m.get("type") != kind:
+            continue
+        entry = metadata_to_catalog_entry(m, kind)
+        cur = by_id.get(m["id"])
+        if cur is None:
+            catalog.append(entry)
+            by_id[entry["id"]] = entry
+            added.append(entry["id"])
+        elif cur != entry:
+            # Replace contents in place so the canonical key order is restored
+            # and any dropped field is removed — a true sync, not a merge.
+            cur.clear()
+            cur.update(entry)
+            updated.append(entry["id"])
+    if added or updated:
+        catalog.sort(key=lambda x: x["id"])
+    return added, updated
+
+
+def _write(catalog: list[dict], path: Path) -> None:
+    path.write_text(
+        json.dumps(catalog, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+
+
 def main() -> None:
     agents_catalog: list[dict] = json.loads(CATALOG_AGENTS.read_text(encoding="utf-8"))
     skills_catalog: list[dict] = json.loads(CATALOG_SKILLS.read_text(encoding="utf-8"))
 
-    existing_agent_ids = {e["id"] for e in agents_catalog}
-    existing_skill_ids = {e["id"] for e in skills_catalog}
+    a_added, a_updated = sync_catalog(agents_catalog, "agents/**/metadata.json", "agent")
+    s_added, s_updated = sync_catalog(skills_catalog, "skills/**/metadata.json", "skill")
 
-    new_agents: list[dict] = []
-    for meta_path in sorted(ROOT.glob("agents/**/metadata.json")):
-        m = json.loads(meta_path.read_text(encoding="utf-8"))
-        if m.get("type") != "agent":
-            continue
-        if m["id"] not in existing_agent_ids:
-            entry = metadata_to_catalog_entry(m, "agent")
-            new_agents.append(entry)
-            print(f"  + agent: {entry['id']}")
+    for kind, added, updated in (
+        ("agent", a_added, a_updated),
+        ("skill", s_added, s_updated),
+    ):
+        for entry_id in added:
+            print(f"  + {kind}: {entry_id}")
+        for entry_id in updated:
+            print(f"  ~ {kind}: {entry_id} (metadata re-synced)")
 
-    new_skills: list[dict] = []
-    for meta_path in sorted(ROOT.glob("skills/**/metadata.json")):
-        m = json.loads(meta_path.read_text(encoding="utf-8"))
-        if m.get("type") != "skill":
-            continue
-        if m["id"] not in existing_skill_ids:
-            entry = metadata_to_catalog_entry(m, "skill")
-            new_skills.append(entry)
-            print(f"  + skill: {entry['id']}")
-
-    if new_agents:
-        agents_catalog.extend(new_agents)
-        agents_catalog.sort(key=lambda x: x["id"])
-        CATALOG_AGENTS.write_text(
-            json.dumps(agents_catalog, indent=2, ensure_ascii=False) + "\n",
-            encoding="utf-8",
-        )
-        print(f"\nWrote {len(agents_catalog)} agents to {CATALOG_AGENTS.relative_to(ROOT)}")
+    if a_added or a_updated:
+        _write(agents_catalog, CATALOG_AGENTS)
+        print(f"Wrote {len(agents_catalog)} agents to {CATALOG_AGENTS.relative_to(ROOT)}")
     else:
-        print("No new agents to add.")
+        print("Agents catalog already in sync.")
 
-    if new_skills:
-        skills_catalog.extend(new_skills)
-        skills_catalog.sort(key=lambda x: x["id"])
-        CATALOG_SKILLS.write_text(
-            json.dumps(skills_catalog, indent=2, ensure_ascii=False) + "\n",
-            encoding="utf-8",
-        )
+    if s_added or s_updated:
+        _write(skills_catalog, CATALOG_SKILLS)
         print(f"Wrote {len(skills_catalog)} skills to {CATALOG_SKILLS.relative_to(ROOT)}")
     else:
-        print("No new skills to add.")
+        print("Skills catalog already in sync.")
 
 
 if __name__ == "__main__":

@@ -26,10 +26,11 @@ Then: python3 scripts/update-catalog-new-agents.py && npm run manifest:write:all
 Notes:
 - model + model_reasoning_effort are policy-controlled and are projected into
   codex.toml by `npm run model-policy:apply`; this generator never emits them.
-- update-catalog-new-agents.py only ADDS ids missing from the catalog. If an
-  existing agent/skill changes its cataloged metadata (summary, official_docs,
-  security_notes), re-sync that id in catalog/agents.json / catalog/skills.json by
-  hand before validating — the add-only helper will not update it.
+- update-catalog-new-agents.py UPSERTS: it adds ids missing from the catalog and
+  re-syncs the cataloged fields of any existing id whose metadata.json diverged
+  (summary, official_docs, security_notes, harnesses, version, companion_skills).
+  It does not prune ids whose metadata.json was deleted — that stays a deliberate
+  manual step. Re-running it on an in-sync tree is a no-op.
 - asset-integrity:write must run LAST, on its own, after model-policy:apply.
 """
 from __future__ import annotations
