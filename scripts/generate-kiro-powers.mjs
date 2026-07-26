@@ -289,6 +289,7 @@ const DISPLAY_NAME_OVERRIDES = {
 const DERIVED_KEYWORDS = {
   argocd: ["argocd", "gitops", "progressive-delivery", "application-sync"],
   dotnet: ["dotnet", "csharp", "aspnet-core", "ef-core", "nuget"],
+  python: ["python", "asyncio", "pyproject", "dependency-confusion", "static-review"],
   marketing: ["marketing-governance", "consent-compliance", "advertising-fairness", "email-authentication"],
   hr: ["hr-governance", "employment-risk", "compensation-equity", "recruiting"],
   legal: ["legal-risk", "contract-review", "privacy-compliance", "regulatory"],

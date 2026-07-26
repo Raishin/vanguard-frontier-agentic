@@ -1,0 +1,74 @@
+{
+  "provider": "python",
+  "domains": {
+    "application-security": {
+      "keywords": [
+        "pickle",
+        "deserialization",
+        "yaml.load",
+        "eval",
+        "exec",
+        "subprocess",
+        "os.system",
+        "shell",
+        "injection",
+        "SSRF",
+        "path traversal",
+        "secrets"
+      ],
+      "agent": "python-application-security-agent"
+    },
+    "async-concurrency-reliability": {
+      "keywords": [
+        "asyncio",
+        "await",
+        "coroutine",
+        "event loop",
+        "blocking",
+        "run_in_executor",
+        "cancellation",
+        "timeout",
+        "times out",
+        "TaskGroup",
+        "backpressure"
+      ],
+      "agent": "python-async-concurrency-reliability-agent"
+    },
+    "packaging-supply-chain": {
+      "keywords": [
+        "pyproject",
+        "requirements.txt",
+        "lockfile",
+        "hashes",
+        "require-hashes",
+        "extra-index-url",
+        "index-url",
+        "dependency confusion",
+        "build-system",
+        "unpinned"
+      ],
+      "agent": "python-packaging-supply-chain-agent"
+    },
+    "numerical-scientific-correctness": {
+      "keywords": [
+        "float",
+        "Decimal",
+        "currency",
+        "money",
+        "rounding",
+        "dtype",
+        "tz-naive",
+        "timezone",
+        "pandas",
+        "numpy",
+        "reproducib",
+        "seed"
+      ],
+      "agent": "python-numerical-scientific-correctness-agent"
+    }
+  },
+  "live_guards": [],
+  "gate_mode": "live-guard-gate",
+  "live_guard_intent": "(deploy|rollout|roll out|release|publish|promote)\\b.*\\b(prod|production|pypi|registry|live)|migrate\\b.*\\b(database|schema|prod|production)|\\bpip install\\b|rotate\\b.*\\b(secret|key|credential|token)|drop\\s+(table|database)|force[- ]push|apply\\b.*\\b(change-set|changeset|prod|production)",
+  "parallel_threshold": 0.8
+}

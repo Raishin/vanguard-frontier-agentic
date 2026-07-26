@@ -1767,6 +1767,52 @@
         "kotlin-library-api-abi-governance",
         "kotlin-supply-chain-release-integrity"
       ]
+    },
+    "python-application-review-engineer": {
+      "label": "Python Application Review Engineer",
+      "description": "Static review of Python applications routed through the Python maestro: application-security defects (unsafe deserialization, injection, SSRF, secrets, cryptography), asyncio event-loop reliability, packaging and software-supply-chain integrity, and numerical/scientific correctness. Static review only — never installs, runs, deploys, or contacts a live system.",
+      "agents": [
+        "python-maestro-agent",
+        "python-application-security-agent",
+        "python-async-concurrency-reliability-agent",
+        "python-packaging-supply-chain-agent",
+        "python-numerical-scientific-correctness-agent"
+      ],
+      "skills": [
+        "python-maestro",
+        "python-application-security",
+        "python-async-concurrency-reliability",
+        "python-packaging-supply-chain",
+        "python-numerical-scientific-correctness"
+      ]
+    },
+    "python-security-engineer": {
+      "label": "Python Security Engineer",
+      "description": "Static review of the Python attack surface routed through the Python maestro: application-security sinks (unsafe deserialization, subprocess/shell injection, SSRF, secrets, cryptography misuse) and software-supply-chain integrity (dependency locking, hash-checking, index trust, dependency confusion). Static review only — never installs, runs, or exploits code.",
+      "agents": [
+        "python-maestro-agent",
+        "python-application-security-agent",
+        "python-packaging-supply-chain-agent"
+      ],
+      "skills": [
+        "python-maestro",
+        "python-application-security",
+        "python-packaging-supply-chain"
+      ]
+    },
+    "python-reliability-data-engineer": {
+      "label": "Python Reliability and Data Engineer",
+      "description": "Static review of Python runtime reliability and data correctness routed through the Python maestro: asyncio event-loop reliability (blocking calls, cancellation, timeouts, backpressure) and numerical/scientific correctness (money-as-float, timezones, dtype coercion, reproducibility). Static review only — never runs the service, the calculation, or a live connection.",
+      "agents": [
+        "python-maestro-agent",
+        "python-async-concurrency-reliability-agent",
+        "python-numerical-scientific-correctness-agent"
+      ],
+      "skills": [
+        "python-maestro",
+        "python-async-concurrency-reliability",
+        "python-numerical-scientific-correctness"
+      ]
     }
   }
 }

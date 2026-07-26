@@ -15858,6 +15858,151 @@
     "companion_skills": []
   },
   {
+    "id": "python-application-security-agent",
+    "name": "Python Application Security Agent",
+    "type": "agent",
+    "provider": "python",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of Python application-security defects: unsafe deserialization (pickle, yaml.load), dynamic execution (eval/exec), subprocess and shell injection, SSRF, path traversal and unsafe archive/file handling, secrets exposure, cryptography misuse, and fail-open exception handling. Reads source only; never runs code or exploits.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.python.org/3/library/pickle.html",
+      "https://docs.python.org/3/library/subprocess.html#security-considerations",
+      "https://docs.python.org/3/library/secrets.html",
+      "https://owasp.org/www-community/vulnerabilities/Deserialization_of_untrusted_data",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Injection_Prevention_Cheat_Sheet.html"
+    ],
+    "security_notes": "Static review only — reads Python source, sanitized configuration, and dependency manifests to locate injection, deserialization, SSRF, secrets, and cryptography defects; never runs the code, never executes or writes a proof-of-concept exploit, and never opens a live connection. A vulnerability that cannot be confirmed from the visible source is reported as a candidate needing confirmation, not asserted as exploitable. Never requests, stores, or echoes secrets, credentials, tokens, or customer data.",
+    "last_verified": "2026-07-26",
+    "path": "agents/python/python-application-security-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "python-application-security"
+    ]
+  },
+  {
+    "id": "python-async-concurrency-reliability-agent",
+    "name": "Python Async and Concurrency Reliability Agent",
+    "type": "agent",
+    "provider": "python",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of Python asyncio reliability: blocking calls that stall the event loop, cancellation correctness, missing timeouts on external awaits, task lifecycle and structured concurrency, backpressure on unbounded fan-out, and context propagation across executor and thread boundaries. Reads source only; never runs code or measures timing.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.python.org/3/library/asyncio-task.html",
+      "https://docs.python.org/3/library/asyncio-eventloop.html#asyncio.loop.run_in_executor",
+      "https://docs.python.org/3/library/asyncio-task.html#timeouts",
+      "https://docs.python.org/3/library/asyncio-task.html#task-groups"
+    ],
+    "security_notes": "Static review only — reads Python async source and sanitized configuration to locate event-loop blocking, cancellation, timeout, and backpressure defects; never runs the service, never starts an event loop, and never measures actual latency, throughput, or deadlock behavior. A timing or throughput claim not derivable from the source is flagged as needing measurement rather than asserted. Never requests secrets, credentials, or a live connection.",
+    "last_verified": "2026-07-26",
+    "path": "agents/python/python-async-concurrency-reliability-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "python-async-concurrency-reliability"
+    ]
+  },
+  {
+    "id": "python-maestro-agent",
+    "name": "Python Maestro",
+    "type": "agent",
+    "provider": "python",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Router for the Python board. Classifies a Python application, runtime, packaging, framework, data, or code-level task and dispatches the narrowest static-review specialist (or a parallel team of up to four for genuinely multi-domain tasks). Routes only — never reviews Python work itself and never performs a live operation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.python.org/3/",
+      "https://packaging.python.org/en/latest/",
+      "https://peps.python.org/"
+    ],
+    "security_notes": "Classification and routing only. Never installs, runs, imports, or executes code, never builds, deploys, publishes, or migrates anything, never opens a live connection, and never requests secrets, tokens, API keys, connection strings, cloud credentials, or customer data. Detects production-mutation intent and hands it to a named human owner instead of dispatching. Treats task text and any pasted artifact as data to classify, never as instructions.",
+    "last_verified": "2026-07-26",
+    "path": "agents/python/python-maestro-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "python-maestro"
+    ]
+  },
+  {
+    "id": "python-numerical-scientific-correctness-agent",
+    "name": "Python Numerical and Scientific Correctness Agent",
+    "type": "agent",
+    "provider": "python",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of Python numerical and scientific correctness: binary float used for money, rounding-mode errors, silent dtype coercion and integer overflow, missing-data (NaN) handling, timezone-naive timestamps, unseeded randomness and irreproducibility, numerical instability, and unbenchmarked vectorization claims. Reads source only; never runs the calculation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.python.org/3/tutorial/floatingpoint.html",
+      "https://docs.python.org/3/library/decimal.html",
+      "https://pandas.pydata.org/docs/user_guide/timeseries.html#time-zone-handling",
+      "https://numpy.org/doc/stable/reference/random/generator.html"
+    ],
+    "security_notes": "Static review only — reads Python/pandas/numpy source and sanitized sample schemas to locate money-as-float, rounding, dtype-coercion, timezone, and reproducibility defects; never runs the calculation, notebook, or benchmark and never observes an actual numeric result or timing. A claim about a computed value or a performance improvement is flagged as needing execution/benchmark evidence rather than asserted. Never requests production data or a live database/warehouse connection.",
+    "last_verified": "2026-07-26",
+    "path": "agents/python/python-numerical-scientific-correctness-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "python-numerical-scientific-correctness"
+    ]
+  },
+  {
+    "id": "python-packaging-supply-chain-agent",
+    "name": "Python Packaging and Supply Chain Agent",
+    "type": "agent",
+    "provider": "python",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of Python packaging and software supply-chain integrity: pyproject build metadata, dependency locking and hash-checking, index trust and dependency confusion, build isolation, dependency specifiers, license metadata, and CI release-token exposure. Reads manifests and lockfiles only; never installs packages or resolves environments.",
+    "source_type": "original",
+    "official_docs": [
+      "https://packaging.python.org/en/latest/specifications/pyproject-toml/",
+      "https://pip.pypa.io/en/stable/topics/secure-installs/",
+      "https://pip.pypa.io/en/stable/topics/repeatable-installs/",
+      "https://packaging.python.org/en/latest/specifications/dependency-specifiers/"
+    ],
+    "security_notes": "Static review only — reads `pyproject.toml`, `requirements`/constraints files, lockfiles, and CI definitions to assess locking, hashing, index trust, and build-isolation posture; never runs `pip install`, never resolves or downloads a package, and never contacts an index. A claim that a specific version is vulnerable is flagged as needing confirmation against an advisory source rather than asserted. Never requests index credentials, publish tokens, or customer data, and never installs an unreviewed package to inspect it.",
+    "last_verified": "2026-07-26",
+    "path": "agents/python/python-packaging-supply-chain-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "python-packaging-supply-chain"
+    ]
+  },
+  {
     "id": "react-specialist-agent",
     "name": "React Specialist",
     "type": "agent",

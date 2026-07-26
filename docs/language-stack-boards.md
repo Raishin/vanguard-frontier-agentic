@@ -6,7 +6,7 @@ alongside the provider boards (`aws`, `azure`, `gcp`, and others) and share the
 same `provider` faceting axis: each shipped topical board has its own dedicated
 `provider` enum value.
 
-This document covers the current boards: `frontend`, `.NET`, `Java`, `Kotlin`, `PHP`, `legal`, `hr`, `marketing`,
+This document covers the current boards: `frontend`, `.NET`, `Java`, `Kotlin`, `PHP`, `Python`, `legal`, `hr`, `marketing`,
 `salesforce`, `netsuite`, `accounting`, `finance`, `sap` (SAP S/4HANA + BTP
 enterprise board), `microsoft` (Microsoft 365 / Dynamics 365), `databricks`,
 and `snowflake` (data and analytics platforms). It also describes how to use
@@ -470,6 +470,56 @@ system, or edits project files.
 
 ---
 
+### Python
+
+The `python` board covers adversarial, evidence-first static review of Python
+applications and the surrounding runtime and packaging ecosystem: application-security
+defects (unsafe deserialization, dynamic execution, subprocess and shell injection,
+SSRF, path traversal, secrets, cryptography misuse), asyncio event-loop reliability
+(blocking calls, cancellation, timeouts, structured concurrency, backpressure),
+packaging and software-supply-chain integrity (pyproject metadata, dependency locking
+and hash-checking, index trust and dependency confusion, build isolation), and
+numerical and scientific correctness (money-as-float, rounding, dtype coercion,
+timezone handling, reproducibility).
+
+| Property | Value |
+|----------|-------|
+| `provider` | `python` |
+| ID prefix | `python-*` |
+| Agent directory | `agents/python/` |
+| Skill directory | `skills/python/` |
+| Agents | 5 |
+| Skills | 5 (1:1 companion skill per agent) |
+| Install roles | `python-application-review-engineer`, `python-security-engineer`, `python-reliability-data-engineer` |
+| Execution tier | `static-review` (all agents) |
+
+**Agent directory layout**
+
+```
+agents/python/
+  python-maestro-agent/
+  python-application-security-agent/
+  python-async-concurrency-reliability-agent/
+  python-packaging-supply-chain-agent/
+  python-numerical-scientific-correctness-agent/
+```
+
+**Example agents**
+
+| Agent | Scope |
+|-------|-------|
+| `python-maestro-agent` | Router; classifies a Python task and dispatches the narrowest specialist or a parallel team of up to four. Routes only — never reviews Python work itself, gates production-mutation intent to a human owner, and ejects cloud-, Kubernetes-, observability-, and signing-owned work to the right board. |
+| `python-application-security-agent` | Unsafe deserialization (`pickle`, `yaml.load`), dynamic execution (`eval`/`exec`), subprocess/shell injection, SSRF, path traversal, secrets exposure, and cryptography misuse — each finding traced from untrusted input to sink with a CWE label. |
+| `python-async-concurrency-reliability-agent` | asyncio event-loop reliability: blocking calls that stall the loop, cancellation correctness, missing timeouts on external awaits, `TaskGroup` supervision, and backpressure on unbounded fan-out. |
+| `python-packaging-supply-chain-agent` | pyproject/lockfile integrity, all-or-nothing hash-checking, index trust and dependency confusion, build isolation, and CI release-token exposure. |
+| `python-numerical-scientific-correctness-agent` | Money-as-`float` vs `Decimal`, rounding mode, silent dtype coercion, timezone-naive timestamps, and unseeded/irreproducible results. |
+
+Each agent reads source, sanitized configuration, and dependency manifests only. No
+agent runs `pip install`, executes or imports the code, opens a database or network
+connection, deploys, publishes, or edits project files.
+
+---
+
 ## How to use language/stack boards
 
 ### Discovery via install roles
@@ -484,6 +534,9 @@ set for a given function.
 | `legal-hr-risk-reviewer` | `legal` + `hr` | 28 | 5 (2 board-specific + 3 cross-functional) |
 | `marketing-governance-reviewer` | `marketing` | 14 | 14 |
 | `php-platform-engineer` | `php` | 5 | 5 |
+| `python-application-review-engineer` | `python` | 5 | 5 |
+| `python-security-engineer` | `python` | 3 | 3 |
+| `python-reliability-data-engineer` | `python` | 3 | 3 |
 | `sap-transformation-operations` | `sap` | 40 | 46 |
 | `microsoft-365-d365-platform-advisor` | `microsoft` | 40 | 40 |
 | `azure-databricks-platform-engineer` | `databricks` | 3 | 3 |
@@ -501,7 +554,7 @@ npx vfa-export-agents --platform claude-code --role marketing-governance-reviewe
 
 Each board includes a maestro router agent (`dotnet-maestro-agent`,
 `legal-maestro-agent`, `hr-maestro-agent`, `marketing-maestro-agent`,
-`php-maestro-agent`). Address
+`php-maestro-agent`, `python-maestro-agent`). Address
 the maestro with the task; it classifies the work and dispatches the narrowest
 specialist or a small parallel team. Do not reach past the maestro and invoke a
 specialist directly unless you already know which specialist applies.
@@ -675,6 +728,7 @@ read-only tier. This is a design constraint, not a default.
 | `hr` | `static-review` | Reads sanitized excerpts; never terminates, disciplines, denies leave or accommodation, or sends employee communications |
 | `marketing` | `static-review` (specialists) / `read-only-runtime` (maestro) | Reads sanitized configuration and evidence; never mutates CMP, tag-manager, or ad-platform state |
 | `php` | `static-review` | Reads sanitized PHP source, configuration, and dependency files; never executes payloads, installs packages, or mutates runtime or production. |
+| `python` | `static-review` | Reads Python source, sanitized configuration, and dependency manifests; never runs `pip install`, executes or imports code, opens a database or network connection, or deploys/publishes |
 | `sap` | `static-review` | Reads sanitized SAP configuration and ABAP/BTP artifacts; never contacts SAP systems, triggers transports, or mutates landscape data |
 | `microsoft` | `static-review` | Reads sanitized Microsoft 365 and Dynamics 365 configuration; never mutates tenant state, sends messages, or contacts Graph API |
 | `databricks` | `static-review` | Reads sanitized notebooks, job configs, and lakehouse metadata; never runs jobs, mutates clusters, or contacts Databricks REST APIs |

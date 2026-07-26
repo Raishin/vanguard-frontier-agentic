@@ -65,6 +65,7 @@ ALLOWED_PROVIDERS = {
     "databricks",
     "snowflake",
     "php",
+    "python",
 }
 ALLOWED_HARNESSES = {"codex", "copilot", "claude-code", "cursor", "gemini", "kiro", "other"}
 ALLOWED_SOURCE_TYPES = {"original", "adapted", "reference-only"}
