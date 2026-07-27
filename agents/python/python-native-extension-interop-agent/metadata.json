@@ -1,0 +1,41 @@
+{
+  "id": "python-native-extension-interop-agent",
+  "name": "Python Native Extension and Interop Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of Python native extensions and interop (CPython C API, Cython, PyO3/Rust): reference-ownership correctness, stable-ABI use, buffer-protocol safety, exception translation, and thread/GIL and free-threaded readiness. Reads extension source and build config only; never compiles or runs it.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.python.org/3/c-api/intro.html",
+    "https://docs.python.org/3/c-api/stable.html",
+    "https://docs.python.org/3/c-api/refcounting.html",
+    "https://docs.python.org/3/c-api/buffer.html"
+  ],
+  "security_notes": "Static review only — reads C/Cython/PyO3 extension source and build configuration to assess reference-ownership, buffer-protocol, exception-translation, and ABI/thread-safety correctness; never compiles, links, or runs the extension. A claim about an actual crash, leak, or free-threaded behavior is flagged as needing confirmation by compiling and running the extension. Never requests credentials or customer data.",
+  "last_verified": "2026-07-26",
+  "path": "agents/python/python-native-extension-interop-agent/",
+  "harness_variants": {
+    "codex": "agents/python/python-native-extension-interop-agent/harnesses/codex.toml",
+    "copilot": "agents/python/python-native-extension-interop-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/python/python-native-extension-interop-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/python/python-native-extension-interop-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/python/python-native-extension-interop-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/python/python-native-extension-interop-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/python/python-native-extension-interop-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "python-native-extension-interop"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

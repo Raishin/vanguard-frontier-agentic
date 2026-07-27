@@ -1,0 +1,41 @@
+{
+  "id": "python-free-threading-parallelism-agent",
+  "name": "Python Free-Threading and Parallelism Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of Python free-threaded (no-GIL) adoption: invalidated GIL thread-safety assumptions, shared-state races, C-extension compatibility, and synchronization needs — producing an evidence-based adopt / pilot / defer verdict. Reads source, build config, and extension manifests only; never builds or runs the free-threaded interpreter.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.python.org/3/howto/free-threading-python.html",
+    "https://docs.python.org/3/howto/free-threading-extensions.html",
+    "https://peps.python.org/pep-0703/",
+    "https://docs.python.org/3/whatsnew/3.13.html"
+  ],
+  "security_notes": "Static review only — reads application source, build configuration, and native-extension manifests to assess free-threaded (no-GIL) readiness; never builds, installs, or runs the free-threaded interpreter or an extension against it. A claim about an actual race, speedup, or extension crash under free-threading is flagged as needing confirmation on a real free-threaded build. Never requests credentials or customer data.",
+  "last_verified": "2026-07-26",
+  "path": "agents/python/python-free-threading-parallelism-agent/",
+  "harness_variants": {
+    "codex": "agents/python/python-free-threading-parallelism-agent/harnesses/codex.toml",
+    "copilot": "agents/python/python-free-threading-parallelism-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/python/python-free-threading-parallelism-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/python/python-free-threading-parallelism-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/python/python-free-threading-parallelism-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/python/python-free-threading-parallelism-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/python/python-free-threading-parallelism-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "python-free-threading-parallelism"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

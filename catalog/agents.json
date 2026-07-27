@@ -15917,6 +15917,64 @@
     ]
   },
   {
+    "id": "python-business-critical-automation-governance-agent",
+    "name": "Python Business-Critical Automation Governance Agent",
+    "type": "agent",
+    "provider": "python",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of business-critical Python automation governance — unowned scripts, notebooks, bots, and schedulers whose failure creates financial, regulatory, or operational exposure — mapping ownership, controls, and a continue / harden / replatform / retire recommendation. Reads automation source, config, and process description only; makes no accounting/legal/regulatory conclusions.",
+    "source_type": "original",
+    "official_docs": [
+      "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+      "https://csrc.nist.gov/glossary/term/separation_of_duty",
+      "https://docs.python.org/3/library/logging.html",
+      "https://peps.python.org/pep-0020/"
+    ],
+    "security_notes": "Static review only — reads automation source, scheduling/configuration, and process descriptions (owner, trigger, inputs/outputs) to map ownership and controls; never runs the automation, connects to a live system, or requests secrets, credentials, or customer data. This agent makes no accounting, legal, or regulatory conclusion — those determinations route to the accounting/finance and legal boards; it maps controls, quantifies exposure, and recommends continue / harden / replatform / retire.",
+    "last_verified": "2026-07-26",
+    "path": "agents/python/python-business-critical-automation-governance-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "python-business-critical-automation-governance"
+    ]
+  },
+  {
+    "id": "python-container-serverless-runtime-agent",
+    "name": "Python Container and Serverless Runtime Agent",
+    "type": "agent",
+    "provider": "python",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of containerized/serverless Python runtime behavior: PID 1 and signal handling, worker/process model, graceful shutdown, read-only-filesystem and cold-start assumptions, and dependency footprint. Reads Dockerfiles, process/server config, and source only; never builds or runs a container.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.gunicorn.org/en/stable/signals.html",
+      "https://www.uvicorn.org/deployment/",
+      "https://docs.python.org/3/library/signal.html",
+      "https://docs.docker.com/reference/dockerfile/"
+    ],
+    "security_notes": "Static review only — reads Dockerfiles, entrypoint scripts, and gunicorn/uvicorn process/server configuration to assess signal-handling, worker-model, and runtime-assumption correctness; never builds, runs, or deploys a container image. A claim about actual signal delivery, shutdown timing, or cold-start latency is flagged as needing confirmation by building and running the container. Never requests credentials, secrets, or registry access.",
+    "last_verified": "2026-07-26",
+    "path": "agents/python/python-container-serverless-runtime-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "python-container-serverless-runtime"
+    ]
+  },
+  {
     "id": "python-data-access-transaction-agent",
     "name": "Python Data Access and Transaction Agent",
     "type": "agent",
@@ -15946,6 +16004,64 @@
     ]
   },
   {
+    "id": "python-data-pipeline-reliability-agent",
+    "name": "Python Data Pipeline Reliability Agent",
+    "type": "agent",
+    "provider": "python",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of Python data-pipeline reliability (Airflow, Dagster, Prefect, PySpark): task idempotency and safe backfills, partitioning, schema evolution and data contracts, checkpointing, late/duplicate data, and data-quality gates. Reads DAG/pipeline source and config only; never runs a pipeline or backfill.",
+    "source_type": "original",
+    "official_docs": [
+      "https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/tasks.html",
+      "https://airflow.apache.org/docs/apache-airflow/stable/authoring-and-scheduling/catchup.html",
+      "https://airflow.apache.org/docs/apache-airflow/stable/best-practices.html",
+      "https://spark.apache.org/docs/latest/"
+    ],
+    "security_notes": "Static review only — reads DAG/pipeline source, task and scheduling configuration, and data-quality/lineage artifacts to assess pipeline reliability; never runs a pipeline, triggers a backfill, or connects to a warehouse/cluster. A claim about actual row counts, backfill duration, or data-quality results is flagged as needing observation against a real pipeline run. Never requests warehouse credentials or customer data.",
+    "last_verified": "2026-07-26",
+    "path": "agents/python/python-data-pipeline-reliability-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "python-data-pipeline-reliability"
+    ]
+  },
+  {
+    "id": "python-developer-tooling-build-agent",
+    "name": "Python Developer Tooling and Build Agent",
+    "type": "agent",
+    "provider": "python",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of Python developer tooling and build configuration — whether linters/type-checkers/tests are wired to catch meaningful defects (not stylistic noise), CI gate coverage, build-backend and monorepo layout, and developer feedback loops. Reads tool/CI/build config only; never runs the tools.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.astral.sh/ruff/",
+      "https://mypy.readthedocs.io/en/stable/config_file.html",
+      "https://tox.wiki/en/stable/",
+      "https://pre-commit.com/"
+    ],
+    "security_notes": "Static review only — reads linter, type-checker, test-runner, CI, and build-backend configuration to assess whether quality gates would catch a real defect; never runs ruff, mypy, tox, pre-commit, or the CI pipeline itself, and never connects to a live runner. A claim about actual lint/type/test/CI output is flagged as needing a real run to confirm. Never requests CI tokens or credentials.",
+    "last_verified": "2026-07-26",
+    "path": "agents/python/python-developer-tooling-build-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "python-developer-tooling-build"
+    ]
+  },
+  {
     "id": "python-distributed-task-reliability-agent",
     "name": "Python Distributed Task Reliability Agent",
     "type": "agent",
@@ -15972,6 +16088,64 @@
     "version": "0.1.0",
     "companion_skills": [
       "python-distributed-task-reliability"
+    ]
+  },
+  {
+    "id": "python-estate-modernization-governor-agent",
+    "name": "Python Estate Modernization Governor Agent",
+    "type": "agent",
+    "provider": "python",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of Python runtime-estate support posture and upgrade sequencing: end-of-life/unsupported interpreters, deprecation exposure, dependency/framework compatibility for an upgrade, and ownership/business-criticality gaps. Reads inventory, manifests, and config only; never runs an upgrade or installs an interpreter.",
+    "source_type": "original",
+    "official_docs": [
+      "https://devguide.python.org/versions/",
+      "https://peps.python.org/pep-0602/",
+      "https://docs.python.org/3/whatsnew/index.html",
+      "https://packaging.python.org/en/latest/"
+    ],
+    "security_notes": "Static review only — reads runtime/dependency inventories, Dockerfiles, lockfiles, and manifests to assess support posture and upgrade sequencing; never installs, upgrades, or runs an interpreter, and never connects to a live system. A claim about a specific end-of-life date, deprecation-removal date, or compatibility result is flagged as needing confirmation against the official CPython schedule and the dependencies' own documentation. Never requests credentials, secrets, or customer data.",
+    "last_verified": "2026-07-26",
+    "path": "agents/python/python-estate-modernization-governor-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "python-estate-modernization-governor"
+    ]
+  },
+  {
+    "id": "python-free-threading-parallelism-agent",
+    "name": "Python Free-Threading and Parallelism Agent",
+    "type": "agent",
+    "provider": "python",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of Python free-threaded (no-GIL) adoption: invalidated GIL thread-safety assumptions, shared-state races, C-extension compatibility, and synchronization needs — producing an evidence-based adopt / pilot / defer verdict. Reads source, build config, and extension manifests only; never builds or runs the free-threaded interpreter.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.python.org/3/howto/free-threading-python.html",
+      "https://docs.python.org/3/howto/free-threading-extensions.html",
+      "https://peps.python.org/pep-0703/",
+      "https://docs.python.org/3/whatsnew/3.13.html"
+    ],
+    "security_notes": "Static review only — reads application source, build configuration, and native-extension manifests to assess free-threaded (no-GIL) readiness; never builds, installs, or runs the free-threaded interpreter or an extension against it. A claim about an actual race, speedup, or extension crash under free-threading is flagged as needing confirmation on a real free-threaded build. Never requests credentials or customer data.",
+    "last_verified": "2026-07-26",
+    "path": "agents/python/python-free-threading-parallelism-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "python-free-threading-parallelism"
     ]
   },
   {
@@ -16032,6 +16206,64 @@
     ]
   },
   {
+    "id": "python-ml-ai-production-agent",
+    "name": "Python ML and AI Production Agent",
+    "type": "agent",
+    "provider": "python",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of Python ML/AI production correctness — training-serving skew, feature/data leakage, artifact serialization safety, reproducibility, drift signals, batch-vs-online consistency, and model/prompt config provenance. Reads training/serving source, config, and eval artifacts only; never trains, loads, or serves a model.",
+    "source_type": "original",
+    "official_docs": [
+      "https://scikit-learn.org/stable/model_persistence.html",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://docs.python.org/3/library/pickle.html",
+      "https://numpy.org/doc/stable/reference/random/generator.html"
+    ],
+    "security_notes": "Static review only — reads training and serving source, feature-transformation code, model-persistence configuration, and evaluation artifacts to assess ML production correctness; never trains a model, loads a model artifact, serves inference, or connects to a live system. A claim about actual offline/online metric values or drift is flagged as needing observation against a real evaluation run. Never requests training/customer data or model-registry credentials.",
+    "last_verified": "2026-07-26",
+    "path": "agents/python/python-ml-ai-production-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "python-ml-ai-production"
+    ]
+  },
+  {
+    "id": "python-native-extension-interop-agent",
+    "name": "Python Native Extension and Interop Agent",
+    "type": "agent",
+    "provider": "python",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of Python native extensions and interop (CPython C API, Cython, PyO3/Rust): reference-ownership correctness, stable-ABI use, buffer-protocol safety, exception translation, and thread/GIL and free-threaded readiness. Reads extension source and build config only; never compiles or runs it.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.python.org/3/c-api/intro.html",
+      "https://docs.python.org/3/c-api/stable.html",
+      "https://docs.python.org/3/c-api/refcounting.html",
+      "https://docs.python.org/3/c-api/buffer.html"
+    ],
+    "security_notes": "Static review only — reads C/Cython/PyO3 extension source and build configuration to assess reference-ownership, buffer-protocol, exception-translation, and ABI/thread-safety correctness; never compiles, links, or runs the extension. A claim about an actual crash, leak, or free-threaded behavior is flagged as needing confirmation by compiling and running the extension. Never requests credentials or customer data.",
+    "last_verified": "2026-07-26",
+    "path": "agents/python/python-native-extension-interop-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "python-native-extension-interop"
+    ]
+  },
+  {
     "id": "python-numerical-scientific-correctness-agent",
     "name": "Python Numerical and Scientific Correctness Agent",
     "type": "agent",
@@ -16061,6 +16293,35 @@
     ]
   },
   {
+    "id": "python-observability-sre-agent",
+    "name": "Python Observability and SRE Agent",
+    "type": "agent",
+    "provider": "python",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of in-application Python observability — structured logs, metrics, traces, context propagation and correlation, error taxonomy, metric/label cardinality, PII exposure, and SLO-supporting instrumentation. Reads application instrumentation code only; routes collector/dashboard infrastructure to the platform boards.",
+    "source_type": "original",
+    "official_docs": [
+      "https://opentelemetry-python.readthedocs.io/en/stable/",
+      "https://opentelemetry.io/docs/concepts/context-propagation/",
+      "https://opentelemetry.io/docs/specs/semconv/",
+      "https://docs.python.org/3/library/logging.html"
+    ],
+    "security_notes": "Static review only — reads application instrumentation code (logging, metrics, and tracing calls) and telemetry configuration to assess observability correctness and safety; never runs the application, connects to a live telemetry backend, or emits telemetry itself. A claim about actual cardinality, cost, or trace completeness is flagged as needing observation against a real backend. Never requests telemetry-backend credentials or customer data.",
+    "last_verified": "2026-07-26",
+    "path": "agents/python/python-observability-sre-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "python-observability-sre"
+    ]
+  },
+  {
     "id": "python-packaging-supply-chain-agent",
     "name": "Python Packaging and Supply Chain Agent",
     "type": "agent",
@@ -16087,6 +16348,35 @@
     "version": "0.1.0",
     "companion_skills": [
       "python-packaging-supply-chain"
+    ]
+  },
+  {
+    "id": "python-performance-memory-agent",
+    "name": "Python Performance and Memory Agent",
+    "type": "agent",
+    "provider": "python",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of Python performance and memory claims: CPU profiling vs benchmarking rigor, memory growth and allocation patterns, GC pressure, algorithmic complexity, and serialization/import/startup cost — refusing intuition as evidence. Reads source, profiles, and benchmark artifacts only; never runs the profiler or benchmark itself.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.python.org/3/library/profile.html",
+      "https://docs.python.org/3/library/tracemalloc.html",
+      "https://docs.python.org/3/library/gc.html",
+      "https://docs.python.org/3/library/timeit.html"
+    ],
+    "security_notes": "Static review only — reads source, profiler output (cProfile), benchmark artifacts (timeit/pytest-benchmark), and tracemalloc snapshots to assess performance and memory claims; never runs the profiler, the benchmark, or the application itself. A claim about actual latency, throughput, or memory growth with no supplied profile/benchmark/tracemalloc evidence is flagged as unsupported rather than accepted. Never requests credentials or customer data.",
+    "last_verified": "2026-07-26",
+    "path": "agents/python/python-performance-memory-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "python-performance-memory"
     ]
   },
   {

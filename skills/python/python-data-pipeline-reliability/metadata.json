@@ -1,0 +1,27 @@
+{
+  "id": "python-data-pipeline-reliability",
+  "name": "python-data-pipeline-reliability",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review of Python data-pipeline reliability (Airflow, Dagster, Prefect, PySpark): task idempotency and safe backfills, partitioning, schema evolution and data contracts, checkpointing, late/duplicate data, and data-quality gates. Reads DAG/pipeline source and config only; never runs a pipeline or backfill.",
+  "source_type": "original",
+  "official_docs": [
+    "https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/tasks.html",
+    "https://airflow.apache.org/docs/apache-airflow/stable/authoring-and-scheduling/catchup.html",
+    "https://airflow.apache.org/docs/apache-airflow/stable/best-practices.html",
+    "https://spark.apache.org/docs/latest/"
+  ],
+  "security_notes": "Static review only — reads DAG/pipeline source, task and scheduling configuration, and data-quality/lineage artifacts to assess pipeline reliability; never runs a pipeline, triggers a backfill, or connects to a warehouse/cluster. A claim about actual row counts, backfill duration, or data-quality results is flagged as needing observation against a real pipeline run. Never requests warehouse credentials or customer data.",
+  "last_verified": "2026-07-26",
+  "path": "skills/python/python-data-pipeline-reliability",
+  "author": "github: Raishin"
+}

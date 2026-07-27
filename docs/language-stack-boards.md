@@ -487,7 +487,20 @@ sync-vs-async endpoints, authorization, graceful shutdown, health checks), datab
 access and transactions (SQLAlchemy/Django ORM session and transaction scope, N+1,
 connection pooling, migration safety), distributed task reliability (Celery/RQ/Dramatiq
 idempotency, retries, dead-letters, duplicate execution), and test-suite quality
-(pytest fixtures and isolation, mock misuse, determinism, coverage theater).
+(pytest fixtures and isolation, mock misuse, determinism, coverage theater),
+runtime-estate modernization (EOL/unsupported interpreters, upgrade sequencing,
+deprecation exposure), performance and memory (profiling-vs-benchmarking rigor,
+allocation/GC pressure, algorithmic complexity), free-threaded (no-GIL, PEP 703)
+adoption (invalidated GIL assumptions, shared-state races, C-extension support),
+native-extension interop (CPython C API reference ownership, stable ABI, buffer
+protocol, PyO3/Cython boundaries), container and serverless runtime (PID 1 and
+signals, worker model, graceful shutdown, cold start), data-pipeline reliability
+(Airflow/Dagster/Prefect/PySpark idempotency, backfills, schema evolution),
+ML/AI production (training-serving skew, leakage, artifact safety, reproducibility),
+in-application observability (structured logs, trace context propagation, metric
+cardinality, PII), developer tooling and build (gate efficacy, type/lint strictness,
+CI matrix, build backend), and business-critical automation governance (unowned
+scripts/notebooks, segregation of duties, reconciliation, key-person risk).
 
 | Property | Value |
 |----------|-------|
@@ -495,9 +508,9 @@ idempotency, retries, dead-letters, duplicate execution), and test-suite quality
 | ID prefix | `python-*` |
 | Agent directory | `agents/python/` |
 | Skill directory | `skills/python/` |
-| Agents | 10 |
-| Skills | 10 (1:1 companion skill per agent) |
-| Install roles | `python-application-review-engineer`, `python-application-engineer`, `python-security-engineer`, `python-reliability-data-engineer` |
+| Agents | 20 |
+| Skills | 20 (1:1 companion skill per agent) |
+| Install roles | 10 overlapping bundles: `python-application-review-engineer` (umbrella), `python-application-engineer`, `python-platform-reliability-engineer`, `python-data-engineer`, `python-ml-engineer`, `python-security-engineer`, `python-library-maintainer`, `python-automation-governance-lead`, `python-engineering-leader`, `python-reliability-data-engineer` |
 | Execution tier | `static-review` (all agents) |
 
 **Agent directory layout**
@@ -514,6 +527,16 @@ agents/python/
   python-data-access-transaction-agent/
   python-distributed-task-reliability-agent/
   python-testing-quality-engineering-agent/
+  python-estate-modernization-governor-agent/
+  python-performance-memory-agent/
+  python-free-threading-parallelism-agent/
+  python-native-extension-interop-agent/
+  python-container-serverless-runtime-agent/
+  python-data-pipeline-reliability-agent/
+  python-ml-ai-production-agent/
+  python-observability-sre-agent/
+  python-developer-tooling-build-agent/
+  python-business-critical-automation-governance-agent/
 ```
 
 **Example agents**
@@ -527,6 +550,10 @@ agents/python/
 | `python-numerical-scientific-correctness-agent` | Money-as-`float` vs `Decimal`, rounding mode, silent dtype coercion, timezone-naive timestamps, and unseeded/irreproducible results. |
 | `python-data-access-transaction-agent` | SQLAlchemy/Django ORM session and transaction scope, commit/rollback boundaries, N+1 and lazy loading, connection-pool sizing, and expand-then-contract migration safety. |
 | `python-distributed-task-reliability-agent` | Celery/RQ/Dramatiq idempotency under at-least-once delivery, `acks_late` timing, bounded retry backoff, dead-lettering poison messages, and the transactional-outbox boundary. |
+| `python-free-threading-parallelism-agent` | Free-threaded (no-GIL, PEP 703) adoption: invalidated GIL thread-safety assumptions, shared-state races, C-extension `Py_mod_gil` support (an undeclaring extension re-enables the GIL), with an evidence-based adopt/pilot/defer verdict. |
+| `python-container-serverless-runtime-agent` | PID 1 and SIGTERM handling, exec-form entrypoint, worker model, graceful shutdown, read-only-filesystem and cold-start assumptions in containerized/serverless Python. |
+| `python-ml-ai-production-agent` | Training-serving skew, feature/data leakage, unsafe pickle/joblib model-artifact loading (RCE), reproducibility, and batch-vs-online consistency. |
+| `python-business-critical-automation-governance-agent` | Unowned scripts/notebooks/schedulers with financial or operational exposure: ownership, segregation of duties, reconciliation, evidence retention, and a continue/harden/replatform/retire verdict (no accounting/legal conclusions). |
 
 Each agent reads source, sanitized configuration, and dependency manifests only. No
 agent runs `pip install`, executes or imports the code, opens a database or network
@@ -548,9 +575,15 @@ set for a given function.
 | `legal-hr-risk-reviewer` | `legal` + `hr` | 28 | 5 (2 board-specific + 3 cross-functional) |
 | `marketing-governance-reviewer` | `marketing` | 14 | 14 |
 | `php-platform-engineer` | `php` | 5 | 5 |
-| `python-application-review-engineer` | `python` | 10 | 10 |
+| `python-application-review-engineer` | `python` | 20 | 20 |
 | `python-application-engineer` | `python` | 6 | 6 |
+| `python-platform-reliability-engineer` | `python` | 7 | 7 |
+| `python-data-engineer` | `python` | 5 | 5 |
+| `python-ml-engineer` | `python` | 5 | 5 |
 | `python-security-engineer` | `python` | 3 | 3 |
+| `python-library-maintainer` | `python` | 6 | 6 |
+| `python-automation-governance-lead` | `python` | 5 | 5 |
+| `python-engineering-leader` | `python` | 5 | 5 |
 | `python-reliability-data-engineer` | `python` | 5 | 5 |
 | `sap-transformation-operations` | `sap` | 40 | 46 |
 | `microsoft-365-d365-platform-advisor` | `microsoft` | 40 | 40 |

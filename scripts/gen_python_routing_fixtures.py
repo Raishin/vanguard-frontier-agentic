@@ -97,6 +97,78 @@ TAXONOMY = {
             ],
             "agent": "python-testing-quality-engineering-agent",
         },
+        "estate-modernization": {
+            "keywords": [
+                "Python 2", "EOL", "end-of-life", "unsupported", "upgrade",
+                "deprecation", "legacy", "interpreter version"
+            ],
+            "agent": "python-estate-modernization-governor-agent",
+        },
+        "performance-memory": {
+            "keywords": [
+                "profiling", "cProfile", "tracemalloc", "memory leak",
+                "garbage collection", "benchmark", "algorithmic complexity",
+                "startup cost"
+            ],
+            "agent": "python-performance-memory-agent",
+        },
+        "free-threading-parallelism": {
+            "keywords": [
+                "free-threading", "free-threaded", "GIL", "no-GIL", "PEP 703",
+                "python3.13t", "Py_mod_gil", "thread safety"
+            ],
+            "agent": "python-free-threading-parallelism-agent",
+        },
+        "native-extension-interop": {
+            "keywords": [
+                "C API", "stable ABI", "Py_LIMITED_API", "reference count",
+                "Py_INCREF", "buffer protocol", "Cython", "PyO3"
+            ],
+            "agent": "python-native-extension-interop-agent",
+        },
+        "container-serverless-runtime": {
+            "keywords": [
+                "Docker", "PID 1", "SIGTERM", "gunicorn", "uvicorn",
+                "graceful shutdown", "cold start", "entrypoint"
+            ],
+            "agent": "python-container-serverless-runtime-agent",
+        },
+        "data-pipeline-reliability": {
+            "keywords": [
+                "Airflow", "Dagster", "Prefect", "PySpark", "DAG", "backfill",
+                "catchup", "partition", "schema evolution", "checkpoint"
+            ],
+            "agent": "python-data-pipeline-reliability-agent",
+        },
+        "ml-ai-production": {
+            "keywords": [
+                "training-serving skew", "feature leakage", "model artifact",
+                "reproducibility", "drift", "joblib", "inference"
+            ],
+            "agent": "python-ml-ai-production-agent",
+        },
+        "observability-sre": {
+            "keywords": [
+                "structured logs", "metric label", "tracing", "OpenTelemetry",
+                "span", "cardinality", "PII in logs", "SLO"
+            ],
+            "agent": "python-observability-sre-agent",
+        },
+        "developer-tooling-build": {
+            "keywords": [
+                "ruff", "mypy", "Pyright", "pre-commit", "tox", "nox",
+                "build backend", "CI gate", "monorepo"
+            ],
+            "agent": "python-developer-tooling-build-agent",
+        },
+        "business-critical-automation-governance": {
+            "keywords": [
+                "unowned script", "shadow automation", "notebook in production",
+                "scheduled job", "segregation of duties", "reconciliation",
+                "key-person", "financial exposure"
+            ],
+            "agent": "python-business-critical-automation-governance-agent",
+        },
     },
     "live_guards": [],
     "gate_mode": "live-guard-gate",
@@ -168,6 +240,39 @@ INPUTS = [
     ("018-multi-web-and-data-access",
      "This FastAPI endpoint has broken middleware order and no graceful shutdown; it opens a SQLAlchemy session, has an N+1, and never issues a rollback on the transaction error.",
      ["multi-domain"]),
+    ("019-happy-free-threading-unsafe-cext",
+     "We are migrating to python3.13t free-threading but a C extension does not declare Py_mod_gil support. Review the free-threaded adoption decision.",
+     ["happy-path"]),
+    ("020-happy-container-signals",
+     "This Dockerized Python service runs as PID 1 with a shell-form entrypoint and ignores SIGTERM on shutdown. Review the container runtime behavior.",
+     ["happy-path"]),
+    ("021-happy-notebook-month-end",
+     "An unowned notebook in production performs month-end reconciliation with hidden state and a key-person dependency. Review the automation governance.",
+     ["happy-path"]),
+    ("022-happy-estate-eol-upgrade",
+     "Our fleet still runs an unsupported end-of-life Python interpreter. Plan the upgrade sequencing and deprecation exposure.",
+     ["happy-path"]),
+    ("023-happy-performance-no-evidence",
+     "The team claims this rewrite is faster but has no cProfile output or benchmark evidence. Review the performance claim.",
+     ["happy-path"]),
+    ("024-happy-data-pipeline-backfill",
+     "This Airflow DAG has catchup enabled and a non-idempotent append task. Review backfill safety.",
+     ["happy-path"]),
+    ("025-happy-ml-leakage-artifact",
+     "This training script has feature leakage fitting the scaler before the split, training-serving skew, and loads the model artifact from an untrusted source. Review ML production readiness.",
+     ["happy-path"]),
+    ("026-happy-observability-cardinality",
+     "This service has no structured logs, uses a high-cardinality metric label, and drops the OpenTelemetry span context across threads. Review observability.",
+     ["happy-path"]),
+    ("027-happy-tooling-nonblocking-gate",
+     "The CI runs mypy in a non-blocking step, ruff only for formatting, and has no pre-commit. Review whether the tooling gates catch defects.",
+     ["happy-path"]),
+    ("028-happy-native-extension-refcount",
+     "This CPython C API extension returns a borrowed reference, mismanages the reference count, wraps Rust via PyO3, and claims stable ABI. Review interop.",
+     ["happy-path"]),
+    ("029-adv-five-domain-cap",
+     "Full audit: pickle.loads and eval on request data; a blocking asyncio call; an N+1 in a SQLAlchemy query; a pytest suite that asserts on a mock; and a requirements.txt with no hashes.",
+     ["adversarial", "domain-overflow"]),
 ]
 
 

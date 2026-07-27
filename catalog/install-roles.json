@@ -1770,30 +1770,50 @@
     },
     "python-application-review-engineer": {
       "label": "Python Application Review Engineer",
-      "description": "Static review of Python applications routed through the Python maestro across the full board: application-security, async/concurrency reliability, packaging and software-supply-chain integrity, numerical/scientific correctness, type contracts, web-service production readiness, data access and transactions, distributed task reliability, and test quality. Static review only — never installs, runs, deploys, or contacts a live system.",
+      "description": "Static review of Python applications routed through the Python maestro across the full 20-agent board — application-security, async/concurrency, packaging supply chain, numerical correctness, type contracts, web-service readiness, data access, distributed tasks, testing, runtime-estate modernization, performance/memory, free-threading, native extensions, container/serverless runtime, data pipelines, ML production, observability, developer tooling, and business-critical automation governance. Static review only.",
       "agents": [
-        "python-maestro-agent",
         "python-application-security-agent",
         "python-async-concurrency-reliability-agent",
-        "python-packaging-supply-chain-agent",
-        "python-numerical-scientific-correctness-agent",
-        "python-language-contracts-typing-agent",
-        "python-web-service-production-readiness-agent",
+        "python-business-critical-automation-governance-agent",
+        "python-container-serverless-runtime-agent",
         "python-data-access-transaction-agent",
+        "python-data-pipeline-reliability-agent",
+        "python-developer-tooling-build-agent",
         "python-distributed-task-reliability-agent",
-        "python-testing-quality-engineering-agent"
+        "python-estate-modernization-governor-agent",
+        "python-free-threading-parallelism-agent",
+        "python-language-contracts-typing-agent",
+        "python-maestro-agent",
+        "python-ml-ai-production-agent",
+        "python-native-extension-interop-agent",
+        "python-numerical-scientific-correctness-agent",
+        "python-observability-sre-agent",
+        "python-packaging-supply-chain-agent",
+        "python-performance-memory-agent",
+        "python-testing-quality-engineering-agent",
+        "python-web-service-production-readiness-agent"
       ],
       "skills": [
-        "python-maestro",
         "python-application-security",
         "python-async-concurrency-reliability",
-        "python-packaging-supply-chain",
-        "python-numerical-scientific-correctness",
-        "python-language-contracts-typing",
-        "python-web-service-production-readiness",
+        "python-business-critical-automation-governance",
+        "python-container-serverless-runtime",
         "python-data-access-transaction",
+        "python-data-pipeline-reliability",
+        "python-developer-tooling-build",
         "python-distributed-task-reliability",
-        "python-testing-quality-engineering"
+        "python-estate-modernization-governor",
+        "python-free-threading-parallelism",
+        "python-language-contracts-typing",
+        "python-maestro",
+        "python-ml-ai-production",
+        "python-native-extension-interop",
+        "python-numerical-scientific-correctness",
+        "python-observability-sre",
+        "python-packaging-supply-chain",
+        "python-performance-memory",
+        "python-testing-quality-engineering",
+        "python-web-service-production-readiness"
       ]
     },
     "python-security-engineer": {
@@ -1846,6 +1866,120 @@
         "python-data-access-transaction",
         "python-application-security",
         "python-testing-quality-engineering"
+      ]
+    },
+    "python-platform-reliability-engineer": {
+      "label": "Python Platform Reliability Engineer",
+      "description": "Static review of Python runtime and platform reliability routed through the Python maestro: asyncio event-loop reliability, container/serverless runtime (PID 1, signals, shutdown), in-application observability, performance and memory, free-threaded adoption, and runtime-estate modernization. Static review only.",
+      "agents": [
+        "python-maestro-agent",
+        "python-async-concurrency-reliability-agent",
+        "python-container-serverless-runtime-agent",
+        "python-observability-sre-agent",
+        "python-performance-memory-agent",
+        "python-free-threading-parallelism-agent",
+        "python-estate-modernization-governor-agent"
+      ],
+      "skills": [
+        "python-maestro",
+        "python-async-concurrency-reliability",
+        "python-container-serverless-runtime",
+        "python-observability-sre",
+        "python-performance-memory",
+        "python-free-threading-parallelism",
+        "python-estate-modernization-governor"
+      ]
+    },
+    "python-data-engineer": {
+      "label": "Python Data Engineer",
+      "description": "Static review for Python data engineers routed through the Python maestro: data-pipeline reliability (idempotency, backfills, schema evolution), numerical/scientific correctness, database access and transactions, and distributed task reliability. Static review only.",
+      "agents": [
+        "python-maestro-agent",
+        "python-data-pipeline-reliability-agent",
+        "python-data-access-transaction-agent",
+        "python-numerical-scientific-correctness-agent",
+        "python-distributed-task-reliability-agent"
+      ],
+      "skills": [
+        "python-maestro",
+        "python-data-pipeline-reliability",
+        "python-data-access-transaction",
+        "python-numerical-scientific-correctness",
+        "python-distributed-task-reliability"
+      ]
+    },
+    "python-ml-engineer": {
+      "label": "Python ML Engineer",
+      "description": "Static review for Python ML engineers routed through the Python maestro: ML production correctness (training-serving skew, leakage, artifact safety, reproducibility), numerical correctness, data-pipeline reliability, and test quality. Static review only.",
+      "agents": [
+        "python-maestro-agent",
+        "python-ml-ai-production-agent",
+        "python-numerical-scientific-correctness-agent",
+        "python-data-pipeline-reliability-agent",
+        "python-testing-quality-engineering-agent"
+      ],
+      "skills": [
+        "python-maestro",
+        "python-ml-ai-production",
+        "python-numerical-scientific-correctness",
+        "python-data-pipeline-reliability",
+        "python-testing-quality-engineering"
+      ]
+    },
+    "python-library-maintainer": {
+      "label": "Python Library Maintainer",
+      "description": "Static review for Python library maintainers routed through the Python maestro: type contracts and public API stability, packaging and supply-chain integrity, native-extension interop and ABI, developer tooling efficacy, and test quality. Static review only.",
+      "agents": [
+        "python-maestro-agent",
+        "python-language-contracts-typing-agent",
+        "python-packaging-supply-chain-agent",
+        "python-native-extension-interop-agent",
+        "python-developer-tooling-build-agent",
+        "python-testing-quality-engineering-agent"
+      ],
+      "skills": [
+        "python-maestro",
+        "python-language-contracts-typing",
+        "python-packaging-supply-chain",
+        "python-native-extension-interop",
+        "python-developer-tooling-build",
+        "python-testing-quality-engineering"
+      ]
+    },
+    "python-automation-governance-lead": {
+      "label": "Python Automation Governance Lead",
+      "description": "Static review for governance of business-critical Python automation routed through the Python maestro: automation ownership and controls, distributed task reliability, data-pipeline reliability, and application security. Maps controls and exposure; makes no accounting/legal/regulatory conclusions. Static review only.",
+      "agents": [
+        "python-maestro-agent",
+        "python-business-critical-automation-governance-agent",
+        "python-distributed-task-reliability-agent",
+        "python-data-pipeline-reliability-agent",
+        "python-application-security-agent"
+      ],
+      "skills": [
+        "python-maestro",
+        "python-business-critical-automation-governance",
+        "python-distributed-task-reliability",
+        "python-data-pipeline-reliability",
+        "python-application-security"
+      ]
+    },
+    "python-engineering-leader": {
+      "label": "Python Engineering Leader",
+      "description": "Portfolio-level static review for Python engineering leaders routed through the Python maestro: runtime-estate modernization and upgrade sequencing, business-critical automation governance, developer-tooling and gate efficacy, and performance posture. Static review only.",
+      "agents": [
+        "python-maestro-agent",
+        "python-estate-modernization-governor-agent",
+        "python-business-critical-automation-governance-agent",
+        "python-developer-tooling-build-agent",
+        "python-performance-memory-agent"
+      ],
+      "skills": [
+        "python-maestro",
+        "python-estate-modernization-governor",
+        "python-business-critical-automation-governance",
+        "python-developer-tooling-build",
+        "python-performance-memory"
       ]
     }
   }

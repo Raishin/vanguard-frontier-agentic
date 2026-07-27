@@ -41,6 +41,16 @@ Entry point for the Python board. Classifies a Python application, runtime, pack
 | `data-access-transaction` | `python-data-access-transaction-agent` | SQLAlchemy, ORM, session, transaction, commit, rollback |
 | `distributed-task-reliability` | `python-distributed-task-reliability-agent` | Celery, RQ, Dramatiq, task queue, idempotency, retry |
 | `testing-quality-engineering` | `python-testing-quality-engineering-agent` | pytest, fixture, parametrize, mock, monkeypatch, coverage |
+| `estate-modernization` | `python-estate-modernization-governor-agent` | Python 2, EOL, end-of-life, upgrade, runtime version, 3.8 |
+| `performance-memory` | `python-performance-memory-agent` | profiling, cProfile, tracemalloc, memory, gc, garbage collection |
+| `free-threading-parallelism` | `python-free-threading-parallelism-agent` | free-threading, free-threaded, GIL, Py_GIL_DISABLED, no-GIL, PEP 703 |
+| `native-extension-interop` | `python-native-extension-interop-agent` | C API, CPython C, stable ABI, Py_LIMITED_API, reference count, Py_INCREF |
+| `container-serverless-runtime` | `python-container-serverless-runtime-agent` | Docker, container, PID 1, signal, SIGTERM, gunicorn |
+| `data-pipeline-reliability` | `python-data-pipeline-reliability-agent` | Airflow, Dagster, Prefect, PySpark, DAG, backfill |
+| `ml-ai-production` | `python-ml-ai-production-agent` | training-serving skew, feature leakage, data leakage, model artifact, reproducibility, drift |
+| `observability-sre` | `python-observability-sre-agent` | logging, structured logs, metrics, tracing, OpenTelemetry, span |
+| `developer-tooling-build` | `python-developer-tooling-build-agent` | ruff, mypy, Pyright, pre-commit, tox, nox |
+| `business-critical-automation-governance` | `python-business-critical-automation-governance-agent` | unowned script, shadow automation, notebook in production, scheduled job, cron, one-person dependency |
 
 ---
 
