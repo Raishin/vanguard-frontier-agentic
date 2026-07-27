@@ -36,6 +36,11 @@ Entry point for the Python board. Classifies a Python application, runtime, pack
 | `async-concurrency-reliability` | `python-async-concurrency-reliability-agent` | asyncio, await, coroutine, event loop, blocking, run_in_executor |
 | `packaging-supply-chain` | `python-packaging-supply-chain-agent` | pyproject, requirements, lockfile, pip, hashes, require-hashes |
 | `numerical-scientific-correctness` | `python-numerical-scientific-correctness-agent` | float, Decimal, currency, money, rounding, dtype |
+| `language-contracts-typing` | `python-language-contracts-typing-agent` | type hint, annotation, mypy, Pyright, Any, Protocol |
+| `web-service-production-readiness` | `python-web-service-production-readiness-agent` | FastAPI, Django, Flask, Starlette, ASGI, WSGI |
+| `data-access-transaction` | `python-data-access-transaction-agent` | SQLAlchemy, ORM, session, transaction, commit, rollback |
+| `distributed-task-reliability` | `python-distributed-task-reliability-agent` | Celery, RQ, Dramatiq, task queue, idempotency, retry |
+| `testing-quality-engineering` | `python-testing-quality-engineering-agent` | pytest, fixture, parametrize, mock, monkeypatch, coverage |
 
 ---
 

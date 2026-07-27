@@ -1,0 +1,41 @@
+{
+  "id": "python-data-access-transaction-agent",
+  "name": "Python Data Access and Transaction Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of Python database access and transactions (SQLAlchemy, Django ORM, DB-API): session and transaction scope, commit/rollback boundaries, N+1 and lazy-loading, connection-pool sizing, migration safety, and multi-tenancy scoping. Reads source, models, and migrations only; never connects to a database or runs a migration.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.sqlalchemy.org/en/20/orm/session_basics.html",
+    "https://docs.sqlalchemy.org/en/20/orm/session_transaction.html",
+    "https://docs.sqlalchemy.org/en/20/orm/queryguide/relationships.html",
+    "https://alembic.sqlalchemy.org/en/latest/"
+  ],
+  "security_notes": "Static review only — reads ORM models, query code, session/engine configuration, and migration scripts to assess transaction and data-access correctness; never opens a database connection, runs a query, or applies a migration. A claim about actual query counts, lock behavior, or migration runtime is flagged as needing measurement against a real database. Never requests connection strings, database credentials, or customer data.",
+  "last_verified": "2026-07-26",
+  "path": "agents/python/python-data-access-transaction-agent/",
+  "harness_variants": {
+    "codex": "agents/python/python-data-access-transaction-agent/harnesses/codex.toml",
+    "copilot": "agents/python/python-data-access-transaction-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/python/python-data-access-transaction-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/python/python-data-access-transaction-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/python/python-data-access-transaction-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/python/python-data-access-transaction-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/python/python-data-access-transaction-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "python-data-access-transaction"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

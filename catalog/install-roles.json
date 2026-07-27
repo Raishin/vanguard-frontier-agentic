@@ -1770,20 +1770,30 @@
     },
     "python-application-review-engineer": {
       "label": "Python Application Review Engineer",
-      "description": "Static review of Python applications routed through the Python maestro: application-security defects (unsafe deserialization, injection, SSRF, secrets, cryptography), asyncio event-loop reliability, packaging and software-supply-chain integrity, and numerical/scientific correctness. Static review only — never installs, runs, deploys, or contacts a live system.",
+      "description": "Static review of Python applications routed through the Python maestro across the full board: application-security, async/concurrency reliability, packaging and software-supply-chain integrity, numerical/scientific correctness, type contracts, web-service production readiness, data access and transactions, distributed task reliability, and test quality. Static review only — never installs, runs, deploys, or contacts a live system.",
       "agents": [
         "python-maestro-agent",
         "python-application-security-agent",
         "python-async-concurrency-reliability-agent",
         "python-packaging-supply-chain-agent",
-        "python-numerical-scientific-correctness-agent"
+        "python-numerical-scientific-correctness-agent",
+        "python-language-contracts-typing-agent",
+        "python-web-service-production-readiness-agent",
+        "python-data-access-transaction-agent",
+        "python-distributed-task-reliability-agent",
+        "python-testing-quality-engineering-agent"
       ],
       "skills": [
         "python-maestro",
         "python-application-security",
         "python-async-concurrency-reliability",
         "python-packaging-supply-chain",
-        "python-numerical-scientific-correctness"
+        "python-numerical-scientific-correctness",
+        "python-language-contracts-typing",
+        "python-web-service-production-readiness",
+        "python-data-access-transaction",
+        "python-distributed-task-reliability",
+        "python-testing-quality-engineering"
       ]
     },
     "python-security-engineer": {
@@ -1802,16 +1812,40 @@
     },
     "python-reliability-data-engineer": {
       "label": "Python Reliability and Data Engineer",
-      "description": "Static review of Python runtime reliability and data correctness routed through the Python maestro: asyncio event-loop reliability (blocking calls, cancellation, timeouts, backpressure) and numerical/scientific correctness (money-as-float, timezones, dtype coercion, reproducibility). Static review only — never runs the service, the calculation, or a live connection.",
+      "description": "Static review of Python runtime reliability and data correctness routed through the Python maestro: asyncio event-loop reliability, numerical/scientific correctness, database access and transactions (session/transaction scope, N+1, pooling, migrations), and distributed task reliability (idempotency, retries, dead-letters). Static review only — never runs the service, the calculation, or a live connection.",
       "agents": [
         "python-maestro-agent",
         "python-async-concurrency-reliability-agent",
-        "python-numerical-scientific-correctness-agent"
+        "python-numerical-scientific-correctness-agent",
+        "python-data-access-transaction-agent",
+        "python-distributed-task-reliability-agent"
       ],
       "skills": [
         "python-maestro",
         "python-async-concurrency-reliability",
-        "python-numerical-scientific-correctness"
+        "python-numerical-scientific-correctness",
+        "python-data-access-transaction",
+        "python-distributed-task-reliability"
+      ]
+    },
+    "python-application-engineer": {
+      "label": "Python Application Engineer",
+      "description": "Static review for Python application engineers routed through the Python maestro: type contracts and gradual typing, web-service production readiness (FastAPI/Django/Flask), database access and transactions, application-security defects, and test quality. Static review only — never runs, deploys, or contacts a live system.",
+      "agents": [
+        "python-maestro-agent",
+        "python-language-contracts-typing-agent",
+        "python-web-service-production-readiness-agent",
+        "python-data-access-transaction-agent",
+        "python-application-security-agent",
+        "python-testing-quality-engineering-agent"
+      ],
+      "skills": [
+        "python-maestro",
+        "python-language-contracts-typing",
+        "python-web-service-production-readiness",
+        "python-data-access-transaction",
+        "python-application-security",
+        "python-testing-quality-engineering"
       ]
     }
   }

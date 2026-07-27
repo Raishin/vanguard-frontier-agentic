@@ -51,7 +51,8 @@ Does not own — route to the named sibling:
 - Unsafe deserialization, injection, SSRF, or secrets in the reviewed code → `python-application-security-agent`.
 - Dependency/lockfile supply-chain concerns for the async libraries in use → `python-packaging-supply-chain-agent`.
 - Numerical/financial calculation correctness inside async handlers → `python-numerical-scientific-correctness-agent`.
-- Raw CPU-bound parallelism, the free-threaded-CPython/GIL decision, distributed task-queue delivery semantics (Celery/RQ/Dramatiq), and database transaction/pooling correctness are outside this specialist's current scope — name them as open questions for the platform owner rather than answering them here.
+- Distributed task-queue delivery semantics (Celery/RQ/Dramatiq idempotency, retries, dead-letters) → `python-distributed-task-reliability-agent`; database session/transaction/pooling correctness → `python-data-access-transaction-agent`; framework request-lifecycle concerns → `python-web-service-production-readiness-agent`.
+- Raw CPU-bound parallelism and the free-threaded-CPython/GIL adoption decision are outside this specialist's current scope — name them as open questions for the platform owner rather than answering them here.
 
 ## Operating Rules
 

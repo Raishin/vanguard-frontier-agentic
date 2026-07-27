@@ -15917,6 +15917,93 @@
     ]
   },
   {
+    "id": "python-data-access-transaction-agent",
+    "name": "Python Data Access and Transaction Agent",
+    "type": "agent",
+    "provider": "python",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of Python database access and transactions (SQLAlchemy, Django ORM, DB-API): session and transaction scope, commit/rollback boundaries, N+1 and lazy-loading, connection-pool sizing, migration safety, and multi-tenancy scoping. Reads source, models, and migrations only; never connects to a database or runs a migration.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.sqlalchemy.org/en/20/orm/session_basics.html",
+      "https://docs.sqlalchemy.org/en/20/orm/session_transaction.html",
+      "https://docs.sqlalchemy.org/en/20/orm/queryguide/relationships.html",
+      "https://alembic.sqlalchemy.org/en/latest/"
+    ],
+    "security_notes": "Static review only — reads ORM models, query code, session/engine configuration, and migration scripts to assess transaction and data-access correctness; never opens a database connection, runs a query, or applies a migration. A claim about actual query counts, lock behavior, or migration runtime is flagged as needing measurement against a real database. Never requests connection strings, database credentials, or customer data.",
+    "last_verified": "2026-07-26",
+    "path": "agents/python/python-data-access-transaction-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "python-data-access-transaction"
+    ]
+  },
+  {
+    "id": "python-distributed-task-reliability-agent",
+    "name": "Python Distributed Task Reliability Agent",
+    "type": "agent",
+    "provider": "python",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of Python distributed task systems (Celery, RQ, Dramatiq): idempotency under at-least-once delivery, retry policy and backoff, dead-letter and poison-message handling, duplicate execution, acknowledgement timing, scheduling, and transactional-outbox boundaries. Reads task and config source only; never enqueues or runs a task.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.celeryq.dev/en/stable/userguide/tasks.html",
+      "https://docs.celeryq.dev/en/stable/userguide/optimizing.html",
+      "https://docs.celeryq.dev/en/stable/faq.html",
+      "https://docs.celeryq.dev/en/stable/userguide/configuration.html"
+    ],
+    "security_notes": "Static review only — reads task definitions, retry/ack configuration, and broker/result-backend settings to assess delivery reliability; never enqueues, runs, or acknowledges a task, and never connects to a broker or result backend. A claim about actual delivery counts, duplicate execution, or retry behavior is flagged as needing observation against a real broker. Never requests broker credentials or customer data.",
+    "last_verified": "2026-07-26",
+    "path": "agents/python/python-distributed-task-reliability-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "python-distributed-task-reliability"
+    ]
+  },
+  {
+    "id": "python-language-contracts-typing-agent",
+    "name": "Python Language Contracts and Typing Agent",
+    "type": "agent",
+    "provider": "python",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of Python type contracts and gradual typing: Any propagation across public boundaries, Protocol and structural typing, generics and variance soundness, overload consistency, TypedDict and dataclass contracts, and the separation of static typing from runtime validation. Reads source and type-checker config only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.python.org/3/library/typing.html",
+      "https://typing.readthedocs.io/en/latest/spec/",
+      "https://mypy.readthedocs.io/en/stable/",
+      "https://peps.python.org/pep-0484/"
+    ],
+    "security_notes": "Static review only — reads Python source, type annotations, and type-checker configuration to assess type-contract soundness; never runs mypy/Pyright or the code to observe a checker result or a runtime type error. A claim about what a checker reports is flagged as needing the user's actual checker output rather than asserted. Never requests secrets, credentials, or customer data.",
+    "last_verified": "2026-07-26",
+    "path": "agents/python/python-language-contracts-typing-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "python-language-contracts-typing"
+    ]
+  },
+  {
     "id": "python-maestro-agent",
     "name": "Python Maestro",
     "type": "agent",
@@ -16000,6 +16087,64 @@
     "version": "0.1.0",
     "companion_skills": [
       "python-packaging-supply-chain"
+    ]
+  },
+  {
+    "id": "python-testing-quality-engineering-agent",
+    "name": "Python Testing and Quality Engineering Agent",
+    "type": "agent",
+    "provider": "python",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of Python test-suite quality (pytest, hypothesis): fixture scope and isolation, mock misuse and wrong-target patching, control of time/randomness/environment, flakiness sources, assertion quality, coverage theater, async-test correctness, and property-based-testing signal. Reads test and source code only; never runs the suite.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.pytest.org/en/stable/how-to/fixtures.html",
+      "https://docs.pytest.org/en/stable/how-to/monkeypatch.html",
+      "https://docs.python.org/3/library/unittest.mock.html",
+      "https://hypothesis.readthedocs.io/en/latest/"
+    ],
+    "security_notes": "Static review only — reads test code, fixtures, and the code under test to assess whether the suite reduces risk; never runs pytest, executes a test, or measures coverage. A claim about a test's actual pass/fail, coverage number, or flakiness rate is flagged as needing execution by the user. Never requests secrets, credentials, or customer data.",
+    "last_verified": "2026-07-26",
+    "path": "agents/python/python-testing-quality-engineering-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "python-testing-quality-engineering"
+    ]
+  },
+  {
+    "id": "python-web-service-production-readiness-agent",
+    "name": "Python Web Service Production Readiness Agent",
+    "type": "agent",
+    "provider": "python",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Framework-aware static review of Python web-service production readiness (FastAPI, Starlette, Django, Flask, ASGI/WSGI): sync-vs-async endpoint blocking, request validation, authentication and authorization boundaries, middleware order, worker model, timeouts, graceful shutdown, and health checks. Reads source and config only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://fastapi.tiangolo.com/async/",
+      "https://www.starlette.io/",
+      "https://docs.djangoproject.com/en/stable/topics/security/",
+      "https://flask.palletsprojects.com/en/stable/"
+    ],
+    "security_notes": "Static review only — reads web-framework source, route and middleware definitions, and sanitized configuration to assess production readiness; never starts the server, sends a request, or observes runtime latency, worker behavior, or shutdown timing. A claim about actual request-handling or shutdown behavior is flagged as needing runtime confirmation. Never requests secrets, credentials, or a live connection. Framework-specific reference is loaded only when the framework is detected.",
+    "last_verified": "2026-07-26",
+    "path": "agents/python/python-web-service-production-readiness-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "python-web-service-production-readiness"
     ]
   },
   {

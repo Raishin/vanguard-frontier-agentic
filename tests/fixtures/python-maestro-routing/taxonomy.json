@@ -65,6 +65,82 @@
         "seed"
       ],
       "agent": "python-numerical-scientific-correctness-agent"
+    },
+    "language-contracts-typing": {
+      "keywords": [
+        "type hint",
+        "annotation",
+        "mypy",
+        "Pyright",
+        "Any",
+        "Protocol",
+        "generic",
+        "TypedDict",
+        "dataclass",
+        "overload",
+        "variance"
+      ],
+      "agent": "python-language-contracts-typing-agent"
+    },
+    "web-service-production-readiness": {
+      "keywords": [
+        "FastAPI",
+        "Django",
+        "Flask",
+        "Starlette",
+        "ASGI",
+        "WSGI",
+        "endpoint",
+        "middleware",
+        "graceful shutdown",
+        "health check"
+      ],
+      "agent": "python-web-service-production-readiness-agent"
+    },
+    "data-access-transaction": {
+      "keywords": [
+        "SQLAlchemy",
+        "ORM",
+        "session",
+        "transaction",
+        "commit",
+        "rollback",
+        "N+1",
+        "lazy loading",
+        "connection pool",
+        "migration",
+        "Alembic"
+      ],
+      "agent": "python-data-access-transaction-agent"
+    },
+    "distributed-task-reliability": {
+      "keywords": [
+        "Celery",
+        "RQ",
+        "Dramatiq",
+        "task queue",
+        "idempotency",
+        "acks_late",
+        "retry",
+        "dead-letter",
+        "poison message",
+        "duplicate execution"
+      ],
+      "agent": "python-distributed-task-reliability-agent"
+    },
+    "testing-quality-engineering": {
+      "keywords": [
+        "pytest",
+        "fixture",
+        "parametrize",
+        "mock",
+        "monkeypatch",
+        "coverage",
+        "flaky",
+        "hypothesis",
+        "assertion"
+      ],
+      "agent": "python-testing-quality-engineering-agent"
     }
   },
   "live_guards": [],

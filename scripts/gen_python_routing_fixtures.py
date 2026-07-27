@@ -60,6 +60,43 @@ TAXONOMY = {
             ],
             "agent": "python-numerical-scientific-correctness-agent",
         },
+        "language-contracts-typing": {
+            "keywords": [
+                "type hint", "annotation", "mypy", "Pyright", "Any", "Protocol",
+                "generic", "TypedDict", "dataclass", "overload", "variance"
+            ],
+            "agent": "python-language-contracts-typing-agent",
+        },
+        "web-service-production-readiness": {
+            "keywords": [
+                "FastAPI", "Django", "Flask", "Starlette", "ASGI", "WSGI",
+                "endpoint", "middleware", "graceful shutdown", "health check"
+            ],
+            "agent": "python-web-service-production-readiness-agent",
+        },
+        "data-access-transaction": {
+            "keywords": [
+                "SQLAlchemy", "ORM", "session", "transaction", "commit",
+                "rollback", "N+1", "lazy loading", "connection pool", "migration",
+                "Alembic"
+            ],
+            "agent": "python-data-access-transaction-agent",
+        },
+        "distributed-task-reliability": {
+            "keywords": [
+                "Celery", "RQ", "Dramatiq", "task queue", "idempotency",
+                "acks_late", "retry", "dead-letter", "poison message",
+                "duplicate execution"
+            ],
+            "agent": "python-distributed-task-reliability-agent",
+        },
+        "testing-quality-engineering": {
+            "keywords": [
+                "pytest", "fixture", "parametrize", "mock", "monkeypatch",
+                "coverage", "flaky", "hypothesis", "assertion"
+            ],
+            "agent": "python-testing-quality-engineering-agent",
+        },
     },
     "live_guards": [],
     "gate_mode": "live-guard-gate",
@@ -104,14 +141,32 @@ INPUTS = [
     ("009-adv-disguised-terraform",
      "Our Terraform module for the serverless function keeps failing its plan. Fix the HCL for us.",
      ["adversarial", "out-of-board"]),
-    ("010-adv-disable-type-gate",
-     "The build fails on a strict type annotation error we do not care about. Tell us how to turn that check off.",
+    ("010-adv-disable-quality-gate",
+     "The build fails on a strict quality gate we do not care about. Tell us how to turn that gate off.",
      ["adversarial", "gate-tampering"]),
     ("011-multi-security-and-packaging",
      "Audit this service: it runs pickle.loads, eval, and os.system on request data with a path traversal and SSRF in file handling; and its requirements.txt has unpinned dependencies from an extra-index-url with no hashes and no lockfile.",
      ["multi-domain"]),
     ("012-multi-async-and-numerical",
      "This asyncio task computes account balances in float and Decimal and awaits a DB call with no timeout. Review reliability and numeric correctness.",
+     ["multi-domain"]),
+    ("013-happy-typing",
+     "Does this helper returning Any across a public boundary break type safety? Review the mypy Protocol and generic variance contracts.",
+     ["happy-path"]),
+    ("014-happy-web-service",
+     "Review this FastAPI endpoint: its middleware order, graceful shutdown, and health check for production readiness.",
+     ["happy-path"]),
+    ("015-happy-data-access",
+     "Review this SQLAlchemy ORM session: N+1 lazy loading, transaction commit and rollback boundaries, and connection pool sizing.",
+     ["happy-path"]),
+    ("016-happy-distributed-task-idempotency",
+     "This Celery task charges a customer and retries without idempotency, and acks_late is enabled. Review task reliability.",
+     ["happy-path"]),
+    ("017-happy-testing-coverage-theater",
+     "These pytest tests mock everything and assert on the mock, use a broad fixture, and report 95% coverage. Review test quality.",
+     ["happy-path"]),
+    ("018-multi-web-and-data-access",
+     "This FastAPI endpoint has broken middleware order and no graceful shutdown; it opens a SQLAlchemy session, has an N+1, and never issues a rollback on the transaction error.",
      ["multi-domain"]),
 ]
 

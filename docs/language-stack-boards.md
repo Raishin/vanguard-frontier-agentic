@@ -473,14 +473,21 @@ system, or edits project files.
 ### Python
 
 The `python` board covers adversarial, evidence-first static review of Python
-applications and the surrounding runtime and packaging ecosystem: application-security
-defects (unsafe deserialization, dynamic execution, subprocess and shell injection,
-SSRF, path traversal, secrets, cryptography misuse), asyncio event-loop reliability
-(blocking calls, cancellation, timeouts, structured concurrency, backpressure),
-packaging and software-supply-chain integrity (pyproject metadata, dependency locking
-and hash-checking, index trust and dependency confusion, build isolation), and
-numerical and scientific correctness (money-as-float, rounding, dtype coercion,
-timezone handling, reproducibility).
+applications and the surrounding runtime, framework, data, and packaging ecosystem:
+application-security defects (unsafe deserialization, dynamic execution, subprocess and
+shell injection, SSRF, path traversal, secrets, cryptography misuse), asyncio event-loop
+reliability (blocking calls, cancellation, timeouts, structured concurrency,
+backpressure), packaging and software-supply-chain integrity (pyproject metadata,
+dependency locking and hash-checking, index trust and dependency confusion, build
+isolation), numerical and scientific correctness (money-as-float, rounding, dtype
+coercion, timezone handling, reproducibility), language contracts and gradual typing
+(Any propagation, Protocols, generics and variance, overloads, TypedDict/dataclass),
+web-service production readiness (FastAPI/Django/Flask/Starlette request lifecycle,
+sync-vs-async endpoints, authorization, graceful shutdown, health checks), database
+access and transactions (SQLAlchemy/Django ORM session and transaction scope, N+1,
+connection pooling, migration safety), distributed task reliability (Celery/RQ/Dramatiq
+idempotency, retries, dead-letters, duplicate execution), and test-suite quality
+(pytest fixtures and isolation, mock misuse, determinism, coverage theater).
 
 | Property | Value |
 |----------|-------|
@@ -488,9 +495,9 @@ timezone handling, reproducibility).
 | ID prefix | `python-*` |
 | Agent directory | `agents/python/` |
 | Skill directory | `skills/python/` |
-| Agents | 5 |
-| Skills | 5 (1:1 companion skill per agent) |
-| Install roles | `python-application-review-engineer`, `python-security-engineer`, `python-reliability-data-engineer` |
+| Agents | 10 |
+| Skills | 10 (1:1 companion skill per agent) |
+| Install roles | `python-application-review-engineer`, `python-application-engineer`, `python-security-engineer`, `python-reliability-data-engineer` |
 | Execution tier | `static-review` (all agents) |
 
 **Agent directory layout**
@@ -502,6 +509,11 @@ agents/python/
   python-async-concurrency-reliability-agent/
   python-packaging-supply-chain-agent/
   python-numerical-scientific-correctness-agent/
+  python-language-contracts-typing-agent/
+  python-web-service-production-readiness-agent/
+  python-data-access-transaction-agent/
+  python-distributed-task-reliability-agent/
+  python-testing-quality-engineering-agent/
 ```
 
 **Example agents**
@@ -513,6 +525,8 @@ agents/python/
 | `python-async-concurrency-reliability-agent` | asyncio event-loop reliability: blocking calls that stall the loop, cancellation correctness, missing timeouts on external awaits, `TaskGroup` supervision, and backpressure on unbounded fan-out. |
 | `python-packaging-supply-chain-agent` | pyproject/lockfile integrity, all-or-nothing hash-checking, index trust and dependency confusion, build isolation, and CI release-token exposure. |
 | `python-numerical-scientific-correctness-agent` | Money-as-`float` vs `Decimal`, rounding mode, silent dtype coercion, timezone-naive timestamps, and unseeded/irreproducible results. |
+| `python-data-access-transaction-agent` | SQLAlchemy/Django ORM session and transaction scope, commit/rollback boundaries, N+1 and lazy loading, connection-pool sizing, and expand-then-contract migration safety. |
+| `python-distributed-task-reliability-agent` | Celery/RQ/Dramatiq idempotency under at-least-once delivery, `acks_late` timing, bounded retry backoff, dead-lettering poison messages, and the transactional-outbox boundary. |
 
 Each agent reads source, sanitized configuration, and dependency manifests only. No
 agent runs `pip install`, executes or imports the code, opens a database or network
@@ -534,9 +548,10 @@ set for a given function.
 | `legal-hr-risk-reviewer` | `legal` + `hr` | 28 | 5 (2 board-specific + 3 cross-functional) |
 | `marketing-governance-reviewer` | `marketing` | 14 | 14 |
 | `php-platform-engineer` | `php` | 5 | 5 |
-| `python-application-review-engineer` | `python` | 5 | 5 |
+| `python-application-review-engineer` | `python` | 10 | 10 |
+| `python-application-engineer` | `python` | 6 | 6 |
 | `python-security-engineer` | `python` | 3 | 3 |
-| `python-reliability-data-engineer` | `python` | 3 | 3 |
+| `python-reliability-data-engineer` | `python` | 5 | 5 |
 | `sap-transformation-operations` | `sap` | 40 | 46 |
 | `microsoft-365-d365-platform-advisor` | `microsoft` | 40 | 40 |
 | `azure-databricks-platform-engineer` | `databricks` | 3 | 3 |

@@ -2,12 +2,12 @@
 # Do NOT edit manually — run: node scripts/generate-docs-data.mjs
 # This file is the single source of truth for all catalog counts in Jekyll docs.
 
-agents: 636
-skills: 659
+agents: 641
+skills: 664
 providers: 44
 mcp_references: 3
 rules: 1
-install_roles: 43
+install_roles: 44
 validation_gates: 22
 agent_directories: 48
 skill_directories: 48
@@ -142,7 +142,7 @@ provider_taxonomy:
       - name: "php"
         agents: 5
       - name: "python"
-        agents: 5
+        agents: 10
       - name: "generic"
         agents: 11
       - name: "multi-cloud"
@@ -217,6 +217,7 @@ role_list:
   - "microsoft-security-compliance-engineer"
   - "netsuite-platform-advisor"
   - "php-platform-engineer"
+  - "python-application-engineer"
   - "python-application-review-engineer"
   - "python-reliability-data-engineer"
   - "python-security-engineer"

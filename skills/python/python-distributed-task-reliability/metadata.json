@@ -1,0 +1,27 @@
+{
+  "id": "python-distributed-task-reliability",
+  "name": "python-distributed-task-reliability",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review of Python distributed task systems (Celery, RQ, Dramatiq): idempotency under at-least-once delivery, retry policy and backoff, dead-letter and poison-message handling, duplicate execution, acknowledgement timing, scheduling, and transactional-outbox boundaries. Reads task and config source only; never enqueues or runs a task.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.celeryq.dev/en/stable/userguide/tasks.html",
+    "https://docs.celeryq.dev/en/stable/userguide/optimizing.html",
+    "https://docs.celeryq.dev/en/stable/faq.html",
+    "https://docs.celeryq.dev/en/stable/userguide/configuration.html"
+  ],
+  "security_notes": "Static review only — reads task definitions, retry/ack configuration, and broker/result-backend settings to assess delivery reliability; never enqueues, runs, or acknowledges a task, and never connects to a broker or result backend. A claim about actual delivery counts, duplicate execution, or retry behavior is flagged as needing observation against a real broker. Never requests broker credentials or customer data.",
+  "last_verified": "2026-07-26",
+  "path": "skills/python/python-distributed-task-reliability",
+  "author": "github: Raishin"
+}

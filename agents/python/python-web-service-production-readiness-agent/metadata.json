@@ -1,0 +1,41 @@
+{
+  "id": "python-web-service-production-readiness-agent",
+  "name": "Python Web Service Production Readiness Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Framework-aware static review of Python web-service production readiness (FastAPI, Starlette, Django, Flask, ASGI/WSGI): sync-vs-async endpoint blocking, request validation, authentication and authorization boundaries, middleware order, worker model, timeouts, graceful shutdown, and health checks. Reads source and config only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://fastapi.tiangolo.com/async/",
+    "https://www.starlette.io/",
+    "https://docs.djangoproject.com/en/stable/topics/security/",
+    "https://flask.palletsprojects.com/en/stable/"
+  ],
+  "security_notes": "Static review only — reads web-framework source, route and middleware definitions, and sanitized configuration to assess production readiness; never starts the server, sends a request, or observes runtime latency, worker behavior, or shutdown timing. A claim about actual request-handling or shutdown behavior is flagged as needing runtime confirmation. Never requests secrets, credentials, or a live connection. Framework-specific reference is loaded only when the framework is detected.",
+  "last_verified": "2026-07-26",
+  "path": "agents/python/python-web-service-production-readiness-agent/",
+  "harness_variants": {
+    "codex": "agents/python/python-web-service-production-readiness-agent/harnesses/codex.toml",
+    "copilot": "agents/python/python-web-service-production-readiness-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/python/python-web-service-production-readiness-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/python/python-web-service-production-readiness-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/python/python-web-service-production-readiness-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/python/python-web-service-production-readiness-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/python/python-web-service-production-readiness-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "python-web-service-production-readiness"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}
