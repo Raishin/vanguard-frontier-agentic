@@ -90,7 +90,8 @@ INPUTS = [
 
 def write(path, obj):
     os.makedirs(os.path.dirname(path), exist_ok=True)
-    open(path, "w").write(json.dumps(obj, indent=2, ensure_ascii=False) + "\n")
+    with open(path, "w") as f:
+        f.write(json.dumps(obj, indent=2, ensure_ascii=False) + "\n")
 
 
 def main():

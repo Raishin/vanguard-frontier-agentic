@@ -118,7 +118,11 @@ def write(path: str, content: str) -> None:
 
 
 def load_agents() -> list[dict]:
-    return [json.load(open(fp)) for fp in sorted(glob.glob(os.path.join(DATA_DIR, "*.json")))]
+    agents = []
+    for fp in sorted(glob.glob(os.path.join(DATA_DIR, "*.json"))):
+        with open(fp) as f:
+            agents.append(json.load(f))
+    return agents
 
 
 def tier(a: dict) -> str:
