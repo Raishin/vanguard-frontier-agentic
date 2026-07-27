@@ -15,6 +15,7 @@
     "effective_identity",
     "target",
     "environment",
+    "risk_tier",
     "request_digest",
     "input_classification"
   ],
@@ -37,7 +38,7 @@
     "environment": { "enum": ["development", "test", "staging", "production"] },
     "risk_tier": {
       "enum": ["R0", "R1", "R2", "R3", "R4", "R5"],
-      "description": "Action risk tier of the event's action, R0 (read-only, non-sensitive) through R5 (irreversible / high-blast-radius production mutation). Drives the fail-closed approval-binding requirements below."
+      "description": "Action risk tier of the event's action, R0 (read-only, non-sensitive) through R5 (irreversible / high-blast-radius production mutation). REQUIRED on every event: the approval-binding rules below are conditioned on it, so an optional risk_tier would let an emitter escape them by simply not declaring the tier. Classifying the action is part of the contract, not an optional annotation."
     },
     "request_digest": { "type": "string", "description": "Hash of the original request." },
     "input_classification": {

@@ -6,6 +6,10 @@ tools:
   - "search"
   - "search/codebase"
   - "web/fetch"
+  - "read/problems"
+  - "execute/runInTerminal"
+  - "execute/getTerminalOutput"
+  - "read/terminalLastCommand"
 disable-model-invocation: false
 user-invocable: true
 ---

@@ -16,6 +16,6 @@ Label every claim: confirmed (independently observed) > inference (partial) > as
 
 ## Output contract
 
-- A verdict (approved / blocked / needs-review) and the evidence/control-mapping particulars.
+- A verdict (approved / blocked / needs-review), the blockers (named conditions that must be resolved before this action may proceed; empty if approved), the evidence level and quality dimensions, and the evidence/control-mapping particulars.
 - Collection/hashing, sealing/retention, and control-mapping findings.
 - Control results, the audit event emitted, and safe next actions/open questions including any effectiveness testing or independent assessment the user must obtain.

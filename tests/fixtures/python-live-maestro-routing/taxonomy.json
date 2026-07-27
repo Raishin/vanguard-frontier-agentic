@@ -59,48 +59,6 @@
       ],
       "agent": "python-live-policy-gate-agent"
     },
-    "code-remediation": {
-      "keywords": [
-        "remediation branch",
-        "remediation pull request",
-        "isolated validation",
-        "dependency fix pr"
-      ],
-      "agent": "python-live-code-remediation-agent"
-    },
-    "release-control": {
-      "keywords": [
-        "bounded release",
-        "canary increment",
-        "one-instance restart"
-      ],
-      "agent": "python-live-release-control-agent"
-    },
-    "data-change-control": {
-      "keywords": [
-        "data-change migration",
-        "production backfill",
-        "pipeline reprocessing",
-        "bounded data correction"
-      ],
-      "agent": "python-live-data-change-control-agent"
-    },
-    "job-control": {
-      "keywords": [
-        "distributed job",
-        "business automation job",
-        "job requeue"
-      ],
-      "agent": "python-live-job-control-agent"
-    },
-    "model-promotion-control": {
-      "keywords": [
-        "model promotion",
-        "model artifact promotion",
-        "immutable artifact"
-      ],
-      "agent": "python-live-model-promotion-control-agent"
-    },
     "control-evidence": {
       "keywords": [
         "evidence",
@@ -120,14 +78,6 @@
         "control drift"
       ],
       "agent": "python-live-continuous-control-testing-agent"
-    },
-    "rollback-recovery": {
-      "keywords": [
-        "rollback recovery",
-        "restore",
-        "revert"
-      ],
-      "agent": "python-live-rollback-and-recovery-agent"
     },
     "exception-governance": {
       "keywords": [

@@ -22,19 +22,11 @@ ROOT = Path(__file__).resolve().parents[1]
 CATALOG_AGENTS = ROOT / "catalog" / "agents.json"
 CATALOG_SKILLS = ROOT / "catalog" / "skills.json"
 
-CATALOG_FIELDS_AGENT = {
-    "id", "name", "type", "provider", "summary", "path",
-    "harnesses", "last_verified", "official_docs", "security_notes",
-    "source_type", "version", "companion_skills",
-}
-CATALOG_FIELDS_SKILL = CATALOG_FIELDS_AGENT | {"author"}
-
-
 def metadata_to_catalog_entry(m: dict, kind: str) -> dict:
     entry: dict = {}
     for key in ("id", "name", "type", "provider", "harnesses", "summary",
                 "source_type", "official_docs", "security_notes",
-                "last_verified", "path", "version"):
+                "last_verified", "path", "version", "execution_tier"):
         if key in m:
             entry[key] = m[key]
     # Preserve agent→skill edges so catalog consumers (e.g. the TUI dependency
@@ -71,12 +63,21 @@ def sync_catalog(catalog: list[dict], glob_pat: str, kind: str) -> tuple[list[st
             catalog.append(entry)
             by_id[entry["id"]] = entry
             added.append(entry["id"])
-        elif cur != entry:
-            # Replace contents in place so the canonical key order is restored
-            # and any dropped field is removed — a true sync, not a merge.
-            cur.clear()
-            cur.update(entry)
-            updated.append(entry["id"])
+        else:
+            # Merge, never clobber. The projection above covers only the metadata-sourced
+            # fields; a committed catalog entry legitimately carries additional ones that no
+            # metadata.json supplies (author, harness_variants, lifecycle, category,
+            # oauth_scopes, mcp_servers, run_as_permissions, companion_agents, …). A
+            # clear()+update() "true sync" therefore DELETED those on every re-run — it
+            # rewrote hundreds of untouched entries and dropped fields that
+            # tests/validate-catalog.py requires, so the very next `npm run validate`
+            # failed. Projected keys win; unmanaged keys are preserved, which is what makes
+            # the documented "strict no-op when already in sync" actually true.
+            merged = {**cur, **entry}
+            if merged != cur:
+                cur.clear()
+                cur.update(merged)
+                updated.append(entry["id"])
     if added or updated:
         catalog.sort(key=lambda x: x["id"])
     return added, updated

@@ -16,6 +16,6 @@ Label every claim: confirmed (independently observed) > inference (partial) > as
 
 ## Output contract
 
-- A verdict (approved / blocked / needs-review) and the exact bounded action and target.
+- A verdict (approved / blocked / needs-review), the blockers (named conditions that must be resolved before this action may proceed; empty if approved), the evidence level and quality dimensions, and the exact bounded action and target.
 - Bound-and-scope, approval/JIT/before-state, and independent-verification findings.
 - Control results, the audit event emitted, and safe next actions/open questions including any approval, JIT credential, or rollback the user must obtain.

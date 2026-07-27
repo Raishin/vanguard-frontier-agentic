@@ -67,6 +67,7 @@
     "applicability": {
       "type": "object",
       "description": "Conditions under which the control is in force. Determined against the applicability engine; presence here is a proposal, not a legal classification.",
+      "required": ["action_risk"],
       "properties": {
         "environments": {
           "type": "array",
@@ -74,7 +75,8 @@
         },
         "action_risk": {
           "type": "array",
-          "description": "Action risk tiers R0 (read-only, non-sensitive) through R5 (irreversible / high-blast-radius production mutation).",
+          "description": "Action risk tiers R0 (read-only, non-sensitive) through R5 (irreversible / high-blast-radius production mutation). REQUIRED: the warn-rejection rule below is conditioned on this array, so an optional action_risk would let a production-mutation control keep failure_behavior \"warn\" simply by not declaring its risk. Classifying the governed action is part of defining the control.",
+          "minItems": 1,
           "items": { "enum": ["R0", "R1", "R2", "R3", "R4", "R5"] }
         },
         "data_categories": {

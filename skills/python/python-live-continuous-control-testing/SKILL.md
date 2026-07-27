@@ -57,6 +57,6 @@ Load these only when needed:
 
 ## Response minimum
 
-- A verdict (approved / blocked / needs-review) and the tested population and period.
+- A verdict (approved / blocked / needs-review), the blockers (named conditions that must be resolved before this action may proceed; empty if approved), the evidence level and quality dimensions, and the tested population and period.
 - Checklist, ownership, and operating-effectiveness findings.
 - Control results, the audit event emitted, and safe next actions/open questions including any remediation or exception the user must obtain.

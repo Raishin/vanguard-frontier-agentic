@@ -528,6 +528,18 @@ scripts/notebooks, segregation of duties, reconciliation, key-person risk).
 > compliance/legal classification remains its qualified owners' determination. See
 > [evidence-output-spec.md](evidence-output-spec.md) and
 > [docs/compliance/](compliance/).
+>
+> **Where the tier is mechanically enforced.** Be precise about this rather than assuming
+> the tier is a sandbox everywhere. The read-only/mutating split is enforced *mechanically*
+> in three places: the Codex adapter (`sandbox_mode` — `read-only` vs `workspace-write`),
+> the companion `SKILL.md` (`allowed-tools` — only mutating operators are granted `Bash`),
+> and the Copilot adapter (only mutating operators are granted `execute/*` tools). The
+> Markdown-family adapters (claude-code, cursor, gemini, kiro-ide) carry `name` and
+> `description` only — the repo-wide convention for every agent in this catalog — so in
+> those harnesses the tier is carried by the agent's operating rules and its bound skill's
+> `allowed-tools`, not by a per-agent tool grant. A deploying organization that needs the
+> boundary enforced in-harness must apply its own tool policy there; treat the agent
+> contract as necessary, not sufficient.
 
 **Agent directory layout**
 

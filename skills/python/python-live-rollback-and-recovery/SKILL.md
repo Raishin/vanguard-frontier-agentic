@@ -57,6 +57,6 @@ Load these only when needed:
 
 ## Response minimum
 
-- A verdict (approved / blocked / needs-review) and the rollback request and target particulars.
+- A verdict (approved / blocked / needs-review), the blockers (named conditions that must be resolved before this action may proceed; empty if approved), the evidence level and quality dimensions, and the rollback request and target particulars.
 - Pre-approval/target-binding, precondition, and post-rollback reconciliation findings.
 - Control results, the audit event emitted, and safe next actions/open questions including any rollback authorship, approval, or authority the user must obtain.

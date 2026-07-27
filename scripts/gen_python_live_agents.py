@@ -332,16 +332,29 @@ def md_harness(a: dict) -> str:
     return f"---\nname: {y(a['name'])}\ndescription: {y(a['summary'])}\n---\n\n{agent_body(a)}\n"
 
 
+# Copilot tool grants follow the execution tier, matching the repo's guarded-live precedent
+# (agents/aws/aws-live-deployment-guarded-operator-agent grants execute/* ; the SAP
+# read-only discovery agents grant read-only tools). A mutating-runtime operator with no
+# execute capability could not perform the single approved change it exists for, and a
+# read-only observer must not be handed one.
+COPILOT_READONLY_TOOLS = ["read", "search", "search/codebase", "web/fetch"]
+COPILOT_MUTATING_TOOLS = COPILOT_READONLY_TOOLS + [
+    "read/problems",
+    "execute/runInTerminal",
+    "execute/getTerminalOutput",
+    "read/terminalLastCommand",
+]
+
+
 def copilot_md(a: dict) -> str:
+    tools = COPILOT_MUTATING_TOOLS if tier(a) == "mutating-runtime" else COPILOT_READONLY_TOOLS
+    tool_lines = "".join(f'  - "{t}"\n' for t in tools)
     fm = (
         "---\n"
         f"description: {y(a['summary'])}\n"
         f"name: {y(a['name'])}\n"
         "tools:\n"
-        '  - "read"\n'
-        '  - "search"\n'
-        '  - "search/codebase"\n'
-        '  - "web/fetch"\n'
+        f"{tool_lines}"
         "disable-model-invocation: false\n"
         "user-invocable: true\n"
         "---\n\n"

@@ -16,6 +16,6 @@ Label every claim: confirmed (independently observed) > inference (partial) > as
 
 ## Output contract
 
-- A verdict (approved / blocked / needs-review) and the artifact and promotion particulars.
+- A verdict (approved / blocked / needs-review), the blockers (named conditions that must be resolved before this action may proceed; empty if approved), the evidence level and quality dimensions, and the artifact and promotion particulars.
 - Provenance/integrity, risk-classification/evaluation, and rollback/AI-system-role findings.
 - Control results, the audit event emitted, and safe next actions/open questions including any risk classification, evaluation evidence, or rollback the user must obtain.

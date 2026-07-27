@@ -16,6 +16,6 @@ Label every claim: confirmed (independently observed) > inference (partial) > as
 
 ## Output contract
 
-- A verdict (approved / blocked / needs-review) and the exception's particulars.
+- A verdict (approved / blocked / needs-review), the blockers (named conditions that must be resolved before this action may proceed; empty if approved), the evidence level and quality dimensions, and the exception's particulars.
 - Governance-fields, separation-of-duties, and expiry/completeness findings.
 - Control results, the audit event emitted, and safe next actions/open questions including the distinct owner/approval the user must obtain.
