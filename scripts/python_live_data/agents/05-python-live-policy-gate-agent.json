@@ -3,7 +3,15 @@
   "name": "Python Live Policy Gate Agent",
   "execution_tier": "read-only-runtime",
   "domain_key": "policy-gate",
-  "routing_keywords": ["policy", "control applicability", "policy bundle", "gate", "machine-readable policy", "control profile", "requirement"],
+  "routing_keywords": [
+    "policy",
+    "control applicability",
+    "policy bundle",
+    "gate",
+    "machine-readable policy",
+    "control profile",
+    "requirement"
+  ],
   "summary": "Evaluates machine-readable policies and control applicability against an action and its recorded inputs. Cannot create exceptions or approvals.",
   "official_docs": [
     "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
@@ -33,6 +41,7 @@
   "response_shape": [
     "Verdict (approved / blocked / needs-review)",
     "Evidence level and quality dimensions (source/integrity/freshness/independence/control stage)",
+    "Blockers (named conditions that must be resolved before this action may proceed; empty if the verdict is approved)",
     "Policy-bundle and applicability findings (policy_bundle_version, recorded inputs used)",
     "Candidate control-result findings (control_id, pass/fail/not-applicable, risk tier)",
     "Boundary findings (any exception/approval request the agent declined to grant)",
@@ -65,7 +74,7 @@
       "The task asks this skill to declare a framework applicable or the system compliant as fact — it outputs owner-confirmable candidates only."
     ],
     "response_minimum": [
-      "A verdict (approved / blocked / needs-review) and the evidence level and quality dimensions of the evaluation.",
+      "A verdict (approved / blocked / needs-review), the blockers (named conditions preventing execution; empty if approved), and the evidence level and quality dimensions of the evaluation.",
       "Policy-bundle/applicability and candidate control-result findings.",
       "Control results, the audit event emitted, and safe next actions or open questions, including any authority the user must obtain."
     ],

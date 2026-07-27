@@ -36,7 +36,17 @@ PROVIDER = "python"
 
 AGENT_HARNESSES = ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"]
 SKILL_HARNESSES = ["codex", "claude-code", "cursor", "gemini", "kiro", "other"]
-LIVE_ALLOWED_TOOLS = "Read Grep Glob WebSearch WebFetch Bash"
+# Allowed-tools is tier-scoped. docs/execution-tiers.md (T1) requires read-only-runtime
+# agents to use an allowlisted, read-only Bash — never bare `Bash(*)` — so read-only
+# specialists and the router do NOT preauthorize bare Bash here; a deploying org grants a
+# constrained read-only command allowlist per its environment. Only mutating-runtime
+# operators, which execute the one approved and gated change, carry Bash.
+LIVE_READONLY_TOOLS = "Read Grep Glob WebSearch WebFetch"
+LIVE_MUTATING_TOOLS = "Read Grep Glob WebSearch WebFetch Bash"
+
+
+def allowed_tools(a: dict) -> str:
+    return LIVE_MUTATING_TOOLS if tier(a) == "mutating-runtime" else LIVE_READONLY_TOOLS
 
 # Board-wide governance contract appended to every LIVE specialist (DRY). This REPLACES
 # the static board's "never execute" rule with the controlled-execution posture.
@@ -81,6 +91,12 @@ FIXED_LIVE_RULES = [
         "because access exists, redact or tokenize sensitive and personal fields before they enter "
         "any prompt or log, never persist secrets, and never copy regulated data into a third-party "
         "tool without an approved data-flow review."
+    ),
+    (
+        "Keep tool access within the execution tier: a read-only-runtime action never preauthorizes "
+        "bare `Bash` — read-only diagnostics run only under a constrained, read-only command "
+        "allowlist (never `Bash(*)`) that the deploying organization grants per its environment, and "
+        "shell access wide enough to mutate, deploy, or restart is a tier violation to refuse."
     ),
 ]
 
@@ -406,7 +422,7 @@ def skill_md(a: dict) -> str:
         "---\n"
         f"name: {s['id']}\n"
         f"description: {y(s['description'])}\n"
-        f"allowed-tools: {LIVE_ALLOWED_TOOLS}\n"
+        f"allowed-tools: {allowed_tools(a)}\n"
         "metadata:\n"
         f'  author: "{AUTHOR}"\n'
         f'  version: "{VERSION}"\n'

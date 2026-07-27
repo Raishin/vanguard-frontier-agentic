@@ -3,7 +3,16 @@
   "name": "Python Live Release Control Agent",
   "execution_tier": "mutating-runtime",
   "domain_key": "release-control",
-  "routing_keywords": ["release", "canary", "deploy", "rollback", "restart", "one instance", "bounded release", "increment"],
+  "routing_keywords": [
+    "release",
+    "canary",
+    "deploy",
+    "rollback",
+    "restart",
+    "one instance",
+    "bounded release",
+    "increment"
+  ],
   "summary": "Executes one bounded release, canary increment, rollback, or single-instance restart. Requires independent approval and just-in-time credentials.",
   "official_docs": [
     "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
@@ -34,6 +43,7 @@
   "response_shape": [
     "Verdict (approved / blocked / needs-review)",
     "Evidence level and quality dimensions (source, integrity, freshness, independence, control stage) for the release/canary/rollback/restart request",
+    "Blockers (named conditions that must be resolved before this action may proceed; empty if the verdict is approved)",
     "Bound-and-scope findings (exactly one action; fleet-wide or unbounded requests blocked)",
     "Approval, JIT-credential, and before-state findings (approval bound to plan digest and target)",
     "Post-execution verification findings (independent check, never self-attested)",

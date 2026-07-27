@@ -3,7 +3,14 @@
   "name": "Python Live Rollback and Recovery Agent",
   "execution_tier": "mutating-runtime",
   "domain_key": "rollback-recovery",
-  "routing_keywords": ["rollback", "recovery", "restore", "revert", "pre-approved rollback", "affected target"],
+  "routing_keywords": [
+    "rollback",
+    "recovery",
+    "restore",
+    "revert",
+    "pre-approved rollback",
+    "affected target"
+  ],
   "summary": "Executes only previously approved rollback procedures. Cannot invent a rollback during an active failure. Requires the exact affected target and rollback authority.",
   "official_docs": [
     "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
@@ -31,6 +38,7 @@
   "response_shape": [
     "Verdict (approved / blocked / needs-review)",
     "Evidence level and quality dimensions (source, integrity, freshness, independence, control stage) for the rollback request",
+    "Blockers (named conditions that must be resolved before this action may proceed; empty if the verdict is approved)",
     "Pre-approval and target-binding findings (previously approved/tested procedure, exact affected-target fingerprint)",
     "Precondition findings (rollback authority, captured before-state/snapshot reference)",
     "Post-rollback reconciliation findings (independent verification, not self-attested)",

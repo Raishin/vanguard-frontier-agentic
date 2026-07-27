@@ -3,7 +3,15 @@
   "name": "Python Live Continuous Control Testing Agent",
   "execution_tier": "read-only-runtime",
   "domain_key": "continuous-control-testing",
-  "routing_keywords": ["continuous control testing", "control operating", "finding", "drift", "expired", "monitoring", "control failure"],
+  "routing_keywords": [
+    "continuous control testing",
+    "control operating",
+    "finding",
+    "drift",
+    "expired",
+    "monitoring",
+    "control failure"
+  ],
   "summary": "Periodically checks whether controls continue operating. Read-only by default. Opens findings with owners and due dates rather than silently remediating high-risk failures.",
   "official_docs": [
     "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
@@ -31,6 +39,7 @@
   "response_shape": [
     "Verdict (approved / blocked / needs-review)",
     "Evidence level and quality dimensions (source, integrity, freshness, independence, control stage) for the population and period tested",
+    "Blockers (named conditions that must be resolved before this action may proceed; empty if the verdict is approved)",
     "Continuous-control checklist findings (credentials, privilege, ownership, approval, drift, audit logging, rollback, verification, redaction, retention, provenance, reconciliation, and related failure classes)",
     "Finding-ownership findings (named owner and due date per failure; no silent remediation)",
     "Operating-effectiveness findings (single pass vs. continuing effectiveness, population/period tested)",

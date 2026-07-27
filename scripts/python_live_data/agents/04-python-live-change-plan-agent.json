@@ -3,7 +3,15 @@
   "name": "Python Live Change Plan Agent",
   "execution_tier": "read-only-runtime",
   "domain_key": "change-plan",
-  "routing_keywords": ["plan", "diff", "rollback procedure", "verification criteria", "action digest", "change plan", "normalized plan"],
+  "routing_keywords": [
+    "plan",
+    "diff",
+    "rollback procedure",
+    "verification criteria",
+    "action digest",
+    "change plan",
+    "normalized plan"
+  ],
   "summary": "Produces normalized change plans, diffs, rollback procedures, verification criteria, and action digests. Has no production credentials.",
   "official_docs": [
     "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
@@ -31,6 +39,7 @@
   "response_shape": [
     "Verdict (approved / blocked / needs-review)",
     "Evidence level and quality dimensions (source/integrity/freshness/independence/control stage)",
+    "Blockers (named conditions that must be resolved before this action may proceed; empty if the verdict is approved)",
     "Diff and plan-content findings (exact diff, target fingerprint, plan digest)",
     "Rollback and verification-criteria findings (presence, testability, machine-checkability)",
     "Approval-binding findings (plan digest to target binding, invalidation on target change)",
@@ -63,7 +72,7 @@
       "The concern is recording an already-approved rollback's execution — route to `python-live-rollback-and-recovery-agent`."
     ],
     "response_minimum": [
-      "A verdict (approved / blocked / needs-review) and the evidence level and quality dimensions of the plan's inputs.",
+      "A verdict (approved / blocked / needs-review), the blockers (named conditions preventing execution; empty if approved), and the evidence level and quality dimensions of the plan's inputs.",
       "Diff/plan-content, rollback/verification, and approval-binding findings.",
       "Control results, the audit event emitted, and safe next actions or open questions, including any authority the user must obtain."
     ],

@@ -3,7 +3,15 @@
   "name": "Python Live Exception Governance Agent",
   "execution_tier": "read-only-runtime",
   "domain_key": "exception-governance",
-  "routing_keywords": ["exception", "policy exception", "compensating control", "expiration", "review date", "risk acceptance", "waiver"],
+  "routing_keywords": [
+    "exception",
+    "policy exception",
+    "compensating control",
+    "expiration",
+    "review date",
+    "risk acceptance",
+    "waiver"
+  ],
   "summary": "Records policy exceptions and confirms owner, scope, expiration, compensating controls, and review date. Cannot approve its own exception. Automatically flags expired exceptions.",
   "official_docs": [
     "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
@@ -31,6 +39,7 @@
   "response_shape": [
     "Verdict (approved / blocked / needs-review)",
     "Evidence level and quality dimensions (source, integrity, freshness, independence, control stage) for the exception being recorded or reviewed",
+    "Blockers (named conditions that must be resolved before this action may proceed; empty if the verdict is approved)",
     "Exception-governance-fields findings (named owner, scope, expiration, compensating controls, review date)",
     "Separation-of-duties findings (self-approval or requester-benefit conflicts)",
     "Expiry-and-completeness findings (expired exceptions, missing compensating control or expiry)",

@@ -3,7 +3,18 @@
   "name": "Python Live Runtime Control Agent",
   "execution_tier": "read-only-runtime",
   "domain_key": "runtime-control",
-  "routing_keywords": ["interpreter", "process", "worker", "task", "thread", "memory", "health", "diagnostics", "gc", "live state"],
+  "routing_keywords": [
+    "interpreter",
+    "process",
+    "worker",
+    "task",
+    "thread",
+    "memory",
+    "health",
+    "diagnostics",
+    "gc",
+    "live state"
+  ],
   "summary": "Reads live interpreter, process, worker, task, thread, memory, and health state and performs allowlisted diagnostics. Cannot change application state.",
   "official_docs": [
     "https://docs.python.org/3/library/sys.html",
@@ -31,6 +42,7 @@
   "response_shape": [
     "Verdict (approved / blocked / needs-review)",
     "Evidence level and quality dimensions (source/integrity/freshness/independence/control stage)",
+    "Blockers (named conditions that must be resolved before this action may proceed; empty if the verdict is approved)",
     "Interpreter and process state findings (version/build, worker/thread counts, memory)",
     "Health-signal findings (leaked tasks, stuck workers, memory growth) and their significance",
     "Diagnostic-vs-mutation boundary confirmation (what was read, what was NOT changed)",
@@ -63,7 +75,7 @@
       "The task asks this skill to restart, kill, scale, or reconfigure a process — it reads diagnostic state only."
     ],
     "response_minimum": [
-      "A verdict (approved / blocked / needs-review) and the evidence level and quality dimensions of the diagnostic read.",
+      "A verdict (approved / blocked / needs-review), the blockers (named conditions preventing execution; empty if approved), and the evidence level and quality dimensions of the diagnostic read.",
       "Interpreter/process state and health-signal findings, with the diagnostic-vs-mutation boundary made explicit.",
       "Control results, the audit event emitted, and safe next actions or open questions, including any authority the user must obtain."
     ],

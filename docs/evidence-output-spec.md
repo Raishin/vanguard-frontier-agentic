@@ -17,11 +17,35 @@ controls each field can help *support*.
 > [What a response does and does not establish](#what-a-response-does-and-does-not-establish)
 > and governs the rest of this document.
 
-The five fields below are the minimum set required on every agent response. Agents may
-add provider- or tier-specific fields (e.g., `cluster_context`, `assignment_scope`, or
-the live-control-plane audit-event fields in
+The five fields below are the minimum set required on every agent response **in scope
+(see below)**. Agents may add provider- or tier-specific fields (e.g., `cluster_context`,
+`assignment_scope`, or the live-control-plane audit-event fields in
 [audit-event.schema.json](../schemas/audit-event.schema.json)) but must not omit
 required fields.
+
+---
+
+## Scope: which agents this envelope governs
+
+The `approved | blocked | needs-review` envelope is the shape for **compliance
+decision-point agents** — agents that render an *execution-authorization* decision about
+a change to a connected system:
+
+- **Live-guard agents** (the AT layer) and the read-only-runtime observation, planning,
+  and evidence agents that support them (e.g. the entire Python `python-live-*` control
+  plane), and
+- the pre-change **review** and post-change **verification** agents paired with a
+  live-guard at a specific decision point (e.g. `kubernetes-rbac-review`).
+
+It does **not** govern the **code-quality review boards** — the language/stack static
+boards (`kotlin`, `java`, `php`, and the Python **static-review** board `python-*` routed
+by `python-maestro-agent`). Those render a *code-review quality* verdict —
+`pass | pass-with-conditions | block` — and must **not** use `approved`. The distinction
+is deliberate and load-bearing: a static code reviewer authorizes no execution, so calling
+its result "approved" would conflate a quality judgment with an authorization it never
+makes (permission is not authority; review is not approval). A code-review board carries a
+severity-ranked findings list rather than the `blockers` array, and its verdict vocabulary
+is defined by that board, not by this spec.
 
 ---
 

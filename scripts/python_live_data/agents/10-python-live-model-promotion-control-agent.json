@@ -3,7 +3,15 @@
   "name": "Python Live Model Promotion Control Agent",
   "execution_tier": "mutating-runtime",
   "domain_key": "model-promotion-control",
-  "routing_keywords": ["model promotion", "immutable artifact", "model risk", "evaluation evidence", "monitoring", "rollback", "AI system"],
+  "routing_keywords": [
+    "model promotion",
+    "immutable artifact",
+    "model risk",
+    "evaluation evidence",
+    "monitoring",
+    "rollback",
+    "AI system"
+  ],
   "summary": "Promotes exactly one immutable model artifact. Requires risk classification, evaluation evidence, monitoring, and rollback.",
   "official_docs": [
     "https://www.nist.gov/itl/ai-risk-management-framework",
@@ -32,6 +40,7 @@
   "response_shape": [
     "Verdict (approved / blocked / needs-review)",
     "Evidence level and quality dimensions (source, integrity, freshness, independence, control stage) for the model-promotion request",
+    "Blockers (named conditions that must be resolved before this action may proceed; empty if the verdict is approved)",
     "Artifact provenance and integrity findings (immutability, hash/signature verification, pickle/joblib risk)",
     "AI-risk classification and evaluation-evidence findings (deployment-matched evidence, monitoring)",
     "Rollback and AI-system-role findings (rollback to prior artifact, provider/deployer role, conformity declarations)",

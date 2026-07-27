@@ -1,7 +1,7 @@
 ---
 name: python-live-runtime-control
 description: "Use this skill to read live Python interpreter, process, worker, task, thread, memory, and health state through allowlisted read-only diagnostics, and to flag health signals as findings. Read-only-runtime: it never restarts, kills, scales, or reconfigures a process."
-allowed-tools: Read Grep Glob WebSearch WebFetch Bash
+allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
   author: "github: Raishin"
   version: "0.1.0"
@@ -42,6 +42,7 @@ This skill decides what a live Python runtime's current diagnostic state shows a
 - Emit an immutable audit event (schemas/audit-event.schema.json) for every observation and action; if audit logging is unavailable for an R3, R4, or R5 action, fail closed and refuse rather than acting without a trail.
 - Never confuse permission with authority, execution with approval, technical success with business success, evidence with proof, control-mapping with compliance, or automation with accountability; never declare regulatory or legal compliance — applicability and compliance are the organization's and its qualified owners' determinations.
 - Apply purpose limitation and data minimization: never use broad production data merely because access exists, redact or tokenize sensitive and personal fields before they enter any prompt or log, never persist secrets, and never copy regulated data into a third-party tool without an approved data-flow review.
+- Keep tool access within the execution tier: a read-only-runtime action never preauthorizes bare `Bash` — read-only diagnostics run only under a constrained, read-only command allowlist (never `Bash(*)`) that the deploying organization grants per its environment, and shell access wide enough to mutate, deploy, or restart is a tier violation to refuse.
 
 ## References
 
@@ -56,6 +57,6 @@ Load these only when needed:
 
 ## Response minimum
 
-- A verdict (approved / blocked / needs-review) and the evidence level and quality dimensions of the diagnostic read.
+- A verdict (approved / blocked / needs-review), the blockers (named conditions preventing execution; empty if approved), and the evidence level and quality dimensions of the diagnostic read.
 - Interpreter/process state and health-signal findings, with the diagnostic-vs-mutation boundary made explicit.
 - Control results, the audit event emitted, and safe next actions or open questions, including any authority the user must obtain.

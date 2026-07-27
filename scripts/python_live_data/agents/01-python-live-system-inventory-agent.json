@@ -3,7 +3,19 @@
   "name": "Python Live System Inventory Agent",
   "execution_tier": "read-only-runtime",
   "domain_key": "system-inventory",
-  "routing_keywords": ["inventory", "discover", "runtime", "service", "job", "notebook", "package", "owner", "deployment revision", "service identity", "criticality"],
+  "routing_keywords": [
+    "inventory",
+    "discover",
+    "runtime",
+    "service",
+    "job",
+    "notebook",
+    "package",
+    "owner",
+    "deployment revision",
+    "service identity",
+    "criticality"
+  ],
   "summary": "Read-only discovery of Python runtimes, services, jobs, notebooks, packages, owners, environments, deployment revisions, service identities, and criticality. Produces asset and ownership evidence. Never retrieves raw credentials.",
   "official_docs": [
     "https://docs.python.org/3/library/importlib.metadata.html",
@@ -33,6 +45,7 @@
   "response_shape": [
     "Verdict (approved / blocked / needs-review)",
     "Evidence level and quality dimensions (source/integrity/freshness/independence/control stage)",
+    "Blockers (named conditions that must be resolved before this action may proceed; empty if the verdict is approved)",
     "Asset-discovery findings (runtimes, services, jobs, notebooks, packages) and discovery method",
     "Ownership findings (named owner, environment, deployment revision, service identity; unowned/orphaned assets)",
     "Criticality and data-class classification findings",
@@ -65,7 +78,7 @@
       "The task requires reading a secret value or mutating a discovered asset — this skill is read-only discovery of asset/ownership metadata only."
     ],
     "response_minimum": [
-      "A verdict (approved / blocked / needs-review) and the evidence level and quality dimensions of the discovery.",
+      "A verdict (approved / blocked / needs-review), the blockers (named conditions preventing execution; empty if approved), and the evidence level and quality dimensions of the discovery.",
       "Asset-discovery, ownership, and criticality/data-class findings.",
       "Control results, the audit event emitted, and safe next actions or open questions, including any authority the user must obtain."
     ],

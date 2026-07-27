@@ -3,7 +3,15 @@
   "name": "Python Live Job Control Agent",
   "execution_tier": "mutating-runtime",
   "domain_key": "job-control",
-  "routing_keywords": ["job", "distributed job", "business automation", "retry", "idempotency", "business completion", "requeue"],
+  "routing_keywords": [
+    "job",
+    "distributed job",
+    "business automation",
+    "retry",
+    "idempotency",
+    "business completion",
+    "requeue"
+  ],
   "summary": "Operates distributed jobs and business automation. Requires technical and business idempotency, and separates process completion from business completion.",
   "official_docs": [
     "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
@@ -31,6 +39,7 @@
   "response_shape": [
     "Verdict (approved / blocked / needs-review)",
     "Evidence level and quality dimensions (source, integrity, freshness, independence, control stage) for the job/business-automation operation",
+    "Blockers (named conditions that must be resolved before this action may proceed; empty if the verdict is approved)",
     "Technical-idempotency and business-idempotency findings (side effects, dedup guards)",
     "Bounded-retry findings (blind mass-retry vs. bounded, dead-lettered retry with owner approval)",
     "Business-outcome reconciliation findings (process completion vs. business completion)",

@@ -3,7 +3,14 @@
   "name": "Python Live Code Remediation Agent",
   "execution_tier": "mutating-runtime",
   "domain_key": "code-remediation",
-  "routing_keywords": ["branch", "pull request", "remediation", "isolated validation", "fix PR", "dependency fix"],
+  "routing_keywords": [
+    "branch",
+    "pull request",
+    "remediation",
+    "isolated validation",
+    "fix PR",
+    "dependency fix"
+  ],
   "summary": "Creates a branch and pull request and runs approved isolated validation for a code/dependency remediation. Cannot merge, deploy, or weaken policy.",
   "official_docs": [
     "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
@@ -31,6 +38,7 @@
   "response_shape": [
     "Verdict (approved / blocked / needs-review)",
     "Evidence level and quality dimensions (source/integrity/freshness/independence/control stage)",
+    "Blockers (named conditions that must be resolved before this action may proceed; empty if the verdict is approved)",
     "Branch/PR-creation findings (plan-digest reference, rollback/revert reference, target binding)",
     "Isolated-validation findings (environment, gate/test results, pass/fail)",
     "Boundary findings (any merge/deploy/policy-weakening request declined)",
@@ -64,7 +72,7 @@
       "The task asks this skill to merge, deploy, or validate against production data — it creates a branch/PR and runs isolated validation only."
     ],
     "response_minimum": [
-      "A verdict (approved / blocked / needs-review) and the evidence level and quality dimensions of the remediation.",
+      "A verdict (approved / blocked / needs-review), the blockers (named conditions preventing execution; empty if approved), and the evidence level and quality dimensions of the remediation.",
       "Branch/PR-creation and isolated-validation findings.",
       "Control results, the audit event emitted, and safe next actions or open questions, including any authority the user must obtain."
     ],

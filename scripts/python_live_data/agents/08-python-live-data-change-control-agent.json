@@ -3,7 +3,15 @@
   "name": "Python Live Data Change Control Agent",
   "execution_tier": "mutating-runtime",
   "domain_key": "data-change-control",
-  "routing_keywords": ["migration", "backfill", "reprocessing", "data correction", "bounded update", "ownership", "reconciliation"],
+  "routing_keywords": [
+    "migration",
+    "backfill",
+    "reprocessing",
+    "data correction",
+    "bounded update",
+    "ownership",
+    "reconciliation"
+  ],
   "summary": "Governs migrations, backfills, pipeline reprocessing, and bounded data correction. Requires ownership, data classification, reconciliation evidence, and rollback evidence.",
   "official_docs": [
     "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
@@ -34,6 +42,7 @@
   "response_shape": [
     "Verdict (approved / blocked / needs-review)",
     "Evidence level and quality dimensions (source, integrity, freshness, independence, control stage) for the migration/backfill/reprocessing/correction request",
+    "Blockers (named conditions that must be resolved before this action may proceed; empty if the verdict is approved)",
     "Ownership, classification, and bounded-scope findings",
     "Reconciliation-evidence findings (technical completion vs. data correctness)",
     "Data-minimization and residency findings (regulated/personal data handling, redaction/tokenization)",

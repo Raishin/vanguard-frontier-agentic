@@ -3,7 +3,19 @@
   "name": "Python Live Identity and Authority Agent",
   "execution_tier": "read-only-runtime",
   "domain_key": "identity-authority",
-  "routing_keywords": ["identity", "authority", "credential age", "JIT", "just-in-time", "approval", "role", "scope", "shared account", "standing privilege", "requester approver"],
+  "routing_keywords": [
+    "identity",
+    "authority",
+    "credential age",
+    "JIT",
+    "just-in-time",
+    "approval",
+    "role",
+    "scope",
+    "shared account",
+    "standing privilege",
+    "requester approver"
+  ],
   "summary": "Confirms active identity, role, credential age, target scope, JIT status, and approval authority before any gated action. Read-only. Blocks shared identities, unidentified principals, standing administrative credentials, and requester-as-approver conflicts.",
   "official_docs": [
     "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
@@ -33,6 +45,7 @@
   "response_shape": [
     "Verdict (approved / blocked / needs-review)",
     "Evidence level and quality dimensions (source/integrity/freshness/independence/control stage)",
+    "Blockers (named conditions that must be resolved before this action may proceed; empty if the verdict is approved)",
     "Identity and credential findings (principal identification, credential currency, JIT scope vs standing privilege)",
     "Approval-authority and separation-of-duties findings (requester/approver distinctness, target authority)",
     "Scope-match findings (target binding, scope mismatch, cross-target reuse)",
@@ -66,7 +79,7 @@
       "The task asks this skill to grant, elevate, or approve access — it verifies identity and authority, it never grants either."
     ],
     "response_minimum": [
-      "A verdict (approved / blocked / needs-review) and the evidence level and quality dimensions of the identity/authority check.",
+      "A verdict (approved / blocked / needs-review), the blockers (named conditions preventing execution; empty if approved), and the evidence level and quality dimensions of the identity/authority check.",
       "Identity/credential, approval-authority/separation-of-duties, and scope-match findings.",
       "Control results, the audit event emitted, and safe next actions or open questions, including any authority the user must obtain."
     ],

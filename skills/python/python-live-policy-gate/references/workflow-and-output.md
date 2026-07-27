@@ -16,6 +16,6 @@ Label every claim: confirmed (independently observed) > inference (partial) > as
 
 ## Output contract
 
-- A verdict (approved / blocked / needs-review) and the evidence level and quality dimensions of the evaluation.
+- A verdict (approved / blocked / needs-review), the blockers (named conditions preventing execution; empty if approved), and the evidence level and quality dimensions of the evaluation.
 - Policy-bundle/applicability and candidate control-result findings.
 - Control results, the audit event emitted, and safe next actions or open questions, including any authority the user must obtain.

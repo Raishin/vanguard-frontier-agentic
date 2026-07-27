@@ -3,7 +3,15 @@
   "name": "Python Live Control Evidence Agent",
   "execution_tier": "read-only-runtime",
   "domain_key": "control-evidence",
-  "routing_keywords": ["evidence", "hash", "seal", "evidence store", "control mapping", "audit artifact", "retention"],
+  "routing_keywords": [
+    "evidence",
+    "hash",
+    "seal",
+    "evidence store",
+    "control mapping",
+    "audit artifact",
+    "retention"
+  ],
   "summary": "Collects, hashes, and stores control evidence in an approved destination and maps it to controls. Cannot approve or execute.",
   "official_docs": [
     "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
@@ -31,6 +39,7 @@
   "response_shape": [
     "Verdict (approved / blocked / needs-review)",
     "Evidence level and quality dimensions (source, integrity, freshness, independence, control stage) for the evidence being collected",
+    "Blockers (named conditions that must be resolved before this action may proceed; empty if the verdict is approved)",
     "Collection-and-hashing findings (evidence quality dimensions, hashing, trusted timestamp)",
     "Sealing-and-retention findings (approved destination, access control, retention/legal-hold, redaction)",
     "Control-mapping findings (control_id mapping as candidate support, not effectiveness/compliance)",
