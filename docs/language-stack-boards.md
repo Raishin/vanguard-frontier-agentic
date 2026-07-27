@@ -36,7 +36,7 @@ install role so users can pull the full set with a single `--role` flag.
 | Directory | `agents/aws/` | `agents/dotnet/`, `agents/legal/`, … |
 | ID prefix | `aws-*` | `dotnet-*`, `php-*`, `legal-*`, `hr-*`, `marketing-*`, `salesforce-*`, `netsuite-*`, `sap-*`, `microsoft-*`, `databricks-*`, `snowflake-*`, etc. |
 | Subject scope | Cloud service surface | Language/runtime or professional function |
-| Execution tier | Varies by agent | `static-review` (all language/stack boards) |
+| Execution tier | Varies by agent | `static-review` (all language/stack boards, except the `python` board's governed `read-only-runtime`/`mutating-runtime` live control plane) |
 | Faceting axis | `provider` enum | `provider` enum (dedicated value) plus shared ID prefix |
 
 Provider boards target infrastructure and cloud services. Language/stack boards
@@ -508,10 +508,26 @@ scripts/notebooks, segregation of duties, reconciliation, key-person risk).
 | ID prefix | `python-*` |
 | Agent directory | `agents/python/` |
 | Skill directory | `skills/python/` |
-| Agents | 20 |
-| Skills | 20 (1:1 companion skill per agent) |
-| Install roles | 10 overlapping bundles: `python-application-review-engineer` (umbrella), `python-application-engineer`, `python-platform-reliability-engineer`, `python-data-engineer`, `python-ml-engineer`, `python-security-engineer`, `python-library-maintainer`, `python-automation-governance-lead`, `python-engineering-leader`, `python-reliability-data-engineer` |
-| Execution tier | `static-review` (all agents) |
+| Agents | 35 (20 static-review board + 15 live control plane) |
+| Skills | 35 (1:1 companion skill per agent) |
+| Install roles | 16 bundles: 10 static-review (`python-application-review-engineer` umbrella, `python-application-engineer`, `python-platform-reliability-engineer`, `python-data-engineer`, `python-ml-engineer`, `python-security-engineer`, `python-library-maintainer`, `python-automation-governance-lead`, `python-engineering-leader`, `python-reliability-data-engineer`) + 6 live-plane (`python-live-platform-operator`, `python-live-security-operator`, `python-live-data-operator`, `python-live-ml-governance-operator`, `python-live-automation-control-owner`, `python-live-audit-and-compliance-reviewer`) |
+| Execution tier | `static-review` (20 board agents) **plus** `read-only-runtime` and `mutating-runtime` (15 live control-plane agents) — see the live control plane note below |
+
+> [!IMPORTANT]
+> **`python` is a deliberate, governed exception to the "language/stack boards are
+> static-review only" posture.** It hosts a **live control plane** (15 agents under
+> `python-live-*`) that interacts with live systems under controlled execution with
+> provable accountability, routed by `python-live-governance-maestro-agent` — separate
+> from the 20 static-review board agents routed by `python-maestro-agent`. Mutating
+> operators are `mutating-runtime` **live-guards**: never auto-dispatched, gated behind an
+> external signed approval bound to the target, target-scoped JIT credentials, a
+> pre-approved rollback, and an immutable audit event (fail-closed if audit logging is
+> unavailable for an R3+ action). This repo ships the governed **definitions, contracts,
+> and eval fixtures** — not a running control plane; the audit log store, JIT issuance,
+> approval system, and actual execution are the deploying organization's runtime, and
+> compliance/legal classification remains its qualified owners' determination. See
+> [evidence-output-spec.md](evidence-output-spec.md) and
+> [docs/compliance/](compliance/).
 
 **Agent directory layout**
 
@@ -585,6 +601,12 @@ set for a given function.
 | `python-automation-governance-lead` | `python` | 5 | 5 |
 | `python-engineering-leader` | `python` | 5 | 5 |
 | `python-reliability-data-engineer` | `python` | 5 | 5 |
+| `python-live-platform-operator` | `python` (live) | 6 | 6 |
+| `python-live-security-operator` | `python` (live) | 6 | 6 |
+| `python-live-data-operator` | `python` (live) | 4 | 4 |
+| `python-live-ml-governance-operator` | `python` (live) | 5 | 5 |
+| `python-live-automation-control-owner` | `python` (live) | 5 | 5 |
+| `python-live-audit-and-compliance-reviewer` | `python` (live) | 5 | 5 |
 | `sap-transformation-operations` | `sap` | 40 | 46 |
 | `microsoft-365-d365-platform-advisor` | `microsoft` | 40 | 40 |
 | `azure-databricks-platform-engineer` | `databricks` | 3 | 3 |
@@ -776,23 +798,34 @@ read-only tier. This is a design constraint, not a default.
 | `hr` | `static-review` | Reads sanitized excerpts; never terminates, disciplines, denies leave or accommodation, or sends employee communications |
 | `marketing` | `static-review` (specialists) / `read-only-runtime` (maestro) | Reads sanitized configuration and evidence; never mutates CMP, tag-manager, or ad-platform state |
 | `php` | `static-review` | Reads sanitized PHP source, configuration, and dependency files; never executes payloads, installs packages, or mutates runtime or production. |
-| `python` | `static-review` | Reads Python source, sanitized configuration, and dependency manifests; never runs `pip install`, executes or imports code, opens a database or network connection, or deploys/publishes |
+| `python` (static-review board) | `static-review` | Reads Python source, sanitized configuration, and dependency manifests; never runs `pip install`, executes or imports code, opens a database or network connection, or deploys/publishes |
+| `python` (live control plane) | `read-only-runtime` / `mutating-runtime` | The `python-live-*` agents. Read-only agents perform allowlisted diagnostics and observation; mutating operators are live-guard gated — never auto-dispatched, requiring an independent approval bound to the target, target-scoped JIT credentials, a pre-approved rollback, and an immutable audit event (fail-closed for R3+). The repo ships definitions, contracts, and evals — not a running control plane — and no agent declares compliance. |
 | `sap` | `static-review` | Reads sanitized SAP configuration and ABAP/BTP artifacts; never contacts SAP systems, triggers transports, or mutates landscape data |
 | `microsoft` | `static-review` | Reads sanitized Microsoft 365 and Dynamics 365 configuration; never mutates tenant state, sends messages, or contacts Graph API |
 | `databricks` | `static-review` | Reads sanitized notebooks, job configs, and lakehouse metadata; never runs jobs, mutates clusters, or contacts Databricks REST APIs |
 | `snowflake` | `static-review` | Reads sanitized DDL, query plans, and data-sharing configs; never executes queries, mutates warehouses, or contacts Snowflake APIs |
 
-New boards contributed to this repository must follow the same posture. An agent
-that builds, runs, mutates, or contacts a live system is not a language/stack
-board agent — it belongs on a provider board with an appropriate
-`execution_tier` and per-session opt-in controls.
+Static review is the required **default** for language/stack boards. The one
+governed exception is the `python` **live control plane** (`python-live-*`), which
+carries `read-only-runtime`/`mutating-runtime` tiers under the controlled-execution
+and audit-evidence contracts in [docs/compliance/](compliance/) and
+[evidence-output-spec.md](evidence-output-spec.md); its mutating operators are
+live-guard gated and never auto-dispatched. A new board that needs to build, run,
+mutate, or contact a live system must either follow that governed live-plane model
+explicitly or belong on a provider board with an appropriate `execution_tier` and
+per-session opt-in controls — it is never an ungoverned addition to a static-review
+board.
 
-No language/stack board agent:
+No **static-review** language/stack board agent:
 
 - Runs, compiles, or deploys code
 - Contacts an external API, database, or live service
 - Makes a binding legal or HR determination
 - Stores or echoes secrets, credentials, tokens, or personal data
+
+The `python-live-*` control-plane agents operate under the separate governed
+live-execution contracts above (approval, JIT credentials, rollback, audit event,
+fail-closed for R3+), not this static-review list.
 
 ---
 

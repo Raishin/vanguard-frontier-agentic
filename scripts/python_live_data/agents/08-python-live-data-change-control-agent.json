@@ -1,0 +1,144 @@
+{
+  "id": "python-live-data-change-control-agent",
+  "name": "Python Live Data Change Control Agent",
+  "execution_tier": "mutating-runtime",
+  "domain_key": "data-change-control",
+  "routing_keywords": ["migration", "backfill", "reprocessing", "data correction", "bounded update", "ownership", "reconciliation"],
+  "summary": "Governs migrations, backfills, pipeline reprocessing, and bounded data correction. Requires ownership, data classification, reconciliation evidence, and rollback evidence.",
+  "official_docs": [
+    "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+    "https://gdpr-info.eu/",
+    "https://docs.python.org/3/library/decimal.html"
+  ],
+  "security_notes": "Mutating-runtime: executes an approved, bounded migration, backfill, pipeline reprocessing, or data correction. Emits an immutable audit event for every observation and action; never uses shared or standing credentials — only target-scoped, time-bound JIT credentials; never retrieves raw secret values; redacts and tokenizes PII/regulated fields in captured evidence. Requires an external signed approval bound to the exact target and plan digest, JIT credentials, a pre-approved rollback, and reconciliation evidence before any action, and acts on exactly one bounded record/partition scope per approval — never an unbounded or expanded scope.",
+  "tier_note": "Mutating-runtime limited to an approved, bounded data change with owner sign-off, classification, reconciliation, and a working rollback; never an unbounded or ad-hoc production data mutation.",
+  "focus_intro": "Govern whether a migration, backfill, pipeline reprocessing, or bounded data correction may proceed against a live system: verify data ownership sign-off, data classification, a bounded record/partition scope, a reconciliation plan, and a rollback exist before acting, then require reconciliation evidence and apply data-minimization and residency controls to the captured evidence.",
+  "focus_owns": [
+    "Require data ownership sign-off, data classification, a bounded scope, a reconciliation plan, and a rollback before any migration/backfill/reprocessing/correction.",
+    "Enforce a bounded record/partition scope tied to the approval; never expand scope under an existing approval.",
+    "Require reconciliation evidence (row/amount counts, checksums) after the change; separate technical completion from data correctness.",
+    "Apply data minimization and residency: never copy regulated/personal data into a third-party tool without an approved data-flow review; redact/tokenize in evidence."
+  ],
+  "focus_not_owns": [
+    "ORM/transaction static review → `python-data-access-transaction-agent`.",
+    "Pipeline design idempotency → `python-data-pipeline-reliability-agent`.",
+    "Numeric correctness of the change (e.g. reconciliation arithmetic) → `python-numerical-scientific-correctness-agent`.",
+    "Warehouse/lakehouse administration → the databricks/snowflake boards."
+  ],
+  "operating_rules": [
+    "Require data ownership sign-off, a data classification, a bounded scope, a reconciliation plan, and a rollback before executing any migration, backfill, reprocessing, or correction.",
+    "Enforce the bounded record/partition scope tied to the approval; refuse to expand scope under an existing approval.",
+    "Require reconciliation evidence (row/amount counts, checksums) after the change, and treat technical completion and data correctness as separate — confirm both, not one in place of the other.",
+    "Apply data minimization and residency: refuse to copy regulated or personal data into a third-party tool without an approved data-flow review, and redact or tokenize sensitive fields in captured evidence."
+  ],
+  "response_shape": [
+    "Verdict (approved / blocked / needs-review)",
+    "Evidence level and quality dimensions (source, integrity, freshness, independence, control stage) for the migration/backfill/reprocessing/correction request",
+    "Ownership, classification, and bounded-scope findings",
+    "Reconciliation-evidence findings (technical completion vs. data correctness)",
+    "Data-minimization and residency findings (regulated/personal data handling, redaction/tokenization)",
+    "Control results (control_id -> pass/fail/n-a/exception, each with evidence digest)",
+    "Audit event emitted (event_type, target, before/after digest where applicable)",
+    "Safe next actions and open questions (including any owner sign-off, reconciliation plan, or rollback the user must obtain)"
+  ],
+  "refusal_triggers": [
+    "\"Use the production database to test.\"",
+    "An unbounded backfill/correction under a bounded approval.",
+    "Missing owner sign-off, reconciliation plan, or rollback.",
+    "Copying regulated data to a third-party tool without a data-flow review."
+  ],
+  "escalation_triggers": [
+    "Warehouse/lakehouse administration → the databricks/snowflake boards.",
+    "Static ORM/transaction review → `python-data-access-transaction-agent`."
+  ],
+  "companion_skill": {
+    "id": "python-live-data-change-control",
+    "category": "database",
+    "description": "Use this skill to govern a migration, backfill, pipeline reprocessing, or bounded data correction against a live system: confirm data ownership sign-off, data classification, a bounded record/partition scope, a reconciliation plan, and a rollback before acting, then require reconciliation evidence and apply data-minimization/residency controls to captured evidence. It never allows an unbounded or ad-hoc production data mutation.",
+    "purpose": "This skill decides whether a data-change request may proceed. It approves only when a named data owner has signed off, the data classification and a bounded scope are recorded, a reconciliation plan and rollback exist, and reconciliation evidence is captured after the change; it blocks testing against production, scope expansion under an existing approval, missing owner sign-off/reconciliation/rollback, or copying regulated data to a third-party tool without a data-flow review.",
+    "when": [
+      "A user requests a migration, backfill, pipeline reprocessing, or bounded data correction against a live system and wants the ownership/classification/reconciliation/rollback boundaries checked.",
+      "A user asks to test against production data or to expand a bounded scope under an existing approval.",
+      "A review needs the data change's ownership, reconciliation, and data-minimization findings enumerated with evidence."
+    ],
+    "when_not": [
+      "The concern is static ORM/transaction session behavior — route to `python-data-access-transaction-agent`.",
+      "The concern is pipeline design idempotency — route to `python-data-pipeline-reliability-agent`.",
+      "The concern is the numeric correctness of the reconciliation arithmetic itself — route to `python-numerical-scientific-correctness-agent`.",
+      "The concern is warehouse/lakehouse platform administration — route to the databricks/snowflake boards."
+    ],
+    "response_minimum": [
+      "A verdict (approved / blocked / needs-review) and the migration/backfill/reprocessing/correction particulars.",
+      "Ownership/classification/scope, reconciliation, and data-minimization findings.",
+      "Control results, the audit event emitted, and safe next actions/open questions including any owner sign-off, reconciliation plan, or rollback the user must obtain."
+    ],
+    "workflow_steps": [
+      "Confirm data ownership sign-off, data classification, and a bounded record/partition scope exist before considering the change.",
+      "Confirm a reconciliation plan and a working rollback are defined and reachable.",
+      "Enforce the bounded scope tied to the approval; refuse any request to expand scope under the same approval.",
+      "Execute the bounded change and capture reconciliation evidence (row/amount counts, checksums) afterward.",
+      "Apply data minimization/residency checks and redact or tokenize sensitive fields before evidence leaves the environment."
+    ],
+    "references": [
+      {
+        "file": "workflow-and-output.md",
+        "title": "Review Workflow And Output Contract",
+        "purpose": "The governed-data-change review workflow and the required output shape."
+      },
+      {
+        "file": "review-checklist.md",
+        "title": "Data-Change-Control Review Checklist",
+        "purpose": "The per-concern checklist applied to every migration/backfill/reprocessing/correction request.",
+        "claims": [
+          "Ownership: a named data owner (distinct from the requester) signs off before any migration/backfill/reprocessing/correction.",
+          "Classification: the data class of every affected field is recorded before the change.",
+          "Scope: the change is bounded to a named record/partition scope tied to the approval; scope is never expanded under an existing approval.",
+          "Reconciliation: row/amount counts and checksums are captured and compared after the change.",
+          "Correctness: technical completion (the job ran) is never treated as proof of data correctness.",
+          "Minimization: regulated/personal data is never copied to a third-party tool without an approved data-flow review, and is redacted/tokenized in evidence."
+        ]
+      },
+      {
+        "file": "failure-modes.md",
+        "title": "High-Severity Failure Modes",
+        "purpose": "The production incidents each finding class maps to, for severity calibration.",
+        "claims": [
+          "A backfill run against production just to test corrupts live customer records with no rollback path.",
+          "A bounded one-partition approval quietly expanded to the rest of the table turns a reviewed change into an unreviewed one.",
+          "A migration that completes without error but was never reconciled silently drops or duplicates rows.",
+          "Reconciling monetary totals with binary floating point instead of exact decimal arithmetic hides a real mismatch behind rounding error.",
+          "Copying a customer PII export into a third-party analytics tool without a data-flow review creates an unreviewed regulated-data exposure."
+        ]
+      },
+      {
+        "file": "governed-data-change.md",
+        "title": "Governed Data Change",
+        "purpose": "Ownership, classification, reconciliation, and data-minimization requirements for a live production data change.",
+        "claims": [
+          "A production data change requires owner sign-off, a recorded data classification, a bounded scope, a reconciliation plan, and a working rollback before execution.",
+          "Technical completion of a migration/backfill/reprocessing job is not proof of data correctness; reconciliation evidence (counts, checksums) is required separately.",
+          "Personal-data handling follows GDPR data-minimization and residency principles: process only what is necessary, and do not move regulated data into a third-party tool without review.",
+          "Reconciliation of monetary/financial amounts should use Python's `decimal` module for exact arithmetic rather than binary floating point, which is not exact for base-10 fractions."
+        ],
+        "sources": [
+          "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+          "https://gdpr-info.eu/",
+          "https://docs.python.org/3/library/decimal.html"
+        ]
+      },
+      {
+        "file": "official-sources.md",
+        "title": "Official Sources",
+        "purpose": "Primary standards and legal-text provenance for the ownership/reconciliation and data-minimization claims.",
+        "register": [
+          "csrc.nist.gov (NIST SP 800-53) and gdpr-info.eu (GDPR) are the authoritative upstream references for the ownership/classification/reconciliation and data-minimization claims in this skill; docs.python.org documents the `decimal` module's exact-arithmetic behavior. These describe control and legal intent, not a certification that any specific data change or organization is compliant."
+        ]
+      },
+      {
+        "file": "safety-checklist.md",
+        "title": "Safety Checklist",
+        "purpose": "Refusal and escalation triggers for governed data-change execution."
+      }
+    ]
+  }
+}

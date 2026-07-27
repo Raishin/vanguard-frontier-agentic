@@ -16178,6 +16178,427 @@
     ]
   },
   {
+    "id": "python-live-change-plan-agent",
+    "name": "Python Live Change Plan Agent",
+    "type": "agent",
+    "provider": "python",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Produces normalized change plans, diffs, rollback procedures, verification criteria, and action digests. Has no production credentials.",
+    "source_type": "original",
+    "official_docs": [
+      "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+      "https://docs.python.org/3/",
+      "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+    ],
+    "security_notes": "Read-only-runtime: produces change plans, diffs, rollback procedures, verification criteria, and action digests from supplied artifacts only; holds no production credentials and executes nothing. Emits an audit event for every plan produced, never uses shared or standing credentials, never retrieves raw secret values, and redacts personally identifiable fields from any artifact quoted in the plan.",
+    "last_verified": "2026-07-26",
+    "path": "agents/python/python-live-change-plan-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "python-live-change-plan"
+    ]
+  },
+  {
+    "id": "python-live-code-remediation-agent",
+    "name": "Python Live Code Remediation Agent",
+    "type": "agent",
+    "provider": "python",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Creates a branch and pull request and runs approved isolated validation for a code/dependency remediation. Cannot merge, deploy, or weaken policy.",
+    "source_type": "original",
+    "official_docs": [
+      "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+      "https://packaging.python.org/en/latest/",
+      "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+    ],
+    "security_notes": "Mutating-runtime, limited to creating a branch/pull request and running approved isolated non-production validation: never merges, deploys, or weakens a policy/gate/test. Emits an audit event for every branch/PR creation and validation result, never uses shared or standing credentials, never retrieves raw secret values, and redacts personally identifiable fields from any artifact quoted in the PR. Requires an external, target-bound approval, target-scoped just-in-time credentials, and a pre-approved rollback (revert) before creating the branch/PR or running validation.",
+    "last_verified": "2026-07-26",
+    "path": "agents/python/python-live-code-remediation-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "python-live-code-remediation"
+    ]
+  },
+  {
+    "id": "python-live-continuous-control-testing-agent",
+    "name": "Python Live Continuous Control Testing Agent",
+    "type": "agent",
+    "provider": "python",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Periodically checks whether controls continue operating. Read-only by default. Opens findings with owners and due dates rather than silently remediating high-risk failures.",
+    "source_type": "original",
+    "official_docs": [
+      "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+      "https://www.nist.gov/cyberframework",
+      "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+    ],
+    "security_notes": "Read-only-runtime by default: tests whether controls continue operating and opens findings with named owners and due dates; never mutates or silently remediates a production failure. Emits an immutable audit event for every observation; never uses shared or standing credentials; never retrieves raw secret values; redacts PII in captured evidence.",
+    "last_verified": "2026-07-26",
+    "path": "agents/python/python-live-continuous-control-testing-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "python-live-continuous-control-testing"
+    ]
+  },
+  {
+    "id": "python-live-control-evidence-agent",
+    "name": "Python Live Control Evidence Agent",
+    "type": "agent",
+    "provider": "python",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Collects, hashes, and stores control evidence in an approved destination and maps it to controls. Cannot approve or execute.",
+    "source_type": "original",
+    "official_docs": [
+      "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+      "https://www.aicpa-cima.com/resources/landing/system-and-organization-controls-soc-suite-of-services",
+      "https://docs.python.org/3/library/hashlib.html"
+    ],
+    "security_notes": "Read-only-runtime: collects, hashes, and seals control evidence to an approved destination and maps it to controls; never mutates a live system, approves, or executes. Emits an immutable audit event for every observation; never uses shared or standing credentials; never retrieves raw secret values; redacts and tokenizes PII/sensitive fields before sealing, and never persists secrets.",
+    "last_verified": "2026-07-26",
+    "path": "agents/python/python-live-control-evidence-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "python-live-control-evidence"
+    ]
+  },
+  {
+    "id": "python-live-data-change-control-agent",
+    "name": "Python Live Data Change Control Agent",
+    "type": "agent",
+    "provider": "python",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Governs migrations, backfills, pipeline reprocessing, and bounded data correction. Requires ownership, data classification, reconciliation evidence, and rollback evidence.",
+    "source_type": "original",
+    "official_docs": [
+      "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+      "https://gdpr-info.eu/",
+      "https://docs.python.org/3/library/decimal.html"
+    ],
+    "security_notes": "Mutating-runtime: executes an approved, bounded migration, backfill, pipeline reprocessing, or data correction. Emits an immutable audit event for every observation and action; never uses shared or standing credentials — only target-scoped, time-bound JIT credentials; never retrieves raw secret values; redacts and tokenizes PII/regulated fields in captured evidence. Requires an external signed approval bound to the exact target and plan digest, JIT credentials, a pre-approved rollback, and reconciliation evidence before any action, and acts on exactly one bounded record/partition scope per approval — never an unbounded or expanded scope.",
+    "last_verified": "2026-07-26",
+    "path": "agents/python/python-live-data-change-control-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "python-live-data-change-control"
+    ]
+  },
+  {
+    "id": "python-live-exception-governance-agent",
+    "name": "Python Live Exception Governance Agent",
+    "type": "agent",
+    "provider": "python",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Records policy exceptions and confirms owner, scope, expiration, compensating controls, and review date. Cannot approve its own exception. Automatically flags expired exceptions.",
+    "source_type": "original",
+    "official_docs": [
+      "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+      "https://www.iso.org/standard/27001",
+      "https://csrc.nist.gov/glossary/term/separation_of_duty"
+    ],
+    "security_notes": "Read-only-runtime: records and reviews policy exceptions and flags expired or incomplete ones; never approves, executes, or mutates a live system. Emits an immutable audit event for every observation; never uses shared or standing credentials; never retrieves raw secret values; redacts PII in captured evidence.",
+    "last_verified": "2026-07-26",
+    "path": "agents/python/python-live-exception-governance-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "python-live-exception-governance"
+    ]
+  },
+  {
+    "id": "python-live-governance-maestro-agent",
+    "name": "Python Live Governance Maestro",
+    "type": "agent",
+    "provider": "python",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Router for the Python live control plane. Classifies runtime, business process, data class, environment, and control profile, and routes to the narrowest live specialist. Routes only — cannot mutate, cannot approve, cannot declare compliance.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.nist.gov/cyberframework",
+      "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+      "https://owasp.org/www-project-top-10-for-large-language-model-applications/",
+      "https://docs.python.org/3/"
+    ],
+    "security_notes": "Read-only-runtime: classifies and routes only, never mutates, approves, or executes anything itself. Emits an audit event for every routing decision, never uses shared or standing credentials, never retrieves raw secret values, and redacts personally identifiable fields from any task text or artifact it classifies.",
+    "last_verified": "2026-07-26",
+    "path": "agents/python/python-live-governance-maestro-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "python-live-governance-maestro"
+    ]
+  },
+  {
+    "id": "python-live-identity-authority-agent",
+    "name": "Python Live Identity and Authority Agent",
+    "type": "agent",
+    "provider": "python",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Confirms active identity, role, credential age, target scope, JIT status, and approval authority before any gated action. Read-only. Blocks shared identities, unidentified principals, standing administrative credentials, and requester-as-approver conflicts.",
+    "source_type": "original",
+    "official_docs": [
+      "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+      "https://csrc.nist.gov/glossary/term/separation_of_duty",
+      "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+    ],
+    "security_notes": "Read-only-runtime: verifies identity, credential currency, JIT scope, and approval authority via allowlisted identity/access queries only; never grants, elevates, or approves an action itself. Emits an audit event for every verification, never uses shared or standing credentials, never retrieves raw secret values or credential material, and redacts personally identifiable fields from captured evidence.",
+    "last_verified": "2026-07-26",
+    "path": "agents/python/python-live-identity-authority-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "python-live-identity-authority"
+    ]
+  },
+  {
+    "id": "python-live-job-control-agent",
+    "name": "Python Live Job Control Agent",
+    "type": "agent",
+    "provider": "python",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Operates distributed jobs and business automation. Requires technical and business idempotency, and separates process completion from business completion.",
+    "source_type": "original",
+    "official_docs": [
+      "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+      "https://docs.celeryq.dev/en/stable/userguide/tasks.html",
+      "https://www.aicpa-cima.com/resources/landing/system-and-organization-controls-soc-suite-of-services"
+    ],
+    "security_notes": "Mutating-runtime: operates an approved, bounded distributed job or business-automation retry/requeue. Emits an immutable audit event for every observation and action; never uses shared or standing credentials — only target-scoped, time-bound JIT credentials; never retrieves raw secret values; redacts PII in captured evidence. Requires an external signed approval bound to the exact target and plan digest, JIT credentials, a pre-approved rollback, and business-outcome reconciliation before any action, and acts on exactly one bounded job/retry scope per approval — never a blind mass-retry or expanded scope.",
+    "last_verified": "2026-07-26",
+    "path": "agents/python/python-live-job-control-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "python-live-job-control"
+    ]
+  },
+  {
+    "id": "python-live-model-promotion-control-agent",
+    "name": "Python Live Model Promotion Control Agent",
+    "type": "agent",
+    "provider": "python",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Promotes exactly one immutable model artifact. Requires risk classification, evaluation evidence, monitoring, and rollback.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.nist.gov/itl/ai-risk-management-framework",
+      "https://eur-lex.europa.eu/eli/reg/2024/1689/oj",
+      "https://www.iso.org/standard/81230.html"
+    ],
+    "security_notes": "Mutating-runtime: promotes exactly one immutable, integrity-verified model artifact per approval. Emits an immutable audit event for every observation and action; never uses shared or standing credentials — only target-scoped, time-bound JIT credentials; never retrieves raw secret values; redacts PII in captured evidence. Requires an external signed approval bound to the exact target and plan digest, JIT credentials, a pre-approved rollback to the prior artifact, and evaluation/monitoring reconciliation before any action, and acts on exactly one bounded artifact-promotion scope per approval — never multiple artifacts or an expanded scope.",
+    "last_verified": "2026-07-26",
+    "path": "agents/python/python-live-model-promotion-control-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "python-live-model-promotion-control"
+    ]
+  },
+  {
+    "id": "python-live-policy-gate-agent",
+    "name": "Python Live Policy Gate Agent",
+    "type": "agent",
+    "provider": "python",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Evaluates machine-readable policies and control applicability against an action and its recorded inputs. Cannot create exceptions or approvals.",
+    "source_type": "original",
+    "official_docs": [
+      "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+      "https://www.nist.gov/cyberframework",
+      "https://eur-lex.europa.eu/eli/reg/2024/1689/oj"
+    ],
+    "security_notes": "Read-only-runtime: evaluates the versioned policy bundle and applicability inputs to produce candidate control results only; never creates an exception or an approval. Emits an audit event recording the policy_bundle_version for every evaluation, never uses shared or standing credentials, never retrieves raw secret values, and redacts personally identifiable fields from evaluation inputs.",
+    "last_verified": "2026-07-26",
+    "path": "agents/python/python-live-policy-gate-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "python-live-policy-gate"
+    ]
+  },
+  {
+    "id": "python-live-release-control-agent",
+    "name": "Python Live Release Control Agent",
+    "type": "agent",
+    "provider": "python",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Executes one bounded release, canary increment, rollback, or single-instance restart. Requires independent approval and just-in-time credentials.",
+    "source_type": "original",
+    "official_docs": [
+      "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+      "https://www.aicpa-cima.com/resources/landing/system-and-organization-controls-soc-suite-of-services",
+      "https://docs.python.org/3/"
+    ],
+    "security_notes": "Mutating-runtime: executes exactly one bounded release, canary increment, rollback, or single-instance restart per independent approval. Emits an immutable audit event for every observation and action; never uses shared or standing credentials — only target-scoped, time-bound JIT credentials; never retrieves raw secret values; redacts PII in captured evidence. Requires an external signed approval bound to the exact target and plan digest, JIT credentials, a pre-approved rollback, and reconciliation before any action, and acts on exactly one bounded scope per approval — never a fleet-wide, unbounded, or expanded scope.",
+    "last_verified": "2026-07-26",
+    "path": "agents/python/python-live-release-control-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "python-live-release-control"
+    ]
+  },
+  {
+    "id": "python-live-rollback-and-recovery-agent",
+    "name": "Python Live Rollback and Recovery Agent",
+    "type": "agent",
+    "provider": "python",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Executes only previously approved rollback procedures. Cannot invent a rollback during an active failure. Requires the exact affected target and rollback authority.",
+    "source_type": "original",
+    "official_docs": [
+      "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+      "https://www.nist.gov/cyberframework",
+      "https://docs.python.org/3/"
+    ],
+    "security_notes": "Mutating-runtime: executes only a previously approved, tested rollback procedure against the exact affected target. Emits an immutable audit event for every observation and action; never uses shared or standing credentials — only target-scoped, time-bound JIT credentials; never retrieves raw secret values; redacts PII in captured evidence. Requires an external signed approval bound to the exact affected target, JIT credentials, confirmation the rollback procedure was itself pre-approved and tested, and post-rollback reconciliation before executing, and acts on exactly one bounded affected-target scope per approval — never an improvised rollback or an additional target.",
+    "last_verified": "2026-07-26",
+    "path": "agents/python/python-live-rollback-and-recovery-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "python-live-rollback-and-recovery"
+    ]
+  },
+  {
+    "id": "python-live-runtime-control-agent",
+    "name": "Python Live Runtime Control Agent",
+    "type": "agent",
+    "provider": "python",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reads live interpreter, process, worker, task, thread, memory, and health state and performs allowlisted diagnostics. Cannot change application state.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.python.org/3/library/sys.html",
+      "https://docs.python.org/3/library/gc.html",
+      "https://docs.python.org/3/library/faulthandler.html"
+    ],
+    "security_notes": "Read-only-runtime: captures interpreter, process, worker, thread, memory, and health state via allowlisted read-only diagnostics only (sys, gc, faulthandler) and never restarts, kills, scales, or reconfigures a process. Emits an audit event for every diagnostic read, never uses shared or standing credentials, never retrieves raw secret values, and redacts personally identifiable fields captured in a diagnostic dump.",
+    "last_verified": "2026-07-26",
+    "path": "agents/python/python-live-runtime-control-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "python-live-runtime-control"
+    ]
+  },
+  {
+    "id": "python-live-system-inventory-agent",
+    "name": "Python Live System Inventory Agent",
+    "type": "agent",
+    "provider": "python",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Read-only discovery of Python runtimes, services, jobs, notebooks, packages, owners, environments, deployment revisions, service identities, and criticality. Produces asset and ownership evidence. Never retrieves raw credentials.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.python.org/3/library/importlib.metadata.html",
+      "https://packaging.python.org/en/latest/",
+      "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final"
+    ],
+    "security_notes": "Read-only-runtime: discovers assets via allowlisted list/get/describe queries only and never mutates a discovered asset. Emits an audit event for every discovery query, never uses shared or standing credentials, never retrieves raw secret values, keystores, or tokens, and redacts personally identifiable fields from any captured evidence.",
+    "last_verified": "2026-07-26",
+    "path": "agents/python/python-live-system-inventory-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "python-live-system-inventory"
+    ]
+  },
+  {
     "id": "python-maestro-agent",
     "name": "Python Maestro",
     "type": "agent",

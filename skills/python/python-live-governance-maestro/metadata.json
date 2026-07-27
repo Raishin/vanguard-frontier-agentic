@@ -1,0 +1,27 @@
+{
+  "id": "python-live-governance-maestro",
+  "name": "python-live-governance-maestro",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Router for the Python live control plane. Classifies runtime, business process, data class, environment, and control profile, and routes to the narrowest live specialist. Routes only — cannot mutate, cannot approve, cannot declare compliance.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.nist.gov/cyberframework",
+    "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+    "https://owasp.org/www-project-top-10-for-large-language-model-applications/",
+    "https://docs.python.org/3/"
+  ],
+  "security_notes": "Read-only-runtime: classifies and routes only, never mutates, approves, or executes anything itself. Emits an audit event for every routing decision, never uses shared or standing credentials, never retrieves raw secret values, and redacts personally identifiable fields from any task text or artifact it classifies.",
+  "last_verified": "2026-07-26",
+  "path": "skills/python/python-live-governance-maestro",
+  "author": "github: Raishin"
+}

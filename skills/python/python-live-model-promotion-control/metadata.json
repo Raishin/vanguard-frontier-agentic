@@ -1,0 +1,26 @@
+{
+  "id": "python-live-model-promotion-control",
+  "name": "python-live-model-promotion-control",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Promotes exactly one immutable model artifact. Requires risk classification, evaluation evidence, monitoring, and rollback.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.nist.gov/itl/ai-risk-management-framework",
+    "https://eur-lex.europa.eu/eli/reg/2024/1689/oj",
+    "https://www.iso.org/standard/81230.html"
+  ],
+  "security_notes": "Mutating-runtime: promotes exactly one immutable, integrity-verified model artifact per approval. Emits an immutable audit event for every observation and action; never uses shared or standing credentials — only target-scoped, time-bound JIT credentials; never retrieves raw secret values; redacts PII in captured evidence. Requires an external signed approval bound to the exact target and plan digest, JIT credentials, a pre-approved rollback to the prior artifact, and evaluation/monitoring reconciliation before any action, and acts on exactly one bounded artifact-promotion scope per approval — never multiple artifacts or an expanded scope.",
+  "last_verified": "2026-07-26",
+  "path": "skills/python/python-live-model-promotion-control",
+  "author": "github: Raishin"
+}

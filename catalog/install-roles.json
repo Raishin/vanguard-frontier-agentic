@@ -1981,6 +1981,116 @@
         "python-developer-tooling-build",
         "python-performance-memory"
       ]
+    },
+    "python-live-platform-operator": {
+      "label": "Python Live Platform Operator",
+      "description": "Live control-plane operations for platform reliability, routed through the live governance maestro: runtime inventory, read-only diagnostics, continuous control testing, bounded release control, and pre-approved rollback. Mutating operators are live-guard gated — never auto-dispatched; every R3+ action requires independent approval, JIT credentials, and audit evidence.",
+      "agents": [
+        "python-live-governance-maestro-agent",
+        "python-live-system-inventory-agent",
+        "python-live-runtime-control-agent",
+        "python-live-continuous-control-testing-agent",
+        "python-live-release-control-agent",
+        "python-live-rollback-and-recovery-agent"
+      ],
+      "skills": [
+        "python-live-governance-maestro",
+        "python-live-system-inventory",
+        "python-live-runtime-control",
+        "python-live-continuous-control-testing",
+        "python-live-release-control",
+        "python-live-rollback-and-recovery"
+      ]
+    },
+    "python-live-security-operator": {
+      "label": "Python Live Security Operator",
+      "description": "Live control-plane security operations routed through the live governance maestro: identity and authority verification, bounded dependency remediation (branch/PR), policy-gate evaluation, control-evidence collection, and continuous control testing. Read-only by default; the one mutating operator (code remediation) is live-guard gated and cannot merge or deploy.",
+      "agents": [
+        "python-live-governance-maestro-agent",
+        "python-live-identity-authority-agent",
+        "python-live-code-remediation-agent",
+        "python-live-policy-gate-agent",
+        "python-live-control-evidence-agent",
+        "python-live-continuous-control-testing-agent"
+      ],
+      "skills": [
+        "python-live-governance-maestro",
+        "python-live-identity-authority",
+        "python-live-code-remediation",
+        "python-live-policy-gate",
+        "python-live-control-evidence",
+        "python-live-continuous-control-testing"
+      ]
+    },
+    "python-live-data-operator": {
+      "label": "Python Live Data Operator",
+      "description": "Live control-plane data operations routed through the live governance maestro: governed database change, pipeline backfill/reprocessing, distributed job control with technical and business idempotency, and change planning with reconciliation and rollback. Mutating operators are live-guard gated; no unbounded or ad-hoc production data mutation.",
+      "agents": [
+        "python-live-governance-maestro-agent",
+        "python-live-data-change-control-agent",
+        "python-live-job-control-agent",
+        "python-live-change-plan-agent"
+      ],
+      "skills": [
+        "python-live-governance-maestro",
+        "python-live-data-change-control",
+        "python-live-job-control",
+        "python-live-change-plan"
+      ]
+    },
+    "python-live-ml-governance-operator": {
+      "label": "Python Live ML Governance Operator",
+      "description": "Live control-plane ML governance routed through the live governance maestro: immutable model-artifact promotion with risk classification and evaluation evidence, control-evidence collection, policy-gate AI-risk checks, and rollback. Makes no EU AI Act conformity or compliance determination — those are owner determinations.",
+      "agents": [
+        "python-live-governance-maestro-agent",
+        "python-live-model-promotion-control-agent",
+        "python-live-control-evidence-agent",
+        "python-live-policy-gate-agent",
+        "python-live-rollback-and-recovery-agent"
+      ],
+      "skills": [
+        "python-live-governance-maestro",
+        "python-live-model-promotion-control",
+        "python-live-control-evidence",
+        "python-live-policy-gate",
+        "python-live-rollback-and-recovery"
+      ]
+    },
+    "python-live-automation-control-owner": {
+      "label": "Python Live Automation Control Owner",
+      "description": "Live control-plane governance of business-critical automation routed through the live governance maestro: job control, identity/approval authority, control-evidence, and exception governance. Separates permission from authority and execution from approval; records time-boxed exceptions with owners and expiry.",
+      "agents": [
+        "python-live-governance-maestro-agent",
+        "python-live-job-control-agent",
+        "python-live-identity-authority-agent",
+        "python-live-control-evidence-agent",
+        "python-live-exception-governance-agent"
+      ],
+      "skills": [
+        "python-live-governance-maestro",
+        "python-live-job-control",
+        "python-live-identity-authority",
+        "python-live-control-evidence",
+        "python-live-exception-governance"
+      ]
+    },
+    "python-live-audit-and-compliance-reviewer": {
+      "label": "Python Live Audit and Compliance Reviewer",
+      "description": "Read-only live control-plane audit and compliance review routed through the live governance maestro: control-evidence collection, policy-gate control mapping, continuous control testing, and exception review. Contains NO mutating agents — reviews and tests controls, never executes changes, and never declares compliance.",
+      "agents": [
+        "python-live-governance-maestro-agent",
+        "python-live-control-evidence-agent",
+        "python-live-policy-gate-agent",
+        "python-live-continuous-control-testing-agent",
+        "python-live-exception-governance-agent"
+      ],
+      "skills": [
+        "python-live-governance-maestro",
+        "python-live-control-evidence",
+        "python-live-policy-gate",
+        "python-live-continuous-control-testing",
+        "python-live-exception-governance"
+      ]
     }
   }
 }

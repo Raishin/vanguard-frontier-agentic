@@ -1,0 +1,26 @@
+{
+  "id": "python-live-rollback-and-recovery",
+  "name": "python-live-rollback-and-recovery",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Executes only previously approved rollback procedures. Cannot invent a rollback during an active failure. Requires the exact affected target and rollback authority.",
+  "source_type": "original",
+  "official_docs": [
+    "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+    "https://www.nist.gov/cyberframework",
+    "https://docs.python.org/3/"
+  ],
+  "security_notes": "Mutating-runtime: executes only a previously approved, tested rollback procedure against the exact affected target. Emits an immutable audit event for every observation and action; never uses shared or standing credentials — only target-scoped, time-bound JIT credentials; never retrieves raw secret values; redacts PII in captured evidence. Requires an external signed approval bound to the exact affected target, JIT credentials, confirmation the rollback procedure was itself pre-approved and tested, and post-rollback reconciliation before executing, and acts on exactly one bounded affected-target scope per approval — never an improvised rollback or an additional target.",
+  "last_verified": "2026-07-26",
+  "path": "skills/python/python-live-rollback-and-recovery",
+  "author": "github: Raishin"
+}

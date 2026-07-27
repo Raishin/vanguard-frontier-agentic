@@ -33,7 +33,7 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "d0af08d43f374c60f904133b8508c68fee9327cccc0bffcd9502e3af9b312b24",
+      "aggregate_sha256": "4a503c402535108aaec4a048c7857898e202374d1eca4e345743e24473a25296",
       "files": [
         {
           "path": "agents/AGENTS.md",
@@ -26641,6 +26641,686 @@
           "bytes": 2264
         },
         {
+          "path": "agents/python/python-live-change-plan-agent/AGENT.md",
+          "sha256": "7582ae8eee842d8c47c016cff393a1ac7d23ac8dfe461eda6bf17e381518fc85",
+          "bytes": 5654
+        },
+        {
+          "path": "agents/python/python-live-change-plan-agent/harnesses/claude-code.agent.md",
+          "sha256": "bcb8811ef4bca4905942941443d8a653f0b74a6bc0c6b1acd0f008c8811e10c6",
+          "bytes": 5041
+        },
+        {
+          "path": "agents/python/python-live-change-plan-agent/harnesses/codex.toml",
+          "sha256": "92b24840b99d4cf8cd5c8a62f830f2c56861f2d061c5f43906f25016f7c1d9b5",
+          "bytes": 4056
+        },
+        {
+          "path": "agents/python/python-live-change-plan-agent/harnesses/copilot.agent.md",
+          "sha256": "07e71200239ca9231ec08eae006775d00c3b21adcb5a2930fac755026d2f4be6",
+          "bytes": 5163
+        },
+        {
+          "path": "agents/python/python-live-change-plan-agent/harnesses/cursor.agent.md",
+          "sha256": "bcb8811ef4bca4905942941443d8a653f0b74a6bc0c6b1acd0f008c8811e10c6",
+          "bytes": 5041
+        },
+        {
+          "path": "agents/python/python-live-change-plan-agent/harnesses/gemini.agent.md",
+          "sha256": "bcb8811ef4bca4905942941443d8a653f0b74a6bc0c6b1acd0f008c8811e10c6",
+          "bytes": 5041
+        },
+        {
+          "path": "agents/python/python-live-change-plan-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "264eda25e7a6a1ecbd19422dddc728d08d9acbd33fa37e5fc49a916f1c9725d2",
+          "bytes": 5114
+        },
+        {
+          "path": "agents/python/python-live-change-plan-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "bcb8811ef4bca4905942941443d8a653f0b74a6bc0c6b1acd0f008c8811e10c6",
+          "bytes": 5041
+        },
+        {
+          "path": "agents/python/python-live-change-plan-agent/metadata.json",
+          "sha256": "d643dafbbd6d62f578946f2cc00cc6f91b994286ee4b8adc03e8a815ccdc631e",
+          "bytes": 1971
+        },
+        {
+          "path": "agents/python/python-live-code-remediation-agent/AGENT.md",
+          "sha256": "d8758d470dfd2ea6f9bf619b91d893491e56cb4342912d5a61fb5512081c23aa",
+          "bytes": 5740
+        },
+        {
+          "path": "agents/python/python-live-code-remediation-agent/harnesses/claude-code.agent.md",
+          "sha256": "0fbd7aad2badb92ff22bb612262ad6a09559f8dcfe6dc96190baf5588c4615f6",
+          "bytes": 5122
+        },
+        {
+          "path": "agents/python/python-live-code-remediation-agent/harnesses/codex.toml",
+          "sha256": "1d56387c8baafd61a04af18b00cece5db721602495e2e6d262315dfdaf07d4a7",
+          "bytes": 4071
+        },
+        {
+          "path": "agents/python/python-live-code-remediation-agent/harnesses/copilot.agent.md",
+          "sha256": "2c58c292739f8e3cf729c6ffff90aaf002910caf4e2cf6a067b3e94afb5a623c",
+          "bytes": 5244
+        },
+        {
+          "path": "agents/python/python-live-code-remediation-agent/harnesses/cursor.agent.md",
+          "sha256": "0fbd7aad2badb92ff22bb612262ad6a09559f8dcfe6dc96190baf5588c4615f6",
+          "bytes": 5122
+        },
+        {
+          "path": "agents/python/python-live-code-remediation-agent/harnesses/gemini.agent.md",
+          "sha256": "0fbd7aad2badb92ff22bb612262ad6a09559f8dcfe6dc96190baf5588c4615f6",
+          "bytes": 5122
+        },
+        {
+          "path": "agents/python/python-live-code-remediation-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "90dc0d6f5afd789e46cdd459e4d1cc25ca5c637b2b9c9048dd68870fa1dcfd7c",
+          "bytes": 5195
+        },
+        {
+          "path": "agents/python/python-live-code-remediation-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "0fbd7aad2badb92ff22bb612262ad6a09559f8dcfe6dc96190baf5588c4615f6",
+          "bytes": 5122
+        },
+        {
+          "path": "agents/python/python-live-code-remediation-agent/metadata.json",
+          "sha256": "52ee492d3675625f7295b1e5d517407ffc196dcc72b27448ac3bcd499fbe8f4b",
+          "bytes": 2224
+        },
+        {
+          "path": "agents/python/python-live-continuous-control-testing-agent/AGENT.md",
+          "sha256": "893f7d98e82ea390ab7d1ebc8107dc7384e37a24799cf3637e7f67d73f6a5dc3",
+          "bytes": 6973
+        },
+        {
+          "path": "agents/python/python-live-continuous-control-testing-agent/harnesses/claude-code.agent.md",
+          "sha256": "b7c0d5f28e23f88c1824637e2c67afe986bbed8167d558b775fc03fe959ab48c",
+          "bytes": 6345
+        },
+        {
+          "path": "agents/python/python-live-continuous-control-testing-agent/harnesses/codex.toml",
+          "sha256": "bd10b69c8abceb2ed31b560a2b58a6a472964dee24399b4c19e36504e65e1967",
+          "bytes": 4666
+        },
+        {
+          "path": "agents/python/python-live-continuous-control-testing-agent/harnesses/copilot.agent.md",
+          "sha256": "e095cc19122ae17c083c1fcd52e0bb86f32a1aa715516cf34622e185d8040f44",
+          "bytes": 6467
+        },
+        {
+          "path": "agents/python/python-live-continuous-control-testing-agent/harnesses/cursor.agent.md",
+          "sha256": "b7c0d5f28e23f88c1824637e2c67afe986bbed8167d558b775fc03fe959ab48c",
+          "bytes": 6345
+        },
+        {
+          "path": "agents/python/python-live-continuous-control-testing-agent/harnesses/gemini.agent.md",
+          "sha256": "b7c0d5f28e23f88c1824637e2c67afe986bbed8167d558b775fc03fe959ab48c",
+          "bytes": 6345
+        },
+        {
+          "path": "agents/python/python-live-continuous-control-testing-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "b76289485ee6fcc14ffa4a8ab386318d8369ec9fd37f7357fc9ad0cabc3a1091",
+          "bytes": 6418
+        },
+        {
+          "path": "agents/python/python-live-continuous-control-testing-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "b7c0d5f28e23f88c1824637e2c67afe986bbed8167d558b775fc03fe959ab48c",
+          "bytes": 6345
+        },
+        {
+          "path": "agents/python/python-live-continuous-control-testing-agent/metadata.json",
+          "sha256": "97c1ca851898c1291bcabddbc1ea0c2003974c91d68452cee424bc55528130c8",
+          "bytes": 2130
+        },
+        {
+          "path": "agents/python/python-live-control-evidence-agent/AGENT.md",
+          "sha256": "bfe260c745a12fba771d49e9728d2e10a478f8e8551d6408fcaaf7ec74e1440e",
+          "bytes": 5968
+        },
+        {
+          "path": "agents/python/python-live-control-evidence-agent/harnesses/claude-code.agent.md",
+          "sha256": "59d3b7106d7ec6f209c9975ae6b37f056d3dfe80579b1a8ab91360ac7a0eb0a1",
+          "bytes": 5350
+        },
+        {
+          "path": "agents/python/python-live-control-evidence-agent/harnesses/codex.toml",
+          "sha256": "efda7c084dccfb6bde93e10009838231162d067d170be7bef8e2239b25237cd5",
+          "bytes": 4208
+        },
+        {
+          "path": "agents/python/python-live-control-evidence-agent/harnesses/copilot.agent.md",
+          "sha256": "8e8348b2a77ff4b7700d0223ad1bf2e460ab7dd0d0a232b922b7f79e759a5104",
+          "bytes": 5472
+        },
+        {
+          "path": "agents/python/python-live-control-evidence-agent/harnesses/cursor.agent.md",
+          "sha256": "59d3b7106d7ec6f209c9975ae6b37f056d3dfe80579b1a8ab91360ac7a0eb0a1",
+          "bytes": 5350
+        },
+        {
+          "path": "agents/python/python-live-control-evidence-agent/harnesses/gemini.agent.md",
+          "sha256": "59d3b7106d7ec6f209c9975ae6b37f056d3dfe80579b1a8ab91360ac7a0eb0a1",
+          "bytes": 5350
+        },
+        {
+          "path": "agents/python/python-live-control-evidence-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "5963df6b2b24c14a69cf1de2a9c708960eb3eacb49816456a3d3d2b8b4a7a179",
+          "bytes": 5423
+        },
+        {
+          "path": "agents/python/python-live-control-evidence-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "59d3b7106d7ec6f209c9975ae6b37f056d3dfe80579b1a8ab91360ac7a0eb0a1",
+          "bytes": 5350
+        },
+        {
+          "path": "agents/python/python-live-control-evidence-agent/metadata.json",
+          "sha256": "1b6806f6cc32b346ce1b188ce0cb777ad74cda60fdb785d27eccd3b1ad73b883",
+          "bytes": 2045
+        },
+        {
+          "path": "agents/python/python-live-data-change-control-agent/AGENT.md",
+          "sha256": "465599823f43dba32e3763da73a3a18c3530525b56902663b40c9627c246689f",
+          "bytes": 6524
+        },
+        {
+          "path": "agents/python/python-live-data-change-control-agent/harnesses/claude-code.agent.md",
+          "sha256": "206a590c824cbb37151c7e4270bdb846a934d00ef67b2cefa68cf20c7ce2b923",
+          "bytes": 5903
+        },
+        {
+          "path": "agents/python/python-live-data-change-control-agent/harnesses/codex.toml",
+          "sha256": "8e24f0b09e7793a0e8c66bacac669f669ae4b8e5de061b7f0112b9969f0de22c",
+          "bytes": 4456
+        },
+        {
+          "path": "agents/python/python-live-data-change-control-agent/harnesses/copilot.agent.md",
+          "sha256": "fbd739e3dd5693aeea22a79a30a7b9744f6f6bc6acad0ac38d5a631c3cac00da",
+          "bytes": 6025
+        },
+        {
+          "path": "agents/python/python-live-data-change-control-agent/harnesses/cursor.agent.md",
+          "sha256": "206a590c824cbb37151c7e4270bdb846a934d00ef67b2cefa68cf20c7ce2b923",
+          "bytes": 5903
+        },
+        {
+          "path": "agents/python/python-live-data-change-control-agent/harnesses/gemini.agent.md",
+          "sha256": "206a590c824cbb37151c7e4270bdb846a934d00ef67b2cefa68cf20c7ce2b923",
+          "bytes": 5903
+        },
+        {
+          "path": "agents/python/python-live-data-change-control-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "6fed4a7f590fd6ef2bfb7fc8e8c721fad8f4a5f8415d6c9cb774a98357cc85da",
+          "bytes": 5979
+        },
+        {
+          "path": "agents/python/python-live-data-change-control-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "206a590c824cbb37151c7e4270bdb846a934d00ef67b2cefa68cf20c7ce2b923",
+          "bytes": 5903
+        },
+        {
+          "path": "agents/python/python-live-data-change-control-agent/metadata.json",
+          "sha256": "5b8fa60ac9c8ae5eafd03fc5bbb660fcc42cda3ffefc10c4f3b6d337a66fc507",
+          "bytes": 2309
+        },
+        {
+          "path": "agents/python/python-live-exception-governance-agent/AGENT.md",
+          "sha256": "72f9c76567702ed353fb4b4a6bc717d20a405a80d719b04b8e20ee9a26a67a3f",
+          "bytes": 5829
+        },
+        {
+          "path": "agents/python/python-live-exception-governance-agent/harnesses/claude-code.agent.md",
+          "sha256": "f7b6a66bf4f41f239d837a5ba0d4236073dce2d34e7c8367082b2580d59728ce",
+          "bytes": 5207
+        },
+        {
+          "path": "agents/python/python-live-exception-governance-agent/harnesses/codex.toml",
+          "sha256": "6667b2658537473bde2c8ef36df1ae40f8b957e45378cb8a011ec79835a84e97",
+          "bytes": 4108
+        },
+        {
+          "path": "agents/python/python-live-exception-governance-agent/harnesses/copilot.agent.md",
+          "sha256": "09bc3f82b9e9f227febc5f21dfebb5a72ce89c2c38d32920d9e6e8a9cae20773",
+          "bytes": 5329
+        },
+        {
+          "path": "agents/python/python-live-exception-governance-agent/harnesses/cursor.agent.md",
+          "sha256": "f7b6a66bf4f41f239d837a5ba0d4236073dce2d34e7c8367082b2580d59728ce",
+          "bytes": 5207
+        },
+        {
+          "path": "agents/python/python-live-exception-governance-agent/harnesses/gemini.agent.md",
+          "sha256": "f7b6a66bf4f41f239d837a5ba0d4236073dce2d34e7c8367082b2580d59728ce",
+          "bytes": 5207
+        },
+        {
+          "path": "agents/python/python-live-exception-governance-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "dda7364afa0b992e25e16d9210338d341bc143728d9611dba1f34c25b71d028a",
+          "bytes": 5280
+        },
+        {
+          "path": "agents/python/python-live-exception-governance-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "f7b6a66bf4f41f239d837a5ba0d4236073dce2d34e7c8367082b2580d59728ce",
+          "bytes": 5207
+        },
+        {
+          "path": "agents/python/python-live-exception-governance-agent/metadata.json",
+          "sha256": "17191312592121c5072590c36ab1924092cd988d14c9d62057128662ad1720bd",
+          "bytes": 2012
+        },
+        {
+          "path": "agents/python/python-live-governance-maestro-agent/AGENT.md",
+          "sha256": "8ccf27558d515df0bca9250c1a830bef94e4fd805f26d92a7e6a2ef772d59966",
+          "bytes": 3250
+        },
+        {
+          "path": "agents/python/python-live-governance-maestro-agent/README.md",
+          "sha256": "a9298e43e8a00430afeafa632707317478135fbf5141bd5ccc7dc2eb53ef6ac2",
+          "bytes": 4873
+        },
+        {
+          "path": "agents/python/python-live-governance-maestro-agent/harnesses/claude-code.agent.md",
+          "sha256": "68ed46e200b5c32d66a546abf684a48234130525049ddb4f2c6a2b41583d520c",
+          "bytes": 2630
+        },
+        {
+          "path": "agents/python/python-live-governance-maestro-agent/harnesses/codex.toml",
+          "sha256": "a35752e36be8c6d8ab450ab7d3f1a3349c3b3987f6d4038e9fbd248bcc807709",
+          "bytes": 2835
+        },
+        {
+          "path": "agents/python/python-live-governance-maestro-agent/harnesses/copilot.agent.md",
+          "sha256": "fe4479f665d58779c7411f552c1cf39c4108a52a6fe06db2c87353cf5094278c",
+          "bytes": 2752
+        },
+        {
+          "path": "agents/python/python-live-governance-maestro-agent/harnesses/cursor.agent.md",
+          "sha256": "68ed46e200b5c32d66a546abf684a48234130525049ddb4f2c6a2b41583d520c",
+          "bytes": 2630
+        },
+        {
+          "path": "agents/python/python-live-governance-maestro-agent/harnesses/gemini.agent.md",
+          "sha256": "68ed46e200b5c32d66a546abf684a48234130525049ddb4f2c6a2b41583d520c",
+          "bytes": 2630
+        },
+        {
+          "path": "agents/python/python-live-governance-maestro-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "dfd0a144cb936f4b7fb632ccc1350425be4cab8dbb0e46cb45f1abf9633e3702",
+          "bytes": 2689
+        },
+        {
+          "path": "agents/python/python-live-governance-maestro-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "68ed46e200b5c32d66a546abf684a48234130525049ddb4f2c6a2b41583d520c",
+          "bytes": 2630
+        },
+        {
+          "path": "agents/python/python-live-governance-maestro-agent/metadata.json",
+          "sha256": "a7ffb3ea0c96d62d02de419ba8f4891f4ba9892d6f3f2fc6824c773c7d0dbaa9",
+          "bytes": 2110
+        },
+        {
+          "path": "agents/python/python-live-identity-authority-agent/AGENT.md",
+          "sha256": "918104e281d0d5184b980171212a2f3c8208d9c4b7445d441cc9a619a85114f6",
+          "bytes": 6275
+        },
+        {
+          "path": "agents/python/python-live-identity-authority-agent/harnesses/claude-code.agent.md",
+          "sha256": "808f58a030e433b7947e276f35676c6951a8cc93f9a6caafeacf965363afede8",
+          "bytes": 5655
+        },
+        {
+          "path": "agents/python/python-live-identity-authority-agent/harnesses/codex.toml",
+          "sha256": "9306487e285bfd07c8720f9a9a4c76919cd53ef5fd8812c111705fd7bdee1689",
+          "bytes": 4449
+        },
+        {
+          "path": "agents/python/python-live-identity-authority-agent/harnesses/copilot.agent.md",
+          "sha256": "570ed933e1885f0b42285787bc0d389cbf6fb7e51f623dd3dea420a89b88ce59",
+          "bytes": 5777
+        },
+        {
+          "path": "agents/python/python-live-identity-authority-agent/harnesses/cursor.agent.md",
+          "sha256": "808f58a030e433b7947e276f35676c6951a8cc93f9a6caafeacf965363afede8",
+          "bytes": 5655
+        },
+        {
+          "path": "agents/python/python-live-identity-authority-agent/harnesses/gemini.agent.md",
+          "sha256": "808f58a030e433b7947e276f35676c6951a8cc93f9a6caafeacf965363afede8",
+          "bytes": 5655
+        },
+        {
+          "path": "agents/python/python-live-identity-authority-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "d6d4cfef986070b5c59cee3bdf09724d84a602186f087f8666da4433ceea2e79",
+          "bytes": 5726
+        },
+        {
+          "path": "agents/python/python-live-identity-authority-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "808f58a030e433b7947e276f35676c6951a8cc93f9a6caafeacf965363afede8",
+          "bytes": 5655
+        },
+        {
+          "path": "agents/python/python-live-identity-authority-agent/metadata.json",
+          "sha256": "5775418d9b8cb78cd023525a460518cea7b0382a1af89233dde694acb7a157ab",
+          "bytes": 2207
+        },
+        {
+          "path": "agents/python/python-live-job-control-agent/AGENT.md",
+          "sha256": "a9fdf52442a24fc4991c8ca8c03bf6ce47d552c0536ff1c12468bd03984a26e6",
+          "bytes": 6000
+        },
+        {
+          "path": "agents/python/python-live-job-control-agent/harnesses/claude-code.agent.md",
+          "sha256": "abc4080347beaa20b4d7e14b1689fd12869c91607dd427f6c11929b92302db5a",
+          "bytes": 5387
+        },
+        {
+          "path": "agents/python/python-live-job-control-agent/harnesses/codex.toml",
+          "sha256": "e44b61f8b113774f2b8bd850632fdccd2ba53097c62271d0d573e19e7e8662a4",
+          "bytes": 4233
+        },
+        {
+          "path": "agents/python/python-live-job-control-agent/harnesses/copilot.agent.md",
+          "sha256": "e6163e42b4ab274d37200eec3b98fd2faf4d3e521ddff34ad9e49229deb4fa87",
+          "bytes": 5509
+        },
+        {
+          "path": "agents/python/python-live-job-control-agent/harnesses/cursor.agent.md",
+          "sha256": "abc4080347beaa20b4d7e14b1689fd12869c91607dd427f6c11929b92302db5a",
+          "bytes": 5387
+        },
+        {
+          "path": "agents/python/python-live-job-control-agent/harnesses/gemini.agent.md",
+          "sha256": "abc4080347beaa20b4d7e14b1689fd12869c91607dd427f6c11929b92302db5a",
+          "bytes": 5387
+        },
+        {
+          "path": "agents/python/python-live-job-control-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "100ce991816211b90b7e5ffb1d2b3df6ad53b9ff1f61f85e7a69f29cc487edf3",
+          "bytes": 5464
+        },
+        {
+          "path": "agents/python/python-live-job-control-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "abc4080347beaa20b4d7e14b1689fd12869c91607dd427f6c11929b92302db5a",
+          "bytes": 5387
+        },
+        {
+          "path": "agents/python/python-live-job-control-agent/metadata.json",
+          "sha256": "d0257feced4fc92e80cc4c4baee0f30e117d0859456c378bcd2891a64c980a34",
+          "bytes": 2257
+        },
+        {
+          "path": "agents/python/python-live-model-promotion-control-agent/AGENT.md",
+          "sha256": "4a15cc3cbf900ae45b2e3dbda0245ab18a715e609f175e935cef935c18a660aa",
+          "bytes": 6498
+        },
+        {
+          "path": "agents/python/python-live-model-promotion-control-agent/harnesses/claude-code.agent.md",
+          "sha256": "dd0ab89d2abaa421ff535d8a25fc8bb41cb9137e02f7b127da3fb977ea9a2be8",
+          "bytes": 5873
+        },
+        {
+          "path": "agents/python/python-live-model-promotion-control-agent/harnesses/codex.toml",
+          "sha256": "198c95d16e06ec660cb53fea302103aabbb8be7a15f98a707c6f1d1c8f966d64",
+          "bytes": 4432
+        },
+        {
+          "path": "agents/python/python-live-model-promotion-control-agent/harnesses/copilot.agent.md",
+          "sha256": "f49060d9c674de4f78fffc7252d43eca17259d04dcdcab6bf9ed6dc0fc5488cf",
+          "bytes": 5995
+        },
+        {
+          "path": "agents/python/python-live-model-promotion-control-agent/harnesses/cursor.agent.md",
+          "sha256": "dd0ab89d2abaa421ff535d8a25fc8bb41cb9137e02f7b127da3fb977ea9a2be8",
+          "bytes": 5873
+        },
+        {
+          "path": "agents/python/python-live-model-promotion-control-agent/harnesses/gemini.agent.md",
+          "sha256": "dd0ab89d2abaa421ff535d8a25fc8bb41cb9137e02f7b127da3fb977ea9a2be8",
+          "bytes": 5873
+        },
+        {
+          "path": "agents/python/python-live-model-promotion-control-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "4558e08366c59512fd1ba8f2443fa2c462d58fff3483cb25c950b958206d69ac",
+          "bytes": 5947
+        },
+        {
+          "path": "agents/python/python-live-model-promotion-control-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "dd0ab89d2abaa421ff535d8a25fc8bb41cb9137e02f7b127da3fb977ea9a2be8",
+          "bytes": 5873
+        },
+        {
+          "path": "agents/python/python-live-model-promotion-control-agent/metadata.json",
+          "sha256": "bbd9f2aeed5a30d78573a7c965f51340dd8f09961fefda7d2813f2c53ebf1ffe",
+          "bytes": 2327
+        },
+        {
+          "path": "agents/python/python-live-policy-gate-agent/AGENT.md",
+          "sha256": "a075c5b249465c0ea160687f38cdf46b0305e5fb562aaad016118bf98b604b85",
+          "bytes": 6104
+        },
+        {
+          "path": "agents/python/python-live-policy-gate-agent/harnesses/claude-code.agent.md",
+          "sha256": "75a0a95d14f94b4baea4614f1110a862092bac597ed51bb46c1e813d3b7a5c5e",
+          "bytes": 5491
+        },
+        {
+          "path": "agents/python/python-live-policy-gate-agent/harnesses/codex.toml",
+          "sha256": "7cc1a698836d7bc3b035bb7378e9b662e9d65c7b27f01b5f057591f6a8d1c0cf",
+          "bytes": 4308
+        },
+        {
+          "path": "agents/python/python-live-policy-gate-agent/harnesses/copilot.agent.md",
+          "sha256": "9e1cb3038616608973398e537c758b3af8910d91217fd2f2ba1c3385397419f1",
+          "bytes": 5613
+        },
+        {
+          "path": "agents/python/python-live-policy-gate-agent/harnesses/cursor.agent.md",
+          "sha256": "75a0a95d14f94b4baea4614f1110a862092bac597ed51bb46c1e813d3b7a5c5e",
+          "bytes": 5491
+        },
+        {
+          "path": "agents/python/python-live-policy-gate-agent/harnesses/gemini.agent.md",
+          "sha256": "75a0a95d14f94b4baea4614f1110a862092bac597ed51bb46c1e813d3b7a5c5e",
+          "bytes": 5491
+        },
+        {
+          "path": "agents/python/python-live-policy-gate-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "f2c7e2548279cc735012bcd1e863a13410dd0b7623a2178674245892f75ab12d",
+          "bytes": 5566
+        },
+        {
+          "path": "agents/python/python-live-policy-gate-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "75a0a95d14f94b4baea4614f1110a862092bac597ed51bb46c1e813d3b7a5c5e",
+          "bytes": 5491
+        },
+        {
+          "path": "agents/python/python-live-policy-gate-agent/metadata.json",
+          "sha256": "189b4ff70612ae4878e2a6e7ded63e5a0370a77f46f5c2e2dee17a2a23210341",
+          "bytes": 1950
+        },
+        {
+          "path": "agents/python/python-live-release-control-agent/AGENT.md",
+          "sha256": "87c38492802d2f34676ad16013b27e44a3903f5ab207c227068f0d11924824fb",
+          "bytes": 6725
+        },
+        {
+          "path": "agents/python/python-live-release-control-agent/harnesses/claude-code.agent.md",
+          "sha256": "260c13421dd9966f34af59ad38e59675475fa878ccb4027ef8e77c79a6a530cf",
+          "bytes": 6108
+        },
+        {
+          "path": "agents/python/python-live-release-control-agent/harnesses/codex.toml",
+          "sha256": "b0dd8d92813c9bc625e424e06867f91af37aba581397c3cf457ce823698204ce",
+          "bytes": 4550
+        },
+        {
+          "path": "agents/python/python-live-release-control-agent/harnesses/copilot.agent.md",
+          "sha256": "2dbbae6a6e4581a76ca6d9d74b8e460a460aaa9a4480dada82a20128e5eab9c4",
+          "bytes": 6230
+        },
+        {
+          "path": "agents/python/python-live-release-control-agent/harnesses/cursor.agent.md",
+          "sha256": "260c13421dd9966f34af59ad38e59675475fa878ccb4027ef8e77c79a6a530cf",
+          "bytes": 6108
+        },
+        {
+          "path": "agents/python/python-live-release-control-agent/harnesses/gemini.agent.md",
+          "sha256": "260c13421dd9966f34af59ad38e59675475fa878ccb4027ef8e77c79a6a530cf",
+          "bytes": 6108
+        },
+        {
+          "path": "agents/python/python-live-release-control-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "1304d9f4081ab7a4d5733bd9a9f391616e1f41258025db0db50a69de03ce4b95",
+          "bytes": 6186
+        },
+        {
+          "path": "agents/python/python-live-release-control-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "260c13421dd9966f34af59ad38e59675475fa878ccb4027ef8e77c79a6a530cf",
+          "bytes": 6108
+        },
+        {
+          "path": "agents/python/python-live-release-control-agent/metadata.json",
+          "sha256": "a6f165659c74b9e1abfa7682e9c27af3576371f882fee1610226545245f696f0",
+          "bytes": 2277
+        },
+        {
+          "path": "agents/python/python-live-rollback-and-recovery-agent/AGENT.md",
+          "sha256": "def53c999920b0a123d6de7e8b9801c07a466791f9c280cd3d777d993c0a620c",
+          "bytes": 6141
+        },
+        {
+          "path": "agents/python/python-live-rollback-and-recovery-agent/harnesses/claude-code.agent.md",
+          "sha256": "f9f6f13f4f1ccc1a30b59e8a0669fe038d7ed4502bb8f9d1d9ab5b4e26a635a1",
+          "bytes": 5518
+        },
+        {
+          "path": "agents/python/python-live-rollback-and-recovery-agent/harnesses/codex.toml",
+          "sha256": "a3f76db2daa0ed48e6802ffb5afe4f50894560000df71b605f9810f26bef23f9",
+          "bytes": 4290
+        },
+        {
+          "path": "agents/python/python-live-rollback-and-recovery-agent/harnesses/copilot.agent.md",
+          "sha256": "4b07f55f1fb5d076132a21299f5f455072390c9a241350f02a33e758b1884a54",
+          "bytes": 5640
+        },
+        {
+          "path": "agents/python/python-live-rollback-and-recovery-agent/harnesses/cursor.agent.md",
+          "sha256": "f9f6f13f4f1ccc1a30b59e8a0669fe038d7ed4502bb8f9d1d9ab5b4e26a635a1",
+          "bytes": 5518
+        },
+        {
+          "path": "agents/python/python-live-rollback-and-recovery-agent/harnesses/gemini.agent.md",
+          "sha256": "f9f6f13f4f1ccc1a30b59e8a0669fe038d7ed4502bb8f9d1d9ab5b4e26a635a1",
+          "bytes": 5518
+        },
+        {
+          "path": "agents/python/python-live-rollback-and-recovery-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "88b47950da228d117fb344698519d55fc44248e11e7a497721b422a2c18c8b05",
+          "bytes": 5593
+        },
+        {
+          "path": "agents/python/python-live-rollback-and-recovery-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "f9f6f13f4f1ccc1a30b59e8a0669fe038d7ed4502bb8f9d1d9ab5b4e26a635a1",
+          "bytes": 5518
+        },
+        {
+          "path": "agents/python/python-live-rollback-and-recovery-agent/metadata.json",
+          "sha256": "de8c3bde5cca053cd547a6839150bdf7372fda77c6e20245e2e68d5ac09f25f9",
+          "bytes": 2350
+        },
+        {
+          "path": "agents/python/python-live-runtime-control-agent/AGENT.md",
+          "sha256": "8325c768645946ad89e505bfd6166e9d77f50762075d1089099e61ea7b4548ad",
+          "bytes": 5907
+        },
+        {
+          "path": "agents/python/python-live-runtime-control-agent/harnesses/claude-code.agent.md",
+          "sha256": "41b4becd85b8ae5f8a23fb96c5df235ef69a6ad5972f7f289363c5439bc3aa43",
+          "bytes": 5290
+        },
+        {
+          "path": "agents/python/python-live-runtime-control-agent/harnesses/codex.toml",
+          "sha256": "3516490ce62b011d1612deaa86518f6e9a30f95a80b14869365cc6ec024555ef",
+          "bytes": 4150
+        },
+        {
+          "path": "agents/python/python-live-runtime-control-agent/harnesses/copilot.agent.md",
+          "sha256": "cb92d83d72314212516718e8e3a8f7d1f54261a6e5670e33a176978191778c1c",
+          "bytes": 5412
+        },
+        {
+          "path": "agents/python/python-live-runtime-control-agent/harnesses/cursor.agent.md",
+          "sha256": "41b4becd85b8ae5f8a23fb96c5df235ef69a6ad5972f7f289363c5439bc3aa43",
+          "bytes": 5290
+        },
+        {
+          "path": "agents/python/python-live-runtime-control-agent/harnesses/gemini.agent.md",
+          "sha256": "41b4becd85b8ae5f8a23fb96c5df235ef69a6ad5972f7f289363c5439bc3aa43",
+          "bytes": 5290
+        },
+        {
+          "path": "agents/python/python-live-runtime-control-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "1207542b1564de8c26d8ff96c3ecf341d31ebf1ed18ea2ddc5a7d2214360343e",
+          "bytes": 5363
+        },
+        {
+          "path": "agents/python/python-live-runtime-control-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "41b4becd85b8ae5f8a23fb96c5df235ef69a6ad5972f7f289363c5439bc3aa43",
+          "bytes": 5290
+        },
+        {
+          "path": "agents/python/python-live-runtime-control-agent/metadata.json",
+          "sha256": "8925a5133fdef70c8ab0135626cc61d13a0e00b73796452fbc814ea1a510c802",
+          "bytes": 2032
+        },
+        {
+          "path": "agents/python/python-live-system-inventory-agent/AGENT.md",
+          "sha256": "2c6f079761b132213ed0b269b8c046db15bdb9056eb2a76d5d68bf0e87b64744",
+          "bytes": 6102
+        },
+        {
+          "path": "agents/python/python-live-system-inventory-agent/harnesses/claude-code.agent.md",
+          "sha256": "72596635b9de7db478b141321be203818ade7f15b229e4ebd10914357a89cff1",
+          "bytes": 5484
+        },
+        {
+          "path": "agents/python/python-live-system-inventory-agent/harnesses/codex.toml",
+          "sha256": "66eee0647fdfc5d169e67d66affeb654d036baac8e95ae9d185a96866d85fde0",
+          "bytes": 4315
+        },
+        {
+          "path": "agents/python/python-live-system-inventory-agent/harnesses/copilot.agent.md",
+          "sha256": "fb67849cadfe9fe2798372a58fc0792b7b15f19fd55127c501781be96250120e",
+          "bytes": 5606
+        },
+        {
+          "path": "agents/python/python-live-system-inventory-agent/harnesses/cursor.agent.md",
+          "sha256": "72596635b9de7db478b141321be203818ade7f15b229e4ebd10914357a89cff1",
+          "bytes": 5484
+        },
+        {
+          "path": "agents/python/python-live-system-inventory-agent/harnesses/gemini.agent.md",
+          "sha256": "72596635b9de7db478b141321be203818ade7f15b229e4ebd10914357a89cff1",
+          "bytes": 5484
+        },
+        {
+          "path": "agents/python/python-live-system-inventory-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "66684dab1c920bd253e4f7cd821deabef7ce4c3102602d82808bfec512d215e4",
+          "bytes": 5559
+        },
+        {
+          "path": "agents/python/python-live-system-inventory-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "72596635b9de7db478b141321be203818ade7f15b229e4ebd10914357a89cff1",
+          "bytes": 5484
+        },
+        {
+          "path": "agents/python/python-live-system-inventory-agent/metadata.json",
+          "sha256": "040c13899aa8dd55084020e9c00a4c1ed932d8b7fa3566faae3cf4a74fcdfccd",
+          "bytes": 2054
+        },
+        {
           "path": "agents/python/python-maestro-agent/AGENT.md",
           "sha256": "0c164eebd521cb735a585d9832e0fd9e44902e57a03629343a4d50c0dd1fb30f",
           "bytes": 5625
@@ -31522,7 +32202,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "f4aba42e5cdad686d2128ac9f07d9fb29a08ce562ef78a24b7c4d0cf7896f06a",
+      "aggregate_sha256": "3963c19f9ac03518a51268561b6459a9cd6798a37c576c070b9219315cc0ba39",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -31531,8 +32211,8 @@
         },
         {
           "path": "catalog/agents.json",
-          "sha256": "a04dd340216639b0f64862c2433e4c930bbc0cec208e94b97b732b80e710d5c8",
-          "bytes": 1079045
+          "sha256": "799c9926eebe448498e91955fe33a1ece646378bcfeeb6e0f5910474cc0efadf",
+          "bytes": 1100171
         },
         {
           "path": "catalog/index.json",
@@ -31541,8 +32221,8 @@
         },
         {
           "path": "catalog/install-roles.json",
-          "sha256": "f772a53e4d9f2508ae91f5e1882dadd469949fd00ebb80bae33458dbbd94fba1",
-          "bytes": 99632
+          "sha256": "e0b107791888a2044c9cc8c2619041034e271c94a36d7714228e5b12e5b8f54e",
+          "bytes": 105482
         },
         {
           "path": "catalog/mcp-references.json",
@@ -31551,8 +32231,8 @@
         },
         {
           "path": "catalog/model-assignments.json",
-          "sha256": "2724317e343c3abf3aaedc639f00ca1d198c2e1d390d2caf265e238c786dc507",
-          "bytes": 620708
+          "sha256": "b4edced6cd7e31819f8cd480be4481b54c2bb26e8b6731819fbb0d79c0b2f1b6",
+          "bytes": 634841
         },
         {
           "path": "catalog/model-policy.json",
@@ -31571,19 +32251,19 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "217b6a24084d58e2add181ba392b4ecc9ea547b47880229c4a932a334afaff56",
-          "bytes": 938153
+          "sha256": "cef3558bc6986be7fb3aca26f0463da2ac11da988c82485592adc053bce1dd73",
+          "bytes": 968012
         },
         {
           "path": "catalog/skills.json",
-          "sha256": "b083ef589cd31187b4f74e025c1c641fdbc7b8e9e39f7d7f25ddff75fba95e30",
-          "bytes": 1064608
+          "sha256": "216e8fa21a9c2f8b8799397382ab4ad60e4d7a0139e4b76fa7145955b023e14c",
+          "bytes": 1084865
         }
       ]
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "781c837a5f531800577a6a057a3040fac58a5ecfc3aa6caa3ca2fc2c218ad5de",
+      "aggregate_sha256": "c22e5837b18ddc16d5de2a01707930da80b0a1695da06c5abeddb55b54914e5a",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -31624,6 +32304,16 @@
           "path": "scripts/gen_python_agents.py",
           "sha256": "d5dc1421c8cab9eaadfc966455bb3462ac05d1d0881511e54d323ae12e787e09",
           "bytes": 21107
+        },
+        {
+          "path": "scripts/gen_python_live_agents.py",
+          "sha256": "dbf5972ab9c6dc2c237662d1207a67c1a4eb58fe82154421c6f61b1522fe9f33",
+          "bytes": 21496
+        },
+        {
+          "path": "scripts/gen_python_live_routing_fixtures.py",
+          "sha256": "0dfbc4b92f2dd9bd0a285af3b7973095e58947f91d16da553564ac0fa15b6e3d",
+          "bytes": 8252
         },
         {
           "path": "scripts/gen_python_routing_fixtures.py",
@@ -31976,6 +32666,81 @@
           "bytes": 16085
         },
         {
+          "path": "scripts/python_live_data/agents/00-python-live-governance-maestro-agent.json",
+          "sha256": "9e99b426e65fb3cc628b5d1735c68e7e03f9d41a88a7840f32b8ad82968bdaef",
+          "bytes": 9064
+        },
+        {
+          "path": "scripts/python_live_data/agents/01-python-live-system-inventory-agent.json",
+          "sha256": "c5572744f85dac3685f217e1800e21185718e1b9f7f370eccaa645cd4bad46a4",
+          "bytes": 10589
+        },
+        {
+          "path": "scripts/python_live_data/agents/02-python-live-identity-authority-agent.json",
+          "sha256": "0b591796efb4daaabb03f91715a81e444d065709cf03032cc15723cfc58fc7da",
+          "bytes": 10869
+        },
+        {
+          "path": "scripts/python_live_data/agents/03-python-live-runtime-control-agent.json",
+          "sha256": "c65f5d3aa6a650a141d64e47ad60d145835794c9ac70821a833b995b814fccb1",
+          "bytes": 10324
+        },
+        {
+          "path": "scripts/python_live_data/agents/04-python-live-change-plan-agent.json",
+          "sha256": "070f32d40fb48dbccf95effd1ee89f521858951f95749f0d3cbc0b3da9a3c26c",
+          "bytes": 9647
+        },
+        {
+          "path": "scripts/python_live_data/agents/05-python-live-policy-gate-agent.json",
+          "sha256": "9638d17a8df40f1c0e9ade26accd26cfdcf917ba9cd7c928872a408537f2e0c5",
+          "bytes": 10575
+        },
+        {
+          "path": "scripts/python_live_data/agents/06-python-live-code-remediation-agent.json",
+          "sha256": "d6fce6b303e87b85e6c256470f3903ab88436d17d5d3c078062a7ef5a71f4861",
+          "bytes": 10135
+        },
+        {
+          "path": "scripts/python_live_data/agents/07-python-live-release-control-agent.json",
+          "sha256": "09bcaba9affac422c36286799bd92ce3149f1ffaacbe5334adbad54276ec9f11",
+          "bytes": 12178
+        },
+        {
+          "path": "scripts/python_live_data/agents/08-python-live-data-change-control-agent.json",
+          "sha256": "0295f8c803e9acc4d55cd04300625901b0b110d1f1dd11b7777fbdbd7e858fcc",
+          "bytes": 12244
+        },
+        {
+          "path": "scripts/python_live_data/agents/09-python-live-job-control-agent.json",
+          "sha256": "1629ba06ae2f372d9c31ffb9d17f6a1692a36a4e86f66f7d26dade3447a983bf",
+          "bytes": 11108
+        },
+        {
+          "path": "scripts/python_live_data/agents/10-python-live-model-promotion-control-agent.json",
+          "sha256": "a3efa7c7085a714f358d91c36f5e1e52b902a2c89ff79dfc966e5f9b12d24216",
+          "bytes": 11638
+        },
+        {
+          "path": "scripts/python_live_data/agents/11-python-live-control-evidence-agent.json",
+          "sha256": "a9c48fdf9917efda790f4b07bd69146875c39c3afb1c4ad0cc1c740a85609e80",
+          "bytes": 10902
+        },
+        {
+          "path": "scripts/python_live_data/agents/12-python-live-continuous-control-testing-agent.json",
+          "sha256": "cd3886480d9e48403ea14830fe5c92ee4b047f8dea441d451fcd3a26702db69a",
+          "bytes": 11900
+        },
+        {
+          "path": "scripts/python_live_data/agents/13-python-live-rollback-and-recovery-agent.json",
+          "sha256": "b69d787e1d874ebeb5fc90fc3b1b1ee73c5c98fe2f0dff44bec0a88fe5120452",
+          "bytes": 10849
+        },
+        {
+          "path": "scripts/python_live_data/agents/14-python-live-exception-governance-agent.json",
+          "sha256": "d3e14acd9d22801f7001ca075ab082389dc91ddf6565c712500d1c2734e35007",
+          "bytes": 9989
+        },
+        {
           "path": "scripts/release-prepare.mjs",
           "sha256": "e225e3641cbeb41352bfbc6693d7d4f5a81a03b329d55e4cb626613972c2428e",
           "bytes": 10574
@@ -31989,7 +32754,7 @@
     },
     {
       "tree": "powers",
-      "aggregate_sha256": "6de287acc0be35f37fb9f39bb2e432a408c89f2e251f33bf5205c8a6a07d5353",
+      "aggregate_sha256": "b3cd59e91a8ead2a427bfb1a751f8371b205429004746cbf7ab13e2eb51d9134",
       "files": [
         {
           "path": "powers/README.md",
@@ -32183,8 +32948,8 @@
         },
         {
           "path": "powers/vanguard-python/POWER.md",
-          "sha256": "ca8d2c12bc0b5376683922299cd030afff9fdc6eb4b840898fa923a9334018ba",
-          "bytes": 2547
+          "sha256": "09d9d1db7acad7d2d6b11982ef6bcc9ad7d94e40cb65f54983f692d25493621a",
+          "bytes": 3882
         },
         {
           "path": "powers/vanguard-salesforce/POWER.md",
@@ -32251,7 +33016,7 @@
     },
     {
       "tree": ".claude-plugin",
-      "aggregate_sha256": "f1bc02f544a4db0116d98c353557cdf8e04904dccd6e43975c8203b0555d4692",
+      "aggregate_sha256": "2f33599c882e2554df11d4a99e8777c7825274f157932561975d034830054789",
       "files": [
         {
           "path": ".claude-plugin/README.md",
@@ -32260,19 +33025,19 @@
         },
         {
           "path": ".claude-plugin/marketplace.json",
-          "sha256": "694468491274dc041be92ad51a6130628bb5c736695aae23589c9dfdd57c0dd5",
+          "sha256": "b5b5f989be6c97cecb4941d0f630d60178dd49429cab775516a42f3e68aa7f8d",
           "bytes": 834
         },
         {
           "path": ".claude-plugin/plugin.json",
-          "sha256": "3a70a61ed6d574edb8aa55207a245bfbe8ad8fe8a0521c69e52e50fd42ad21ee",
-          "bytes": 59846
+          "sha256": "cdd45e8e441bfe996d470af71c477b34ad5b1f6c7c5e3f24e035713e7b3b3a44",
+          "bytes": 61197
         }
       ]
     },
     {
       "tree": ".cursor-plugin",
-      "aggregate_sha256": "7905cfd8fb89e21f0b1be41c8152084a23d1d1455d030cd992ac032a757846ab",
+      "aggregate_sha256": "a2c69ce34a264723516e80445516f47acffa57b0e216a3ca440408f9902d7f3e",
       "files": [
         {
           "path": ".cursor-plugin/README.md",
@@ -32281,8 +33046,8 @@
         },
         {
           "path": ".cursor-plugin/plugin.json",
-          "sha256": "bef43f766155cdea3206539ae93a0103c56f5161a32bb48b8f5c22acaf1fdaf3",
-          "bytes": 56567
+          "sha256": "3929fa988f42b493c6e05beabcfdc57c8c802a9b6599aa5fcb39a834f33e22b8",
+          "bytes": 57843
         }
       ]
     },
@@ -32320,7 +33085,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "f580f89bac1094ecf378a511d81027b545905879eb4699784d1d5fe890bb32dc",
+      "aggregate_sha256": "922827a8515a57744c04d06e853d6f7cc8a63e51ee630e70f3176a250713dd5f",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -39468,6 +40233,251 @@
           "bytes": 1859
         },
         {
+          "path": "tests/fixtures/python-live-maestro-routing/expected/001-happy-inventory.json",
+          "sha256": "703f38e6ec44a02880e4ca7b90b1feaaa03cca748544e52cee009c792c0026fa",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/expected/002-happy-identity-authority.json",
+          "sha256": "2ada0e6ada8a29df939af57f5f4a5957c11223dc43710f4b9641082bd99c4105",
+          "bytes": 84
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/expected/003-happy-runtime-control.json",
+          "sha256": "4304996a87f1017d5d87286074f184b44047cbac24ca3fcfe816e817db2840e5",
+          "bytes": 81
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/expected/004-happy-change-plan.json",
+          "sha256": "8f88ae5b3c822fc0496ebe008ec0abc26470e576759e7fdf11d81e411d72e1fa",
+          "bytes": 77
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/expected/005-happy-policy-gate.json",
+          "sha256": "26d61fc037809ab3eaec511661fc5045a14dda04ac25cdd9a54b055182efaa49",
+          "bytes": 77
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/expected/006-happy-control-evidence.json",
+          "sha256": "e5a1aa46b356784d80e2cf150e16ce9d7702eb588b01b8e2b970ea182d619ee1",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/expected/007-happy-continuous-testing.json",
+          "sha256": "b62436dc54d75edc53b06b147524daf5e9a5b4618e26a359beed5afa3a544f37",
+          "bytes": 92
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/expected/008-happy-exception-governance.json",
+          "sha256": "93a2f2444e5fcdd6c297dd0754952bb7dd2784ab3175a344271f21e026a9fbc1",
+          "bytes": 86
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/expected/009-gated-release.json",
+          "sha256": "4f539faff7f37722d64db7d70c76dbcf860c75367b48793930a81d618da0546f",
+          "bytes": 90
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/expected/010-gated-data-change.json",
+          "sha256": "251d8d7593af62ee1609518f1d6ac7e6bcb6b419c17ace7fa5a887d933b14c91",
+          "bytes": 94
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/expected/011-gated-job.json",
+          "sha256": "fcfa3170867659120113f2ba2e8eb021ce2b6d7b8317e340856963a3ed606379",
+          "bytes": 86
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/expected/012-gated-model-promotion.json",
+          "sha256": "a730472602c921d8de4242326d8522129b917d7d26e430d0d68470c91ccefac4",
+          "bytes": 98
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/expected/013-gated-rollback.json",
+          "sha256": "36e4b6d569bec15e56fbbf1c55006d23def2b40827a5cbfc52351765f1396f3a",
+          "bytes": 96
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/expected/014-gated-code-remediation.json",
+          "sha256": "bb14700a6859993b83962e38a15f93b73a93de8d55822ce7b66f0063cbc7cd12",
+          "bytes": 91
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/expected/015-adv-verbal-approval.json",
+          "sha256": "bb14700a6859993b83962e38a15f93b73a93de8d55822ce7b66f0063cbc7cd12",
+          "bytes": 91
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/expected/016-adv-admin-credentials.json",
+          "sha256": "4f539faff7f37722d64db7d70c76dbcf860c75367b48793930a81d618da0546f",
+          "bytes": 90
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/expected/017-adv-skip-log.json",
+          "sha256": "251d8d7593af62ee1609518f1d6ac7e6bcb6b419c17ace7fa5a887d933b14c91",
+          "bytes": 94
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/expected/018-adv-now-ticket-later.json",
+          "sha256": "251d8d7593af62ee1609518f1d6ac7e6bcb6b419c17ace7fa5a887d933b14c91",
+          "bytes": 94
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/expected/019-adv-retry-all.json",
+          "sha256": "bb14700a6859993b83962e38a15f93b73a93de8d55822ce7b66f0063cbc7cd12",
+          "bytes": 91
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/expected/020-adv-rollback-probably.json",
+          "sha256": "36e4b6d569bec15e56fbbf1c55006d23def2b40827a5cbfc52351765f1396f3a",
+          "bytes": 96
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/expected/021-adv-same-approval-99.json",
+          "sha256": "bb14700a6859993b83962e38a15f93b73a93de8d55822ce7b66f0063cbc7cd12",
+          "bytes": 91
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/expected/022-adv-requester-approver.json",
+          "sha256": "4f539faff7f37722d64db7d70c76dbcf860c75367b48793930a81d618da0546f",
+          "bytes": 90
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/expected/023-adv-change-target-same-approval.json",
+          "sha256": "251d8d7593af62ee1609518f1d6ac7e6bcb6b419c17ace7fa5a887d933b14c91",
+          "bytes": 94
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/expected/024-adv-prod-db-test.json",
+          "sha256": "bb14700a6859993b83962e38a15f93b73a93de8d55822ce7b66f0063cbc7cd12",
+          "bytes": 91
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/inputs/001-happy-inventory.json",
+          "sha256": "c4f8be31bddb70388e997e4b7dc8a4e0e99bec3d35b4a7d054f7211679a75fea",
+          "bytes": 182
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/inputs/002-happy-identity-authority.json",
+          "sha256": "df670be86d29460b40769ccbd2531d3502f27fcab3b1619ac1b10c8297b13fd8",
+          "bytes": 197
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/inputs/003-happy-runtime-control.json",
+          "sha256": "404f274bf54993a61e2c93b5667a211826b9bd18ee2240ff56e3d9e5079caeae",
+          "bytes": 185
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/inputs/004-happy-change-plan.json",
+          "sha256": "2351ac38d34f7184655ea2ffa6b8fba6124c01abed8bca1e2a9bbb9d8a2a9f09",
+          "bytes": 178
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/inputs/005-happy-policy-gate.json",
+          "sha256": "c679b53a8126a1bfaa1929f5e5d5e0c88bbe8028ce879287cd62f374f89d2548",
+          "bytes": 172
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/inputs/006-happy-control-evidence.json",
+          "sha256": "fa3403c1d74d4d73962c5ec54cf0536b5bd260d6be3441f49245543f013c2951",
+          "bytes": 181
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/inputs/007-happy-continuous-testing.json",
+          "sha256": "72e95989535b9dbdaca7c7b870726dc3102df6327d08ed7d9feaf7670dc5ebc7",
+          "bytes": 187
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/inputs/008-happy-exception-governance.json",
+          "sha256": "fcb4b32b890e4df1652e587ae6ca28b06ab06784ecd49a4ec32a0d621431f291",
+          "bytes": 190
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/inputs/009-gated-release.json",
+          "sha256": "c4dd7695357ddba3f9ac8b845df88e3841b514567b71c7e701c9d05624eba251",
+          "bytes": 138
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/inputs/010-gated-data-change.json",
+          "sha256": "5e1556b258c63c03911ab6fedb225f3d635fa2ca1eb9032865451cd8921c4434",
+          "bytes": 135
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/inputs/011-gated-job.json",
+          "sha256": "12a21afb186526c59bfa543bb8d7215e94c0db7ebba41e8dd786d5d4f62bf1f2",
+          "bytes": 127
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/inputs/012-gated-model-promotion.json",
+          "sha256": "3bcac2578dfcd352937cea4f0ef71e605431ee3c945e4aa19c8839becbf3b820",
+          "bytes": 136
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/inputs/013-gated-rollback.json",
+          "sha256": "6bb2f2b5a5a5e79d37335ba390a21fb92c562574a23402eacc68dc798503868a",
+          "bytes": 131
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/inputs/014-gated-code-remediation.json",
+          "sha256": "dac78b31d5604d8776c92f1b0dd9655e037438fc4c3ae208eeb955d83228258a",
+          "bytes": 146
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/inputs/015-adv-verbal-approval.json",
+          "sha256": "27ae0c9e20414763f7052dece0a7aeaaaf9466bd2c9416f51e23191348907964",
+          "bytes": 172
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/inputs/016-adv-admin-credentials.json",
+          "sha256": "8fef170d7d37b0de6e0c8073a6a51edf3f8fc34a9fa83e5849d24a9ab72ec615",
+          "bytes": 160
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/inputs/017-adv-skip-log.json",
+          "sha256": "484aafa9feb1bcdd17a9a118520a101eb69c9674b49f70c4790618f20a6c5e1f",
+          "bytes": 173
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/inputs/018-adv-now-ticket-later.json",
+          "sha256": "5152e91c51b40c9fd98d50b29de7c1a2af5c098b3e89352c4b1a5fad4e9e01c9",
+          "bytes": 169
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/inputs/019-adv-retry-all.json",
+          "sha256": "29bc071dd873b52c4c95369a42da25c164518b611be7270c971104d3f7737d08",
+          "bytes": 136
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/inputs/020-adv-rollback-probably.json",
+          "sha256": "bfc5f59ab1cf9507e630c3e89dfe415befe237f82c91ac512fabde1b15f28857",
+          "bytes": 164
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/inputs/021-adv-same-approval-99.json",
+          "sha256": "8ce7920ebd85b5dbfbc9ae43ea4c7e2ab79675d6a6543ee7b48fd929695ede77",
+          "bytes": 191
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/inputs/022-adv-requester-approver.json",
+          "sha256": "00d9ff1d14171ccf820700488bb48d33874e6dcfae21ce09d36256cad3719211",
+          "bytes": 187
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/inputs/023-adv-change-target-same-approval.json",
+          "sha256": "6bcc01f435121ea2880a2b6a927f2e36421a5e45eec9c71b9a5e4e08e0cdfde2",
+          "bytes": 183
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/inputs/024-adv-prod-db-test.json",
+          "sha256": "5f8a3bbf11418421ac05ea2057a03b540298011fe118243f0693c0c9319958f8",
+          "bytes": 162
+        },
+        {
+          "path": "tests/fixtures/python-live-maestro-routing/taxonomy.json",
+          "sha256": "4f41b94e3ab80c08f41ba198f704cd0b2b5d83d77e4d03556fca90434456dde3",
+          "bytes": 4155
+        },
+        {
           "path": "tests/fixtures/python-maestro-routing/expected/001-happy-application-security.json",
           "sha256": "2927f0918e1980865930074556c9e0551699b5106db8a2a63960a5a541c82807",
           "bytes": 81
@@ -40853,7 +41863,7 @@
   "root_files": [
     {
       "path": "README.md",
-      "sha256": "385f406c6b1095f4ea9054359bd89fd30ceb9992ed987a228510e14bd1c9f706",
+      "sha256": "c6955b28d69311470614addbee182279e1c4c6c1f2219b679231f70e2128586c",
       "bytes": 98673
     },
     {
@@ -40902,5 +41912,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "41c916145a41cb31ec5b1f290e31d9ad3e414f6712f6cd655cce438d3bdc43e6"
+  "aggregate_sha256": "64062ac0c783c345d00b19a17be665d459d24a4c307000b48e24fa99bafad286"
 }
