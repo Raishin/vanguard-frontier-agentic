@@ -1,13 +1,13 @@
 ---
 name: "vanguard-python"
 displayName: "Vanguard Frontier — Python"
-description: "Curated Python agents for python application security, python async concurrency reliability, python business critical automation governance, python container serverless runtime. Routes via python-live-governance-maestro-agent to specialist agents based on task scope. Static review only; no live mutations."
+description: "Curated Python agents for python application security, python async concurrency reliability, python business critical automation governance, python container serverless runtime. Routes via python-maestro-agent to specialist or live-guard agents based on task scope. Live-mutation agents require approval, target confirmation, evidence capture, and a rollback plan; static specialists never mutate."
 keywords: ["python", "asyncio", "pyproject", "dependency-confusion", "static-review"]
 author: "Raishin"
 ---
 # Vanguard Frontier — Python
 
-Curated Python agents for python application security, python async concurrency reliability, python business critical automation governance, python container serverless runtime. Routes via python-live-governance-maestro-agent to specialist agents based on task scope. Static review only; no live mutations.
+Curated Python agents for python application security, python async concurrency reliability, python business critical automation governance, python container serverless runtime. Routes via python-maestro-agent to specialist or live-guard agents based on task scope. Live-mutation agents require approval, target confirmation, evidence capture, and a rollback plan; static specialists never mutate.
 
 ## When to engage this Power
 
@@ -15,35 +15,26 @@ Activate when the task references Python services, resources, or operations. Do 
 
 ## Routing pattern
 
-- **`python-live-governance-maestro-agent`** — classifies and routes the task to the right specialist
+- **`python-maestro-agent`** — classifies and routes the task to the right specialist
 
 Use the maestro as the entry point: classify the task, then dispatch to one specialist or a parallel team of specialists. Never have the maestro itself execute a live mutation.
 
 ## Live-guard agents (gate_mode only)
 
-- `python-live-change-plan-agent` — never auto-dispatched; gate_mode only
 - `python-live-code-remediation-agent` — never auto-dispatched; gate_mode only
-- `python-live-continuous-control-testing-agent` — never auto-dispatched; gate_mode only
-- `python-live-control-evidence-agent` — never auto-dispatched; gate_mode only
 - `python-live-data-change-control-agent` — never auto-dispatched; gate_mode only
-- `python-live-exception-governance-agent` — never auto-dispatched; gate_mode only
-- `python-live-governance-maestro-agent` — never auto-dispatched; gate_mode only
-- `python-live-identity-authority-agent` — never auto-dispatched; gate_mode only
 - `python-live-job-control-agent` — never auto-dispatched; gate_mode only
 - `python-live-model-promotion-control-agent` — never auto-dispatched; gate_mode only
-- `python-live-policy-gate-agent` — never auto-dispatched; gate_mode only
 - `python-live-release-control-agent` — never auto-dispatched; gate_mode only
 - `python-live-rollback-and-recovery-agent` — never auto-dispatched; gate_mode only
-- `python-live-runtime-control-agent` — never auto-dispatched; gate_mode only
-- `python-live-system-inventory-agent` — never auto-dispatched; gate_mode only
 
 Live-guard agents enforce approval, target confirmation, evidence capture, and rollback plans before executing a mutation. They are never auto-dispatched — the maestro must place them in `live-guard-gate` or `runtime-evidence-gate` mode.
 
 ## Invariants
 
-- Live-guard agents (python-live-*) must never be auto-dispatched; require explicit approval and rollback plan.
-- Route all tasks through python-live-governance-maestro-agent for proper classification and dispatch.
-- Static review only -- agents analyze configuration and provide findings without mutating live systems.
+- Live-guard agents (the mutating-runtime operators) must never be auto-dispatched; require explicit approval, evidence capture, and a rollback plan. Read-only-runtime and static-review agents on this board are not guards.
+- Route all tasks through python-maestro-agent for proper classification and dispatch.
+- Mixed-tier board: static specialists analyze configuration without mutating live systems; live-guard agents mutate only under approval, target confirmation, evidence capture, and a pre-approved rollback plan.
 
 ## Where the agents live
 

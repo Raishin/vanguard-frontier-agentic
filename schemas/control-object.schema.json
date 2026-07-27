@@ -124,5 +124,28 @@
       "items": { "type": "string" }
     }
   },
+  "allOf": [
+    {
+      "$comment": "A control that governs a production mutation (R3+) must fail closed: block or gate-to-human. 'warn' is not a control for irreversible/high-blast-radius actions, so it is rejected whenever applicability.action_risk includes R3, R4, or R5. This enforces the failure_behavior description rather than leaving it advisory.",
+      "if": {
+        "required": ["applicability"],
+        "properties": {
+          "applicability": {
+            "required": ["action_risk"],
+            "properties": {
+              "action_risk": {
+                "contains": { "enum": ["R3", "R4", "R5"] }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "failure_behavior": { "enum": ["block", "gate-to-human"] }
+        }
+      }
+    }
+  ],
   "additionalProperties": false
 }

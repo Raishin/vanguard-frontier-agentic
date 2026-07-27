@@ -629,6 +629,14 @@ the maestro with the task; it classifies the work and dispatches the narrowest
 specialist or a small parallel team. Do not reach past the maestro and invoke a
 specialist directly unless you already know which specialist applies.
 
+The `python` board carries a **second** maestro: `python-live-governance-maestro-agent`
+routes the live control-plane agents (`python-live-*`), while `python-maestro-agent`
+routes the 20 static-review specialists. The two are kept separate on purpose — a
+static-review request must never be routed into the live plane, and the live maestro
+never auto-dispatches a mutating operator (those are live-guard gated). Kiro Powers and
+other harness entry points therefore route the `python` board through
+`python-maestro-agent` as the default classifier.
+
 ### Invocation
 
 Agents install as harness-native adapter files. On Claude Code:

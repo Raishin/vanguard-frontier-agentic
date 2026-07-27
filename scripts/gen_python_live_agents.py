@@ -287,10 +287,14 @@ def codex_toml(a: dict) -> str:
         "Safety contract:\n"
         f"{_safety_contract(a)}"
     )
+    # sandbox_mode follows the execution tier: only mutating-runtime operators may
+    # write to the workspace (matching the guarded live boards, e.g. SAP transport
+    # imports). Read-only-runtime observers and the maestro stay read-only.
+    sandbox = "workspace-write" if tier(a) == "mutating-runtime" else "read-only"
     lines = [
         f"name = {y(snake(a['id']))}",
         f"description = {y(a['summary'])}",
-        'sandbox_mode = "read-only"',
+        f'sandbox_mode = "{sandbox}"',
         "",
         'developer_instructions = """',
         instr,

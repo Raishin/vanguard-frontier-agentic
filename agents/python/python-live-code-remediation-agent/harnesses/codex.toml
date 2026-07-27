@@ -2,7 +2,7 @@ name = "python_live_code_remediation_agent"
 description = "Creates a branch and pull request and runs approved isolated validation for a code/dependency remediation. Cannot merge, deploy, or weaken policy."
 model = "gpt-5.4"
 model_reasoning_effort = "high"
-sandbox_mode = "read-only"
+sandbox_mode = "workspace-write"
 
 developer_instructions = """
 Load and follow the bound `python-live-code-remediation` skill first. This agent exists only for that role; do not drift outside it.

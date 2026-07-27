@@ -369,6 +369,46 @@ function deriveTopics(entries) {
 }
 
 /**
+ * Select the routing maestro for a provider's Power.
+ *
+ * A board may carry more than one `*-maestro-agent` (e.g. the python board has both
+ * `python-maestro-agent` for static review and `python-live-governance-maestro-agent`
+ * for the live control plane). A plain `endsWith("-maestro-agent")` picks whichever
+ * sorts first in the catalog, which mis-routes the Power's static entry point. Always
+ * prefer the exact `{provider}-maestro-agent`; only fall back to the first suffix match
+ * when the board has no canonically named maestro.
+ */
+function selectMaestro(entries, provider) {
+  return (
+    entries.find((e) => e.id === `${provider}-maestro-agent`) ||
+    entries.find((e) => e.id.endsWith("-maestro-agent"))
+  );
+}
+
+/**
+ * Select a provider's live-mutation guards — the agents that are never
+ * auto-dispatched and must pass a live-guard gate before executing a mutation.
+ *
+ * The authoritative signal is `execution_tier === "mutating-runtime"`. The older
+ * `-live-` naming heuristic mislabels read-only agents: on a mixed-tier board a
+ * read-only-runtime observer or the routing maestro can carry `-live-` in its id
+ * (e.g. `python-live-system-inventory-agent`, the SAP `-live-readonly-*` discovery
+ * agents) yet execute no mutation, and listing them as guards collapses the very
+ * read-only/mutating boundary this catalog exists to keep explicit. So when the
+ * board declares any mutating-runtime tier, filter strictly by tier; only fall back
+ * to the naming heuristic for boards that predate execution_tier (the cloud boards,
+ * where every entry's tier is absent).
+ */
+function selectLiveGuards(entries) {
+  const hasMutatingTier = entries.some(
+    (e) => e.execution_tier === "mutating-runtime",
+  );
+  return hasMutatingTier
+    ? entries.filter((e) => e.execution_tier === "mutating-runtime")
+    : entries.filter((e) => /-live-/.test(e.id));
+}
+
+/**
  * Auto-generate steering content for a provider NOT in the hardcoded
  * PROVIDERS object.
  */
@@ -379,14 +419,18 @@ function deriveProviderConfig(provider, catalogEntries) {
   const entries = catalogEntries.filter(
     (e) => e.type === "agent" && e.provider === provider,
   );
-  const maestro = entries.find((e) => e.id.endsWith("-maestro-agent"));
-  const liveGuards = entries.filter((e) => /-live-/.test(e.id));
+  const maestro = selectMaestro(entries, provider);
+  const liveGuards = selectLiveGuards(entries);
 
-  // Build description (max 3 sentences)
+  // Build description (max 3 sentences). A board that carries live-guard agents is
+  // NOT "static review only" — saying so would collapse the very static/live boundary
+  // this catalog exists to keep explicit, so mixed-tier boards get a mutation-aware line.
   let description;
   if (maestro && entries.length > 2) {
     const topics = deriveTopics(entries);
-    description = `Curated ${displayLabel} agents for ${topics}. Routes via ${maestro.id} to specialist agents based on task scope. Static review only; no live mutations.`;
+    description = liveGuards.length
+      ? `Curated ${displayLabel} agents for ${topics}. Routes via ${maestro.id} to specialist or live-guard agents based on task scope. Live-mutation agents require approval, target confirmation, evidence capture, and a rollback plan; static specialists never mutate.`
+      : `Curated ${displayLabel} agents for ${topics}. Routes via ${maestro.id} to specialist agents based on task scope. Static review only; no live mutations.`;
   } else if (entries.length === 1) {
     // Single agent, no maestro
     const summary = entries[0].summary || "";
@@ -429,7 +473,7 @@ function deriveProviderConfig(provider, catalogEntries) {
   const invariants = [];
   if (liveGuards.length > 0) {
     invariants.push(
-      `Live-guard agents (${provider}-live-*) must never be auto-dispatched; require explicit approval and rollback plan.`,
+      "Live-guard agents (the mutating-runtime operators) must never be auto-dispatched; require explicit approval, evidence capture, and a rollback plan. Read-only-runtime and static-review agents on this board are not guards.",
     );
   }
   if (maestro) {
@@ -438,7 +482,9 @@ function deriveProviderConfig(provider, catalogEntries) {
     );
   }
   invariants.push(
-    "Static review only -- agents analyze configuration and provide findings without mutating live systems.",
+    liveGuards.length
+      ? "Mixed-tier board: static specialists analyze configuration without mutating live systems; live-guard agents mutate only under approval, target confirmation, evidence capture, and a pre-approved rollback plan."
+      : "Static review only -- agents analyze configuration and provide findings without mutating live systems.",
   );
   // Add domain-specific invariants
   if (provider === "dotnet") {
@@ -513,9 +559,8 @@ function summarize(provider) {
   const kiroEntries = entries.filter(
     (e) => Array.isArray(e.harnesses) && e.harnesses.includes("kiro"),
   );
-  const maestro = entries.find((e) => e.id.endsWith("-maestro-agent"));
-  const liveGuards = entries
-    .filter((e) => /-live-/.test(e.id))
+  const maestro = selectMaestro(entries, provider);
+  const liveGuards = selectLiveGuards(entries)
     .map((e) => e.id)
     .sort();
   return {
