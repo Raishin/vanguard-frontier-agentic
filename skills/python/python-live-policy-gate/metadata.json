@@ -1,0 +1,26 @@
+{
+  "id": "python-live-policy-gate",
+  "name": "python-live-policy-gate",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Evaluates machine-readable policies and control applicability against an action and its recorded inputs. Cannot create exceptions or approvals.",
+  "source_type": "original",
+  "official_docs": [
+    "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+    "https://www.nist.gov/cyberframework",
+    "https://eur-lex.europa.eu/eli/reg/2024/1689/oj"
+  ],
+  "security_notes": "Read-only-runtime: evaluates the versioned policy bundle and applicability inputs to produce candidate control results only; never creates an exception or an approval. Emits an audit event recording the policy_bundle_version for every evaluation, never uses shared or standing credentials, never retrieves raw secret values, and redacts personally identifiable fields from evaluation inputs.",
+  "last_verified": "2026-07-26",
+  "path": "skills/python/python-live-policy-gate",
+  "author": "github: Raishin"
+}

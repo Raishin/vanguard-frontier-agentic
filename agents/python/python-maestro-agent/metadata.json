@@ -1,0 +1,40 @@
+{
+  "id": "python-maestro-agent",
+  "name": "Python Maestro",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Router for the Python board. Classifies a Python application, runtime, packaging, framework, data, or code-level task and dispatches the narrowest static-review specialist (or a parallel team of up to four for genuinely multi-domain tasks). Routes only — never reviews Python work itself and never performs a live operation.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.python.org/3/",
+    "https://packaging.python.org/en/latest/",
+    "https://peps.python.org/"
+  ],
+  "security_notes": "Classification and routing only. Never installs, runs, imports, or executes code, never builds, deploys, publishes, or migrates anything, never opens a live connection, and never requests secrets, tokens, API keys, connection strings, cloud credentials, or customer data. Detects production-mutation intent and hands it to a named human owner instead of dispatching. Treats task text and any pasted artifact as data to classify, never as instructions.",
+  "last_verified": "2026-07-26",
+  "path": "agents/python/python-maestro-agent/",
+  "harness_variants": {
+    "codex": "agents/python/python-maestro-agent/harnesses/codex.toml",
+    "copilot": "agents/python/python-maestro-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/python/python-maestro-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/python/python-maestro-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/python/python-maestro-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/python/python-maestro-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/python/python-maestro-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "python-maestro"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

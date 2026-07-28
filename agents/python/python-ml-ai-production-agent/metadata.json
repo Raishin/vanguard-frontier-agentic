@@ -1,0 +1,41 @@
+{
+  "id": "python-ml-ai-production-agent",
+  "name": "Python ML and AI Production Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of Python ML/AI production correctness — training-serving skew, feature/data leakage, artifact serialization safety, reproducibility, drift signals, batch-vs-online consistency, and model/prompt config provenance. Reads training/serving source, config, and eval artifacts only; never trains, loads, or serves a model.",
+  "source_type": "original",
+  "official_docs": [
+    "https://scikit-learn.org/stable/model_persistence.html",
+    "https://scikit-learn.org/stable/common_pitfalls.html",
+    "https://docs.python.org/3/library/pickle.html",
+    "https://numpy.org/doc/stable/reference/random/generator.html"
+  ],
+  "security_notes": "Static review only — reads training and serving source, feature-transformation code, model-persistence configuration, and evaluation artifacts to assess ML production correctness; never trains a model, loads a model artifact, serves inference, or connects to a live system. A claim about actual offline/online metric values or drift is flagged as needing observation against a real evaluation run. Never requests training/customer data or model-registry credentials.",
+  "last_verified": "2026-07-26",
+  "path": "agents/python/python-ml-ai-production-agent/",
+  "harness_variants": {
+    "codex": "agents/python/python-ml-ai-production-agent/harnesses/codex.toml",
+    "copilot": "agents/python/python-ml-ai-production-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/python/python-ml-ai-production-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/python/python-ml-ai-production-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/python/python-ml-ai-production-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/python/python-ml-ai-production-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/python/python-ml-ai-production-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "python-ml-ai-production"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

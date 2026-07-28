@@ -1,0 +1,41 @@
+{
+  "id": "python-performance-memory-agent",
+  "name": "Python Performance and Memory Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of Python performance and memory claims: CPU profiling vs benchmarking rigor, memory growth and allocation patterns, GC pressure, algorithmic complexity, and serialization/import/startup cost — refusing intuition as evidence. Reads source, profiles, and benchmark artifacts only; never runs the profiler or benchmark itself.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.python.org/3/library/profile.html",
+    "https://docs.python.org/3/library/tracemalloc.html",
+    "https://docs.python.org/3/library/gc.html",
+    "https://docs.python.org/3/library/timeit.html"
+  ],
+  "security_notes": "Static review only — reads source, profiler output (cProfile), benchmark artifacts (timeit/pytest-benchmark), and tracemalloc snapshots to assess performance and memory claims; never runs the profiler, the benchmark, or the application itself. A claim about actual latency, throughput, or memory growth with no supplied profile/benchmark/tracemalloc evidence is flagged as unsupported rather than accepted. Never requests credentials or customer data.",
+  "last_verified": "2026-07-26",
+  "path": "agents/python/python-performance-memory-agent/",
+  "harness_variants": {
+    "codex": "agents/python/python-performance-memory-agent/harnesses/codex.toml",
+    "copilot": "agents/python/python-performance-memory-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/python/python-performance-memory-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/python/python-performance-memory-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/python/python-performance-memory-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/python/python-performance-memory-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/python/python-performance-memory-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "python-performance-memory"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

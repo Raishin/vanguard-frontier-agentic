@@ -6,7 +6,7 @@ alongside the provider boards (`aws`, `azure`, `gcp`, and others) and share the
 same `provider` faceting axis: each shipped topical board has its own dedicated
 `provider` enum value.
 
-This document covers the current boards: `frontend`, `.NET`, `Java`, `Kotlin`, `PHP`, `legal`, `hr`, `marketing`,
+This document covers the current boards: `frontend`, `.NET`, `Java`, `Kotlin`, `PHP`, `Python`, `legal`, `hr`, `marketing`,
 `salesforce`, `netsuite`, `accounting`, `finance`, `sap` (SAP S/4HANA + BTP
 enterprise board), `microsoft` (Microsoft 365 / Dynamics 365), `databricks`,
 and `snowflake` (data and analytics platforms). It also describes how to use
@@ -36,7 +36,7 @@ install role so users can pull the full set with a single `--role` flag.
 | Directory | `agents/aws/` | `agents/dotnet/`, `agents/legal/`, … |
 | ID prefix | `aws-*` | `dotnet-*`, `php-*`, `legal-*`, `hr-*`, `marketing-*`, `salesforce-*`, `netsuite-*`, `sap-*`, `microsoft-*`, `databricks-*`, `snowflake-*`, etc. |
 | Subject scope | Cloud service surface | Language/runtime or professional function |
-| Execution tier | Varies by agent | `static-review` (all language/stack boards) |
+| Execution tier | Varies by agent | `static-review` (all language/stack boards, except the `python` board's governed `read-only-runtime`/`mutating-runtime` live control plane) |
 | Faceting axis | `provider` enum | `provider` enum (dedicated value) plus shared ID prefix |
 
 Provider boards target infrastructure and cloud services. Language/stack boards
@@ -470,6 +470,125 @@ system, or edits project files.
 
 ---
 
+### Python
+
+The `python` board covers adversarial, evidence-first static review of Python
+applications and the surrounding runtime, framework, data, and packaging ecosystem:
+application-security defects (unsafe deserialization, dynamic execution, subprocess and
+shell injection, SSRF, path traversal, secrets, cryptography misuse), asyncio event-loop
+reliability (blocking calls, cancellation, timeouts, structured concurrency,
+backpressure), packaging and software-supply-chain integrity (pyproject metadata,
+dependency locking and hash-checking, index trust and dependency confusion, build
+isolation), numerical and scientific correctness (money-as-float, rounding, dtype
+coercion, timezone handling, reproducibility), language contracts and gradual typing
+(Any propagation, Protocols, generics and variance, overloads, TypedDict/dataclass),
+web-service production readiness (FastAPI/Django/Flask/Starlette request lifecycle,
+sync-vs-async endpoints, authorization, graceful shutdown, health checks), database
+access and transactions (SQLAlchemy/Django ORM session and transaction scope, N+1,
+connection pooling, migration safety), distributed task reliability (Celery/RQ/Dramatiq
+idempotency, retries, dead-letters, duplicate execution), and test-suite quality
+(pytest fixtures and isolation, mock misuse, determinism, coverage theater),
+runtime-estate modernization (EOL/unsupported interpreters, upgrade sequencing,
+deprecation exposure), performance and memory (profiling-vs-benchmarking rigor,
+allocation/GC pressure, algorithmic complexity), free-threaded (no-GIL, PEP 703)
+adoption (invalidated GIL assumptions, shared-state races, C-extension support),
+native-extension interop (CPython C API reference ownership, stable ABI, buffer
+protocol, PyO3/Cython boundaries), container and serverless runtime (PID 1 and
+signals, worker model, graceful shutdown, cold start), data-pipeline reliability
+(Airflow/Dagster/Prefect/PySpark idempotency, backfills, schema evolution),
+ML/AI production (training-serving skew, leakage, artifact safety, reproducibility),
+in-application observability (structured logs, trace context propagation, metric
+cardinality, PII), developer tooling and build (gate efficacy, type/lint strictness,
+CI matrix, build backend), and business-critical automation governance (unowned
+scripts/notebooks, segregation of duties, reconciliation, key-person risk).
+
+| Property | Value |
+|----------|-------|
+| `provider` | `python` |
+| ID prefix | `python-*` |
+| Agent directory | `agents/python/` |
+| Skill directory | `skills/python/` |
+| Agents | 35 (20 static-review board + 15 live control plane) |
+| Skills | 35 (1:1 companion skill per agent) |
+| Install roles | 16 bundles: 10 static-review (`python-application-review-engineer` umbrella, `python-application-engineer`, `python-platform-reliability-engineer`, `python-data-engineer`, `python-ml-engineer`, `python-security-engineer`, `python-library-maintainer`, `python-automation-governance-lead`, `python-engineering-leader`, `python-reliability-data-engineer`) + 6 live-plane (`python-live-platform-operator`, `python-live-security-operator`, `python-live-data-operator`, `python-live-ml-governance-operator`, `python-live-automation-control-owner`, `python-live-audit-and-compliance-reviewer`) |
+| Execution tier | `static-review` (20 board agents) **plus** `read-only-runtime` and `mutating-runtime` (15 live control-plane agents) — see the live control plane note below |
+
+> [!IMPORTANT]
+> **`python` is a deliberate, governed exception to the "language/stack boards are
+> static-review only" posture.** It hosts a **live control plane** (15 agents under
+> `python-live-*`) that interacts with live systems under controlled execution with
+> provable accountability, routed by `python-live-governance-maestro-agent` — separate
+> from the 20 static-review board agents routed by `python-maestro-agent`. Mutating
+> operators are `mutating-runtime` **live-guards**: never auto-dispatched, gated behind an
+> external signed approval bound to the target, target-scoped JIT credentials, a
+> pre-approved rollback, and an immutable audit event (fail-closed if audit logging is
+> unavailable for an R3+ action). This repo ships the governed **definitions, contracts,
+> and eval fixtures** — not a running control plane; the audit log store, JIT issuance,
+> approval system, and actual execution are the deploying organization's runtime, and
+> compliance/legal classification remains its qualified owners' determination. See
+> [evidence-output-spec.md](evidence-output-spec.md) and
+> [docs/compliance/](compliance/).
+>
+> **Where the tier is mechanically enforced.** Be precise about this rather than assuming
+> the tier is a sandbox everywhere. The read-only/mutating split is enforced *mechanically*
+> in three places: the Codex adapter (`sandbox_mode` — `read-only` vs `workspace-write`),
+> the companion `SKILL.md` (`allowed-tools` — only mutating operators are granted `Bash`),
+> and the Copilot adapter (only mutating operators are granted `execute/*` tools). The
+> Markdown-family adapters (claude-code, cursor, gemini, kiro-ide) carry `name` and
+> `description` only — the repo-wide convention for every agent in this catalog — so in
+> those harnesses the tier is carried by the agent's operating rules and its bound skill's
+> `allowed-tools`, not by a per-agent tool grant. A deploying organization that needs the
+> boundary enforced in-harness must apply its own tool policy there; treat the agent
+> contract as necessary, not sufficient.
+
+**Agent directory layout**
+
+```
+agents/python/
+  python-maestro-agent/
+  python-application-security-agent/
+  python-async-concurrency-reliability-agent/
+  python-packaging-supply-chain-agent/
+  python-numerical-scientific-correctness-agent/
+  python-language-contracts-typing-agent/
+  python-web-service-production-readiness-agent/
+  python-data-access-transaction-agent/
+  python-distributed-task-reliability-agent/
+  python-testing-quality-engineering-agent/
+  python-estate-modernization-governor-agent/
+  python-performance-memory-agent/
+  python-free-threading-parallelism-agent/
+  python-native-extension-interop-agent/
+  python-container-serverless-runtime-agent/
+  python-data-pipeline-reliability-agent/
+  python-ml-ai-production-agent/
+  python-observability-sre-agent/
+  python-developer-tooling-build-agent/
+  python-business-critical-automation-governance-agent/
+```
+
+**Example agents**
+
+| Agent | Scope |
+|-------|-------|
+| `python-maestro-agent` | Router; classifies a Python task and dispatches the narrowest specialist or a parallel team of up to four. Routes only — never reviews Python work itself, gates production-mutation intent to a human owner, and ejects cloud-, Kubernetes-, observability-, and signing-owned work to the right board. |
+| `python-application-security-agent` | Unsafe deserialization (`pickle`, `yaml.load`), dynamic execution (`eval`/`exec`), subprocess/shell injection, SSRF, path traversal, secrets exposure, and cryptography misuse — each finding traced from untrusted input to sink with a CWE label. |
+| `python-async-concurrency-reliability-agent` | asyncio event-loop reliability: blocking calls that stall the loop, cancellation correctness, missing timeouts on external awaits, `TaskGroup` supervision, and backpressure on unbounded fan-out. |
+| `python-packaging-supply-chain-agent` | pyproject/lockfile integrity, all-or-nothing hash-checking, index trust and dependency confusion, build isolation, and CI release-token exposure. |
+| `python-numerical-scientific-correctness-agent` | Money-as-`float` vs `Decimal`, rounding mode, silent dtype coercion, timezone-naive timestamps, and unseeded/irreproducible results. |
+| `python-data-access-transaction-agent` | SQLAlchemy/Django ORM session and transaction scope, commit/rollback boundaries, N+1 and lazy loading, connection-pool sizing, and expand-then-contract migration safety. |
+| `python-distributed-task-reliability-agent` | Celery/RQ/Dramatiq idempotency under at-least-once delivery, `acks_late` timing, bounded retry backoff, dead-lettering poison messages, and the transactional-outbox boundary. |
+| `python-free-threading-parallelism-agent` | Free-threaded (no-GIL, PEP 703) adoption: invalidated GIL thread-safety assumptions, shared-state races, C-extension `Py_mod_gil` support (an undeclaring extension re-enables the GIL), with an evidence-based adopt/pilot/defer verdict. |
+| `python-container-serverless-runtime-agent` | PID 1 and SIGTERM handling, exec-form entrypoint, worker model, graceful shutdown, read-only-filesystem and cold-start assumptions in containerized/serverless Python. |
+| `python-ml-ai-production-agent` | Training-serving skew, feature/data leakage, unsafe pickle/joblib model-artifact loading (RCE), reproducibility, and batch-vs-online consistency. |
+| `python-business-critical-automation-governance-agent` | Unowned scripts/notebooks/schedulers with financial or operational exposure: ownership, segregation of duties, reconciliation, evidence retention, and a continue/harden/replatform/retire verdict (no accounting/legal conclusions). |
+
+Each agent reads source, sanitized configuration, and dependency manifests only. No
+agent runs `pip install`, executes or imports the code, opens a database or network
+connection, deploys, publishes, or edits project files.
+
+---
+
 ## How to use language/stack boards
 
 ### Discovery via install roles
@@ -484,6 +603,22 @@ set for a given function.
 | `legal-hr-risk-reviewer` | `legal` + `hr` | 28 | 5 (2 board-specific + 3 cross-functional) |
 | `marketing-governance-reviewer` | `marketing` | 14 | 14 |
 | `php-platform-engineer` | `php` | 5 | 5 |
+| `python-application-review-engineer` | `python` | 20 | 20 |
+| `python-application-engineer` | `python` | 6 | 6 |
+| `python-platform-reliability-engineer` | `python` | 7 | 7 |
+| `python-data-engineer` | `python` | 5 | 5 |
+| `python-ml-engineer` | `python` | 5 | 5 |
+| `python-security-engineer` | `python` | 3 | 3 |
+| `python-library-maintainer` | `python` | 6 | 6 |
+| `python-automation-governance-lead` | `python` | 5 | 5 |
+| `python-engineering-leader` | `python` | 5 | 5 |
+| `python-reliability-data-engineer` | `python` | 5 | 5 |
+| `python-live-platform-operator` | `python` (live) | 6 | 6 |
+| `python-live-security-operator` | `python` (live) | 6 | 6 |
+| `python-live-data-operator` | `python` (live) | 4 | 4 |
+| `python-live-ml-governance-operator` | `python` (live) | 5 | 5 |
+| `python-live-automation-control-owner` | `python` (live) | 5 | 5 |
+| `python-live-audit-and-compliance-reviewer` | `python` (live) | 5 | 5 |
 | `sap-transformation-operations` | `sap` | 40 | 46 |
 | `microsoft-365-d365-platform-advisor` | `microsoft` | 40 | 40 |
 | `azure-databricks-platform-engineer` | `databricks` | 3 | 3 |
@@ -501,10 +636,18 @@ npx vfa-export-agents --platform claude-code --role marketing-governance-reviewe
 
 Each board includes a maestro router agent (`dotnet-maestro-agent`,
 `legal-maestro-agent`, `hr-maestro-agent`, `marketing-maestro-agent`,
-`php-maestro-agent`). Address
+`php-maestro-agent`, `python-maestro-agent`). Address
 the maestro with the task; it classifies the work and dispatches the narrowest
 specialist or a small parallel team. Do not reach past the maestro and invoke a
 specialist directly unless you already know which specialist applies.
+
+The `python` board carries a **second** maestro: `python-live-governance-maestro-agent`
+routes the live control-plane agents (`python-live-*`), while `python-maestro-agent`
+routes the 20 static-review specialists. The two are kept separate on purpose — a
+static-review request must never be routed into the live plane, and the live maestro
+never auto-dispatches a mutating operator (those are live-guard gated). Kiro Powers and
+other harness entry points therefore route the `python` board through
+`python-maestro-agent` as the default classifier.
 
 ### Invocation
 
@@ -675,22 +818,34 @@ read-only tier. This is a design constraint, not a default.
 | `hr` | `static-review` | Reads sanitized excerpts; never terminates, disciplines, denies leave or accommodation, or sends employee communications |
 | `marketing` | `static-review` (specialists) / `read-only-runtime` (maestro) | Reads sanitized configuration and evidence; never mutates CMP, tag-manager, or ad-platform state |
 | `php` | `static-review` | Reads sanitized PHP source, configuration, and dependency files; never executes payloads, installs packages, or mutates runtime or production. |
+| `python` (static-review board) | `static-review` | Reads Python source, sanitized configuration, and dependency manifests; never runs `pip install`, executes or imports code, opens a database or network connection, or deploys/publishes |
+| `python` (live control plane) | `read-only-runtime` / `mutating-runtime` | The `python-live-*` agents. Read-only agents perform allowlisted diagnostics and observation; mutating operators are live-guard gated — never auto-dispatched, requiring an independent approval bound to the target, target-scoped JIT credentials, a pre-approved rollback, and an immutable audit event (fail-closed for R3+). The repo ships definitions, contracts, and evals — not a running control plane — and no agent declares compliance. |
 | `sap` | `static-review` | Reads sanitized SAP configuration and ABAP/BTP artifacts; never contacts SAP systems, triggers transports, or mutates landscape data |
 | `microsoft` | `static-review` | Reads sanitized Microsoft 365 and Dynamics 365 configuration; never mutates tenant state, sends messages, or contacts Graph API |
 | `databricks` | `static-review` | Reads sanitized notebooks, job configs, and lakehouse metadata; never runs jobs, mutates clusters, or contacts Databricks REST APIs |
 | `snowflake` | `static-review` | Reads sanitized DDL, query plans, and data-sharing configs; never executes queries, mutates warehouses, or contacts Snowflake APIs |
 
-New boards contributed to this repository must follow the same posture. An agent
-that builds, runs, mutates, or contacts a live system is not a language/stack
-board agent — it belongs on a provider board with an appropriate
-`execution_tier` and per-session opt-in controls.
+Static review is the required **default** for language/stack boards. The one
+governed exception is the `python` **live control plane** (`python-live-*`), which
+carries `read-only-runtime`/`mutating-runtime` tiers under the controlled-execution
+and audit-evidence contracts in [docs/compliance/](compliance/) and
+[evidence-output-spec.md](evidence-output-spec.md); its mutating operators are
+live-guard gated and never auto-dispatched. A new board that needs to build, run,
+mutate, or contact a live system must either follow that governed live-plane model
+explicitly or belong on a provider board with an appropriate `execution_tier` and
+per-session opt-in controls — it is never an ungoverned addition to a static-review
+board.
 
-No language/stack board agent:
+No **static-review** language/stack board agent:
 
 - Runs, compiles, or deploys code
 - Contacts an external API, database, or live service
 - Makes a binding legal or HR determination
 - Stores or echoes secrets, credentials, tokens, or personal data
+
+The `python-live-*` control-plane agents operate under the separate governed
+live-execution contracts above (approval, JIT credentials, rollback, audit event,
+fail-closed for R3+), not this static-review list.
 
 ---
 

@@ -1,0 +1,282 @@
+{
+  "provider": "python",
+  "domains": {
+    "application-security": {
+      "keywords": [
+        "pickle",
+        "deserialization",
+        "yaml.load",
+        "eval",
+        "exec",
+        "subprocess",
+        "os.system",
+        "shell",
+        "injection",
+        "SSRF",
+        "path traversal",
+        "secrets"
+      ],
+      "agent": "python-application-security-agent"
+    },
+    "async-concurrency-reliability": {
+      "keywords": [
+        "asyncio",
+        "await",
+        "coroutine",
+        "event loop",
+        "blocking",
+        "run_in_executor",
+        "cancellation",
+        "timeout",
+        "times out",
+        "TaskGroup",
+        "backpressure"
+      ],
+      "agent": "python-async-concurrency-reliability-agent"
+    },
+    "packaging-supply-chain": {
+      "keywords": [
+        "pyproject",
+        "requirements.txt",
+        "lockfile",
+        "hashes",
+        "require-hashes",
+        "extra-index-url",
+        "index-url",
+        "dependency confusion",
+        "build-system",
+        "unpinned"
+      ],
+      "agent": "python-packaging-supply-chain-agent"
+    },
+    "numerical-scientific-correctness": {
+      "keywords": [
+        "float",
+        "Decimal",
+        "currency",
+        "money",
+        "rounding",
+        "dtype",
+        "tz-naive",
+        "timezone",
+        "pandas",
+        "numpy",
+        "reproducib",
+        "seed"
+      ],
+      "agent": "python-numerical-scientific-correctness-agent"
+    },
+    "language-contracts-typing": {
+      "keywords": [
+        "type hint",
+        "annotation",
+        "mypy",
+        "Pyright",
+        "Any",
+        "Protocol",
+        "generic",
+        "TypedDict",
+        "dataclass",
+        "overload",
+        "variance"
+      ],
+      "agent": "python-language-contracts-typing-agent"
+    },
+    "web-service-production-readiness": {
+      "keywords": [
+        "FastAPI",
+        "Django",
+        "Flask",
+        "Starlette",
+        "ASGI",
+        "WSGI",
+        "endpoint",
+        "middleware",
+        "graceful shutdown",
+        "health check"
+      ],
+      "agent": "python-web-service-production-readiness-agent"
+    },
+    "data-access-transaction": {
+      "keywords": [
+        "SQLAlchemy",
+        "ORM",
+        "session",
+        "transaction",
+        "commit",
+        "rollback",
+        "N+1",
+        "lazy loading",
+        "connection pool",
+        "migration",
+        "Alembic"
+      ],
+      "agent": "python-data-access-transaction-agent"
+    },
+    "distributed-task-reliability": {
+      "keywords": [
+        "Celery",
+        "RQ",
+        "Dramatiq",
+        "task queue",
+        "idempotency",
+        "acks_late",
+        "retry",
+        "dead-letter",
+        "poison message",
+        "duplicate execution"
+      ],
+      "agent": "python-distributed-task-reliability-agent"
+    },
+    "testing-quality-engineering": {
+      "keywords": [
+        "pytest",
+        "fixture",
+        "parametrize",
+        "mock",
+        "monkeypatch",
+        "coverage",
+        "flaky",
+        "hypothesis",
+        "assertion"
+      ],
+      "agent": "python-testing-quality-engineering-agent"
+    },
+    "estate-modernization": {
+      "keywords": [
+        "Python 2",
+        "EOL",
+        "end-of-life",
+        "unsupported",
+        "upgrade",
+        "deprecation",
+        "legacy",
+        "interpreter version"
+      ],
+      "agent": "python-estate-modernization-governor-agent"
+    },
+    "performance-memory": {
+      "keywords": [
+        "profiling",
+        "cProfile",
+        "tracemalloc",
+        "memory leak",
+        "garbage collection",
+        "benchmark",
+        "algorithmic complexity",
+        "startup cost"
+      ],
+      "agent": "python-performance-memory-agent"
+    },
+    "free-threading-parallelism": {
+      "keywords": [
+        "free-threading",
+        "free-threaded",
+        "GIL",
+        "no-GIL",
+        "PEP 703",
+        "python3.13t",
+        "Py_mod_gil",
+        "thread safety"
+      ],
+      "agent": "python-free-threading-parallelism-agent"
+    },
+    "native-extension-interop": {
+      "keywords": [
+        "C API",
+        "stable ABI",
+        "Py_LIMITED_API",
+        "reference count",
+        "Py_INCREF",
+        "buffer protocol",
+        "Cython",
+        "PyO3"
+      ],
+      "agent": "python-native-extension-interop-agent"
+    },
+    "container-serverless-runtime": {
+      "keywords": [
+        "Docker",
+        "PID 1",
+        "SIGTERM",
+        "gunicorn",
+        "uvicorn",
+        "graceful shutdown",
+        "cold start",
+        "entrypoint"
+      ],
+      "agent": "python-container-serverless-runtime-agent"
+    },
+    "data-pipeline-reliability": {
+      "keywords": [
+        "Airflow",
+        "Dagster",
+        "Prefect",
+        "PySpark",
+        "DAG",
+        "backfill",
+        "catchup",
+        "partition",
+        "schema evolution",
+        "checkpoint"
+      ],
+      "agent": "python-data-pipeline-reliability-agent"
+    },
+    "ml-ai-production": {
+      "keywords": [
+        "training-serving skew",
+        "feature leakage",
+        "model artifact",
+        "reproducibility",
+        "drift",
+        "joblib",
+        "inference"
+      ],
+      "agent": "python-ml-ai-production-agent"
+    },
+    "observability-sre": {
+      "keywords": [
+        "structured logs",
+        "metric label",
+        "tracing",
+        "OpenTelemetry",
+        "span",
+        "cardinality",
+        "PII in logs",
+        "SLO"
+      ],
+      "agent": "python-observability-sre-agent"
+    },
+    "developer-tooling-build": {
+      "keywords": [
+        "ruff",
+        "mypy",
+        "Pyright",
+        "pre-commit",
+        "tox",
+        "nox",
+        "build backend",
+        "CI gate",
+        "monorepo"
+      ],
+      "agent": "python-developer-tooling-build-agent"
+    },
+    "business-critical-automation-governance": {
+      "keywords": [
+        "unowned script",
+        "shadow automation",
+        "notebook in production",
+        "scheduled job",
+        "segregation of duties",
+        "reconciliation",
+        "key-person",
+        "financial exposure"
+      ],
+      "agent": "python-business-critical-automation-governance-agent"
+    }
+  },
+  "live_guards": [],
+  "gate_mode": "live-guard-gate",
+  "live_guard_intent": "(deploy|rollout|roll out|release|publish|promote)\\b.*\\b(prod|production|pypi|registry|live)|migrate\\b.*\\b(database|schema|prod|production)|\\bpip install\\b|rotate\\b.*\\b(secret|key|credential|token)|drop\\s+(table|database)|force[- ]push|apply\\b.*\\b(change-set|changeset|prod|production)",
+  "parallel_threshold": 0.8
+}

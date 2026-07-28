@@ -45,6 +45,7 @@
 - `databricks`
 - `snowflake`
 - `php`
+- `python`
 
 ## Language and stack boards
 
@@ -52,7 +53,7 @@
 `kubernetes`, ...) are the original members, but the axis also carries
 non-cloud **topical and language/stack boards**: `frontend`, `marketing`, `dotnet`, `hr`,
 `legal`, `salesforce`, `netsuite`, `accounting`, `finance`, `sap`,
-`microsoft`, `databricks`, `snowflake`, and `php` each have a dedicated `provider`
+`microsoft`, `databricks`, `snowflake`, `php`, and `python` each have a dedicated `provider`
 enum value, a shared ID prefix (`dotnet-*`, `hr-*`, `legal-*`, `salesforce-*`,
 `netsuite-*`, `sap-*`, `microsoft-*`, `databricks-*`, `snowflake-*`, etc.),
 and a dedicated topical directory under `agents/` and `skills/`. `microsoft`

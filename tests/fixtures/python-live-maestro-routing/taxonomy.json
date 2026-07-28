@@ -1,0 +1,103 @@
+{
+  "provider": "python",
+  "domains": {
+    "system-inventory": {
+      "keywords": [
+        "inventory",
+        "discover",
+        "asset register",
+        "owner",
+        "deployment revision",
+        "service identity",
+        "criticality"
+      ],
+      "agent": "python-live-system-inventory-agent"
+    },
+    "identity-authority": {
+      "keywords": [
+        "identity",
+        "credential age",
+        "JIT",
+        "approval authority",
+        "requester",
+        "approver",
+        "standing privilege",
+        "shared account"
+      ],
+      "agent": "python-live-identity-authority-agent"
+    },
+    "runtime-control": {
+      "keywords": [
+        "interpreter",
+        "process",
+        "worker",
+        "thread",
+        "memory health",
+        "diagnostics",
+        "live state"
+      ],
+      "agent": "python-live-runtime-control-agent"
+    },
+    "change-plan": {
+      "keywords": [
+        "change plan",
+        "normalized plan",
+        "diff",
+        "rollback procedure",
+        "verification criteria",
+        "action digest"
+      ],
+      "agent": "python-live-change-plan-agent"
+    },
+    "policy-gate": {
+      "keywords": [
+        "policy bundle",
+        "control applicability",
+        "machine-readable policy",
+        "control profile",
+        "evaluate the policy"
+      ],
+      "agent": "python-live-policy-gate-agent"
+    },
+    "control-evidence": {
+      "keywords": [
+        "evidence",
+        "hash",
+        "seal",
+        "evidence store",
+        "control mapping",
+        "retention"
+      ],
+      "agent": "python-live-control-evidence-agent"
+    },
+    "continuous-control-testing": {
+      "keywords": [
+        "continuous control testing",
+        "controls operating",
+        "control finding",
+        "control drift"
+      ],
+      "agent": "python-live-continuous-control-testing-agent"
+    },
+    "exception-governance": {
+      "keywords": [
+        "policy exception",
+        "compensating control",
+        "exception expiration",
+        "risk acceptance waiver"
+      ],
+      "agent": "python-live-exception-governance-agent"
+    }
+  },
+  "live_guards": [
+    "python-live-code-remediation-agent",
+    "python-live-release-control-agent",
+    "python-live-data-change-control-agent",
+    "python-live-job-control-agent",
+    "python-live-model-promotion-control-agent",
+    "python-live-rollback-and-recovery-agent"
+  ],
+  "gate_mode": "live-guard-gate",
+  "live_guard_intent": "\\b(deploy|canary|restart|migrate|backfill|reprocess)\\b|\\b(execute|run|perform|apply|trigger|do)\\b[^.]*\\b(release|rollback|migration|backfill|job|remaining|records?)\\b|\\bpromote\\b[^.]*\\b(model|artifact)\\b|\\b(create|open|raise)\\b[^.]*\\b(branch|pull request|\\bpr\\b)\\b|\\bmerge\\b|\\brelease\\b\\s+(to|into)\\b|\\bretry\\b[^.]*\\b(all|failed|job)\\b",
+  "parallel_threshold": 0.7
+}

@@ -15,7 +15,7 @@ Activate when the task references Microsoft services, resources, or operations. 
 
 ## Routing pattern
 
-- **`copilot-governance-maestro-agent`** — classifies and routes the task to the right specialist
+- **`microsoft-maestro-agent`** — classifies and routes the task to the right specialist
 
 Use the maestro as the entry point: classify the task, then dispatch to one specialist or a parallel team of specialists. Never have the maestro itself execute a live mutation.
 

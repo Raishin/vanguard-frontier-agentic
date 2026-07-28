@@ -1,0 +1,28 @@
+{
+  "id": "python-application-security",
+  "name": "python-application-security",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review of Python application-security defects: unsafe deserialization (pickle, yaml.load), dynamic execution (eval/exec), subprocess and shell injection, SSRF, path traversal and unsafe archive/file handling, secrets exposure, cryptography misuse, and fail-open exception handling. Reads source only; never runs code or exploits.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.python.org/3/library/pickle.html",
+    "https://docs.python.org/3/library/subprocess.html#security-considerations",
+    "https://docs.python.org/3/library/secrets.html",
+    "https://owasp.org/www-community/vulnerabilities/Deserialization_of_untrusted_data",
+    "https://cheatsheetseries.owasp.org/cheatsheets/Injection_Prevention_Cheat_Sheet.html"
+  ],
+  "security_notes": "Static review only — reads Python source, sanitized configuration, and dependency manifests to locate injection, deserialization, SSRF, secrets, and cryptography defects; never runs the code, never executes or writes a proof-of-concept exploit, and never opens a live connection. A vulnerability that cannot be confirmed from the visible source is reported as a candidate needing confirmation, not asserted as exploitable. Never requests, stores, or echoes secrets, credentials, tokens, or customer data.",
+  "last_verified": "2026-07-26",
+  "path": "skills/python/python-application-security",
+  "author": "github: Raishin"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "028-happy-native-extension-refcount",
+  "task": "This CPython C API extension returns a borrowed reference, mismanages the reference count, wraps Rust via PyO3, and claims stable ABI. Review interop.",
+  "tags": [
+    "happy-path"
+  ]
+}

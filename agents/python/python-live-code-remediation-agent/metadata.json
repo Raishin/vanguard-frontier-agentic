@@ -1,0 +1,40 @@
+{
+  "id": "python-live-code-remediation-agent",
+  "name": "Python Live Code Remediation Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Creates a branch and pull request and runs approved isolated validation for a code/dependency remediation. Cannot merge, deploy, or weaken policy.",
+  "source_type": "original",
+  "official_docs": [
+    "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+    "https://packaging.python.org/en/latest/",
+    "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+  ],
+  "security_notes": "Mutating-runtime, limited to creating a branch/pull request and running approved isolated non-production validation: never merges, deploys, or weakens a policy/gate/test. Emits an audit event for every branch/PR creation and validation result, never uses shared or standing credentials, never retrieves raw secret values, and redacts personally identifiable fields from any artifact quoted in the PR. Requires an external, target-bound approval, target-scoped just-in-time credentials, and a pre-approved rollback (revert) before creating the branch/PR or running validation.",
+  "last_verified": "2026-07-26",
+  "path": "agents/python/python-live-code-remediation-agent/",
+  "harness_variants": {
+    "codex": "agents/python/python-live-code-remediation-agent/harnesses/codex.toml",
+    "copilot": "agents/python/python-live-code-remediation-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/python/python-live-code-remediation-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/python/python-live-code-remediation-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/python/python-live-code-remediation-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/python/python-live-code-remediation-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/python/python-live-code-remediation-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "python-live-code-remediation"
+  ],
+  "execution_tier": "mutating-runtime",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "python-web-service-production-readiness",
+  "name": "python-web-service-production-readiness",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Framework-aware static review of Python web-service production readiness (FastAPI, Starlette, Django, Flask, ASGI/WSGI): sync-vs-async endpoint blocking, request validation, authentication and authorization boundaries, middleware order, worker model, timeouts, graceful shutdown, and health checks. Reads source and config only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://fastapi.tiangolo.com/async/",
+    "https://www.starlette.io/",
+    "https://docs.djangoproject.com/en/stable/topics/security/",
+    "https://flask.palletsprojects.com/en/stable/"
+  ],
+  "security_notes": "Static review only — reads web-framework source, route and middleware definitions, and sanitized configuration to assess production readiness; never starts the server, sends a request, or observes runtime latency, worker behavior, or shutdown timing. A claim about actual request-handling or shutdown behavior is flagged as needing runtime confirmation. Never requests secrets, credentials, or a live connection. Framework-specific reference is loaded only when the framework is detected.",
+  "last_verified": "2026-07-26",
+  "path": "skills/python/python-web-service-production-readiness",
+  "author": "github: Raishin"
+}

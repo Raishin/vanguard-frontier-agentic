@@ -1,0 +1,26 @@
+{
+  "id": "python-live-continuous-control-testing",
+  "name": "python-live-continuous-control-testing",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Periodically checks whether controls continue operating. Read-only by default. Opens findings with owners and due dates rather than silently remediating high-risk failures.",
+  "source_type": "original",
+  "official_docs": [
+    "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+    "https://www.nist.gov/cyberframework",
+    "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+  ],
+  "security_notes": "Read-only-runtime by default: tests whether controls continue operating and opens findings with named owners and due dates; never mutates or silently remediates a production failure. Emits an immutable audit event for every observation; never uses shared or standing credentials; never retrieves raw secret values; redacts PII in captured evidence.",
+  "last_verified": "2026-07-26",
+  "path": "skills/python/python-live-continuous-control-testing",
+  "author": "github: Raishin"
+}

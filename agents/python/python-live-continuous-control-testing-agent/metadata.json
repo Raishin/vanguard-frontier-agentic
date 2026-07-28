@@ -1,0 +1,40 @@
+{
+  "id": "python-live-continuous-control-testing-agent",
+  "name": "Python Live Continuous Control Testing Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Periodically checks whether controls continue operating. Read-only by default. Opens findings with owners and due dates rather than silently remediating high-risk failures.",
+  "source_type": "original",
+  "official_docs": [
+    "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+    "https://www.nist.gov/cyberframework",
+    "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+  ],
+  "security_notes": "Read-only-runtime by default: tests whether controls continue operating and opens findings with named owners and due dates; never mutates or silently remediates a production failure. Emits an immutable audit event for every observation; never uses shared or standing credentials; never retrieves raw secret values; redacts PII in captured evidence.",
+  "last_verified": "2026-07-26",
+  "path": "agents/python/python-live-continuous-control-testing-agent/",
+  "harness_variants": {
+    "codex": "agents/python/python-live-continuous-control-testing-agent/harnesses/codex.toml",
+    "copilot": "agents/python/python-live-continuous-control-testing-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/python/python-live-continuous-control-testing-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/python/python-live-continuous-control-testing-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/python/python-live-continuous-control-testing-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/python/python-live-continuous-control-testing-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/python/python-live-continuous-control-testing-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "python-live-continuous-control-testing"
+  ],
+  "execution_tier": "read-only-runtime",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

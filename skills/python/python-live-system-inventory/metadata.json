@@ -1,0 +1,26 @@
+{
+  "id": "python-live-system-inventory",
+  "name": "python-live-system-inventory",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Read-only discovery of Python runtimes, services, jobs, notebooks, packages, owners, environments, deployment revisions, service identities, and criticality. Produces asset and ownership evidence. Never retrieves raw credentials.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.python.org/3/library/importlib.metadata.html",
+    "https://packaging.python.org/en/latest/",
+    "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final"
+  ],
+  "security_notes": "Read-only-runtime: discovers assets via allowlisted list/get/describe queries only and never mutates a discovered asset. Emits an audit event for every discovery query, never uses shared or standing credentials, never retrieves raw secret values, keystores, or tokens, and redacts personally identifiable fields from any captured evidence.",
+  "last_verified": "2026-07-26",
+  "path": "skills/python/python-live-system-inventory",
+  "author": "github: Raishin"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "python-language-contracts-typing",
+  "name": "python-language-contracts-typing",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review of Python type contracts and gradual typing: Any propagation across public boundaries, Protocol and structural typing, generics and variance soundness, overload consistency, TypedDict and dataclass contracts, and the separation of static typing from runtime validation. Reads source and type-checker config only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.python.org/3/library/typing.html",
+    "https://typing.readthedocs.io/en/latest/spec/",
+    "https://mypy.readthedocs.io/en/stable/",
+    "https://peps.python.org/pep-0484/"
+  ],
+  "security_notes": "Static review only — reads Python source, type annotations, and type-checker configuration to assess type-contract soundness; never runs mypy/Pyright or the code to observe a checker result or a runtime type error. A claim about what a checker reports is flagged as needing the user's actual checker output rather than asserted. Never requests secrets, credentials, or customer data.",
+  "last_verified": "2026-07-26",
+  "path": "skills/python/python-language-contracts-typing",
+  "author": "github: Raishin"
+}

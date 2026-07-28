@@ -21,8 +21,10 @@ Use the maestro as the entry point: classify the task, then dispatch to one spec
 
 ## Live-guard agents (gate_mode only)
 
-- `sap-live-readonly-identity-trust-discovery-agent` — never auto-dispatched; gate_mode only
-- `sap-live-readonly-landscape-discovery-agent` — never auto-dispatched; gate_mode only
+- `sap-btp-entitlement-guarded-operator-agent` — never auto-dispatched; gate_mode only
+- `sap-guarded-transport-import-operator-agent` — never auto-dispatched; gate_mode only
+- `sap-integration-flow-guarded-operator-agent` — never auto-dispatched; gate_mode only
+- `sap-role-assignment-guarded-operator-agent` — never auto-dispatched; gate_mode only
 
 Live-guard agents enforce approval, target confirmation, evidence capture, and rollback plans before executing a mutation. They are never auto-dispatched — the maestro must place them in `live-guard-gate` or `runtime-evidence-gate` mode.
 

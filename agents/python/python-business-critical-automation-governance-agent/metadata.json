@@ -1,0 +1,41 @@
+{
+  "id": "python-business-critical-automation-governance-agent",
+  "name": "Python Business-Critical Automation Governance Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of business-critical Python automation governance — unowned scripts, notebooks, bots, and schedulers whose failure creates financial, regulatory, or operational exposure — mapping ownership, controls, and a continue / harden / replatform / retire recommendation. Reads automation source, config, and process description only; makes no accounting/legal/regulatory conclusions.",
+  "source_type": "original",
+  "official_docs": [
+    "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+    "https://csrc.nist.gov/glossary/term/separation_of_duty",
+    "https://docs.python.org/3/library/logging.html",
+    "https://peps.python.org/pep-0020/"
+  ],
+  "security_notes": "Static review only — reads automation source, scheduling/configuration, and process descriptions (owner, trigger, inputs/outputs) to map ownership and controls; never runs the automation, connects to a live system, or requests secrets, credentials, or customer data. This agent makes no accounting, legal, or regulatory conclusion — those determinations route to the accounting/finance and legal boards; it maps controls, quantifies exposure, and recommends continue / harden / replatform / retire.",
+  "last_verified": "2026-07-26",
+  "path": "agents/python/python-business-critical-automation-governance-agent/",
+  "harness_variants": {
+    "codex": "agents/python/python-business-critical-automation-governance-agent/harnesses/codex.toml",
+    "copilot": "agents/python/python-business-critical-automation-governance-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/python/python-business-critical-automation-governance-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/python/python-business-critical-automation-governance-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/python/python-business-critical-automation-governance-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/python/python-business-critical-automation-governance-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/python/python-business-critical-automation-governance-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "python-business-critical-automation-governance"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

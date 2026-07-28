@@ -1,0 +1,42 @@
+{
+  "id": "python-application-security-agent",
+  "name": "Python Application Security Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of Python application-security defects: unsafe deserialization (pickle, yaml.load), dynamic execution (eval/exec), subprocess and shell injection, SSRF, path traversal and unsafe archive/file handling, secrets exposure, cryptography misuse, and fail-open exception handling. Reads source only; never runs code or exploits.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.python.org/3/library/pickle.html",
+    "https://docs.python.org/3/library/subprocess.html#security-considerations",
+    "https://docs.python.org/3/library/secrets.html",
+    "https://owasp.org/www-community/vulnerabilities/Deserialization_of_untrusted_data",
+    "https://cheatsheetseries.owasp.org/cheatsheets/Injection_Prevention_Cheat_Sheet.html"
+  ],
+  "security_notes": "Static review only — reads Python source, sanitized configuration, and dependency manifests to locate injection, deserialization, SSRF, secrets, and cryptography defects; never runs the code, never executes or writes a proof-of-concept exploit, and never opens a live connection. A vulnerability that cannot be confirmed from the visible source is reported as a candidate needing confirmation, not asserted as exploitable. Never requests, stores, or echoes secrets, credentials, tokens, or customer data.",
+  "last_verified": "2026-07-26",
+  "path": "agents/python/python-application-security-agent/",
+  "harness_variants": {
+    "codex": "agents/python/python-application-security-agent/harnesses/codex.toml",
+    "copilot": "agents/python/python-application-security-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/python/python-application-security-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/python/python-application-security-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/python/python-application-security-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/python/python-application-security-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/python/python-application-security-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "python-application-security"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

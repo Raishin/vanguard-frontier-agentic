@@ -1,13 +1,13 @@
 ---
 name: "vanguard-netsuite"
 displayName: "Vanguard Frontier — Netsuite"
-description: "Curated Netsuite agents for netsuite administrator, netsuite ai connector mcp, netsuite ai foundations, netsuite application developer. Routes via netsuite-maestro-agent to specialist agents based on task scope. Static review only; no live mutations."
+description: "Curated Netsuite agents for netsuite administrator, netsuite ai connector mcp, netsuite ai foundations, netsuite application developer. Routes via netsuite-maestro-agent to specialist or live-guard agents based on task scope. Live-mutation agents require approval, target confirmation, evidence capture, and a rollback plan; static specialists never mutate."
 keywords: ["netsuite", "static-review", "configuration-audit", "best-practices"]
 author: "Raishin"
 ---
 # Vanguard Frontier — Netsuite
 
-Curated Netsuite agents for netsuite administrator, netsuite ai connector mcp, netsuite ai foundations, netsuite application developer. Routes via netsuite-maestro-agent to specialist agents based on task scope. Static review only; no live mutations.
+Curated Netsuite agents for netsuite administrator, netsuite ai connector mcp, netsuite ai foundations, netsuite application developer. Routes via netsuite-maestro-agent to specialist or live-guard agents based on task scope. Live-mutation agents require approval, target confirmation, evidence capture, and a rollback plan; static specialists never mutate.
 
 ## When to engage this Power
 
@@ -27,9 +27,9 @@ Live-guard agents enforce approval, target confirmation, evidence capture, and r
 
 ## Invariants
 
-- Live-guard agents (netsuite-live-*) must never be auto-dispatched; require explicit approval and rollback plan.
+- Live-guard agents (the mutating-runtime operators) must never be auto-dispatched; require explicit approval, evidence capture, and a rollback plan. Read-only-runtime and static-review agents on this board are not guards.
 - Route all tasks through netsuite-maestro-agent for proper classification and dispatch.
-- Static review only -- agents analyze configuration and provide findings without mutating live systems.
+- Mixed-tier board: static specialists analyze configuration without mutating live systems; live-guard agents mutate only under approval, target confirmation, evidence capture, and a pre-approved rollback plan.
 
 ## Where the agents live
 

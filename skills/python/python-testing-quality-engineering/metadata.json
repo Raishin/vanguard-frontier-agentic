@@ -1,0 +1,27 @@
+{
+  "id": "python-testing-quality-engineering",
+  "name": "python-testing-quality-engineering",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review of Python test-suite quality (pytest, hypothesis): fixture scope and isolation, mock misuse and wrong-target patching, control of time/randomness/environment, flakiness sources, assertion quality, coverage theater, async-test correctness, and property-based-testing signal. Reads test and source code only; never runs the suite.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.pytest.org/en/stable/how-to/fixtures.html",
+    "https://docs.pytest.org/en/stable/how-to/monkeypatch.html",
+    "https://docs.python.org/3/library/unittest.mock.html",
+    "https://hypothesis.readthedocs.io/en/latest/"
+  ],
+  "security_notes": "Static review only — reads test code, fixtures, and the code under test to assess whether the suite reduces risk; never runs pytest, executes a test, or measures coverage. A claim about a test's actual pass/fail, coverage number, or flakiness rate is flagged as needing execution by the user. Never requests secrets, credentials, or customer data.",
+  "last_verified": "2026-07-26",
+  "path": "skills/python/python-testing-quality-engineering",
+  "author": "github: Raishin"
+}

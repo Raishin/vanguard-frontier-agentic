@@ -1,0 +1,27 @@
+{
+  "id": "python-observability-sre",
+  "name": "python-observability-sre",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review of in-application Python observability — structured logs, metrics, traces, context propagation and correlation, error taxonomy, metric/label cardinality, PII exposure, and SLO-supporting instrumentation. Reads application instrumentation code only; routes collector/dashboard infrastructure to the platform boards.",
+  "source_type": "original",
+  "official_docs": [
+    "https://opentelemetry-python.readthedocs.io/en/stable/",
+    "https://opentelemetry.io/docs/concepts/context-propagation/",
+    "https://opentelemetry.io/docs/specs/semconv/",
+    "https://docs.python.org/3/library/logging.html"
+  ],
+  "security_notes": "Static review only — reads application instrumentation code (logging, metrics, and tracing calls) and telemetry configuration to assess observability correctness and safety; never runs the application, connects to a live telemetry backend, or emits telemetry itself. A claim about actual cardinality, cost, or trace completeness is flagged as needing observation against a real backend. Never requests telemetry-backend credentials or customer data.",
+  "last_verified": "2026-07-26",
+  "path": "skills/python/python-observability-sre",
+  "author": "github: Raishin"
+}

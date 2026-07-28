@@ -56,6 +56,7 @@ pub enum Provider {
     Snowflake,
     Velero,
     Php,
+    Python,
 }
 
 impl std::fmt::Display for Provider {

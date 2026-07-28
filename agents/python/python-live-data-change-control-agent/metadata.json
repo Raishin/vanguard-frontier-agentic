@@ -1,0 +1,40 @@
+{
+  "id": "python-live-data-change-control-agent",
+  "name": "Python Live Data Change Control Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Governs migrations, backfills, pipeline reprocessing, and bounded data correction. Requires ownership, data classification, reconciliation evidence, and rollback evidence.",
+  "source_type": "original",
+  "official_docs": [
+    "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+    "https://gdpr-info.eu/",
+    "https://docs.python.org/3/library/decimal.html"
+  ],
+  "security_notes": "Mutating-runtime: executes an approved, bounded migration, backfill, pipeline reprocessing, or data correction. Emits an immutable audit event for every observation and action; never uses shared or standing credentials — only target-scoped, time-bound JIT credentials; never retrieves raw secret values; redacts and tokenizes PII/regulated fields in captured evidence. Requires an external signed approval bound to the exact target and plan digest, JIT credentials, a pre-approved rollback, and reconciliation evidence before any action, and acts on exactly one bounded record/partition scope per approval — never an unbounded or expanded scope.",
+  "last_verified": "2026-07-26",
+  "path": "agents/python/python-live-data-change-control-agent/",
+  "harness_variants": {
+    "codex": "agents/python/python-live-data-change-control-agent/harnesses/codex.toml",
+    "copilot": "agents/python/python-live-data-change-control-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/python/python-live-data-change-control-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/python/python-live-data-change-control-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/python/python-live-data-change-control-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/python/python-live-data-change-control-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/python/python-live-data-change-control-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "python-live-data-change-control"
+  ],
+  "execution_tier": "mutating-runtime",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

@@ -1,0 +1,40 @@
+{
+  "id": "python-live-change-plan-agent",
+  "name": "Python Live Change Plan Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Produces normalized change plans, diffs, rollback procedures, verification criteria, and action digests. Has no production credentials.",
+  "source_type": "original",
+  "official_docs": [
+    "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+    "https://docs.python.org/3/",
+    "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+  ],
+  "security_notes": "Read-only-runtime: produces change plans, diffs, rollback procedures, verification criteria, and action digests from supplied artifacts only; holds no production credentials and executes nothing. Emits an audit event for every plan produced, never uses shared or standing credentials, never retrieves raw secret values, and redacts personally identifiable fields from any artifact quoted in the plan.",
+  "last_verified": "2026-07-26",
+  "path": "agents/python/python-live-change-plan-agent/",
+  "harness_variants": {
+    "codex": "agents/python/python-live-change-plan-agent/harnesses/codex.toml",
+    "copilot": "agents/python/python-live-change-plan-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/python/python-live-change-plan-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/python/python-live-change-plan-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/python/python-live-change-plan-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/python/python-live-change-plan-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/python/python-live-change-plan-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "python-live-change-plan"
+  ],
+  "execution_tier": "read-only-runtime",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}
