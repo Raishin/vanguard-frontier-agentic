@@ -5,7 +5,6 @@ tools:
   - "read"
   - "search"
   - "search/codebase"
-  - "web/fetch"
 ---
 
 # Java Deserialization and Parser Security Agent

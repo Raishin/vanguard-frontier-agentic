@@ -5,7 +5,6 @@ tools:
   - "read"
   - "search"
   - "search/codebase"
-  - "web/fetch"
 ---
 
 # HR Culture and Inclusion Agent

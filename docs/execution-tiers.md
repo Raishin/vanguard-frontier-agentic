@@ -255,9 +255,27 @@ it agrees with the agent's declared tier:
    be handed a terminal just to satisfy a rule. Widening a grant needs a per-agent
    justification, the same as narrowing one.
 
-Fix violations with `npm run agent-tool-tiers:write`, which is surgical: it removes only
-the offending execution entries and inserts a tier-appropriate block where none exists,
-leaving hand-tuned grants otherwise intact.
+The gate also **fails closed on a grant it cannot fully parse.** Every entry must be the
+canonical `  - "tool"` form; a block mixing in an unquoted scalar, a single-quoted entry,
+a comment, or a nested map is rejected rather than partially read. Silently ignoring an
+entry it does not understand is precisely how a gate reports green while the agent holds
+the tool the gate exists to forbid.
+
+Fix violations with `npm run agent-tool-tiers:write`. It is surgical and **never widens a
+grant**: it removes offending execution entries, and where no block exists it inserts the
+narrowest useful set — `read`, `search`, `search/codebase`, with **no network and no
+terminal, for every tier including `mutating-runtime`**. Inventing a grant is not the
+moment to hand out capability: an operator that mutates through an API needs no shell, so
+terminal and network access must be added deliberately in a reviewable diff rather than
+appearing as a side effect of running the fixer.
+
+> [!NOTE]
+> **Network egress is reported, not failed.** T0 above is defined as "No network egress",
+> but a substantial number of static-review agents already declare `web/fetch` on purpose,
+> because their own contracts require checking current vendor documentation before
+> rendering a finding. That is a genuine conflict between this tier definition and those
+> board contracts, and resolving it is a decision for those boards — so the gate prints the
+> count instead of silently revoking the capability.
 
 > [!NOTE]
 > The gate only polices agents that **declare** an `execution_tier`. `execution_tier` is
