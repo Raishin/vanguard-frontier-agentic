@@ -1,0 +1,27 @@
+{
+  "id": "python-performance-memory",
+  "name": "python-performance-memory",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review of Python performance and memory claims: CPU profiling vs benchmarking rigor, memory growth and allocation patterns, GC pressure, algorithmic complexity, and serialization/import/startup cost — refusing intuition as evidence. Reads source, profiles, and benchmark artifacts only; never runs the profiler or benchmark itself.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.python.org/3/library/profile.html",
+    "https://docs.python.org/3/library/tracemalloc.html",
+    "https://docs.python.org/3/library/gc.html",
+    "https://docs.python.org/3/library/timeit.html"
+  ],
+  "security_notes": "Static review only — reads source, profiler output (cProfile), benchmark artifacts (timeit/pytest-benchmark), and tracemalloc snapshots to assess performance and memory claims; never runs the profiler, the benchmark, or the application itself. A claim about actual latency, throughput, or memory growth with no supplied profile/benchmark/tracemalloc evidence is flagged as unsupported rather than accepted. Never requests credentials or customer data.",
+  "last_verified": "2026-07-26",
+  "path": "skills/python/python-performance-memory",
+  "author": "github: Raishin"
+}

@@ -1,0 +1,41 @@
+{
+  "id": "python-testing-quality-engineering-agent",
+  "name": "Python Testing and Quality Engineering Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of Python test-suite quality (pytest, hypothesis): fixture scope and isolation, mock misuse and wrong-target patching, control of time/randomness/environment, flakiness sources, assertion quality, coverage theater, async-test correctness, and property-based-testing signal. Reads test and source code only; never runs the suite.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.pytest.org/en/stable/how-to/fixtures.html",
+    "https://docs.pytest.org/en/stable/how-to/monkeypatch.html",
+    "https://docs.python.org/3/library/unittest.mock.html",
+    "https://hypothesis.readthedocs.io/en/latest/"
+  ],
+  "security_notes": "Static review only — reads test code, fixtures, and the code under test to assess whether the suite reduces risk; never runs pytest, executes a test, or measures coverage. A claim about a test's actual pass/fail, coverage number, or flakiness rate is flagged as needing execution by the user. Never requests secrets, credentials, or customer data.",
+  "last_verified": "2026-07-26",
+  "path": "agents/python/python-testing-quality-engineering-agent/",
+  "harness_variants": {
+    "codex": "agents/python/python-testing-quality-engineering-agent/harnesses/codex.toml",
+    "copilot": "agents/python/python-testing-quality-engineering-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/python/python-testing-quality-engineering-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/python/python-testing-quality-engineering-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/python/python-testing-quality-engineering-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/python/python-testing-quality-engineering-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/python/python-testing-quality-engineering-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "python-testing-quality-engineering"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

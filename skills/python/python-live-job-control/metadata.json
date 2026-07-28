@@ -1,0 +1,26 @@
+{
+  "id": "python-live-job-control",
+  "name": "python-live-job-control",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Operates distributed jobs and business automation. Requires technical and business idempotency, and separates process completion from business completion.",
+  "source_type": "original",
+  "official_docs": [
+    "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+    "https://docs.celeryq.dev/en/stable/userguide/tasks.html",
+    "https://www.aicpa-cima.com/resources/landing/system-and-organization-controls-soc-suite-of-services"
+  ],
+  "security_notes": "Mutating-runtime: operates an approved, bounded distributed job or business-automation retry/requeue. Emits an immutable audit event for every observation and action; never uses shared or standing credentials — only target-scoped, time-bound JIT credentials; never retrieves raw secret values; redacts PII in captured evidence. Requires an external signed approval bound to the exact target and plan digest, JIT credentials, a pre-approved rollback, and business-outcome reconciliation before any action, and acts on exactly one bounded job/retry scope per approval — never a blind mass-retry or expanded scope.",
+  "last_verified": "2026-07-26",
+  "path": "skills/python/python-live-job-control",
+  "author": "github: Raishin"
+}

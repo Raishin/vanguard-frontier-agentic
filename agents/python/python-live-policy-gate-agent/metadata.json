@@ -1,0 +1,40 @@
+{
+  "id": "python-live-policy-gate-agent",
+  "name": "Python Live Policy Gate Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Evaluates machine-readable policies and control applicability against an action and its recorded inputs. Cannot create exceptions or approvals.",
+  "source_type": "original",
+  "official_docs": [
+    "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+    "https://www.nist.gov/cyberframework",
+    "https://eur-lex.europa.eu/eli/reg/2024/1689/oj"
+  ],
+  "security_notes": "Read-only-runtime: evaluates the versioned policy bundle and applicability inputs to produce candidate control results only; never creates an exception or an approval. Emits an audit event recording the policy_bundle_version for every evaluation, never uses shared or standing credentials, never retrieves raw secret values, and redacts personally identifiable fields from evaluation inputs.",
+  "last_verified": "2026-07-26",
+  "path": "agents/python/python-live-policy-gate-agent/",
+  "harness_variants": {
+    "codex": "agents/python/python-live-policy-gate-agent/harnesses/codex.toml",
+    "copilot": "agents/python/python-live-policy-gate-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/python/python-live-policy-gate-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/python/python-live-policy-gate-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/python/python-live-policy-gate-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/python/python-live-policy-gate-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/python/python-live-policy-gate-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "python-live-policy-gate"
+  ],
+  "execution_tier": "read-only-runtime",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

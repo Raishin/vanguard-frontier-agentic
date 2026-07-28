@@ -1,0 +1,40 @@
+{
+  "id": "python-live-rollback-and-recovery-agent",
+  "name": "Python Live Rollback and Recovery Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Executes only previously approved rollback procedures. Cannot invent a rollback during an active failure. Requires the exact affected target and rollback authority.",
+  "source_type": "original",
+  "official_docs": [
+    "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+    "https://www.nist.gov/cyberframework",
+    "https://docs.python.org/3/"
+  ],
+  "security_notes": "Mutating-runtime: executes only a previously approved, tested rollback procedure against the exact affected target. Emits an immutable audit event for every observation and action; never uses shared or standing credentials — only target-scoped, time-bound JIT credentials; never retrieves raw secret values; redacts PII in captured evidence. Requires an external signed approval bound to the exact affected target, JIT credentials, confirmation the rollback procedure was itself pre-approved and tested, and post-rollback reconciliation before executing, and acts on exactly one bounded affected-target scope per approval — never an improvised rollback or an additional target.",
+  "last_verified": "2026-07-26",
+  "path": "agents/python/python-live-rollback-and-recovery-agent/",
+  "harness_variants": {
+    "codex": "agents/python/python-live-rollback-and-recovery-agent/harnesses/codex.toml",
+    "copilot": "agents/python/python-live-rollback-and-recovery-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/python/python-live-rollback-and-recovery-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/python/python-live-rollback-and-recovery-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/python/python-live-rollback-and-recovery-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/python/python-live-rollback-and-recovery-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/python/python-live-rollback-and-recovery-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "python-live-rollback-and-recovery"
+  ],
+  "execution_tier": "mutating-runtime",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

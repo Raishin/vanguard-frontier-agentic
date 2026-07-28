@@ -1,0 +1,7 @@
+{
+  "name": "025-happy-ml-leakage-artifact",
+  "task": "This training script has feature leakage fitting the scaler before the split, training-serving skew, and loads the model artifact from an untrusted source. Review ML production readiness.",
+  "tags": [
+    "happy-path"
+  ]
+}

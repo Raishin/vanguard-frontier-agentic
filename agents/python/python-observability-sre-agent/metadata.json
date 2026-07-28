@@ -1,0 +1,41 @@
+{
+  "id": "python-observability-sre-agent",
+  "name": "Python Observability and SRE Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of in-application Python observability — structured logs, metrics, traces, context propagation and correlation, error taxonomy, metric/label cardinality, PII exposure, and SLO-supporting instrumentation. Reads application instrumentation code only; routes collector/dashboard infrastructure to the platform boards.",
+  "source_type": "original",
+  "official_docs": [
+    "https://opentelemetry-python.readthedocs.io/en/stable/",
+    "https://opentelemetry.io/docs/concepts/context-propagation/",
+    "https://opentelemetry.io/docs/specs/semconv/",
+    "https://docs.python.org/3/library/logging.html"
+  ],
+  "security_notes": "Static review only — reads application instrumentation code (logging, metrics, and tracing calls) and telemetry configuration to assess observability correctness and safety; never runs the application, connects to a live telemetry backend, or emits telemetry itself. A claim about actual cardinality, cost, or trace completeness is flagged as needing observation against a real backend. Never requests telemetry-backend credentials or customer data.",
+  "last_verified": "2026-07-26",
+  "path": "agents/python/python-observability-sre-agent/",
+  "harness_variants": {
+    "codex": "agents/python/python-observability-sre-agent/harnesses/codex.toml",
+    "copilot": "agents/python/python-observability-sre-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/python/python-observability-sre-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/python/python-observability-sre-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/python/python-observability-sre-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/python/python-observability-sre-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/python/python-observability-sre-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "python-observability-sre"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

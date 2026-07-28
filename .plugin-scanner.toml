@@ -19,6 +19,17 @@
 #   - .claude-plugin/plugin.json, .cursor-plugin/plugin.json
 #                           generated plugin manifests (no secrets)
 #   - **/metadata.json      agent/skill catalog metadata (no secrets by contract)
+#   - scripts/*_data/**     generator INPUT DATA (JSON) consumed to render agents/
+#                           skills; structured data, not executable code, and
+#                           inherently dense with security/governance vocabulary —
+#                           an application-security or live model-promotion agent's
+#                           data file is ABOUT pickle/eval, hash/signature/integrity,
+#                           credentials, and JIT/approval handling, which trips
+#                           secret-shaped heuristics (confirmed on
+#                           scripts/python_live_data/agents/10-*.json). The derived
+#                           **/metadata.json is already exempt, and the generated
+#                           executable AGENT.md/SKILL.md/harness files remain
+#                           secret-scanned, so real secret coverage is unchanged.
 #   - **/references/*.md    skill/agent reference docs that teach secret-detection
 #                           patterns (sk-, Bearer, Password=, JDBC DSNs, etc.)
 #   - scripts/install-codex-home.mjs
@@ -37,6 +48,7 @@ ignore_paths = [
   "tests/**",
   ".claude/**",
   "CHANGELOG.md",
+  "scripts/*_data/**",
   ".claude-plugin/plugin.json",
   ".cursor-plugin/plugin.json",
   "scripts/install-codex-home.mjs",

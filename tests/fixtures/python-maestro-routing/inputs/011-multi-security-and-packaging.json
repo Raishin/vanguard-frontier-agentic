@@ -1,0 +1,7 @@
+{
+  "name": "011-multi-security-and-packaging",
+  "task": "Audit this service: it runs pickle.loads, eval, and os.system on request data with a path traversal and SSRF in file handling; and its requirements.txt has unpinned dependencies from an extra-index-url with no hashes and no lockfile.",
+  "tags": [
+    "multi-domain"
+  ]
+}

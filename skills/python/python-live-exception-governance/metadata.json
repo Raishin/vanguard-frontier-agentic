@@ -1,0 +1,26 @@
+{
+  "id": "python-live-exception-governance",
+  "name": "python-live-exception-governance",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Records policy exceptions and confirms owner, scope, expiration, compensating controls, and review date. Cannot approve its own exception. Automatically flags expired exceptions.",
+  "source_type": "original",
+  "official_docs": [
+    "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+    "https://www.iso.org/standard/27001",
+    "https://csrc.nist.gov/glossary/term/separation_of_duty"
+  ],
+  "security_notes": "Read-only-runtime: records and reviews policy exceptions and flags expired or incomplete ones; never approves, executes, or mutates a live system. Emits an immutable audit event for every observation; never uses shared or standing credentials; never retrieves raw secret values; redacts PII in captured evidence.",
+  "last_verified": "2026-07-26",
+  "path": "skills/python/python-live-exception-governance",
+  "author": "github: Raishin"
+}

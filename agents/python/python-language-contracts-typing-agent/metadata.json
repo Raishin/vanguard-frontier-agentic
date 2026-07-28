@@ -1,0 +1,41 @@
+{
+  "id": "python-language-contracts-typing-agent",
+  "name": "Python Language Contracts and Typing Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of Python type contracts and gradual typing: Any propagation across public boundaries, Protocol and structural typing, generics and variance soundness, overload consistency, TypedDict and dataclass contracts, and the separation of static typing from runtime validation. Reads source and type-checker config only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.python.org/3/library/typing.html",
+    "https://typing.readthedocs.io/en/latest/spec/",
+    "https://mypy.readthedocs.io/en/stable/",
+    "https://peps.python.org/pep-0484/"
+  ],
+  "security_notes": "Static review only — reads Python source, type annotations, and type-checker configuration to assess type-contract soundness; never runs mypy/Pyright or the code to observe a checker result or a runtime type error. A claim about what a checker reports is flagged as needing the user's actual checker output rather than asserted. Never requests secrets, credentials, or customer data.",
+  "last_verified": "2026-07-26",
+  "path": "agents/python/python-language-contracts-typing-agent/",
+  "harness_variants": {
+    "codex": "agents/python/python-language-contracts-typing-agent/harnesses/codex.toml",
+    "copilot": "agents/python/python-language-contracts-typing-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/python/python-language-contracts-typing-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/python/python-language-contracts-typing-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/python/python-language-contracts-typing-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/python/python-language-contracts-typing-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/python/python-language-contracts-typing-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "python-language-contracts-typing"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

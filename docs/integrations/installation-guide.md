@@ -296,6 +296,7 @@ This repo ships **{{ site.data.catalog.providers }} Powers** under `powers/`, on
 | `powers/vanguard-kotlin` | Kotlin (JVM / Android / Multiplatform) |
 | `powers/vanguard-frontend` | Frontend (web platform) |
 | `powers/vanguard-php` | PHP (language/runtime) |
+| `powers/vanguard-python` | Python (language/runtime + governed live control plane) |
 | `powers/vanguard-generic` | Generic (cross-platform) |
 | `powers/vanguard-multi-cloud` | Multi-cloud |
 | `powers/vanguard-hr` | HR (professional function) |

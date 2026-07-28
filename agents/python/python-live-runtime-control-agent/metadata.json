@@ -1,0 +1,40 @@
+{
+  "id": "python-live-runtime-control-agent",
+  "name": "Python Live Runtime Control Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reads live interpreter, process, worker, task, thread, memory, and health state and performs allowlisted diagnostics. Cannot change application state.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.python.org/3/library/sys.html",
+    "https://docs.python.org/3/library/gc.html",
+    "https://docs.python.org/3/library/faulthandler.html"
+  ],
+  "security_notes": "Read-only-runtime: captures interpreter, process, worker, thread, memory, and health state via allowlisted read-only diagnostics only (sys, gc, faulthandler) and never restarts, kills, scales, or reconfigures a process. Emits an audit event for every diagnostic read, never uses shared or standing credentials, never retrieves raw secret values, and redacts personally identifiable fields captured in a diagnostic dump.",
+  "last_verified": "2026-07-26",
+  "path": "agents/python/python-live-runtime-control-agent/",
+  "harness_variants": {
+    "codex": "agents/python/python-live-runtime-control-agent/harnesses/codex.toml",
+    "copilot": "agents/python/python-live-runtime-control-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/python/python-live-runtime-control-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/python/python-live-runtime-control-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/python/python-live-runtime-control-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/python/python-live-runtime-control-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/python/python-live-runtime-control-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "python-live-runtime-control"
+  ],
+  "execution_tier": "read-only-runtime",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

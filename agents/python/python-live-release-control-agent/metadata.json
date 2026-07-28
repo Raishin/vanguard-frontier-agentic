@@ -1,0 +1,40 @@
+{
+  "id": "python-live-release-control-agent",
+  "name": "Python Live Release Control Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Executes one bounded release, canary increment, rollback, or single-instance restart. Requires independent approval and just-in-time credentials.",
+  "source_type": "original",
+  "official_docs": [
+    "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+    "https://www.aicpa-cima.com/resources/landing/system-and-organization-controls-soc-suite-of-services",
+    "https://docs.python.org/3/"
+  ],
+  "security_notes": "Mutating-runtime: executes exactly one bounded release, canary increment, rollback, or single-instance restart per independent approval. Emits an immutable audit event for every observation and action; never uses shared or standing credentials — only target-scoped, time-bound JIT credentials; never retrieves raw secret values; redacts PII in captured evidence. Requires an external signed approval bound to the exact target and plan digest, JIT credentials, a pre-approved rollback, and reconciliation before any action, and acts on exactly one bounded scope per approval — never a fleet-wide, unbounded, or expanded scope.",
+  "last_verified": "2026-07-26",
+  "path": "agents/python/python-live-release-control-agent/",
+  "harness_variants": {
+    "codex": "agents/python/python-live-release-control-agent/harnesses/codex.toml",
+    "copilot": "agents/python/python-live-release-control-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/python/python-live-release-control-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/python/python-live-release-control-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/python/python-live-release-control-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/python/python-live-release-control-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/python/python-live-release-control-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "python-live-release-control"
+  ],
+  "execution_tier": "mutating-runtime",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

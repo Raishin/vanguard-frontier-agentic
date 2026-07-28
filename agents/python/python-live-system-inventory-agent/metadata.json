@@ -1,0 +1,40 @@
+{
+  "id": "python-live-system-inventory-agent",
+  "name": "Python Live System Inventory Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Read-only discovery of Python runtimes, services, jobs, notebooks, packages, owners, environments, deployment revisions, service identities, and criticality. Produces asset and ownership evidence. Never retrieves raw credentials.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.python.org/3/library/importlib.metadata.html",
+    "https://packaging.python.org/en/latest/",
+    "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final"
+  ],
+  "security_notes": "Read-only-runtime: discovers assets via allowlisted list/get/describe queries only and never mutates a discovered asset. Emits an audit event for every discovery query, never uses shared or standing credentials, never retrieves raw secret values, keystores, or tokens, and redacts personally identifiable fields from any captured evidence.",
+  "last_verified": "2026-07-26",
+  "path": "agents/python/python-live-system-inventory-agent/",
+  "harness_variants": {
+    "codex": "agents/python/python-live-system-inventory-agent/harnesses/codex.toml",
+    "copilot": "agents/python/python-live-system-inventory-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/python/python-live-system-inventory-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/python/python-live-system-inventory-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/python/python-live-system-inventory-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/python/python-live-system-inventory-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/python/python-live-system-inventory-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "python-live-system-inventory"
+  ],
+  "execution_tier": "read-only-runtime",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

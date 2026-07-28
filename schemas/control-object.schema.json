@@ -1,0 +1,153 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Raishin/vanguard-frontier-agentic/schemas/control-object.schema.json",
+  "title": "Compliance Control Object",
+  "description": "Control-as-code object for the Python live control plane. A control object declares an objective, the mechanisms that enforce and detect it, the evidence it requires, and its failure behavior. It is a control DEFINITION, not a compliance claim: framework_mappings are candidate references a control owner must confirm applicable, and required_evidence lists inputs that support (never by themselves prove) the control.",
+  "type": "object",
+  "required": [
+    "control_id",
+    "title",
+    "objective",
+    "applicability",
+    "required_evidence",
+    "failure_behavior",
+    "control_owner"
+  ],
+  "properties": {
+    "control_id": {
+      "type": "string",
+      "description": "Stable dotted identifier, e.g. organization.change.production-approval.",
+      "pattern": "^[a-z0-9]+(\\.[a-z0-9-]+)+$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 8
+    },
+    "framework_mappings": {
+      "type": "array",
+      "description": "Candidate framework references. A mapping indicates a control this object may help support; it does not establish that the framework or control applies. Applicability is an owner determination.",
+      "items": {
+        "type": "object",
+        "required": ["framework", "control"],
+        "properties": {
+          "framework": {
+            "type": "string",
+            "enum": [
+              "NIST-SP-800-53",
+              "NIST-CSF",
+              "NIST-AI-RMF",
+              "NIST-GenAI-Profile",
+              "ISO-IEC-27001",
+              "ISO-IEC-42001",
+              "SOC2",
+              "PCI-DSS",
+              "HIPAA-Security-Rule",
+              "SOX-ITGC",
+              "GDPR",
+              "EU-AI-Act",
+              "NIS2",
+              "internal-secure-development",
+              "internal-change-management",
+              "internal-ai-use",
+              "customer-contractual"
+            ]
+          },
+          "control": {
+            "type": "string",
+            "description": "Specific control reference within the framework, e.g. CM-3, CC8.1, Art. 21(2)(f)."
+          },
+          "mapping_confidence": {
+            "enum": ["candidate", "owner-confirmed"],
+            "description": "Defaults to candidate. Only an accountable owner may raise this to owner-confirmed; agents never set it."
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "applicability": {
+      "type": "object",
+      "description": "Conditions under which the control is in force. Determined against the applicability engine; presence here is a proposal, not a legal classification.",
+      "required": ["action_risk"],
+      "properties": {
+        "environments": {
+          "type": "array",
+          "items": { "enum": ["development", "test", "staging", "production"] }
+        },
+        "action_risk": {
+          "type": "array",
+          "description": "Action risk tiers R0 (read-only, non-sensitive) through R5 (irreversible / high-blast-radius production mutation). REQUIRED: the warn-rejection rule below is conditioned on this array, so an optional action_risk would let a production-mutation control keep failure_behavior \"warn\" simply by not declaring its risk. Classifying the governed action is part of defining the control.",
+          "minItems": 1,
+          "items": { "enum": ["R0", "R1", "R2", "R3", "R4", "R5"] }
+        },
+        "data_categories": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": true
+    },
+    "objective": {
+      "type": "string",
+      "minLength": 20,
+      "description": "What the control is intended to achieve, in outcome terms."
+    },
+    "preventive_mechanisms": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "detective_mechanisms": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "required_evidence": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Evidence inputs the control requires. Existence of this evidence supports but does not prove the control operated or is effective.",
+      "items": { "type": "string" }
+    },
+    "failure_behavior": {
+      "enum": ["block", "warn", "gate-to-human"],
+      "description": "What happens when the control's preconditions are not met. Production mutations (R3+) must be block or gate-to-human, never warn."
+    },
+    "control_owner": {
+      "type": "string",
+      "description": "Accountable owning function (e.g. change-management, security, data-governance). Not the agent."
+    },
+    "test_frequency": {
+      "enum": ["per-action", "daily", "weekly", "monthly", "quarterly", "continuous"]
+    },
+    "exception_process": {
+      "type": "string",
+      "description": "control_id of the exception-governance process that may grant a time-boxed exception."
+    },
+    "limitations": {
+      "type": "array",
+      "description": "Explicit statements of what this control does NOT establish (e.g. legal permissibility, application-owner acceptance, independent assessment).",
+      "items": { "type": "string" }
+    }
+  },
+  "allOf": [
+    {
+      "$comment": "A control that governs a production mutation (R3+) must fail closed: block or gate-to-human. 'warn' is not a control for irreversible/high-blast-radius actions, so it is rejected whenever applicability.action_risk includes R3, R4, or R5. This enforces the failure_behavior description rather than leaving it advisory.",
+      "if": {
+        "required": ["applicability"],
+        "properties": {
+          "applicability": {
+            "required": ["action_risk"],
+            "properties": {
+              "action_risk": {
+                "contains": { "enum": ["R3", "R4", "R5"] }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "failure_behavior": { "enum": ["block", "gate-to-human"] }
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}

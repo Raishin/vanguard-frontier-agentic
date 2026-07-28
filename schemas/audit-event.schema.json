@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Raishin/vanguard-frontier-agentic/schemas/audit-event.schema.json",
+  "title": "Live Control Plane Audit Event",
+  "description": "Contract for the immutable audit event every observation and action in the Python live control plane must emit. This repo defines the CONTRACT; the deploying organization's runtime is responsible for actually emitting, append-only storing, integrity-protecting, time-synchronizing, and retention-managing these events. If audit logging is unavailable for an R3, R4, or R5 action, the acting agent must fail closed and refuse. Emitting an event is not proof the action was authorized or effective — it is one input to control testing.",
+  "type": "object",
+  "required": [
+    "event_id",
+    "event_type",
+    "timestamp",
+    "agent_id",
+    "agent_version",
+    "policy_bundle_version",
+    "caller_identity",
+    "effective_identity",
+    "target",
+    "environment",
+    "risk_tier",
+    "request_digest",
+    "input_classification"
+  ],
+  "properties": {
+    "event_id": { "type": "string", "description": "Immutable, unique event identifier." },
+    "event_type": {
+      "enum": ["observe", "plan", "gate", "approve", "execute", "verify", "reconcile", "rollback", "exception", "seal"]
+    },
+    "timestamp": { "type": "string", "format": "date-time", "description": "Trusted, time-synchronized timestamp (RFC 3339)." },
+    "agent_id": { "type": "string" },
+    "model_id": { "type": "string", "description": "Model identifier, only where policy permits recording it." },
+    "agent_version": { "type": "string" },
+    "skill_version": { "type": "string" },
+    "policy_bundle_version": { "type": "string", "description": "Version of the machine-readable policy bundle evaluated." },
+    "tool_name": { "type": "string" },
+    "tool_version": { "type": "string" },
+    "caller_identity": { "type": "string", "description": "Verified human/requester identity. Must be an identified individual principal — never a shared or unidentified identity for R3+ actions." },
+    "effective_identity": { "type": "string", "description": "Service/JIT identity the action ran as." },
+    "target": { "type": "object", "description": "Exact target of the action (system, resource, revision, scope)." },
+    "environment": { "enum": ["development", "test", "staging", "production"] },
+    "risk_tier": {
+      "enum": ["R0", "R1", "R2", "R3", "R4", "R5"],
+      "description": "Action risk tier of the event's action, R0 (read-only, non-sensitive) through R5 (irreversible / high-blast-radius production mutation). REQUIRED on every event: the approval-binding rules below are conditioned on it, so an optional risk_tier would let an emitter escape them by simply not declaring the tier. Classifying the action is part of the contract, not an optional annotation."
+    },
+    "request_digest": { "type": "string", "description": "Hash of the original request." },
+    "input_classification": {
+      "enum": ["public", "internal", "confidential", "restricted"]
+    },
+    "approval_id": { "type": "string", "description": "Reference to the external, independent approval. Required for gate/approve/execute on R3+; must be bound to the exact target and plan_digest." },
+    "plan_digest": { "type": "string" },
+    "before_state_digest": { "type": "string" },
+    "action": { "type": "object" },
+    "result": { "type": "object" },
+    "after_state_digest": { "type": "string" },
+    "verification": { "type": "object", "description": "Post-action verification result. Must be produced independently of the executor's own claim." },
+    "reconciliation": { "type": "object", "description": "Business reconciliation result — distinct from technical completion." },
+    "rollback": { "type": "object", "description": "Reference to the pre-approved rollback procedure and its readiness." },
+    "control_results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["control_id", "result"],
+        "properties": {
+          "control_id": { "type": "string" },
+          "result": { "enum": ["pass", "fail", "not-applicable", "exception"] },
+          "evidence_digest": { "type": "string" }
+        },
+        "additionalProperties": true
+      }
+    },
+    "policy_exceptions": {
+      "type": "array",
+      "items": { "type": "string", "description": "Exception ids in force for this action, each with owner, scope, expiry, and compensating control." }
+    },
+    "redactions": {
+      "type": "array",
+      "items": { "type": "string", "description": "Fields redacted/tokenized before emission for data minimization." }
+    },
+    "parent_event_id": { "type": "string", "description": "Trace parent, linking the operating-model chain (observe -> plan -> gate -> ...)." },
+    "evidence_digest": { "type": "string", "description": "Hash sealing this event's evidence bundle." }
+  },
+  "allOf": [
+    {
+      "$comment": "R3+ gate/approve/execute events must carry the approval binding: an approval_id (bound to the exact target and plan) and the plan_digest it was granted against. An unbound gate/approve/execute at R3+ is exactly the permission-vs-authority and approval-vs-execution confusion this contract exists to prevent, so the schema requires the binding rather than trusting the free-text descriptions.",
+      "if": {
+        "required": ["risk_tier", "event_type"],
+        "properties": {
+          "risk_tier": { "enum": ["R3", "R4", "R5"] },
+          "event_type": { "enum": ["gate", "approve", "execute"] }
+        }
+      },
+      "then": {
+        "required": ["approval_id", "plan_digest"]
+      }
+    },
+    {
+      "$comment": "An R3+ execute additionally requires a before_state_digest (so the change is anchored to a known prior state and verification/rollback are meaningful) and a rollback reference (the pre-approved procedure and its readiness). Execution without a captured before-state or a rollback plan is not accountable execution.",
+      "if": {
+        "required": ["risk_tier", "event_type"],
+        "properties": {
+          "risk_tier": { "enum": ["R3", "R4", "R5"] },
+          "event_type": { "const": "execute" }
+        }
+      },
+      "then": {
+        "required": ["before_state_digest", "rollback"]
+      }
+    }
+  ],
+  "$comment": "Fail-closed rule: an R3/R4/R5 action MUST NOT proceed if this event cannot be emitted to an append-only, integrity-protected, access-controlled store. The acting agent refuses rather than acting without an audit trail. This schema does not implement the store; it specifies what the store must accept.",
+  "additionalProperties": true
+}

@@ -1,0 +1,41 @@
+{
+  "id": "python-developer-tooling-build-agent",
+  "name": "Python Developer Tooling and Build Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of Python developer tooling and build configuration — whether linters/type-checkers/tests are wired to catch meaningful defects (not stylistic noise), CI gate coverage, build-backend and monorepo layout, and developer feedback loops. Reads tool/CI/build config only; never runs the tools.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.astral.sh/ruff/",
+    "https://mypy.readthedocs.io/en/stable/config_file.html",
+    "https://tox.wiki/en/stable/",
+    "https://pre-commit.com/"
+  ],
+  "security_notes": "Static review only — reads linter, type-checker, test-runner, CI, and build-backend configuration to assess whether quality gates would catch a real defect; never runs ruff, mypy, tox, pre-commit, or the CI pipeline itself, and never connects to a live runner. A claim about actual lint/type/test/CI output is flagged as needing a real run to confirm. Never requests CI tokens or credentials.",
+  "last_verified": "2026-07-26",
+  "path": "agents/python/python-developer-tooling-build-agent/",
+  "harness_variants": {
+    "codex": "agents/python/python-developer-tooling-build-agent/harnesses/codex.toml",
+    "copilot": "agents/python/python-developer-tooling-build-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/python/python-developer-tooling-build-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/python/python-developer-tooling-build-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/python/python-developer-tooling-build-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/python/python-developer-tooling-build-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/python/python-developer-tooling-build-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "python-developer-tooling-build"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

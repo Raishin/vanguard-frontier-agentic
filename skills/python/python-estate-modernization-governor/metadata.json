@@ -1,0 +1,27 @@
+{
+  "id": "python-estate-modernization-governor",
+  "name": "python-estate-modernization-governor",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review of Python runtime-estate support posture and upgrade sequencing: end-of-life/unsupported interpreters, deprecation exposure, dependency/framework compatibility for an upgrade, and ownership/business-criticality gaps. Reads inventory, manifests, and config only; never runs an upgrade or installs an interpreter.",
+  "source_type": "original",
+  "official_docs": [
+    "https://devguide.python.org/versions/",
+    "https://peps.python.org/pep-0602/",
+    "https://docs.python.org/3/whatsnew/index.html",
+    "https://packaging.python.org/en/latest/"
+  ],
+  "security_notes": "Static review only — reads runtime/dependency inventories, Dockerfiles, lockfiles, and manifests to assess support posture and upgrade sequencing; never installs, upgrades, or runs an interpreter, and never connects to a live system. A claim about a specific end-of-life date, deprecation-removal date, or compatibility result is flagged as needing confirmation against the official CPython schedule and the dependencies' own documentation. Never requests credentials, secrets, or customer data.",
+  "last_verified": "2026-07-26",
+  "path": "skills/python/python-estate-modernization-governor",
+  "author": "github: Raishin"
+}

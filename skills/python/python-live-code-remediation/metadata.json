@@ -1,0 +1,26 @@
+{
+  "id": "python-live-code-remediation",
+  "name": "python-live-code-remediation",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Creates a branch and pull request and runs approved isolated validation for a code/dependency remediation. Cannot merge, deploy, or weaken policy.",
+  "source_type": "original",
+  "official_docs": [
+    "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+    "https://packaging.python.org/en/latest/",
+    "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+  ],
+  "security_notes": "Mutating-runtime, limited to creating a branch/pull request and running approved isolated non-production validation: never merges, deploys, or weakens a policy/gate/test. Emits an audit event for every branch/PR creation and validation result, never uses shared or standing credentials, never retrieves raw secret values, and redacts personally identifiable fields from any artifact quoted in the PR. Requires an external, target-bound approval, target-scoped just-in-time credentials, and a pre-approved rollback (revert) before creating the branch/PR or running validation.",
+  "last_verified": "2026-07-26",
+  "path": "skills/python/python-live-code-remediation",
+  "author": "github: Raishin"
+}

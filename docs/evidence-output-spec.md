@@ -1,12 +1,80 @@
 # Evidence Output Specification
 
-> Canonical response shape for all VFA live-guard and review agents, and its mapping to compliance framework controls.
+> Canonical response shape for all VFA live-guard and review agents, and how it
+> **may support** — but does not by itself constitute — compliance evidence.
 
 ## Purpose
 
-Every live-guard and review agent in this repo produces a **structured verdict response**. This document defines the required fields and maps each field to the specific compliance controls it satisfies — so the response itself becomes an audit artifact without post-processing.
+Every live-guard and review agent in this repo produces a **structured verdict
+response**. This document defines the required fields and describes which compliance
+controls each field can help *support*.
 
-The five fields below are the minimum set required on every agent response. Agents may add provider-specific fields (e.g., `cluster_context`, `assignment_scope`) but must not omit required fields.
+> [!IMPORTANT]
+> **An agent response may support audit evidence; it is not audit proof.** A prior
+> version of this spec claimed a single response "becomes an audit artifact without
+> post-processing" and was "sufficient evidence for all mapped controls." That claim
+> was wrong and has been removed. The corrected position is stated in
+> [What a response does and does not establish](#what-a-response-does-and-does-not-establish)
+> and governs the rest of this document.
+
+The five fields below are the minimum set required on every agent response **in scope
+(see below)**. Agents may add provider- or tier-specific fields (e.g., `cluster_context`,
+`assignment_scope`, or the live-control-plane audit-event fields in
+[audit-event.schema.json](../schemas/audit-event.schema.json)) but must not omit
+required fields.
+
+---
+
+## Scope: which agents this envelope governs
+
+The `approved | blocked | needs-review` envelope is the shape for **compliance
+decision-point agents** — agents that render an *execution-authorization* decision about
+a change to a connected system:
+
+- **Live-guard agents** (the AT layer) and the read-only-runtime observation, planning,
+  and evidence agents that support them (e.g. the entire Python `python-live-*` control
+  plane), and
+- the pre-change **review** and post-change **verification** agents paired with a
+  live-guard at a specific decision point (e.g. `kubernetes-rbac-review`).
+
+It does **not** govern the **code-quality review boards** — the language/stack static
+boards (`kotlin`, `java`, `php`, and the Python **static-review** board `python-*` routed
+by `python-maestro-agent`). Those render a *code-review quality* verdict —
+`pass | pass-with-conditions | block` — and must **not** use `approved`. The distinction
+is deliberate and load-bearing: a static code reviewer authorizes no execution, so calling
+its result "approved" would conflate a quality judgment with an authorization it never
+makes (permission is not authority; review is not approval). A code-review board carries a
+severity-ranked findings list rather than the `blockers` array, and its verdict vocabulary
+is defined by that board, not by this spec.
+
+---
+
+## What a response does and does not establish
+
+These statements are load-bearing. Every mapping, table, and example in this document
+is read subject to them:
+
+- An agent response **may support** audit evidence. It is one input a reviewer or
+  auditor may consider — not a finished audit artifact.
+- A **control mapping does not establish applicability.** Whether a framework or a
+  specific control applies to a given system, process, and jurisdiction is a
+  determination made by the accountable owner, not asserted by an agent.
+- **Evidence existence does not prove evidence accuracy.** A captured field can be
+  stale, incomplete, self-reported, or wrong; the response records a claim, not a proof.
+- **One successful execution does not prove continuing operating effectiveness.** A
+  control's design and its sustained operation are assessed over time and populations,
+  not from a single green verdict.
+- **Technical controls do not replace procedural controls.** An automated gate does not
+  discharge the human approval, review, segregation-of-duties, and change-governance
+  obligations around it.
+- **Control design and control operation are separate.** Designing a check is not the
+  same as evidence that it operated on the change in question.
+- **Internal evidence does not replace independent assessment.** Self-generated output
+  is unreviewed until an independent party assesses it.
+- **Audit acceptance remains the auditor's decision.** Nothing here obliges any auditor
+  to accept any artifact.
+- **Legal compliance remains the organization's responsibility.** No agent, response, or
+  mapping in this repo establishes legal or regulatory compliance; qualified owners do.
 
 ---
 
@@ -14,9 +82,9 @@ The five fields below are the minimum set required on every agent response. Agen
 
 | Field | Type | Description |
 |---|---|---|
-| `verdict` | `approved` \| `blocked` \| `needs-review` | Binary gate decision. |
-| `evidence_level` | `verified` \| `partial` \| `assumed` | Confidence in the captured baseline. `verified` = live state confirmed via CLI read; `partial` = snapshot exists but may be stale; `assumed` = no current-state capture possible. |
-| `blockers` | `string[]` | Each item is a named violation that must be resolved before the change is approved. Empty array if verdict is `approved`. |
+| `verdict` | `approved` \| `blocked` \| `needs-review` | Gate decision. `approved` from an agent means *no blocking condition was detected in what the agent could observe* — never that a change is authorized, safe, or compliant. |
+| `evidence_level` | `verified` \| `partial` \| `assumed` | Confidence in the captured baseline. `verified` = live state confirmed via read; `partial` = snapshot exists but may be stale; `assumed` = no current-state capture possible. Retained for compatibility; richer dimensions are in [evidence-quality-model.md](compliance/evidence-quality-model.md). |
+| `blockers` | `string[]` | Each item is a named violation that must be resolved before the change proceeds. Empty array if verdict is `approved`. |
 | `safe_next_actions` | `string[]` | Ordered remediation steps if blocked, or post-approval verification steps if approved. |
 | `open_questions` | `string[]` | Ambiguities requiring human clarification. May be empty. |
 
@@ -59,9 +127,14 @@ The five fields below are the minimum set required on every agent response. Agen
 
 ---
 
-## Compliance Framework Mapping
+## Candidate Compliance-Control Support
 
-The table below maps each response field to the compliance controls it satisfies. A single structured response from a live-guard or review agent is sufficient evidence for all mapped controls — no additional documentation required.
+The table below lists controls each response field **may help support** as one input
+among others. A row means "this field is potentially relevant to this control," **not**
+"this field satisfies this control." Applicability, accuracy, sufficiency, and operating
+effectiveness are determined by the accountable owner and, where required, an independent
+assessor — see
+[What a response does and does not establish](#what-a-response-does-and-does-not-establish).
 
 | Response Field | SOC 2 (CC) | PCI DSS v4 | NIS 2 (Article) | NIST CSF (PR) | ISO 27001 (A.) |
 |---|---|---|---|---|---|
@@ -71,40 +144,63 @@ The table below maps each response field to the compliance controls it satisfies
 | `safe_next_actions` | CC8.1 — change management | Req 6.5 — secure development | Art. 21(2)(f) — security procedures | PR.IP-3 — configuration change control | A.12.1.2 — change management |
 | `open_questions` | CC4.1 — COSO monitoring | Req 12.3 — targeted risk analysis | Art. 21(1) — risk management | ID.RA-3 — threats identified | A.6.1.2 — segregation of duties |
 
-### How This Creates Audit Evidence
+> [!WARNING]
+> This table is a **research aid for control owners**, not a certification. A candidate
+> mapping is unverified until an owner confirms the control applies and an assessor
+> confirms the evidence is accurate, complete, and operating. Do not add a framework
+> column without concrete control references, and never present a mapping as proof of
+> compliance.
 
-A reviewer or auditor can:
+### How a response can *support* audit evidence
+
+A reviewer or auditor **may**:
 
 1. Export the structured response as a JSON artifact at change time.
-2. Hash the artifact and store it alongside the change record (Git commit, JIRA ticket, ServiceNow change).
-3. Reference the artifact in a SOC 2 or PCI DSS audit by mapping `verdict=approved` + `evidence_level=verified` + empty `blockers` to the controls in the table above.
+2. Hash the artifact and store it alongside the change record (Git commit, ticket,
+   change request) with a trusted timestamp.
+3. Consider it as **one input** when testing a mapped control — alongside the
+   independent evidence that establishes applicability, accuracy, and operating
+   effectiveness over the audit period.
 
-This eliminates manual evidence collection for the five most common cloud access-control audit questions:
-- "Did you review permissions before granting access?" → `verdict` field + agent name
-- "Did you capture the baseline before mutating?" → `evidence_level: verified`
-- "Were escalation paths blocked?" → `blockers` field
-- "What was the approved remediation path?" → `safe_next_actions`
-- "Were ambiguities escalated for human review?" → `open_questions`
+A response **cannot** by itself answer an audit question. For example:
+
+- "Did you review permissions before granting access?" → the `verdict` field plus the
+  agent name is a *lead*; the auditor still confirms the review actually governed the
+  change and that the reviewer was independent of the requester.
+- "Did you capture the baseline before mutating?" → `evidence_level: verified` claims a
+  capture occurred; the before/after state digests and an independent log establish it.
+- "Were escalation paths blocked?" → the `blockers` field records what *this run*
+  detected, not that the control operated on every relevant change.
+
+Populate the richer evidence dimensions in
+[evidence-quality-model.md](compliance/evidence-quality-model.md) (source, integrity,
+freshness, completeness, independence, sensitivity, control stage, retention, assessor
+status) so a reviewer can judge how much weight a response can carry.
 
 ---
 
 ## Three Enforcement Layers
 
-VFA agents cover three layers of every critical decision point. The evidence output spec applies to all three:
+VFA agents cover three layers of every critical decision point. The evidence output spec
+applies to all three. Each layer produces *inputs* to control testing, not conclusions.
 
-| Layer | Agent Type | Timing | Compliance Role |
+| Layer | Agent Type | Timing | Control support (candidate) |
 |---|---|---|---|
-| **BEFORE** | Review agents (e.g., `kubernetes-rbac-review`) | Pre-change, during design | SOC2 CC6.1 design evidence |
-| **AT** | Live-guard agents (e.g., `kubernetes-live-rbac-mutation-guard`) | At execution, blocking | NIST CSF PR.AC-4 enforcement control |
-| **AFTER** | Verification agents (e.g., `kubectl auth can-i` in safe_next_actions) | Post-change, audit trail | ISO 27001 A.12.4.1 event logging |
+| **BEFORE** | Review agents (e.g., `kubernetes-rbac-review`) | Pre-change, during design | Design-stage input for SOC2 CC6.1 |
+| **AT** | Live-guard agents (e.g., `kubernetes-live-rbac-mutation-guard`) | At execution, blocking | Enforcement input for NIST CSF PR.AC-4 |
+| **AFTER** | Verification agents (e.g., `kubectl auth can-i` in safe_next_actions) | Post-change, audit trail | Operation input for ISO 27001 A.12.4.1 |
+
+Design-stage, enforcement, and operation inputs are **distinct** and none substitutes for
+another (control design and control operation are separate).
 
 ---
 
 ## Five Critical Decision Points
 
-The live-guard agents cover the five decision points where unguarded automation creates the highest Fortune 50 compliance risk:
+The live-guard agents cover the five decision points where unguarded automation creates
+the highest Fortune 50 compliance risk:
 
-| Decision Point | Provider Coverage | Primary Control |
+| Decision Point | Provider Coverage | Candidate primary control |
 |---|---|---|
 | IAM/RBAC change | AWS IAM, Azure Entra ID, OCI IAM, Kubernetes RBAC | SOC2 CC6.1, PCI Req 7 |
 | Network exposure | AWS Security Groups, Azure NSGs, OCI Security Lists/NSGs | NIST CSF PR.AC-4 |
@@ -118,7 +214,11 @@ The live-guard agents cover the five decision points where unguarded automation 
 
 To add a new compliance framework (e.g., FedRAMP, HIPAA, CIS Controls):
 
-1. Add a column to the framework mapping table above.
+1. Add a column to the candidate-support table above.
 2. Map each response field to the most specific control in the new framework.
-3. Add a row to the Five Critical Decision Points table if the new framework introduces a sixth decision point not already covered.
-4. Do not add framework columns without concrete control references — `assumed` mappings create audit risk.
+3. Add a row to the Five Critical Decision Points table if the new framework introduces
+   a sixth decision point not already covered.
+4. Do not add framework columns without concrete control references — unverified
+   mappings create audit risk and must never be presented as proof.
+5. A mapping is a candidate for a control owner to evaluate; it is never a compliance
+   claim.

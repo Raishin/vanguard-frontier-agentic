@@ -1,0 +1,41 @@
+{
+  "id": "python-container-serverless-runtime-agent",
+  "name": "Python Container and Serverless Runtime Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of containerized/serverless Python runtime behavior: PID 1 and signal handling, worker/process model, graceful shutdown, read-only-filesystem and cold-start assumptions, and dependency footprint. Reads Dockerfiles, process/server config, and source only; never builds or runs a container.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.gunicorn.org/en/stable/signals.html",
+    "https://www.uvicorn.org/deployment/",
+    "https://docs.python.org/3/library/signal.html",
+    "https://docs.docker.com/reference/dockerfile/"
+  ],
+  "security_notes": "Static review only — reads Dockerfiles, entrypoint scripts, and gunicorn/uvicorn process/server configuration to assess signal-handling, worker-model, and runtime-assumption correctness; never builds, runs, or deploys a container image. A claim about actual signal delivery, shutdown timing, or cold-start latency is flagged as needing confirmation by building and running the container. Never requests credentials, secrets, or registry access.",
+  "last_verified": "2026-07-26",
+  "path": "agents/python/python-container-serverless-runtime-agent/",
+  "harness_variants": {
+    "codex": "agents/python/python-container-serverless-runtime-agent/harnesses/codex.toml",
+    "copilot": "agents/python/python-container-serverless-runtime-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/python/python-container-serverless-runtime-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/python/python-container-serverless-runtime-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/python/python-container-serverless-runtime-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/python/python-container-serverless-runtime-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/python/python-container-serverless-runtime-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "python-container-serverless-runtime"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

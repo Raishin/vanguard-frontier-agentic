@@ -1,0 +1,41 @@
+{
+  "id": "python-numerical-scientific-correctness-agent",
+  "name": "Python Numerical and Scientific Correctness Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of Python numerical and scientific correctness: binary float used for money, rounding-mode errors, silent dtype coercion and integer overflow, missing-data (NaN) handling, timezone-naive timestamps, unseeded randomness and irreproducibility, numerical instability, and unbenchmarked vectorization claims. Reads source only; never runs the calculation.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.python.org/3/tutorial/floatingpoint.html",
+    "https://docs.python.org/3/library/decimal.html",
+    "https://pandas.pydata.org/docs/user_guide/timeseries.html#time-zone-handling",
+    "https://numpy.org/doc/stable/reference/random/generator.html"
+  ],
+  "security_notes": "Static review only — reads Python/pandas/numpy source and sanitized sample schemas to locate money-as-float, rounding, dtype-coercion, timezone, and reproducibility defects; never runs the calculation, notebook, or benchmark and never observes an actual numeric result or timing. A claim about a computed value or a performance improvement is flagged as needing execution/benchmark evidence rather than asserted. Never requests production data or a live database/warehouse connection.",
+  "last_verified": "2026-07-26",
+  "path": "agents/python/python-numerical-scientific-correctness-agent/",
+  "harness_variants": {
+    "codex": "agents/python/python-numerical-scientific-correctness-agent/harnesses/codex.toml",
+    "copilot": "agents/python/python-numerical-scientific-correctness-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/python/python-numerical-scientific-correctness-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/python/python-numerical-scientific-correctness-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/python/python-numerical-scientific-correctness-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/python/python-numerical-scientific-correctness-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/python/python-numerical-scientific-correctness-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "python-numerical-scientific-correctness"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

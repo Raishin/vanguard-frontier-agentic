@@ -1,0 +1,7 @@
+{
+  "name": "018-multi-web-and-data-access",
+  "task": "This FastAPI endpoint has broken middleware order and no graceful shutdown; it opens a SQLAlchemy session, has an N+1, and never issues a rollback on the transaction error.",
+  "tags": [
+    "multi-domain"
+  ]
+}

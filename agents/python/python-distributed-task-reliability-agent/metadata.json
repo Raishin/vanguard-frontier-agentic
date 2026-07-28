@@ -1,0 +1,41 @@
+{
+  "id": "python-distributed-task-reliability-agent",
+  "name": "Python Distributed Task Reliability Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of Python distributed task systems (Celery, RQ, Dramatiq): idempotency under at-least-once delivery, retry policy and backoff, dead-letter and poison-message handling, duplicate execution, acknowledgement timing, scheduling, and transactional-outbox boundaries. Reads task and config source only; never enqueues or runs a task.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.celeryq.dev/en/stable/userguide/tasks.html",
+    "https://docs.celeryq.dev/en/stable/userguide/optimizing.html",
+    "https://docs.celeryq.dev/en/stable/faq.html",
+    "https://docs.celeryq.dev/en/stable/userguide/configuration.html"
+  ],
+  "security_notes": "Static review only — reads task definitions, retry/ack configuration, and broker/result-backend settings to assess delivery reliability; never enqueues, runs, or acknowledges a task, and never connects to a broker or result backend. A claim about actual delivery counts, duplicate execution, or retry behavior is flagged as needing observation against a real broker. Never requests broker credentials or customer data.",
+  "last_verified": "2026-07-26",
+  "path": "agents/python/python-distributed-task-reliability-agent/",
+  "harness_variants": {
+    "codex": "agents/python/python-distributed-task-reliability-agent/harnesses/codex.toml",
+    "copilot": "agents/python/python-distributed-task-reliability-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/python/python-distributed-task-reliability-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/python/python-distributed-task-reliability-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/python/python-distributed-task-reliability-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/python/python-distributed-task-reliability-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/python/python-distributed-task-reliability-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "python-distributed-task-reliability"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

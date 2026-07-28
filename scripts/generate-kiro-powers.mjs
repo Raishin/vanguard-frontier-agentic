@@ -289,6 +289,7 @@ const DISPLAY_NAME_OVERRIDES = {
 const DERIVED_KEYWORDS = {
   argocd: ["argocd", "gitops", "progressive-delivery", "application-sync"],
   dotnet: ["dotnet", "csharp", "aspnet-core", "ef-core", "nuget"],
+  python: ["python", "asyncio", "pyproject", "dependency-confusion", "static-review"],
   marketing: ["marketing-governance", "consent-compliance", "advertising-fairness", "email-authentication"],
   hr: ["hr-governance", "employment-risk", "compensation-equity", "recruiting"],
   legal: ["legal-risk", "contract-review", "privacy-compliance", "regulatory"],
@@ -368,6 +369,68 @@ function deriveTopics(entries) {
 }
 
 /**
+ * Select the routing maestro for a provider's Power.
+ *
+ * A board may carry more than one `*-maestro-agent` (e.g. the python board has both
+ * `python-maestro-agent` for static review and `python-live-governance-maestro-agent`
+ * for the live control plane). A plain `endsWith("-maestro-agent")` picks whichever
+ * sorts first in the catalog, which mis-routes the Power's static entry point. Always
+ * prefer the exact `{provider}-maestro-agent`; only fall back to the first suffix match
+ * when the board has no canonically named maestro.
+ */
+function selectMaestro(entries, provider) {
+  return (
+    entries.find((e) => e.id === `${provider}-maestro-agent`) ||
+    entries.find((e) => e.id.endsWith("-maestro-agent"))
+  );
+}
+
+/**
+ * Select a board's live control-plane maestro, if it has one distinct from the canonical
+ * static maestro (e.g. `python-live-governance-maestro-agent`).
+ *
+ * A two-plane board routes through two different maestros, and they are NOT
+ * interchangeable: the static maestro's contract refuses live operations and its routing
+ * taxonomy carries no live guards, so naming it as the router that "places live-guards in
+ * live-guard-gate" is incoherent — it would send a mutation task to an agent built to
+ * refuse it, while the only agent that actually gates the operators goes unmentioned.
+ * Keyed on `-live-` so multi-maestro boards whose extra maestros are sub-routers rather
+ * than live routers (e.g. microsoft's m365/d365/power-platform/copilot-governance) are
+ * not misread as having a live plane.
+ */
+function selectLiveMaestro(entries, provider) {
+  return entries.find(
+    (e) =>
+      e.id !== `${provider}-maestro-agent` &&
+      e.id.endsWith("-maestro-agent") &&
+      /-live-/.test(e.id),
+  );
+}
+
+/**
+ * Select a provider's live-mutation guards — the agents that are never
+ * auto-dispatched and must pass a live-guard gate before executing a mutation.
+ *
+ * The authoritative signal is `execution_tier === "mutating-runtime"`. The older
+ * `-live-` naming heuristic mislabels read-only agents: on a mixed-tier board a
+ * read-only-runtime observer or the routing maestro can carry `-live-` in its id
+ * (e.g. `python-live-system-inventory-agent`, the SAP `-live-readonly-*` discovery
+ * agents) yet execute no mutation, and listing them as guards collapses the very
+ * read-only/mutating boundary this catalog exists to keep explicit. So when the
+ * board declares any mutating-runtime tier, filter strictly by tier; only fall back
+ * to the naming heuristic for boards that predate execution_tier (the cloud boards,
+ * where every entry's tier is absent).
+ */
+function selectLiveGuards(entries) {
+  const hasMutatingTier = entries.some(
+    (e) => e.execution_tier === "mutating-runtime",
+  );
+  return hasMutatingTier
+    ? entries.filter((e) => e.execution_tier === "mutating-runtime")
+    : entries.filter((e) => /-live-/.test(e.id));
+}
+
+/**
  * Auto-generate steering content for a provider NOT in the hardcoded
  * PROVIDERS object.
  */
@@ -378,14 +441,23 @@ function deriveProviderConfig(provider, catalogEntries) {
   const entries = catalogEntries.filter(
     (e) => e.type === "agent" && e.provider === provider,
   );
-  const maestro = entries.find((e) => e.id.endsWith("-maestro-agent"));
-  const liveGuards = entries.filter((e) => /-live-/.test(e.id));
+  const maestro = selectMaestro(entries, provider);
+  const liveMaestro = selectLiveMaestro(entries, provider);
+  const liveGuards = selectLiveGuards(entries);
 
-  // Build description (max 3 sentences)
+  // Build description (max 3 sentences — Kiro constraint enforced by validate:kiro-powers).
+  // A board that carries live-guard agents is NOT "static review only"; and on a two-plane
+  // board the static maestro must not be credited with routing live-guards it refuses.
   let description;
   if (maestro && entries.length > 2) {
     const topics = deriveTopics(entries);
-    description = `Curated ${displayLabel} agents for ${topics}. Routes via ${maestro.id} to specialist agents based on task scope. Static review only; no live mutations.`;
+    if (liveMaestro) {
+      description = `Curated ${displayLabel} agents for ${topics}. Routes static review via ${maestro.id} and live control-plane work via ${liveMaestro.id}, which alone gates the live-guard operators. Live mutations require approval, target confirmation, evidence capture, and a rollback plan; static specialists never mutate.`;
+    } else if (liveGuards.length) {
+      description = `Curated ${displayLabel} agents for ${topics}. Routes via ${maestro.id} to specialist or live-guard agents based on task scope. Live-mutation agents require approval, target confirmation, evidence capture, and a rollback plan; static specialists never mutate.`;
+    } else {
+      description = `Curated ${displayLabel} agents for ${topics}. Routes via ${maestro.id} to specialist agents based on task scope. Static review only; no live mutations.`;
+    }
   } else if (entries.length === 1) {
     // Single agent, no maestro
     const summary = entries[0].summary || "";
@@ -428,16 +500,22 @@ function deriveProviderConfig(provider, catalogEntries) {
   const invariants = [];
   if (liveGuards.length > 0) {
     invariants.push(
-      `Live-guard agents (${provider}-live-*) must never be auto-dispatched; require explicit approval and rollback plan.`,
+      `Live-guard agents (the mutating-runtime operators) must never be auto-dispatched; require explicit approval, evidence capture, and a rollback plan${
+        liveMaestro ? `, and may only be gated by ${liveMaestro.id}` : ""
+      }. Read-only-runtime and static-review agents on this board are not guards.`,
     );
   }
   if (maestro) {
     invariants.push(
-      `Route all tasks through ${maestro.id} for proper classification and dispatch.`,
+      liveMaestro
+        ? `Route static-review tasks through ${maestro.id} and live control-plane tasks through ${liveMaestro.id}; never send a live-mutation task to ${maestro.id}, whose contract refuses live operations.`
+        : `Route all tasks through ${maestro.id} for proper classification and dispatch.`,
     );
   }
   invariants.push(
-    "Static review only -- agents analyze configuration and provide findings without mutating live systems.",
+    liveGuards.length
+      ? "Mixed-tier board: static specialists analyze configuration without mutating live systems; live-guard agents mutate only under approval, target confirmation, evidence capture, and a pre-approved rollback plan."
+      : "Static review only -- agents analyze configuration and provide findings without mutating live systems.",
   );
   // Add domain-specific invariants
   if (provider === "dotnet") {
@@ -512,21 +590,22 @@ function summarize(provider) {
   const kiroEntries = entries.filter(
     (e) => Array.isArray(e.harnesses) && e.harnesses.includes("kiro"),
   );
-  const maestro = entries.find((e) => e.id.endsWith("-maestro-agent"));
-  const liveGuards = entries
-    .filter((e) => /-live-/.test(e.id))
+  const maestro = selectMaestro(entries, provider);
+  const liveMaestro = selectLiveMaestro(entries, provider);
+  const liveGuards = selectLiveGuards(entries)
     .map((e) => e.id)
     .sort();
   return {
     total: entries.length,
     kiroAvailable: kiroEntries.length,
     maestro,
+    liveMaestro,
     liveGuards,
   };
 }
 
 function renderPower(provider, cfg) {
-  const { total, kiroAvailable, maestro, liveGuards } = summarize(provider);
+  const { total, kiroAvailable, maestro, liveMaestro, liveGuards } = summarize(provider);
   const frontmatter = [
     "---",
     `name: "vanguard-${provider}"`,
@@ -542,7 +621,14 @@ function renderPower(provider, cfg) {
     : "- *(none — this provider has no live-mutation guards in the catalog)*";
 
   const maestroLine = maestro
-    ? `- **\`${maestro.id}\`** — classifies and routes the task to the right specialist`
+    ? [
+        `- **\`${maestro.id}\`** — classifies and routes the task to the right specialist`,
+        ...(liveMaestro
+          ? [
+              `- **\`${liveMaestro.id}\`** — the live control-plane router; the only entry point that may place a live-guard operator in \`live-guard-gate\``,
+            ]
+          : []),
+      ].join("\n")
     : `- *(no maestro for this provider; reference agents directly under \`agents/${provider}/\`)*`;
 
   const adapterNote =
@@ -569,14 +655,18 @@ function renderPower(provider, cfg) {
     maestroLine,
     "",
     maestro
-      ? "Use the maestro as the entry point: classify the task, then dispatch to one specialist or a parallel team of specialists. Never have the maestro itself execute a live mutation."
+      ? liveMaestro
+        ? `This board has two planes with two routers. Send static-review work to \`${maestro.id}\` — its contract refuses live operations, so it must never be given a mutation task. Send live control-plane work to \`${liveMaestro.id}\`, which is the only router that gates the live-guard operators below. Classify first, then dispatch to one specialist or a small parallel team; never have either maestro execute a mutation itself.`
+        : "Use the maestro as the entry point: classify the task, then dispatch to one specialist or a parallel team of specialists. Never have the maestro itself execute a live mutation."
       : "Reference agents directly from agents/" + provider + "/ without maestro-based routing.",
     "",
     "## Live-guard agents (gate_mode only)",
     "",
     liveGuardSection,
     "",
-    "Live-guard agents enforce approval, target confirmation, evidence capture, and rollback plans before executing a mutation. They are never auto-dispatched — the maestro must place them in `live-guard-gate` or `runtime-evidence-gate` mode.",
+    `Live-guard agents enforce approval, target confirmation, evidence capture, and rollback plans before executing a mutation. They are never auto-dispatched — ${
+      liveMaestro ? `\`${liveMaestro.id}\`` : "the maestro"
+    } must place them in \`live-guard-gate\` or \`runtime-evidence-gate\` mode.`,
     "",
     "## Invariants",
     "",

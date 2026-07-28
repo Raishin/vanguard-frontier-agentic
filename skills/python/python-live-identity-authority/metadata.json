@@ -1,0 +1,26 @@
+{
+  "id": "python-live-identity-authority",
+  "name": "python-live-identity-authority",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "python",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Confirms active identity, role, credential age, target scope, JIT status, and approval authority before any gated action. Read-only. Blocks shared identities, unidentified principals, standing administrative credentials, and requester-as-approver conflicts.",
+  "source_type": "original",
+  "official_docs": [
+    "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+    "https://csrc.nist.gov/glossary/term/separation_of_duty",
+    "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+  ],
+  "security_notes": "Read-only-runtime: verifies identity, credential currency, JIT scope, and approval authority via allowlisted identity/access queries only; never grants, elevates, or approves an action itself. Emits an audit event for every verification, never uses shared or standing credentials, never retrieves raw secret values or credential material, and redacts personally identifiable fields from captured evidence.",
+  "last_verified": "2026-07-26",
+  "path": "skills/python/python-live-identity-authority",
+  "author": "github: Raishin"
+}
