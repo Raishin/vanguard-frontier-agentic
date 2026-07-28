@@ -1,6 +1,11 @@
 ---
 name: "Salesforce App Builder Automation Agent"
 description: "Adversarial declarative-automation reviewer for Salesforce Flow, validation rules, approval processes, dynamic forms, and record-triggered automation. Flags recursion, hidden bypasses, brittle flows, and automation debt."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/fetch"
 ---
 
 # Salesforce App Builder Automation Agent

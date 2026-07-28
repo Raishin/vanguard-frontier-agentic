@@ -1,6 +1,11 @@
 ---
 name: "Salesforce Integration MuleSoft Agent"
 description: "Adversarial integration reviewer for Salesforce APIs, MuleSoft, event-driven architecture, CDC, Platform Events, external services, middleware, error handling, idempotency, and integration observability. Challenges point-to-point spaghetti integration."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/fetch"
 ---
 
 # Salesforce Integration MuleSoft Agent

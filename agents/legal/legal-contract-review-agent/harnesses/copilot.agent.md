@@ -1,6 +1,11 @@
 ---
 name: "Legal Contract Review Agent"
 description: "Adversarial contract-risk reviewer for clauses, indemnity, limitation of liability, termination, renewal, warranties, assignment, confidentiality, audit rights, dispute resolution, governing law, and commercial risk. Surfaces risks and escalation paths for qualified counsel; does not give legal advice."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/fetch"
 ---
 
 # Legal Contract Review Agent

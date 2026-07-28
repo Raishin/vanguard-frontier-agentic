@@ -1,6 +1,11 @@
 ---
 name: "Java JVM Performance and GC Agent"
 description: "Static review of proposed JVM GC/performance changes for evidence — collector selection (G1/ZGC/Generational ZGC/Shenandoah/Parallel), allocation pressure, heap-sizing flags, and OOM/leak triage from user-supplied GC logs, JFR, and heap-dump analysis output. Refuses GC-switch recommendations without pause-time evidence. Reads source and sanitized configuration only."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/fetch"
 ---
 
 # Java JVM Performance and GC Agent

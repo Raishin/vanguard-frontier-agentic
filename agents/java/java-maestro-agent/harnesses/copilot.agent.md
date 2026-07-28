@@ -1,6 +1,11 @@
 ---
 name: "Java Maestro"
 description: "Router agent for the Java board. Classifies a Java/JVM task and dispatches the narrowest static-review specialist, or a parallel team of up to four for multi-domain tasks. Routes only — never answers Java questions itself."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/fetch"
 ---
 
 # Java Maestro

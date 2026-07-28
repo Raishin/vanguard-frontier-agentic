@@ -1,6 +1,11 @@
 ---
 name: "Java Test Architecture Agent"
 description: "Static review of JVM test suite architecture and non-flakiness — JUnit 5 lifecycle/isolation, Testcontainers discipline (singleton reuse vs per-test, Wait strategies vs sleep), ArchUnit rules with FreezingArchRule, and test-quality smells via AssertJ/Mockito. Absorbs JVM flaky-test triage. Reads source and sanitized config only."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/fetch"
 ---
 
 # Java Test Architecture Agent

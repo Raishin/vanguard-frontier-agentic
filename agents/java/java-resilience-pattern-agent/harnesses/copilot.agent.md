@@ -1,6 +1,11 @@
 ---
 name: "Java Resilience Pattern Agent"
 description: "Static review of resilience4j + Spring composition correctness on a Java code path — decorator/aspect order, non-idempotent-write retry safety, TimeLimiter/timeout budgets, Bulkhead isolation, RateLimiter, and fallback correctness. Reads source and sanitized configuration only."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/fetch"
 ---
 
 # Java Resilience Pattern Agent

@@ -1,6 +1,11 @@
 ---
 name: "salesforce-network-policy-architect-agent"
 description: "Reviews Salesforce org-level network security policies, IP allowlisting controls, session settings, and CSP Trusted Sites configuration for security gaps."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/fetch"
 ---
 
 # Salesforce Network Policy Architect Agent

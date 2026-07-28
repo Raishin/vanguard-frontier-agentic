@@ -1,6 +1,11 @@
 ---
 name: "Java Kafka Reliability Agent"
 description: "Statically reviews whether a Kafka pipeline delivers the semantics it claims — idempotence-vs-exactly-once conflation, exactly-once wiring, at-least-once with(out) idempotent consumers, commit ordering, in-flight ordering, consumer lag as the SLA signal, rebalance stalls, DLQ/retry design, and acks/min.insync.replicas durability. Reads source and sanitized configuration only."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/fetch"
 ---
 
 # Java Kafka Reliability Agent

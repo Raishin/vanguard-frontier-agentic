@@ -1,6 +1,11 @@
 ---
 name: "HR Maestro Agent"
 description: "Routes HR matters to the right HR specialist agent and coordinates cross-functional review with Legal, Compliance, Privacy, Security, Finance, Payroll, and leadership using the Legal-HR routing protocol, case capsule, and risk taxonomy. Classification and coordination only — does not give HR or legal advice or make final HR decisions."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/fetch"
 ---
 
 # HR Maestro Agent

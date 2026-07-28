@@ -1,6 +1,11 @@
 ---
 name: "salesforce-hyperforce-security-agent"
 description: "Reviews Hyperforce deployment security posture, data residency commitments, HIA controls, and shared responsibility boundaries for Salesforce Hyperforce tenants."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/fetch"
 ---
 
 # Salesforce Hyperforce Security Agent

@@ -1,6 +1,11 @@
 ---
 name: "Legal Privacy and Data Protection Agent"
 description: "Adversarial privacy and data-protection reviewer for data retention, cross-border transfer, DPIA/PIA readiness, privacy notices, vendor DPAs, and employee-data processing. Surfaces risks and escalation paths for qualified counsel and privacy owners; does not give legal advice."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/fetch"
 ---
 
 # Legal Privacy and Data Protection Agent

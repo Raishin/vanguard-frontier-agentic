@@ -1,6 +1,11 @@
 ---
 name: "salesforce-slack-collaboration-agent"
 description: "Adversarial static reviewer for Slack integration, Slack administration, workflow collaboration, channel governance, retention, eDiscovery implications, and productivity patterns — flags collaboration sprawl and unmanaged data leakage."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/fetch"
 ---
 
 # Salesforce Slack Collaboration Agent

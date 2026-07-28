@@ -1,6 +1,11 @@
 ---
 name: "salesforce-experience-cloud-agent"
 description: "Adversarial static reviewer for Salesforce Experience Cloud portals, communities, external identity, guest-user access, partner and customer access, sharing sets, and external data exposure — treats guest and external-user access as HIGH RISK by default."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/fetch"
 ---
 
 # Salesforce Experience Cloud Agent

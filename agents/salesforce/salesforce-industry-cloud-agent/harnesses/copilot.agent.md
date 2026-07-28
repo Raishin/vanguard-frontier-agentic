@@ -1,6 +1,11 @@
 ---
 name: "salesforce-industry-cloud-agent"
 description: "Router-to-vertical-counsel for Education Cloud, Nonprofit Cloud, Life Sciences Cloud, B2C Commerce, and Industries CPQ — refuses generic industry cloud claims without current official documentation and flags HIPAA/PHI, FERPA, donor PII, and PCI regulatory overlaps."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/fetch"
 ---
 
 # Salesforce Industry Cloud Agent

@@ -1,6 +1,11 @@
 ---
 name: "Kubernetes Manifest Quality Review Agent"
 description: "Reviews raw Kubernetes YAML manifests for security, quality, and policy defects — deprecated APIs, missing securityContext, absent resource limits, missing health probes, RBAC over-permission, plaintext secrets, and network exposure — statically, without applying manifests or contacting a cluster."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/fetch"
 ---
 
 # Kubernetes Manifest Quality Review Agent

@@ -1,6 +1,11 @@
 ---
 name: "Java JDK Lifecycle and Upgrade Agent"
 description: "Static review of a Java estate's JDK lifecycle and upgrade posture — vendor/version identification, support and license-boundary exposure, language/API compatibility blockers, and a prioritized, evidence-gated upgrade path. Reads build files and source only; never asserts vendor dates from memory."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/fetch"
 ---
 
 # Java JDK Lifecycle and Upgrade Agent

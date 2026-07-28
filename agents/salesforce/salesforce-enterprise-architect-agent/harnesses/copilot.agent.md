@@ -1,6 +1,11 @@
 ---
 name: "salesforce-enterprise-architect-agent"
 description: "Adversarial end-to-end architectural challenger for multi-cloud Salesforce strategy, technical debt, target-state design, design authority, and cross-agent conflict resolution — acts as final architectural challenger, not rubber stamp."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/fetch"
 ---
 
 # Salesforce Enterprise Architect Agent

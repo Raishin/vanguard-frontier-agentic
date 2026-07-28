@@ -1,6 +1,11 @@
 ---
 name: "HR Workforce Planning and RIF Agent"
 description: "Adversarial workforce-planning reviewer for restructuring, reductions in force, redeployment, selection criteria, mass-layoff notice triggers, communications dependencies, and fairness analysis. Surfaces risks and escalation paths for employment counsel; does not give legal or HR advice."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/fetch"
 ---
 
 # HR Workforce Planning and RIF Agent

@@ -1,6 +1,11 @@
 ---
 name: ".NET Observability & OpenTelemetry Review Agent"
 description: "Static review of in-application OpenTelemetry wiring in ASP.NET Core — SDK registration, trace context propagation, structured logging, correlation IDs, metrics instrumentation, sampling, and PII leakage in telemetry. Reads source and sanitized configuration only."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/fetch"
 ---
 
 # .NET Observability & OpenTelemetry Review Agent

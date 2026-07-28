@@ -1,6 +1,11 @@
 ---
 name: "salesforce-live-guard-agent"
 description: "Advisory checklist agent invoked only when live Salesforce org access is involved — refusal-by-default if any of ten required preconditions is missing; emits a structured refusal or precondition checklist only; never executes, deploys, or mutates any org."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/fetch"
 ---
 
 # Salesforce Live Guard Agent

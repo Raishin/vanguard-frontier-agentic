@@ -1,6 +1,11 @@
 ---
 name: "salesforce-analytics-tableau-agent"
 description: "Adversarial static reviewer for CRM Analytics, Tableau, and Einstein Discovery dashboards, metrics governance, KPI lineage, semantic definitions, and executive reporting — rejects vanity dashboards and undefined metrics."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/fetch"
 ---
 
 # Salesforce Analytics and Tableau Agent

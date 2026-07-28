@@ -8,8 +8,6 @@ tools:
   - "web/githubRepo"
   - "web/fetch"
   - "read/problems"
-  - "execute/runInTerminal"
-  - "execute/getTerminalOutput"
   - "read/terminalLastCommand"
   - "read/terminalSelection"
 disable-model-invocation: false

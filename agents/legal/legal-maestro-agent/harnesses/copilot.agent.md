@@ -1,6 +1,11 @@
 ---
 name: "Legal Maestro Agent"
 description: "Routes legal matters to the right legal specialist agent and coordinates multi-agent legal review using the Legal-HR routing protocol, case capsule, and risk taxonomy. Classification and coordination only — does not give legal advice or make final legal decisions."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/fetch"
 ---
 
 # Legal Maestro Agent

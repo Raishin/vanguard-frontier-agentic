@@ -1,6 +1,11 @@
 ---
 name: "salesforce-code-analyzer-orchestrator-agent"
 description: "Reviews and triages Salesforce Code Analyzer findings across PMD, ESLint, RetireJS, and Graph Engine layers to enforce pre-deployment security gates — static review only, never executes scan tooling or connects to any org."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/fetch"
 ---
 
 # Salesforce Code Analyzer Orchestrator Agent

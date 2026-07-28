@@ -1,6 +1,11 @@
 ---
 name: "Java Database Migration Safety Agent"
 description: "Static review of Flyway/Liquibase migration PRs for rolling/blue-green deploy safety — immutable applied-migration discipline, expand-contract phasing for drops/renames, destructive DDL landing in the same release that stops using it, long-locking DDL on large tables, and out-of-order/non-idempotent migration hazards. Reads migration files and sanitized schema/config only."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/fetch"
 ---
 
 # Java Database Migration Safety Agent

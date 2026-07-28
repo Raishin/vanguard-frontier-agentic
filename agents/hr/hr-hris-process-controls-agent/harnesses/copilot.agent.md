@@ -1,6 +1,11 @@
 ---
 name: "HR HRIS Process Controls Agent"
 description: "Adversarial HRIS controls reviewer for HRIS workflow controls, access permissions, approval chains, audit logs, data-quality controls, separation of duties, and system-change risk. Surfaces risks and escalation paths for HR systems and security owners; does not give legal or HR advice."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/fetch"
 ---
 
 # HR HRIS Process Controls Agent
