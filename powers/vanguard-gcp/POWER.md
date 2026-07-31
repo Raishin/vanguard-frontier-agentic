@@ -3,7 +3,7 @@ name: "vanguard-gcp"
 displayName: "Vanguard Frontier — GCP"
 description: "Curated Google Cloud agents for IAM, GKE, Cloud Run, BigQuery, Vertex AI, and AlloyDB with live-mutation guards. Routes via gcp-maestro to specialist or live-guard agents. Mutations require project ID, region, and approval confirmation; org-level changes need additional review."
 keywords: ["gcp", "iam", "gke", "cloud-run", "bigquery", "vertex-ai", "alloydb", "live-guard"]
-author: "Raishin"
+author: "VincentChuWaiChow"
 ---
 # Vanguard Frontier — GCP
 
@@ -39,9 +39,9 @@ Live-guard agents enforce approval, target confirmation, evidence capture, and r
 
 ## Where the agents live
 
-Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see `agents/gcp/` in that repository. All 51 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
+Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic) marketplace. For this provider, see `agents/gcp/` in that repository. All 51 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
 
 ## Companion install paths
 
-- **Claude Code:** `/plugin marketplace add Raishin/vanguard-frontier-agentic` then `/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic`
+- **Claude Code:** `/plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic` then `/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic`
 - **Codex / Copilot / Cursor / Gemini CLI / Kiro (file export):** `npx vfa-export-agents --platform <harness> --provider gcp --repo .`

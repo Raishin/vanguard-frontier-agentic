@@ -4,7 +4,7 @@ description: "Generates Apex test classes with TestDataFactory patterns, Assert 
 license: MIT
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-21"
   category: generation

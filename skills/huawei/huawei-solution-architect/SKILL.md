@@ -3,7 +3,7 @@ name: huawei-solution-architect
 description: Design Huawei Cloud solutions — product selection, enterprise-project model design, region selection for MLPS/sovereignty requirements, architecture patterns, multi-zone and multi-region HA. Covers region mapping (China and international), GaussDB vs RDS selection, ModelArts/Ascend NPU considerations, and the six-pillar Huawei Cloud Architecture Framework including the Trusted pillar.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: platform

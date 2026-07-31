@@ -3,7 +3,7 @@ name: gcp-landing-zone-architect
 description: Design and review GCP landing zone foundations including organization setup, folder hierarchy, org policy baseline, Shared VPC, billing account structure, Security Command Center, and audit logging.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: platform

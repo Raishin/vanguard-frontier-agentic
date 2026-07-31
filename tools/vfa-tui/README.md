@@ -17,13 +17,13 @@ Requires Rust 1.75 or later.
 
 ## Important Limitations
 
-**`vfa-tui` is designed for use inside the [`vanguard-frontier-agentic`](https://github.com/Raishin/vanguard-frontier-agentic) monorepo.** The binary auto-detects the workspace root by walking up from the current directory and looking for the `catalog/` directory and `package.json`. Running it outside a checked-out copy of the repository will produce an error at startup.
+**`vfa-tui` is designed for use inside the [`vanguard-frontier-agentic`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic) monorepo.** The binary auto-detects the workspace root by walking up from the current directory and looking for the `catalog/` directory and `package.json`. Running it outside a checked-out copy of the repository will produce an error at startup.
 
 **Library API stability:** The `vfa_tui` library crate is an internal implementation detail. All modules are marked `pub` only to allow integration and property tests in sibling crates to import them directly. The library API is **not covered by semver guarantees** — it may change between any releases.
 
 ## Pre-built Binaries
 
-Tagged releases publish pre-compiled binaries for all supported platforms via GitHub Releases. Download from [Releases](https://github.com/Raishin/vanguard-frontier-agentic/releases) and place the binary on your `$PATH`.
+Tagged releases publish pre-compiled binaries for all supported platforms via GitHub Releases. Download from [Releases](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/releases) and place the binary on your `$PATH`.
 
 Available targets per release:
 

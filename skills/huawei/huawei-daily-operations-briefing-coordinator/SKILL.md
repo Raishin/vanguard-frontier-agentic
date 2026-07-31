@@ -3,7 +3,7 @@ name: huawei-daily-operations-briefing-coordinator
 description: Coordinate the daily Huawei Cloud operations standup — CBC cost delta by Enterprise Project, AOM anomaly alert review, CCE pod failure triage, CES quota utilization warnings, LTS log error spike detection, SecMaster security finding triage, and action item assignment.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: observability

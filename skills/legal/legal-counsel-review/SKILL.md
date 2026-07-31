@@ -3,7 +3,7 @@ name: legal-counsel-review
 description: Use this skill when reviewing legal, contractual, regulatory, privacy, litigation, compliance, or risk-governance questions for an enterprise legal function. Trigger when a user provides a contract excerpt, a policy, a compliance question, a privacy-risk question, or a legal intake item and wants risks, evidence gaps, decision options, and escalation paths surfaced. This skill is an adversarial risk-review discipline; it does not provide legal advice, form an attorney-client relationship, or issue binding legal conclusions.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-18"
   category: compliance

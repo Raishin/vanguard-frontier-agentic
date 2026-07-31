@@ -3,7 +3,7 @@ name: huawei-drs-data-replication-operator
 description: Plan and execute Huawei DRS (Data Replication Service) migration and real-time sync tasks, CDM (Cloud Data Migration) batch ETL jobs, and DMS (Distributed Message Service) Kafka cluster operations with safe cutover sequencing.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: data

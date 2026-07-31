@@ -3,7 +3,7 @@ name: alibaba-load-balancer-traffic-engineer
 description: Traffic engineering for Alibaba Cloud load balancers — CLB (Classic, legacy), ALB (Application Load Balancer, Layer 7 advanced routing), NLB (Network Load Balancer, Layer 4 high throughput), and GA (Global Accelerator) — type selection, health check design, WAF integration, and traffic distribution.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: networking

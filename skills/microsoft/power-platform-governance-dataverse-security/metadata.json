@@ -24,7 +24,7 @@
   "security_notes": "Production DLP policy changes are live-guard gated and must never be auto-applied. Never request or accept tenant IDs, environment IDs, connection strings, service principal secrets, or customer data. Refuse requests to disable or broadly relax DLP for convenience. All privilege grants in Dataverse are additive and accumulative — over-permissioning cannot be hidden by app-level controls alone. Connector classification disputes must document business justification before any reclassification.",
   "last_verified": "2026-06-16",
   "path": "skills/microsoft/power-platform-governance-dataverse-security",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "category": "security",
   "companion_agents": ["power-platform-governance-dataverse-security-agent"]

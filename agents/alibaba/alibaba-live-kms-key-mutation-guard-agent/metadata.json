@@ -15,7 +15,7 @@
   "security_notes": "Alibaba KMS scheduled deletion window is 30 days by default (minimum 7 days). Once deleted: OSS SSE-KMS objects, ECS encrypted disk snapshots, RDS/PolarDB TDE data are all permanently unrecoverable. Key disable is reversible; key deletion is not. Never schedule deletion without a complete CMK dependency audit.",
   "last_verified": "2026-05-08",
   "path": "agents/alibaba/alibaba-live-kms-key-mutation-guard-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "harness_variants": {
     "codex": "agents/alibaba/alibaba-live-kms-key-mutation-guard-agent/harnesses/codex.toml",
     "copilot": "agents/alibaba/alibaba-live-kms-key-mutation-guard-agent/harnesses/copilot.agent.md",

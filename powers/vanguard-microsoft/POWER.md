@@ -3,7 +3,7 @@ name: "vanguard-microsoft"
 displayName: "Vanguard Frontier — Microsoft"
 description: "Curated Microsoft 365 and Dynamics 365 agents for tenant governance, Entra identity and Conditional Access, Intune endpoints, Purview data security and compliance, Defender XDR, Teams/SharePoint/Exchange collaboration, Microsoft 365 Copilot readiness, Power Platform governance, and Dynamics 365 ERP/CRM (Finance, Supply Chain, Business Central, Sales, Customer Service, Field Service) — static review only, no tenant or production mutations. Routes via microsoft-maestro to M365, D365, Power Platform, and Copilot specialist agents. Microsoft licensing, certification, and API surfaces are drift-prone; agents always verify against current Microsoft Learn documentation before rendering findings."
 keywords: ["microsoft", "m365", "d365", "entra", "purview", "copilot", "power-platform", "static-review"]
-author: "Raishin"
+author: "VincentChuWaiChow"
 ---
 # Vanguard Frontier — Microsoft
 
@@ -37,9 +37,9 @@ Live-guard agents enforce approval, target confirmation, evidence capture, and r
 
 ## Where the agents live
 
-Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see `agents/microsoft/` in that repository. All 40 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
+Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic) marketplace. For this provider, see `agents/microsoft/` in that repository. All 40 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
 
 ## Companion install paths
 
-- **Claude Code:** `/plugin marketplace add Raishin/vanguard-frontier-agentic` then `/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic`
+- **Claude Code:** `/plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic` then `/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic`
 - **Codex / Copilot / Cursor / Gemini CLI / Kiro (file export):** `npx vfa-export-agents --platform <harness> --provider microsoft --repo .`

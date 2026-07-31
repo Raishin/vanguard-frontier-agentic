@@ -26,7 +26,7 @@
   "security_notes": "Static review only — no Signavio API calls, no investigation configuration changes, no connector extraction modifications, no process model mutations. Never creates or deletes a process investigation or BPMN model. Never accepts real Signavio tenant credentials, API tokens, or personally identifiable process participant data extracted from event logs. Findings indicating material KPI misalignment to the board-approved business case, conformance deviation rates above 30% without root-cause investigation, or investigations not refreshed for more than 90 days in high-velocity processes must be escalated to the Process Excellence Owner and programme sponsor before conclusions are communicated to executive stakeholders. All recommendations are advisory; changes to investigation scope, connector configuration, or reference model alignment require approval from the Process Excellence Owner and, where the investigation underpins a compliance or audit process, sign-off from the relevant control owner.",
   "last_verified": "2026-06-19",
   "path": "agents/sap/sap-signavio-process-mining-value-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "companion_skills": [
     "sap-signavio-process-mining-value"
   ],

@@ -3,7 +3,7 @@ name: ionos-security-compliance-reviewer
 description: Audit IONOS Cloud security and compliance posture covering GDPR data residency and data sovereignty, ISO 27001 control alignment, encryption at rest and in transit, private LAN isolation, IAM role and bearer token hygiene, regional endpoint correctness, audit trail coverage, and vulnerability posture. Use when the user asks to assess, improve, or evidence IONOS Cloud security or GDPR compliance.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-10"
   category: security

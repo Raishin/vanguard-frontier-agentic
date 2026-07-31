@@ -3,7 +3,7 @@ name: gcp-iam-least-privilege-review
 description: Audit GCP IAM bindings across the resource hierarchy (org/folder/project), identify overprivileged Service Accounts, review Workload Identity Federation configurations, evaluate org policy conditions, and recommend least-privilege remediation. Prefer gcp-secret-kms-lifecycle-steward for KMS/Secret Manager lifecycle design and gcp-vpc-service-controls-architect for perimeter access policy posture unless the request is primarily IAM binding surgery.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: security

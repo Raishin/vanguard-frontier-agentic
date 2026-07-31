@@ -3,7 +3,7 @@ name: m365-live-sensitivity-label-apply-guard
 description: Mutating-runtime live-guard for applying ONE Microsoft Purview sensitivity label to ONE specified item (file/driveItem) via the Microsoft Graph assignSensitivityLabel action. Strictly scoped — one item, one label application. Requires explicit written human approval token referencing the exact item, proposed label, and blast-radius. PREFLIGHT reads the item's current label before any write. Fully reversible — prior label captured; re-apply prior label is the rollback. Gate-only; never auto-dispatched. Phase B mutating-runtime.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-17"
   category: compliance

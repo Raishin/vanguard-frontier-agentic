@@ -13,7 +13,7 @@ allowed-tools: Read Grep Glob Bash(cosign verify --certificate-identity=* --cert
 # Operators MUST supply non-empty expected_signer_identity / expected_oidc_issuer
 # in runtime mode; missing values trigger inputs_incomplete → manual-review.
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-11"
   category: security

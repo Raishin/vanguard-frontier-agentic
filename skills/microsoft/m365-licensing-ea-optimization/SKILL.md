@@ -3,7 +3,7 @@ name: m365-licensing-ea-optimization
 description: Review Microsoft 365 licensing posture and Enterprise Agreement optimization — SKU and plan fit analysis across E3, E5, F-SKUs and add-ons; group-based licensing assignment hygiene; unassigned and over-assigned license detection; true-up planning guidance; and cost-versus-capability analysis for EA, CSP, and MCA contract types. Advisory only; never make purchase commitments or guarantee savings. Group-based-licensing changes in production are live-guard gated.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-17"
   category: cost-management

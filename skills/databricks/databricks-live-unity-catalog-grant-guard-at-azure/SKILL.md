@@ -3,7 +3,7 @@ name: databricks-live-unity-catalog-grant-guard-at-azure
 description: Mutating-runtime live guard for Unity Catalog privilege management on Azure Databricks. Executes exactly ONE GRANT or REVOKE of a single privilege on a single Unity Catalog securable (schema, table, or volume) to a single principal — with explicit written human approval, dry-run preflight, prior-state capture, and a named rollback owner. Phase B strictly-scoped controlled mutation; never bulk, never wildcard, never ALL PRIVILEGES, never metastore/account admin grants.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-17"
   category: security

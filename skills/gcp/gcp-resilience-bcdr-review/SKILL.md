@@ -3,7 +3,7 @@ name: gcp-resilience-bcdr-review
 description: Review GCP workload HA and BCDR designs — multi-region architectures, Cloud SQL HA failover, Spanner global instances, GKE multi-cluster, RTO/RPO target analysis, and runbook completeness.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: resilience

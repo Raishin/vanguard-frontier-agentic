@@ -3,7 +3,7 @@ name: azure-live-aks-rollout-guard
 description: Guard live AKS deployment rollouts with PDB audit, maxUnavailable/surge validation, rollout pause/undo gates, and post-rollout health verification.
 allowed-tools: Read Grep Glob WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: 0.1.4
   updated: "2026-06-05"
   category: delivery

@@ -3,7 +3,7 @@ name: scaleway-iam-policy-review
 description: Review Scaleway IAM policies, API key governance, service account bindings, and organization/project-level permission sets for least-privilege posture. Use when the user asks to audit API key scopes, review IAM policy breadth, assess service account access, or tighten Scaleway identity controls. Surfaces overly broad access, missing expiry, and key sprawl risks with actionable remediation paths.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-10"
   category: security

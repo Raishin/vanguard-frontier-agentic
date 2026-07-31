@@ -3,7 +3,7 @@ name: python-estate-modernization-governor
 description: "Use this skill to statically review Python runtime-estate support posture and upgrade sequencing: end-of-life/unsupported interpreters, deprecation exposure, dependency/framework compatibility for an upgrade, and ownership/business-criticality gaps. Reads inventory, manifests, and config only; it never runs an upgrade or installs an interpreter."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-26"
   category: architecture

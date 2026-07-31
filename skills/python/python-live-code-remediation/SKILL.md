@@ -3,7 +3,7 @@ name: python-live-code-remediation
 description: "Use this skill to create a branch and pull request for a bounded code/dependency remediation and run approved isolated (non-production) validation against it. Mutating-runtime: it can never merge, deploy, or weaken a policy, gate, or test."
 allowed-tools: Read Grep Glob WebSearch WebFetch Bash
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-26"
   category: devsecops

@@ -3,7 +3,7 @@ name: sap-procurement-license-finops-vendor-protocol
 description: Cross-functional coordination protocol governing handoff contracts between SAP Procurement/License, FinOps, and Vendor Management. Activates on BTP consumption spikes, entitlement changes, license compliance events, RISE/SLA issues, vendor lock-in exposure, contractual risk, underused subscriptions, and over-provisioned services. Advisory and audit only — no live mutation.
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-19"
   category: finops

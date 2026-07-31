@@ -3,7 +3,7 @@ name: huawei-ief-edge-computing-operator
 description: Manage IEF (Intelligent Edge Fabric) edge node lifecycle, edge application deployment as container workloads, IoT device twin management, and cloud-edge-device unified control plane with offline operation support.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: platform

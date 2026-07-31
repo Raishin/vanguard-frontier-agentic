@@ -3,7 +3,7 @@ name: sap-audit-evidence-packaging
 description: Package and structure audit evidence for SAP controls covering Segregation of Duties, change management, access management, and financial controls. Defines evidence taxonomy, maps controls to evidence artifacts, establishes chain-of-custody and redaction requirements, and aligns evidence packages to SOC 2, ISO 27001, SOX, and GxP frameworks. Does not touch live systems and never includes secrets, credentials, or personal identifiable information in evidence packages.
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-19"
   category: compliance

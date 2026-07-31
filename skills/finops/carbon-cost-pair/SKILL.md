@@ -3,7 +3,7 @@ name: carbon-cost-pair
 description: Pair every cloud spend value with a kgCO2e estimate by region and service category for CSRD and SEC climate disclosure. Input is region, service category, and dollar value; output is paired kgCO2e with confidence label (vendor-published, third-party, or estimated) and source citation. Defaults to electricity-only Scope 2 market-based factors.
 allowed-tools: Read Grep Glob WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.1"
   updated: "2026-05-13"
   category: finops

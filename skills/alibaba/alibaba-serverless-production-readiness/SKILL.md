@@ -3,7 +3,7 @@ name: alibaba-serverless-production-readiness
 description: Review Function Compute 3.0 (FC3), SAE (Serverless App Engine), and EDAS for production readiness — cold start optimization, VPC binding, RAM role injection, ARMS distributed tracing, security group rules, concurrency limits, and SLA-readiness.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: platform

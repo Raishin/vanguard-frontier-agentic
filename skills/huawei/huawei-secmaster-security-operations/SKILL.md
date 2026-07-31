@@ -3,7 +3,7 @@ name: huawei-secmaster-security-operations
 description: Operate Huawei SecMaster (integrated SIEM/SOAR/threat intelligence), HSS (Host Security Service) host intrusion detection, CFW (Cloud Firewall), WAF (Web Application Firewall), Anti-DDoS, and VSS (Vulnerability Scan Service) for comprehensive cloud security operations.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: security

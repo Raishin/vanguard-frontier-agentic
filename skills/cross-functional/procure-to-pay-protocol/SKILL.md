@@ -3,7 +3,7 @@ name: procure-to-pay-protocol
 description: Use this skill to orchestrate the procure-to-pay (source-to-pay) process across Dynamics 365 Supply Chain Management, Finance, and compliance-aware separation-of-duties governance. It coordinates the journey from purchase requisition through purchase order approval, goods or services receipt, vendor invoice processing, and payment settlement. The skill enforces segregation-of-duties gates on purchase order approval, defines agent handoff rules, and escalates SoD conflicts to d365-security-sod-governance-agent. It does not approve purchase orders, release vendor payments, override procurement policies, or access vendor credentials; all production-impacting steps are escalated to the relevant specialist or human owner.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-16"
   category: operational

@@ -27,7 +27,7 @@
   "security_notes": "Does not access live SAP production systems, transport management organizers, financial configuration, or FICO posting period settings. Accepts only user-provided transport manifests, QA import results, readiness checklist outputs, financial impact assessments, and incident records. Never accepts production system credentials, transport import passwords, or RFC connection details. All transport imports must route through sap-guarded-transport-import-operator-agent with complete written approval documentation. Period-sensitive financial configuration changes require Finance Controls and CFO written approval before execution. No guarded-mutating gate is bypassed by this protocol.",
   "last_verified": "2026-06-19",
   "path": "skills/sap/sap-release-cutover-finance-controls-protocol",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "lifecycle": "experimental"
 }

@@ -3,7 +3,7 @@ name: huawei-observability-incident-responder
 description: Respond to Huawei Cloud incidents via CES (Cloud Eye) metric alarms, LTS (Log Tank Service) log analytics, AOM (Application Operations Management) service topology, APM distributed tracing, and SMN notification governance.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: observability

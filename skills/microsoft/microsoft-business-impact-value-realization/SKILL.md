@@ -3,7 +3,7 @@ name: microsoft-business-impact-value-realization
 description: Review Microsoft 365 and Copilot value realization — license-to-value, adoption measurement, and ROI. Covers Copilot Control System measurement and reporting, Copilot Analytics and the Copilot Dashboard, Adoption Score and AI adoption score, the Microsoft 365 Copilot readiness/usage reports, license assignment optimization, and FastTrack adoption guidance. Use to turn license spend into measurable productivity and business outcomes. Advisory only; never makes licensing purchase commitments.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-16"
   category: finance

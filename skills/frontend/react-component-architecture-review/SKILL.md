@@ -3,7 +3,7 @@ name: react-component-architecture-review
 description: Statically review React component trees for composition, prop-interface, and state-placement defects (God-components, prop drilling, overbroad context, hook-rule violations) against React's own composition guidance, producing ranked file:line findings.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: architecture

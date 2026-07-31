@@ -3,7 +3,7 @@ name: environment-to-production-release-protocol
 description: Use this skill when a Power Platform or Dynamics 365 solution must progress through a structured dev-to-test-to-production release pipeline using managed solutions and Power Platform pipelines, when rollback readiness must be verified before go-live, or when a deployment approval gate must be enforced. Defines the full ALM release flow — solution packaging, pipeline stage progression, pre-deployment validation, approval, deployment, rollback verification, and post-deployment confirmation. Does not authorize production deployments directly; all production-impacting actions require human approval from the environment owner or release manager. Does not replace a qualified Power Platform admin or ALM specialist.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-16"
   category: delivery

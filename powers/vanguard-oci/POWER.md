@@ -3,7 +3,7 @@ name: "vanguard-oci"
 displayName: "Vanguard Frontier — OCI"
 description: "Curated Oracle Cloud agents for IAM, OKE, Autonomous Database, Vault, and Resource Manager with live-mutation guards. Routes via oci-maestro to specialist or live-guard agents. Distinguishes commercial vs gov-cloud realm; mutations require tenancy, compartment, and region confirmation."
 keywords: ["oci", "oracle-cloud", "iam", "oke", "autonomous-database", "vault", "resource-manager", "live-guard"]
-author: "Raishin"
+author: "VincentChuWaiChow"
 ---
 # Vanguard Frontier — OCI
 
@@ -40,9 +40,9 @@ Live-guard agents enforce approval, target confirmation, evidence capture, and r
 
 ## Where the agents live
 
-Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see `agents/oci/` in that repository. All 39 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
+Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic) marketplace. For this provider, see `agents/oci/` in that repository. All 39 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
 
 ## Companion install paths
 
-- **Claude Code:** `/plugin marketplace add Raishin/vanguard-frontier-agentic` then `/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic`
+- **Claude Code:** `/plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic` then `/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic`
 - **Codex / Copilot / Cursor / Gemini CLI / Kiro (file export):** `npx vfa-export-agents --platform <harness> --provider oci --repo .`

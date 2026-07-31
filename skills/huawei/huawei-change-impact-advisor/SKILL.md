@@ -3,7 +3,7 @@ name: huawei-change-impact-advisor
 description: Pre-change blast radius analysis for Huawei Cloud — Organizations SCP cascade scope, IAM agency dependency chain, VPC route table and VPC Peering impact, GaussDB instance class change disruption, CCE node pool resize safety, and Enterprise Project boundary clarity.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: platform

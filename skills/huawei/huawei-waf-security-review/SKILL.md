@@ -3,7 +3,7 @@ name: huawei-waf-security-review
 description: "Assess Huawei Cloud workload security using the Well-Architected Framework Security pillar: IAM SCP governance, VPC isolation, DEW key management, SecMaster SIEM/SOAR, and MLPS 2.0 technical controls for China-resident workloads."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: security

@@ -3,7 +3,7 @@ name: python-maestro
 description: "Use this skill to classify a Python application, runtime, packaging, framework, data, or code-level task and route it to the narrowest static-review specialist on the Python board, or to gate a production-mutation request to a named human owner. Routing and classification only — it never reviews Python work itself, never answers a Python question directly, and never contacts a live system."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-26"
   category: architecture

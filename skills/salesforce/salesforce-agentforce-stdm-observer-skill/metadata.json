@@ -34,7 +34,7 @@
   "security_notes": "T1 read-only runtime. Aggregate-only output — session text content (user messages, agent responses, LLM prompts) is never emitted under any circumstance. All Salesforce record IDs are replaced with placeholders; record IDs in action invocations are hashed. User IDs and session participant IDs are replaced with placeholders. The cdp_query_api OAuth scope grants read-only Data Cloud query access only — no write access to Data Cloud. The Run As service account must have Manage Agentforce permission explicitly denied. Structured audit envelope emitted on every execution. Regulated-vertical orgs trigger mandatory escalation to salesforce-compliance-privacy-agent.",
   "last_verified": "2026-05-21",
   "path": "skills/salesforce/salesforce-agentforce-stdm-observer-skill",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "companion_skills": ["salesforce-agentforce-risk-review-skill"],
   "verify_before_merge": "All Agentforce, STDM, Data Cloud, and Einstein AI feature names, DMO field names, object names, and API structures evolve rapidly. Validate all references against current official Salesforce documentation before production use. AiAgentTagAssociation, AiEvaluationDefinition, GenAiPlannerDefinition, and STDM DMO names are particularly prone to changes across releases."

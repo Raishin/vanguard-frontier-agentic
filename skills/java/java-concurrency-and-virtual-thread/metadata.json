@@ -23,5 +23,5 @@
   "security_notes": "Static review only — reads Java source (Thread.ofVirtual/newVirtualThreadPerTaskExecutor call sites, ExecutorService construction, synchronized blocks, ThreadLocal usage) and sanitized configuration (pool-size properties, rate-limiter config, any JFR/trace text the user pastes as plain text); never runs a build, invokes a JDK, attaches a profiler or JFR recorder, or opens a live thread dump/DB/broker connection. Never requests connection strings, credentials, tenant identifiers, or customer data.",
   "last_verified": "2026-07-17",
   "path": "skills/java/java-concurrency-and-virtual-thread",
-  "author": "github: Raishin"
+  "author": "github: VincentChuWaiChow"
 }

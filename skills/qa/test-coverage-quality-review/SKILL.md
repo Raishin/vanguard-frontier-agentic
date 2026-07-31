@@ -3,7 +3,7 @@ name: test-coverage-quality-review
 description: Use this skill when reviewing a test suite for assertion quality rather than coverage percentage — detecting coverage theater, where line/branch coverage is high but the tests would not catch a regression. Trigger when a user provides test files, a coverage report, or asks whether their tests are actually meaningful, why bugs ship despite high coverage, or how to set a coverage gate. This skill reviews test artifacts statically; it does not execute tests or run a coverage tool.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-17"
   category: delivery

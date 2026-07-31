@@ -22,5 +22,5 @@
   "security_notes": "Static review only — reads Java/Kotlin source, SecurityFilterChain bean definitions, and sanitized application.yml/properties; never builds, runs, or invokes a JDK, never opens a live HTTP/DB/broker connection, and never authenticates against a running application or calls a live /actuator endpoint. Never requests secrets, credentials, tokens, or customer data. This agent owns the Spring Security filter-chain and endpoint-exposure verdict for the board; it references but does not own untrusted-deserialization/parser RCE findings.",
   "last_verified": "2026-07-17",
   "path": "skills/java/java-spring-security",
-  "author": "github: Raishin"
+  "author": "github: VincentChuWaiChow"
 }

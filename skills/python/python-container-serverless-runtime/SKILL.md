@@ -3,7 +3,7 @@ name: python-container-serverless-runtime
 description: "Use this skill to statically review containerized/serverless Python runtime behavior: PID 1 and signal handling, worker/process model, graceful shutdown, read-only-filesystem and cold-start assumptions, and dependency footprint. Reads Dockerfiles, process/server config, and source only; it never builds or runs a container."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-26"
   category: platform

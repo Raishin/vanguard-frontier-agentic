@@ -3,7 +3,7 @@ name: case-to-resolution-protocol
 description: Use this skill when a customer service case must be triaged, routed to the right team, driven to resolution, and captured as reusable knowledge in Dynamics 365 Customer Service. Covers intake-to-routing, SLA tracking, escalation gates, knowledge capture, and post-resolution CSAT. Orchestrates the d365-customer-service-contact-center-agent as primary and invokes human escalation when SLA risk or knowledge gaps are detected. Does not make final resolution decisions or override customer service policies; all production-impacting steps escalate to the relevant service owner or quality team.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-16"
   category: operational

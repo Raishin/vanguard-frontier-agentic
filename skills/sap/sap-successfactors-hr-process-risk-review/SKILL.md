@@ -3,7 +3,7 @@ name: sap-successfactors-hr-process-risk-review
 description: Review SAP SuccessFactors HR process risk: Employee Central data and role-based permissions (RBP), org and position management integrity, hire-to-retire process controls, payroll integration data flow, data privacy for PII and GDPR, and joiner-mover-leaver lifecycle governance. Escalates HR-sensitive and PII findings. Does not accept raw PII or touch live systems.
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-19"
   category: compliance

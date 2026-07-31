@@ -27,7 +27,7 @@
   "security_notes": "Mutating operations are gated behind the 17-step sequence. Never execute an import before step 13 approval gate is cleared. Never accept self-approval (SoD: requester must differ from approver). Never use BASIS administrator credentials — use transport administrator role scoped to the target system. Never import transports not on the approved TR list. Never hardcode or accept system credentials, ABAP passwords, or CTS+ service key values in plain text. Refuse any request to skip steps.",
   "last_verified": "2026-06-19",
   "path": "skills/sap/sap-guarded-transport-import",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "lifecycle": "experimental",
   "execution_tier": "mutating-runtime"

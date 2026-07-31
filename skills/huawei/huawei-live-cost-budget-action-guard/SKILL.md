@@ -3,7 +3,7 @@ name: huawei-live-cost-budget-action-guard
 description: Gate Huawei Cloud CBC budget threshold changes, Reserved Instance purchases, and CUD commitments — budget threshold reduction can trigger service suspension and RI/CUD are non-refundable committed spend.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: finops

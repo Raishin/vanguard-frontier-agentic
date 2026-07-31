@@ -28,7 +28,7 @@
   "security_notes": "Static review only — no ABAP Development Tools (ADT) connections, no SE80/SE24 execution, no transport request creation or release, no RFC or BAPI calls. Never accepts ABAP source files containing hardcoded RFC destination passwords, S-user credentials, or system-specific logical system names that could expose landscape topology. Clean-core compliance findings are advisory; all remediation steps must pass ABAP Unit test suites, ATC check runs, and operator-approved transport to the target system.",
   "last_verified": "2026-06-19",
   "path": "agents/sap/sap-abap-cloud-rap-reviewer-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "companion_skills": [
     "sap-abap-cloud-rap-review"
   ],

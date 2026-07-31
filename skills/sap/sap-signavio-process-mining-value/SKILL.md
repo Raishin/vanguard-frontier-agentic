@@ -3,7 +3,7 @@ name: sap-signavio-process-mining-value
 description: Review SAP Signavio process intelligence and process mining configurations for value discovery: process discovery coverage, conformance checking against reference models, bottleneck and rework analysis, value realization tracking, and linkage of process mining findings to S/4HANA process improvement opportunities. Flags analytical blind spots, conformance gaps, and unrealized value levers. Does not modify process models, mining configurations, or live SAP systems.
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-19"
   category: data

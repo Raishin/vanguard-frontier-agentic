@@ -3,7 +3,7 @@ name: gcp-resource-inventory-analyst
 description: Query Asset Inventory API for resource discovery, audit resource label/tag coverage, detect stale or orphaned resources, review change history, and build inventory reports across projects and folders.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: compliance

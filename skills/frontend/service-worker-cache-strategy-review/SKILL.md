@@ -3,7 +3,7 @@ name: service-worker-cache-strategy-review
 description: Reviews service-worker route-matching and caching-strategy choices (precache vs. cache-first vs. network-first vs. stale-while-revalidate) against request type and security sensitivity, rejecting uniform blanket strategies and flagging authenticated/PII responses cached in the Cache API.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: security

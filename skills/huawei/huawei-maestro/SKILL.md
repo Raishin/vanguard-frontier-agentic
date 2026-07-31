@@ -3,7 +3,7 @@ name: huawei-maestro
 description: Huawei Cloud Maestro routing skill. Classify the user's Huawei Cloud task, select the narrowest specialist agent or the right team of specialists from the catalog, and dispatch them — single specialist for focused tasks, parallel team (max 4) for multi-domain tasks. Never auto-dispatch live-guard agents. MLPS 2.0 and sovereignty-aware — flags when workloads require MLPS Level 3 controls or government cloud configurations. Understands Huawei's enterprise-project model and SCP-based org governance.
 allowed-tools: Agent Skill Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: ai

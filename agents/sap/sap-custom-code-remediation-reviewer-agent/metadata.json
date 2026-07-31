@@ -26,7 +26,7 @@
   "security_notes": "Static advisory review only — no Bash, no system connections, no ATC remote runs, no transport release actions, no mutation of any ABAP object or repository. Never accepts custom code containing embedded RFC credentials, dialog user passwords, client-specific system IDs, or database connection strings. All remediation guidance is advisory; code changes in customer systems require ABAP unit testing, functional sign-off, and transport and change-management approval before activation. Findings are labelled documentation-based or inference; verify deprecated-API replacement status against the specific target S/4HANA release simplification list and the ABAP repository released_objects view.",
   "last_verified": "2026-06-19",
   "path": "agents/sap/sap-custom-code-remediation-reviewer-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "companion_skills": [
     "sap-custom-code-remediation-review"

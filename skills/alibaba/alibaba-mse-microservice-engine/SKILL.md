@@ -3,7 +3,7 @@ name: alibaba-mse-microservice-engine
 description: Configure and operate Alibaba MSE (Microservice Engine) — Nacos service discovery and configuration management, Sentinel rate limiting and circuit breaking, Seata distributed transactions, and ARMS APM for microservices observability.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: platform

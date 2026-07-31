@@ -4,7 +4,7 @@ description: "Queries Salesforce Telemetry & Data Management (STDM) and Data Clo
 license: MIT
 allowed-tools: Bash(sf data query:*) Bash(sf agent test:*) Bash(sf org display:*) Read Grep Glob Bash(sf api request:*) Bash(sf apex run:*)
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: 0.1.0
   updated: 2026-05-21
   category: operational

@@ -3,7 +3,7 @@ name: sap-clean-core-debt-review
 description: Review SAP custom code, modifications, and extensibility debt against the SAP Clean Core standard. Use when assessing custom ABAP, implicit enhancements, customer modifications, or legacy Z/Y code for remediation toward released APIs, ABAP Cloud, RAP objects, key-user extensibility, or developer extensibility on BTP. Does not touch live systems.
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-19"
   category: architecture

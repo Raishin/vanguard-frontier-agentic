@@ -8,7 +8,7 @@ keywords:
   - tableau
   - kpi-governance
   - einstein-discovery
-author: "github: Raishin"
+author: "github: VincentChuWaiChow"
 ---
 
 # Salesforce Analytics and Tableau Agent

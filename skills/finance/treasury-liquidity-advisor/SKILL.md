@@ -3,7 +3,7 @@ name: treasury-liquidity-advisor
 description: Multi-jurisdiction reference framework for corporate treasury operations, cash and liquidity management, FX and currency risk, hedge accounting qualification (ASC 815 / IFRS 9), FX translation (ASC 830 / IAS 21), Basel III LCR/NSFR, Dodd-Frank and EMIR derivatives reporting, and country-specific cash repatriation and capital control regimes (China SAFE, India FEMA, Brazil IOF, Argentina BCRA). Advisory only — never executes transactions or writes to any system of record.
 allowed-tools: Skill Read WebFetch Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-01"
   category: finance

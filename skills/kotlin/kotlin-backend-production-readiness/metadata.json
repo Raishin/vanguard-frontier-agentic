@@ -23,5 +23,5 @@
   "security_notes": "Static review only — reads Ktor/Spring Kotlin source, routing/plugin configuration, and sanitized YAML/config; never builds, runs, deploys, or opens a live connection to a server, and never observes actual shutdown/startup timing. A readiness claim that depends on runtime behavior (actual drain time, real health-check response) is flagged as needing verification against a running instance rather than asserted. Never requests secrets, credentials, or customer data.",
   "last_verified": "2026-07-21",
   "path": "skills/kotlin/kotlin-backend-production-readiness",
-  "author": "github: Raishin"
+  "author": "github: VincentChuWaiChow"
 }

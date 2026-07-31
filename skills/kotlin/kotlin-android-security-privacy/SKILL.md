@@ -3,7 +3,7 @@ name: kotlin-android-security-privacy
 description: "Use this skill to statically review an Android app's security and privacy posture against OWASP MASVS: exported components and intent surfaces, deep-link/App Links validation, WebView exposure, cleartext traffic and network-security-config, local storage and secrets (EncryptedSharedPreferences/Keystore), backup exposure, runtime-permission minimization, and PII in logs. Reads manifest, source, and sanitized config only; it never builds, installs, or instruments an app."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-21"
   category: security

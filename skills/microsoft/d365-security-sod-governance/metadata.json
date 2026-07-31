@@ -23,7 +23,7 @@
   "security_notes": "Never approve role changes that introduce SoD conflicts or remove audit controls without documented evidence and owner sign-off. Production role assignment changes are live-guard gated and must be escalated to a human administrator. SoD override approvals must include a documented business justification and compensating control. Do not accept system administrator role assignments as a workaround for missing duty design. Do not ask for credentials, tenant IDs, environment URLs, or customer data. Treat every unresolved SoD conflict and every broad privilege assignment as a risk until proven mitigated.",
   "last_verified": "2026-06-16",
   "path": "skills/microsoft/d365-security-sod-governance",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "category": "compliance",
   "companion_agents": ["d365-security-sod-governance-agent"]

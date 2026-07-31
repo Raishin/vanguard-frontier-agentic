@@ -3,7 +3,7 @@ name: gcp-compliance-assured-workloads
 description: Configure Assured Workloads for regulated workloads (FedRAMP High/Moderate, HIPAA, PCI-DSS, ITAR, IL4/IL5), audit controls implementation, and gather compliance evidence using Security Command Center and Asset Inventory.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: compliance

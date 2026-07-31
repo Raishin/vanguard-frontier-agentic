@@ -3,7 +3,7 @@ name: azure-cost-estimation-review
 description: Review Azure cost estimates, pricing calculator assumptions, SKU and region choices, environment sizing realism, and uncertainty handling using official Microsoft cost-management and pricing documentation only.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: Raishin
+  author: github: VincentChuWaiChow
   version: 0.1.3
   updated: "2026-06-05"
   category: finops

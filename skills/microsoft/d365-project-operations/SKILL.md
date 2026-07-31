@@ -3,7 +3,7 @@ name: d365-project-operations
 description: Review Dynamics 365 Project Operations across the project-to-profit lifecycle — project contracts, project planning and scheduling, resource management and assignment, time and expense, project budgeting and cost control, billing and revenue recognition, and integration with Dynamics 365 Finance. Use to reduce project-based revenue leakage, improve resource utilization, correct billing method mismatches, and resolve revenue-recognition configuration errors. Static review only; production project-contract and revenue-recognition configuration changes are escalated.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-17"
   category: operational

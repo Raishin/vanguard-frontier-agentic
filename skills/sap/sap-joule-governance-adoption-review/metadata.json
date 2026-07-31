@@ -27,7 +27,7 @@
   "security_notes": "Does not access live SAP Joule sessions, execute Joule skills, query Joule interaction logs, or connect to any underlying SAP system (S/4HANA, SuccessFactors, Ariba, BTP). Accepts only Joule configuration documentation, skill activation lists, data access boundary descriptions, audit log configuration summaries, acceptable-use policy documents, or written governance posture descriptions. Never accept actual Joule interaction logs, production business data surfaced by Joule, user prompt history, or SAP system credentials. If a confirmed Joule data access boundary breach is found, escalate to the security and data protection team before continuing.",
   "last_verified": "2026-06-19",
   "path": "skills/sap/sap-joule-governance-adoption-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "lifecycle": "experimental"
 }

@@ -3,7 +3,7 @@ name: close-to-report-protocol
 description: Use this skill to coordinate the financial period close and reporting process across Dynamics 365 Finance and Microsoft Fabric / Power BI. It orchestrates subledger close, general ledger reconciliation, currency revaluation, consolidation, financial statement preparation, and report certification. The skill defines stage gates for subledger close, reconciliation sign-off, and report certification, and enforces structured handoffs between d365-finance-close-to-report-agent and fabric-power-bi-business-insights-governance-agent. It does not post journal entries, modify financial data, certify financial statements, or access live ledger credentials; all production-impacting steps are escalated to the relevant specialist or human finance owner.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-16"
   category: finance

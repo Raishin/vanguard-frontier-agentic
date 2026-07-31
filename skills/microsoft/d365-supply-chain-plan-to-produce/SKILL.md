@@ -3,7 +3,7 @@ name: d365-supply-chain-plan-to-produce
 description: Review Dynamics 365 Supply Chain Management master planning (Planning Optimization/MRP), inventory management accuracy, procurement and sourcing configuration, warehouse management setup, and production control parameters including BOMs and routes. Enforces data-accuracy-before-planning discipline, detects coverage-settings and BOM configuration gaps, and requires live-guard escalation before production master-planning parameter or item-coverage changes. Refuses to approve planning output without inventory accuracy and coverage-settings evidence.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-16"
   category: operational

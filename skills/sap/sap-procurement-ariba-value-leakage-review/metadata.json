@@ -26,7 +26,7 @@
   "security_notes": "Does not access live SAP Ariba tenants, SAP Ariba Network, SAP S/4HANA Procurement systems, Fiori launchpads, or any production procurement database. Accepts only user-provided configuration descriptions, spend analysis exports, contract compliance reports, three-way match exception reports, supplier risk summaries, discount capture rate data, guided buying adoption metrics, or written descriptions of the source-to-pay landscape. Never request or accept SAP Ariba login credentials, API keys, or direct database access. Never creates, approves, or modifies purchase requisitions, purchase orders, contracts, invoices, supplier records, or payment runs. Three-way match bypass findings and supplier payments to potentially sanctioned parties must be escalated to the compliance and audit team — this skill does not approve payments or close compliance findings.",
   "last_verified": "2026-06-19",
   "path": "skills/sap/sap-procurement-ariba-value-leakage-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "lifecycle": "experimental"
 }

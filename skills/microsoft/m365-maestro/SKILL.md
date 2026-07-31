@@ -3,7 +3,7 @@ name: m365-maestro
 description: Route Microsoft 365 tasks to the narrowest M365 specialist from the catalog. Use when you do not already know the specialist. Not for direct M365 answers; Maestro classifies, dispatches, and synthesizes only. Dispatches single agent for focused tasks, parallel team (max 4) for multi-domain tasks. Never auto-dispatches live-guard agents — requires explicit human confirmation with blast-radius and rollback before routing to any agent that changes live tenant configuration.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-16"
   category: platform

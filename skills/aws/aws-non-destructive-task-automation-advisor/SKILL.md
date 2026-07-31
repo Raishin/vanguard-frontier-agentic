@@ -3,7 +3,7 @@ name: aws-non-destructive-task-automation-advisor
 description: Design AWS non-destructive task automation using EventBridge, Step Functions, Lambda, Systems Manager Automation, SNS, SQS, approvals, notifications, reporting, and evidence gathering. Use only for read-only or coordination-safe automation; do not use for destructive remediation or mutation-heavy runbooks.
 allowed-tools: Read Grep Glob WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.2"
   updated: "2026-06-02"
   category: delivery

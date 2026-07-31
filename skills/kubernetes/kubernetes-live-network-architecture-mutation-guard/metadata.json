@@ -28,6 +28,6 @@
   "security_notes": "This skill is bound to a ServiceAccount with deliberately omitted verbs: no `delete` cluster-wide, no operations on `namespaces` / `customresourcedefinitions` / `kube-system` DaemonSets and Deployments / broad `secrets`. Pre-flight `kubectl auth can-i` matrix MUST run before any mutation; refuses if any must-not check returns `yes` (binding over-scoped) or if operator is in `system:masters` (RBAC bypass). HARD REFUSE list covers one-way doors that are out-of-scope for any agent: CNI replacement, kube-proxy mode swap, MTU change, Pod / Service CIDR resize. CoreDNS Corefile changes require backup capture and post-mutation reload verification within 2 minutes. Gateway resources require GatewayClass controller liveness check before creation. ClusterMesh peer Secret data fields must never be printed or logged.",
   "last_verified": "2026-05-08",
   "path": "skills/kubernetes/kubernetes-live-network-architecture-mutation-guard",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

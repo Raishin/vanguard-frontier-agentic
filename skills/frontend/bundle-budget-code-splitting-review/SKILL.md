@@ -3,7 +3,7 @@ name: bundle-budget-code-splitting-review
 description: Reviews JavaScript/CSS bundle composition against explicit numeric budgets, evaluates route- and component-level code-splitting boundaries, and requires a CI-enforced budget before endorsing any size fix as resolved.
 allowed-tools: Read Grep Glob Bash(npm run build:*) Bash(du:*)
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: operational

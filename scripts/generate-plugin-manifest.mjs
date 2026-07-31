@@ -109,11 +109,11 @@ const manifest = {
   version: pkg.version,
   description: pkg.description,
   author: {
-    name: "Raishin",
-    url: "https://github.com/Raishin",
+    name: "VincentChuWaiChow",
+    url: "https://github.com/VincentChuWaiChow",
   },
-  homepage: "https://github.com/Raishin/vanguard-frontier-agentic",
-  repository: "https://github.com/Raishin/vanguard-frontier-agentic",
+  homepage: "https://github.com/VincentChuWaiChow/vanguard-frontier-agentic",
+  repository: "https://github.com/VincentChuWaiChow/vanguard-frontier-agentic",
   license: pkg.license,
   keywords: [
     "agentic",
@@ -140,8 +140,8 @@ const manifest = {
 const marketplace = {
   name: "vanguard-frontier-agentic",
   owner: {
-    name: "Raishin",
-    url: "https://github.com/Raishin",
+    name: "VincentChuWaiChow",
+    url: "https://github.com/VincentChuWaiChow",
   },
   metadata: {
     description: pkg.description,

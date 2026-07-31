@@ -3,7 +3,7 @@ name: sap-data-privacy-analytics-ai-protocol
 description: Cross-functional coordination protocol governing data privacy, analytics, and AI governance handoffs in SAP landscapes. Covers PII in Datasphere data products, analytics exports from SAP Analytics Cloud, RAG pipelines, embedding generation, prompt logging, SAP Generative AI Hub usage, Joule adoption, and model outputs that could leak sensitive business data. Defines data classification, consent and purpose limitation gates, approval requirements, and audit packaging. Never mutates live systems and never bypasses any guarded-mutating gate.
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-19"
   category: compliance

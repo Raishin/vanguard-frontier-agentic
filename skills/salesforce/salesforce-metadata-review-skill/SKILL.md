@@ -3,7 +3,7 @@ name: salesforce-metadata-review-skill
 description: Use this skill when pasted or exported Salesforce metadata must be reviewed for over-customization, unused fields, hardcoded IDs, and deprecated metadata types. Covers: objects, fields, layouts, page layouts, Lightning record pages, profiles, permission sets, and sharing rules. Trigger phrases: "review this Salesforce metadata", "check this object definition", "are there deprecated metadata types here", "find hardcoded IDs in this profile", "review this permission set export". Do not use when you need a full org posture assessment (use salesforce-org-assessment-skill), when you need a permission model deep-dive across topology (use salesforce-permission-model-review-skill), or when you need to review automation logic (use salesforce-flow-automation-review-skill). Works from pasted or exported metadata only; never requests live org access.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-20"
   category: platform

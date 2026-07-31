@@ -3,7 +3,7 @@ name: ovhcloud-kubernetes-platform-operator
 description: Review and advise on OVHcloud Managed Kubernetes (MCK) cluster lifecycle, node pool sizing, autoscaling configuration, version upgrade planning, workload placement via taints and tolerations, network policies, RBAC hardening, and cluster security posture. Use when the user needs MCK operational guidance, Terraform IaC review for `ovh_cloud_project_kube` resources, or upgrade risk assessment.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-10"
   category: platform

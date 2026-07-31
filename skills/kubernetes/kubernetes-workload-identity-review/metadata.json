@@ -24,6 +24,6 @@
   "security_notes": "Workload identity OIDC trust policy with wildcard sub claim allows any ServiceAccount in the cluster to assume the role. Pods with both a workload-identity SA and a long-lived credential Secret typically fall back to the static credential. Tokens with audiences not pinned to the cloud target are reusable elsewhere.",
   "last_verified": "2026-05-01",
   "path": "skills/kubernetes/kubernetes-workload-identity-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

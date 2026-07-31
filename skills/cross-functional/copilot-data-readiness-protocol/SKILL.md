@@ -3,7 +3,7 @@ name: copilot-data-readiness-protocol
 description: Use this skill before enabling Microsoft 365 Copilot for any user population. Runs an oversharing assessment, applies sensitivity labels and DLP controls, validates permissions baseline, and confirms a secure data foundation exists. Orchestrates m365-copilot-readiness-governance-agent as primary, m365-identity-zero-trust-agent for identity-layer controls, and copilot-governance-maestro-agent for cross-pillar sign-off. Hard refusal: Microsoft 365 Copilot must not be enabled for any user until the oversharing baseline is established and remediated. Never requests credentials, tenant IDs, or customer data. Production-impacting steps escalate to the relevant data owner or compliance team.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-16"
   category: ai

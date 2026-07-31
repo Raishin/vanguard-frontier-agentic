@@ -26,7 +26,7 @@
   "security_notes": "Does not access live SAP EWM systems, SAP TM systems, SAP S/4HANA Inventory Management, Fiori launchpads, SAP GUI sessions, or any production logistics or warehouse database. Accepts only user-provided configuration exports, wave analysis reports, inventory discrepancy summaries, freight exception logs, carrier assignment reports, integration status summaries, or written descriptions of the EWM and TM landscape. Never request or accept SAP logon credentials, RFC connection details, or direct logistics database access. Never posts goods movements, confirms warehouse tasks, releases freight orders, or adjusts inventory quantities. Inventory fraud or undetected goods movement findings must be escalated to the warehouse operations manager and internal audit team before further transactions are processed.",
   "last_verified": "2026-06-19",
   "path": "skills/sap/sap-ewm-tm-logistics-execution-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "lifecycle": "experimental"
 }

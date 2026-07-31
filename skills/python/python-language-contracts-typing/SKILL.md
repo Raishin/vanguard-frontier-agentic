@@ -3,7 +3,7 @@ name: python-language-contracts-typing
 description: "Use this skill to statically review Python type contracts and gradual typing: Any propagation across public boundaries, Protocol and structural typing, generics and variance soundness, overload consistency, TypedDict and dataclass contracts, and the separation of static typing from runtime validation. Reads source and type-checker config only; it never runs the checker or the code."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-26"
   category: architecture

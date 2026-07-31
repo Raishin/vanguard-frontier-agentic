@@ -23,7 +23,7 @@
   "security_notes": "Node pool upgrades cannot be downgraded once complete. PDB violations during upgrades can cause complete workload unavailability. Failed upgrades may require manual node recreation. Never approve a cluster version change without explicit rollback posture and PDB audit.",
   "last_verified": "2026-05-08",
   "path": "agents/gcp/gcp-live-gke-rollout-guard-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "harness_variants": {
     "codex": "agents/gcp/gcp-live-gke-rollout-guard-agent/harnesses/codex.toml",

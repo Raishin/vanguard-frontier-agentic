@@ -3,7 +3,7 @@ name: legal-hr-routing-protocol
 description: Use this skill when a Legal or HR matter must be classified and routed to the right specialist agent, when a matter crosses both domains and needs parallel review, or when Legal and HR agents disagree and the conflict must be resolved. It defines routing rules, the overlap handoff matrix, the controlled-handoff communication principles, and the conflict-resolution protocol. It does not give legal or HR advice and never makes a final routing decision binding on a human.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-18"
   category: compliance

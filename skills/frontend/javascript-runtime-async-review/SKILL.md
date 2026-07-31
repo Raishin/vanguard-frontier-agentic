@@ -3,7 +3,7 @@ name: javascript-runtime-async-review
 description: Review JavaScript/TypeScript for event-loop and microtask/macrotask ordering correctness, unhandled Promise rejection paths, DOM event-listener and timer cleanup, and race-condition risk in rapid-repeated-async UI patterns, tracing actual browser scheduling semantics rather than assumed synchronous-style reasoning about async code.
 allowed-tools: Read Grep Glob Bash(git diff:*) WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: delivery

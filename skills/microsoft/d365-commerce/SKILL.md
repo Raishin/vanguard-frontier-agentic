@@ -3,7 +3,7 @@ name: d365-commerce
 description: Review Dynamics 365 Commerce across omnichannel retail operations — Store Commerce POS, e-commerce storefront, call center channels, Commerce Scale Unit, channel management, product catalogs and assortments, pricing and discounts, inventory visibility, and store operations. Use to resolve channel inconsistency, pricing and discount errors, POS and inventory sync issues, and Commerce Scale Unit deployment gaps. Static review only; production channel and pricing configuration changes are escalated.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-17"
   category: operational

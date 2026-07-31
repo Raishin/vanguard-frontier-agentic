@@ -3,7 +3,7 @@ name: routing-navigation-review
 description: Reviews route-tree structure, loader/action placement, code-splitting boundaries, and navigation-blocking/focus-management behavior in React Router and Next.js applications for correctness, server-side security enforcement, and accessibility conformance on route transitions.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: architecture

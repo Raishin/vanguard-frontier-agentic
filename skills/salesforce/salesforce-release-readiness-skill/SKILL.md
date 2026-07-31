@@ -3,7 +3,7 @@ name: salesforce-release-readiness-skill
 description: Use this skill when a Salesforce release must be evaluated for deployment readiness. Covers: sandbox refresh strategy, source tracking state, package version diff, destructiveChanges.xml review, test coverage threshold verification, post-deploy steps, rollback plan, comms plan, and approval matrix. Trigger phrases: "is this release ready to deploy", "review the destructive changes for this release", "check our sandbox strategy", "validate the release checklist", "pre-deploy readiness review". Do not use when you need to approve a live production mutation at execution time (use salesforce-live-change-approval-protocol), when code quality is the focus (use salesforce-apex-lwc-code-review-skill), or when automation logic needs review (use salesforce-flow-automation-review-skill). Works from release artifacts and plans only; never requests live org access or executes deployments.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-20"
   category: delivery

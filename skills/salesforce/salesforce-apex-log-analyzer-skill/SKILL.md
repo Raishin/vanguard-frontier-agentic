@@ -4,7 +4,7 @@ description: "Retrieves and analyzes Apex debug logs from a connected Salesforce
 license: MIT
 allowed-tools: Bash(sf apex get log:*) Bash(sf apex tail log:*) Bash(sf data query:*) Read Grep Glob Bash(sf org display:*)
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-21"
   category: operational

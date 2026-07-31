@@ -3,7 +3,7 @@ name: kubernetes-workload-identity-review
 description: Use this skill for Kubernetes workload identity review covering AWS IRSA (IAM Roles for Service Accounts), Azure Workload Identity, GCP Workload Identity Federation, and the underlying ServiceAccount token volume projection plus OIDC issuer trust. Trigger when the user asks how a pod should authenticate to cloud services, whether long-lived credentials in a Secret can be replaced, whether the OIDC trust policy is correctly scoped, or whether ServiceAccount token reuse is a risk.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-05"
   category: security

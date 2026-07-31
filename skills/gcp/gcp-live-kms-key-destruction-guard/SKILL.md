@@ -3,7 +3,7 @@ name: gcp-live-kms-key-destruction-guard
 description: Gate Cloud KMS key version destruction and key ring deletion against a complete CMEK dependency audit. All Cloud SQL, GCS, BigQuery, Compute Engine disk, and Secret Manager resources encrypted by the key version become permanently inaccessible once destruction completes — this guard ensures no key version is destroyed without enumerating every dependent resource and obtaining explicit operator approval.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: security

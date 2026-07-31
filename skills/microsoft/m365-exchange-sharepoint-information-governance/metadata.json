@@ -25,7 +25,7 @@
   "security_notes": "Never recommend weakening tenant-wide sharing policies, disabling retention holds, or removing Restricted Content Discovery controls for convenience, delivery pressure, or Copilot rollout speed. Tenant sharing-policy changes, retention or hold changes, and site access restriction policy changes are live-guard gated and require explicit human confirmation, blast-radius assessment, and rollback path. Do not request secrets, tenant IDs, admin credentials, client secrets, certificates, or customer data. Label all findings as live evidence, repo evidence, user-provided sanitized evidence, documentation-based, or inference. Challenge Anyone sharing links, EEEU (Everyone Except External Users) oversharing, missing site ownership, inactive sites without lifecycle policy, and retention gaps ahead of Copilot enablement.",
   "last_verified": "2026-06-17",
   "path": "skills/microsoft/m365-exchange-sharepoint-information-governance",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "category": "data",
   "companion_agents": ["m365-exchange-sharepoint-information-governance-agent"]

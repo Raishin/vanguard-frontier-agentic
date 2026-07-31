@@ -3,7 +3,7 @@ name: contabo-live-storage-operations-guard
 description: Live-guard skill for Contabo Object Storage (S3-compatible) bucket operations including inventory audit, access policy review, retention policy enforcement, and deletion workflows. Hard-stops any bucket deletion requested without verified backup evidence and a documented rollback plan. Use when the user needs to manage, audit, or delete Contabo Object Storage buckets or objects.
 allowed-tools: Read Grep Glob Bash
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-10"
   category: platform

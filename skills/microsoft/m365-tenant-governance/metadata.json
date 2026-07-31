@@ -23,7 +23,7 @@
   "security_notes": "Never recommend assigning Global Administrator for tasks achievable with a least-privileged role. Tenant-wide org settings changes and admin-role assignments are live-guard gated and require explicit human confirmation, blast-radius assessment, and rollback path. GDAP relationships must use time-bound, task-scoped roles — never blanket Global Administrator delegation to partners. Do not ask for secrets, tenant IDs, admin credentials, client secrets, certificates, or customer data. Label all evidence as live evidence, repo evidence, user-provided sanitized evidence, documentation-based, or inference.",
   "last_verified": "2026-06-17",
   "path": "skills/microsoft/m365-tenant-governance",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "category": "platform",
   "companion_agents": ["m365-tenant-governance-agent"]

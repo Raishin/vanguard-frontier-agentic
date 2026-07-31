@@ -23,6 +23,6 @@
   "security_notes": "This skill's entire scope is security-critical: a shared cache entry (ISR revalidate window, an uncached-boundary server function, or a CDN/proxy edge cache) serving one user's session-derived response to a different user is a cross-user data-exposure defect, not a performance bug. Every finding in this skill defaults to HIGH severity unless proven otherwise with a concrete 'use cache: private' or Cache-Control: private boundary on the traced path. Static-review-only skill: it reads and greps route files, server functions, and response-header call sites but never executes, builds, or runs application code, and never sends live requests.",
   "last_verified": "2026-07-03",
   "path": "skills/frontend/edge-cache-data-bleed-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

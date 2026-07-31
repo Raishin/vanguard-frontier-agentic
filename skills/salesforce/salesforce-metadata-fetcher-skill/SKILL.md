@@ -4,7 +4,7 @@ description: "Fetches Salesforce metadata (objects, fields, flows, validation ru
 license: MIT
 allowed-tools: Bash(sf org list metadata:*) Bash(sf project retrieve:*) Bash(sf sobject describe:*) Bash(sf org display:*) Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: 0.1.0
   updated: 2026-05-21
   category: operational

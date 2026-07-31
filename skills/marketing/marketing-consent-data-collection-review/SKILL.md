@@ -3,7 +3,7 @@ name: marketing-consent-data-collection-review
 description: Use this skill when reviewing a marketing site's consent and data-collection posture — cookie/consent banner (CMP) configuration, tag-manager container exports, Google Consent Mode wiring, or a cookie policy. Trigger when a user provides a CMP configuration, a tag manager container JSON, a consent-banner screenshot description, or asks whether their marketing tracking is GDPR/CCPA/ePrivacy compliant, whether tags fire before consent, or whether their opt-out path is valid.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-17"
   category: compliance

@@ -77,12 +77,12 @@ edition = "2021"
 rust-version = "1.75"
 description = "Enterprise-grade terminal UI for the Vanguard Frontier Agentic marketplace catalog"
 license = "MIT OR Apache-2.0"
-repository = "https://github.com/Raishin/vanguard-frontier-agentic"
-homepage = "https://github.com/Raishin/vanguard-frontier-agentic/tree/master/tools/vfa-tui"
+repository = "https://github.com/VincentChuWaiChow/vanguard-frontier-agentic"
+homepage = "https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/tree/master/tools/vfa-tui"
 readme = "README.md"
 keywords = ["tui", "catalog", "marketplace", "terminal", "security"]
 categories = ["command-line-utilities", "development-tools"]
-authors = ["Raishin <raishin@users.noreply.github.com>"]
+authors = ["VincentChuWaiChow <15792229+VincentChuWaiChow@users.noreply.github.com>"]
 exclude = [
     "proptest-regressions/",
     "tests/",
@@ -340,7 +340,7 @@ The `CARGO_REGISTRY_TOKEN` secret is scoped to this environment, meaning it is i
 
 **LICENSE-MIT** (in `tools/vfa-tui/`):
 Standard MIT license text with:
-- Copyright: `Copyright (c) 2024 Raishin`
+- Copyright: `Copyright (c) 2024 VincentChuWaiChow`
 
 **LICENSE-APACHE** (in `tools/vfa-tui/`):
 Full Apache License 2.0 text. Can be a copy or symlink from the repository root if the root already uses Apache-2.0.

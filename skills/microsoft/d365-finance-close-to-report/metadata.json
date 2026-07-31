@@ -23,7 +23,7 @@
   "security_notes": "Never approve a period-end or year-end close process without reconciliation evidence and financial controls sign-off. Production posting-configuration changes, period-status updates (On Hold, Permanently Closed), and consolidation runs are live-guard gated and must be escalated to a human finance controller or system administrator. Reject close process approval where sub-ledger to GL reconciliation gaps are unresolved. Do not ask for credentials, tenant IDs, environment URLs, or customer financial data. Treat every unreconciled balance, unposted journal, and unapproved posting profile change as a reporting risk until evidenced otherwise. Tax configuration and foreign currency revaluation parameter changes must be validated by a qualified tax or finance controller before production use.",
   "last_verified": "2026-06-16",
   "path": "skills/microsoft/d365-finance-close-to-report",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "category": "finance",
   "companion_agents": ["d365-finance-close-to-report-agent"]

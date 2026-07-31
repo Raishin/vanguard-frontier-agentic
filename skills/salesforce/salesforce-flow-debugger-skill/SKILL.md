@@ -4,7 +4,7 @@ description: "Diagnoses Salesforce Flow failures from pasted error messages or (
 license: MIT
 allowed-tools: Bash(sf data query:*) Bash(sf org list metadata:*) Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-21"
   category: operational

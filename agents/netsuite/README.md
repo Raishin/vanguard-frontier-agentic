@@ -66,5 +66,5 @@ Agents label release-sensitive claims explicitly.
 
 **Version:** 0.1.0  
 **Provider:** netsuite  
-**Source:** github: Raishin  
+**Source:** github: VincentChuWaiChow  
 **Last updated:** 2026-06-09

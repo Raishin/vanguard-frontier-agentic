@@ -3,7 +3,7 @@ name: aws-devops-agent-skill-designer
 description: Design, review, and improve AWS DevOps Agent-compatible skills, investigation workflows, learned skills, tool-use best practices, agent type targeting, frontmatter descriptions, reference materials, and operational output contracts. Use when creating or adapting skills for AWS DevOps Agent or AWS-style incident agents.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.4"
   updated: "2026-06-02"
   category: delivery

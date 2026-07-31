@@ -3,7 +3,7 @@ name: nvidia-ai-operations-day2
 description: Use this skill when reviewing day-2 operations of NVIDIA GPU fleets — DCGM exporter and DCGM-Diag posture, GPU telemetry into Prometheus/Grafana, MIG partitioning lifecycle, GPU health and Xid error response, fleet upgrade paths, and incident response for GPU-failure modes. Trigger when the user asks how a GPU fleet is monitored, whether DCGM is wired, whether Xid signatures map to runbooks, or whether the deployment meets NCP-AIO certification expectations.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-10"
   category: observability

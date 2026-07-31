@@ -3,7 +3,7 @@ name: python-performance-memory
 description: "Use this skill to statically review Python performance and memory claims: CPU profiling vs benchmarking rigor, memory growth and allocation patterns, GC pressure, algorithmic complexity, and serialization/import/startup cost. Reads source, profiles, and benchmark artifacts only; it never runs the profiler or benchmark itself."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-26"
   category: architecture

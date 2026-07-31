@@ -3,7 +3,7 @@ name: netsuite-live-operation-safety-skill
 description: "Evaluates live NetSuite mutation requests against a structured authorization checklist covering blast-radius, rollback, human decision ownership, and integration posture. T0 static evaluation — no org connection required. TRIGGER when: a request involves activating a workflow, deploying an SDF project, editing live records, publishing a saved search to new roles, changing permissions, rotating OAuth certificates, issuing or revoking TBA tokens, or any other operation that writes to or configures a live NetSuite account. Trigger phrases: deploy to production, activate workflow, change permissions in NetSuite, rotate cert, publish saved search, edit live record, SDF deploy, grant role. DO NOT TRIGGER when: the request is purely a static design review with no live-op intent (use the appropriate domain specialist); request is about reading or querying live data without mutation (use netsuite-saved-searches-workbook-agent or netsuite-bi-reporting-agent); request is about architecture design only (use netsuite-enterprise-architecture-agent)."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-09"
   category: security

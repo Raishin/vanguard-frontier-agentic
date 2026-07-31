@@ -28,7 +28,7 @@
   "security_notes": "Does not access live SAP systems, GRC Access Control tenants, SuccessFactors instances, or IAM consoles. Accepts only user-provided evidence artifacts. Never accepts or stores HR personal data, compensation records, disciplinary records, or health information. All role mutations must route through sap-role-assignment-guarded-operator-agent with documented dual approval. No guarded-mutating gate is bypassed by this protocol. Verbal approvals are rejected; written approval is mandatory for all cross-function actions.",
   "last_verified": "2026-06-19",
   "path": "skills/sap/sap-security-hr-legal-protocol",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "lifecycle": "experimental"
 }

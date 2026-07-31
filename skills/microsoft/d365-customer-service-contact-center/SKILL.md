@@ -3,7 +3,7 @@ name: d365-customer-service-contact-center
 description: Review Dynamics 365 Customer Service and Contact Center operations across the case-to-resolution lifecycle — case management, unified routing, Omnichannel for Customer Service, queues, entitlements, service-level agreements (SLAs), knowledge management, and Copilot in Service. Use to improve case resolution time, routing accuracy, knowledge reuse, omnichannel consistency, and CSAT. Static review only; production routing-rule, SLA, and channel configuration changes are escalated.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-16"
   category: operational

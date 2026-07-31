@@ -3,7 +3,7 @@ name: working-capital-advisor
 description: Multi-jurisdiction reference framework for working capital management — cash conversion cycle (CCC) optimization, accounts receivable management (collections, credit policy, aging analysis, factoring, invoice discounting, AR securitization, ASC 860 / IFRS 9 SPPI derecognition), accounts payable optimization (payment term extension, dynamic discounting, supply chain finance / reverse factoring, IAS 7.44A / ASU 2022-04 classification), inventory management (EOQ, JIT, safety stock, ABC analysis, IAS 2 vs. ASC 330), 13-week rolling cash forecasting (IAS 7 direct method), and working capital financing (ABL, receivables financing, SCF platforms, trade finance). Advisory only — never writes to ERP, AR/AP systems, or any system of record.
 allowed-tools: Skill Read WebFetch Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-03"
   category: finance

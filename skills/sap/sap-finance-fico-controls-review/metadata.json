@@ -27,7 +27,7 @@
   "security_notes": "Does not access live SAP S/4HANA Finance systems, Fiori launchpads, SAP GUI sessions, or any production financial database. Accepts only user-provided configuration exports, validation/substitution descriptions, role lists, posting period variant summaries, Financial Close Cockpit task list exports, parallel ledger configuration descriptions, or written descriptions of the FI-CO control landscape. Never request or accept SAP logon credentials, RFC connection details, or direct database access. Never posts, reverses, parks, or modifies financial documents. Critical SoD findings in financial postings must be escalated to the audit and GRC team — this skill does not approve access or close audit findings.",
   "last_verified": "2026-06-19",
   "path": "skills/sap/sap-finance-fico-controls-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "lifecycle": "experimental"
 }

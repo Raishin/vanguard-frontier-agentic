@@ -3,7 +3,7 @@ name: python-packaging-supply-chain
 description: "Use this skill to statically review Python packaging and software supply-chain integrity: pyproject build metadata, dependency locking and hash-checking, index trust and dependency confusion, build isolation, dependency specifiers, license metadata, and CI release-token exposure. Reads manifests and lockfiles only; it never installs packages, resolves environments, or contacts an index."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-26"
   category: devsecops

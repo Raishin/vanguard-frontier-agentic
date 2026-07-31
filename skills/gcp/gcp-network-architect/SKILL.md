@@ -3,7 +3,7 @@ name: gcp-network-architect
 description: Design and review GCP network architecture including global VPC topology, Shared VPC patterns, Cloud Interconnect/VPN hybrid connectivity, Cloud NAT, DNS, Cloud Armor, and Traffic Director service mesh.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: networking

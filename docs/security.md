@@ -28,7 +28,7 @@ This page documents the security posture of `@raishin/vanguard-frontier-agentic`
 
 - **Evidence:** `actions/attest-build-provenance` in `.github/workflows/release.yml`
 - **What it means:** The build process is fully defined in code (this workflow), runs in an ephemeral environment (GitHub-hosted runner), and produces a non-forgeable attestation bundle.
-- **Verification:** `gh attestation verify <tarball> --owner Raishin`
+- **Verification:** `gh attestation verify <tarball> --owner VincentChuWaiChow`
 
 ### SPDX SBOM
 
@@ -49,7 +49,7 @@ This page documents the security posture of `@raishin/vanguard-frontier-agentic`
 ### Dependabot
 
 - **Evidence:** `.github/dependabot.yml`
-- **What it means:** Automated PRs for dependency updates (both GitHub Actions and npm). Grouped by type, reviewed by `@Raishin`.
+- **What it means:** Automated PRs for dependency updates (both GitHub Actions and npm). Grouped by type, reviewed by `@VincentChuWaiChow`.
 - **Configuration:**
   - GitHub Actions: weekly, grouped
   - npm: weekly, grouped (runtime vs dev)
@@ -81,7 +81,7 @@ This page documents the security posture of `@raishin/vanguard-frontier-agentic`
 ### CODEOWNERS
 
 - **Evidence:** `.github/CODEOWNERS`
-- **What it means:** All PRs automatically request review from `@Raishin`. Critical paths (`.github/`, `scripts/`, `schemas/`, `catalog/`, `tests/`) have explicit ownership.
+- **What it means:** All PRs automatically request review from `@VincentChuWaiChow`. Critical paths (`.github/`, `scripts/`, `schemas/`, `catalog/`, `tests/`) have explicit ownership.
 
 ---
 
@@ -131,7 +131,7 @@ This page documents the security posture of `@raishin/vanguard-frontier-agentic`
 
 ### Attack: Submit malicious skill/agent content
 
-**Mitigation:** Schema validation (`validate:skill-schema`, `validate:agent-schema`) enforces structural contracts. CODEOWNERS requires review from `@Raishin`. The refusal-by-default routing model means unrecognized content never reaches execution.
+**Mitigation:** Schema validation (`validate:skill-schema`, `validate:agent-schema`) enforces structural contracts. CODEOWNERS requires review from `@VincentChuWaiChow`. The refusal-by-default routing model means unrecognized content never reaches execution.
 
 ### Attack: Fork-and-publish under the same name
 
@@ -143,7 +143,7 @@ This page documents the security posture of `@raishin/vanguard-frontier-agentic`
 
 Security vulnerabilities should be reported privately via GitHub Security Advisories:
 
-> [https://github.com/Raishin/vanguard-frontier-agentic/security/advisories/new](https://github.com/Raishin/vanguard-frontier-agentic/security/advisories/new)
+> [https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/security/advisories/new](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/security/advisories/new)
 
 Full policy: `SECURITY.md` in repository root.
 

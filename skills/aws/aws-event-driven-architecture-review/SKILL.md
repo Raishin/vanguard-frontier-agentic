@@ -3,7 +3,7 @@ name: aws-event-driven-architecture-review
 description: Review AWS event-driven system design across EventBridge, event buses, Pipes, SQS, SNS, Step Functions, event schemas, filtering, cross-account routing, retries, DLQs, replay, idempotency, monitoring, and event-loop risk. Prefer serverless production readiness for Lambda runtime/deployment readiness.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.4"
   updated: "2026-06-02"
   category: platform

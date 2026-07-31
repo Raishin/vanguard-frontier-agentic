@@ -3,7 +3,7 @@ name: python-live-identity-authority
 description: "Use this skill to confirm active identity, role, credential age, target scope, JIT status, and approval authority before any gated live action. Read-only-runtime: it blocks shared identities, unidentified principals, standing administrative credentials, and requester-as-approver conflicts, but never grants, elevates, or approves anything itself."
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-26"
   category: security

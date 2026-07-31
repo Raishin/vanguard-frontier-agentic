@@ -3,7 +3,7 @@ name: enterprise-red-team-review
 description: Run a mandatory adversarial review pass against Tier-1 specialist verdicts for frontend security review, AI-generated code review, and production incident workflows, hunting for exploit paths, WCAG failures automated tooling cannot catch, and prompt-injection artifacts in AI-generated code. Use before a change with security, accessibility, or AI-generated-code implications is allowed to reach the Board Chair.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: security

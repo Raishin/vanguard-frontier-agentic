@@ -27,7 +27,7 @@
   "security_notes": "Does not access live SAP IAS tenants, IPS admin consoles, XSUAA service instances, GRC Access Control systems, or BTP subaccounts. Accepts only user-provided SoD conflict reports, role lists, xs-security.json files, IAS exports, IPS connector descriptions, or written IAM landscape descriptions. Never request or accept IAS admin credentials, IPS technical user passwords, XSUAA client secrets, GRC system logon credentials, or BTP service keys. Unmitigated critical SoD conflicts must be escalated to the GRC or audit team — this skill does not approve or close access violations.",
   "last_verified": "2026-06-19",
   "path": "skills/sap/sap-security-iam-grc-sod-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "lifecycle": "experimental"
 }

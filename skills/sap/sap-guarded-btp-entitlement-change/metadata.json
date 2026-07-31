@@ -26,7 +26,7 @@
   "security_notes": "Mutating operations are gated behind the 17-step sequence with mandatory dual approval (platform-owner plus FinOps). Never execute an entitlement assignment, quota change, or subscription modification before step 13 dual approval gate is cleared. Never accept self-approval (SoD: requester must differ from both platform owner and FinOps approver). FinOps approval is a hard gate for all entitlement increases — technical necessity does not override it. A cost-impact assessment (step 9 diff) must be produced before any increase is executed. Never use global account administrator credentials where an Entitlements Administrator role is sufficient. Never hardcode service keys, OAuth tokens, or cockpit session credentials in any output. Refuse any request to skip steps or increase entitlements without documented FinOps approval.",
   "last_verified": "2026-06-19",
   "path": "skills/sap/sap-guarded-btp-entitlement-change",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "lifecycle": "experimental",
   "execution_tier": "mutating-runtime"

@@ -3,7 +3,7 @@ name: d365-sales-revenue-operations
 description: Review and advise on Dynamics 365 Sales revenue operations — pipeline and opportunity management, sales forecasting, lead qualification, sales accelerator configuration, CRM data hygiene, and sales insights. Detects pipeline trust gaps, forecast inaccuracy, CRM hygiene failures, and revenue leakage patterns. Refuses to approve live production forecast configuration or sales-process changes without live-guard escalation. Static review and advisory only.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-16"
   category: operational

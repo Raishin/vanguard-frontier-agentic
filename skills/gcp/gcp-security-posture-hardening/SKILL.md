@@ -3,7 +3,7 @@ name: gcp-security-posture-hardening
 description: Review GCP security posture via Security Command Center findings, CIS GCP Benchmark gaps, org policy enforcement baseline, Assured Workloads controls, Binary Authorization, and CSPM recommendations. Prefer gcp-iam-least-privilege-review for IAM binding surgery and gcp-vpc-service-controls-architect for VPC-SC perimeter design unless the request is primarily broad posture hardening.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: security

@@ -3,7 +3,7 @@ name: alibaba-change-impact-advisor
 description: Pre-change blast radius analysis for Alibaba Cloud — Resource Directory OU scope mapping, RAM policy cascade effects, VPC peering and CEN impact, SLB backend pool changes, RDS connection pool disruption, and safe change sequencing.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: platform

@@ -23,5 +23,5 @@
   "security_notes": "Static review only — reads build files (pom.xml/build.gradle), application.properties/application.yml and profile variants, source annotations, and CI/Dockerfile config; never builds, runs, invokes a JDK, opens a database/broker connection, or contacts a live health endpoint. Never requests live secret values, connection strings, credentials, tenant identifiers, or customer data — ask for sanitized files with values redacted/placeholdered. Framework EOL/support-window facts are fail-closed: cited from the companion skill's verified reference or marked unknown, never asserted from memory.",
   "last_verified": "2026-07-17",
   "path": "skills/java/java-framework-production-readiness",
-  "author": "github: Raishin"
+  "author": "github: VincentChuWaiChow"
 }

@@ -3,7 +3,7 @@ name: edge-cache-data-bleed-review
 description: Statically review Next.js App Router caching surfaces -- route-level revalidate exports, cache-boundary directives on server functions reading cookies(), generateStaticParams on personalized routes, and Cache-Control/Vary response headers -- for defects that let one user's authenticated response be cached and served back to a different user.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-03"
   category: security

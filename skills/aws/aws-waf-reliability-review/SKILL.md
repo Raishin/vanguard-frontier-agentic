@@ -3,7 +3,7 @@ name: aws-waf-reliability-review
 description: "Review AWS workload reliability posture against the Well-Architected Framework Reliability Pillar. Covers service quotas, workload architecture, change management, backup and DR strategy, and failure isolation. Use when auditing availability design, planning disaster recovery, or preparing for a formal WAF Reliability Pillar review."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.4"
   updated: "2026-06-02"
   category: resilience

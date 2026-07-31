@@ -3,7 +3,7 @@ name: alibaba-ram-iam-review
 description: Audit Alibaba Cloud RAM users, groups, roles, and policies; review STS token lifecycle and scope; assess Resource Directory permission boundaries; review Control Policy statements for org-wide gaps or over-privilege.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: security

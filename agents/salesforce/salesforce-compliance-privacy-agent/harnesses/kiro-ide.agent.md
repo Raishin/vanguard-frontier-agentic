@@ -8,7 +8,7 @@ keywords:
   - privacy
   - salesforce-shield
   - gdpr
-author: "github: Raishin"
+author: "github: VincentChuWaiChow"
 ---
 
 # Salesforce Compliance and Privacy Agent

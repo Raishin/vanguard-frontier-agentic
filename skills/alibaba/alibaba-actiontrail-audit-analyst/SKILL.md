@@ -3,7 +3,7 @@ name: alibaba-actiontrail-audit-analyst
 description: Query Alibaba Cloud ActionTrail management API call history, build governance audit reports, create SLS-based compliance evidence trails, and detect anomalous admin activity patterns.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: compliance

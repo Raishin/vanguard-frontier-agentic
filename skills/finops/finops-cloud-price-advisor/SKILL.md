@@ -3,7 +3,7 @@ name: finops-cloud-price-advisor
 description: Fetch live public prices and build cost estimates for AWS, Azure, OCI, Scaleway, Gandi, Alibaba Cloud, and Tencent Cloud using each provider's public pricing API or official documentation. Supports live-environment cost analysis and prototype cost planning. Currency defaults to USD; EUR and CNY supported natively.
 allowed-tools: Read Grep Glob WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.2.1"
   updated: "2026-05-13"
   category: finops

@@ -3,7 +3,7 @@ name: frontend-testing-strategy-review
 description: Reviews frontend test-pyramid shape, critical-path coverage, and flaky-test governance across unit, component, integration, and E2E layers (Vitest/Jest, Testing Library, Playwright/Cypress), loading framework references only when the task needs them.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: delivery

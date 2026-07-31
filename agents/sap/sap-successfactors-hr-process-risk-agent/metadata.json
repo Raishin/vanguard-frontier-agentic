@@ -24,7 +24,7 @@
   "security_notes": "Static review only — no Bash, no SuccessFactors OData API calls, no permission role mutations, no employee record access. Never accepts real employee records, national IDs, salary figures, bank account numbers, medical data, immigration documents, or production SuccessFactors tenant credentials. Any finding involving exposure of national ID, bank account, medical or disability data, immigration status, or salary to unauthorised roles MUST be escalated to HR leadership, the data protection officer, legal counsel, and information security before any remediation is applied. SuccessFactors inputs must always be sanitised or anonymised exports — raw PII is never accepted. All guidance is advisory; permission role and workflow changes require HR change-management approval, data protection impact assessment where applicable, and audit-trail documentation.",
   "last_verified": "2026-06-19",
   "path": "agents/sap/sap-successfactors-hr-process-risk-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "companion_skills": [
     "sap-successfactors-hr-process-risk-review"
   ],

@@ -12,7 +12,7 @@ plugin-creator/references/plugin-json-spec.md):
     `policy.authentication`, and `category` — even at defaults
 
 Install command (verified via context7):
-  codex plugin marketplace add Raishin/vanguard-frontier-agentic
+  codex plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic
 
 Gates:
   1. .agents/plugins/marketplace.json exists and is well-formed.

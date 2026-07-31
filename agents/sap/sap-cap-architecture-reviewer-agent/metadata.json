@@ -24,7 +24,7 @@
   "security_notes": "Static review only — no Bash, no BTP CLI calls, no CDS compilation or deployment execution. Never accepts CDS files, package.json, or .env files containing BTP service-binding credentials, XSUAA client secrets, HDI container passwords, or destination service tokens. Findings on @requires and @restrict coverage are advisory; authorization changes must pass through CAP service review, MTX tenant provisioning tests, and operator approval before deployment to production BTP subaccounts.",
   "last_verified": "2026-06-19",
   "path": "agents/sap/sap-cap-architecture-reviewer-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "companion_skills": [
     "sap-cap-architecture-review"
   ],

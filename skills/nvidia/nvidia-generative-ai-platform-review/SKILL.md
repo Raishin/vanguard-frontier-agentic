@@ -3,7 +3,7 @@ name: nvidia-generative-ai-platform-review
 description: Use this skill when reviewing NVIDIA generative-AI platforms — NeMo training and customization pipelines, NIM inference microservices, NeMo Guardrails, model card and weights provenance, evaluation/eval-harness posture, and tenant data isolation. Trigger when the user asks whether NIM containers are correctly verified before deployment, whether NeMo Guardrails are configured, or whether the deployment meets NCA-GENL, NCA-GENM, or NCP-GENL expectations.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-10"
   category: ai

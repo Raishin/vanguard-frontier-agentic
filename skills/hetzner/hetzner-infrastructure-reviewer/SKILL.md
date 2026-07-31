@@ -3,7 +3,7 @@ name: hetzner-infrastructure-reviewer
 description: Review Hetzner Cloud infrastructure posture including Firewall inbound and outbound rules and server attachment, Load Balancer health check configuration and target pool design, private Network topology, Floating IP and Primary IP exposure, and region distribution across fsn1, nbg1, and hel1. Use when the user asks to audit or improve Hetzner Cloud network security or architecture.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-10"
   category: security

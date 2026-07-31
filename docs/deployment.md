@@ -54,7 +54,7 @@ The release uses GitHub OIDC token exchange instead of a stored `NPM_TOKEN`:
 
 - **Environment:** `npm-deployment-master`
 - **Trusted publisher configuration on npmjs.com:**
-  - Owner: `raishin`
+  - Owner: `vincentchuwaichow`
   - Repository: `vanguard-frontier-agentic`
   - Workflow: `release.yml`
   - Environment: `npm-deployment-master`
@@ -192,7 +192,7 @@ npm audit signatures
 # (GitHub UI: Releases page, check assets)
 
 # Verify attestation
-gh attestation verify <tarball-path> --owner Raishin
+gh attestation verify <tarball-path> --owner VincentChuWaiChow
 ```
 
 ---

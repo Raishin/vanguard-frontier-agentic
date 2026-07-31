@@ -23,7 +23,7 @@
   "security_notes": "Frontend Maestro follows the same live-guard-gate convention already enforced by aws-maestro-agent, azure-maestro-agent, and the finops/kubernetes maestros in this catalog: any specialist capable of a live/production mutation (deploy, feature-flag flip in prod, cache purge, rollback trigger) must be listed under live_guards in the routing taxonomy and is NEVER auto-dispatched — it only routes under live-guard-gate mode with explicit human confirmation, blast-radius assessment, and rollback path attached. Maestro itself performs no mutations; it is classification-and-dispatch only.",
   "last_verified": "2026-07-02",
   "path": "agents/frontend/frontend-maestro-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "companion_skills": [
     "frontend-maestro"
   ],

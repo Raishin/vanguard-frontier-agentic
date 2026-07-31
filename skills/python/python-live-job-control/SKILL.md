@@ -3,7 +3,7 @@ name: python-live-job-control
 description: "Use this skill to operate a distributed job or business-automation process (retry, requeue, run): confirm both technical and business idempotency before acting, bound every retry instead of blindly retrying all failed jobs, and reconcile the actual business outcome rather than accepting the job's own success status."
 allowed-tools: Read Grep Glob WebSearch WebFetch Bash
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-26"
   category: messaging

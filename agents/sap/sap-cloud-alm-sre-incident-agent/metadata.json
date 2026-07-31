@@ -24,7 +24,7 @@
   "security_notes": "Static review only — no Bash, no Cloud ALM API calls, no monitoring rule mutations, no incident record modifications, no deployment job execution. Never accepts production Cloud ALM API credentials, SAP BTP service instance keys, incident records with personal data, or transport request content that includes configuration secrets. Any finding representing a complete monitoring blind spot for a production-critical SAP service, an ungated production deployment path, or an absent incident escalation route for P1 incidents MUST be escalated to the SRE lead, Cloud ALM administrator, IT operations manager, and where change-control gaps affect audit compliance, the internal audit function, before any remediation is applied. All guidance is advisory; Cloud ALM monitoring rule changes, SLO definitions, runbook updates, and change management workflow modifications require operations change-management approval and audit-trail documentation.",
   "last_verified": "2026-06-19",
   "path": "agents/sap/sap-cloud-alm-sre-incident-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "companion_skills": [
     "sap-cloud-alm-sre-incident-review"
   ],

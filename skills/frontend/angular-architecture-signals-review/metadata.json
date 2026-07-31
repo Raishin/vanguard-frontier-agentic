@@ -23,6 +23,6 @@
   "security_notes": "No direct security-primitive concern in this skill's scope; escalate any bypassSecurityTrust* usage discovered incidentally to the angular-ssr-hydration-review skill or a security reviewer rather than handling it here. Static-review-only skill: it reads and greps component/service source but never executes, builds, or runs application code. Treat any API key or token found hardcoded in component/service state or default values as a HIGH-severity finding requiring immediate escalation, not a style note.",
   "last_verified": "2026-07-02",
   "path": "skills/frontend/angular-architecture-signals-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

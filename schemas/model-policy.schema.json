@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://github.com/Raishin/vanguard-frontier-agentic/schemas/model-policy.schema.json",
+  "$id": "https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/schemas/model-policy.schema.json",
   "title": "VFA Model Policy",
   "description": "Per-harness model and reasoning-effort policy for agent harness variants. Canonical intent consumed by scripts/model-policy.mjs, which projects it into executable harness files and generates catalog/model-assignments.json. Precedence: agent > role > provider > all; 'auto' omits the managed field so the harness runtime default applies.",
   "type": "object",

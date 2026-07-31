@@ -3,7 +3,7 @@ name: gcp-cost-anomaly-watch-coordinator
 description: Detect and coordinate response to GCP cost anomalies — BigQuery on-demand query cost spikes ($5/TB scanned), Cloud Run scaling runaway, unattached Persistent Disks, idle GCE instances, budget alert → notification channel → remediation playbook.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: finops

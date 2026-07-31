@@ -24,6 +24,6 @@
   "security_notes": "This skill's entire scope is security-critical: production-enabled devtools expose full schema introspection and the normalized cache inspector, an uncleared cache after logout is a cross-user/cross-tenant data-exposure defect, unallowlisted client-driven queries are a denial-of-service/cost-abuse vector, an auth header with no CSRF token weakens mutation-endpoint protection, and unmasked sensitive fields in the normalized cache are exposed to the devtools inspector for the life of the cache entry. Every finding in this skill defaults to HIGH severity unless proven otherwise with concrete configuration evidence. Static-review-only skill: it reads and greps GraphQL client setup, link chains, and cache configuration but never executes, builds, or runs application code, and never sends live GraphQL requests.",
   "last_verified": "2026-07-03",
   "path": "skills/frontend/graphql-client-security-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

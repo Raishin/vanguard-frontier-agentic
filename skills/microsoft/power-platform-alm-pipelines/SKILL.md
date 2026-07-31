@@ -3,7 +3,7 @@ name: power-platform-alm-pipelines
 description: Review Power Platform application lifecycle management health across managed and unmanaged solutions, Power Platform Pipelines, environment strategy (dev/test/prod), solution layering, connection references, environment variables, source control via Git integration, and deployment gates. Use to detect unhealthy ALM patterns, missing rollback paths, and ungoverned production deployments. Static review only; production pipeline and deployment-configuration changes are escalated.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-16"
   category: delivery

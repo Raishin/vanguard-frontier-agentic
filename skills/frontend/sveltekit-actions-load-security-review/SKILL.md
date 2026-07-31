@@ -3,7 +3,7 @@ name: sveltekit-actions-load-security-review
 description: Statically review SvelteKit form actions, load functions, hooks, and templates for CSRF origin-check bypass (checkOrigin/trustedOrigins), unauthenticated sensitive-data returns from load(), auth guards confined to +layout.server.js without an enforced parent()/hooks check, insecure cookies.set() options, and unsanitized {@html} bindings, grounded in SvelteKit's own CSRF, cookies, load, and authentication documentation.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-03"
   category: security

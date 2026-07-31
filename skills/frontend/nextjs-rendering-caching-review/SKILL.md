@@ -3,7 +3,7 @@ name: nextjs-rendering-caching-review
 description: Statically review Next.js App Router route segments and fetch() calls for rendering-mode (static/ISR/dynamic) and Data-Cache misconfiguration, escalating cross-user data leakage to a security finding rather than a performance nit.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: architecture

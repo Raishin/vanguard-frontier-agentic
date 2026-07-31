@@ -3,7 +3,7 @@ name: huawei-iam-least-privilege-review
 description: Audit Huawei Cloud IAM fine-grained policies, SCP (Service Control Policy) at Organizations level, agency trust relationships (cross-account delegation), and enterprise project permission boundaries.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: security

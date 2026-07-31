@@ -3,7 +3,7 @@ name: pwa-offline-readiness-review
 description: Validates installability against W3C manifest criteria and tests real offline navigation behavior end to end, rejecting a manifest-schema-valid but practically non-installable or non-functional-offline PWA.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: operational

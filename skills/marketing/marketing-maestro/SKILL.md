@@ -3,7 +3,7 @@ name: marketing-maestro
 description: Route marketing-governance review tasks to the narrowest specialist or team of specialists from the catalog. Use when you do not already know which marketing-governance specialist you need. Not for direct answers; Maestro classifies, dispatches, and synthesizes only. Dispatches a single agent for focused tasks or a parallel team (max 4) for multi-domain tasks. Never auto-dispatches live-guard or mutating agents — requires explicit human confirmation with blast-radius and rollback before any live mutation.
 allowed-tools: Agent Skill Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-17"
   category: ai

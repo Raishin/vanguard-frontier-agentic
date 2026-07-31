@@ -3,7 +3,7 @@ name: huawei-live-gaussdb-mutation-guard
 description: Gate GaussDB/RDS instance deletion, spec downgrade, and backup policy removal — database deletion is permanently destructive and MLPS Level 3 data destruction triggers mandatory 24-hour incident reporting.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: database

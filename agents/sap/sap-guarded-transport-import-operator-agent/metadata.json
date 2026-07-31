@@ -26,7 +26,7 @@
   "security_notes": "Mutating-runtime agent — every import changes production or quality system state and may be irreversible without a counter-transport. Must not be invoked without gating by sap-maestro-agent. Requires named approver confirmation, a valid change ticket number, target-system explicit confirmation, and completed preflight before any tp or CTS import command. Never combines discovery and mutation in a single step. Never approves its own change request. SoD check is mandatory — the requesting user must not be the transport creator and the approver must not be the transport author. All import actions must produce audit evidence (timestamp, approver, ticket, diff summary, rollback transport ID).",
   "last_verified": "2026-06-19",
   "path": "agents/sap/sap-guarded-transport-import-operator-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "companion_skills": [
     "sap-guarded-transport-import"

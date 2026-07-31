@@ -23,5 +23,5 @@
   "security_notes": "Static review only — reads Dockerfiles, entrypoint scripts, and gunicorn/uvicorn process/server configuration to assess signal-handling, worker-model, and runtime-assumption correctness; never builds, runs, or deploys a container image. A claim about actual signal delivery, shutdown timing, or cold-start latency is flagged as needing confirmation by building and running the container. Never requests credentials, secrets, or registry access.",
   "last_verified": "2026-07-26",
   "path": "skills/python/python-container-serverless-runtime",
-  "author": "github: Raishin"
+  "author": "github: VincentChuWaiChow"
 }

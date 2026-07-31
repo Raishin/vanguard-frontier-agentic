@@ -22,6 +22,6 @@
   "security_notes": "Legacy jQuery plugins frequently construct HTML via string concatenation and .html(); flag every such call as a potential unsanitized-injection point that a naive port might carry forward unchanged, or worse, replace with dangerouslySetInnerHTML/v-html without adding sanitization. Static-review-only skill: Read/Grep/Glob, no Bash execution, no network egress, no code mutation.",
   "last_verified": "2026-07-02",
   "path": "skills/frontend/legacy-jquery-to-modern-framework-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

@@ -3,7 +3,7 @@ name: python-async-concurrency-reliability
 description: "Use this skill to statically review Python asyncio reliability: blocking calls that stall the event loop, cancellation correctness, missing timeouts on external awaits, task lifecycle and structured concurrency, backpressure on unbounded fan-out, and context propagation across executor and thread boundaries. Reads source only; it never runs the service or measures actual timing."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-26"
   category: resilience

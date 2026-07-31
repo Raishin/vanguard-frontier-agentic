@@ -23,5 +23,5 @@
   "security_notes": "Static review only — reads Java/Kotlin source, JVM startup-flag configuration (launch scripts, Dockerfiles, systemd units, K8s manifests), and user-supplied GC logs, JFR recordings, and heap-dump analysis output (dominator-tree/leak-suspects text, not a raw .hprof binary). Never opens a live process, attaches a profiler or debugger, invokes a JDK tool against a running JVM, or requests/opens a live heap dump. Never requests credentials, connection strings, tenant identifiers, or customer data — ask for sanitized excerpts with placeholders.",
   "last_verified": "2026-07-17",
   "path": "skills/java/java-jvm-performance-and-gc",
-  "author": "github: Raishin"
+  "author": "github: VincentChuWaiChow"
 }

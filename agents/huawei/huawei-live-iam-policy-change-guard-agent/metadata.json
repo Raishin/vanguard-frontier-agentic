@@ -22,7 +22,7 @@
   "security_notes": "SCP deny statements at Organizations level cascade to ALL member accounts and CANNOT be overridden by IAM policies in member accounts. Granting FullAccess system policies gives complete service control. Agency trust relationships granting SecurityAdministrator are among the most dangerous grants. IAM policy changes propagate across Huawei Cloud services — confirm post-change access for all dependent systems.",
   "last_verified": "2026-05-08",
   "path": "agents/huawei/huawei-live-iam-policy-change-guard-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "harness_variants": {
     "codex": "agents/huawei/huawei-live-iam-policy-change-guard-agent/harnesses/codex.toml",
     "claude-code": "agents/huawei/huawei-live-iam-policy-change-guard-agent/harnesses/claude-code.agent.md",

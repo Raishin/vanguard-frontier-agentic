@@ -3,7 +3,7 @@ name: power-platform-governance-dataverse-security
 description: Review and advise on Power Platform environment strategy, Data Loss Prevention (DLP) policy design, Dataverse security model, business unit hierarchy, security roles and teams, table/row/column-level permissions, connector governance, and Center of Excellence (CoE) alignment. Flags environment sprawl, weak DLP, unmanaged connectors, over-privileged Dataverse roles, insecure ad-hoc sharing, and misaligned business unit design. Static review only — no live tenant mutations. Escalates production DLP changes through the live-guard gate.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-16"
   category: security

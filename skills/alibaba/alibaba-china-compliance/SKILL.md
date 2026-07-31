@@ -3,7 +3,7 @@ name: alibaba-china-compliance
 description: Advise on MLPS 2.0 grading and technical controls, DSL Article 31 cross-border data transfer, CSL network operator obligations, PIPL personal data requirements, and ICP Beian filing for mainland China CN-* region workloads.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: compliance

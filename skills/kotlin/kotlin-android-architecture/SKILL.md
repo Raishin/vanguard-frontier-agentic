@@ -3,7 +3,7 @@ name: kotlin-android-architecture
 description: "Use this skill to statically review Android app architecture correctness: ViewModel lifecycle and scoping across configuration changes, SavedStateHandle persistence across process death, lifecycle-aware Flow collection (repeatOnLifecycle/collectAsStateWithLifecycle/flowWithLifecycle), and unidirectional data flow with a single source of truth. Reads source only; it never runs or instruments the app."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-21"
   category: architecture

@@ -3,7 +3,7 @@ name: sap-fiori-ui5-ux-review
 description: Review SAP Fiori and SAPUI5 applications for Fiori design guidelines adherence, UI5 app structure and MVC correctness, OData consumption patterns, performance, accessibility, and Fiori launchpad integration. Use when assessing Fiori app code, manifest.json, XML views, controllers, OData model binding, or launchpad tile configuration for quality, compliance with SAP UX standards, and readiness for productive use. Does not touch live systems.
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-19"
   category: platform

@@ -3,7 +3,7 @@ name: alibaba-waf-cost-optimization-review
 description: "Assess Alibaba Cloud cost posture: ECS instance family rightsizing, Savings Plans and Reserved Instance coverage, Preemptible Instance adoption, cost allocation tagging, OSS storage tiering, analytics pricing, and idle resource elimination."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: finops

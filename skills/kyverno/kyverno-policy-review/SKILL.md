@@ -3,7 +3,7 @@ name: kyverno-policy-review
 description: Use this skill for Kyverno policy review across the stable policies.kyverno.io/v1 API surface — ValidatingPolicy, MutatingPolicy, GeneratingPolicy, DeletingPolicy, and ImageValidatingPolicy. Trigger when the user asks whether an admission policy is safe, whether a PolicyException is justified, whether a policy should be enforced or audited, whether a Kyverno policy should be replaced by a native ValidatingAdmissionPolicy (CEL), or whether image signature verification is correctly configured.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-05"
   category: security

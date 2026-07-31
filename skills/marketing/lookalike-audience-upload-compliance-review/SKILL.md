@@ -3,7 +3,7 @@ name: lookalike-audience-upload-compliance-review
 description: Use this skill when reviewing custom-audience and lookalike-audience upload specifications for hashing adequacy, PII field scope, consent-basis validity, and platform data-sharing restrictions before the upload is submitted to Meta, Google, LinkedIn, or TikTok. Trigger when a user provides an audience upload field-mapping specification (CSV schema or platform upload template), declared hashing method, consent-basis documentation, or originating list segment metadata — or when they ask whether their customer list upload or lookalike seed list is compliant with GDPR, CCPA/CPRA, or platform terms before uploading.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-17"
   category: data

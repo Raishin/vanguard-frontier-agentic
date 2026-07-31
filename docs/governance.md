@@ -45,16 +45,16 @@ Write an ADR when:
 
 File: `.github/CODEOWNERS`
 
-All paths default to `@Raishin`. Critical infrastructure paths have explicit ownership:
+All paths default to `@VincentChuWaiChow`. Critical infrastructure paths have explicit ownership:
 
 | Path | Owner | Scope |
 |------|-------|-------|
-| `/.github/` | @Raishin | CI/CD, workflows, templates |
-| `/scripts/` | @Raishin | Build and generation scripts |
-| `/schemas/` | @Raishin | JSON Schema contracts |
-| `/catalog/` | @Raishin | Machine-readable indexes |
-| `/tests/` | @Raishin | Validation scripts |
-| `/CLAUDE.md` | @Raishin | Steering file |
+| `/.github/` | @VincentChuWaiChow | CI/CD, workflows, templates |
+| `/scripts/` | @VincentChuWaiChow | Build and generation scripts |
+| `/schemas/` | @VincentChuWaiChow | JSON Schema contracts |
+| `/catalog/` | @VincentChuWaiChow | Machine-readable indexes |
+| `/tests/` | @VincentChuWaiChow | Validation scripts |
+| `/CLAUDE.md` | @VincentChuWaiChow | Steering file |
 
 ### Review Requirements
 
@@ -109,7 +109,7 @@ Full policy: `SECURITY.md`
 
 Private reporting via GitHub Security Advisories only:
 
-> [https://github.com/Raishin/vanguard-frontier-agentic/security/advisories/new](https://github.com/Raishin/vanguard-frontier-agentic/security/advisories/new)
+> [https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/security/advisories/new](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/security/advisories/new)
 
 Public disclosure of vulnerabilities before a fix is available is not acceptable.
 
@@ -190,7 +190,7 @@ cat SECURITY.md
 
 ## 🏛️ Enterprise Reviewer Notes
 
-- Single maintainer (@Raishin) is the current governance model; this is appropriate for the project's maturity stage
+- Single maintainer (@VincentChuWaiChow) is the current governance model; this is appropriate for the project's maturity stage
 - No manual release capability exists outside of workflow_dispatch (which is logged and auditable)
 - CODEOWNERS + branch protection provide a hard gate; advisory reviews are insufficient for this project
 - The ADR process is lightweight (Markdown files in `docs/adr/`) rather than requiring a formal RFC process

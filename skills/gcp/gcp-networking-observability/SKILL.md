@@ -3,7 +3,7 @@ name: gcp-networking-observability
 description: "Investigate GCP network issues by analyzing VPC Flow Logs, firewall logs, Cloud NAT logs, threat logs, and networking metrics. Diagnose connectivity, packet loss, top talkers, and firewall block events using BigQuery-first methodology and Cloud Monitoring fallback. Use when investigating VPC traffic anomalies, firewall DENY events, NAT port exhaustion, latency spikes, or running Connectivity Tests for path diagnostics."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: observability

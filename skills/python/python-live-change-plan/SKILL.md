@@ -3,7 +3,7 @@ name: python-live-change-plan
 description: "Use this skill to produce a normalized change plan — an exact diff, a pre-approved rollback procedure, machine-checkable verification criteria, and a stable action digest — bound to an exact target. Read-only-runtime: it holds no production credentials and executes nothing."
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-26"
   category: architecture

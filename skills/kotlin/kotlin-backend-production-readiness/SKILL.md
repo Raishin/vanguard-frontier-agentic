@@ -3,7 +3,7 @@ name: kotlin-backend-production-readiness
 description: "Use this skill to statically review production readiness for Ktor servers and the Kotlin-on-Spring coroutine surface: server lifecycle/monitoring events, Netty/CIO graceful-shutdown configuration, StatusPages typed exception mapping, DI/AutoCloseable resource cleanup on shutdown, and correctly routing the coroutine-context-loss hazard behind suspend WebFlux handlers to its root-cause owner. Reads source and sanitized configuration only; it never runs or deploys a server."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-21"
   category: delivery

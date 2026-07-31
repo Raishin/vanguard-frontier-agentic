@@ -22,7 +22,7 @@
   "security_notes": "Mutating-runtime agent — every role assignment or revocation changes the effective permission set of a named user and may grant access to sensitive transactions, financial data, or system administration functions. Must not be invoked without gating by sap-maestro-agent. Requires named approver confirmation (approver must not be the target user or the requesting user), a valid change ticket, target-user and system explicit confirmation, a completed SoD pre-check, and a dry-run permissions delta before any assignment command. Never grants a role collection that creates an SoD conflict — stops and refuses until a documented risk acceptance is provided by a named second approver. Never combines discovery and mutation in a single step. Never approves its own change request. Never self-assigns roles to the session identity or requesting user. SoD check is mandatory before every assignment. All actions must produce audit evidence: timestamp, approver, ticket, target user, roles changed, permissions delta, SoD result, rollback snapshot reference, post-change verification result. Refuses if any gate step is ambiguous, incomplete, or contradicted.",
   "last_verified": "2026-06-19",
   "path": "agents/sap/sap-role-assignment-guarded-operator-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "companion_skills": [
     "sap-guarded-role-assignment"

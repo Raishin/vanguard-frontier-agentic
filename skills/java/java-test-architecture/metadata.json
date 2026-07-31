@@ -24,5 +24,5 @@
   "security_notes": "Static review only — reads JUnit 5 test source, Testcontainers module usage, ArchUnit rule definitions, and sanitized build/test configuration (pom.xml/build.gradle test blocks, junit-platform.properties, ~/.testcontainers.properties excerpts); never invokes a JDK, runs mvn/gradle test, starts a JUnit runner, opens a Docker/Testcontainers daemon connection, hits a database or broker, or contacts any live system. Never requests connection strings, database credentials, tenant identifiers, or customer data — ask for source with placeholders.",
   "last_verified": "2026-07-17",
   "path": "skills/java/java-test-architecture",
-  "author": "github: Raishin"
+  "author": "github: VincentChuWaiChow"
 }

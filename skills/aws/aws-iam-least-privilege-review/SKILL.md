@@ -3,7 +3,7 @@ name: aws-iam-least-privilege-review
 description: Review AWS IAM identity policies, trust policies, resource policies, permission boundaries, SCPs, session policies, role design, pass-role, federation, and Access Analyzer findings for least-privilege risk. Prefer KMS/secrets steward for key/secret lifecycle design and S3 perimeter governor for S3 exposure/data-perimeter posture unless the request is primarily policy surgery.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.4"
   updated: "2026-06-02"
   category: security

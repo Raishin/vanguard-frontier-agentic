@@ -3,7 +3,7 @@ name: react-state-effects-review
 description: Statically review useState/useEffect/useReducer call sites against React's documented "You Might Not Need an Effect" anti-pattern catalog, plus race-condition and stale-closure detection via dependency-array and cleanup-function analysis, producing ranked file:line findings.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: architecture

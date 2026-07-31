@@ -23,6 +23,6 @@
   "security_notes": "This skill's entire scope is security-critical: a disabled/bypassed CSRF check enables cross-site form submission, an unguarded load() or action leaking data via a raw cookie value is an authentication-bypass/data-exposure defect, an auth guard living only in +layout.server.js is a structural auth-boundary gap when a child page's load skips await parent() or hooks.server.js does not enforce the check first, an insecure cookies.set() call (missing/false httpOnly, secure, or sameSite, or a missing path) is a session-hijacking-adjacent cookie-policy defect, and unsanitized {@html} on user-reachable input is a stored/reflected XSS vector. Every finding in this skill defaults to HIGH severity unless proven otherwise with concrete guard/sanitizer evidence on the exact traced path. Static-review-only skill: it reads and greps svelte.config.js, +page.server.js/+layout.server.js/+server.js, form action code, and .svelte templates but never executes, builds, or runs application code, and never sends live requests.",
   "last_verified": "2026-07-03",
   "path": "skills/frontend/sveltekit-actions-load-security-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

@@ -3,7 +3,7 @@ name: python-distributed-task-reliability
 description: "Use this skill to statically review Python distributed task systems (Celery, RQ, Dramatiq): idempotency under at-least-once delivery, retry policy and backoff, dead-letter and poison-message handling, duplicate execution, acknowledgement timing, scheduling, and transactional-outbox boundaries. Reads task and config source only; it never enqueues, runs, or acknowledges a task."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-26"
   category: messaging

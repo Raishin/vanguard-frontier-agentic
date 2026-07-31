@@ -612,7 +612,7 @@ function renderPower(provider, cfg) {
     `displayName: "${cfg.displayName}"`,
     `description: "${cfg.description}"`,
     `keywords: [${cfg.keywords.map((k) => `"${k}"`).join(", ")}]`,
-    `author: "Raishin"`,
+    `author: "VincentChuWaiChow"`,
     "---",
   ].join("\n");
 
@@ -674,11 +674,11 @@ function renderPower(provider, cfg) {
     "",
     "## Where the agents live",
     "",
-    `Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see \`agents/${provider}/\` in that repository. ${adapterNote}`,
+    `Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic) marketplace. For this provider, see \`agents/${provider}/\` in that repository. ${adapterNote}`,
     "",
     "## Companion install paths",
     "",
-    "- **Claude Code:** `/plugin marketplace add Raishin/vanguard-frontier-agentic` then `/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic`",
+    "- **Claude Code:** `/plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic` then `/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic`",
     `- **Codex / Copilot / Cursor / Gemini CLI / Kiro (file export):** \`npx vfa-export-agents --platform <harness> --provider ${provider} --repo .\``,
     "",
   ].join("\n");
@@ -727,7 +727,7 @@ need via the Kiro UI:
 
 \`\`\`bash
 # 1. Clone the repo
-git clone https://github.com/Raishin/vanguard-frontier-agentic
+git clone https://github.com/VincentChuWaiChow/vanguard-frontier-agentic
 cd vanguard-frontier-agentic
 \`\`\`
 

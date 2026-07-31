@@ -21,6 +21,6 @@
   "security_notes": "A BFF is a trust boundary, not just a convenience layer — flag any BFF route that passes through client-supplied authorization claims unchecked, or that forwards credentials/tokens client-to-backend without the BFF itself re-authenticating the session, as a HIGH-severity finding. A BFF response that exposes internal-only backend hostnames, service names, or service-specific error shapes verbatim to the browser is a topology-leak finding. Static-review-only skill: it reads and greps BFF route source and does not execute, build, or run application code. Treat any hardcoded API key, service token, or credential found in route source as a HIGH-severity finding requiring immediate escalation.",
   "last_verified": "2026-07-02",
   "path": "skills/frontend/frontend-bff-boundary-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

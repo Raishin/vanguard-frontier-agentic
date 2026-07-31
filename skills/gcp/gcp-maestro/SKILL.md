@@ -3,7 +3,7 @@ name: gcp-maestro
 description: GCP Maestro routing skill. Classify the user's GCP task, select the narrowest specialist agent or the right team of specialists from the catalog, and dispatch them — single specialist for focused tasks, parallel team (max 4) for multi-domain tasks. Never auto-dispatch live-guard agents. Understands GCP's global VPC model, resource hierarchy (org→folder→project), and IAM inheritance before routing any networking or identity task.
 allowed-tools: Agent Skill Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: ai

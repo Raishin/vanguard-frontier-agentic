@@ -3,10 +3,10 @@
 ### Assumptions
 - Verified: repo marketplace is `.agents/plugins/marketplace.json` and declares marketplace name `vanguard-frontier-agentic`.
 - Verified from OpenAI docs search: Codex installs plugins under `~/.codex/plugins/cache/$MARKETPLACE_NAME/$PLUGIN_NAME/$VERSION/`.
-- Unverified until command run: `codex plugin marketplace add Raishin/vanguard-frontier-agentic` resolves the current published/default GitHub branch content and refreshes the cache.
+- Unverified until command run: `codex plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic` resolves the current published/default GitHub branch content and refreshes the cache.
 
 ### Capability Evals
-- [ ] Marketplace command succeeds: `codex plugin marketplace add Raishin/vanguard-frontier-agentic` exits 0.
+- [ ] Marketplace command succeeds: `codex plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic` exits 0.
 - [ ] Main plugin cache exists at `~/.codex/plugins/cache/vanguard-frontier-agentic/vanguard-frontier-agentic/2.5.0/.codex-plugin/plugin.json`.
 - [ ] Companion plugin cache exists at `~/.codex/plugins/cache/vanguard-frontier-agentic/cross-platform-agent-template/0.1.0/.codex-plugin/plugin.json`.
 - [ ] Cached plugin manifest names and versions match repo manifests.
@@ -21,7 +21,7 @@
 - Regression evals: pass^1 required locally before making any fix.
 
 ### Graders
-- `codex plugin marketplace add Raishin/vanguard-frontier-agentic`
+- `codex plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic`
 - `python3 tests/validate-codex-marketplace.py`
 - `npm pack --dry-run --json`
 - Python manifest/cache comparison script embedded in this eval run.
@@ -29,7 +29,7 @@
 ## EVAL REPORT: codex-plugin-marketplace-install
 
 ### Capability Evals
-- marketplace-add: PASS - `codex plugin marketplace add Raishin/vanguard-frontier-agentic` exited 0 and reported the marketplace was already added from `https://github.com/Raishin/vanguard-frontier-agentic.git`.
+- marketplace-add: PASS - `codex plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic` exited 0 and reported the marketplace was already added from `https://github.com/VincentChuWaiChow/vanguard-frontier-agentic.git`.
 - marketplace-upgrade: PASS - `codex plugin marketplace upgrade vanguard-frontier-agentic` exited 0 and refreshed `/home/vchu@maureva.com/.codex/.tmp/marketplaces/vanguard-frontier-agentic`.
 - main-plugin-cache: PASS - found `/home/vchu@maureva.com/.codex/plugins/cache/vanguard-frontier-agentic/vanguard-frontier-agentic/2.5.0/.codex-plugin/plugin.json`.
 - companion-plugin-cache: PASS - found `/home/vchu@maureva.com/.codex/plugins/cache/vanguard-frontier-agentic/cross-platform-agent-template/0.1.0/.codex-plugin/plugin.json`.
@@ -51,7 +51,7 @@
 ### Verification
 - Commands run:
   - `codex --version` -> PASS (`codex-cli 0.131.0-alpha.9`)
-  - `codex plugin marketplace add Raishin/vanguard-frontier-agentic` -> PASS
+  - `codex plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic` -> PASS
   - `codex plugin marketplace upgrade vanguard-frontier-agentic` -> PASS
   - `python3 tests/validate-codex-marketplace.py` -> PASS
   - `npm pack --dry-run --json` -> PASS

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/Raishin/vanguard-frontier-agentic/schemas/audit-event.schema.json",
+  "$id": "https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/schemas/audit-event.schema.json",
   "title": "Live Control Plane Audit Event",
   "description": "Contract for the immutable audit event every observation and action in the Python live control plane must emit. This repo defines the CONTRACT; the deploying organization's runtime is responsible for actually emitting, append-only storing, integrity-protecting, time-synchronizing, and retention-managing these events. If audit logging is unavailable for an R3, R4, or R5 action, the acting agent must fail closed and refuse. Emitting an event is not proof the action was authorized or effective — it is one input to control testing.",
   "type": "object",

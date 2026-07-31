@@ -3,7 +3,7 @@ name: e2e-testing-playwright-review
 description: Reviews Playwright end-to-end test configuration -- fixtures, storageState/auth setup, CI sharding and parallelism, and toHaveScreenshot visual-assertion options -- for reliability and correct gating, grounded in current, version-specific Playwright API docs.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: delivery

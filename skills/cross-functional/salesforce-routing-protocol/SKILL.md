@@ -3,7 +3,7 @@ name: salesforce-routing-protocol
 description: Use this skill when a Salesforce matter must be classified and routed to the right specialist agent, when a matter crosses multiple Salesforce domains and needs parallel review, or when specialist agents disagree and the conflict must be resolved. It defines routing rules per matter type, the cross-domain overlap matrix covering admin × dev × security × revops × marketing × compliance, and the conflict-resolution protocol. Does not give Salesforce or business advice; routing is a recommendation only and never makes a binding routing decision on behalf of a human owner.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-20"
   category: platform

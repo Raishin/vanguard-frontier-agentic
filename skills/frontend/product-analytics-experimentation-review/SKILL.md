@@ -3,7 +3,7 @@ name: product-analytics-experimentation-review
 description: Review frontend analytics instrumentation and A/B or multivariate experiment configurations for event-schema correctness, sample-ratio-mismatch risk, statistically valid stopping rules, and consent-gated privacy compliance before shipping a tracking or experiment change.
 allowed-tools: Read Grep Glob WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: data

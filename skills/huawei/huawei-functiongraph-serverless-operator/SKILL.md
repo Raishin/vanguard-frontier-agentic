@@ -3,7 +3,7 @@ name: huawei-functiongraph-serverless-operator
 description: Deploy and operate Huawei FunctionGraph functions (event triggers, cold start optimization, concurrency), ServiceStage application lifecycle management, and CSE (Cloud Service Engine) Spring Cloud/ServiceComb microservice governance.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: platform

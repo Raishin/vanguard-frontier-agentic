@@ -3,7 +3,7 @@ name: java-kafka-reliability
 description: Use this skill when statically reviewing a Kafka producer/consumer pipeline for whether it actually delivers the delivery semantics it claims — idempotent-producer-vs-exactly-once conflation, transactional read-process-write wiring (transactional.id, initTransactions, sendOffsetsToTransaction, consumer isolation.level=read_committed), at-least-once with or without an idempotent consumer, commit-before-process message loss, ordering (max.in.flight.requests.per.connection combined with idempotence), consumer lag as the operational SLA signal, max.poll.interval.ms rebalance stalls, DLQ/retry-topic design, and acks=all plus min.insync.replicas durability. Trigger when a user provides producer/consumer configuration, Kafka client or Spring @KafkaListener code, or a topic/partition design and asks whether messages can be lost, duplicated, reordered, or stuck, or whether an "exactly-once" claim actually holds. Reads source and sanitized configuration only; it never opens a broker connection, produces or consumes a live message, or creates, alters, or deletes a topic.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-17"
   category: messaging

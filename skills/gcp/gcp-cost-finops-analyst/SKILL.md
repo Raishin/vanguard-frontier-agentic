@@ -3,7 +3,7 @@ name: gcp-cost-finops-analyst
 description: Analyze GCP spend via Billing exports, optimize committed-use and sustained-use discounts, design cost attribution (labels/tags), investigate budget alert drift, and recommend rightsizing for Compute, GKE, and BigQuery. Prefer gcp-bigquery-cost-performance-analyst for deep BigQuery query and slot optimization unless the request is primarily billing export analysis, CUD/SUD coverage, or cross-service cost attribution.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: finops

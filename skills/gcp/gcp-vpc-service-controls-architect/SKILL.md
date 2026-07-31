@@ -3,7 +3,7 @@ name: gcp-vpc-service-controls-architect
 description: Design, review, and troubleshoot VPC Service Controls perimeters, access policies, dry-run mode configuration, bridge perimeters for cross-perimeter access, and Access Context Manager access levels. Prefer gcp-iam-least-privilege-review for IAM binding review and gcp-security-posture-hardening for broad org-level security posture unless the request is primarily VPC-SC perimeter architecture or troubleshooting.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: security

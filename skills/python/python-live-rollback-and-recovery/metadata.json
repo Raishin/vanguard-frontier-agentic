@@ -22,5 +22,5 @@
   "security_notes": "Mutating-runtime: executes only a previously approved, tested rollback procedure against the exact affected target. Emits an immutable audit event for every observation and action; never uses shared or standing credentials — only target-scoped, time-bound JIT credentials; never retrieves raw secret values; redacts PII in captured evidence. Requires an external signed approval bound to the exact affected target, JIT credentials, confirmation the rollback procedure was itself pre-approved and tested, and post-rollback reconciliation before executing, and acts on exactly one bounded affected-target scope per approval — never an improvised rollback or an additional target.",
   "last_verified": "2026-07-26",
   "path": "skills/python/python-live-rollback-and-recovery",
-  "author": "github: Raishin"
+  "author": "github: VincentChuWaiChow"
 }

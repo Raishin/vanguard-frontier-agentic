@@ -3,7 +3,7 @@ name: netsuite-data-governance-privacy-skill
 description: "Flashlight skill for auditing PII exposure paths, data retention and purge policies, field-level access restrictions, privacy controls, and export configurations in NetSuite. T0 static review — no live account connection or actual personal data required. TRIGGER when: user asks to review PII field access, audit data retention settings, check field-level security on sensitive records, assess privacy controls, identify PII in saved searches, review export control permissions, or evaluate GDPR/CCPA readiness of a NetSuite configuration. Trigger phrases: PII exposure, field-level security, data retention policy, GDPR compliance, personal data access, export controls, consent tracking, sensitive field access. DO NOT TRIGGER when: the user needs role and permission architecture review beyond PII fields (use netsuite-identity-access-role-permission-skill), SOX audit trail review (use netsuite-audit-controls-sox-skill), integration data-flow security (use netsuite-integration-migration-skill), subsidiary data segregation (use netsuite-oneworld-multisubsidiary-skill), or SuiteScript code PII handling review (use netsuite-suitescript-secure-code-review-skill)."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-09"
   category: compliance

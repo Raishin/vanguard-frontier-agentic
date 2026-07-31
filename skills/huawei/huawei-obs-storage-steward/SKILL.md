@@ -3,7 +3,7 @@ name: huawei-obs-storage-steward
 description: Manage Huawei OBS lifecycle policies, bucket ACL and policy governance, SFS (Scalable File Service) NFS shares, EVS (Elastic Volume Service) block storage, and CBR (Cloud Backup and Recovery) backup strategy for data protection compliance.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: storage

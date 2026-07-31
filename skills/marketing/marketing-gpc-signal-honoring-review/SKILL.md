@@ -3,7 +3,7 @@ name: marketing-gpc-signal-honoring-review
 description: Use this skill when reviewing the technical path by which a Global Privacy Control opt-out signal travels through the tag stack and CMP to determine whether ad tags, server-side forwarding, and conversion APIs actually cease firing. Trigger when a user provides a tag-manager container export, a CMP opt-out configuration, a server-side tag configuration, or asks whether their GPC implementation actually stops ad tags from firing, whether CPRA opt-out obligations are met technically, or whether the CMP acknowledges GPC but fails to suppress downstream tag execution.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-17"
   category: compliance

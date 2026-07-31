@@ -3,7 +3,7 @@ name: alibaba-registry-artifact-governor
 description: Govern Alibaba Cloud Container Registry (ACR) — Enterprise Edition vs Personal Edition selection, image vulnerability scanning, namespace IAM least privilege, image retention policies, cross-region replication, and supply chain security posture.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: security

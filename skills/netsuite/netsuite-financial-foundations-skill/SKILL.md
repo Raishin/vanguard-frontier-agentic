@@ -3,7 +3,7 @@ name: netsuite-financial-foundations-skill
 description: "Flashlight skill for reviewing NetSuite Accounts Payable, Accounts Receivable, and core accounting configurations aligned to the Financial User (N16599GC10) and Accounting Professional (N16301GC10) certifications. T0 static review — no live account connection required. TRIGGER when: user asks to review AP setup, AR configuration, vendor record defaults, customer invoicing templates, payment terms, chart of accounts structure, accounting preferences, bank account record setup, or period-end reconciliation procedures in NetSuite. Trigger phrases: review AP configuration, check AR setup, audit chart of accounts, validate payment terms, inspect bank account record, period-end reconciliation, accounting preferences review, vendor record defaults. DO NOT TRIGGER when: request involves SOX controls, SoD conflicts, or posting period lock enforcement (escalate to netsuite-audit-controls-sox-agent); multi-subsidiary consolidation (use netsuite-oneworld-multisubsidiary-agent); SuiteFlow workflow mechanics (use netsuite-suiteflow-automation-agent); SuiteScript code review (use netsuite-suitescript-secure-code-review-agent); or live account mutation is required (use netsuite-live-org-mutation-guard-agent)."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-09"
   category: finance

@@ -23,7 +23,7 @@
   "security_notes": "Mutating-runtime Phase B. Executes exactly one GRANT or REVOKE per invocation on one Unity Catalog securable. Never auto-dispatched; requires explicit written human approval token referencing exact securable, privilege, principal, and blast radius. Run-as Entra-managed service principal holds MANAGE or IS OWNER on the single target securable only — not metastore admin or account admin. ALL PRIVILEGES, catalog-wide grants, and ownership transfers are explicitly denied.",
   "last_verified": "2026-06-17",
   "path": "agents/databricks/databricks-live-unity-catalog-grant-guard-at-azure-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "execution_tier": "mutating-runtime",
   "oauth_scopes": [],

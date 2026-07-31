@@ -3,7 +3,7 @@ name: hr-risk-triage-review
 description: Use this skill when triaging HR and employment-relations risk for an enterprise People function — terminations, discipline, performance management, accommodations, leave, wage/hour, worker classification, discrimination, harassment, retaliation, whistleblower reports, layoffs, and HR policy exceptions. Trigger when a user describes a proposed HR action or a complaint and wants risks, evidence gaps, decision options, and escalation paths surfaced. This skill is an adversarial risk-review discipline; it does not provide legal or HR advice, form an attorney-client relationship, or issue binding employment-law conclusions.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-18"
   category: compliance

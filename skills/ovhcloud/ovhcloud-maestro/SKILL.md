@@ -3,7 +3,7 @@ name: ovhcloud-maestro
 description: Classify incoming OVHcloud requests by domain and route to the narrowest qualified specialist agent. Use when the user's task spans or is unclear across IAM, FinOps, Kubernetes, networking, or live-guard KMS domains. Does not answer specialist questions directly; produces a routing verdict with evidence and hands off with a clear scope statement.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-10"
   category: platform

@@ -3,7 +3,7 @@ name: transfer-pricing-pillar-two-advisor
 description: Multi-jurisdiction reference framework for OECD transfer pricing (arm's length principle, five TP methods, BEPS Action 13 documentation, CbCR) and OECD Pillar Two GloBE rules (IIR, UTPR, QDMTT, ETR computation, SBIE carve-outs, safe harbors, deferred tax divergence under IAS 12 vs. ASC 740). Advisory only — never files tax returns, submits CbCR, or engages in competent authority proceedings.
 allowed-tools: Skill Read WebFetch Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-02"
   category: finance

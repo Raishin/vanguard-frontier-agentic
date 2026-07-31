@@ -30,6 +30,6 @@
   "security_notes": "Hybrid T0/T1 skill. T0 mode requires no org connection. T1 mode queries FlowInterviewLog read-only via sf data query under api + refresh_token scopes. Denied: ModifyAllData, ViewAllData, ViewEncryptedData, ModifyMetadata, AuthorApex. T1 mode prefers sandbox — production requires explicit acknowledgment. All record IDs, user IDs, and variable values are redacted before output. Structured audit envelope emitted on every T1 execution.",
   "last_verified": "2026-05-21",
   "path": "skills/salesforce/salesforce-flow-debugger-skill",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

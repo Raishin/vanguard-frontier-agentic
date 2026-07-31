@@ -3,7 +3,7 @@ name: rpa-workflow-resilience-review
 description: Use this skill when reviewing exported RPA workflow definitions for resilience and security defects that cause unattended bots to fail silently in production. Trigger when a user provides UiPath XAML files, Automation Anywhere bot exports, Power Automate Desktop flow definitions, Blue Prism process XML, or project dependency manifests, or asks why an unattended bot crashes silently, double-processes transactions, or times out under load. This skill reviews workflow definitions statically; it never connects to a live orchestrator, never runs a bot, and never requests runner credentials or orchestrator URLs.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-17"
   category: resilience

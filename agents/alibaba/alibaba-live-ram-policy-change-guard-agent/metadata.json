@@ -15,7 +15,7 @@
   "security_notes": "RAM AdministratorAccess is account-wide; assigning it to any RAM user/role is the highest-risk RAM mutation. RAM policy deletion may break active STS tokens immediately. Resource Directory Control Policy changes affect all member accounts in that OU — require org-admin equivalent approval.",
   "last_verified": "2026-05-08",
   "path": "agents/alibaba/alibaba-live-ram-policy-change-guard-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "harness_variants": {
     "codex": "agents/alibaba/alibaba-live-ram-policy-change-guard-agent/harnesses/codex.toml",
     "copilot": "agents/alibaba/alibaba-live-ram-policy-change-guard-agent/harnesses/copilot.agent.md",

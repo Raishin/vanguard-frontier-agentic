@@ -27,7 +27,7 @@
   "security_notes": "Read-only enforced. Never request or accept write-capable credentials. Use IAS read-only API user, IPS read-only connector viewer, XSUAA subaccount viewer, or BTP security auditor roles only. Redact all credential values, client secrets, OAuth tokens, IAS technical user passwords, IPS system user credentials, and personal user data beyond the minimum necessary from output. Log every command executed. Refuse any request that maps to a create/update/delete/assign/rotate/import/trigger/modify-trust action. Personal data encountered during IAS or IPS enumeration must be minimized and redacted beyond audit necessity.",
   "last_verified": "2026-06-19",
   "path": "skills/sap/sap-live-readonly-identity-trust-discovery",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "lifecycle": "experimental",
   "execution_tier": "read-only-runtime"

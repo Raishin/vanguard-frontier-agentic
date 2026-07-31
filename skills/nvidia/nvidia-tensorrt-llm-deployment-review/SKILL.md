@@ -3,7 +3,7 @@ name: nvidia-tensorrt-llm-deployment-review
 description: Use this skill when reviewing TensorRT or TensorRT-LLM deployment artifacts statically — ONNX/PyTorch export pipelines, precision selection (FP16/BF16/INT8/FP8/INT4), calibration cache integrity, dynamic shape profiles, custom plugin loading, engine cache and serialized engine provenance, runtime memory pool sizing. Trigger when the user asks whether a TensorRT build script, calibration pipeline, or trtexec invocation follows NVIDIA's published guidance.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-10"
   category: platform

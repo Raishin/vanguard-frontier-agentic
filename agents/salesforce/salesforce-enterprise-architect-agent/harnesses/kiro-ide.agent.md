@@ -8,7 +8,7 @@ keywords:
   - multi-cloud
   - technical-debt
   - design-authority
-author: "github: Raishin"
+author: "github: VincentChuWaiChow"
 ---
 
 # Salesforce Enterprise Architect Agent

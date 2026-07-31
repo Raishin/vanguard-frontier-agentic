@@ -3,7 +3,7 @@ name: kotlin-estate-modernization-governor
 description: "Use this skill to statically review Java-to-Kotlin migration strategy and mixed-codebase governance: strangler-fig / module-by-module vs file-by-file sequencing, the mixed Java/Kotlin interop boundary and its platform-type null-safety debt, reversibility of each migration step, when a module should NOT be migrated, and governance of J2K automatic-converter output (review required, never merge as-is). Reads module inventories, dependency graphs, and sanitized diffs only; it never runs the converter, merges, or deploys."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-21"
   category: architecture

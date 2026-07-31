@@ -16,6 +16,6 @@
   "security_notes": "Protocol is recommendation and orchestration only — never an authorization for go-live, cutover execution, or production deployments. All production-impacting decisions (go/no-go, cutover initiation, rollback authorization) require explicit human approval from the project sponsor and release manager, recorded before any action is initiated. UAT sign-off is mandatory and cannot be bypassed. Rollback criteria must be defined before go-live begins; any blocking issue meeting rollback criteria requires immediate human escalation rather than a continue-over-risk decision by any agent. Never requests credentials, service principal secrets, tenant IDs, or production customer data to assess go-live readiness; works from sanitized test results, checklist signals, and change request documentation only.",
   "last_verified": "2026-06-16",
   "path": "skills/cross-functional/change-request-to-go-live-protocol",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

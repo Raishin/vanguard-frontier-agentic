@@ -3,7 +3,7 @@ name: python-data-access-transaction
 description: "Use this skill to statically review Python database access and transactions (SQLAlchemy, Django ORM, DB-API): session and transaction scope, commit/rollback boundaries, N+1 and lazy-loading, connection-pool sizing, migration safety, and multi-tenancy scoping. Reads source, models, and migrations only; it never connects to a database or runs a migration."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-26"
   category: database

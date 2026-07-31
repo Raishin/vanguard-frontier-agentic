@@ -16,6 +16,6 @@
   "security_notes": "This protocol is a recommendation and orchestration aid only; it is never an authorisation to enable Microsoft 365 Copilot or to change data access permissions. Enabling Copilot without an oversharing baseline is a hard refusal — no exception. It never requests credentials, tenant IDs, or customer PII to perform assessments; all inputs are aggregate governance signals. Critical-risk sites without interim protection (SAM Restricted Content Discovery, Purview DLP) block the enablement recommendation until remediated or accepted by the data owner. Sensitivity label coverage and DLP guardrails must be confirmed by the data owner and security team before any go recommendation. Production SharePoint, Purview, or Entra configuration changes escalate to the relevant service owner. This protocol does not publish knowledge articles, modify sharing settings, or change Conditional Access policies autonomously.",
   "last_verified": "2026-06-16",
   "path": "skills/cross-functional/copilot-data-readiness-protocol",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

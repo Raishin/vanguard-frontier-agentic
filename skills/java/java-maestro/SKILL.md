@@ -3,7 +3,7 @@ name: java-maestro
 description: Java Maestro routing skill. Classify the user's Java/JVM task, select the narrowest static-review specialist from the Java board (or the smallest team, max 4), and dispatch. Trigger when a user brings a Java, JVM, Spring, Jakarta EE, JDK-upgrade, JPA/Hibernate, or Java-security task and it is not yet clear which specialist should handle it. Routes only — never answers Java questions itself, never runs code, never requests secrets.
 allowed-tools: Agent Skill Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-17"
   category: ai

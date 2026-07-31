@@ -27,7 +27,7 @@
   "security_notes": "Static review only — no Bash, no RFC/BAPI calls, no SAP GUI transaction execution, no table-level mutations. Never posts or reverses a financial document. Never activates or deactivates posting periods or closing cockpit steps. Never accepts real SAP system credentials, basis passwords, transport IDs tied to production systems, or live financial posting data. Findings indicating bypassed closing-cockpit sequences, unrestricted posting-period access, or unexplained parallel-ledger divergence must be escalated to the Finance Controller and internal audit before any remediation is applied. All guidance is advisory; FI-CO configuration changes require transport management, change-control board approval, and dual-control sign-off in productive systems.",
   "last_verified": "2026-06-19",
   "path": "agents/sap/sap-finance-fico-controls-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "companion_skills": [
     "sap-finance-fico-controls-review"
   ],

@@ -3,7 +3,7 @@ name: angular-ssr-hydration-review
 description: Statically review Angular SSR bootstrap configuration and component templates for hydration-mismatch risk (NG0500-class errors), unjustified ngSkipHydration usage, and direct-DOM-manipulation patterns that bypass Angular's template-owned DOM model, grounded in Angular's own hydration guide and error catalog.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: architecture

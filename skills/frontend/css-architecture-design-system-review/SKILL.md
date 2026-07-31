@@ -3,7 +3,7 @@ name: css-architecture-design-system-review
 description: Review CSS for specificity and cascade-layer discipline, design-token (custom-property) conformance, and responsive strategy correctness (container queries vs. media queries), catching specificity wars, hardcoded-value token drift, and non-reflowing layouts that fail WCAG 1.4.10/1.4.4 before they compound into unmaintainable stylesheets.
 allowed-tools: Read Grep Glob Bash(git diff:*) WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: architecture

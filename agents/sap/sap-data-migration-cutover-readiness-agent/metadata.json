@@ -25,7 +25,7 @@
   "security_notes": "Static advisory readiness review only — this agent never executes, triggers, schedules, or monitors any live migration task, data transfer, cutover step, RFC call, BAPI invocation, or post-processing run. That execution boundary is absolute and must be stated explicitly in every response. Never accepts migration project documents or mapping files containing database connection strings, schema passwords, SFTP credentials, S-user tokens, cloud storage access keys, or production client IDs. All readiness findings and go/no-go assessments are advisory; the formal go/no-go decision requires sign-off from the customer project manager, SAP basis team, functional leads, and quality gate owner. Cutover execution must be performed only through the guarded live-execution agent or authorised operational tooling under approved change-management controls. Findings are labelled documentation-based or inference; verify reconciliation thresholds and Migration Cockpit version capabilities against the customer's specific system landscape and SAP for Me product availability.",
   "last_verified": "2026-06-19",
   "path": "agents/sap/sap-data-migration-cutover-readiness-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "companion_skills": [
     "sap-data-migration-cutover-readiness"

@@ -3,7 +3,7 @@ name: gcp-data-pipeline-engineer
 description: Design and troubleshoot data pipelines using Dataflow (Apache Beam), Pub/Sub messaging, Dataproc (Spark/Hadoop), Cloud Composer (Apache Airflow), and Dataplex data governance.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: data

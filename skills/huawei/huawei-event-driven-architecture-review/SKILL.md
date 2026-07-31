@@ -3,7 +3,7 @@ name: huawei-event-driven-architecture-review
 description: Review Huawei Cloud event-driven architecture designs — DMS Kafka dead-letter configuration, ROMA Connect integration flow capacity, FunctionGraph event trigger idempotency, SMN delivery retry policy, consumer group lag monitoring, cross-region event replication, and retry storm prevention.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: messaging

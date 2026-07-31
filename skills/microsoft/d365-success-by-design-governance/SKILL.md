@@ -3,7 +3,7 @@ name: d365-success-by-design-governance
 description: Review Dynamics 365 implementation governance against the Success by Design framework. Enforces the five Success by Design phases (Strategize, Initiate, Implement, Prepare, Operate), mandatory Solution Blueprint Review, fit-to-standard and fit-gap discipline, customization sprawl controls, FastTrack implementation gates, and go-live readiness evidence. Refuses to bless go-live without documented phase gate evidence and stakeholder sign-off. Production deployment is live-guard gated and requires escalation.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-16"
   category: architecture

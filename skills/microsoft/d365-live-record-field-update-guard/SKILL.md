@@ -3,7 +3,7 @@ name: d365-live-record-field-update-guard
 description: Mutating-runtime live-guard for updating one or more named fields on a single Dataverse row identified by table and record GUID, via the Dataverse Web API PATCH (data plane). Strictly scoped — one record, named fields only. Requires explicit written human approval token referencing the exact target, proposed change, and blast-radius. PREFLIGHT performs a dry-run diff before any write. Fully reversible — prior field values are captured and the inverse PATCH is the rollback. Gate-only; never auto-dispatched. Phase B mutating-runtime.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-17"
   category: data

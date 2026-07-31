@@ -3,7 +3,7 @@ name: hetzner-capacity-planner
 description: Plan Hetzner Cloud capacity across resource limits (servers, Volumes, Networks, Load Balancers, Floating IPs per project), region distribution across fsn1, nbg1, and hel1, quota exhaustion risk, growth trajectory, and server type upgrade paths from shared to dedicated compute. Use when the user asks about Hetzner resource limits, quota, or growth planning.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-10"
   category: platform

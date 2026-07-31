@@ -3,7 +3,7 @@ name: java-container-and-kubernetes-readiness
 description: Use this skill when statically reviewing whether a JVM is correctly sized and configured for the container it runs in — UseContainerSupport and cgroup v1/v2 detection, -XX:MaxRAMPercentage or a fixed -Xmx sized to leave off-heap headroom (metaspace, thread stacks, direct/NIO buffers, code cache) under the container memory limit, ActiveProcessorCount vs CPU limits driving GC and thread-pool (ForkJoinPool) sizing, the interaction between GC stop-the-world pause time and Kubernetes liveness-probe timeouts (which causes kill/restart loops), the need for a startupProbe on slow JVM cold start, and heap-to-limit ratio. Trigger when a user provides a Dockerfile, JVM flags/env, a Kubernetes pod spec or Helm values (resources, probes), or reports OOMKilled pods, CPU throttling, or a probe-triggered restart loop on a Java service. Reads source and sanitized configuration only; it never opens a JDK, runs or profiles the workload, or reads live cgroup/proc filesystem state.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-17"
   category: platform

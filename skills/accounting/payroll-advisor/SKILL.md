@@ -3,7 +3,7 @@ name: payroll-advisor
 description: Multi-jurisdiction payroll accounting reference framework covering compensation expense recognition, employee benefits, pension/post-retirement obligations, and payroll tax compliance.
 allowed-tools: Skill Read WebFetch Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-02"
   category: finance

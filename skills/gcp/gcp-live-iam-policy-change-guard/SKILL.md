@@ -3,7 +3,7 @@ name: gcp-live-iam-policy-change-guard
 description: Gate IAM binding mutations, org policy changes, and Service Account key creation against the GCP resource hierarchy. IAM bindings at org level propagate to all folders and projects — this guard enforces blast-radius assessment, audit-trail confirmation, and explicit authority approval before any policy mutation is executed.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: security

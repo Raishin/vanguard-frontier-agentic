@@ -22,7 +22,7 @@
   "security_notes": "Dataset deletion removes all tables, views, and routines permanently. Downstream Data Transfer jobs, scheduled queries, Looker/BI connections, and Dataflow pipelines all break immediately. BigQuery dataset deletion is immediate and permanent — there is no recycle bin for datasets. Tables with default expiration may be partially recoverable if within the expiration window.",
   "last_verified": "2026-05-08",
   "path": "agents/gcp/gcp-live-bigquery-dataset-deletion-guard-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "harness_variants": {
     "codex": "agents/gcp/gcp-live-bigquery-dataset-deletion-guard-agent/harnesses/codex.toml",

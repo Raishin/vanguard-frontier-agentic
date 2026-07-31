@@ -3,7 +3,7 @@ name: d365-data-migration-cutover
 description: Review Dynamics 365 data migration planning and go-live cutover readiness. Enforces mock migration evidence, data quality gates, staging table validation, reconciliation controls, cutover runbook completeness, rollback plan, and owner sign-off before production migration. Refuses to bless production cutover without reconciliation evidence and rollback plan. Production data migration is live-guard gated and requires escalation.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-16"
   category: data

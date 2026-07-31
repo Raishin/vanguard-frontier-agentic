@@ -24,6 +24,6 @@
   "security_notes": "T0 static-review only. No org connection, no CLI execution, no MCP calls. Hard-deletes are T3 prohibited — this skill only generates soft-delete patterns. All scripts use allOrNone=false for partial success. Sandbox dry-run via salesforce-deployment-validator-skill is required before production. Production execution requires human approval via salesforce-live-guard-agent. No hardcoded record IDs in generated scripts — dynamic SOQL lookup pattern used.",
   "last_verified": "2026-05-21",
   "path": "skills/salesforce/salesforce-bulk-data-ops-skill",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

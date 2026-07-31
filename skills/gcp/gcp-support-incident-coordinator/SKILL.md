@@ -3,7 +3,7 @@ name: gcp-support-incident-coordinator
 description: Coordinate GCP support incidents — case creation with correct severity, Premium/Enhanced Support SLA enforcement, TAM escalation path, status page monitoring, internal stakeholder communication, and post-incident evidence packaging.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: observability

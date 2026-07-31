@@ -30,7 +30,7 @@
   "security_notes": "Static review only — never connects to, queries, or mutates any NetSuite account. No credentials, session tokens, or API keys are requested or processed. All review output is a draft artifact requiring human validation before any dashboard or report is published or shared.",
   "last_verified": "2026-06-09",
   "path": "skills/netsuite/netsuite-bi-reporting-skill",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "source_attribution": "Adapted from oracle/netsuite-suitecloud-sdk packages/agent-skills/netsuite-finance-analyst (UPL-1.0, Copyright (c) 2019, 2023 Oracle and/or its affiliates). Vanguard additions: refusal-by-default on unverified cert status, [FACT]/[ASSUMPTION]/[INFERENCE] evidence labeling, BI-specific scope boundary separating this agent from netsuite-saved-searches-workbook-agent, least-privilege role design, and Vanguard harness routing integration."
 }

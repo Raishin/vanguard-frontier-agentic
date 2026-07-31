@@ -34,7 +34,7 @@ This installs the catalog as a dependency. Skills and agents are accessible from
 ### Option B: Git clone (recommended for contribution)
 
 ```bash
-git clone https://github.com/Raishin/vanguard-frontier-agentic.git
+git clone https://github.com/VincentChuWaiChow/vanguard-frontier-agentic.git
 cd vanguard-frontier-agentic
 npm install
 ```

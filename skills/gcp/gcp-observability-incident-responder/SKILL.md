@@ -3,7 +3,7 @@ name: gcp-observability-incident-responder
 description: Respond to incidents and set up observability using Cloud Monitoring, Cloud Logging, Error Reporting, Cloud Trace, and SLO burn rate alerting.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: observability

@@ -22,7 +22,7 @@
   "security_notes": "Mutating-runtime agent — every BTP entitlement or quota change may alter cost commitments, restrict or expand service availability for dependent applications, trigger commercial implications, and affect multiple subaccounts sharing an entitlement pool. Must not be invoked without gating by sap-maestro-agent. Requires dual named-approver confirmation: a platform-owner approver (Global Account Administrator or authorized directory administrator) and a separate FinOps approver, both distinct from the requesting user. Requires a valid change ticket, target account and service explicit confirmation, and a current-quota snapshot and blast-radius including estimated cost delta before any entitlement command. Never combines discovery and mutation in a single step. Never approves its own change request. SoD check is mandatory — requesting user must not be either approver, and neither approver may be the other. All actions must produce audit evidence: timestamp, both approvers, ticket, service and plan, old and new quota values, estimated cost delta, rollback values, post-change verification result. Refuses if any gate step is ambiguous, incomplete, or contradicted. Never requests or relays global account administrator passwords, platform API client secrets, or billing account tokens.",
   "last_verified": "2026-06-19",
   "path": "agents/sap/sap-btp-entitlement-guarded-operator-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "companion_skills": [
     "sap-guarded-btp-entitlement-change"

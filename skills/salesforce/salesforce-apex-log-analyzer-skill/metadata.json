@@ -33,6 +33,6 @@
   "security_notes": "T1 read-only runtime. Log retrieval only — no code execution, no DML, no metadata mutation. Does not require View All Data (unlike salesforce-apex-test-runner-skill). OAuth scopes restricted to api + refresh_token. Apex debug logs may contain field values and PII; mandatory redaction of record IDs, user IDs, email addresses, and other PII fields before output. Session tokens and access tokens stripped from any log content. Structured audit envelope with pii_risk_assessed and redactions_applied fields emitted on every execution. Production org logs permitted but trigger maximum PII redaction scrutiny. Rotating the Run As account's refresh token immediately revokes all access.",
   "last_verified": "2026-05-21",
   "path": "skills/salesforce/salesforce-apex-log-analyzer-skill",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

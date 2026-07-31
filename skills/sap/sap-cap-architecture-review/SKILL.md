@@ -3,7 +3,7 @@ name: sap-cap-architecture-review
 description: Review SAP Cloud Application Programming Model (CAP) applications for CDS data modeling quality, service layer design, authorization correctness (@requires/@restrict), multitenancy architecture, draft handling, and test coverage. Use when assessing CAP Node.js or Java projects for architectural compliance, security posture, and clean service design. Does not touch live systems.
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-19"
   category: architecture

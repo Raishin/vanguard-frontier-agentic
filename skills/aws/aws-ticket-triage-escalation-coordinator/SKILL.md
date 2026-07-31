@@ -3,7 +3,7 @@ name: aws-ticket-triage-escalation-coordinator
 description: Triage AWS tickets and alerts using priority, owner, evidence, incident context, escalation path, OpsCenter, health signals, and safe next steps. Prefer this for non-destructive request coordination and escalation; prefer deep domain skills for implementation or root-cause investigation.
 allowed-tools: Read Grep Glob WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.2"
   updated: "2026-06-02"
   category: observability

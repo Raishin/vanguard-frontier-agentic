@@ -3,7 +3,7 @@ name: sap-guarded-transport-import
 description: Execute SAP transport request imports using a mandatory 17-step guarded mutation sequence covering classification, target confirmation, criticality, requester, approver, ticket, scope, read-only current state, diff and dry-run, blast radius, rollback plan, segregation of duties, approval gate, execute approved imports only, verify, audit, and report. Refuse if any step is missing. Use when a confirmed and approved transport import into a non-development SAP system (quality, pre-production, or production) must be executed under traceable controls.
 allowed-tools: Read Grep Glob WebSearch WebFetch Bash
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-19"
   category: delivery

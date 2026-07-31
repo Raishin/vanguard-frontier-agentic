@@ -3,7 +3,7 @@ name: huawei-migration-architect
 description: Plan migrations to Huawei Cloud via MgC (Migration Center), SMS (Server Migration Service) for P2V/V2V, DRS for database replication, and OMS (Object Migration Service) for object storage, with cutover sequencing and rollback design.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: architecture

@@ -3,7 +3,7 @@ name: d365-finance-close-to-report
 description: Review Dynamics 365 Finance general ledger configuration, sub-ledger reconciliation, period-end and year-end close procedures, financial consolidation and elimination, posting profiles, tax setup, and financial reporting controls. Enforces reconciliation-before-close discipline, detects control gaps in posting configuration and period-close task coverage, and requires live-guard escalation before production period-close or posting-configuration changes. Refuses to approve a close process without reconciliation and financial controls evidence.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-16"
   category: finance

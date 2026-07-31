@@ -3,7 +3,7 @@ name: netsuite-sso-oauth-tba-skill
 description: "Static review of NetSuite OAuth 2.0, TBA, and SSO/SAML configurations. Validates OAuth scope (REST/RESTlets only, not SOAP), TBA fallback timeline, SAML correctness, deprecated NLAuth, and sandbox re-authorization. Trigger: OAuth 2.0, TBA, SSO/SAML, token auth, RESTlet auth, SuiteAnalytics Connect auth, sandbox re-auth, SOAP auth migration. Escalate: role design (use identity-access-role-permission), SDF deploy (use sdf-devops-release), SuiteScript security (use suitescript-secure-code-review), live token ops (use live-org-mutation-guard), AI Connector auth (use ai-connector-mcp)."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-09"
   category: security

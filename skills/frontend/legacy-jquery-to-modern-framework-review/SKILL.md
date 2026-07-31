@@ -3,7 +3,7 @@ name: legacy-jquery-to-modern-framework-review
 description: Inventory the hidden behaviors in a legacy jQuery/Backbone-era codebase — implicit global event delegation, direct DOM mutation outside any render cycle, plugin side effects, ad-hoc accessibility shims, and unsanitized HTML string building — that a mechanical framework port would silently drop or need to explicitly reproduce.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: architecture

@@ -16,7 +16,7 @@
   "security_notes": "Mutating-runtime Phase B. Narrowest label-apply Graph permission scopes only (InformationProtectionPolicy.Read.All + Sites.Selected or equivalent — verify against Graph permissions reference). Directory.ReadWrite.All, Sites.FullControl.All, Files.ReadWrite.All (broad), InformationProtectionPolicy.ReadWrite.All, and bulk labeling are all explicitly denied. Requires written human approval token referencing exact item + label + blast-radius. PREFLIGHT current-label capture required before any write. Prior label retained for ROLLBACK re-apply. Output signed with idempotency key and audit-logged.",
   "last_verified": "2026-06-17",
   "path": "skills/microsoft/m365-live-sensitivity-label-apply-guard",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "companion_agents": ["m365-live-sensitivity-label-apply-guard-agent"]
 }

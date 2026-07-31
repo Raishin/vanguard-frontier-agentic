@@ -1,6 +1,6 @@
 ---
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.2.1"
   updated: "2026-06-05"
 ---

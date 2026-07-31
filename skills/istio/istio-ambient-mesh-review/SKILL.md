@@ -3,7 +3,7 @@ name: istio-ambient-mesh-review
 description: Use this skill for Istio service mesh review across both sidecar mode and ambient mode (ztunnel L4 + optional waypoint L7). Covers PeerAuthentication, AuthorizationPolicy, RequestAuthentication, Gateway, VirtualService, DestinationRule, Sidecar, and waypoint placement. Trigger when the user asks whether an Istio policy is correct, whether mTLS is strict, whether L7 AuthorizationPolicy will actually be enforced in ambient mode, or whether a mesh-wide PeerAuthentication change is safe.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-05"
   category: security

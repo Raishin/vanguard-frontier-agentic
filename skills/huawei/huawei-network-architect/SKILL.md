@@ -3,7 +3,7 @@ name: huawei-network-architect
 description: Design Huawei Cloud network architecture — VPC, ELB type selection (dedicated/shared), VPN and DC Gateway (Direct Connect), Cloud Connect for inter-VPC, CFW (Cloud Firewall), Anti-DDoS, DNS. Covers Dedicated vs Shared ELB trade-offs, DC Gateway VBC connectivity, Cloud Connect cross-region/cross-account peering, and CFW east-west firewall policy.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: networking

@@ -24,7 +24,7 @@
   "security_notes": "Static review only — no Bash, no SAP system API calls, no test case mutations, no quality gate configuration changes, no defect record modifications. Never accepts production system credentials, SAP BTP service instance keys, defect records with personal data, or test data exports containing personal or financial data. Any finding representing a completely untested critical business process path, an absent quality gate for production transport promotion, or a test data exposure risk involving production-derived personal data MUST be escalated to the quality manager, release manager, test lead, and data protection officer before any remediation is applied. All guidance is advisory; test plan updates, quality gate threshold changes, automation suite additions, and defect management process modifications require change-management approval and audit-trail documentation.",
   "last_verified": "2026-06-19",
   "path": "agents/sap/sap-testing-quality-gate-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "companion_skills": [
     "sap-testing-quality-gate-review"
   ],
