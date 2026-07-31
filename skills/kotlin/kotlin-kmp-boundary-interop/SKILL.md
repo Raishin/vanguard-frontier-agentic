@@ -3,7 +3,7 @@ name: kotlin-kmp-boundary-interop
 description: "Use this skill to statically review Kotlin Multiplatform source-set architecture, expect/actual design and pairing completeness, platform-API-leakage prevention, cross-target dependency compatibility, Swift/Objective-C interop (suspend-to-async, @Throws, @ObjCName), and Kotlin/Native runtime correctness (new memory manager, freezing deprecation). Reads source and build configuration only; it never compiles or runs a target."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-21"
   category: architecture

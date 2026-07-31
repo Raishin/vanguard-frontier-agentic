@@ -3,7 +3,7 @@ name: alibaba-maxcompute-dataworks-analyst
 description: Manage MaxCompute CU package governance, DataWorks scheduling, Quick BI reporting, and PAI ML platform. Optimize query cost and job scheduling efficiency for big data workloads.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: data

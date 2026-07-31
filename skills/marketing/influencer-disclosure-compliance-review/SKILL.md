@@ -3,7 +3,7 @@ name: influencer-disclosure-compliance-review
 description: Use this skill when reviewing an influencer campaign audit pack — campaign brief, creator agreement excerpt, platform post descriptions or screenshot descriptions, and the disclosure format and placement specification — against FTC Endorsement Guides to identify undisclosed material connections, inadequate disclosure placement, and brand liability exposure. Trigger when a user provides a structured influencer campaign audit pack and asks whether disclosures meet FTC requirements, whether the brief contains problematic instructions, or whether the brand faces liability for creator conduct under 16 CFR Part 255.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-17"
   category: compliance

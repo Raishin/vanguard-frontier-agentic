@@ -3,7 +3,7 @@ name: aws-resilience-bcdr-review
 description: Review AWS resilience and business continuity strategy across RTO/RPO, dependency maps, multi-AZ, multi-Region, failover/failback, game days, runbooks, drift, and recovery validation. Prefer data protection backup steward for backup-plan/vault/restore implementation details.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.4"
   updated: "2026-06-02"
   category: resilience

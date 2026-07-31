@@ -3,7 +3,7 @@ name: gcp-vertex-ai-mlops-engineer
 description: Manage Vertex AI Training jobs (GPU/TPU cost governance), Vertex AI Pipelines, Model Registry, Feature Store, Endpoints, and Gemini API integration for production MLOps.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.2.0"
   updated: "2026-05-09"
   category: ai

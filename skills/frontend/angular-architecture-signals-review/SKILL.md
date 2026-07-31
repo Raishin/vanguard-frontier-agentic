@@ -3,7 +3,7 @@ name: angular-architecture-signals-review
 description: Statically review Angular component and service architecture for correct Signals usage (signal/computed/effect boundaries and purity), appropriate change-detection strategy (OnPush vs default), and service/DI boundary design, grounded in Angular's own Signals, change-detection, and dependency-injection guidance.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: architecture

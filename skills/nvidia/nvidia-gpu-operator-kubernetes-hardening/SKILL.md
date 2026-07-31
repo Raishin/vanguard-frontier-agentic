@@ -3,7 +3,7 @@ name: nvidia-gpu-operator-kubernetes-hardening
 description: Use this skill when reviewing NVIDIA GPU Operator deployments on Kubernetes — device plugin, MIG manager, NFD labels, time-sliced GPU configuration, container toolkit, securityContext posture, namespace tenancy, and admission policy coverage. Trigger when the user asks whether GPUs are being shared safely across tenants, whether MIG profiles are enforced, or whether the GPU Operator is deployed per NVIDIA hardening guidance.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-10"
   category: platform

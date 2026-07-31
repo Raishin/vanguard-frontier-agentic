@@ -3,7 +3,7 @@ name: email-sender-authentication-review
 description: Use this skill when reviewing DNS sender-authentication records for a marketing domain to identify policy gaps exposing campaigns to rejection, spoofing, or inbox displacement. Trigger when a user provides DNS TXT record exports for SPF, DKIM, DMARC, or BIMI, or asks whether their email authentication posture meets Google/Yahoo bulk-sender requirements, DMARC enforcement standards, CISA BOD 18-01 obligations, PCI DSS v4.0 Req 5.3.3, or whether their transactional or marketing emails are at risk of spoofing or bulk-sender quarantine.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-17"
   category: compliance

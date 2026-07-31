@@ -32,6 +32,6 @@
   "security_notes": "Static review only — never accesses live NetSuite accounts, never executes environment changes, never requests or stores credentials, tokens, client secrets, or org IDs. Works exclusively from sanitized environment documentation. Enforces confirmed isolation facts: OAuth 2.0 authorized apps and client credentials flow setup are NOT copied to sandbox or Release Preview (cleared on refresh); TBA tokens are NOT copied. Enforces that sandbox success does not equal production readiness. Never recommends Administrator role for sandbox governance roles. Custom reviewer role requires 2FA when permissions include OAuth 2.0 Authorized Applications Management or Access Token Management.",
   "last_verified": "2026-06-09",
   "path": "skills/netsuite/netsuite-sandbox-nonproduction-governance-skill",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

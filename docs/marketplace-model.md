@@ -83,7 +83,7 @@ Users add Powers one at a time via the Kiro Powers panel UI.
 One repo → eight install surfaces
 
              ┌─────────────────────────────┐
-             │ Raishin/vanguard-frontier-  │
+             │ VincentChuWaiChow/vanguard-frontier-  │
              │        agentic              │
              └──────────────┬──────────────┘
                             │

@@ -3,7 +3,7 @@ name: alibaba-function-serverless-operator
 description: Deploy and operate Function Compute 3.0, SAE (Serverless App Engine) applications, and EDAS microservice apps. Guide the serverless vs. PaaS vs. container platform choice for each workload type.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: platform

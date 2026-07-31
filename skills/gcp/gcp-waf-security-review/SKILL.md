@@ -3,7 +3,7 @@ name: gcp-waf-security-review
 description: "Evaluate GCP workload security posture against the Google Cloud Well-Architected Framework security pillar — covering zero trust, shift-left security, preemptive cyber defense, AI security governance, and regulatory compliance. Use when assessing architecture security requirements, designing security controls, or auditing a GCP workload against WAF security recommendations."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: security

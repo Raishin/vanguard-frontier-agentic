@@ -31,6 +31,6 @@
   "security_notes": "Static review only — works exclusively from sanitized configuration exports; never requests or accepts credentials, tokens, session IDs, consumer keys, or any authentication material. Does not connect to, query, or mutate any NetSuite account. The Administrator role is absolutely prohibited — custom roles are always derived from standard roles with View-only permissions. OAuth 2.0 sandbox isolation requirements (re-authorization after each refresh) are surfaced in every sandbox governance review. SOAP deprecation risks (2026.1 / 2027.1 / 2028.2 milestones) are flagged for any integration posture identified during review.",
   "last_verified": "2026-06-09",
   "path": "skills/netsuite/netsuite-administrator-skill",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

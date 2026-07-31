@@ -3,7 +3,7 @@ name: dotnet-supply-chain-review
 description: Use this skill when reviewing .NET CI/CD and NuGet supply-chain integrity — SDK pinning via global.json, package version pinning and lock files, Central Package Management, NuGet feed trust, fork-PR secret exposure, vulnerability scanning, and build reproducibility. Trigger when a user provides a .NET CI workflow file, a global.json, a Directory.Packages.props, a NuGet.config, a packages.lock.json, or a .csproj/.pubxml, asks whether their .NET build is reproducible and tamper-resistant, or wants to know whether their NuGet supply chain blocks a malicious or vulnerable dependency. This skill reviews workflow and project configuration statically; it does not trigger a pipeline or restore packages.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-19"
   category: security

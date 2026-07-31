@@ -3,7 +3,7 @@ name: cilium-network-policy-review
 description: Use this skill for Cilium network policy review across the three policy formats (Kubernetes NetworkPolicy, CiliumNetworkPolicy, CiliumClusterwideNetworkPolicy), L7 policy via embedded Envoy, ClusterMesh cross-cluster semantics, Hubble flow observability, and CiliumEgressGatewayPolicy. Trigger when the user asks whether a network policy is too broad, whether default-deny is in place, whether L7 rules will actually be enforced, whether ClusterMesh policy semantics are correct, or whether an egress gateway IP collision is possible.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-05"
   category: security

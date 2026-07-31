@@ -138,7 +138,7 @@ def main() -> int:
             fm_author = nested_metadata_value(fm, "author")
             if re.search(r"^author:\s*", fm, re.MULTILINE) or re.search(r"^version:\s*", fm, re.MULTILINE):
                 raise AssertionError("top-level author/version keys are forbidden; use metadata.author/version")
-            if fm_author != "github: Raishin":
+            if fm_author != "github: VincentChuWaiChow":
                 raise AssertionError(f"unexpected metadata.author {fm_author!r}")
             metadata = load_json(skill_dir / "metadata.json")
             if metadata.get("version") != fm_version:

@@ -15,6 +15,6 @@
   "security_notes": "Protocol is recommendation and orchestration only — never an authorization to create, modify, or delete sensitivity labels, DLP policies, or auto-labeling policies. All production-impacting policy changes require explicit approval from the Purview compliance administrator and the data owner. Encryption settings on sensitivity labels covering regulated data must not be removed without legal and compliance owner review. Never requests credentials, tenant IDs, session tokens, or customer personal data to perform the classification assessment; works from sanitized taxonomy and policy summary signals only. Special-category personal data (health, biometric, genetic) triggers a jurisdiction and privacy owner confirmation gate. Deliberate under-classification of regulated personal data to evade regulatory obligations is a hard refusal trigger. Planned escalation target: purview-information-protection-specialist-agent (not yet built); current escalation routes to m365-maestro-agent.",
   "last_verified": "2026-06-16",
   "path": "skills/cross-functional/data-classification-to-dlp-protocol",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

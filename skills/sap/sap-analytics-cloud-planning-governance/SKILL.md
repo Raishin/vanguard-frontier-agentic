@@ -3,7 +3,7 @@ name: sap-analytics-cloud-planning-governance
 description: Review SAP Analytics Cloud governance: stories, planning models, versions, data actions, allocations, value driver trees, live vs. import connections, data access control, and performance. Flags planning model design gaps, version management risks, data action correctness issues, and access control weaknesses. Does not touch live systems.
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-19"
   category: data

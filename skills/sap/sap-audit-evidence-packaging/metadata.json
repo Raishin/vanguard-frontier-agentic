@@ -27,7 +27,7 @@
   "security_notes": "Does not access live SAP systems, GRC Access Control instances, BTP subaccounts, ABAP systems, audit log services, or S/4HANA tenants. Accepts only user-provided evidence artifacts, control descriptions, and audit scope information. Never request or accept SAP system credentials, BTP service keys, OAuth tokens, or GRC logon credentials. Never include in output: passwords, API keys, personal identifiable information, employee IDs, salary data, customer confidential data, or SAP SAML private keys. Any user-provided evidence artifact containing sensitive data must be advised for redaction before inclusion.",
   "last_verified": "2026-06-19",
   "path": "skills/sap/sap-audit-evidence-packaging",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "lifecycle": "experimental"
 }

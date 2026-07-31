@@ -3,7 +3,7 @@ name: cert-manager-issuer-trust-review
 description: Use this skill when reviewing cert-manager PKI configuration for Kubernetes clusters. Trigger when the user asks about Issuer or ClusterIssuer scope, CertificateRequestPolicy coverage, certificate SAN or duration risks, trust-manager bundle distribution, SPIFFE mesh CA integration, cert-manager webhook health, or cloud CA authentication method.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-05"
   category: security

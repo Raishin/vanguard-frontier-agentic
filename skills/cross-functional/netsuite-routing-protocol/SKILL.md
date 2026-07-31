@@ -3,7 +3,7 @@ name: netsuite-routing-protocol
 description: Use this skill when a NetSuite matter must be classified and routed to the right specialist agent, when a matter crosses multiple NetSuite domains and needs parallel review, when a live-account mutation intent must be gated, or when specialist agents disagree and the conflict must be resolved. It defines routing rules per matter type, the cross-domain overlap matrix covering finance × developer × identity × integration × analytics × OneWorld × AI-connector × compliance, and the conflict-resolution protocol. Does not give NetSuite or business advice; routing is a recommendation only and never makes a binding routing decision on behalf of a human owner.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-09"
   category: platform

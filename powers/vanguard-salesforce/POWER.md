@@ -3,7 +3,7 @@ name: "vanguard-salesforce"
 displayName: "Vanguard Frontier — Salesforce"
 description: "Curated Salesforce agents for admin review, development, security, integration, revenue ops, service ops, marketing ops, Agentforce/AI risk, and compliance — static review only, no org mutations. Routes via salesforce-maestro to specialist agents covering Sales Cloud, Service Cloud, Experience Cloud, Marketing Cloud, MuleSoft, Tableau, and industry verticals. All Salesforce terminology and API surfaces are drift-prone; agents always verify against current official documentation before rendering findings."
 keywords: ["salesforce", "agentforce", "crm", "apex", "lwc", "mulesoft", "compliance", "static-review"]
-author: "Raishin"
+author: "VincentChuWaiChow"
 ---
 # Vanguard Frontier — Salesforce
 
@@ -34,9 +34,9 @@ Live-guard agents enforce approval, target confirmation, evidence capture, and r
 
 ## Where the agents live
 
-Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see `agents/salesforce/` in that repository. All 30 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
+Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic) marketplace. For this provider, see `agents/salesforce/` in that repository. All 30 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
 
 ## Companion install paths
 
-- **Claude Code:** `/plugin marketplace add Raishin/vanguard-frontier-agentic` then `/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic`
+- **Claude Code:** `/plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic` then `/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic`
 - **Codex / Copilot / Cursor / Gemini CLI / Kiro (file export):** `npx vfa-export-agents --platform <harness> --provider salesforce --repo .`

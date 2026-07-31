@@ -25,7 +25,7 @@
   "security_notes": "Static review only — no Bash, no hdbsql execution, no HANA Cloud Central API calls, no live SQL plan capture, no M_ monitoring view queries. Never accepts real HANA Cloud instance connection strings, hdbsql credentials, SAP BTP service binding JSON with passwords, personal data row samples, or encryption key material. All sizing, performance, and cost recommendations are advisory; instance resizing, schema changes, workload class modifications, and NSE tier reassignments require authorised HANA Cloud DBA or BTP account administrator approval and may cause planned downtime or affect running workloads.",
   "last_verified": "2026-06-19",
   "path": "agents/sap/sap-hana-cloud-performance-cost-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "companion_skills": [
     "sap-hana-cloud-performance-cost"
   ],

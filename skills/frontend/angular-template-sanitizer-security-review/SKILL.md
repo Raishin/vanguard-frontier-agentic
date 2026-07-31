@@ -3,7 +3,7 @@ name: angular-template-sanitizer-security-review
 description: Statically review Angular templates and components for injection via DomSanitizer bypass calls (bypassSecurityTrustHtml, bypassSecurityTrustUrl, bypassSecurityTrustResourceUrl), unsanitized [innerHTML] bindings, and dynamically bound iframe security attributes such as [attr.sandbox], grounded in Angular's own sanitizer and NG0910 documentation.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-03"
   category: security

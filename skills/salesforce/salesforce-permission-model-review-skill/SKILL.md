@@ -3,7 +3,7 @@ name: salesforce-permission-model-review-skill
 description: Use this skill when Salesforce profiles, permission sets, permission set groups, permission set licenses, muting permission sets, sharing rules, OWD, role hierarchy, IP restrictions, or session policies must be reviewed for toxic combinations and over-privilege. Flags: ModifyAllData with broad assignment, ViewAllData on PII objects, API Enabled without IP restriction, Customize Application outside admin profiles, and sharing-rule widening on regulated-data objects. Trigger phrases: "review this permission model", "check for toxic permission combinations", "is this permission set safe", "review sharing rules on this object", "assess our OWD and role hierarchy". Do not use when you need a full org posture review (use salesforce-org-assessment-skill), when metadata quality is the focus (use salesforce-metadata-review-skill), or when a live permission change is being proposed (use salesforce-live-change-approval-protocol). Works from sanitized exports only; never requests live org access.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-20"
   category: security

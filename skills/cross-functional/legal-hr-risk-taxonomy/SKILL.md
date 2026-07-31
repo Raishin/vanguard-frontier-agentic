@@ -3,7 +3,7 @@ name: legal-hr-risk-taxonomy
 description: Use this skill to assign consistent risk labels to a Legal or HR matter — severity ratings, privilege and privacy sensitivity labels, retaliation and discrimination risk labels, matter-type classes, escalation-gate triggers, and the audit-log schema. It standardizes the vocabulary every Legal and HR agent and case capsule uses so risk is rated the same way across the ecosystem. It does not give legal or HR advice and never concludes that a matter is safe or compliant.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-18"
   category: compliance

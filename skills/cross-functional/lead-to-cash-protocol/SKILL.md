@@ -3,7 +3,7 @@ name: lead-to-cash-protocol
 description: Use this skill to orchestrate the end-to-end lead-to-cash business process across Dynamics 365 Sales, Supply Chain Management, and Finance. It coordinates the journey from a qualified sales opportunity through order creation, fulfillment, invoicing, and final revenue recognition. The skill defines stage gates, agent handoff rules, escalation triggers, and decision logic for cross-functional coordination. It does not make business decisions, approve credit limits, authorize revenue recognition treatments, or execute any system transactions; all production-impacting steps are escalated to the relevant specialist or human owner.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-16"
   category: operational

@@ -3,7 +3,7 @@ name: frontend-board-chair
 description: Sequence frontend specialist and red-team reviews for the 10 governed workflows (new feature, perf regression, a11y audit, security review, SSR/hydration bug, design-system change, framework migration, AI-generated code review, production incident, CWV failure) and issue a binding evidence-gated approve/conditional-approve/reject decision. Use when a frontend change needs a final governance verdict, not a first-pass technical review.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: compliance

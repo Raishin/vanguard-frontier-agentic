@@ -3,7 +3,7 @@ name: python-live-governance-maestro
 description: "Use this skill to classify a Python live-control-plane task by runtime, business process, data class, environment, and control profile, and route it to the narrowest live specialist (read-only-runtime or mutating-runtime), or to gate a mutating request to a named human owner under live-guard-gate. Routing only — never mutates, approves, or declares compliance."
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-26"
   category: architecture

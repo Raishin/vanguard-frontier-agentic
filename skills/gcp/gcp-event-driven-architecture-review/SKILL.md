@@ -3,7 +3,7 @@ name: gcp-event-driven-architecture-review
 description: Review GCP Pub/Sub, Eventarc, Cloud Tasks, Cloud Scheduler, and Workflows designs — dead-letter topics, message ordering, idempotency, fan-out blast radius, schema registry, and retry storm risk.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: platform

@@ -3,7 +3,7 @@ name: alibaba-cost-anomaly-watch-coordinator
 description: Detect and coordinate response to Alibaba Cloud cost anomalies — MaxCompute CU vs on-demand billing mismatch, ECS spot instance interruption cascades, CDN traffic spike billing, OSS API request cost explosions, budget alert → DingTalk notification → remediation playbook.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: finops

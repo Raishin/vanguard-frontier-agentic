@@ -3,7 +3,7 @@ name: huawei-registry-artifact-governor
 description: Govern Huawei Cloud SWR (Software Repository for Container) — image retention policy, vulnerability scanning via VSS (Vulnerability Scan Service) integration, namespace permission least privilege, cross-region image replication, and supply chain security posture.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: security

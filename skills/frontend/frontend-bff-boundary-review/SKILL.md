@@ -3,7 +3,7 @@ name: frontend-bff-boundary-review
 description: Determines and reviews whether aggregation/shaping logic belongs in a Backend-for-Frontend layer versus client-side composition, and audits existing BFF boundaries for scope creep, duplicated aggregation logic, and leaked backend topology or pass-through authorization.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: architecture

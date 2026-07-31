@@ -192,7 +192,7 @@ def run_kiro_powers_tests(r: Results) -> None:
         displayName: Test Power
         description: Routes test tasks correctly.
         keywords: [kubernetes, rbac]
-        author: Raishin
+        author: VincentChuWaiChow
         version: 1.0.0
         ---
         body
@@ -228,7 +228,7 @@ def run_kiro_powers_tests(r: Results) -> None:
         displayName: Test Power
         description: Routes test tasks correctly.
         keywords: [kubernetes, rbac]
-        author: Raishin
+        author: VincentChuWaiChow
         ---
         body
     """)
@@ -246,7 +246,7 @@ def run_kiro_powers_tests(r: Results) -> None:
         displayName: Test Power
         description: "First sentence. Second sentence. Third sentence. Fourth sentence."
         keywords: [kubernetes, rbac]
-        author: Raishin
+        author: VincentChuWaiChow
         ---
         body
     """)
@@ -264,7 +264,7 @@ def run_kiro_powers_tests(r: Results) -> None:
         displayName: Test Power
         description: "Routes MLPS 2.0 workloads. Enforces CN sovereignty. Delegates to Huawei-native agents."
         keywords: [mlps, sovereignty, huawei]
-        author: Raishin
+        author: VincentChuWaiChow
         ---
         body
     """)
@@ -282,7 +282,7 @@ def run_kiro_powers_tests(r: Results) -> None:
         displayName: Test Power
         description: Routes test tasks correctly.
         keywords: [cloud, kubernetes]
-        author: Raishin
+        author: VincentChuWaiChow
         ---
         body
     """)
@@ -300,7 +300,7 @@ def run_kiro_powers_tests(r: Results) -> None:
         displayName: Test Power
         description: Routes test tasks correctly.
         keywords: []
-        author: Raishin
+        author: VincentChuWaiChow
         ---
         body
     """)
@@ -318,7 +318,7 @@ def run_kiro_powers_tests(r: Results) -> None:
         displayName: AWS Power
         description: Routes AWS infrastructure tasks. Enforces least-privilege IAM. Delegates to AWS-native agents.
         keywords: [aws, iam, ec2]
-        author: Raishin
+        author: VincentChuWaiChow
         ---
         body
     """)

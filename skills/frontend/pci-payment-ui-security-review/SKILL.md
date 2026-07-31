@@ -3,7 +3,7 @@ name: pci-payment-ui-security-review
 description: Statically review payment-page frontend code for PCI-DSS-relevant defects in the browser/DOM slice only — raw PAN collection in self-controlled inputs instead of Stripe hosted fields, card data persisted client-side or to analytics, raw card data POSTed to a first-party endpoint, and third-party scripts loaded without Subresource Integrity — grounded in Stripe's own tokenization docs and PCI-DSS v4 script-security requirements.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-03"
   category: security

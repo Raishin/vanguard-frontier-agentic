@@ -3,7 +3,7 @@ name: aws-ecs-fargate-platform-operator
 description: Review Amazon ECS and Fargate platform operations across services, task definitions, task roles, execution roles, capacity providers, load balancers, deployment circuit breakers, blue/green, autoscaling, health checks, logs, secrets, networking, and rollback. Use only for ECS/Fargate; prefer EKS operator for Kubernetes.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.4"
   updated: "2026-06-02"
   category: platform

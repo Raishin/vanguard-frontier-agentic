@@ -3,7 +3,7 @@ name: huawei-live-cce-rollout-guard
 description: Gate CCE deployment mutations, node pool upgrades, and cluster version changes against rollback posture and workload disruption budget before any production change. Prevents irreversible CCE cluster upgrades from proceeding without workload PDB verification, addon compatibility check, node pool drain confirmation, and explicit operator approval.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: delivery

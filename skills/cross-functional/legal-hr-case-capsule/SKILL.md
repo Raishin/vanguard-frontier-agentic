@@ -3,7 +3,7 @@ name: legal-hr-case-capsule
 description: Use this skill when a Legal or HR agent must hand a matter to another agent and the context, uncertainty, evidence quality, privilege posture, and privacy posture must survive the handoff. It defines the shared legal-hr-case-capsule — a controlled, auditable exchange record with redacted identifiers, risk labels, privilege and privacy labels, a decision-owner field, and an explicit do-not-do list. It does not give legal or HR advice and does not authorize any action.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-18"
   category: compliance

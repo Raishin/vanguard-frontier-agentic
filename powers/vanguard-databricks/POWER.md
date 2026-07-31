@@ -3,7 +3,7 @@ name: "vanguard-databricks"
 displayName: "Vanguard Frontier — Databricks (Azure)"
 description: "Curated Azure Databricks agents for Unity Catalog governance and lakehouse engineering — static review only, no workspace or production mutations. Covers Unity Catalog securables and schema-scoped least-privilege grants, identity federation and account groups, account/workspace/metastore admin separation, run-production-as-service-principal, Entra ID managed identities, Access Connector + ADLS Gen2 external locations, cluster policies, and audit logs. Databricks and Azure surfaces are drift-prone; agents always verify against current Databricks and Microsoft Learn documentation before rendering findings."
 keywords: ["databricks", "azure", "unity-catalog", "lakehouse", "least-privilege", "data-engineering", "static-review"]
-author: "Raishin"
+author: "VincentChuWaiChow"
 ---
 # Vanguard Frontier — Databricks (Azure)
 
@@ -34,9 +34,9 @@ Live-guard agents enforce approval, target confirmation, evidence capture, and r
 
 ## Where the agents live
 
-Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see `agents/databricks/` in that repository. All 3 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
+Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic) marketplace. For this provider, see `agents/databricks/` in that repository. All 3 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
 
 ## Companion install paths
 
-- **Claude Code:** `/plugin marketplace add Raishin/vanguard-frontier-agentic` then `/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic`
+- **Claude Code:** `/plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic` then `/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic`
 - **Codex / Copilot / Cursor / Gemini CLI / Kiro (file export):** `npx vfa-export-agents --platform <harness> --provider databricks --repo .`

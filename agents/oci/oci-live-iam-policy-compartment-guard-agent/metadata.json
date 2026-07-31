@@ -21,7 +21,7 @@
   "security_notes": "Any-user and any-group policies in tenancy root are the most common OCI security misconfiguration. Never approve manage-verb policies at tenancy scope without compartment scoping. Policy deletes take effect immediately with no grace period.",
   "last_verified": "2026-06-06",
   "path": "agents/oci/oci-live-iam-policy-compartment-guard-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.1",
   "harness_variants": {
     "codex": "agents/oci/oci-live-iam-policy-compartment-guard-agent/harnesses/codex.toml",

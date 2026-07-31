@@ -3,7 +3,7 @@ name: fabric-power-bi-business-insights-governance
 description: Review Microsoft Fabric and Power BI business-insights governance — semantic model trust (shared/endorsed/certified models, Build permission), row-level and object-level security, workspace roles, OneLake catalog discoverability and lineage, sensitivity labels and Microsoft Purview DLP for Power BI, certified-dataset reuse, and capacity oversight. Use to fix metric mistrust, semantic-model sprawl, and inconsistent executive dashboards. Static review only; production workspace-role, RLS, and capacity changes are escalated.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-16"
   category: observability

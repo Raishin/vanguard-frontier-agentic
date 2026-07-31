@@ -3,7 +3,7 @@ name: consolidation-intercompany-advisor
 description: Multi-jurisdiction consolidation scope and intercompany elimination reference framework covering ASC 810 / IFRS 10 control models, VIE (Variable Interest Entity) primary beneficiary analysis, NCI measurement, equity method accounting (ASC 323 / IAS 28), intercompany eliminations (sales, profit-in-inventory, debt, interest, dividends), deferred tax on IC eliminations (ASC 740 / IAS 12), and adversarial group reporting scenarios across US GAAP, IFRS, German HGB, JGAAP, CAS, and Ind AS.
 allowed-tools: Skill Read WebFetch Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-02"
   category: finance

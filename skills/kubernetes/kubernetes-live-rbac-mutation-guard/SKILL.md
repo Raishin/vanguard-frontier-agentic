@@ -3,7 +3,7 @@ name: kubernetes-live-rbac-mutation-guard
 description: Guard live kubectl apply, create, or delete operations on Kubernetes RBAC objects — Roles, ClusterRoles, RoleBindings, ClusterRoleBindings — with privilege-escalation verb detection, scope assessment, current-state diff, and explicit approval before any write. Use only when an intentional RBAC mutation is requested against a confirmed cluster target.
 allowed-tools: Read Grep Glob WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-05"
   category: security

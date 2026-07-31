@@ -3,7 +3,7 @@ name: python-live-data-change-control
 description: "Use this skill to govern a migration, backfill, pipeline reprocessing, or bounded data correction against a live system: confirm data ownership sign-off, data classification, a bounded record/partition scope, a reconciliation plan, and a rollback before acting, then require reconciliation evidence and apply data-minimization/residency controls to captured evidence. It never allows an unbounded or ad-hoc production data mutation."
 allowed-tools: Read Grep Glob WebSearch WebFetch Bash
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-26"
   category: database

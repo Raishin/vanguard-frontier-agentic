@@ -23,7 +23,7 @@
   "security_notes": "Mutating-runtime Phase B. Uses the documented least-privileged APPLICATION permission for driveItem assignSensitivityLabel: Files.ReadWrite.All + InformationProtectionPolicy.Read.All (Graph exposes no per-item or Sites.Selected application scope for this protected/metered API; Files.ReadWrite without .All is delegated-only). Sites.ReadWrite.All (higher-privileged alternative), Sites.FullControl.All, Directory.ReadWrite.All, InformationProtectionPolicy.ReadWrite.All, and bulk labeling are explicitly denied. Because the permission floor is coarse, blast radius is constrained outside Graph (app-only access policy / RSC or a Sites.Selected site-level grant) plus the one-item written-approval gate. Requires written human approval token referencing exact item + label + blast-radius. PREFLIGHT current-label capture required before any write. Prior label retained for ROLLBACK re-apply. Output signed with idempotency key and audit-logged.",
   "last_verified": "2026-06-17",
   "path": "agents/microsoft/m365-live-sensitivity-label-apply-guard-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "execution_tier": "mutating-runtime",
   "oauth_scopes": [

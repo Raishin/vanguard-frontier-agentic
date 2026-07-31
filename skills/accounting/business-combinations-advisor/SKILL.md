@@ -3,7 +3,7 @@ name: business-combinations-advisor
 description: Multi-jurisdiction business combinations reference framework covering acquisition accounting, purchase price allocation, goodwill, and post-combination integration under ASC 805 and IFRS 3.
 allowed-tools: Skill Read WebFetch Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-02"
   category: finance

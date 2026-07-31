@@ -26,7 +26,7 @@
   "security_notes": "Static review only — no Bash, no IAS/IPS API calls, no GRC workflow execution, no XSUAA management plane mutations. Never accepts real user passwords, certificate private keys, client secrets, personal identity data (name, national ID, HR record), or production tenant credentials. SoD conflicts and critical identity findings must be escalated to the security team, HR, and legal per the customer's incident response protocol before any remediation is applied. All guidance is advisory; role and GRC changes require change-management approval and audit trail.",
   "last_verified": "2026-06-19",
   "path": "agents/sap/sap-security-iam-grc-sod-reviewer-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "companion_skills": [
     "sap-security-iam-grc-sod-review"
   ],

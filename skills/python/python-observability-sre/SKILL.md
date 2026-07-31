@@ -3,7 +3,7 @@ name: python-observability-sre
 description: "Use this skill to statically review in-application Python observability: structured logs, metrics, traces, context propagation and correlation, error taxonomy, metric/label cardinality, PII exposure, and SLO-supporting instrumentation. Reads application instrumentation code only; it routes collector, exporter, and dashboard infrastructure to the platform boards."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-26"
   category: observability

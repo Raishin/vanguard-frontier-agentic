@@ -3,7 +3,7 @@ name: dotnet-aspnetcore-api-review
 description: Use this skill when reviewing the architecture of an ASP.NET Core HTTP API — middleware ordering in the request pipeline, dependency-injection service lifetimes, CORS policy, model validation on bound input, API versioning, error and exception responses, rate limiting, and the boundary between health and readiness endpoints. Trigger when a user provides ASP.NET Core source (Program.cs, startup wiring, controllers, minimal-API endpoints) or sanitized appsettings, asks whether their API pipeline is wired correctly, or wants to know why requests behave unexpectedly across the middleware chain. This skill reviews source and sanitized configuration statically; it never runs the app or calls endpoints.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-19"
   category: architecture

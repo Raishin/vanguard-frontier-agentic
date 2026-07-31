@@ -3,7 +3,7 @@ name: tax-provision-advisor
 description: Multi-jurisdiction corporate income tax provision reference framework covering ASC 740 (US GAAP) and IAS 12 (IFRS). Covers current vs. deferred tax, temporary and permanent differences, deferred tax asset/liability recognition and measurement, valuation allowance (more-likely-than-not), uncertain tax positions (FIN 48 / ASC 740-10 two-step vs. IFRIC 23), OECD Pillar Two GloBE (IAS 12.4A mandatory temporary exception vs. ASC 740 no equivalent exception), enacted vs. substantively enacted tax rates, effective tax rate reconciliation, APB 23 / ASC 740-30 indefinite reinvestment assertion, intraperiod tax allocation, interim provision (estimated annual ETR method), and local GAAP variations (HGB, JGAAP/ASBJ, CAS 18, Ind AS 12). Advisory only — all outputs require verification by qualified tax counsel and external auditors.
 allowed-tools: Skill Read WebFetch Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-01"
   category: finance

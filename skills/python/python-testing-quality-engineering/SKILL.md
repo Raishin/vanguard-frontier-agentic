@@ -3,7 +3,7 @@ name: python-testing-quality-engineering
 description: "Use this skill to statically review Python test-suite quality (pytest, hypothesis): fixture scope and isolation, mock misuse and wrong-target patching, control of time/randomness/environment, flakiness sources, assertion quality, coverage theater, async-test correctness, and property-based-testing signal. Reads test and source code only; it never runs the suite or measures coverage."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-26"
   category: delivery

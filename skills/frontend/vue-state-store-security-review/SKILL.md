@@ -3,7 +3,7 @@ name: vue-state-store-security-review
 description: Statically review Pinia and legacy Vuex state stores for sensitive data persisted to localStorage/sessionStorage without scoping, untrusted server-payload hydration (window.__pinia/__INITIAL_STATE__) with un-escaped state serialization, SSR store-singleton cross-request pollution, store plugins/$subscribe/$onAction acting on untrusted payloads, client-held role flags used as an authorization source of truth, and devtools state exposure in production builds.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-03"
   category: security

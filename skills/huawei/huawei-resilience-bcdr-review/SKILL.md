@@ -3,7 +3,7 @@ name: huawei-resilience-bcdr-review
 description: Review Huawei Cloud workload HA and BCDR designs — GaussDB High Availability (HA) instance failover, CBR (Cloud Backup and Recovery) cross-region vault, CCE multi-AZ deployment, DRS (Data Replication Service) for DR, RTO/RPO target analysis, and runbook completeness.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: resilience

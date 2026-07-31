@@ -30,6 +30,6 @@
   "security_notes": "T1 read-only operational scope only. No DML permitted. OAuth scopes restricted to api + refresh_token. Run As service account has no ModifyAllData, ViewAllData, ViewEncryptedData, ModifyMetadata, AuthorApex, or ManageConnectedApps permissions. Org allowlist enforced by Connected App. Every execution emits a structured audit envelope. All Salesforce IDs, user IDs, and PII fields are redacted before output. Refresh token rotation immediately revokes access. Regulated-vertical orgs (Health Cloud, Financial Services Cloud) trigger mandatory compliance escalation.",
   "last_verified": "2026-05-21",
   "path": "skills/salesforce/salesforce-soql-explorer-skill",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

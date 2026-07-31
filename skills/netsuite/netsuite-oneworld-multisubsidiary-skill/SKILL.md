@@ -3,7 +3,7 @@ name: netsuite-oneworld-multisubsidiary-skill
 description: "Flashlight skill for reviewing NetSuite OneWorld multi-entity configurations: subsidiary hierarchies, intercompany account boundaries, cross-subsidiary visibility restrictions, multi-currency settings, and tax-jurisdiction nexus alignment. T0 static review — no live account connection required. TRIGGER when: user asks to review subsidiary structure, audit intercompany accounts, check cross-subsidiary role scoping, validate tax nexus coverage, assess consolidation configuration, or diagnose OneWorld hierarchy issues. Trigger phrases: subsidiary hierarchy, intercompany elimination, cross-subsidiary access, multi-currency consolidation, tax nexus, due-to due-from, legal entity registration, OneWorld configuration. DO NOT TRIGGER when: the user needs authentication or OAuth/TBA token review (use netsuite-sso-oauth-tba-skill), role/permission assignment analysis beyond subsidiary scoping (use netsuite-identity-access-role-permission-skill), SOX audit evidence generation (use netsuite-audit-controls-sox-skill), or SDF deployment of subsidiary changes (use netsuite-sdf-devops-release-skill)."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-09"
   category: compliance

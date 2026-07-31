@@ -3,7 +3,7 @@ name: nextjs-server-security-review
 description: Statically review Next.js middleware, Server Actions, next.config.js, and environment-variable files for four documented server-side defect classes -- middleware matcher exclusions that silently skip auth on Server Functions, Server Actions missing allowedOrigins CSRF protection, secrets leaked via NEXT_PUBLIC_ prefixes, and SSRF/open-redirect via dangerouslyAllowLocalIP or unvalidated rewrite destinations.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-03"
   category: security

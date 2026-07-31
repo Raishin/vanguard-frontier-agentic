@@ -22,7 +22,7 @@
   "security_notes": "Static review only — no AI Core Management API calls, no model deployment creation or deletion, no Generative AI Hub prompt execution on behalf of the user, no object-store credential access, no BTP subaccount manipulation. Never accepts AI Core resource-group configurations, AI Launchpad connection files, or Generative AI Hub API payloads containing AI Core service-key client secrets, object-store HMAC keys, tenant-specific deployment IDs with embedded tokens, or personally identifiable information in sample prompts or grounding-data excerpts. Data-privacy findings for RAG pipelines and embedding stores are escalated per the AI-governance protocol; remediation requires privacy-legal review and operator approval before re-deployment.",
   "last_verified": "2026-06-19",
   "path": "agents/sap/sap-ai-core-genai-hub-governance-reviewer-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "companion_skills": [
     "sap-ai-core-generative-ai-hub-governance"
   ],

@@ -3,7 +3,7 @@ name: kotlin-library-api-abi-governance
 description: "Use this skill to statically review Kotlin library public-API evolution and binary/source compatibility for libraries consumed by both Kotlin and Java: binary-compatibility-validator .api snapshots and apiCheck gating, Explicit API mode, @JvmOverloads/@JvmStatic/@JvmName Java-facing surface shaping, and ABI-sensitive data-class and inline-function-body changes. Reads source and build configuration only; it never runs apiDump/apiCheck or publishes a release."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-21"
   category: architecture

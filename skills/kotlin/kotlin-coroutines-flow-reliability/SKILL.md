@@ -3,7 +3,7 @@ name: kotlin-coroutines-flow-reliability
 description: "Use this skill to statically review Kotlin coroutine and Flow reliability — structured concurrency and cancellation cooperation, dispatcher selection and blocking-call confinement, cold Flow vs hot StateFlow/SharedFlow semantics and backpressure, and context propagation (transaction, trace, MDC, security) across suspension and dispatcher switches. Reads source only; it never runs coroutine code or profiles live timing."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-21"
   category: resilience

@@ -3,7 +3,7 @@ name: alibaba-observability-incident-responder
 description: Respond to Alibaba Cloud incidents using CloudMonitor alarms, SLS log analytics, ARMS APM distributed tracing, and alert governance for ECS, RDS, ACK, and network services.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: observability

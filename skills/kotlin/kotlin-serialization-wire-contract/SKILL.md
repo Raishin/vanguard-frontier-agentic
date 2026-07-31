@@ -3,7 +3,7 @@ name: kotlin-serialization-wire-contract
 description: "Use this skill to statically review kotlinx.serialization wire-contract safety and schema evolution: encodeDefaults/explicitNulls defaults and @EncodeDefault overrides, strict-decode ignoreUnknownKeys behavior, sealed-class closed polymorphism and class-discriminator conventions, and whether a schema change is additive or breaking given how defaults make a field optional on decode. Reads source and serializer configuration only; it never sends or receives real wire traffic."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-21"
   category: data

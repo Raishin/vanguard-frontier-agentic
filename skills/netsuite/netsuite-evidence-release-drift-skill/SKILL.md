@@ -3,7 +3,7 @@ name: netsuite-evidence-release-drift-skill
 description: "Assigns Vanguard evidence hierarchy labels (LIVE_EVIDENCE through BLOCKED) to NetSuite claims and performs biannual release-drift audits against Oracle NetSuite milestone releases. Tracks SOAP removal (2026.1 REST+OAuth2 default; 2027.1 new SOAP blocked; 2028.2 all SOAP disabled) and TBA deprecation timelines. T0 static review — no org connection required. TRIGGER when: a NetSuite agent claim needs an evidence label, a portfolio drift audit is requested, a release-sensitive claim (SOAP, TBA, OAuth2, cert status) needs verification, or a coming-soon certification status needs confirmation. Trigger phrases: evidence label, release drift, SOAP deprecation timeline, is this cert available, verify NetSuite claim, 2026.1 release, 2027.1 release, biannual audit, UNVERIFIED claim. DO NOT TRIGGER when: the request is about live org operations (use netsuite-live-org-mutation-guard-agent); request is about integration architecture design without evidence labelling (use netsuite-web-services-integration-agent); request is about SOX audit evidence gathering (use netsuite-audit-controls-sox-agent)."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-09"
   category: compliance

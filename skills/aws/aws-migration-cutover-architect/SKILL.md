@@ -3,7 +3,7 @@ name: aws-migration-cutover-architect
 description: Plan, review, and de-risk AWS migrations and cutovers across discovery, dependency mapping, wave planning, AWS Application Migration Service, Migration Hub, test launches, acceptance tests, downtime windows, rollback, DNS, data consistency, and post-cutover validation. Use for migration planning and cutover readiness.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.4"
   updated: "2026-06-02"
   category: delivery

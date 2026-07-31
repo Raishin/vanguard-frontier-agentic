@@ -3,7 +3,7 @@ name: alibaba-kms-secret-lifecycle-steward
 description: Audit and govern Alibaba Cloud KMS key lifecycles, Certificate Manager, SSM (Secrets Manager), and HSM key operations. Ensure encryption-at-rest coverage and rotation compliance across CMKs, envelope encryption, and certificate lifecycle.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: security

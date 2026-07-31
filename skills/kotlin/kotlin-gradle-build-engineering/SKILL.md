@@ -3,7 +3,7 @@ name: kotlin-gradle-build-engineering
 description: "Use this skill to statically review Gradle build-graph quality and CI throughput for Kotlin/KMP projects: configuration-cache compatibility (no execution-time Project access), build-cache correctness (@CacheableTask annotation completeness and relocatable/reproducible output), kapt vs KSP annotation-processing configuration and incremental opt-in, configuration-avoidance API usage, and convention-plugin (build-logic included build) centralization. Reads Gradle build files and build-scan evidence only; it never invokes Gradle or measures a live build."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-21"
   category: delivery

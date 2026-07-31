@@ -3,7 +3,7 @@ name: "vanguard-azure"
 displayName: "Vanguard Frontier — Azure"
 description: "Curated Azure agents for Entra ID, AKS, App Service, Key Vault, Cosmos DB, and ARM/Bicep with live-mutation guards. Routes via azure-maestro to specialist or live-guard agents. Mutations on real Azure environments require subscription ID, tenant ID, resource group, and approval confirmation."
 keywords: ["azure", "entra-id", "aks", "app-service", "key-vault", "cosmos-db", "bicep", "live-guard"]
-author: "Raishin"
+author: "VincentChuWaiChow"
 ---
 # Vanguard Frontier — Azure
 
@@ -40,9 +40,9 @@ Live-guard agents enforce approval, target confirmation, evidence capture, and r
 
 ## Where the agents live
 
-Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see `agents/azure/` in that repository. All 36 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
+Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic) marketplace. For this provider, see `agents/azure/` in that repository. All 36 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
 
 ## Companion install paths
 
-- **Claude Code:** `/plugin marketplace add Raishin/vanguard-frontier-agentic` then `/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic`
+- **Claude Code:** `/plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic` then `/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic`
 - **Codex / Copilot / Cursor / Gemini CLI / Kiro (file export):** `npx vfa-export-agents --platform <harness> --provider azure --repo .`

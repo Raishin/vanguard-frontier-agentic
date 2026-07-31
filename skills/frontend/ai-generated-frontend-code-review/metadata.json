@@ -22,6 +22,6 @@
   "security_notes": "Treat all AI-generated code as untrusted input requiring verification, not a lower-scrutiny fast path. Check every new dependency name against the real package registry before approving install (slopsquat defense). Check every dynamic-HTML sink for sanitization. Never execute exploit payloads against live/staging systems; static-review-only skill (Read/Grep/Glob/WebFetch/WebSearch, no mutation, no live target traffic). Never reproduce discovered secrets/tokens verbatim in findings output.",
   "last_verified": "2026-07-02",
   "path": "skills/frontend/ai-generated-frontend-code-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

@@ -3,7 +3,7 @@ name: design-token-governance-review
 description: Reviews design-token source of truth and build pipelines for hardcoded-value drift and resolved WCAG 1.4.3/1.4.11 contrast compliance across theme variants (light, dark, high-contrast), grounded in the W3C Design Tokens format and current WCAG success criteria.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: compliance

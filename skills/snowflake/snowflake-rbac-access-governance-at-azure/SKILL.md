@@ -3,7 +3,7 @@ name: snowflake-rbac-access-governance-at-azure
 description: Review Snowflake RBAC role hierarchies, privilege grants, managed-access schemas, network policies, MFA enforcement, and Entra ID External OAuth/SAML/SCIM integration for least-privilege and separation-of-duties compliance on Azure-hosted Snowflake accounts.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-17"
   category: security

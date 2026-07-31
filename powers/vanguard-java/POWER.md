@@ -3,7 +3,7 @@ name: "vanguard-java"
 displayName: "Vanguard Frontier — Java"
 description: "Curated Java agents for java application server exit, java concurrency and virtual thread, java container and kubernetes readiness, java database migration safety. Routes via java-maestro-agent to specialist agents based on task scope. Static review only; no live mutations."
 keywords: ["java", "static-review", "configuration-audit", "best-practices"]
-author: "Raishin"
+author: "VincentChuWaiChow"
 ---
 # Vanguard Frontier — Java
 
@@ -32,9 +32,9 @@ Live-guard agents enforce approval, target confirmation, evidence capture, and r
 
 ## Where the agents live
 
-Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see `agents/java/` in that repository. All 15 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
+Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic) marketplace. For this provider, see `agents/java/` in that repository. All 15 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
 
 ## Companion install paths
 
-- **Claude Code:** `/plugin marketplace add Raishin/vanguard-frontier-agentic` then `/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic`
+- **Claude Code:** `/plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic` then `/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic`
 - **Codex / Copilot / Cursor / Gemini CLI / Kiro (file export):** `npx vfa-export-agents --platform <harness> --provider java --repo .`

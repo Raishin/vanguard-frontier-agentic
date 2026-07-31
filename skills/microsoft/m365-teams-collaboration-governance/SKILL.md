@@ -3,7 +3,7 @@ name: m365-teams-collaboration-governance
 description: Review and advise on Microsoft Teams collaboration and communications governance covering Teams and Microsoft 365 group lifecycle and sprawl, external access and guest sharing controls, sensitivity labels on Teams and groups, meeting and messaging policies, phone and voice governance, and app permission policies. Cert anchor MS-700 Teams Administrator. Static review and advisory only; tenant-wide external-access or sharing-policy changes are live-guard gated. Refuses to weaken guest sharing or external access controls for convenience.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-17"
   category: platform

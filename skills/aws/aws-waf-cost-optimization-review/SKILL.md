@@ -3,7 +3,7 @@ name: aws-waf-cost-optimization-review
 description: "Review AWS workload cost posture against the Well-Architected Framework Cost Optimization Pillar. Covers cost visibility, tagging compliance, commitment coverage, rightsizing, Spot and managed service adoption, and idle resource identification. Use when auditing cloud spend, planning Savings Plans purchases, or preparing for a formal WAF Cost Optimization Pillar review."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.4"
   updated: "2026-06-02"
   category: finops

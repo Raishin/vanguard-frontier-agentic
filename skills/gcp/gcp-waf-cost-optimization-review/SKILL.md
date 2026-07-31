@@ -3,7 +3,7 @@ name: gcp-waf-cost-optimization-review
 description: "Evaluate GCP workload cost efficiency against the Google Cloud Well-Architected Framework cost optimization pillar — covering FinOps culture, cloud spending alignment with business value, resource rightsizing, commitment strategy, idle resource elimination, and continuous optimization. Use when reviewing cloud costs, designing cost-aware architectures, or identifying cost reduction opportunities in GCP."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: finops

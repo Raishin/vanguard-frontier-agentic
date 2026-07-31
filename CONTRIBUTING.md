@@ -7,7 +7,7 @@ This guide covers everything you need to add a skill, agent, rule, MCP reference
 ## Quick Start
 
 ```bash
-git clone https://github.com/Raishin/vanguard-frontier-agentic.git
+git clone https://github.com/VincentChuWaiChow/vanguard-frontier-agentic.git
 cd vanguard-frontier-agentic
 npm install
 npm run validate

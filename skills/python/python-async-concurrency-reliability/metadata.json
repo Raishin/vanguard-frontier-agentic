@@ -23,5 +23,5 @@
   "security_notes": "Static review only — reads Python async source and sanitized configuration to locate event-loop blocking, cancellation, timeout, and backpressure defects; never runs the service, never starts an event loop, and never measures actual latency, throughput, or deadlock behavior. A timing or throughput claim not derivable from the source is flagged as needing measurement rather than asserted. Never requests secrets, credentials, or a live connection.",
   "last_verified": "2026-07-26",
   "path": "skills/python/python-async-concurrency-reliability",
-  "author": "github: Raishin"
+  "author": "github: VincentChuWaiChow"
 }

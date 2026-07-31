@@ -3,7 +3,7 @@ name: fpa-forecasting-advisor
 description: Reference framework for financial planning and analysis (FP&A) covering driver-based budgeting, rolling forecasts, zero-based budgeting (ZBB), scenario and sensitivity analysis, budget-versus-actual variance analysis, long-range planning (LRP), integrated P&L/balance sheet/cash flow modeling, xP&A (extended planning and analysis), FP&A technology platforms (Anaplan, Adaptive Insights/Workday Adaptive Planning, OneStream, Vena, IBM TM1/Planning Analytics), and MD&A narrative support. Applicable across US GAAP, IFRS, and UK FRS 102 reporting contexts. Advisory only — never writes to any planning system, ERP, or GL, and never accepts confidential forecast figures, MNPI, or company-identifying budget data.
 allowed-tools: Skill Read WebFetch Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-03"
   category: finance

@@ -32,6 +32,6 @@
   "security_notes": "T2 sandbox-mutating but reversible. sf project deploy validate makes no persistent changes — no commit path exists in this skill. Production org targets are hard-refused before any API call. Connected App allowlist enforces sandbox-only targeting. Every execution emits a structured audit envelope including on refusals. OAuth scopes restricted to api + refresh_token. Run As service account has Deploy (Metadata API) permission but is denied ModifyAllData (production), Customize Application (production), and Manage Connected Apps. Validated deployment IDs are transient — no metadata is altered in the target org.",
   "last_verified": "2026-05-21",
   "path": "skills/salesforce/salesforce-deployment-validator-skill",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

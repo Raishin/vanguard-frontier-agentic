@@ -3,7 +3,7 @@ name: nvidia-ai-infrastructure-operations
 description: Use this skill when reviewing NVIDIA AI infrastructure deployments — DGX, HGX, MGX systems, GPU server install posture, BMC and out-of-band exposure, BIOS/firmware levels, vGPU host configuration, and rack-scale power/cooling/networking readiness. Trigger when the user asks whether a GPU host is provisioned per NVIDIA reference architecture, whether the BMC is segmented, whether driver/firmware versions match the AI Enterprise support matrix, or whether the deployment is in scope for NCA-AIIO or NCP-AII certification expectations.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-10"
   category: platform

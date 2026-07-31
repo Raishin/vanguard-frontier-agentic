@@ -3,7 +3,7 @@ name: gcp-bigquery-cost-performance-analyst
 description: Analyze BigQuery slot reservation sizing, BI Engine acceleration, query cost estimation, dataset governance (expiration, access controls), and partitioning/clustering optimization to reduce on-demand scan costs.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.2.0"
   updated: "2026-05-09"
   category: data

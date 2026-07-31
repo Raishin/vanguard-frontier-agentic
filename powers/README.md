@@ -72,7 +72,7 @@ need via the Kiro UI:
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/Raishin/vanguard-frontier-agentic
+git clone https://github.com/VincentChuWaiChow/vanguard-frontier-agentic
 cd vanguard-frontier-agentic
 ```
 

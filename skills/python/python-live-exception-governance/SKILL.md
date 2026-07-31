@@ -3,7 +3,7 @@ name: python-live-exception-governance
 description: "Use this skill to record and review a policy exception: confirm a named owner distinct from the requester, an explicit scope, an expiration date, compensating controls, and a review date, refuse to approve its own exception, and automatically flag expired or incomplete exceptions as findings."
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-26"
   category: compliance

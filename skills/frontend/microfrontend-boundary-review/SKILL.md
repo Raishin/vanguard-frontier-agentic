@@ -3,7 +3,7 @@ name: microfrontend-boundary-review
 description: Reviews micro-frontend/module-federation boundary contracts for shared-dependency versioning safety, runtime isolation, and ownership clarity before adoption or extension of a distributed frontend architecture.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: architecture

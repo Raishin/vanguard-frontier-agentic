@@ -15,6 +15,6 @@
   "security_notes": "Protocol is recommendation and orchestration only — never an authorization to release evidence to external parties or to modify retention policies, legal holds, or eDiscovery cases. All production-impacting steps (retention policy changes, legal-hold placement, evidence transmission to external auditors) must be escalated to the Purview compliance administrator and the human legal or compliance owner. Never requests credentials, tenant IDs, session tokens, or customer personal data to perform evidence discovery; works from sanitized control and workload scope signals only. Evidence touching legally privileged communications is flagged and routed to legal counsel before inclusion in any package. Special-category personal data triggers a jurisdiction confirmation gate before proceeding.",
   "last_verified": "2026-06-16",
   "path": "skills/cross-functional/audit-evidence-mapping-protocol",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

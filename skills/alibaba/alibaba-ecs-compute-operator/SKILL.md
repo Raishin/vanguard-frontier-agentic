@@ -3,7 +3,7 @@ name: alibaba-ecs-compute-operator
 description: Operate ECS instances, Auto Scaling groups, ECI serverless containers, and Cloud Assistant O&M automation. Handle instance lifecycle, image management, placement groups, spot/preemptible instances, and scheduled scaling.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: platform

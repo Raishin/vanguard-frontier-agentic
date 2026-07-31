@@ -3,7 +3,7 @@ name: fabric-analytics-engineering
 description: Review Microsoft Fabric analytics engineering artifacts — Fabric Data Warehouse T-SQL design and anti-patterns, dimensional modeling (star schema, fact and dimension tables, relationships), semantic model design (Direct Lake vs Import vs DirectQuery selection, table layout, relationship cardinality), DAX measure correctness and optimization (iterators, filter context, variables, CALCULATE), data preparation and transformation quality, and reusable certified semantic models feeding Power BI reports. Use to fix bad star schemas, slow DAX, untrustworthy measures, and warehouse anti-patterns. Distinct from governance: this is build quality and modeling correctness, not RLS or workspace trust. Static review only; production warehouse schema changes and semantic-model deployment are escalated.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-17"
   category: data

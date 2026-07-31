@@ -3,7 +3,7 @@ name: falco-runtime-threat-rules-review
 description: Use this skill when reviewing Falco rules files, falco.yaml configuration, or runtime security posture for a Kubernetes workload. Trigger when a user provides Falco rules YAML, asks whether their Falco setup covers a specific threat, questions rule exception scope, or wants to validate that Falco alert output reaches their SIEM or incident response pipeline.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-05"
   category: security

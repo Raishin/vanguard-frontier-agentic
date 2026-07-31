@@ -3,7 +3,7 @@ name: vue-router-navigation-security-review
 description: Statically review Vue Router navigation guards, redirect flows, and template bindings for client-side guards used as the sole authorization boundary, open redirects via route.query.redirect/returnUrl, javascript:/data: scheme injection through dynamic :to/:href bindings, route params/query reaching v-html/innerHTML (reflected XSS), guard-induced redirect loops, and catch-all/history-mode misconfiguration, grounded in Vue Router's own documentation.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-03"
   category: security

@@ -31,6 +31,6 @@
   "security_notes": "Static review only — never calls NetSuite APIs, never executes migrations, never requests or stores credentials, tokens, client secrets, or org IDs. Works exclusively from sanitized integration inventory data. All four SOAP sunset milestones cited from confirmed evidence: 2026.1 REST+OAuth2 default, 2027.1 new SOAP blocked, 2025.2 last planned SOAP endpoint, 2028.2 all endpoints disabled. Never recommends the Administrator role for integration service accounts. Custom reviewer role requires 2FA when permissions include Access Token Management.",
   "last_verified": "2026-06-09",
   "path": "skills/netsuite/netsuite-integration-migration-skill",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

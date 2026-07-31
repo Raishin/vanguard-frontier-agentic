@@ -3,7 +3,7 @@ name: php-maestro
 description: Route PHP-board governance tasks to the narrowest specialist or a genuinely multi-domain parallel team from the PHP catalog. Use when you do not already know which PHP specialist handles the task. Not for direct PHP answers or specialist review; Maestro classifies, dispatches, and hands off to php-board-chair-agent (or the named owning human until one exists) only. Detects and refuses live-mutation or destructive requests (deploy, database migration in prod, force-push), requiring explicit human confirmation before any such action. Treats security, supply-chain, and runtime-EOL findings as blocking hard gates that are never averaged into an approval.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-16"
   category: architecture

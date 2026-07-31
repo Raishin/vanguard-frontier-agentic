@@ -3,7 +3,7 @@ name: nvidia-ngc-nim-supply-chain-governor
 description: Use this skill when reviewing NVIDIA NGC and NIM supply chain posture — NGC org and team boundaries, API key scope and rotation, NIM container cosign verification against NVIDIA's published identity, model card and weights provenance, AI Enterprise entitlement posture, and air-gap mirror integrity. Trigger when the user asks whether NIM images are verified before deployment, whether NGC keys are scoped per environment, or whether the deployment is procurement-defensible for a regulated tenant.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-10"
   category: security

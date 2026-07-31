@@ -3,7 +3,7 @@ name: gcp-live-cloud-run-traffic-migration-guard
 description: Gate Cloud Run traffic percentage migrations, min-instances changes, and revision deletions against revision health verification and rollback posture assessment. Migrating 100% traffic to a broken revision causes complete service unavailability with no automatic rollback — this guard enforces health checks, gradual canary splits, and explicit approval before any production traffic change is executed.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: delivery

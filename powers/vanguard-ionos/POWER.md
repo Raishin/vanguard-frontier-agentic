@@ -3,7 +3,7 @@ name: "vanguard-ionos"
 displayName: "Vanguard Frontier — IONOS"
 description: "Curated IONOS agents for security and compliance review, datacenter design, cost optimization, Managed Kubernetes operations, and live database-lifecycle guards. Routes via ionos-maestro to specialist or live-guard agents. Mutations require contract ID and datacenter confirmation."
 keywords: ["ionos", "security-compliance", "datacenter-designer", "managed-kubernetes", "database-lifecycle", "live-guard", "eu-sovereignty"]
-author: "Raishin"
+author: "VincentChuWaiChow"
 ---
 # Vanguard Frontier — IONOS
 
@@ -33,9 +33,9 @@ Live-guard agents enforce approval, target confirmation, evidence capture, and r
 
 ## Where the agents live
 
-Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see `agents/ionos/` in that repository. All 6 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
+Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic) marketplace. For this provider, see `agents/ionos/` in that repository. All 6 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
 
 ## Companion install paths
 
-- **Claude Code:** `/plugin marketplace add Raishin/vanguard-frontier-agentic` then `/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic`
+- **Claude Code:** `/plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic` then `/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic`
 - **Codex / Copilot / Cursor / Gemini CLI / Kiro (file export):** `npx vfa-export-agents --platform <harness> --provider ionos --repo .`

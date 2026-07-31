@@ -3,7 +3,7 @@ name: java-spring-security
 description: Use this skill when statically reviewing a Spring Security 6 service's authorization and endpoint-exposure posture — multiple SecurityFilterChain beans and securityMatcher disjointness/ordering, authorizeHttpRequests matcher sequencing (first-match-wins, permitAll before authenticated, anyRequest() last), request-level vs @PreAuthorize/@PostAuthorize/@Secured method-security precedence, AuthorizationManager delegation and fail-closed behavior, CSRF on state-changing endpoints, and Spring Boot Actuator exposure (management.endpoints.web.exposure.include, EndpointRequest, securing /actuator). Trigger when a user provides Spring Security configuration (HttpSecurity/SecurityFilterChain beans, method-security annotations, actuator properties) or asks whether an endpoint or actuator surface is safely secured. Reads source and sanitized configuration only; it never builds, runs, or contacts a live system.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-17"
   category: security

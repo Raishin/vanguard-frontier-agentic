@@ -3,7 +3,7 @@ name: capital-allocation-advisor
 description: Multi-jurisdiction reference framework for corporate capital allocation, investment appraisal (NPV, IRR, MIRR, payback, profitability index), cost of capital (WACC, CAPM, hurdle rates), M&A valuation methods (DCF, trading comparables, precedent transactions, accretion/dilution), capital return policy (dividends vs. buybacks vs. reinvestment with ROIC > WACC test), and sensitivity/scenario analysis. Jurisdictional and tax overlays for US, EU, UK, Japan, China, India, and Australia. Advisory only — not investment advice and not a fairness opinion.
 allowed-tools: Skill Read WebFetch Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-01"
   category: finance

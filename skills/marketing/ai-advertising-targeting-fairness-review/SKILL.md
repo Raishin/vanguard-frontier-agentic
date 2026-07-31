@@ -3,7 +3,7 @@ name: ai-advertising-targeting-fairness-review
 description: Use this skill when reviewing ad-platform audience targeting configurations and declared AI feature usage for protected-class discrimination risk. Trigger when a user provides a Meta Ads Manager audience definition, Google Ads targeting layer export, DSP deal config, or any ad platform audience spec annotated with AI features enabled (Advantage+ Audience, broad match, automated bidding, lookalike seeds). Use when a campaign is in housing, credit, employment, or insurance verticals, or when automated bidding or AI audience expansion is active on any campaign reaching the US or EU and the user needs to assess Fair Housing Act, ECOA, or EU AI Act Article 5 exposure.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-17"
   category: ai

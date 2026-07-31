@@ -23,7 +23,7 @@ supported range.
 
 Use the private reporting form so the disclosure stays confidential:
 
-> https://github.com/Raishin/vanguard-frontier-agentic/security/advisories/new
+> https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/security/advisories/new
 
 Do not open a public GitHub issue, start a GitHub Discussion, or use any chat
 platform to report a suspected vulnerability. Those channels are public and
@@ -156,10 +156,10 @@ Each tagged release publishes the following supply-chain evidence:
    ```sh
    # Download the tarball from the GitHub Release assets, then:
    gh attestation verify ./raishin-vanguard-frontier-agentic-<version>.tgz \
-     --repo Raishin/vanguard-frontier-agentic
+     --repo VincentChuWaiChow/vanguard-frontier-agentic
 
    gh attestation verify ./sbom.spdx.json \
-     --repo Raishin/vanguard-frontier-agentic
+     --repo VincentChuWaiChow/vanguard-frontier-agentic
    ```
 
 3. **SPDX SBOM** — `sbom.spdx.json` is attached to every GitHub Release as a

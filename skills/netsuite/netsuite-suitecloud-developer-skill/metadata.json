@@ -31,7 +31,7 @@
   "security_notes": "Static review only — never executes SDF CLI commands, never pushes to a NetSuite account, never requests or stores credentials, tokens, or org IDs. Works exclusively from sanitized SDF object XML and SuiteScript excerpts. SuiteScript 1.0 usage flagged as Critical. Adapted from oracle/netsuite-suitecloud-sdk netsuite-suitescript-upgrade skill (UPL-1.0, Copyright (c) 2019, 2023 Oracle and/or its affiliates). Never recommends Administrator role for script run-as configuration. All run-as roles must follow least-privilege and 2FA requirements.",
   "last_verified": "2026-06-09",
   "path": "skills/netsuite/netsuite-suitecloud-developer-skill",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "source_attribution": "Adapted from oracle/netsuite-suitecloud-sdk packages/agent-skills/netsuite-suitescript-upgrade (UPL-1.0, Copyright (c) 2019, 2023 Oracle and/or its affiliates; https://oss.oracle.com/licenses/upl). Vanguard additions: (1) CI gate thresholds mapping SuiteScript complexity scores to deployment-block vs. human-review-escalation decisions; (2) CHANGELOG.md output format aligned to Vanguard netsuite-sdf-project-documentation conventions; (3) boundary routing to netsuite-sdf-devops-release-agent and netsuite-suitescript-secure-code-review-agent not present upstream."
 }

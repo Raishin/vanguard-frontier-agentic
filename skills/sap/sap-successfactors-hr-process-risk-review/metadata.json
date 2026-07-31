@@ -27,7 +27,7 @@
   "security_notes": "Does not access live SAP SuccessFactors tenants, Employee Central OData APIs, Integration Center endpoints, or payroll systems. Accepts only RBP configuration exports, permission role lists, org chart descriptions, integration mapping documentation, data privacy impact assessment summaries, or written process descriptions. Never accept, request, or process actual employee records, national ID numbers, bank account numbers, salary figures, home addresses, or health data. If raw PII is supplied, redirect immediately without analyzing the PII content. Confirmed unauthorized access to compensation or health data must be escalated to HR leadership and legal before further analysis.",
   "last_verified": "2026-06-19",
   "path": "skills/sap/sap-successfactors-hr-process-risk-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "lifecycle": "experimental"
 }

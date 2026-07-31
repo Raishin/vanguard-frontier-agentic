@@ -3,7 +3,7 @@ name: sap-integration-suite-review
 description: Review SAP Integration Suite topology and configuration: Cloud Integration iFlows, API Management policies, Event Mesh topics and queues, OAuth/certificate security, error handling, idempotency patterns, and monitoring. Flags security gaps, missing error handling, and idempotency violations. Does not touch live systems.
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-19"
   category: platform

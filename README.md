@@ -12,12 +12,12 @@
   <p>
     <a href="https://www.npmjs.com/package/@raishin/vanguard-frontier-agentic"><img alt="npm version" src="https://img.shields.io/npm/v/@raishin/vanguard-frontier-agentic.svg?logo=npm" /></a>
     <a href="LICENSE"><img alt="License: Apache-2.0" src="https://img.shields.io/badge/license-Apache--2.0-blue.svg" /></a>
-    <a href="https://github.com/Raishin/vanguard-frontier-agentic/actions/workflows/codeql.yml"><img alt="CodeQL" src="https://github.com/Raishin/vanguard-frontier-agentic/actions/workflows/codeql.yml/badge.svg?branch=master" /></a>
-    <a href="https://github.com/Raishin/vanguard-frontier-agentic/actions/workflows/install-paths-smoke.yml"><img alt="Install Paths Smoke" src="https://github.com/Raishin/vanguard-frontier-agentic/actions/workflows/install-paths-smoke.yml/badge.svg?branch=master" /></a>
-    <a href="https://scorecard.dev/viewer/?uri=github.com/Raishin/vanguard-frontier-agentic"><img alt="OpenSSF Scorecard" src="https://api.securityscorecards.dev/projects/github.com/Raishin/vanguard-frontier-agentic/badge" /></a>
+    <a href="https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/actions/workflows/codeql.yml"><img alt="CodeQL" src="https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/actions/workflows/codeql.yml/badge.svg?branch=master" /></a>
+    <a href="https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/actions/workflows/install-paths-smoke.yml"><img alt="Install Paths Smoke" src="https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/actions/workflows/install-paths-smoke.yml/badge.svg?branch=master" /></a>
+    <a href="https://scorecard.dev/viewer/?uri=github.com/VincentChuWaiChow/vanguard-frontier-agentic"><img alt="OpenSSF Scorecard" src="https://api.securityscorecards.dev/projects/github.com/VincentChuWaiChow/vanguard-frontier-agentic/badge" /></a>
     <a href="https://www.bestpractices.dev/projects/12964"><img alt="OpenSSF Best Practices" src="https://www.bestpractices.dev/projects/12964/badge" /></a>
     <a href="https://www.bestpractices.dev/projects/12964"><img alt="OpenSSF Baseline" src="https://www.bestpractices.dev/projects/12964/baseline" /></a>
-    <a href="https://github.com/Raishin/vanguard-frontier-agentic/actions/workflows/docs-quality.yml"><img alt="Docs Quality" src="https://github.com/Raishin/vanguard-frontier-agentic/actions/workflows/docs-quality.yml/badge.svg?branch=master" /></a>
+    <a href="https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/actions/workflows/docs-quality.yml"><img alt="Docs Quality" src="https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/actions/workflows/docs-quality.yml/badge.svg?branch=master" /></a>
     <a href="https://docs.npmjs.com/generating-provenance-statements"><img alt="npm provenance" src="https://img.shields.io/badge/npm-provenance-26a566.svg?logo=npm" /></a>
     <a href="CONTRIBUTING.md"><img alt="PRs welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" /></a>
   </p>
@@ -29,7 +29,7 @@
     <a href="#install-reference">Install Reference</a> &nbsp;·&nbsp;
     <a href="#skills">Skills</a> &nbsp;·&nbsp;
     <a href="#agents">Agents</a> &nbsp;·&nbsp;
-    <a href="https://github.com/Raishin/vanguard-frontier-agentic/issues">Issues</a> &nbsp;·&nbsp;
+    <a href="https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/issues">Issues</a> &nbsp;·&nbsp;
     <a href="#faq">FAQ</a> &nbsp;·&nbsp;
     <a href="#feedback">Feedback</a> &nbsp;·&nbsp;
     <a href="CONTRIBUTING.md">Contributing</a> &nbsp;·&nbsp;
@@ -83,7 +83,18 @@ operates in. Coordination, governance, and escalation are the product.
 *and any other coding agent.*
 
 > 📦 **Available on npm:** `@raishin/vanguard-frontier-agentic` is published on the public npm registry.
+
+> [!IMPORTANT]
+> 🔁 **The GitHub owner changed — the npm package name did not.** Both are true at once: this repository moved from `Raishin/vanguard-frontier-agentic` to [`VincentChuWaiChow/vanguard-frontier-agentic`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic) when the account was renamed, but the npm scope did not move with it.
 >
+> | What changed | What did NOT change |
+> | --- | --- |
+> | GitHub owner → **`VincentChuWaiChow`** | npm package name → still **`@raishin/vanguard-frontier-agentic`** |
+>
+> GitHub redirects the old URLs, so existing clones and links keep working, but update your `git remote` and any pinned marketplace source when convenient.
+>
+> The npm package is **still `@raishin/vanguard-frontier-agentic`** — `npm install @raishin/vanguard-frontier-agentic@latest` is unchanged, and no republish under a new name is planned. An npm scope is a separate namespace from a GitHub account: renaming the account does not rename the scope, and renaming the scope would break every existing install. Treat `@raishin/…` in install commands, `.npmrc` registry config, and packed tarball names as correct, not as a leftover.
+
 > ⚠️ **ALPHA FINOPS BUNDLE**: As of v1.8.0, this package includes 4 new experimental FinOps agents and 7 skills for cloud cost optimization, AI economics modeling, Kubernetes rightsizing, and FOCUS-spec normalization. All are marked `lifecycle: experimental`. [See the board readiness memo](docs/strategy/finops-maestro-board-memo.md) for known limitations, risk mitigation, and 30-day diligence closure requirements. Use at your own risk in pre-production environments. Production deployment requires signed design-partner SOWs, Big 4 accounting validation, and SOC 2 Type II observation (≥150 days).
 
 ---
@@ -153,10 +164,10 @@ Pick the install path for your coding agent. Each dropdown is crystal-clear, ste
 
 | Your harness | Fastest path | One-liner |
 | ------------ | ------------ | --------- |
-| 🤖 Claude Code | Plugin marketplace | `/plugin marketplace add Raishin/vanguard-frontier-agentic` |
-| 🐙 GitHub Copilot CLI | Plugin marketplace | `copilot plugin marketplace add Raishin/vanguard-frontier-agentic` |
+| 🤖 Claude Code | Plugin marketplace | `/plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic` |
+| 🐙 GitHub Copilot CLI | Plugin marketplace | `copilot plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic` |
 | 🖱️ Cursor | Clone + register plugin dir | `git clone …` then **Settings → Plugins → Add Plugin Directory** |
-| ⚡ Codex | Plugin marketplace | `codex plugin marketplace add Raishin/vanguard-frontier-agentic` |
+| ⚡ Codex | Plugin marketplace | `codex plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic` |
 | ♊ Gemini / Antigravity | npm export | `npx vfa-export-agents --platform gemini --all --repo .` |
 | 🔮 Kiro | Add Powers per-directory | Powers panel → **Add Custom Power → Local Directory** |
 | 📦 Any other | npm + `vfa-export-agents` CLI | `npm install @raishin/vanguard-frontier-agentic@latest` |
@@ -169,7 +180,7 @@ Expand the matching dropdown below for the full step-by-step.
 <br>
 
 ```bash
-/plugin marketplace add Raishin/vanguard-frontier-agentic
+/plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic
 /plugin install vanguard-frontier-agentic@vanguard-frontier-agentic
 ```
 
@@ -179,7 +190,7 @@ Or wire it into `~/.claude/settings.json` (or your project's `.claude/settings.j
 {
   "extraKnownMarketplaces": {
     "vanguard-frontier-agentic": {
-      "source": { "source": "github", "repo": "Raishin/vanguard-frontier-agentic" }
+      "source": { "source": "github", "repo": "VincentChuWaiChow/vanguard-frontier-agentic" }
     }
   },
   "enabledPlugins": {
@@ -188,7 +199,7 @@ Or wire it into `~/.claude/settings.json` (or your project's `.claude/settings.j
 }
 ```
 
-Pin to a tag for reproducible installs: pick any [released tag](https://github.com/Raishin/vanguard-frontier-agentic/releases) for stable versions, or use `@latest` for the current release.
+Pin to a tag for reproducible installs: pick any [released tag](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/releases) for stable versions, or use `@latest` for the current release.
 
 - **Bundled:** all <!-- count:agents -->666<!-- /count --> cloud, security, compliance, Kubernetes, Terraform agents (incl. provider maestros and live-guard agents)
 - **Spec:** [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json) + [`.claude-plugin/plugin.json`](.claude-plugin/plugin.json) (canonical Claude Code plugin layout)
@@ -204,7 +215,7 @@ Pin to a tag for reproducible installs: pick any [released tag](https://github.c
 
 ```bash
 # Add the marketplace, then install
-copilot plugin marketplace add Raishin/vanguard-frontier-agentic
+copilot plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic
 /plugin install vanguard-frontier-agentic
 ```
 
@@ -213,7 +224,7 @@ Or in `.github/copilot/settings.json` for repo-wide trust:
 ```json
 {
   "extraKnownMarketplaces": [
-    "https://raw.githubusercontent.com/Raishin/vanguard-frontier-agentic/master/.github/plugin/marketplace.json"
+    "https://raw.githubusercontent.com/VincentChuWaiChow/vanguard-frontier-agentic/master/.github/plugin/marketplace.json"
   ]
 }
 ```
@@ -232,7 +243,7 @@ Or in `.github/copilot/settings.json` for repo-wide trust:
 
 ```bash
 # Clone the repo, then register it as a plugin directory in Cursor:
-git clone https://github.com/Raishin/vanguard-frontier-agentic
+git clone https://github.com/VincentChuWaiChow/vanguard-frontier-agentic
 ```
 
 In Cursor: **Settings → Plugins → Add Plugin Directory** → pick the cloned repo path. Or via the Cursor Extension API:
@@ -257,7 +268,7 @@ Kiro Powers UI is per-Power directory add — there is no single-command marketp
 
 ```bash
 # 1. Clone this repo
-git clone https://github.com/Raishin/vanguard-frontier-agentic
+git clone https://github.com/VincentChuWaiChow/vanguard-frontier-agentic
 cd vanguard-frontier-agentic
 
 # 2. In Kiro:
@@ -311,7 +322,7 @@ npx vfa-export-agents --platform gemini --provider aws --repo .
 
 ```bash
 # Add the marketplace, then enable the bundled plugin
-codex plugin marketplace add Raishin/vanguard-frontier-agentic
+codex plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic
 /plugin install vanguard-frontier-agentic@vanguard-frontier-agentic
 ```
 
@@ -322,7 +333,7 @@ codex plugin marketplace add Raishin/vanguard-frontier-agentic
 last_updated = "2026-05-11T06:46:00Z"
 last_revision = "<sha>"
 source_type = "git"
-source = "https://github.com/Raishin/vanguard-frontier-agentic.git"
+source = "https://github.com/VincentChuWaiChow/vanguard-frontier-agentic.git"
 
 [plugins."vanguard-frontier-agentic@vanguard-frontier-agentic"]
 enabled = true
@@ -386,7 +397,7 @@ An enterprise-grade terminal interface for interactive catalog browsing, validat
 cargo install vfa-tui
 ```
 
-Or download a prebuilt binary (Linux / macOS / Windows, x86-64 + arm64) — each release attaches the binaries alongside their SBOM and `checksums.sha256` — from the [latest `vfa-tui` release](https://github.com/Raishin/vanguard-frontier-agentic/releases?q=vfa-tui).
+Or download a prebuilt binary (Linux / macOS / Windows, x86-64 + arm64) — each release attaches the binaries alongside their SBOM and `checksums.sha256` — from the [latest `vfa-tui` release](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/releases?q=vfa-tui).
 
 **Build from source** (alternative):
 
@@ -971,7 +982,7 @@ Before implementing any new feature, agents, or skills:
 3. **Validate** — Run the test suite and evals
 4. **Report** — Document results in `.claude/evals/<feature>.md`
 
-**Example:** The [EU cloud providers feature](https://github.com/raishin/vanguard-frontier-agentic/pull/18) was built using EDD:
+**Example:** The [EU cloud providers feature](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/pull/18) was built using EDD:
 
 - **CE-1 to CE-6**: Capability evals (filesystem layout, companion skills, security, schema, docs, content quality)
 - **CE-7 to CE-8**: Post-implementation evals (role-based install coverage, taxonomy/docs updates)
@@ -1166,7 +1177,7 @@ Prefer these over blog posts. Blog posts can help explain, but they are not the 
 
 We value your input — it helps improve this marketplace for the whole community.
 
-- **Bugs & feature requests:** [open an issue](https://github.com/Raishin/vanguard-frontier-agentic/issues/new) — 👍 the ones you want prioritized.
+- **Bugs & feature requests:** [open an issue](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/issues/new) — 👍 the ones you want prioritized.
 - **New skill or agent ideas:** describe the use case in an issue and we will review.
 - **Security concerns:** see [`SECURITY.md`](SECURITY.md) for responsible disclosure.
 
@@ -1282,7 +1293,7 @@ This project is built in the hours before and after a full-time architecture rol
 
 If you've installed the package, opened an agent, or just found value in knowing this exists — **thank you**. That's already enough.
 
-If you want to accelerate it: **<https://github.com/sponsors/Raishin>**
+If you want to accelerate it: **<https://github.com/sponsors/VincentChuWaiChow>**
 
 ---
 
@@ -1292,16 +1303,16 @@ Projects built on, inspired by, or extending the Vanguard Frontier Agentic marke
 
 | Project | Description |
 |---------|-------------|
-| *(your project here)* | Built something with VFA? [Open a PR](https://github.com/Raishin/vanguard-frontier-agentic/pulls) to add it to this list. |
+| *(your project here)* | Built something with VFA? [Open a PR](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/pulls) to add it to this list. |
 
 ---
 
 ## ⭐ Star History
 
-<a href="https://www.star-history.com/?repos=Raishin%2Fvanguard-frontier-agentic&type=date&legend=top-left">
+<a href="https://www.star-history.com/?repos=VincentChuWaiChow%2Fvanguard-frontier-agentic&type=date&legend=top-left">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=Raishin/vanguard-frontier-agentic&type=date&theme=dark&legend=bottom-right" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=Raishin/vanguard-frontier-agentic&type=date&legend=bottom-right" />
-   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=Raishin/vanguard-frontier-agentic&type=date&legend=bottom-right" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=VincentChuWaiChow/vanguard-frontier-agentic&type=date&theme=dark&legend=bottom-right" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=VincentChuWaiChow/vanguard-frontier-agentic&type=date&legend=bottom-right" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=VincentChuWaiChow/vanguard-frontier-agentic&type=date&legend=bottom-right" />
  </picture>
 </a>

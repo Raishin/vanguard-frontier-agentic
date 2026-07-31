@@ -3,7 +3,7 @@ name: dotnet-observability-otel-review
 description: Use this skill when reviewing in-application OpenTelemetry wiring in an ASP.NET Core service — OpenTelemetry SDK registration, trace context propagation across service boundaries, structured logging, correlation and trace identifiers in logs, metrics instrumentation, trace sampling, the health-vs-readiness check distinction, and PII leakage into span attributes or log messages. Trigger when a user provides ASP.NET Core source (Program.cs, telemetry registration, logging configuration, instrumentation code) or sanitized appsettings, asks whether their telemetry is wired correctly, or wants to know why traces are missing or logs are uncorrelated. This skill reviews source and sanitized configuration statically; it never runs the app or contacts a telemetry backend.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-19"
   category: observability

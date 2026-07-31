@@ -3,7 +3,7 @@ name: python-native-extension-interop
 description: "Use this skill to statically review Python native extensions and interop (CPython C API, Cython, PyO3/Rust): reference-ownership correctness, stable-ABI use, buffer-protocol safety, exception translation, and thread/GIL and free-threaded readiness. Reads extension source and build config only; it never compiles or runs the extension."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-26"
   category: architecture

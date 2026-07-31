@@ -3,7 +3,7 @@ name: alibaba-maestro
 description: Alibaba Cloud Maestro routing skill. Classify the user's Alibaba Cloud task, select the narrowest specialist agent or the right team of specialists from the catalog, and dispatch them — single specialist for focused tasks, parallel team (max 4) for multi-domain tasks. Never auto-dispatch live-guard agents. China-region aware — flags when workloads are in mainland China regions and applicable regulatory frameworks (MLPS 2.0, DSL, PIPL) differ from international regions.
 allowed-tools: Agent Skill Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: ai

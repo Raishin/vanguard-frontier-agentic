@@ -3,7 +3,7 @@ name: sveltekit-progressive-enhancement-review
 description: Statically review SvelteKit forms and form actions for functional resilience without JavaScript (native method="POST" fallback) and for use:enhance customization correctness (ActionResult branch handling, cancel() feedback, redirect/invalidation behavior), flagging silent-failure and conversion-risk defects.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: architecture

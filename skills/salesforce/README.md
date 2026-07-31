@@ -8,7 +8,7 @@ This directory contains **25** Salesforce domain skills curated for this marketp
 
 Provider: `salesforce`
 Lifecycle: `experimental`
-Author: `github: Raishin`
+Author: `github: VincentChuWaiChow`
 
 ---
 

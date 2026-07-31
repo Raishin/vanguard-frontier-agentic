@@ -3,7 +3,7 @@ name: hedge-accounting-advisor
 description: Multi-jurisdiction hedge accounting reference framework covering ASC 815 (US GAAP) and IFRS 9 hedge designation, effectiveness testing, OCI mechanics, IFRS 9 rebalancing, cost-of-hedging approach, discontinuation rules, embedded derivatives, and local GAAP treatments (German HGB §254, JGAAP ASBJ No.10, CAS 24, Ind AS 109). Includes fair value hedges, cash flow hedges, and net investment hedges with a multi-jurisdiction comparison table. Advisory only — all outputs require verification by qualified accountants and external auditors.
 allowed-tools: Skill Read WebFetch Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-02"
   category: finance

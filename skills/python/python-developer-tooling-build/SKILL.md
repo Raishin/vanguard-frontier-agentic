@@ -3,7 +3,7 @@ name: python-developer-tooling-build
 description: "Use this skill to statically review Python developer tooling and build configuration: whether linters, type-checkers, and tests are wired to catch meaningful defects (not stylistic noise), CI gate coverage, tox/nox environment isolation, build-backend and project layout, and the pre-commit developer feedback loop. Reads tool, CI, and build configuration only; it never runs ruff, mypy, tox, pre-commit, or the CI pipeline."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-26"
   category: delivery

@@ -3,7 +3,7 @@ name: nextjs-app-router-data-fetching-review
 description: Statically review Next.js App Router Server/Client Component boundaries and Server Action data mutations for correct data-fetching placement, bundle-leak risk, and authorization-trust integrity, escalating client-trusted authorization to a security finding rather than a style note.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: architecture

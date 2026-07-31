@@ -3,7 +3,7 @@ name: alibaba-landing-zone-architect
 description: Design Alibaba Cloud landing zone — Resource Management org tree, Cloud SSO, Control Policy (SCP equivalent), multi-account governance baseline, billing account structure, and ActionTrail centralization.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: platform

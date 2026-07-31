@@ -3,7 +3,7 @@ name: java-jdk-lifecycle-and-upgrade
 description: Use this skill when statically reviewing a Java estate's JDK lifecycle and upgrade posture — identifying the JDK vendor and version, mapping them to support and license boundaries, finding language/API upgrade blockers, and prescribing a phased, evidence-gated upgrade path. Trigger when a user provides build files (pom.xml, build.gradle), toolchain/CI config, or a Dockerfile and asks whether their JDK is supported, what an upgrade will break, or how to sequence it. Reads build files and source only; it never runs a build, invokes a JDK, or asserts vendor lifecycle dates from memory.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.2.0"
   updated: "2026-07-17"
   category: platform

@@ -3,7 +3,7 @@ name: monorepo-package-governance-review
 description: Reviews monorepo task-graph configuration (Turborepo tasks/caching, Nx task pipelines) alongside dependency and lockfile governance (pnpm catalogs, npm overrides, lifecycle-script risk) to prevent false-green CI from stale cache reuse and unpinned supply-chain exposure.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.2.0"
   updated: "2026-07-03"
   category: platform

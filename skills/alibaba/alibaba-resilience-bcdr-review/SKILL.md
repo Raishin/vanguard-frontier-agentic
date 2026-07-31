@@ -3,7 +3,7 @@ name: alibaba-resilience-bcdr-review
 description: Review Alibaba Cloud workload HA and BCDR designs — RDS High-Availability Edition failover, PolarDB Global Database Network, ACK multi-zone, ECS disaster recovery cross-region, RTO/RPO target analysis, and HBR (Hybrid Backup Recovery) coverage.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: resilience

@@ -3,7 +3,7 @@ name: huawei-landing-zone-architect
 description: Set up Huawei Cloud Organizations with SCP baseline, IAM fine-grained permission structure, Enterprise Projects governance model, and master account structure for multi-account/multi-project governance.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: architecture

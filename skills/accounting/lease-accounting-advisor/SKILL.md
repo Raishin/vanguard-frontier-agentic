@@ -3,7 +3,7 @@ name: lease-accounting-advisor
 description: Multi-jurisdiction lease accounting reference framework covering ASC 842 (US GAAP) and IFRS 16, with additional coverage of UK FRS 102 (2024 periodic review amendments effective 1 Jan 2026), German HGB, JGAAP (ASBJ Statement No. 34, effective FY beginning on/after 1 Apr 2027), CAS No. 21 (China), and Ind AS 116 (India). Covers lease identification, lessee classification (ASC 842 dual model vs. IFRS 16 single finance model), right-of-use asset and lease liability measurement, discount rates (incremental borrowing rate vs. rate implicit in lease), lessor accounting (sales-type / direct-financing / operating), short-term and low-value exemptions, lease modifications and remeasurement, and sale-leaseback transactions. Advisory only — all outputs require external auditor verification for local statutory purposes.
 allowed-tools: Skill Read WebFetch Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-01"
   category: finance

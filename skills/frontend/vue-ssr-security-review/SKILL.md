@@ -3,7 +3,7 @@ name: vue-ssr-security-review
 description: Statically review Vue 3 SSR entry points and templates for cross-request state pollution (module-scope reactive state, non-per-request app/store creation) and injection via unsanitized v-html or unvalidated dynamic href/src bindings, grounded in Vue's own SSR and security-best-practices guidance.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: security

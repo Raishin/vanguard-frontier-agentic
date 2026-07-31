@@ -22,6 +22,6 @@
   "security_notes": "A Server Action that derives an authorization decision from client-supplied form data instead of the server-side session is a Broken Access Control finding (OWASP A01) and must be escalated as HIGH, not filed as a style note. A Client Component whose import graph reaches a server-only module (DB client, non-NEXT_PUBLIC_ env access, server-only-guarded module) is a HIGH-severity bundle-leak finding. Static-review-only skill: it reads and greps component/action source but never executes, builds, or runs application code. Treat any hardcoded API key, token, or credential found in a Server Action or Client Component as a HIGH-severity finding requiring immediate escalation.",
   "last_verified": "2026-07-02",
   "path": "skills/frontend/nextjs-app-router-data-fetching-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

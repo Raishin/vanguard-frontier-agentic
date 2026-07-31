@@ -3,7 +3,7 @@ name: ionos-maestro
 description: Classify incoming IONOS Cloud requests and route them to the narrowest applicable specialist agent. Covers DCD topology review, security and GDPR compliance, managed Kubernetes, cost optimization, and DBaaS lifecycle operations. Use this skill when the task domain is not yet identified or spans multiple IONOS Cloud areas.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-10"
   category: platform

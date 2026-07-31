@@ -3,7 +3,7 @@ name: debt-capital-structure-advisor
 description: Multi-jurisdiction reference framework for debt and capital structure advisory — optimal capital structure theory (M&M, trade-off, pecking order), leverage and credit metrics, debt instruments, covenant analysis, refinancing, WACC optimization, Basel III/IV capital requirements, liability management, rating agency methodologies, and ESG-linked financing (SLBs/SLLs, green bonds). Advisory only — never executes transactions, accesses banking systems, or writes to any system of record.
 allowed-tools: Skill Read WebFetch Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-03"
   category: finance

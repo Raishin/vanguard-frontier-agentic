@@ -3,7 +3,7 @@ name: gcp-gke-platform-operator
 description: Operate GKE clusters (Standard and Autopilot), manage node pools, configure Workload Identity, enforce Binary Authorization, plan node pool upgrades, and review cluster security posture.
 allowed-tools: Read Grep Glob Bash(gcloud container:*) Bash(kubectl apply:*)
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.2.0"
   updated: "2026-05-09"
   category: platform

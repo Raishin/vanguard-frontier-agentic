@@ -3,7 +3,7 @@ name: vue-composition-api-architecture-review
 description: Statically review Vue 3 Composition API code — composable extraction quality, reactivity-boundary correctness (ref/reactive/computed usage, destructuring-loses-reactivity pitfalls), and script-setup component organization — against Vue's own documented composable conventions and reactivity fundamentals.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: architecture

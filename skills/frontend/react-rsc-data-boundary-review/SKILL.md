@@ -3,7 +3,7 @@ name: react-rsc-data-boundary-review
 description: Statically review React Server Components code for data leaks across the server-to-client serialization boundary — secrets passed as props to Client Components, server-only modules missing the `server-only` guard, `use server` actions with no authorization check, non-public environment variables read in `use client` modules, and tainted values crossing the boundary unnarrowed — grounded in React's and Next.js's own documentation.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-03"
   category: security

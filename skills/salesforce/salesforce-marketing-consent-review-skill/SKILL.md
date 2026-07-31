@@ -3,7 +3,7 @@ name: salesforce-marketing-consent-review-skill
 description: Use this skill when marketing data flows must be reviewed for consent capture, lawful basis, purpose limitation, preference center coverage, suppression list integrity, subscriber-key collision risk, deliverability authentication (SPF, DKIM, DMARC), and unsubscribe link integrity. Covers Marketing Cloud, Account Engagement (formerly Pardot), Data Cloud, and related marketing orchestration tools. Trigger phrases: "review our marketing consent model", "check this Marketing Cloud data flow for consent", "is our preference center compliant", "review subscriber key design", "check SPF and DKIM for our sending domain". Do not use when the subject is a general Salesforce integration not involving marketing data (use salesforce-integration-review-skill), when a live Marketing Cloud change is being deployed (use salesforce-live-change-approval-protocol), or when a data exposure event has occurred (use salesforce-data-exposure-escalation-protocol). Works from sanitized design documents and configuration exports only; never requests live credentials or accesses marketing accounts.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-20"
   category: compliance

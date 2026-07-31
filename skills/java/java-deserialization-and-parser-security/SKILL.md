@@ -3,7 +3,7 @@ name: java-deserialization-and-parser-security
 description: Use this skill when statically reviewing the JVM's untrusted-deserialization and data-parsing surface for remote-code-execution and injection risk — Java native ObjectInputStream gadget chains (and the ObjectInputFilter/JEP 290 control), SnakeYAML bare Constructor, Jackson polymorphic default typing without a PolymorphicTypeValidator, XML external-entity (XXE) exposure across every parser factory, and reflective/expression sinks fed by untrusted input. Trigger when a user provides code that deserializes bytes or parses YAML/JSON/XML from a request, message, uploaded file, or external API, or asks whether a parser is safe. Reads source and sanitized configuration only; it never executes code or deserializes a payload.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-17"
   category: security

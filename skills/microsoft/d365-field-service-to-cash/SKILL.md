@@ -3,7 +3,7 @@ name: d365-field-service-to-cash
 description: Review Dynamics 365 Field Service operations across the service-to-cash (now "service to deliver") lifecycle — work order management, Universal Resource Scheduling, schedule board and Resource Scheduling Optimization, bookable resources, technician mobile execution, asset and preventive maintenance, inventory/truck stock, and work-order-to-invoice billing. Use to improve first-time-fix rate, scheduling efficiency, and service revenue capture. Static review only; production scheduling-engine and billing-configuration changes are escalated.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-16"
   category: operational

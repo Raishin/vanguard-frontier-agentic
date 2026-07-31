@@ -3,7 +3,7 @@ name: salesforce-devsecops-pipeline-skill
 description: Use this skill when Salesforce development pipelines must be reviewed for DevSecOps compliance — covering Salesforce Code Analyzer (SCA) finding triage and false positive review, sandbox data governance and PII masking strategy, change impact analysis across metadata dependencies and downstream automation, CI/CD security gate requirements, and DevOps Center deployment governance. Trigger phrases: "review SCA findings", "triage code analyzer results", "assess sandbox data masking", "review change impact", "audit DevSecOps pipeline", "check CI/CD security gates", "review Salesforce DevOps". Do not use when Apex or LWC code patterns are the focus (use salesforce-apex-lwc-code-review-skill), when release readiness approval is needed (use salesforce-release-readiness-skill), when a live deployment is being executed (use salesforce-live-change-approval-protocol), or when permission model changes are under review (use salesforce-permission-model-review-skill). Works from sanitized exports and tool outputs only; never requests live org access.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-21"
   category: delivery

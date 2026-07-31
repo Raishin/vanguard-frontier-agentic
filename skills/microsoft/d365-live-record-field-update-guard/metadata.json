@@ -16,7 +16,7 @@
   "security_notes": "Mutating-runtime Phase B. Custom least-privilege write role with Write (prvWrite) on the one in-scope table only. System Administrator, System Customizer, Delete, bulk, wildcard, ownership changes, security-role/privilege edits, and Power Platform management SPN path are all explicitly denied. Requires written human approval token referencing exact target. PREFLIGHT dry-run diff required before any write. Prior field values captured for ROLLBACK inverse PATCH. Output signed with idempotency key and audit-logged.",
   "last_verified": "2026-06-17",
   "path": "skills/microsoft/d365-live-record-field-update-guard",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "companion_agents": ["d365-live-record-field-update-guard-agent"]
 }

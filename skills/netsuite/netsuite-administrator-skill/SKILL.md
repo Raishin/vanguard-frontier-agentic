@@ -3,7 +3,7 @@ name: netsuite-administrator-skill
 description: "Flashlight skill for reviewing NetSuite account administration configurations aligned to the Administrator Professional certification (N16291GC10). T0 static review — no live account connection required, never Administrator role. TRIGGER when: user asks to review accounting preferences, tax nexus setup, currency management, user provisioning policy, email template defaults, sandbox refresh procedures, release preview planning, or account-level system preferences in NetSuite. Trigger phrases: review account setup, audit user provisioning, check accounting preferences, validate tax configuration, sandbox refresh checklist, release preview prep, administrator review. DO NOT TRIGGER when: request concerns OAuth 2.0 or TBA authentication flows (use netsuite-sso-oauth-tba-agent), role permission and SoD matrix design (use netsuite-identity-access-role-permission-agent), financial close controls or posting periods (use netsuite-financial-foundations-agent), SuiteScript code review (use netsuite-application-developer-agent), or any live mutation in a production account is requested."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-09"
   category: platform

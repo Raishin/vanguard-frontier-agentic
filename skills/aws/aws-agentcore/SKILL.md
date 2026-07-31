@@ -3,7 +3,7 @@ name: aws-agentcore
 description: Build, test, migrate, integrate, and deploy Amazon Bedrock AgentCore agents. Use for AgentCore runtime, local development, import/migration, deployment, Memory, Gateway/MCP tools, Identity, Observability, Browser, Code Interpreter, Evaluations, Registry, Payments, policy, and harness-vs-code-path decisions. Load references only when that component is needed.
 allowed-tools: Read Edit Write MultiEdit Grep Glob Bash
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.8"
   updated: "2026-06-02"
   category: ai

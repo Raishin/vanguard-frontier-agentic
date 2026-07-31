@@ -21,6 +21,6 @@
   "security_notes": "Micro-frontend boundaries that share a JavaScript runtime (module federation, build-time composition, or any non-iframe composition) collapse the CSP trust boundary between teams' code — a vulnerability, XSS, or broken bundle in one remote can affect the host and sibling remotes sharing that runtime. Require an explicit shared-dependency version-compatibility contract and a documented blast-radius statement (error-boundary isolation, independent deploy/rollback) for any non-iframe-isolated micro-frontend adoption, and require iframe isolation or an equivalent mitigation for any remote handling data that should not share a trust boundary with lower-trust remotes. Static-review-only skill: it reads and greps composition config and does not execute, build, or run application code, dev servers, or bundler configs. Treat any hardcoded credential, API key, or token found in a remote's config or example fixture as a HIGH-severity finding requiring immediate escalation.",
   "last_verified": "2026-07-02",
   "path": "skills/frontend/microfrontend-boundary-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

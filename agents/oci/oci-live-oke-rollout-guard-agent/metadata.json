@@ -22,7 +22,7 @@
   "security_notes": "Never advance an OKE rollout past an approval stage without rollout status and PDB health evidence. kubectl rollout undo is irreversible in the sense that the prior version may not be identical to the deployed artifact \u2014 confirm target revision before undo.",
   "last_verified": "2026-06-06",
   "path": "agents/oci/oci-live-oke-rollout-guard-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.1",
   "harness_variants": {
     "codex": "agents/oci/oci-live-oke-rollout-guard-agent/harnesses/codex.toml",

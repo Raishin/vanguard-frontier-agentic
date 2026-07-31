@@ -30,7 +30,7 @@
   "security_notes": "Static review only. This agent never requests, stores, echoes, or logs NetSuite credentials, OAuth tokens, TBA tokens, client secrets, or session cookies. The AI Connector role reviewed must never be the Administrator role (evidence row 6a). Exact permission names are critical: 'MCP Server Connection' and 'Log in using OAuth 2.0 Access Tokens' (evidence rows 6b, 6c). HIPAA/BAA healthcare accounts cannot use the AI Connector (evidence row 6e). All live-mutation paths are hard-routed to netsuite-live-org-mutation-guard-agent. No org connection is established at any point.",
   "last_verified": "2026-06-09",
   "path": "skills/netsuite/netsuite-ai-connector-mcp-skill",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "source_attribution": "Adapted from oracle/netsuite-suitecloud-sdk packages/agent-skills/netsuite-ai-connector-instructions (Universal Permissive License UPL-1.0; Copyright (c) 2019, 2023 Oracle and/or its affiliates; https://oss.oracle.com/licenses/upl). Oracle upstream skill provides tool-selection decision trees, SuiteQL safety checklist, output formatting standards, multi-subsidiary/multi-currency scoping, and SafeWords security principles. Vanguard additions: harness routing and intake classification, tool-call logging and retry governance, prompt-injection testing review workflow, HIPAA/BAA restriction gate, and exact-permission-name verification gate."
 }

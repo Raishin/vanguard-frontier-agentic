@@ -3,7 +3,7 @@ name: gcp-daily-operations-briefing-coordinator
 description: Coordinate the daily GCP operations standup — cost delta from previous day, quota warning review, failed deployment detection, Security Command Center finding triage, SLO burn rate alert review, and action item assignment.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: observability

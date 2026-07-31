@@ -3,7 +3,7 @@ name: dotnet-efcore-data-access-review
 description: Use this skill when statically reviewing EF Core data access — DbContext lifetime and registration, N+1 query patterns, unbounded result sets, raw SQL injection surface, optimistic concurrency tokens, migration discipline, multi-tenant global query filters, and connection resiliency. Trigger when a user provides EF Core source (a DbContext class, entity configuration, migrations, repository or query code), asks why queries are slow or why tenants can see each other's data, or wants to know whether their data access layer is correct, performant, and isolated. This skill reads source only; it never runs migrations, opens a database connection, or executes SQL.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-19"
   category: database

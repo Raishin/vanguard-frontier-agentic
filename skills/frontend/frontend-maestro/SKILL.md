@@ -3,7 +3,7 @@ name: frontend-maestro
 description: Route frontend governance tasks to the narrowest specialist or parallel team (max 4) from the frontend agent catalog. Use when you do not already know which frontend specialist handles the task. Not for direct frontend answers; Maestro classifies, dispatches, and hands off to frontend-board-chair-agent only. Never auto-dispatches live-mutation-capable specialists — requires explicit human confirmation with blast-radius and rollback before routing to any live-guard specialist.
 allowed-tools: Agent Skill Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: ai

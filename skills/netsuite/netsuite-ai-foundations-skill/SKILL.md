@@ -3,7 +3,7 @@ name: netsuite-ai-foundations-skill
 description: "Flashlight skill for reviewing NetSuite AI feature enablement and AI Connector Service configuration posture, aligned to the AI Foundations Associate certification (N16765GC10, available). T0 static review — no live account connection required. NOTE: AI Specialist and AI Professional certifications are COMING SOON and are not yet available; this skill does not cover those levels. TRIGGER when: user asks to review NetSuite AI feature enablement (bill matching, anomaly detection, text enhancement, predicted risk), AI Connector Service configuration, MCP Server Connection permission setup, OAuth 2.0 Access Tokens permission for AI roles, HIPAA/BAA restriction for healthcare accounts, or AI governance and PII exposure controls. Trigger phrases: AI Foundations review, AI Connector configuration, MCP Server Connection permission, NetSuite AI features, AI bill matching, AI anomaly detection, HIPAA AI restriction, AI governance review, Log in using OAuth 2.0 Access Tokens. DO NOT TRIGGER when: request is about AI Connector MCP tool execution or SuiteQL query safety (use netsuite-ai-connector-mcp-agent); OAuth 2.0 authentication setup beyond the AI role (use netsuite-sso-oauth-tba-agent); SuiteScript code security (use netsuite-suitescript-secure-code-review-agent); or live account mutation is required (use netsuite-live-org-mutation-guard-agent). Never assert that AI Specialist or AI Professional certifications are available — they are COMING SOON."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-09"
   category: ai

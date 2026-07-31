@@ -3,7 +3,7 @@ name: nvidia-cuda-kernel-performance-review
 description: Use this skill when reviewing CUDA C/C++ kernel sources statically against NVIDIA's published performance guidance — global-memory coalescing, shared-memory bank conflicts, warp divergence, occupancy and register pressure, stream/event concurrency, kernel launch parameter selection. Trigger when the user asks whether a `.cu` or `.cuh` file follows NVIDIA's published performance and correctness guidance, or asks for the exact `nsight-compute` or `nsight-systems` invocation to run themselves.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-10"
   category: platform

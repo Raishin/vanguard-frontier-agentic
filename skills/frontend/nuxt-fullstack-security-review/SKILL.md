@@ -3,7 +3,7 @@ name: nuxt-fullstack-security-review
 description: Statically review Nuxt 3/4 full-stack code for private secrets exposed via runtimeConfig.public/NUXT_PUBLIC_* env vars, useState/module-scope cross-request state pollution in Nitro, server-route SSRF via $fetch/ofetch with blind useRequestHeaders/credential forwarding, NuxtPayload/useState serialization reaching an XSS sink, and missing security response headers (routeRules headers, nuxt-security), grounded in Nuxt's own documentation via Context7.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-03"
   category: security

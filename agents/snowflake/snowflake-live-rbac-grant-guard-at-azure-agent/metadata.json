@@ -23,7 +23,7 @@
   "security_notes": "Mutating-runtime Phase B. Executes exactly one GRANT or REVOKE per invocation on one Snowflake securable to one custom role. Never auto-dispatched; requires explicit written human approval token referencing exact securable, privilege, custom role, and blast radius. Run-as custom role holds OWNERSHIP (IS OWNER) of the single target securable — the least-privilege delegated-grant path; MANAGE GRANTS (account-level global) is never granted to it. Never ACCOUNTADMIN. Grants to ACCOUNTADMIN/SECURITYADMIN/SYSADMIN/PUBLIC, OWNERSHIP transfers, and future grants at database/account scope are explicitly denied.",
   "last_verified": "2026-06-17",
   "path": "agents/snowflake/snowflake-live-rbac-grant-guard-at-azure-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "execution_tier": "mutating-runtime",
   "oauth_scopes": [],

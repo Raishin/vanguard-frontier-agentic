@@ -3,7 +3,7 @@ name: alibaba-waf-security-review
 description: "Assess Alibaba Cloud workload security posture: RAM least-privilege, VPC isolation, KMS/HSM encryption, Cloud Security Center threat detection, ActionTrail audit, WAF/Anti-DDoS web protection, and Chinese regulatory compliance (MLPS 2.0, DSL, PIPL)."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: security

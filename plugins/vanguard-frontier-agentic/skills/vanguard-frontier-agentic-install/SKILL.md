@@ -12,7 +12,7 @@ Use this skill when the user wants the Vanguard Frontier Agentic marketplace con
 Run from any directory:
 
 ```bash
-codex plugin marketplace add Raishin/vanguard-frontier-agentic
+codex plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic
 npx --yes -p @raishin/vanguard-frontier-agentic \
   vfa-export-agents --platform codex --all --repo "$HOME" --force
 ```

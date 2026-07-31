@@ -8,7 +8,7 @@ keywords:
   - guest-user
   - sharing-model
   - external-identity
-author: "github: Raishin"
+author: "github: VincentChuWaiChow"
 ---
 
 # Salesforce Experience Cloud Agent

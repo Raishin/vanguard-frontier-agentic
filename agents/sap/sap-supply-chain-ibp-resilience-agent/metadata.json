@@ -26,7 +26,7 @@
   "security_notes": "Static review only — no Bash, no IBP OData API calls, no S/4HANA RFC/BAPI mutations, no planning model changes, no master data writes. Never triggers a planning run, modifies a supply network model, or alters any IBP configuration object. Never accepts real IBP tenant credentials, S/4HANA basis passwords, actual supplier contract quantities, current inventory positions from live systems, or customer order data. Findings indicating supply network model failure to reflect current sourcing constraints, undetectable multi-tier demand-shock amplification, or persistent IBP-to-S/4HANA replication errors blocking planned-order transfer must be escalated to the Supply Chain VP and IBP platform owner before any remediation is applied. All guidance is advisory; IBP planning model changes require regression testing in a sandbox environment before productive deployment, and S/4HANA supply-chain changes require transport management and change-control board approval.",
   "last_verified": "2026-06-19",
   "path": "agents/sap/sap-supply-chain-ibp-resilience-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "companion_skills": [
     "sap-supply-chain-ibp-resilience-review"
   ],

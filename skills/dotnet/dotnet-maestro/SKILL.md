@@ -3,7 +3,7 @@ name: dotnet-maestro
 description: .NET Maestro routing skill. Classify the user's .NET task, select the narrowest specialist agent or the right team of specialists from the .NET board, and dispatch them — single specialist for focused tasks, parallel team (max 4) for multi-domain tasks. Trigger when a user brings a .NET, C#, ASP.NET Core, EF Core, NuGet, .NET Aspire, or .NET performance/observability task and it is not yet clear which specialist should handle it. Routes only — never answers .NET questions itself, never runs code, never requests secrets.
 allowed-tools: Agent Skill Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-19"
   category: ai

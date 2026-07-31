@@ -3,7 +3,7 @@ name: alibaba-migration-architect
 description: Plan Alibaba Cloud migrations using SMC (Server Migration Center), DTS (Data Transmission Service) for data sync, OSSImport for object storage migration, and design cutover sequencing with rollback paths.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: architecture

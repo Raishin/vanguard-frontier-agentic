@@ -3,7 +3,7 @@ name: netsuite-enterprise-architecture-skill
 description: "Reviews NetSuite enterprise architecture decisions — SuiteCloud platform design, integration topology (REST/RESTlet/SOAP migration), OneWorld multi-subsidiary layout, SDF project structure, SuiteScript governance, and AI Connector MCP integration patterns — against Oracle best practices and the SOAP removal timeline. Produces risk-rated findings and structured architecture decision records. T0 static review — no org connection required. TRIGGER when: user requests an architecture review, asks for integration protocol selection advice, asks about OneWorld or multi-subsidiary design, needs SDF project structure guidance, needs SuiteScript version strategy, asks about AI Connector MCP design, or needs cross-domain design arbitration. Trigger phrases: NetSuite architecture, should I use REST or SOAP, OneWorld design, SuiteCloud architecture, SDF project structure, customization strategy, integration topology, architecture decision record, ADR, multi-subsidiary. DO NOT TRIGGER when: the request is a live deployment (use netsuite-live-org-mutation-guard-agent); request is specifically about SOX audit controls (use netsuite-audit-controls-sox-agent); request is specifically about role and permission SoD (use netsuite-identity-access-role-permission-agent); request is a SOAP-to-REST migration program rather than architecture advice (use netsuite-integration-migration-agent)."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-09"
   category: architecture

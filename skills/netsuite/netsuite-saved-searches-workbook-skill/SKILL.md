@@ -3,7 +3,7 @@ name: netsuite-saved-searches-workbook-skill
 description: "Reviews NetSuite saved search criteria, results column configuration, SuiteAnalytics Workbook pivot and chart design, PII-in-export exposure, and cross-subsidiary data leakage risk. TRIGGER when: user asks to review or build a saved search, configure search criteria or results columns, design a SuiteAnalytics Workbook, troubleshoot search results, check for PII in exported data, or validate cross-subsidiary filtering; phrases include 'saved search criteria', 'search results columns', 'SuiteAnalytics workbook', 'pivot table in NetSuite', 'scheduled search', 'PII in search export', 'cross-subsidiary filter'. DO NOT TRIGGER when: the request is about high-level report layout or KPI meters (use netsuite-bi-reporting-skill), SuiteScript code driving the search (use netsuite-suitecloud-developer-skill), or when the user needs to execute a live query against a connected org."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-09"
   category: data

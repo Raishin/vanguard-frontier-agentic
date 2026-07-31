@@ -3,7 +3,7 @@ name: alibaba-oss-data-perimeter-governor
 description: Govern Alibaba Cloud OSS data perimeters — bucket ACL and policy conflict resolution, Block Public Access configuration, cross-account access via RAM role, VPC endpoint binding for private access, WORM (Object Lock), and MLPS 2.0 data residency compliance.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: security

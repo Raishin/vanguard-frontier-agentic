@@ -3,7 +3,7 @@ name: ovhcloud-iam-policy-review
 description: Review OVHcloud IAM policies for overly permissive allow rules, missing deny blocks, unscoped URNs, absent condition blocks (IP CIDR, resource tag, expiration), and identity-group hygiene. Use when the user needs to audit access control, review `ovh_iam_policy` Terraform resources, assess OAuth2 service account scopes, or validate conditional access configuration against the principle of least privilege.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-10"
   category: security

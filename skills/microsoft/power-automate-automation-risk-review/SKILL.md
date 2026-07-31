@@ -3,7 +3,7 @@ name: power-automate-automation-risk-review
 description: Review Power Automate cloud flow risk and governance — flow ownership and sharing (run-only vs co-owner), connector and DLP exposure, maker-vs-run-only security segmentation, error handling and retry/terminate patterns, monitoring and alerting, credential/connection lifecycle, and Center of Excellence auditing. Use to harden fragile, unowned, or over-privileged business-critical automations. Static review only; production DLP and flow-ownership changes are escalated.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-16"
   category: compliance

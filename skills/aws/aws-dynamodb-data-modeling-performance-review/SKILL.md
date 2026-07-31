@@ -3,7 +3,7 @@ name: aws-dynamodb-data-modeling-performance-review
 description: Review Amazon DynamoDB data modeling and performance across access patterns, partition keys, sort keys, secondary indexes, GSI/LSI design, hot partitions, query versus scan behavior, capacity mode, adaptive capacity, global tables, TTL, DAX, item size, transactions, and cost. Use when DynamoDB correctness, latency, scaling, or cost depends on table design.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.4"
   updated: "2026-06-02"
   category: data

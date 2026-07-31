@@ -16,6 +16,6 @@
   "security_notes": "Velero restore with existingResourcePolicy:update can overwrite live RBAC resources, Secrets, and ServiceAccounts — equivalent to a partial cluster wipe. BSL credentials with write-only access prevent listing/deleting old backups, causing runaway storage costs. Never proceed with cluster-wide restores without explicit platform-team sign-off.",
   "last_verified": "2026-05-02",
   "path": "skills/velero/velero-backup-restore-guard",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

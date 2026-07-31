@@ -3,7 +3,7 @@ name: sap-guarded-role-assignment
 description: Assign or revoke SAP role collections and authorizations using a mandatory 17-step guarded mutation sequence covering classification, target tenant/system confirmation, criticality, requester, approver, ticket, scope, read-only current state, SoD pre-check, diff of effective permissions, blast radius, rollback plan, approval gate, execute approved changes only, verify, audit, and report. Refuses if any step is missing, if an SoD conflict is detected, or if self-approval is attempted. Use when a confirmed and approved role assignment or revocation in a non-development SAP system must be executed under traceable controls.
 allowed-tools: Read Grep Glob WebSearch WebFetch Bash
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-19"
   category: security

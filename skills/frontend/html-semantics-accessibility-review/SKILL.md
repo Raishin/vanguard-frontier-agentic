@@ -3,7 +3,7 @@ name: html-semantics-accessibility-review
 description: Review HTML markup and rendered DOM structure for correct native-element usage, valid heading/landmark hierarchy, and WAI-ARIA APG-conformant custom-widget patterns; produce a WCAG 2.2-grounded verdict with APG pattern citations for every custom interactive control, flagging anything that needs live screen-reader verification beyond static review.
 allowed-tools: Read Grep Glob Bash(git diff:*) WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: compliance

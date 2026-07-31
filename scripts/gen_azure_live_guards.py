@@ -1225,7 +1225,7 @@ def agent_md(agent):
     body = harness_body(agent)
     return f"""---
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
 ---
 
@@ -1284,7 +1284,7 @@ path = "skills/azure/{agent['id']}/SKILL.md"
 enabled = true
 
 [metadata]
-author = "github: Raishin"
+author = "github: VincentChuWaiChow"
 """
 
 
@@ -1307,7 +1307,7 @@ def metadata_json(agent):
         "security_notes": agent["security_notes"],
         "last_verified": DATE,
         "path": f"agents/azure/{agent['id']}-agent",
-        "author": "github: Raishin",
+        "author": "github: VincentChuWaiChow",
         "version": "0.1.0",
     }, indent=2) + "\n"
 
@@ -1318,7 +1318,7 @@ def skill_md(agent):
 name: {agent['id']}
 description: {agent['skill_desc']}
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
 ---
 
@@ -1377,7 +1377,7 @@ def skill_metadata_json(agent):
         "security_notes": agent["security_notes"],
         "last_verified": DATE,
         "path": f"skills/azure/{agent['id']}",
-        "author": "github: Raishin",
+        "author": "github: VincentChuWaiChow",
         "version": "0.1.0",
     }, indent=2) + "\n"
 

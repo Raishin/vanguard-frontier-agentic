@@ -3,7 +3,7 @@ name: identity-to-data-access-protocol
 description: Use this skill when an identity lifecycle event (joiner, mover, leaver) or an access request must be evaluated end-to-end across Microsoft Entra identity, Conditional Access policy, and data access governance under a Zero Trust posture. Orchestrates m365-identity-zero-trust-agent as primary and m365-copilot-readiness-governance-agent for data-layer governance. Gates include access review sign-off and least-privilege validation before any access grant is recommended. Does not approve access; all recommendations require human owner confirmation. Never requests credentials, tenant IDs, or customer data.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-16"
   category: security

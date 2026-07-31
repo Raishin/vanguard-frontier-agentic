@@ -3,7 +3,7 @@ name: sap-data-migration-cutover-readiness
 description: Review data migration and cutover READINESS for an SAP S/4HANA transformation. Assesses SAP Migration Cockpit approach, data quality and validation gate completeness, mock run results, cutover plan structure, rollback and fallback viability, reconciliation strategy, and go/no-go criteria. Advisory only — never executes migration, cutover, or any live data movement. Use when assessing whether a program is ready to proceed to cutover, not when executing one.
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-19"
   category: delivery

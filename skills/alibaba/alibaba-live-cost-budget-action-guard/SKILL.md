@@ -3,7 +3,7 @@ name: alibaba-live-cost-budget-action-guard
 description: Gate live financial authority actions — budget threshold changes, Savings Plan purchases, and Reserved Instance commitments. These are committed spend or can trigger immediate service suspension.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: finops

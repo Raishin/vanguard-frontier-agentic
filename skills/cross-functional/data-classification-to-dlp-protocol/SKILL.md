@@ -3,7 +3,7 @@ name: data-classification-to-dlp-protocol
 description: Use this skill when sensitive data must be discovered, classified with Microsoft Purview sensitivity labels, protected by Data Loss Prevention policies, and monitored for label adoption and DLP policy effectiveness across Microsoft 365 and Power Platform environments. Defines the end-to-end flow from data discovery through classification taxonomy design, sensitivity label deployment, DLP policy coverage, and adoption monitoring. Does not authorize the creation or modification of sensitivity labels, DLP policies, or auto-labeling policies; all production-impacting policy changes require human approval from the Purview compliance administrator and the data owner. Does not replace qualified information protection or compliance counsel.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-16"
   category: compliance

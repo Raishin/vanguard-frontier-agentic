@@ -3,7 +3,7 @@ name: aws-data-protection-backup-steward
 description: Review AWS backup and data protection implementation across AWS Backup, EBS/RDS/EFS/S3 recovery patterns, vaults, vault lock, retention, encryption, cross-account/cross-Region copy, restore testing, lifecycle, and recovery evidence. Prefer resilience BCDR review for broader RTO/RPO, failover, and business continuity design.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.4"
   updated: "2026-06-02"
   category: resilience

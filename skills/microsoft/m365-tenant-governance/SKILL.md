@@ -3,7 +3,7 @@ name: m365-tenant-governance
 description: Review Microsoft 365 tenant governance posture — admin role and RBAC sprawl, service change and release governance via Message Center, organization-wide settings, Microsoft Secure Score governance actions, delegated admin and GDAP least-privilege configuration, and multi-workload policy coordination. Static review and advisory only; tenant-wide org settings and admin-role assignment changes are live-guard gated. Aligned to MS-102 governance domain.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-17"
   category: platform

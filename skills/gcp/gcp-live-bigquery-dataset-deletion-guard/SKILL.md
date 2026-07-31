@@ -3,7 +3,7 @@ name: gcp-live-bigquery-dataset-deletion-guard
 description: Gate BigQuery dataset deletion, table truncation, and authorized view changes against a full downstream dependency audit and export confirmation. Dataset deletion is immediate and permanent with no recycle bin — this guard ensures no dataset is deleted without enumerating all tables, scheduled queries, Data Transfer jobs, Looker connections, and Dataflow pipelines that depend on it.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: data

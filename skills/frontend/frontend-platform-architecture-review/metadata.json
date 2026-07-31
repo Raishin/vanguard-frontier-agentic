@@ -22,6 +22,6 @@
   "security_notes": "Static-review-only skill: it reads and greps proposal documents, config, and source but never executes, builds, or runs application code. Flag any architecture proposal that stores secrets/tokens in client-reachable bundles or build-time-inlined env vars, allows postinstall scripts from unpinned/unaudited dependencies, or introduces a CSP-incompatible pattern (unsafe-eval, dynamic Function()) as a blocking finding, not a note.",
   "last_verified": "2026-07-02",
   "path": "skills/frontend/frontend-platform-architecture-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

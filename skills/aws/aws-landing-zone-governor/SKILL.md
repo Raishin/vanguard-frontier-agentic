@@ -3,7 +3,7 @@ name: aws-landing-zone-governor
 description: Review and design AWS landing zones, AWS Control Tower environments, Organizations structures, OUs, account vending patterns, guardrails, central logging, security/audit accounts, and multi-account governance. Use when the user asks how to structure AWS accounts or govern a cloud estate.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.4"
   updated: "2026-06-02"
   category: compliance

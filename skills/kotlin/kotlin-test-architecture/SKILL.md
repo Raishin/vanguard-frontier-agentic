@@ -3,7 +3,7 @@ name: kotlin-test-architecture
 description: "Use this skill to statically review Kotlin/coroutine/Compose/Android/KMP test architecture and determinism: `runTest` and virtual-time usage, `StandardTestDispatcher` vs `UnconfinedTestDispatcher` choice and advance-call discipline, `Dispatchers.setMain`/`resetMain` hygiene and dispatcher injection, Turbine Flow-testing idioms, Compose UI semantics-based testing, and the Robolectric-vs-instrumented boundary. Reads test source and build config only; it never runs the suite or a device/emulator."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-21"
   category: delivery

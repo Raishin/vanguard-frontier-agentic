@@ -3,7 +3,7 @@ name: python-live-system-inventory
 description: "Use this skill to perform read-only discovery of Python runtimes, services, scheduled jobs, notebooks, packages, owners, environments, deployment revisions, service identities, and criticality, producing an asset and ownership register. Read-only-runtime: it never mutates a discovered asset and never retrieves raw credentials."
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-26"
   category: platform

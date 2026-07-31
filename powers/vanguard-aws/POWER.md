@@ -3,7 +3,7 @@ name: "vanguard-aws"
 displayName: "Vanguard Frontier — AWS"
 description: "Curated AWS agents for IAM, EKS, Lambda, RDS, S3, and Bedrock with live-mutation guards. Routes via aws-maestro to specialist or live-guard agents based on task scope. Mutations on real AWS environments require account-ID, region, and approval confirmation before execution."
 keywords: ["aws", "iam", "eks", "lambda", "rds", "s3", "bedrock", "live-guard"]
-author: "Raishin"
+author: "VincentChuWaiChow"
 ---
 # Vanguard Frontier — AWS
 
@@ -38,9 +38,9 @@ Live-guard agents enforce approval, target confirmation, evidence capture, and r
 
 ## Where the agents live
 
-Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see `agents/aws/` in that repository. All 47 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
+Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic) marketplace. For this provider, see `agents/aws/` in that repository. All 47 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
 
 ## Companion install paths
 
-- **Claude Code:** `/plugin marketplace add Raishin/vanguard-frontier-agentic` then `/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic`
+- **Claude Code:** `/plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic` then `/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic`
 - **Codex / Copilot / Cursor / Gemini CLI / Kiro (file export):** `npx vfa-export-agents --platform <harness> --provider aws --repo .`

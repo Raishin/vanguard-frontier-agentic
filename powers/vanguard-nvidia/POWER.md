@@ -3,7 +3,7 @@ name: "vanguard-nvidia"
 displayName: "Vanguard Frontier — NVIDIA"
 description: "Curated NVIDIA agents for GPU resource governance, NIM model deployment, NGC registry hygiene, supply-chain integrity, and runtime evidence gating. Routes via nvidia-maestro to specialist agents and through the runtime-evidence-gate before runtime-affecting mutations. GPU resource changes require capacity, cost, and supply-chain review."
 keywords: ["nvidia", "ngc", "nim", "gpu-governance", "runtime-evidence", "supply-chain"]
-author: "Raishin"
+author: "VincentChuWaiChow"
 ---
 # Vanguard Frontier — NVIDIA
 
@@ -34,9 +34,9 @@ Live-guard agents enforce approval, target confirmation, evidence capture, and r
 
 ## Where the agents live
 
-Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see `agents/nvidia/` in that repository. 11 of 12 agents in this provider ship a Kiro adapter; the rest provide steering context only.
+Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic) marketplace. For this provider, see `agents/nvidia/` in that repository. 11 of 12 agents in this provider ship a Kiro adapter; the rest provide steering context only.
 
 ## Companion install paths
 
-- **Claude Code:** `/plugin marketplace add Raishin/vanguard-frontier-agentic` then `/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic`
+- **Claude Code:** `/plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic` then `/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic`
 - **Codex / Copilot / Cursor / Gemini CLI / Kiro (file export):** `npx vfa-export-agents --platform <harness> --provider nvidia --repo .`

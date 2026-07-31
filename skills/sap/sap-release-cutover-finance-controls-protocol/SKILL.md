@@ -3,7 +3,7 @@ name: sap-release-cutover-finance-controls-protocol
 description: Cross-functional coordination protocol governing handoffs between SAP Release Management, Business Process Owners, and Finance Controls for transport imports, production freeze enforcement, cutover readiness, financial-period close, O2C/P2P business process continuity, inventory valuation, revenue recognition impact, and hypercare. Defines go/no-go decision rights, irreversible-action gates, rollback requirements, and audit packaging. Never mutates live systems and never bypasses any guarded-mutating gate.
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-19"
   category: compliance

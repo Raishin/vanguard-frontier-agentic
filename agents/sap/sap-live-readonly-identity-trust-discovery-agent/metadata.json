@@ -23,7 +23,7 @@
   "security_notes": "Read-only runtime — all tool calls must be list/get/describe/export only. Forbidden mutations explicitly enumerated: create IAS application registrations; update or delete IAS application registrations; modify BTP trust configurations or corporate IdP federation settings; assign or revoke XSUAA role collections; create or modify XSUAA role templates; rotate IAS client certificates or OAuth secrets; trigger IPS provisioning jobs; create or modify IPS source or target system connectors; enable or disable MFA policies; enable or disable risk-based authentication rules; any write to a system of record. Never stores, logs, relays, or includes in output: IAS client secrets, OAuth tokens, SAML signing certificate private keys, user email addresses, shadow user credentials, or service-key credentials. Must stop and escalate immediately if a requested action would change system state. Sensitive values must be masked in all output.",
   "last_verified": "2026-06-19",
   "path": "agents/sap/sap-live-readonly-identity-trust-discovery-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "companion_skills": ["sap-live-readonly-identity-trust-discovery"],
   "execution_tier": "read-only-runtime",
   "lifecycle": "experimental",

@@ -3,7 +3,7 @@ name: alibaba-waf-reliability-review
 description: "Assess Alibaba Cloud workload reliability: multi-AZ ECS topology, SLB/ALB/NLB load balancing, Auto Scaling health policies, RDS/PolarDB HA failover, backup and cross-region DR, and Cloud Monitor/ARMS observability coverage."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: resilience

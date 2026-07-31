@@ -3,7 +3,7 @@ name: llm-ai-pipeline-test-review
 description: Use this skill when reviewing how an LLM or AI pipeline is evaluated — metric selection, golden datasets, threshold governance, adversarial coverage, and regression gating — to determine whether low-quality or unsafe model outputs can ship undetected. Trigger when a user provides evaluation configuration files, DeepEval or RAGAS test scripts, eval CI steps, or asks whether their AI pipeline actually prevents a bad model from reaching production. This skill reviews evaluation setup statically; it does not call LLM APIs, run evaluations, or contact inference endpoints.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-17"
   category: ai

@@ -3,7 +3,7 @@ name: sap-ai-governance-security-architecture-protocol
 description: Cross-functional coordination protocol governing handoff contracts between SAP AI Governance, Security, and Architecture. Activates on AI Core workloads, Generative AI Hub deployments, Joule governance events, RAG design reviews, prompt-injection risk, data-leakage risk, model-access control gaps, and auditability of AI-generated outputs. Advisory and audit only — no live mutation.
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-19"
   category: ai

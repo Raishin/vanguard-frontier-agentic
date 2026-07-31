@@ -3,7 +3,7 @@ name: kotlin-maestro
 description: "Use this skill to classify a Kotlin, JVM-Kotlin, Android, or Kotlin Multiplatform task and route it to the narrowest static-review specialist on the Kotlin board, or to gate a production-mutation request to a named human owner. Routing and classification only — it never reviews Kotlin work itself, never answers a Kotlin question directly, and never contacts a live system."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-21"
   category: architecture

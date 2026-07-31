@@ -3,7 +3,7 @@ name: m365-identity-zero-trust
 description: Review Microsoft Entra identity posture, Conditional Access policy design, MFA coverage, Privileged Identity Management (PIM) configuration, access reviews, and least-privilege role assignments against the Zero Trust identity pillar. Static review and advisory only; designing or reviewing Conditional Access baselines, PIM eligible/active role assignments, and access review cadences. Refuse to weaken MFA or Conditional Access for convenience. Escalate live-tenant configuration changes to live-guard gate.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-16"
   category: security

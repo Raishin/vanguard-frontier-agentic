@@ -3,7 +3,7 @@ name: ai-generated-frontend-code-review
 description: Apply an elevated review pass to AI or LLM-generated frontend code changes, checking specifically for hallucinated framework APIs, slopsquatted or non-existent dependency names, unsanitized dynamic-HTML sinks, and missing accessibility semantics before the diff is merged.
 allowed-tools: Read Grep Glob WebFetch WebSearch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: ai

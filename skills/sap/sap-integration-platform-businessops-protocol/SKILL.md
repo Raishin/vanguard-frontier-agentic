@@ -3,7 +3,7 @@ name: sap-integration-platform-businessops-protocol
 description: Cross-functional coordination protocol governing handoff contracts between SAP Integration, Platform Engineering, and Business Operations. Activates on failed integration flows, API throttling, event delivery failures, broken partner integrations, data replication failures, middleware instability, and business-process outage. Advisory and audit only — no live mutation.
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-19"
   category: operational

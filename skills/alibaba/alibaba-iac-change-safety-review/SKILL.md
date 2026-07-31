@@ -3,7 +3,7 @@ name: alibaba-iac-change-safety-review
 description: Review Terraform and ROS (Resource Orchestration Service) changes targeting Alibaba Cloud — blast radius analysis, resource deletion detection, cross-stack dependency impact, Resource Directory scope, and rollback plan completeness.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: delivery

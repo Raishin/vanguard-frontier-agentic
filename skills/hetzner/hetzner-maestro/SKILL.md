@@ -3,7 +3,7 @@ name: hetzner-maestro
 description: Route and classify Hetzner Cloud tasks to the narrowest qualified specialist — cost optimization, infrastructure review, capacity planning, firewall guard, or server lifecycle guard. Use when the user's Hetzner request spans multiple domains or needs triage before specialist engagement.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-10"
   category: platform

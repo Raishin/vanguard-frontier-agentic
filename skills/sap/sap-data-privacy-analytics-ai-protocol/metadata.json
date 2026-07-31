@@ -28,7 +28,7 @@
   "security_notes": "Does not access live Datasphere spaces, SAP Analytics Cloud tenants, AI Core deployments, Generative AI Hub configurations, or Joule instances. Accepts only user-provided data flow diagrams, data classification outputs, system prompt excerpts (redacted), prompt log samples, and deployment configuration descriptions. Never accepts or stores unredacted PII, compensation data, M&A data, or confidential system prompt content. All irreversible actions (RAG indexing, Joule activation for HR, Datasphere data product publishing, Generative AI Hub deployment with sensitive grounding) require documented Data Privacy Officer approval before execution. No guarded-mutating gate is bypassed by this protocol.",
   "last_verified": "2026-06-19",
   "path": "skills/sap/sap-data-privacy-analytics-ai-protocol",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "lifecycle": "experimental"
 }

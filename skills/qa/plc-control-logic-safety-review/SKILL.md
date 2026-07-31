@@ -3,7 +3,7 @@ name: plc-control-logic-safety-review
 description: Use this skill when reviewing exported PLC program logic (Ladder Diagram, Structured Text, Function Block Diagram, or Sequential Function Chart) for safety and reliability defects. Trigger when a user provides exported IEC 61131-3 program source, an I/O list, a safety requirements spec, a SIL assessment, or asks whether their PLC logic has a safe state, a correct E-stop implementation, unresolved latches, forced I/O, or interlock bypass risks. This is OT/ICS — defects injure people or destroy equipment. The skill performs static review only; it never connects to a live PLC, never writes to a controller, and never advises modifying running logic or bypassing a safety function.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-17"
   category: resilience

@@ -3,7 +3,7 @@ name: scaleway-cost-optimizer
 description: Review and optimize Scaleway cost posture across Instance type rightsizing, reserved instance utilization, idle Object Storage buckets and SBS block volumes, Serverless function invocation cost, RDB instance sizing, and Cockpit observability spend. Use when the user asks to reduce Scaleway spend, audit bill composition, identify idle resources, or evaluate reserved instance commitments.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-10"
   category: finops

@@ -15,6 +15,6 @@
   "security_notes": "Static-review-only skill: Read/Grep/Glob, no execution and no network. Never runs deserialization payloads, uploads, or exploits against any live or staging system. Any credential- or PII-shaped string is a redact-and-flag finding, never echoed. Every unserialize()/session/upload claim is grounded in current php.net documentation, not memory.",
   "last_verified": "2026-07-16",
   "path": "skills/php/php-session-upload-deserialization-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

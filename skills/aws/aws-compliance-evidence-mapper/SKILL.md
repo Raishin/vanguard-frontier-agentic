@@ -3,7 +3,7 @@ name: aws-compliance-evidence-mapper
 description: Map AWS compliance evidence for audits across Security Hub controls, AWS Config rules/conformance packs, Audit Manager assessments, evidence folders, manual evidence, AWS Artifact reports, CloudTrail, and control narratives. Use for evidence packaging and audit readiness, not general security hardening.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.4"
   updated: "2026-06-02"
   category: compliance

@@ -3,7 +3,7 @@ name: alibaba-security-center-hardening
 description: Harden Alibaba Cloud security posture via Security Center (threat detection, vulnerability scanning, baseline checks), WAF, Anti-DDoS Pro, Cloud Firewall, and Network Traffic Analysis (NTA).
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: security

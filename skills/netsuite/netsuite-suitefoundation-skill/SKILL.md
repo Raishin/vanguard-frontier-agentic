@@ -3,7 +3,7 @@ name: netsuite-suitefoundation-skill
 description: "Flashlight skill for reviewing NetSuite platform foundation configurations aligned to the SuiteFoundation Specialist certification (N16300GC10). T0 static review — no live account connection required. TRIGGER when: user asks to review record form layouts, saved search criteria or results columns, dashboard portlet configuration, custom field definitions, custom list or segment setup, subsidiary hierarchy, or basic role and permission baselines in NetSuite. Trigger phrases: review my saved search, check my record form, audit our custom fields, validate subsidiary setup, review role permissions, inspect dashboard configuration, SuiteFoundation review. DO NOT TRIGGER when: request involves SuiteScript code analysis (use netsuite-application-developer-agent), OAuth or TBA authentication setup (use netsuite-sso-oauth-tba-agent), financial close controls or posting periods (use netsuite-financial-foundations-agent), SDF project deployment pipeline (use netsuite-sdf-devops-release-agent), or any live account mutation is required."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-09"
   category: platform

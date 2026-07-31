@@ -3,7 +3,7 @@ name: frontend-auth-session-security-review
 description: Review client-side authentication and session-management code for token-storage location, cookie-flag correctness, CSRF/open-redirect exposure, and OAuth/OIDC flow choice for browser-based apps against OWASP ASVS and Session Management Cheat Sheet guidance, with the OAuth-for-browsers reference loaded only when an OAuth/OIDC flow is in scope.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: security

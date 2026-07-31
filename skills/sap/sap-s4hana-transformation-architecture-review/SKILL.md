@@ -3,7 +3,7 @@ name: sap-s4hana-transformation-architecture-review
 description: Review an SAP S/4HANA transformation approach for architectural soundness. Assesses brownfield conversion, greenfield reimplementation, and selective data transition (SDT) strategies against SAP Activate methodology, deployment model options (Cloud Public Edition, Cloud Private Edition, RISE with SAP), SAP Readiness Check findings, simplification item impact, and fit-to-standard alignment. Advisory only — does not access or modify live systems.
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-19"
   category: architecture

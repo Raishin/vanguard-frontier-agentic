@@ -3,7 +3,7 @@ name: alibaba-network-architect
 description: Design Alibaba Cloud network topology — VPC peering, CEN for multi-VPC/multi-region connectivity, Express Connect for private circuits, SLB/ALB/NLB/CLB load balancer selection, and Smart Access Gateway for branch offices.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: networking

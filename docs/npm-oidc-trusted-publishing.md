@@ -15,7 +15,7 @@ Prerequisites (configured once on npmjs.com per package):
 
 - Owner, repository, workflow file name, and GitHub Actions environment name
   must all match the registered trusted publisher entry.
-- For this repo: owner `raishin`, repo `vanguard-frontier-agentic`,
+- For this repo: owner `vincentchuwaichow`, repo `vanguard-frontier-agentic`,
   workflow `release.yml`, environment `npm-deployment-master`.
 
 ## What did NOT work and why

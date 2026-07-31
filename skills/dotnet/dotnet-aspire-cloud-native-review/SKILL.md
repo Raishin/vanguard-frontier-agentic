@@ -3,7 +3,7 @@ name: dotnet-aspire-cloud-native-review
 description: Use this skill when reviewing a .NET Aspire AppHost or service-defaults project for cloud-native readiness — health checks on declared service dependencies, service dependency wiring, resiliency policies on outbound calls, configuration and secret hygiene, configuration drift between the AppHost and service projects, container readiness evidence, and the boundary between Aspire's development-time composition model and a real deployment platform. Trigger when a user provides an Aspire AppHost project, a ServiceDefaults project, an Aspire manifest, or sanitized appsettings, asks whether their Aspire solution is cloud-native ready, or treats the AppHost as a production deploy target. This skill reviews source and sanitized configuration statically; it never runs the AppHost or deploys.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-19"
   category: architecture

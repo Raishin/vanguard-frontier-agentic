@@ -3,7 +3,7 @@ name: velero-backup-restore-guard
 description: Use this skill when guarding Velero backup schedule changes, restore operations, BackupStorageLocation mutations, or volume snapshot configuration. Trigger on any request to run a velero restore, delete a Schedule, change a BSL default, or modify backup retention.
 allowed-tools: Read Grep Glob WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-05"
   category: resilience

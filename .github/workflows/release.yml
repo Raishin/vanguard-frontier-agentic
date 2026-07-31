@@ -149,7 +149,7 @@ jobs:
       # - environment (must match registered environment)
       #
       # The OIDC token's `repository_owner` claim is what npmjs.com validates,
-      # NOT the URL in package.json. GitHub's repo URL casing (e.g. "Raishin")
+      # NOT the URL in package.json. GitHub's repo URL casing (e.g. "VincentChuWaiChow")
       # may differ from the OIDC claim casing (always lowercase). If npmjs.com
       # was registered with the wrong case, validation fails server-side and
       # the publish returns 404 — no amount of .npmrc stripping fixes this.
@@ -181,9 +181,9 @@ jobs:
           echo "::endgroup::"
           echo "::group::Compare with registered trusted publisher"
           echo "Expected values (from workflow):"
-          echo "  repository_owner: raishin (LOWERCASE — GitHub OIDC spec)"
-          echo "  repository: Raishin/vanguard-frontier-agentic"
-          echo "  workflow_ref: Raishin/vanguard-frontier-agentic/.github/workflows/release.yml@refs/heads/master"
+          echo "  repository_owner: vincentchuwaichow (LOWERCASE — GitHub OIDC spec)"
+          echo "  repository: VincentChuWaiChow/vanguard-frontier-agentic"
+          echo "  workflow_ref: VincentChuWaiChow/vanguard-frontier-agentic/.github/workflows/release.yml@refs/heads/master"
           echo "  environment: npm-deployment-master"
           echo ""
           echo "If repository_owner, repository, workflow_ref, or environment"
@@ -285,7 +285,7 @@ jobs:
           # OIDC token exchange during `npm publish` when id-token:write is
           # granted and registry-url is set to https://registry.npmjs.org.
           # Prerequisite: trusted publisher configured on npmjs.com for
-          # owner=raishin, repo=vanguard-frontier-agentic, workflow=release.yml,
+          # owner=vincentchuwaichow, repo=vanguard-frontier-agentic, workflow=release.yml,
           # environment=npm-deployment-master.
         run: |
           DRY_FLAG=""
@@ -356,7 +356,7 @@ jobs:
           # ACTIONS_ID_TOKEN_REQUEST_URL is set and id-token:write is granted.
           #
           # Prereq: trusted publisher configured on npmjs.com for
-          # owner=raishin (LOWERCASE — verify exact casing matches OIDC sub claim!)
+          # owner=vincentchuwaichow (LOWERCASE — verify exact casing matches OIDC sub claim!)
           # repo=vanguard-frontier-agentic workflow=release.yml
           # environment=npm-deployment-master.
           if ! npx --yes npm@^11.5.1 publish \
@@ -365,7 +365,7 @@ jobs:
                --access public \
                --provenance; then
             echo "::error::npm publish failed. Confirm npmjs.com trusted publisher is configured:" \
-              "owner=raishin repo=vanguard-frontier-agentic workflow=release.yml environment=npm-deployment-master." \
+              "owner=vincentchuwaichow repo=vanguard-frontier-agentic workflow=release.yml environment=npm-deployment-master." \
               "See docs/npm-oidc-trusted-publishing.md"
             exit 1
           fi

@@ -3,7 +3,7 @@ name: incident-to-remediation-protocol
 description: Use this skill when a security incident must be triaged, contained, remediated, and reviewed in a Zero Trust assume-breach posture across Microsoft 365 and Dynamics 365 environments. Defines the end-to-end flow from detection through severity triage, containment approval, investigation, remediation, and post-incident review. Applies Zero Trust principles — verify explicitly, use least privilege, assume breach — throughout. Does not serve as an authorization to isolate devices, block users, or make configuration changes; all containment and remediation actions require human approval from the security owner or incident commander. Does not replace a qualified SecOps team or Microsoft Defender XDR specialist.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-16"
   category: security

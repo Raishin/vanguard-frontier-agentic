@@ -40,7 +40,7 @@ If a cell cannot be verified against the primary source during the review, write
 
 ## Refresh protocol
 
-- **Refresh owner:** the Java board maintainer (`github: Raishin`) or a named delegate.
+- **Refresh owner:** the Java board maintainer (`github: VincentChuWaiChow`) or a named delegate.
 - **Cadence:** re-verify any boundary cited in an active review against its primary source at the time of that review — this reference does not cache dates. Re-read this file's source-page list at least quarterly for URL drift (vendors restructure support pages).
 - **On refresh:** update `last_verified` in the skill's `metadata.json` when the source-page list itself changes; record the read-on date in any table cell touched during a review.
 - This engine never consults the wall clock — behavior changes only when a committed reference changes or a user supplies a verified date. Do not encode "as of today" logic.

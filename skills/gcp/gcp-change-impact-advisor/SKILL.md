@@ -3,7 +3,7 @@ name: gcp-change-impact-advisor
 description: Pre-change blast radius analysis for GCP — cross-project resource dependency mapping, org policy cascade effects, Shared VPC peering impact, Service Account impersonation chain analysis, and safe change sequencing.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: platform

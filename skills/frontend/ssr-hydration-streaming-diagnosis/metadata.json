@@ -23,6 +23,6 @@
   "security_notes": "Never accept suppressHydrationWarning as the fix without a documented, unavoidable non-determinism justification; treat it as a rejected finding when used without an identified root cause. Treat streaming that flushes page structure or content before an authorization check resolves as a potential information-disclosure finding requiring escalation, not a performance note. Static-review-only skill: it reads and greps component/boundary source and reported error text but never executes, builds, or runs application code.",
   "last_verified": "2026-07-02",
   "path": "skills/frontend/ssr-hydration-streaming-diagnosis",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

@@ -21,7 +21,7 @@
  *   RUN_CODEX_PLUGIN_MARKETPLACE_E2E=1 node tests/test-codex-plugin-marketplace-install.test.mjs
  *
  * Optional override:
- *   CODEX_PLUGIN_MARKETPLACE_SOURCE=Raishin/vanguard-frontier-agentic@main \
+ *   CODEX_PLUGIN_MARKETPLACE_SOURCE=VincentChuWaiChow/vanguard-frontier-agentic@main \
  *   RUN_CODEX_PLUGIN_MARKETPLACE_E2E=1 node tests/test-codex-plugin-marketplace-install.test.mjs
  *
  * Strict cache assertion, expected to fail for marketplace-add-only on the
@@ -41,7 +41,7 @@ if (!enabled) {
   process.exit(0);
 }
 
-const source = process.env.CODEX_PLUGIN_MARKETPLACE_SOURCE || "Raishin/vanguard-frontier-agentic";
+const source = process.env.CODEX_PLUGIN_MARKETPLACE_SOURCE || "VincentChuWaiChow/vanguard-frontier-agentic";
 const marketplaceName = process.env.CODEX_PLUGIN_MARKETPLACE_NAME || "vanguard-frontier-agentic";
 const expectPluginCache = process.env.EXPECT_CODEX_PLUGIN_CACHE === "1";
 const codexHome = fs.mkdtempSync(path.join(os.tmpdir(), "vfa-codex-home-"));

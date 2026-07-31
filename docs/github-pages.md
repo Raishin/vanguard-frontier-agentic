@@ -15,7 +15,7 @@ The documentation site is built with Jekyll and deployed to GitHub Pages via a d
 1. Documentation lives in `docs/` as Markdown files with Jekyll front matter
 2. A push to `master` that touches docs triggers `.github/workflows/jekyll-gh-pages.yml`
 3. The workflow builds the Jekyll site and deploys it to GitHub Pages
-4. The site is available at `https://raishin.github.io/vanguard-frontier-agentic/`
+4. The site is available at `https://vincentchuwaichow.github.io/vanguard-frontier-agentic/`
 
 ---
 
@@ -197,7 +197,7 @@ Content here...
 ## ✅ How to Verify This Works
 
 1. Check the workflow ran: **Actions tab > Deploy Documentation to GitHub Pages**
-2. Verify the site loads: `https://raishin.github.io/vanguard-frontier-agentic/`
+2. Verify the site loads: `https://vincentchuwaichow.github.io/vanguard-frontier-agentic/`
 3. Verify new pages appear in navigation
 4. Confirm `workflow_dispatch` works by manually triggering from the Actions tab
 

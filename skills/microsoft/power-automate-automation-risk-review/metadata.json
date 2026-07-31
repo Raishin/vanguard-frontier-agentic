@@ -23,7 +23,7 @@
   "security_notes": "Static review only. Do not modify production DLP policies, flow ownership/sharing, or connector configurations; these are escalated to a Power Platform administrator with a rollback plan. Prefer run-only sharing over co-ownership and keep run-only users out of the Environment Maker role. Do not ask for credentials, connection secrets, tenant IDs, environment URLs, or customer data. Treat single-owner business-critical flows, broad co-ownership, unscoped connectors, missing error handling, and unmonitored flows as operational and data-exposure risks until reviewed.",
   "last_verified": "2026-06-16",
   "path": "skills/microsoft/power-automate-automation-risk-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "category": "compliance",
   "companion_agents": ["power-automate-automation-risk-review-agent"]

@@ -22,5 +22,5 @@
   "security_notes": "Static review only — reads producer/consumer code, Kafka client configuration (acks, enable.idempotence, transactional.id, isolation.level, max.poll.* settings), topic durability settings, and sanitized application config; never opens a broker connection, produces/consumes a live message, creates/alters/deletes a topic, or runs a consumer group against a live cluster. Never requests broker bootstrap credentials, SASL/mTLS secrets, tenant identifiers, or customer data — ask for source and config with placeholders.",
   "last_verified": "2026-07-17",
   "path": "skills/java/java-kafka-reliability",
-  "author": "github: Raishin"
+  "author": "github: VincentChuWaiChow"
 }

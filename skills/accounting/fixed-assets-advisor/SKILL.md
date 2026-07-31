@@ -3,7 +3,7 @@ name: fixed-assets-advisor
 description: Multi-jurisdiction fixed assets, depreciation, and impairment reference framework covering PP&E, intangibles, right-of-use assets, and goodwill under US GAAP and IFRS.
 allowed-tools: Skill Read WebFetch Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-02"
   category: finance

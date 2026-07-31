@@ -9,7 +9,7 @@ Prepare the `vfa-tui` crate at `tools/vfa-tui/` for first-time publication to cr
 - [ ] 1. Create license and documentation files
   - [ ] 1.1 Create LICENSE-MIT file
     - Create `tools/vfa-tui/LICENSE-MIT` with standard MIT license text
-    - Copyright line: `Copyright (c) 2024 Raishin`
+    - Copyright line: `Copyright (c) 2024 VincentChuWaiChow`
     - Verify file is non-empty and contains "MIT License" header
     - _Requirements: 1.2, 1.3_
 

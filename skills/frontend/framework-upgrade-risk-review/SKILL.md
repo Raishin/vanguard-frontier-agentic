@@ -3,7 +3,7 @@ name: framework-upgrade-risk-review
 description: Assess breaking-change and regression risk for a same-framework major-version upgrade (React, Next.js, Angular, Vue, or core build tooling), grounding every claimed breaking change in the framework's official release notes/migration guide, and separate upgrade-blocking issues from cosmetic deprecation noise.
 allowed-tools: Read Grep Glob WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: resilience

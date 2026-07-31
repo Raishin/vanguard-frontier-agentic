@@ -3,7 +3,7 @@ name: salesforce-apex-lwc-code-review-skill
 description: Use this skill when Salesforce Apex classes, triggers, Lightning Web Components (LWC), or async jobs (Queueable, Batch, Future, Schedulable) must be reviewed for security vulnerabilities and governor-limit risk. Flags: SOQL and DML inside loops, missing test coverage patterns, WITH SECURITY_ENFORCED or WITH USER_MODE or stripInaccessible usage, sharing keyword omission, governor-limit risk, LWC XSS surface, and Locker Service issues. Trigger phrases: "review this Apex class", "check this trigger for SOQL in loops", "is this LWC safe", "review this batch job", "check sharing enforcement in this code". Do not use when Flow automation (not code) is the primary subject (use salesforce-flow-automation-review-skill), when metadata quality is the focus (use salesforce-metadata-review-skill), or when a live code deployment is proposed (use salesforce-live-change-approval-protocol). Works from pasted code only; never requests live org access or executes code.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-20"
   category: security

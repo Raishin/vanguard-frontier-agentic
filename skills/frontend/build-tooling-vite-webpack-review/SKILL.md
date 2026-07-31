@@ -3,7 +3,7 @@ name: build-tooling-vite-webpack-review
 description: Reviews Vite and Webpack build/chunking configuration and bundle-size composition for duplicate dependencies, unsplit vendor chunks, and tree-shaking failures, always version-labeling config since Vite 8 replaced Rollup-era manualChunks with Rolldown-based codeSplitting.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: compute

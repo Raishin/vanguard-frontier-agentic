@@ -3,7 +3,7 @@ name: gcp-cloud-run-functions-operator
 description: Deploy and operate Cloud Run services, Cloud Functions gen2, Eventarc triggers, traffic splitting for progressive delivery, and cold-start optimization strategies.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.2.0"
   updated: "2026-05-09"
   category: platform

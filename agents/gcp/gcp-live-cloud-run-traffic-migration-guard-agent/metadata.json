@@ -22,7 +22,7 @@
   "security_notes": "Migrating 100% traffic to a broken revision causes complete service unavailability. Min-instances changes affect cost and cold-start behavior. Revision deletion prevents rollback to that revision — never delete a revision that holds traffic or is the last known-good. No automatic rollback exists in Cloud Run; rollback requires a new traffic split or re-deployment.",
   "last_verified": "2026-05-08",
   "path": "agents/gcp/gcp-live-cloud-run-traffic-migration-guard-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "harness_variants": {
     "codex": "agents/gcp/gcp-live-cloud-run-traffic-migration-guard-agent/harnesses/codex.toml",

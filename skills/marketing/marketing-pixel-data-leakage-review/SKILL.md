@@ -3,7 +3,7 @@ name: marketing-pixel-data-leakage-review
 description: Use this skill when reviewing advertising pixels and event-tracking for personal-data leakage to third-party ad networks. Trigger when a user provides a tag-manager container, a Meta/TikTok/Google/LinkedIn pixel snippet, a conversion-event payload, a dataLayer specification, or asks whether their tracking pixels leak email, phone numbers, health, or financial data to ad platforms, or whether pixels on sensitive pages create a breach or HIPAA exposure.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-17"
   category: security

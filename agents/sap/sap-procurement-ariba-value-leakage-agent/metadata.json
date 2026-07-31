@@ -26,7 +26,7 @@
   "security_notes": "Static review only — no Bash, no RFC/BAPI calls, no Ariba API mutations, no SAP GUI transaction execution, no table-level mutations. Never creates or modifies a purchase order, supplier record, sourcing event, or contract. Never accepts real Ariba realm credentials, SAP basis passwords, supplier bank account data, actual invoice amounts from live systems, or contract commercial terms under NDA. Findings indicating approval-workflow bypass without compensating control, invoice tolerance bands permitting systematic overbilling, or disabled duplicate-invoice detection must be escalated to the Chief Procurement Officer and internal audit before any remediation is applied. All guidance is advisory; Ariba configuration changes require change-control board approval, supplier communication planning, and regression testing in a quality system before deployment to productive environments.",
   "last_verified": "2026-06-19",
   "path": "agents/sap/sap-procurement-ariba-value-leakage-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "companion_skills": [
     "sap-procurement-ariba-value-leakage-review"
   ],

@@ -3,7 +3,7 @@ name: hetzner-cost-optimization-analyst
 description: Review Hetzner Cloud cost posture across server type selection, idle Volumes, unattached Floating IPs and Primary IPs, underutilized Load Balancers, Storage Box consumption, and snapshot accumulation. Use when the user asks to reduce or explain Hetzner Cloud spend.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-10"
   category: finops

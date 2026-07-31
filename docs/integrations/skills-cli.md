@@ -10,7 +10,7 @@ This document covers the three supported install paths for Vanguard Frontier Age
 |------|----------------|------------|-----------------|-----------------|----------|---------------|----------|
 | `npm i @raishin/vanguard-frontier-agentic` | npm registry (release pipeline) | SemVer, explicit | Yes (via exporter CLI) | Yes | Yes — lock to exact semver or lockfile | **Highest.** Published artifacts are signed via the release pipeline; you control the version in your lockfile. | Production teams, CI/CD enforcement, auditability |
 | `npx vfa-export-agents` | npm registry (same package) | SemVer, explicit | Yes | Yes (default, opt out with `--no-skills`) | Yes — pin the package version | **High.** Same artifact as above; CLI is bundled in the npm package. | Engineers who want role-based or per-platform export with a single command |
-| `npx skills add Raishin/vanguard-frontier-agentic` | GitHub raw HEAD (via `vercel-labs/skills` CLI) | None by default — fetches latest commit on the default branch | No (skills only) | Yes | Not documented — see [pinning note](#pinning-the-skills-cli-path) below | **Lower.** Third-party CLI pulls raw GitHub content without version pinning or integrity verification at install time. | Quick local exploration; not recommended for shared or CI environments |
+| `npx skills add VincentChuWaiChow/vanguard-frontier-agentic` | GitHub raw HEAD (via `vercel-labs/skills` CLI) | None by default — fetches latest commit on the default branch | No (skills only) | Yes | Not documented — see [pinning note](#pinning-the-skills-cli-path) below | **Lower.** Third-party CLI pulls raw GitHub content without version pinning or integrity verification at install time. | Quick local exploration; not recommended for shared or CI environments |
 
 ---
 
@@ -103,16 +103,16 @@ Verified flag syntax as documented at [github.com/vercel-labs/skills](https://gi
 
 ```bash
 # List every skill in this repo without installing
-npx skills add Raishin/vanguard-frontier-agentic --list
+npx skills add VincentChuWaiChow/vanguard-frontier-agentic --list
 
 # Install a specific skill into the current project
-npx skills add Raishin/vanguard-frontier-agentic --skill aws-iac-patch-executor
+npx skills add VincentChuWaiChow/vanguard-frontier-agentic --skill aws-iac-patch-executor
 
 # Install all skills globally for Claude Code
-npx skills add Raishin/vanguard-frontier-agentic --skill '*' --global --agent claude-code
+npx skills add VincentChuWaiChow/vanguard-frontier-agentic --skill '*' --global --agent claude-code
 
 # Install all skills to all detected agents without prompts
-npx skills add Raishin/vanguard-frontier-agentic --all --yes
+npx skills add VincentChuWaiChow/vanguard-frontier-agentic --all --yes
 ```
 
 > **Note on the README's flag usage:** The README historically used `--skill` (long form) and `-a` (short form). The CLI also accepts `-s` as the short form for `--skill` and `--agent` as the long form for `-a`. Both forms are documented at [github.com/vercel-labs/skills](https://github.com/vercel-labs/skills).
@@ -124,7 +124,7 @@ npx skills add Raishin/vanguard-frontier-agentic --all --yes
 The `vercel-labs/skills` CLI documentation does not describe a version-pin syntax for source repositories at install time. The tool fetches from the default branch at HEAD unless you specify a full GitHub URL pointing to a specific tree or commit, e.g.:
 
 ```
-https://github.com/Raishin/vanguard-frontier-agentic/tree/<tag-or-sha>
+https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/tree/<tag-or-sha>
 ```
 
 Whether the CLI correctly resolves tree-scoped URLs is not confirmed in the published documentation. For environments where reproducibility matters, use Path 1 (npm) or Path 2 (vfa-export-agents) instead.

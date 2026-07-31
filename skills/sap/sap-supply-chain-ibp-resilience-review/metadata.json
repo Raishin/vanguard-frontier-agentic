@@ -26,7 +26,7 @@
   "security_notes": "Does not access live SAP IBP tenants, SAP S/4HANA systems, IBP Excel add-in sessions, IBP Fiori launchpads, or any production supply chain planning database. Accepts only user-provided configuration descriptions, planning parameter exports, S&OP process documentation, forecast accuracy metric reports, inventory policy summaries, control tower alert rule descriptions, scenario planning configuration notes, or written descriptions of the IBP and supply chain planning landscape. Never request or accept SAP IBP login credentials, API tokens, or direct planning database access. Never modifies demand plans, supply plans, inventory targets, alert rule configurations, or scenario data. Supply chain resilience findings that represent immediate disruption risk must be escalated to supply chain leadership — this skill does not approve plan changes or activate supply continuity measures.",
   "last_verified": "2026-06-19",
   "path": "skills/sap/sap-supply-chain-ibp-resilience-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "lifecycle": "experimental"
 }

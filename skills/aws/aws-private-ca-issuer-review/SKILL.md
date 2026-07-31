@@ -3,7 +3,7 @@ name: aws-private-ca-issuer-review
 description: Use this skill when reviewing AWS ACM Private CA (Private Certificate Authority) issuer configurations for cert-manager. Trigger on any request to audit AWSPCAIssuer, AWSPCAClusterIssuer, IRSA policy for cert-manager, certificate template ARNs, CRL configuration, or cross-account PCA usage.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.4"
   updated: "2026-06-02"
   category: security

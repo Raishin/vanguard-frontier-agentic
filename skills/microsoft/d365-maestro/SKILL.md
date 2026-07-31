@@ -3,7 +3,7 @@ name: d365-maestro
 description: Route Dynamics 365 tasks to the narrowest D365 specialist from the catalog. Use when you do not already know the specialist. Not for direct D365 answers; Maestro classifies, dispatches, and synthesizes only. Dispatches single agent for focused tasks, parallel team (max 4) for multi-domain tasks. Enforces Success by Design gates and segregation-of-duties escalation. Never auto-dispatches live-guard agents — requires explicit human confirmation with blast-radius and rollback before routing to any D365 production cutover, data migration to prod, or posting-config agent.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-16"
   category: platform

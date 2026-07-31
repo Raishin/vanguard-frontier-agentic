@@ -23,7 +23,7 @@
   "security_notes": "Live-guard gate is non-negotiable: never auto-dispatch any agent executing D365 production cutover, migrating data to production, or changing posting configuration without explicit human confirmation, blast-radius assessment, and rollback path. Enforce Success by Design stage gates (solution blueprint, data migration strategy, cutover strategy, security model). Escalate segregation-of-duties conflicts to d365-security-segregation-of-duties-steward before live dispatch. Do not ask for secrets, tenant IDs, or environment-specific values.",
   "last_verified": "2026-06-16",
   "path": "skills/microsoft/d365-maestro",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "category": "platform",
   "companion_agents": ["d365-maestro-agent"]

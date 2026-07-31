@@ -3,7 +3,7 @@ name: ci-test-pipeline-review
 description: Use this skill when reviewing how a CI pipeline runs tests — gating, sharding, parallelism, fail-fast behavior, artifact retention, and flaky-test quarantine wiring. Trigger when a user provides a CI workflow file (GitHub Actions, GitLab CI, CircleCI, Jenkins), asks why CI is slow or unreliable as a merge gate, or wants to know whether their test pipeline actually blocks bad merges. This skill reviews CI configuration statically; it does not trigger or run pipelines.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-17"
   category: delivery

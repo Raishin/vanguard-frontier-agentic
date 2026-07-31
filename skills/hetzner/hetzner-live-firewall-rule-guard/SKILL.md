@@ -3,7 +3,7 @@ name: hetzner-live-firewall-rule-guard
 description: Guard Hetzner Cloud Firewall rule mutations and server attachment changes with mandatory pre-mutation snapshot of current rules, blast-radius review, explicit human approval, target confirmation, account, region, and rollback plan. Use only when live Firewall rule changes are required and all pre-flight checks are confirmed.
 allowed-tools: Read Grep Glob Bash
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-10"
   category: security

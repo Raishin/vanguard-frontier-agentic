@@ -3,7 +3,7 @@ name: python-live-rollback-and-recovery
 description: "Use this skill to execute only a previously approved, tested rollback procedure against the exact affected target. It confirms rollback authority and a captured before-state/snapshot reference exist before acting, then captures and reconciles the post-rollback state through an independent check. It never improvises a rollback during an active failure."
 allowed-tools: Read Grep Glob WebSearch WebFetch Bash
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-26"
   category: resilience

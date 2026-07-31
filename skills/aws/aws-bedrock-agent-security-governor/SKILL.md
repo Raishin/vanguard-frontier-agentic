@@ -3,7 +3,7 @@ name: aws-bedrock-agent-security-governor
 description: Review Amazon Bedrock agents, AgentCore, Guardrails, knowledge bases, action groups, memory, MCP/tool integrations, prompt-injection and prompt-leakage defenses, PII handling, encryption, logging, observability, and least-privilege IAM. Use for AWS-native GenAI and agent security posture.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.4"
   updated: "2026-06-02"
   category: security

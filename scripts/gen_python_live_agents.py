@@ -30,7 +30,7 @@ import os
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(ROOT, "scripts", "python_live_data", "agents")
 DATE = "2026-07-26"
-AUTHOR = "github: Raishin"
+AUTHOR = "github: VincentChuWaiChow"
 VERSION = "0.1.0"
 PROVIDER = "python"
 

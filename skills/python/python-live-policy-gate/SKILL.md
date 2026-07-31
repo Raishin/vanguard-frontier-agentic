@@ -3,7 +3,7 @@ name: python-live-policy-gate
 description: "Use this skill to evaluate a versioned, machine-readable policy bundle and control applicability against a live action's recorded inputs, producing candidate control results. Read-only-runtime: it cannot create an exception or an approval."
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-26"
   category: compliance

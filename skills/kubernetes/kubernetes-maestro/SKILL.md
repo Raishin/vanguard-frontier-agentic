@@ -3,7 +3,7 @@ name: kubernetes-maestro
 description: Route Kubernetes tasks to the narrowest specialist or team of specialists from the catalog. Use when you do not already know the specialist. Not for direct Kubernetes answers; Maestro classifies, dispatches, and synthesizes only. Dispatches single agent for focused tasks, parallel team (max 4) for multi-domain tasks. Never auto-dispatches live-guard agents — requires explicit human confirmation with blast-radius and rollback before routing to any live mutation specialist.
 allowed-tools: Agent Skill Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-05"
   category: ai

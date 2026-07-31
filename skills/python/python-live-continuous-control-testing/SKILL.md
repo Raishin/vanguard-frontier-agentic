@@ -3,7 +3,7 @@ name: python-live-continuous-control-testing
 description: "Use this skill to periodically test whether previously operating controls continue to operate, read-only by default. It runs the continuous-control checklist, opens a finding with a named owner and due date for each failure, and distinguishes a single passing observation from continuing operating effectiveness."
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-26"
   category: compliance

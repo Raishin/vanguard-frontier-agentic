@@ -22,5 +22,5 @@
   "security_notes": "Mutating-runtime, limited to creating a branch/pull request and running approved isolated non-production validation: never merges, deploys, or weakens a policy/gate/test. Emits an audit event for every branch/PR creation and validation result, never uses shared or standing credentials, never retrieves raw secret values, and redacts personally identifiable fields from any artifact quoted in the PR. Requires an external, target-bound approval, target-scoped just-in-time credentials, and a pre-approved rollback (revert) before creating the branch/PR or running validation.",
   "last_verified": "2026-07-26",
   "path": "skills/python/python-live-code-remediation",
-  "author": "github: Raishin"
+  "author": "github: VincentChuWaiChow"
 }

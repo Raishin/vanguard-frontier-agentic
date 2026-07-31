@@ -3,7 +3,7 @@ name: "vanguard-sap"
 displayName: "Vanguard Frontier — SAP"
 description: "Curated SAP agents for S/4HANA, BTP, Integration Suite, ABAP Cloud, and transport management with clean-core review and guarded mutation gates. Routes via sap-maestro to specialist agents for landscape discovery, clean-core debt review, and guarded transport imports. Transport mutations require named approver, change ticket, target-system confirmation, and completed SoD check before dispatch."
 keywords: ["sap", "s4hana", "btp", "abap", "clean-core", "transport-management", "live-guard"]
-author: "Raishin"
+author: "VincentChuWaiChow"
 ---
 # Vanguard Frontier — SAP
 
@@ -37,9 +37,9 @@ Live-guard agents enforce approval, target confirmation, evidence capture, and r
 
 ## Where the agents live
 
-Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see `agents/sap/` in that repository. All 40 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
+Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic) marketplace. For this provider, see `agents/sap/` in that repository. All 40 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
 
 ## Companion install paths
 
-- **Claude Code:** `/plugin marketplace add Raishin/vanguard-frontier-agentic` then `/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic`
+- **Claude Code:** `/plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic` then `/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic`
 - **Codex / Copilot / Cursor / Gemini CLI / Kiro (file export):** `npx vfa-export-agents --platform <harness> --provider sap --repo .`

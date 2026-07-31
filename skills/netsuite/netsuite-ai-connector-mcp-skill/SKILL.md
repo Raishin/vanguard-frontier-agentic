@@ -4,7 +4,7 @@ description: "Flashlight skill for reviewing the security and governance posture
 license: UPL-1.0
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-09"
   category: security

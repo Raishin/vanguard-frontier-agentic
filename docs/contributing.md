@@ -6,7 +6,7 @@ permalink: /docs/contributing/
 
 # 🤝 Contributing to Documentation
 
-This page covers documentation-specific contribution guidance. For general contribution guidelines (code, skills, agents), see the main [CONTRIBUTING.md](https://github.com/Raishin/vanguard-frontier-agentic/blob/master/CONTRIBUTING.md) in the repository root.
+This page covers documentation-specific contribution guidance. For general contribution guidelines (code, skills, agents), see the main [CONTRIBUTING.md](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/blob/master/CONTRIBUTING.md) in the repository root.
 
 ---
 

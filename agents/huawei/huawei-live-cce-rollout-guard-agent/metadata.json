@@ -22,7 +22,7 @@
   "security_notes": "CCE cluster version downgrades are not supported. Failed node pool operations may require manual node recreation. Addon upgrades (CoreDNS, NGINX Ingress) can break workloads if version incompatible. Node pool drain must be verified before scaling down. Never approve a cluster version change without explicit rollback posture and workload disruption budget audit.",
   "last_verified": "2026-05-08",
   "path": "agents/huawei/huawei-live-cce-rollout-guard-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "harness_variants": {
     "codex": "agents/huawei/huawei-live-cce-rollout-guard-agent/harnesses/codex.toml",
     "claude-code": "agents/huawei/huawei-live-cce-rollout-guard-agent/harnesses/claude-code.agent.md",

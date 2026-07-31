@@ -3,7 +3,7 @@ name: dotnet-aspnetcore-identity-authz-review
 description: Use this skill when reviewing how an ASP.NET Core application authenticates and authorizes requests — authentication schemes, JWT TokenValidationParameters, cookie and session security, policy-based authorization, authorization handlers, claims trust, role-versus-resource authorization, multi-tenant isolation, privilege-escalation paths, and negative-test coverage. Trigger when a user provides ASP.NET Core authentication or authorization source (Program.cs, JWT bearer or cookie configuration, authorization policies, authorization handlers, controller authorize attributes) or sanitized configuration, asks whether their auth boundary is safe, or wants to know whether a tenant or role check can be bypassed. This skill reviews source and sanitized configuration statically; it never runs the application, mints or inspects tokens, or contacts an identity provider.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-19"
   category: security

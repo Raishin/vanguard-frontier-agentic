@@ -3,7 +3,7 @@ name: python-ml-ai-production
 description: "Use this skill to statically review Python ML/AI production correctness: training-serving skew, feature/data leakage, model-artifact serialization safety, reproducibility, evaluation-deployment match, batch-vs-online consistency, and model/prompt provenance. Reads training/serving source, configuration, and evaluation artifacts only; it never trains, loads, or serves a model."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-26"
   category: ai

@@ -3,7 +3,7 @@ name: equity-compensation-advisor
 description: Multi-jurisdiction equity-based compensation reference framework covering stock options, RSUs, ESPPs, and performance awards under ASC 718 and IFRS 2.
 allowed-tools: Skill Read WebFetch Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-02"
   category: finance

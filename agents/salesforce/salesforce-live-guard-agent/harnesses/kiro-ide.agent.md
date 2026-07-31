@@ -8,7 +8,7 @@ keywords:
   - change-management
   - refusal-by-default
   - precondition-gate
-author: "github: Raishin"
+author: "github: VincentChuWaiChow"
 ---
 
 # Salesforce Live Guard Agent

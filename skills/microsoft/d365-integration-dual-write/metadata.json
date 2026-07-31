@@ -24,7 +24,7 @@
   "security_notes": "Never approve enabling or disabling dual-write table maps in production or running initial sync without documented dependency analysis, conflict resolution plan (master-data ownership declared per entity), and rollback readiness. Enabling/disabling production dual-write maps and initial sync runs are live-guard gated and must be escalated to the integration lead and data governance owner before execution. Dual-write initial sync copies pre-existing data from both sides; merge conflicts require a declared master-data owner per table map before sync begins. Do not accept map status Running alone as evidence of integration health; require error log review and alert threshold configuration. Do not ask for credentials, tenant IDs, environment URLs, LCS project IDs, Dataverse connection strings, or integration key values. Treat every undeclared master-data ownership, missing error alert configuration, and untested rollback path as a production integration risk.",
   "last_verified": "2026-06-17",
   "path": "skills/microsoft/d365-integration-dual-write",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "category": "platform",
   "companion_agents": ["d365-integration-dual-write-agent"]

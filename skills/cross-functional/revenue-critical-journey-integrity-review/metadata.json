@@ -24,6 +24,6 @@
   "security_notes": "Static-review-only skill: Read/Grep/Glob, no execution and no network egress to any payment system. Never requests, transmits, stores, or reproduces cardholder data (PAN/CVV), API keys, session tokens, or webhook signing secrets — any such string is a redact-and-flag finding, never echoed. PCI DSS SAQ-scope output is an advisory scoping opinion to inform a Qualified Security Assessor or the merchant's own validation, never a compliance attestation or assessment of record. Never executes payment flows or replays webhooks against live, sandbox, or staging systems.",
   "last_verified": "2026-07-16",
   "path": "skills/cross-functional/revenue-critical-journey-integrity-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

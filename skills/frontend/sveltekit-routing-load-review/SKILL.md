@@ -3,7 +3,7 @@ name: sveltekit-routing-load-review
 description: Statically review SvelteKit route files (+page.js, +page.server.js, +layout.js, +layout.server.js, +server.ts) to verify universal-vs-server load placement, catching server-only secrets, database clients, or privileged API access that would leak into or execute inside the browser.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: architecture

@@ -3,7 +3,7 @@ name: contabo-maestro
 description: Router skill for classifying Contabo tasks and delegating to the narrowest specialist for cost analysis, capacity planning, security hardening, VPS/VDS lifecycle operations, or Object Storage management. Use when the user asks a Contabo question that spans multiple domains or needs triage before specialist engagement.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-10"
   category: platform

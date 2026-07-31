@@ -3,7 +3,7 @@ name: gcp-gcs-data-perimeter-governor
 description: Govern Google Cloud Storage data perimeters — uniform bucket-level access enforcement, public access prevention, VPC Service Controls perimeter coverage, IAM Conditions for time-bounded access, Object Lifecycle policies, and data residency compliance.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: security

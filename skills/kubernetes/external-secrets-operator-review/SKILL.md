@@ -3,7 +3,7 @@ name: external-secrets-operator-review
 description: Use this skill when reviewing External Secrets Operator (ESO) configuration, including SecretStore, ClusterSecretStore, ExternalSecret, and PushSecret resources. Trigger when a user provides ESO YAML manifests, asks about secret rotation interval compliance, questions whether ClusterSecretStore scope is too broad, or wants to audit the auth method used to reach an external secret store (AWS Secrets Manager, Azure Key Vault, GCP Secret Manager, HashiCorp Vault, 1Password).
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-05"
   category: security

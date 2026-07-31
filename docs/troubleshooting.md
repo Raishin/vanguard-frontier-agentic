@@ -86,7 +86,7 @@ Common issues organized as problem/cause/fix tables.
 
 | Problem | Cause | Fix |
 |---------|-------|-----|
-| 403 Forbidden | Trusted publisher config mismatch | Verify npmjs.com: owner=raishin (lowercase), repo, workflow, environment must match exactly |
+| 403 Forbidden | Trusted publisher config mismatch | Verify npmjs.com: owner=vincentchuwaichow (lowercase), repo, workflow, environment must match exactly |
 | OIDC token unavailable | `id-token: write` missing from permissions | Add permission to workflow |
 | Timeout | npm registry outage | Retry via workflow_dispatch with `republish: true` |
 | "Package already exists" | Version already published | Expected if re-running after partial failure. Use `republish: true`. |

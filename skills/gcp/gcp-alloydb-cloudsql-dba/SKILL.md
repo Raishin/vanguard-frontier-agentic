@@ -3,7 +3,7 @@ name: gcp-alloydb-cloudsql-dba
 description: Operate AlloyDB clusters and Cloud SQL instances — HA configuration, read replicas, connection pooling, maintenance windows, backup strategy, and performance diagnostics.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: data

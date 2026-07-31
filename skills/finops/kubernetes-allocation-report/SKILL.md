@@ -3,7 +3,7 @@ name: kubernetes-allocation-report
 description: Produce OpenCost-compatible namespace, pod, and workload cost allocation tables from user-supplied cluster shape data and public cloud pricing. Input is cluster topology provided by the caller; no cluster credentials or live API access are required or accepted. Output maps to FOCUS v1.2 columns.
 allowed-tools: Read Grep Glob WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.2"
   updated: "2026-05-13"
   category: finops

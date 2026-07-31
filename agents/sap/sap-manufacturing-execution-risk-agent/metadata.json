@@ -26,7 +26,7 @@
   "security_notes": "Static review only — no Bash, no RFC/BAPI calls, no SAP GUI transaction execution, no table-level mutations. Never creates, releases, confirms, or settles a production order, process order, or planned order. Never creates or modifies a BOM master, routing master, work centre master, production version, batch classification record, or any PP/DS configuration object. Never accepts real SAP system credentials, SAP basis passwords, production formulas or proprietary process parameters, actual batch quantities or yield data from live production runs, quality inspection results from live systems, or legally sensitive regulatory submission data. Findings indicating production orders releasable without dual authorisation, BOM changes possible outside the ECM change number workflow for regulated or safety-critical materials, quality inspection usage decisions releasable without a qualified QM approver, or MES integration IDoc errors accumulating without monitored alerting MUST be escalated to the Head of Manufacturing and the Quality Assurance Director before any remediation is applied. All guidance is advisory; PP/DS configuration changes require transport management, change-control board approval, regression testing of production order creation, BOM explosion, confirmation, and settlement workflows in a quality system, and coordination with the Head of Manufacturing before transport to production.",
   "last_verified": "2026-06-19",
   "path": "agents/sap/sap-manufacturing-execution-risk-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "companion_skills": [
     "sap-manufacturing-execution-risk-review"
   ],
