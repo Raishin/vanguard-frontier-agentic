@@ -1,3 +1,172 @@
+## 🛡️ v3.6.1 — *Provenance · Policy · Portability*
+_Released 2026-07-31_
+
+> _Curated multi-cloud, zero-trust agent marketplace — `AWS` · `Azure` · `OCI` · `GCP` · `Terraform`._
+> Least privilege, live evidence, safe rollback paths.
+
+**Release type:** Maintenance & hardening.
+
+* **agents:** align Copilot tool grants with declared execution tiers ([`c25e738`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/c25e738d225b13deb10cb00179ec22fcf33d78a1))
+Agent tool permissions were not precise: the Copilot adapter is the one place in this
+catalog that carries a per-agent tool grant, and it had drifted in both directions
+relative to the tier each agent declares.
+
+Two opposite failures, both fixed:
+- 38 agents declaring `static-review` or `read-only-runtime` were granted
+  `execute/runInTerminal` / `execute/getTerminalOutput` — contradicting the tier's own
+  definition in schemas/agent.schema.json ("static-review (no Bash)") and the agents'
+  own contracts. Example: d365-finance-close-to-report-agent is static-review and its
+  security notes route production changes to live-guards, yet it could run a terminal.
+- 95 agents declaring a tier carried no `tools:` block at all. That is not "no
+  permissions" — it inherits every tool the harness offers, an implicit grant strictly
+  wider than any tier permits.
+
+Fixed surgically: only the offending execution entries were removed and a
+tier-appropriate block inserted where none existed. Tools that merely READ terminal
+state (read/terminalLastCommand, read/terminalSelection) are not execution and were
+kept. No hand-tuned grant that already satisfied the rules was rewritten; the diff
+touches tool lines only.
+
+Result across the 317 tiered agents that ship a Copilot adapter: 261 static-review and
+42 read-only-runtime now carry explicit non-executing grants; 6 mutating-runtime keep
+execution.
+
+New gate `validate:agent-tool-tiers` (tests/validate-agent-tool-tiers.py, wired into
+`npm run validate`) makes this permanent, with `agent-tool-tiers:write` to apply the
+minimal fix. Verified with negative probes: adding execute to a static-review agent
+fails, and stripping a tools block fails.
+
+Deliberate boundaries, because not every agent needs the same permissions:
+- `mutating-runtime` MAY carry execution tools; the gate permits but does not require
+  them. 8 mutating operators mutate through an API rather than a shell and were NOT
+  handed a terminal to satisfy a rule — widening a grant needs a per-agent
+  justification just as narrowing one does.
+- `read-only-runtime` gets an EXEC_ALLOWLIST for agents whose documented job is to run
+  a read-only command (playwright-e2e-execution-run-agent, whose runtime execution is a
+  per-session opt-in). Routers and advisors do not qualify: frontend-maestro and
+  marketing-maestro classify and dispatch, and finops-cloud-price-advisor fetches public
+  pricing over HTTP — none needs a terminal, so all three lost execute.
+- Agents that declare no `execution_tier` (347, mostly the cloud boards) are reported
+  but not policed. Assigning those tiers is a per-agent judgement call and a separate
+  change; the gate does not guess a tier in order to enforce one.
+
+Docs: documented the tool-grant contract and which harness surfaces actually enforce
+posture (Codex sandbox_mode, Copilot tools, SKILL.md allowed-tools) versus which carry
+it by contract only (the Markdown-family adapters and kiro-cli, which declare no tools
+at all), and made the corresponding claim in language-stack-boards.md precise.
+
+Gates: npm run validate exit 0 (incl. the new gate), codespell and markdownlint clean.
+tools/vfa-tui untouched.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **agents:** close a parser bypass and stop --write widening grants ([`7b7b75e`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/7b7b75e03637d5a273d65dfaa02b3da3c5b8cfd1))
+Addresses four review findings on the new tool-tier gate. Two were real defects in
+the gate itself — including one that let the exact violation it polices slip through.
+
+Parser bypass (the serious one):
+- The tools block was matched with a regex that only consumed a leading run of
+  double-quoted entries. A perfectly valid YAML block that then used an unquoted
+  scalar had its tail silently ignored, so an agent holding
+  `- execute/runInTerminal` passed the gate with exit 0. Confirmed by probe before
+  fixing. Parsing now fails closed: every entry must be the canonical `  - "tool"`
+  form, and a block with a comment, an unquoted or single-quoted scalar, or a nested
+  map is rejected rather than half-read. Probed all four variants — each now exits 1,
+  and a clean tree still exits 0.
+
+--write no longer widens any grant:
+- It previously synthesized `execute/runInTerminal` for a `mutating-runtime` adapter
+  that had no block, which contradicted this PR's own stated policy that a mutating
+  operator working through an API must not be handed a shell without per-agent
+  justification. The synthesized default is now identical for every tier and contains
+  no terminal.
+- It also synthesized `web/fetch`, contradicting the T0 contract in
+  docs/execution-tiers.md ("No network egress"). The default is now network-free
+  (read, search, search/codebase), and the 91 blocks this branch synthesized were
+  realigned to it. Four salesforce agents keep network because their own contracts
+  require checking current vendor documentation; the 38 execute-removals on
+  pre-existing hand-authored blocks are untouched.
+
+Network egress is reported, not failed. 139 static-review agents still declare a
+network tool deliberately — revoking that across the catalog is a contract decision
+for those boards, not a side effect of this gate, so the count is surfaced instead.
+
+Not changed: read-only-runtime still refuses terminal tools outside EXEC_ALLOWLIST.
+Copilot's `execute/runInTerminal` is unrestricted and cannot express T1's required
+command allowlist, so granting it to a T1 agent violates "never Bash(*)" rather than
+satisfying T1. The agent cited in review (python-live-runtime-control-agent) already
+carries no execute and passes today — this branch touches no python agent — so no CI
+breakage exists; adding a justified T1 executor remains a deliberate, reviewed edit.
+
+Gates: npm run validate exit 0, codespell and markdownlint clean.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **repo:** update GitHub owner references to VincentChuWaiChow ([`e5f8521`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/e5f85217177ffee9f4ed77a0f102fcca6dcaa3da))
+The account was renamed from Raishin to VincentChuWaiChow, which broke the
+release workflow: @semantic-release/github compares the repositoryUrl it
+derives from package.json against the repo's clone_url and aborted
+verifyConditions with EMISMATCHGITHUBURL (run 30602915639).
+
+Renames every GitHub-owner reference across the tree — package.json
+repository/homepage/bugs, CODEOWNERS routing, the plugin/cursor/Kiro manifest
+generators and their generated output, Cargo metadata, docs, install commands,
+and the `author: "github: ..."` attribution carried by every agent and skill.
+A stale handle is not cosmetic here: CODEOWNERS silently stops requesting
+reviews, and a released username can be claimed by someone else.
+
+Deliberately NOT renamed, because they are a different namespace that did not
+change with the account:
+
+  * the npm scope `@raishin/vanguard-frontier-agentic` — the published package
+    name, the `@raishin:registry` config, `@raishin%2F` registry paths, and the
+    npm-pack tarball name `raishin-vanguard-frontier-agentic-<version>.tgz`.
+    Renaming these would break publishing and every install instruction.
+  * CHANGELOG.md and tools/vfa-tui/CHANGELOG.md — generated release history;
+    their commit links and co-author trailers are a record of what happened.
+
+Lowercase owner references were rewritten only where anchored to a GitHub
+meaning (OIDC `repository_owner`, npm trusted-publisher `owner=`, the github.io
+Pages URL, the vfa-tui contact address), never by blanket match.
+
+Generated files regenerated and the integrity manifest refreshed last.
+* **readme:** note the owner rename and that the npm name is unchanged ([`caf24b3`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/caf24b3bd332e36decbbcbbc316ea456e1103c1f))
+The account rename from Raishin to VincentChuWaiChow is visible to anyone
+reading install instructions, and the natural inference — that the npm package
+was renamed too — is wrong. Says so directly next to the existing npm callout:
+GitHub redirects the old URLs, remotes and pinned marketplace sources should be
+updated when convenient, and the package stays @raishin/vanguard-frontier-agentic
+because an npm scope is a separate namespace from a GitHub account.
+
+Calls out explicitly that `@raishin/...` in install commands, .npmrc registry
+config, and packed tarball names is correct rather than a leftover, so a future
+reader does not "finish" the rename and break every existing install.
+* **readme:** raise the rename notice into an IMPORTANT callout ([`7303575`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/7303575b002c5e68ee249ef8ca8dabe8e5f76d3a))
+The notice was a middle paragraph inside a shared blockquote, between the npm
+availability line and the FinOps warning — exactly where a skimming reader
+drops it. Anyone who misses it is likely to conclude the npm package moved too.
+
+Promotes it to its own GitHub [!IMPORTANT] alert so it renders as a coloured,
+iconed box, and adds a two-column "what changed / what did NOT change" table so
+the two identifiers land without reading prose. The npm availability line and
+the ALPHA FINOPS paragraph are unchanged and now stand as their own blockquotes.
+
+Wording is unchanged apart from the added headline clause; the sentence marking
+`@raishin/...` as correct rather than a leftover is kept intact, since that is
+the line that stops someone "finishing" the rename and breaking publishing.
+
+---
+
+### 📥 Install
+```bash
+npm install @raishin/vanguard-frontier-agentic@3.6.1
+```
+
+### 🔐 Supply-chain provenance
+Every release ships a build attestation (SLSA provenance) and an SBOM. Verify the tag with `gh attestation verify` before installing.
+
+**Full changelog:** https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/compare/v3.6.0...v3.6.1
+
 ## 🛡️ v3.6.0 — *Provenance · Policy · Portability*
 _Released 2026-07-28_
 
