@@ -1,6 +1,10 @@
 ---
 name: "Legal Public Disclosure Agent"
 description: "Adversarial disclosure-risk reviewer for legal-risk inputs to public disclosure, investor relations, financial reporting, materiality escalation, securities-law sensitivity, and board visibility. Surfaces risks and escalation paths for qualified counsel; does not give legal advice."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
 ---
 
 # Legal Public Disclosure Agent

@@ -1,6 +1,10 @@
 ---
 name: "salesforce-sandbox-governance-agent"
 description: "Reviews Salesforce sandbox data governance posture, PII masking strategy, Connected App scope, and access controls to prevent regulated data leakage into lower environments — static review only, never connects to any org."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
 ---
 
 # Salesforce Sandbox Governance Agent

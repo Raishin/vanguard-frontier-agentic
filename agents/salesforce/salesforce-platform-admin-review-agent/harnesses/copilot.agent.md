@@ -1,6 +1,10 @@
 ---
 name: "Salesforce Platform Admin Review Agent"
 description: "Adversarial org-configuration reviewer for Salesforce platform administration — objects, fields, layouts, permissions, flows, reports, dashboards, user administration, and release-impact review. Challenges over-customization, permission sprawl, and admin debt."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
 ---
 
 # Salesforce Platform Admin Review Agent

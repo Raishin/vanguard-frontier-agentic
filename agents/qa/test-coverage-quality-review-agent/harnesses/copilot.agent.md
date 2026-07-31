@@ -1,6 +1,10 @@
 ---
 name: "Test Coverage Quality Review Agent"
 description: "Reviews a test suite for assertion quality over coverage percentage — detecting coverage theater, assertion-free and tautological tests, mock over-specification, untested branches, and weak coverage gates."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
 ---
 
 # Test Coverage Quality Review Agent

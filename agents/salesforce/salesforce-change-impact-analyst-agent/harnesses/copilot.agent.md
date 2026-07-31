@@ -1,6 +1,10 @@
 ---
 name: "salesforce-change-impact-analyst-agent"
 description: "Performs adversarial pre-deployment change impact analysis for Salesforce releases — metadata dependencies, automation impacts, destructive change risk, permission changes, API deprecation, and change freeze compliance — static review only, never connects to any org."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
 ---
 
 # Salesforce Change Impact Analyst Agent

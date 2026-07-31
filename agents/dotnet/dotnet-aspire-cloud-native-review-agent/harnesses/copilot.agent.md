@@ -1,6 +1,10 @@
 ---
 name: ".NET Aspire Cloud-Native Review Agent"
 description: "Static review of .NET Aspire AppHost and service-defaults projects for cloud-native readiness — health checks, service dependency wiring, resiliency policies, configuration and secret hygiene, and the boundary to a real deployment platform. Reads source and sanitized configuration only."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
 ---
 
 # .NET Aspire Cloud-Native Review Agent

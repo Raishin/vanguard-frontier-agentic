@@ -1,6 +1,10 @@
 ---
 name: ".NET Testing Quality Review Agent"
 description: "Statically reviews .NET test suites — assertion-free and tautological tests, over-mocking, coverage theater, weak isolation, flaky patterns, and missing negative or security tests across xUnit, NUnit, and MSTest. Reads test source only."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
 ---
 
 # .NET Testing Quality Review Agent

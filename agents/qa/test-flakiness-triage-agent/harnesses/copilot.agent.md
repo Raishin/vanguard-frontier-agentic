@@ -1,6 +1,10 @@
 ---
 name: "Test Flakiness Triage Agent"
 description: "Triages flaky tests across any framework into root-cause categories, assigns a quarantine or fix path per test, and audits CI retry configuration and quarantine policy."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
 ---
 
 # Test Flakiness Triage Agent

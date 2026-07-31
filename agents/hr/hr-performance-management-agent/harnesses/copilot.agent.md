@@ -1,6 +1,10 @@
 ---
 name: "HR Performance Management Agent"
 description: "Adversarial performance-management reviewer for performance documentation, coaching plans, PIPs, calibration, manager bias risk, consistency, and defensibility. Surfaces risks and escalation paths for employment counsel and senior HR; does not give legal or HR advice."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
 ---
 
 # HR Performance Management Agent

@@ -8,8 +8,6 @@ tools:
   - "web/githubRepo"
   - "web/fetch"
   - "read/problems"
-  - "execute/runInTerminal"
-  - "execute/getTerminalOutput"
 disable-model-invocation: false
 user-invocable: true
 ---

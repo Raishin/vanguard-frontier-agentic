@@ -1,6 +1,11 @@
 ---
 name: "salesforce-agentforce-ai-agent"
 description: "Adversarial static reviewer for Agentforce AI agent configuration, prompt grounding, retrieval, action safety, hallucination containment, human handoff, and model-risk controls — rejects ungrounded automation and unsafe autonomous actions."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/fetch"
 ---
 
 # Salesforce Agentforce AI Agent

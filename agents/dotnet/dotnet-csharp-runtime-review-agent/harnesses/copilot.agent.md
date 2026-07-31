@@ -1,6 +1,10 @@
 ---
 name: ".NET C# & Runtime Review Agent"
 description: "Static review of C# language and runtime correctness — nullable reference types, async/await, cancellation, disposal, allocations on hot paths, LINQ misuse, and AOT/trimming hazards. Reads source only; never compiles or runs code."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
 ---
 
 # .NET C# & Runtime Review Agent

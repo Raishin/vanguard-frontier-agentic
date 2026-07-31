@@ -535,11 +535,14 @@ scripts/notebooks, segregation of duties, reconciliation, key-person risk).
 > the companion `SKILL.md` (`allowed-tools` — only mutating operators are granted `Bash`),
 > and the Copilot adapter (only mutating operators are granted `execute/*` tools). The
 > Markdown-family adapters (claude-code, cursor, gemini, kiro-ide) carry `name` and
-> `description` only — the repo-wide convention for every agent in this catalog — so in
-> those harnesses the tier is carried by the agent's operating rules and its bound skill's
+> `description` only — no adapter of those four types in this catalog declares a `tools:`
+> block, and the `kiro-cli.agent.json` adapter has no tools key at all — so in those
+> harnesses the tier is carried by the agent's operating rules and its bound skill's
 > `allowed-tools`, not by a per-agent tool grant. A deploying organization that needs the
 > boundary enforced in-harness must apply its own tool policy there; treat the agent
-> contract as necessary, not sufficient.
+> contract as necessary, not sufficient. The Copilot grant is enforced catalog-wide by
+> [execution-tiers.md](execution-tiers.md#harness-tool-grants-must-match-the-declared-tier)
+> and the `validate:agent-tool-tiers` gate.
 
 **Agent directory layout**
 
