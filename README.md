@@ -83,11 +83,18 @@ operates in. Coordination, governance, and escalation are the product.
 *and any other coding agent.*
 
 > 📦 **Available on npm:** `@raishin/vanguard-frontier-agentic` is published on the public npm registry.
+
+> [!IMPORTANT]
+> 🔁 **The GitHub owner changed — the npm package name did not.** Both are true at once: this repository moved from `Raishin/vanguard-frontier-agentic` to [`VincentChuWaiChow/vanguard-frontier-agentic`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic) when the account was renamed, but the npm scope did not move with it.
 >
-> 🔁 **The GitHub owner changed — the npm package name did not.** This repository moved from `Raishin/vanguard-frontier-agentic` to [`VincentChuWaiChow/vanguard-frontier-agentic`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic) when the account was renamed. GitHub redirects the old URLs, so existing clones and links keep working, but update your `git remote` and any pinned marketplace source when convenient.
+> | What changed | What did NOT change |
+> | --- | --- |
+> | GitHub owner → **`VincentChuWaiChow`** | npm package name → still **`@raishin/vanguard-frontier-agentic`** |
+>
+> GitHub redirects the old URLs, so existing clones and links keep working, but update your `git remote` and any pinned marketplace source when convenient.
 >
 > The npm package is **still `@raishin/vanguard-frontier-agentic`** — `npm install @raishin/vanguard-frontier-agentic@latest` is unchanged, and no republish under a new name is planned. An npm scope is a separate namespace from a GitHub account: renaming the account does not rename the scope, and renaming the scope would break every existing install. Treat `@raishin/…` in install commands, `.npmrc` registry config, and packed tarball names as correct, not as a leftover.
->
+
 > ⚠️ **ALPHA FINOPS BUNDLE**: As of v1.8.0, this package includes 4 new experimental FinOps agents and 7 skills for cloud cost optimization, AI economics modeling, Kubernetes rightsizing, and FOCUS-spec normalization. All are marked `lifecycle: experimental`. [See the board readiness memo](docs/strategy/finops-maestro-board-memo.md) for known limitations, risk mitigation, and 30-day diligence closure requirements. Use at your own risk in pre-production environments. Production deployment requires signed design-partner SOWs, Big 4 accounting validation, and SOC 2 Type II observation (≥150 days).
 
 ---
