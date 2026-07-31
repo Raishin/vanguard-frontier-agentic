@@ -3,7 +3,7 @@ name: kotlin-compose-ui-quality-accessibility
 description: "Use this skill to statically review Jetpack Compose UI correctness and accessibility: recomposition stability (@Stable/@Immutable, unstable parameters cascading recomposition), correct side-effect API usage with required cleanup, remember/derivedStateOf for recomposition scope, state hoisting and rememberSaveable, and mandatory semantics/contentDescription plus touch-target sizing for accessibility. Reads source only; it never renders or profiles the UI."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-21"
   category: delivery

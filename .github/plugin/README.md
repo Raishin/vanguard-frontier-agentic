@@ -14,7 +14,7 @@ this path when you run `copilot plugin marketplace add owner/repo`.
 
 ```bash
 # Add the marketplace, then install the bundled plugin
-copilot plugin marketplace add Raishin/vanguard-frontier-agentic
+copilot plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic
 /plugin install vanguard-frontier-agentic
 ```
 
@@ -23,7 +23,7 @@ Or wire it into `.github/copilot/settings.json` for repo-wide trust:
 ```json
 {
   "extraKnownMarketplaces": [
-    "https://raw.githubusercontent.com/Raishin/vanguard-frontier-agentic/master/.github/plugin/marketplace.json"
+    "https://raw.githubusercontent.com/VincentChuWaiChow/vanguard-frontier-agentic/master/.github/plugin/marketplace.json"
   ]
 }
 ```

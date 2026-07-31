@@ -24,6 +24,6 @@
   "security_notes": "Flag any, as, and non-null assertions (!) at trust boundaries (parsed JSON, third-party SDK responses, postMessage payloads, URL/query-param parsing) without paired runtime validation — a type annotation is erased at compile time and enforces nothing against a malformed or malicious payload. Flag @ts-ignore/@ts-expect-error without an adjacent justification comment, especially on security-relevant code. Flag any proposal to loosen tsconfig strictness (removing strict, disabling strictNullChecks) without an explicit, separately-reviewed migration plan.",
   "last_verified": "2026-07-02",
   "path": "skills/frontend/typescript-contracts-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

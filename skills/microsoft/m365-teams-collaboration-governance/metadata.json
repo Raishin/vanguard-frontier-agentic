@@ -24,7 +24,7 @@
   "security_notes": "Never recommend weakening tenant-wide external access or guest sharing policies for convenience, delivery pressure, or broad exceptions. Tenant-wide external-access or sharing-policy changes, sensitivity label publishing changes affecting Teams, and phone system or voice routing configuration changes are live-guard gated and require explicit human confirmation, blast-radius assessment, and rollback path. Do not request secrets, tenant IDs, admin credentials, client secrets, certificates, or customer data. Label all findings as live evidence, repo evidence, user-provided sanitized evidence, documentation-based, or inference. Challenge unchecked Teams sprawl, missing expiration policies, guest access without review cadence, and overly permissive app permission policies.",
   "last_verified": "2026-06-17",
   "path": "skills/microsoft/m365-teams-collaboration-governance",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "category": "platform",
   "companion_agents": ["m365-teams-collaboration-governance-agent"]

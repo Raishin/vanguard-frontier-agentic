@@ -3,7 +3,7 @@ name: netsuite-sandbox-nonproduction-governance-skill
 description: "Static-review flashlight for NetSuite sandbox, Release Preview, and non-production environment governance. Enforces the confirmed isolation facts: OAuth 2.0 authorized apps and client credentials flow setup in production are NOT copied to sandbox or Release Preview (and are cleared on each sandbox refresh); TBA tokens created in production are NOT copied to sandbox or Release Preview. Enforces that sandbox success does not equal production readiness without explicit re-authorization. TRIGGER when: user asks about sandbox governance, OAuth app re-authorization after sandbox refresh, TBA token management across environments, Release Preview usage policies, environment isolation between production and sandbox, sandbox-to-production promotion readiness, or sandbox refresh impact on integration testing. Trigger phrases: sandbox refresh, OAuth re-authorize sandbox, Release Preview isolation, sandbox governance, non-production environment, sandbox success production readiness, TBA token sandbox. DO NOT TRIGGER when: the question is about OAuth 2.0 or TBA auth flow mechanics (use netsuite-sso-oauth-tba-agent), integration API endpoint design (use netsuite-web-services-integration-agent), SDF release pipeline automation (use netsuite-sdf-devops-release-agent), or role and permission SoD design (use netsuite-identity-access-role-permission-agent)."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-09"
   category: operational

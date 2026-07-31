@@ -3,7 +3,7 @@ name: gcp-gemini-api-developer
 description: "Build, integrate, and debug Gemini API applications on Google Cloud Agent Platform (formerly Vertex AI) using the unified google-genai SDK. Covers text generation, multimodal inputs, function calling, structured output, embeddings, context caching, batch prediction, streaming, Live API (bidirectional voice/video), and model tuning across Python, TypeScript/JavaScript, Go, Java, and C#. Use when building Gemini-powered applications, migrating from deprecated Vertex AI or google-generativeai SDKs, or integrating Gemini capabilities into a GCP-hosted service."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: ai

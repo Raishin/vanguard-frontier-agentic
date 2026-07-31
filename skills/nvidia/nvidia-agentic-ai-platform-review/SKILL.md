@@ -3,7 +3,7 @@ name: nvidia-agentic-ai-platform-review
 description: Use this skill when reviewing agentic-AI platforms built on the NVIDIA stack — NeMo Agent Toolkit, NIM-as-tool patterns, retrieval-augmented generation pipelines, tool-call safety, agent memory boundaries, and per-tenant audit logging. Trigger when the user asks whether agent tool calls are sandboxed, whether agent memory is tenant-scoped, whether tool definitions are signed, or whether the deployment meets NCP-AAI expectations.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-10"
   category: ai

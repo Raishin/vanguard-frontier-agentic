@@ -25,6 +25,6 @@
   "security_notes": "This skill's entire scope is security-critical: a client-side-only navigation guard treated as an authorization boundary is a broken access control defect, an unvalidated route.query.redirect/returnUrl is an open-redirect vector, an unvalidated dynamic :to/:href is a javascript:/data:-scheme injection vector, and route params/query reaching v-html/innerHTML is reflected XSS. Every finding in this skill defaults to HIGH severity unless proven otherwise with concrete evidence (a confirmed server-side check, a same-origin allowlist, a protocol allowlist, or a sanitizer call on the exact traced path). Static-review-only skill: it reads and greps router configuration, guards, and template bindings but never executes, builds, or runs application code, and never sends live requests.",
   "last_verified": "2026-07-03",
   "path": "skills/frontend/vue-router-navigation-security-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

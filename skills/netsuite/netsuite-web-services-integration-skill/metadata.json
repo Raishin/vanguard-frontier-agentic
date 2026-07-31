@@ -33,6 +33,6 @@
   "security_notes": "Static review only — never calls NetSuite APIs, never requests or stores credentials, tokens, client secrets, or org IDs. Works exclusively from sanitized configuration excerpts. SOAP usage is flagged as a migration risk citing the confirmed sunset timeline. OAuth 2.0 is confirmed NOT supported for SOAP; only for REST, RESTlets, and SuiteAnalytics Connect. Never recommends the Administrator role. Custom reviewer role requires 2FA when permissions include Access Token Management or OAuth 2.0 Authorized Applications Management.",
   "last_verified": "2026-06-09",
   "path": "skills/netsuite/netsuite-web-services-integration-skill",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

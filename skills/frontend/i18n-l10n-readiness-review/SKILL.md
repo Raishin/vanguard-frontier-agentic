@@ -3,7 +3,7 @@ name: i18n-l10n-readiness-review
 description: Audit frontend code for internationalization readiness — externalized ICU MessageFormat strings, Intl-based date/number/currency/plural formatting, correct lang/dir attribute propagation, and RTL-safe CSS logical properties — before translation vendor engagement, with CLDR plural-rule detail loaded only when auditing countable strings.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: compliance

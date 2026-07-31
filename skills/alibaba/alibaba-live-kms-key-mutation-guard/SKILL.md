@@ -3,7 +3,7 @@ name: alibaba-live-kms-key-mutation-guard
 description: Gate KMS key deletion and disable operations. All data encrypted with a deleted CMK (OSS SSE-KMS, ECS encrypted disks, RDS/PolarDB TDE) becomes permanently and irrecoverably inaccessible. This guard enforces complete CMK dependency audits, deletion window confirmation, and explicit operator approval before any key state mutation.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: security

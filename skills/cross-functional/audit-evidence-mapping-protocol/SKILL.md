@@ -3,7 +3,7 @@ name: audit-evidence-mapping-protocol
 description: Use this skill when compliance controls must be mapped to audit evidence, when evidence collection, retention policy, and legal-hold status need to be assessed across Microsoft 365 workloads, or when an attestation package must be assembled for an auditor or regulator. Defines the end-to-end flow from control identification through evidence discovery, gap analysis, retention verification, legal-hold confirmation, and attestation sign-off. Does not serve as an authorization to release evidence to external parties; that requires a human compliance or legal owner. Does not replace qualified legal or audit counsel.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-16"
   category: compliance

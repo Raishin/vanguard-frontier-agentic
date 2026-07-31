@@ -3,7 +3,7 @@ name: huawei-dew-kms-lifecycle-steward
 description: Manage Huawei DEW (Data Encryption Workshop) — KMS key lifecycle and rotation, CSMS secret rotation automation, CBH (Cloud Bastion Host) privileged access session management, and DBSS database encryption and SQL audit.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: security

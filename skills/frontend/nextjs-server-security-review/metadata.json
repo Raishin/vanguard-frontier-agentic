@@ -24,6 +24,6 @@
   "security_notes": "This skill's entire scope is security-critical: a middleware matcher exclusion is a zero-trust boundary defect (authorization silently skipped on excluded paths), a missing serverActions.allowedOrigins is a CSRF gap, a NEXT_PUBLIC_-prefixed secret is a build-time data exposure with no runtime remediation once shipped, and dangerouslyAllowLocalIP or an unvalidated rewrite destination is a server-side request forgery / open-redirect vector. Every finding in this skill defaults to HIGH severity unless proven otherwise with concrete repo evidence. Static-review-only skill: it reads and greps middleware, Server Action, config, and environment files but never executes, builds, or runs application code, and never sends live requests.",
   "last_verified": "2026-07-03",
   "path": "skills/frontend/nextjs-server-security-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

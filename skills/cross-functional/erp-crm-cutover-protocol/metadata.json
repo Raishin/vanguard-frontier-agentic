@@ -16,6 +16,6 @@
   "security_notes": "This protocol is a recommendation and orchestration aid only; it is never an authorisation to execute a production migration, cutover, or go-live. It never requests production environment credentials, database connection strings, org IDs, or customer data as protocol inputs. The go/no-go decision requires explicit sign-off from the human project steering committee and Microsoft FastTrack (where applicable). Reconciliation sign-off must come from the named data owner; estimated or assumed sign-off is refused. Rollback plans that have not been rehearsed in a sandbox block the cutover recommendation unconditionally. Separation-of-duties violations in production security roles must be remediated before go-live is recommended. All SbD blocking issues require the named issue owner to confirm resolution before the SbD gate is cleared.",
   "last_verified": "2026-06-16",
   "path": "skills/cross-functional/erp-crm-cutover-protocol",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

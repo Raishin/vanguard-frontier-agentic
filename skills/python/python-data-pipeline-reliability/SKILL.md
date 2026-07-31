@@ -3,7 +3,7 @@ name: python-data-pipeline-reliability
 description: "Use this skill to statically review Python data-pipeline reliability (Airflow, Dagster, Prefect, PySpark): task idempotency and safe backfills, partitioning and late-data handling, schema evolution and data contracts, checkpointing, retry policy, and data-quality gates. Reads DAG/pipeline source and configuration only; it never runs a pipeline, triggers a backfill, or connects to a warehouse."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-26"
   category: data

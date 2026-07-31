@@ -3,7 +3,7 @@ name: ionos-kubernetes-platform-operator
 description: Review IONOS managed Kubernetes cluster and node pool configuration covering cluster readiness, node pool sizing and autoscaling, workload placement strategies, PodDisruptionBudget coverage, control-plane upgrade safety, kubeconfig management, LAN attachment, and GDPR-compliant cluster region selection. Use when the user asks to assess, configure, or troubleshoot IONOS managed Kubernetes clusters or node pools.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-10"
   category: platform

@@ -3,7 +3,7 @@ name: netsuite-integration-migration-skill
 description: "Static-review flashlight for NetSuite SOAP-to-REST integration architecture and migration program planning. Assesses integration inventories against the confirmed SOAP sunset timeline: 2026.1 REST+OAuth2 default for new integrations, 2027.1 new SOAP integrations blocked, 2025.2 last planned SOAP endpoint, 2028.2 all SOAP endpoints disabled. TRIGGER when: user asks to plan a SOAP-to-REST migration, assess migration risk across an integration inventory, design a phased migration program, review integration architecture for SOAP sunset exposure, create a migration timeline aligned to NetSuite releases, or design rollback strategies for integration cutover. Trigger phrases: SOAP migration plan, SOAP sunset, migrate to REST NetSuite, integration inventory, 2028.2 deadline, SOAP removal, migration program. DO NOT TRIGGER when: the question is about a single REST API endpoint design or integration record configuration (use netsuite-web-services-integration-agent), OAuth 2.0 or TBA auth mechanics (use netsuite-sso-oauth-tba-agent), SuiteScript or SDF code authorship (use netsuite-suitecloud-developer-agent), or role and permission SoD design (use netsuite-identity-access-role-permission-agent)."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-09"
   category: architecture

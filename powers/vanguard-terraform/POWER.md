@@ -3,7 +3,7 @@ name: "vanguard-terraform"
 displayName: "Vanguard Frontier — Terraform"
 description: "Curated Terraform agents for plan/apply review, state safety, deletion protection, and blast-radius assessment of IaC changes. Routes via terraform-maestro to the terraform-reviewer for plan analysis. Plan review is required before any apply targeting real infrastructure; state-modifying commands require explicit approval."
 keywords: ["terraform", "iac", "plan-review", "state-safety", "deletion-protection", "blast-radius"]
-author: "Raishin"
+author: "VincentChuWaiChow"
 ---
 # Vanguard Frontier — Terraform
 
@@ -34,9 +34,9 @@ Live-guard agents enforce approval, target confirmation, evidence capture, and r
 
 ## Where the agents live
 
-Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see `agents/terraform/` in that repository. All 2 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
+Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic) marketplace. For this provider, see `agents/terraform/` in that repository. All 2 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
 
 ## Companion install paths
 
-- **Claude Code:** `/plugin marketplace add Raishin/vanguard-frontier-agentic` then `/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic`
+- **Claude Code:** `/plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic` then `/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic`
 - **Codex / Copilot / Cursor / Gemini CLI / Kiro (file export):** `npx vfa-export-agents --platform <harness> --provider terraform --repo .`

@@ -3,7 +3,7 @@ name: python-web-service-production-readiness
 description: "Use this skill to statically review Python web-service production readiness across FastAPI, Starlette, Django, and Flask (ASGI/WSGI): sync-vs-async endpoint blocking, request validation, authentication and authorization boundaries, middleware order, worker model, timeouts, graceful shutdown, and health checks. Reads source and config only; it never starts the server or sends requests. Loads the framework-specific reference only when the framework is detected."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-26"
   category: platform

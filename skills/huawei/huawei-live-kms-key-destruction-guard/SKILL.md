@@ -3,7 +3,7 @@ name: huawei-live-kms-key-destruction-guard
 description: Gate DEW/KMS key deletion and disable operations — all CSMS secrets and DBSS-encrypted database data become permanently unrecoverable once the key deletion window passes.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: security

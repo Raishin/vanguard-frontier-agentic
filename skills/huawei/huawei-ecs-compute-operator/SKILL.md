@@ -3,7 +3,7 @@ name: huawei-ecs-compute-operator
 description: Manage Huawei ECS (Elastic Cloud Server) instance lifecycle, AS (Auto Scaling) group configuration and health, IMS (Image Management Service) golden image management, DeH (Dedicated Host) tenancy, and CSBS backup snapshot governance.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: compute

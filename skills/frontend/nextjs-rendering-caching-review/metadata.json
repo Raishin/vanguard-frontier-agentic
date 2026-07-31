@@ -22,6 +22,6 @@
   "security_notes": "Cross-user Data Cache leakage (caching a per-user response as if it were shared/public) is a data-exposure defect, not merely a performance nit — this skill escalates such findings to HIGH severity and requires a security-review sign-off, not just a caching-strategy note. Static-review-only skill: it reads and greps route/fetch source but never executes, builds, or runs application code. Treat any hardcoded API key, token, or credential found in a fetch() call or header as a HIGH-severity finding requiring immediate escalation.",
   "last_verified": "2026-07-02",
   "path": "skills/frontend/nextjs-rendering-caching-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

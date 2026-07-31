@@ -3,7 +3,7 @@ name: ionos-live-database-lifecycle-guard
 description: Execute and advise on IONOS DBaaS lifecycle operations for PostgreSQL, MariaDB, and MongoDB managed databases. Covers failover initiation, replica promotion, horizontal and vertical scaling, backup schedule review, point-in-time recovery, cluster deletion protection, and regional endpoint validation. Requires current backup verification, explicit RPO and RTO targets, and human approval before any mutation. Hard-stop when target, approval, or rollback plan is ambiguous.
 allowed-tools: Read Grep Glob Bash
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-10"
   category: resilience

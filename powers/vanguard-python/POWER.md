@@ -3,7 +3,7 @@ name: "vanguard-python"
 displayName: "Vanguard Frontier — Python"
 description: "Curated Python agents for python application security, python async concurrency reliability, python business critical automation governance, python container serverless runtime. Routes static review via python-maestro-agent and live control-plane work via python-live-governance-maestro-agent, which alone gates the live-guard operators. Live mutations require approval, target confirmation, evidence capture, and a rollback plan; static specialists never mutate."
 keywords: ["python", "asyncio", "pyproject", "dependency-confusion", "static-review"]
-author: "Raishin"
+author: "VincentChuWaiChow"
 ---
 # Vanguard Frontier — Python
 
@@ -39,9 +39,9 @@ Live-guard agents enforce approval, target confirmation, evidence capture, and r
 
 ## Where the agents live
 
-Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see `agents/python/` in that repository. All 35 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
+Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic) marketplace. For this provider, see `agents/python/` in that repository. All 35 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
 
 ## Companion install paths
 
-- **Claude Code:** `/plugin marketplace add Raishin/vanguard-frontier-agentic` then `/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic`
+- **Claude Code:** `/plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic` then `/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic`
 - **Codex / Copilot / Cursor / Gemini CLI / Kiro (file export):** `npx vfa-export-agents --platform <harness> --provider python --repo .`

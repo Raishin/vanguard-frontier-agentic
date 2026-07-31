@@ -3,7 +3,7 @@ name: state-management-decision-review
 description: Reviews whether data is correctly classified as server state, client state, or derived state, and whether the resulting store/cache design (query keys, invalidation, optimistic-update rollback, SSR instantiation, selector shape) avoids duplication, stale-data bugs, and unnecessary re-render cascades.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: architecture

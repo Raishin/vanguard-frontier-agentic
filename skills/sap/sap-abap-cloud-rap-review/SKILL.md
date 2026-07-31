@@ -3,7 +3,7 @@ name: sap-abap-cloud-rap-review
 description: Review ABAP Cloud and RESTful ABAP Programming Model (RAP) artifacts for clean-core compliance, released API usage, behavior definition and implementation correctness, CDS view design, BDEF modeling quality, authorization object coverage, and ABAP unit test completeness. Use when assessing RAP business objects on S/4HANA Cloud or BTP ABAP Environment. Does not touch live systems.
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-19"
   category: architecture

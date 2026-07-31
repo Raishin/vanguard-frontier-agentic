@@ -3,7 +3,7 @@ name: huawei-codearts-devops-operator
 description: Build and operate Huawei CodeArts CI/CD pipelines across CodeHub (Git), Build, Deploy, TestPlan, and Pipeline modules, managing SWR image lifecycle, deployment automation, and environment promotion with rollback gates.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: delivery

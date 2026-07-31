@@ -3,7 +3,7 @@ name: d365-security-sod-governance
 description: Review Dynamics 365 Finance & Operations security role design, duty and privilege assignments, segregation of duties (SoD) conflict rules, user-role assignments, and audit evidence for least-privilege compliance. Enforces SoD conflict detection, security reports review, role layering analysis, and privileged access controls. Refuses to approve role changes that introduce SoD conflicts or bypass audit controls. Production role changes are live-guard gated and require escalation.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-16"
   category: compliance

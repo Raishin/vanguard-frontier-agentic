@@ -3,7 +3,7 @@ name: gcp-cloud-auth-advisor
 description: "Advise on Google Cloud authentication and authorization patterns — covering Application Default Credentials (ADC), service account best practices, Workload Identity Federation (for GKE pods and external workloads), human user auth (gcloud, IAP, Identity Platform), service-to-service auth (OIDC ID tokens, short-lived credentials), and anti-patterns like service account key downloads. Use when designing auth flows, debugging GCP auth failures, implementing least-privilege SA setup, or migrating from SA keys to keyless authentication."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: security

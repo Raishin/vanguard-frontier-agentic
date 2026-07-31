@@ -3,7 +3,7 @@ name: variance-analysis-advisor
 description: Variance decomposition framework and SEC Regulation S-K Item 303 MD&A commentary guidance for FP&A and corporate finance teams. Provides driver decomposition methodology (Volume/Price/Rate/Mix/One-Time), MD&A structural requirements with regulatory citations, restatement-risk trigger catalog, sensitivity analysis templates, and materiality threshold guidance. Advisory only — all draft commentary requires CFO certification and legal review before filing.
 allowed-tools: Skill Read WebFetch Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-01"
   category: finance

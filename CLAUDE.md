@@ -126,7 +126,7 @@ A `provider` value is hardcoded in several places that are **not** auto-derived 
 
 This repo ships as an npm package AND as four harness marketplaces; each manifest is generated, validated, and must never be hand-edited:
 
-- Claude Code plugin: `.claude-plugin/plugin.json` (`npm run plugin-manifest:write`; install: `/plugin marketplace add Raishin/vanguard-frontier-agentic`).
+- Claude Code plugin: `.claude-plugin/plugin.json` (`npm run plugin-manifest:write`; install: `/plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic`).
 - Cursor plugin: `.cursor-plugin/plugin.json` (`npm run cursor-plugin:write`); Copilot CLI marketplace: `.github/plugin/marketplace.json` (repo root is the plugin root). Both validated together by `validate:multi-harness-marketplace`.
 - Codex marketplace: `.agents/plugins/marketplace.json` — validated by `validate:codex-marketplace` (plugin name = folder name, kebab-case, `policy.{installation, authentication}` + `category` required, version parity with package.json).
 - Kiro Powers: `powers/vanguard-*` (`npm run kiro-powers:write`). **Kiro frontmatter is strictly limited to five fields** (`name`, `displayName`, `description`, `keywords`, `author`) — any other field fails `validate:kiro-powers`.

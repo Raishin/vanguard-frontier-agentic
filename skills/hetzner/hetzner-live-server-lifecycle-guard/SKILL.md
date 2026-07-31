@@ -3,7 +3,7 @@ name: hetzner-live-server-lifecycle-guard
 description: Guard Hetzner Cloud server creation, destruction, type changes (rescale), and power operations with mandatory server ID, region, explicit human approval, target confirmation, account, and rollback plan. Server deletion is irreversible without a prior snapshot. Use only when live server lifecycle operations are required and all pre-flight checks are confirmed.
 allowed-tools: Read Grep Glob Bash
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-10"
   category: platform

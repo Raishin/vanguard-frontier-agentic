@@ -3,7 +3,7 @@ name: huawei-dws-dli-data-analyst
 description: Operate Huawei DWS (GaussDB DWS data warehouse), DLI (Data Lake Insight serverless Spark/Flink), MRS (MapReduce Service), and DataArts Studio for data governance and pipeline orchestration.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: data

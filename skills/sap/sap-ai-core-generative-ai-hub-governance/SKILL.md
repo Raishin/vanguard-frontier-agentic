@@ -3,7 +3,7 @@ name: sap-ai-core-generative-ai-hub-governance
 description: Governance review for SAP AI Core, AI Launchpad, and Generative AI Hub deployments. Assesses model access control, data privacy for RAG pipelines and embeddings, prompt-injection risk in orchestration configurations, grounding data classification, prompt-log handling, and auditability of AI outputs. Does not run models or access production AI deployments.
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-19"
   category: ai

@@ -3,7 +3,7 @@ name: java-framework-production-readiness
 description: Use this skill when statically reviewing a Spring Boot, Quarkus, or Micronaut service for production readiness — externalized configuration, health/readiness/liveness endpoint wiring, graceful shutdown, jakarta namespace correctness plus the framework's JDK floor, build-time DI/AOT reflection safety, profile/config validation, and dependency BOM alignment. Trigger when a user provides a build file (pom.xml/build.gradle), application.properties/application.yml (sanitized), or source annotations and asks whether a service is ready to ship, what a pre-production checklist should cover, or why a rolling deploy drops requests or a native build fails at runtime. Reads source and sanitized configuration only; it never builds, runs, invokes a JDK, opens a live connection, or asserts framework EOL dates from memory.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-17"
   category: architecture

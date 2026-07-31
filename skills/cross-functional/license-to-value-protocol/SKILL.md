@@ -3,7 +3,7 @@ name: license-to-value-protocol
 description: Use this skill when Microsoft 365 or Dynamics 365 licenses have been assigned and the organisation needs to measure adoption, instrument value outcomes, identify waste, and reclaim inactive licenses before purchasing more. Orchestrates microsoft-business-impact-value-realization-agent as primary. Gates include baseline definition before adoption target is set, and inactive-license reclaim before any new license purchase is recommended. Does not make purchase decisions or modify license assignments autonomously. Never requests credentials, tenant IDs, or customer data; production-impacting steps escalate to the licence owner or IT procurement team.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-16"
   category: finance

@@ -3,7 +3,7 @@ name: kotlin-android-performance-reliability
 description: "Use this skill to statically review measured Android runtime performance and reliability evidence: cold/warm startup via StartupTimingMetric and CompilationMode, frame jank via FrameTimingMetric/JankStats against the 60fps budget, Baseline Profile coverage, ANR root-causing against the main-thread-blocking threshold, and Macrobenchmark P50/P90/P99 regression-gating. Reads benchmark reports and source only; it never runs a benchmark or instruments a device."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-21"
   category: resilience

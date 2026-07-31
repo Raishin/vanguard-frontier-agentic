@@ -27,7 +27,7 @@
   "security_notes": "Static review only — no Bash, no MDG API calls, no BRFplus rule activation, no governance workflow execution, no master data record mutation. Never triggers a change request or initiates a governance workflow step. Never accepts real SAP system credentials, client-level passwords, transport IDs tied to production, or personal data from actual master data records (real customer names, vendor bank details, employee data). Findings indicating bypassed governance workflow steps, inactive compliance-relevant validation rules (VAT registration, bank account dual-control), or mass change objects active without change-log configuration must be escalated to the Data Governance Owner and internal audit before any remediation is applied. All guidance is advisory; MDG configuration changes require transport management, data governance board approval, and testing in a quality client before transport to production.",
   "last_verified": "2026-06-19",
   "path": "agents/sap/sap-mdg-master-data-quality-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "companion_skills": [
     "sap-mdg-master-data-quality-review"
   ],

@@ -3,7 +3,7 @@ name: python-live-model-promotion-control
 description: "Use this skill to promote exactly one immutable model artifact: confirm the artifact's provenance and integrity (hash/signature), an AI-risk classification, evaluation evidence matched to the deployment, live monitoring, and a rollback to the prior artifact before promoting, and record the AI-system role without declaring regulatory conformity."
 allowed-tools: Read Grep Glob WebSearch WebFetch Bash
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-26"
   category: ai

@@ -3,7 +3,7 @@ name: sap-order-to-cash-review
 description: Review SAP S/4HANA Order-to-Cash (OTC) processes: order management configuration, pricing procedure design, credit management controls, billing and revenue recognition, order and delivery blocks and holds, fulfillment exception management, Days Sales Outstanding (DSO) drivers, and cash application. Flags control gaps, revenue leakage patterns, pricing errors, unresolved order blocks, credit management weaknesses, and DSO drivers. Does not create sales orders, release order blocks, post billing documents, or mutate any live OTC system.
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-19"
   category: finance

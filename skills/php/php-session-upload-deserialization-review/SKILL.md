@@ -3,7 +3,7 @@ name: php-session-upload-deserialization-review
 description: Use this skill to statically review PHP code for object-injection risk from unserialize() on untrusted input, session fixation/hijacking from missing session_regenerate_id() or weak session cookie hardening, and unsafe file-upload handling that trusts the client or stores/executes uploads inside the webroot. Use when reviewing a PHP application for deserialization, authentication-session, or upload-handling security issues. Static review only; it never executes payloads, uploads, or requests against any system, and every unserialize()/session/upload claim is grounded in the current php.net manual rather than memory.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-16"
   category: security

@@ -3,7 +3,7 @@ name: aws-cost-optimization-governor
 description: Review AWS cost optimization and FinOps posture across Cost Explorer, Budgets, Cost Optimization Hub, Compute Optimizer, Savings Plans, Reserved Instances, tagging, showback, idle resources, rightsizing, storage, data transfer, and forecast risk. Use when the user asks to reduce or explain AWS cost.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.4"
   updated: "2026-06-02"
   category: finops

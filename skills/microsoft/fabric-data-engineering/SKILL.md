@@ -3,7 +3,7 @@ name: fabric-data-engineering
 description: Review Microsoft Fabric data engineering artifacts — Lakehouse and OneLake design, medallion (bronze/silver/gold) architecture, Spark notebooks and Spark job definitions, Data pipelines and Dataflows Gen2, Delta/Parquet storage and OneLake shortcuts, Real-Time Intelligence (eventstreams, KQL databases, eventhouse), Direct Lake semantic-model source design, ingestion and orchestration patterns, Capacity Unit (CU) efficiency, and Git integration and deployment pipelines for engineering items. Use to fix brittle pipelines, poor medallion layering, capacity overruns, and fragile ingestion patterns. Static review only; production pipeline runs, capacity changes, and deployment-pipeline promotions are escalated.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-17"
   category: data

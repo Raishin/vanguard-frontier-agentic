@@ -3,7 +3,7 @@ name: php-runtime-eol-opcache-fpm-review
 description: Use this skill to review PHP runtime upgrade readiness — whether the target or running PHP version is past php.net's published four-year support window (active support, then security-only, then EOL) — and to review production OPcache (enable, validate_timestamps, memory sizing) and PHP-FPM (pm, max_children, max_requests) hardening. Use when production PHP could be running an EOL or soon-security-only-EOL version, or when OPcache/FPM configuration could serve stale code or let a traffic spike exhaust workers. An EOL runtime is always a blocking finding. Static review only; it never installs, upgrades, or restarts a PHP runtime.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-16"
   category: operational

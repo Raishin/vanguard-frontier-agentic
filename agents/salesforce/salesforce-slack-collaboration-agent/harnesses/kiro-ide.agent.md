@@ -8,7 +8,7 @@ keywords:
   - ediscovery
   - retention
   - collaboration-governance
-author: "github: Raishin"
+author: "github: VincentChuWaiChow"
 ---
 
 # Salesforce Slack Collaboration Agent

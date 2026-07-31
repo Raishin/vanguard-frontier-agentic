@@ -3,7 +3,7 @@ name: "vanguard-generic"
 displayName: "Vanguard Frontier — Generic"
 description: "Curated Generic review agents covering ci test pipeline, helm chart quality, kubernetes manifest quality, llm ai pipeline test. Reference agents directly under agents/generic/. Static review only; no live mutations."
 keywords: ["test-quality", "ci-pipeline", "helm-chart", "manifest-review"]
-author: "Raishin"
+author: "VincentChuWaiChow"
 ---
 # Vanguard Frontier — Generic
 
@@ -32,9 +32,9 @@ Live-guard agents enforce approval, target confirmation, evidence capture, and r
 
 ## Where the agents live
 
-Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see `agents/generic/` in that repository. 10 of 11 agents in this provider ship a Kiro adapter; the rest provide steering context only.
+Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic) marketplace. For this provider, see `agents/generic/` in that repository. 10 of 11 agents in this provider ship a Kiro adapter; the rest provide steering context only.
 
 ## Companion install paths
 
-- **Claude Code:** `/plugin marketplace add Raishin/vanguard-frontier-agentic` then `/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic`
+- **Claude Code:** `/plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic` then `/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic`
 - **Codex / Copilot / Cursor / Gemini CLI / Kiro (file export):** `npx vfa-export-agents --platform <harness> --provider generic --repo .`

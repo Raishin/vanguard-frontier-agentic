@@ -3,7 +3,7 @@ name: alibaba-analyticdb-realtime
 description: Operate AnalyticDB for MySQL and PostgreSQL, Hologres real-time OLAP analytics, and DAS real-time diagnostics for sub-second interactive analytics workloads.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: data

@@ -3,7 +3,7 @@ name: salesforce-flow-automation-review-skill
 description: Use this skill when Salesforce Flow XML, validation rules, approval processes, or record-triggered automation must be reviewed for correctness, safety, and maintainability. Flags recursion, ungoverned bypass flags, brittle null handling, missing fault paths, hardcoded recipients, before-save vs after-save misuse, and mixed Process Builder plus Flow plus Apex on same object. Trigger phrases: "review this Flow", "check this automation for recursion", "review this approval process", "is this validation rule safe", "review this record-triggered automation". Do not use when Apex code is the primary subject (use salesforce-apex-lwc-code-review-skill), when metadata quality (not logic) is the focus (use salesforce-metadata-review-skill), or when a live automation activation is proposed (use salesforce-live-change-approval-protocol). Works from pasted or exported automation definitions only; never requests live org access.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-20"
   category: platform

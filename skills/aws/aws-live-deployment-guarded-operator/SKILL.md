@@ -3,7 +3,7 @@ name: aws-live-deployment-guarded-operator
 description: Operate guarded live AWS deployment changes with explicit account, region, profile, approval, dry-run, rollback, and verification gates. Use only when the target environment is confirmed and a live deployment action is intentionally requested.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.3"
   updated: "2026-06-02"
   category: delivery

@@ -3,7 +3,7 @@ name: netsuite-audit-controls-sox-skill
 description: "Flashlight skill for reviewing NetSuite financial governance and SOX internal control configurations. T0 static review — no live account connection required. TRIGGER when: user asks to review segregation of duties, SoD conflicts, posting period controls, period-close procedures, revenue recognition schedules, approval workflow chains for journal entries or vendor bills, audit trail completeness, or SOX walkthrough evidence in NetSuite. Trigger phrases: SOX review, segregation of duties, SoD conflict, posting period locked, period close checklist, revenue recognition schedule, journal entry approval, audit trail, SOX material weakness, internal controls review. DO NOT TRIGGER when: request is about routine AP/AR transaction processing without a SOX angle (use netsuite-financial-foundations-agent), OAuth or TBA authentication setup (use netsuite-sso-oauth-tba-agent), SuiteFlow workflow syntax or builder mechanics (use netsuite-suiteflow-automation-agent), SuiteScript code security (use netsuite-suitescript-secure-code-review-agent), or live account mutation is required (use netsuite-live-org-mutation-guard-agent)."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-09"
   category: compliance

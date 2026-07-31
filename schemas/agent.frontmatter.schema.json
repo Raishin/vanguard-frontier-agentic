@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/Raishin/vanguard-frontier-agentic/schemas/agent.frontmatter.schema.json",
+  "$id": "https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/schemas/agent.frontmatter.schema.json",
   "title": "AGENT.md Frontmatter",
   "description": "JSON Schema for the YAML frontmatter block in every AGENT.md file. Required fields are derived empirically from the existing corpus (141 files), which uniformly carries only a metadata block. additionalProperties is true so future harness-specific fields (e.g., name, description, allowed-tools, model, color) can be added without breaking existing files. Authoritative agent identity, provider, harness, and security metadata live in the adjacent metadata.json (see schemas/agent.schema.json).",
   "type": "object",

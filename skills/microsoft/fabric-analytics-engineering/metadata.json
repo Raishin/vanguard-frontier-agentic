@@ -23,7 +23,7 @@
   "security_notes": "Static review only. Never execute DDL or DML against production Fabric Data Warehouse schemas, deploy or overwrite production semantic models, publish Power BI reports to production workspaces, or modify deployment-pipeline stages without explicit human approval, blast-radius assessment, and a rollback path; these are live-guard gated and must be escalated to a Fabric or analytics administrator. Do not ask for credentials, tenant IDs, workspace URLs, or customer data. Treat missing surrogate keys in fact tables, fan-out or chasm-trap join patterns, incorrect DAX filter context, measures using calculated columns instead of explicit DAX, DirectQuery fallback on Direct Lake SQL views, and unverified measure outputs as correctness risks until reviewed. Label every finding as documented artifact, user-provided sanitized evidence, documentation-based, or inference.",
   "last_verified": "2026-06-17",
   "path": "skills/microsoft/fabric-analytics-engineering",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "category": "data",
   "companion_agents": ["fabric-analytics-engineering-agent"]

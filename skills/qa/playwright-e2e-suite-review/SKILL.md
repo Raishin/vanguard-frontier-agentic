@@ -3,7 +3,7 @@ name: playwright-e2e-suite-review
 description: Use this skill when reviewing a Playwright end-to-end test suite for flakiness, selector brittleness, isolation defects, and CI reliability. Trigger when a user provides Playwright spec files, a playwright.config.ts/js, a CI workflow that runs Playwright, or asks why their E2E suite is flaky, slow, or fails intermittently in CI but passes locally. This skill reviews test artifacts statically; it does not execute the suite or launch browsers.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-17"
   category: delivery

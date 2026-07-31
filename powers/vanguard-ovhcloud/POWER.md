@@ -3,7 +3,7 @@ name: "vanguard-ovhcloud"
 displayName: "Vanguard Frontier — OVHcloud"
 description: "Curated OVHcloud agents for IAM, Managed Kubernetes, networking, and KMS with live-mutation guards. Routes via ovhcloud-maestro to specialist or live-guard agents. EU-headquartered sovereignty cloud; mutations require project ID and region confirmation."
 keywords: ["ovhcloud", "ovh", "iam", "managed-kubernetes", "kms", "eu-sovereignty", "live-guard", "data-residency"]
-author: "Raishin"
+author: "VincentChuWaiChow"
 ---
 # Vanguard Frontier — OVHcloud
 
@@ -33,9 +33,9 @@ Live-guard agents enforce approval, target confirmation, evidence capture, and r
 
 ## Where the agents live
 
-Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see `agents/ovhcloud/` in that repository. All 6 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
+Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic) marketplace. For this provider, see `agents/ovhcloud/` in that repository. All 6 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
 
 ## Companion install paths
 
-- **Claude Code:** `/plugin marketplace add Raishin/vanguard-frontier-agentic` then `/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic`
+- **Claude Code:** `/plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic` then `/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic`
 - **Codex / Copilot / Cursor / Gemini CLI / Kiro (file export):** `npx vfa-export-agents --platform <harness> --provider ovhcloud --repo .`

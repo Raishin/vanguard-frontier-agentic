@@ -3,7 +3,7 @@ name: netsuite-erp-consultant-skill
 description: "Flashlight skill for reviewing NetSuite ERP implementation configurations aligned to the ERP Consultant Professional certification (N16302GC10). T0 static review — no live account connection required. TRIGGER when: user asks to review order-to-cash configuration, procure-to-pay workflow, inventory management setup, pricing rule design, fulfillment or receipt workflow, item record configuration, or implementation gap analysis in NetSuite. Trigger phrases: review OTC setup, audit procure to pay, check inventory configuration, validate pricing rules, review fulfillment workflow, implementation gap analysis, ERP consultant review. DO NOT TRIGGER when: request concerns financial close controls or posting periods (use netsuite-financial-foundations-agent), SOX control design (use netsuite-audit-controls-sox-agent), custom SuiteScript code (use netsuite-application-developer-agent), multi-subsidiary intercompany transactions (use netsuite-oneworld-multisubsidiary-agent), or any live account mutation is required."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-09"
   category: platform

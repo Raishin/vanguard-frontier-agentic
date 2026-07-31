@@ -3,7 +3,7 @@ name: java-jpa-hibernate-performance
 description: Use this skill when statically reviewing JPA/Hibernate data access for fetch-strategy correctness and reliability — N+1 exposure, JOIN FETCH vs @EntityGraph vs @BatchSize vs DTO projection, LazyInitializationException and open-in-view misuse, pagination combined with a collection fetch (cartesian product), MultipleBagFetchException, and HikariCP connection-pool sizing. Trigger when a user provides entity classes, mappings, Spring Data repositories, or JPQL/Criteria queries and asks why queries are slow, why a page loads too much, or whether their data access is correct. Reads source and mapping only; it never opens a database connection, runs a query, or executes migrations.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-17"
   category: database

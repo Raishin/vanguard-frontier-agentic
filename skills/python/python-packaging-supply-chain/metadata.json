@@ -23,5 +23,5 @@
   "security_notes": "Static review only — reads `pyproject.toml`, `requirements`/constraints files, lockfiles, and CI definitions to assess locking, hashing, index trust, and build-isolation posture; never runs `pip install`, never resolves or downloads a package, and never contacts an index. A claim that a specific version is vulnerable is flagged as needing confirmation against an advisory source rather than asserted. Never requests index credentials, publish tokens, or customer data, and never installs an unreviewed package to inspect it.",
   "last_verified": "2026-07-26",
   "path": "skills/python/python-packaging-supply-chain",
-  "author": "github: Raishin"
+  "author": "github: VincentChuWaiChow"
 }

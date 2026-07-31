@@ -22,6 +22,6 @@
   "security_notes": "Error-boundary fallback UI must never render raw error.message or error.stack from unexpected exceptions to end users in production - this can leak internal implementation detail; require a sanitized, generic fallback with detail only in server-side/observability logs. Static-review-only skill: it reads and greps component tree, boundary placement, and fallback UI source but never executes, builds, or runs application code.",
   "last_verified": "2026-07-02",
   "path": "skills/frontend/frontend-error-boundary-resilience-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

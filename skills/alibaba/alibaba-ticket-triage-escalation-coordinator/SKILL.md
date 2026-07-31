@@ -3,7 +3,7 @@ name: alibaba-ticket-triage-escalation-coordinator
 description: Triage Alibaba Cloud operational alerts, incidents, and support tickets — P0/P1/P2/P3 classification, Alibaba Cloud Support SLA enforcement, account manager escalation, DingTalk war room coordination, evidence collection from CloudMonitor and SLS, and safe escalation paths.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: observability

@@ -3,7 +3,7 @@ name: java-database-migration-safety
 description: Use this skill when statically reviewing a Flyway or Liquibase schema-migration PR for rolling or blue-green deploy safety — immutable applied-migration discipline (checksum/history-table drift on an edited already-applied migration), expand-contract phasing for column/table drops and renames, destructive DDL (drop column/table, type narrowing, NOT NULL without a default on a populated table) landing in the same release that stops using it, long-locking DDL on large tables, out-of-order migrations, non-idempotent repeatable migrations, and a stated rollback/backfill plan. Trigger when a user provides migration scripts or changelogs, a schema diff, or asks whether a migration is safe to ship, safe to roll back, or safe to run alongside an older application version during rollout. Reads migration files and sanitized schema/config only; it never opens a database connection, runs a migration, or queries live schema state.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-17"
   category: database

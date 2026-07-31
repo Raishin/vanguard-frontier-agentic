@@ -32,7 +32,7 @@
   "security_notes": "T1 read-only-runtime tier. Run As service account requires View Setup and Configuration only; ModifyAllData, ViewAllData, ViewEncryptedData, ModifyMetadata, AuthorApex, ManageConnectedApps, and Customize Application must be explicitly denied. Org IDs and user IDs never appear verbatim in output — always replaced with placeholders. REST describe paths preferred over sf project retrieve start to minimize permission footprint. Encrypted field values (Shield PE, PMLE) skipped entirely. URL-embedded credentials and Named Credential headers trigger immediate stop. Hardcoded session ID literals in Apex escalate to Critical before handoff. Regulated-vertical production orgs require explicit operator confirmation before any retrieval.",
   "last_verified": "2026-05-21",
   "path": "skills/salesforce/salesforce-metadata-fetcher-skill",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "companion_review_skills": [
     "salesforce-metadata-review-skill",

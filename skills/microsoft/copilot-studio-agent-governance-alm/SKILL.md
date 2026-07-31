@@ -3,7 +3,7 @@ name: copilot-studio-agent-governance-alm
 description: Review Microsoft Copilot Studio agent governance and application lifecycle management health including authentication configuration, DLP policies for connectors and actions, environment strategy, solution-based ALM across dev/test/prod, content moderation, analytics and telemetry, human-handoff and approval boundaries, sharing and publishing controls, and compliance posture via Microsoft Purview. Use to detect ungoverned agent publishing, overly permissive connector grants, absent DLP enforcement, and missing ALM discipline. Static review only; broad publishing and connector grants are live-guard gated.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-16"
   category: ai

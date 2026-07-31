@@ -3,7 +3,7 @@ name: marketing-email-list-retention-review
 description: Use this skill when reviewing marketing email list segment metadata, consent-record completeness, suppression-list coverage, and documented data-retention schedules for GDPR storage-limitation, CASL record-keeping, and CCPA deletion-right compliance. Trigger when a user provides a CRM or ESP export of list segment metadata fields — consent source, consent timestamp, last-engagement date, subscription status, suppression-list entries — plus the organization's documented email data-retention policy, and asks whether the stored list inventory and retention posture meets regulatory obligations.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-17"
   category: compliance

@@ -3,7 +3,7 @@ name: accounting-maestro
 description: Route accounting questions to the narrowest specialist in the catalog. Use when you do not already know the specialist needed. Not for direct accounting answers; Maestro classifies, dispatches, and synthesizes only. Dispatches single agent for focused tasks, parallel team (max 3) for multi-domain tasks. Never auto-dispatches any write-capable agent — requires explicit human confirmation before routing to any agent with ledger or ERP write access.
 allowed-tools: Agent Skill Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-01"
   category: finance

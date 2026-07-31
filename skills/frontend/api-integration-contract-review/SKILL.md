@@ -3,7 +3,7 @@ name: api-integration-contract-review
 description: Reviews frontend-to-backend API contracts — BFF route handlers and direct backend calls — for data-minimization, server-side object-level authorization enforcement, error-shape leakage, CORS misconfiguration, and backward-compatible versioning before they ship.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: architecture

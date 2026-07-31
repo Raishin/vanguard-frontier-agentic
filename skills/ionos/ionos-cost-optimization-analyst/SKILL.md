@@ -3,7 +3,7 @@ name: ionos-cost-optimization-analyst
 description: Analyze IONOS Cloud cost posture and identify optimization opportunities across compute, storage, and managed services. Covers idle server and volume identification, CPU and memory utilization rightsizing, snapshot and backup cost review, managed service tier evaluation, contract and pricing strategy, cross-region consolidation feasibility, and cost showback. Use when the user asks to reduce, explain, or attribute IONOS Cloud spending.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-10"
   category: finops

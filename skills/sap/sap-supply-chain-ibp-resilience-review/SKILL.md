@@ -3,7 +3,7 @@ name: sap-supply-chain-ibp-resilience-review
 description: Review SAP Integrated Business Planning (IBP) and supply chain resilience posture: demand and supply planning configuration, Sales and Operations Planning (S&OP) process governance, inventory optimization and safety stock logic, statistical forecast accuracy and bias, IBP control tower alerts and exception management, scenario planning design, and supply chain risk coverage. Flags planning gaps, forecast blind spots, inventory policy misalignments, alert fatigue risks, and scenario planning deficiencies. Does not modify planning data, run supply plans, or mutate any live IBP system.
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-19"
   category: data

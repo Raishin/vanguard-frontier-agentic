@@ -3,7 +3,7 @@ name: ionos-datacenter-designer-reviewer
 description: Review IONOS Data Center Designer (DCD) topology for resource organization, multi-availability-zone placement, private LAN segmentation, volume layout, NIC configuration, and firewall posture. DCD is unique to IONOS as a graphical infrastructure orchestrator where topology changes carry datacenter-wide blast radius. Use when the user asks to review, redesign, or assess the safety of an IONOS datacenter topology or resource layout.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-10"
   category: platform

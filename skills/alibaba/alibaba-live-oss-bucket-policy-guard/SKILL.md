@@ -3,7 +3,7 @@ name: alibaba-live-oss-bucket-policy-guard
 description: Gate OSS bucket ACL and policy mutations — public-read/write ACL exposes data to internet crawlers within seconds; CN-* cross-border replication requires DSL Article 31 assessment.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: storage

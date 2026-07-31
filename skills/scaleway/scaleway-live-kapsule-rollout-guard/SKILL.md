@@ -3,7 +3,7 @@ name: scaleway-live-kapsule-rollout-guard
 description: Gate and execute Scaleway Kapsule live mutations — Kubernetes version upgrades, node pool creation/deletion/scaling, and cluster configuration changes — with mandatory PDB audit, cluster health verification, explicit approval, and a documented rollback plan. Use when a live Kapsule cluster or node pool mutation is requested. Hard-stops when target cluster ID, region/zone, approval, or rollback plan is absent or ambiguous.
 allowed-tools: Read Grep Glob Bash
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-10"
   category: platform

@@ -3,7 +3,7 @@ name: sap-guarded-integration-flow-change
 description: Deploy or modify SAP Cloud Integration iFlows and integration artifacts using a mandatory 17-step guarded mutation sequence covering classification, target tenant confirmation, criticality, requester, approver (integration-owner required), ticket, scope, read-only current state, diff of artifact changes, blast radius (downstream partners and throughput), rollback (previous version redeploy), post-change verification via message monitoring, and audit evidence. Refuses if any step is missing, if integration-owner approval is absent, or if a diff has not been produced. Use when a confirmed and approved iFlow deployment or integration artifact change in a non-development Cloud Integration tenant must be executed under traceable controls.
 allowed-tools: Read Grep Glob WebSearch WebFetch Bash
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-19"
   category: delivery

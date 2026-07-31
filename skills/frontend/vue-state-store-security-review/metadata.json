@@ -25,6 +25,6 @@
   "security_notes": "This skill's entire scope is security-critical: unscoped client-side persistence of tokens/PII is an XSS-exfiltratable data-exposure vector, untrusted/un-escaped state hydration is an XSS and data-integrity vector, SSR store-singleton pollution is a cross-tenant/cross-user data-exposure defect, untrusted payload handling in store plugins/hooks can drive unsanitized writes or calls, client-held role flags used as an authorization source of truth is a broken-access-control defect, and production devtools exposure leaks the full state tree to any user with browser devtools open. Every finding in this skill defaults to HIGH severity unless proven otherwise with concrete evidence (a pick/paths scope, an escaping call, a per-request creation trace, a server-side re-check). Static-review-only skill: it reads and greps store definitions, persistence config, SSR entry points, and plugin/hook code but never executes, builds, or runs application code, and never sends live requests.",
   "last_verified": "2026-07-03",
   "path": "skills/frontend/vue-state-store-security-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

@@ -3,7 +3,7 @@ name: ssr-hydration-streaming-diagnosis
 description: Diagnoses hydration-mismatch errors and streaming/Suspense-boundary structural issues to their specific root cause — non-deterministic rendering source, missing error boundary, serial data-fetch waterfall, or premature auth-unchecked streaming — grounded in the exact React/Next.js version's diagnostic behavior.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: observability

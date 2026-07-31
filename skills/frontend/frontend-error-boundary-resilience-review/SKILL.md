@@ -3,7 +3,7 @@ name: frontend-error-boundary-resilience-review
 description: Reviews error-boundary placement, fallback UX, and failure-isolation strategy to prevent a single component's runtime error from crashing the whole page, ensuring granular, accessible degradation instead of an app-root-only safety net or a silent, unlogged failure.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: resilience

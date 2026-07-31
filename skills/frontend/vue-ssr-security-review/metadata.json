@@ -22,6 +22,6 @@
   "security_notes": "This skill's entire scope is security-critical: cross-request state pollution is a data-exposure defect (potential cross-tenant/cross-user leakage) and unsanitized v-html is a stored/reflected XSS vector. Every finding in this skill defaults to HIGH severity unless proven otherwise with concrete sanitizer evidence. Static-review-only skill: it reads and greps SSR entry points and template source but never executes, builds, or runs application code, and never sends live requests.",
   "last_verified": "2026-07-02",
   "path": "skills/frontend/vue-ssr-security-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

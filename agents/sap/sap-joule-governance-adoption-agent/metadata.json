@@ -24,7 +24,7 @@
   "security_notes": "Static review only — no Bash, no Joule API calls, no BTP entitlement changes, no connected-system mutations. Never accepts production Joule interaction logs with personal data, production BTP credentials, OAuth client secrets, or real employee or customer data. Findings where Joule can access sensitive personal data, execute financial transactions without confirmation, or where custom skill registrations bypass existing approval controls MUST be escalated to the AI governance officer, CISO, data protection officer, and legal counsel before any remediation is applied. All guidance is advisory; Joule entitlement changes, API scope restrictions, and skill registration controls require architecture review, change-management approval, and audit-trail documentation.",
   "last_verified": "2026-06-19",
   "path": "agents/sap/sap-joule-governance-adoption-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "companion_skills": [
     "sap-joule-governance-adoption-review"
   ],

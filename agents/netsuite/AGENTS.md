@@ -179,5 +179,5 @@ All agents refuse:
 ---
 
 **Last updated:** 2026-06-09  
-**Source:** github: Raishin  
+**Source:** github: VincentChuWaiChow  
 **Version:** 0.1.0

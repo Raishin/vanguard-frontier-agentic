@@ -3,7 +3,7 @@ name: test-flakiness-triage
 description: Use this skill when triaging flaky tests across any test framework — analyzing a flaky-test report, CI rerun history, or a set of intermittently failing tests to assign each a root-cause category and a remediation or quarantine path. Trigger when a user reports tests that pass on re-run, asks why CI is unreliable, provides a flaky-test dashboard export, or wants a quarantine policy. This skill reviews evidence statically; it does not execute or re-run tests.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-17"
   category: delivery

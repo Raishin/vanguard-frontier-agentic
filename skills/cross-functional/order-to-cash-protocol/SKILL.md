@@ -3,7 +3,7 @@ name: order-to-cash-protocol
 description: Use this skill to coordinate the order-to-cash process across Dynamics 365 Supply Chain Management, Finance, and Sales, covering confirmed order through fulfillment, invoicing, accounts receivable, and cash collection. It defines stage ownership, gate conditions, agent handoff rules, and escalation triggers for the post-order revenue cycle. The skill does not execute system transactions, approve credit changes, post invoices, or make collection decisions; all production-impacting steps are escalated to the relevant specialist agent or human owner.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-16"
   category: operational

@@ -3,7 +3,7 @@ name: fx-translation-advisor
 description: Multi-jurisdiction reference framework for foreign currency translation and remeasurement covering functional currency determination, ASC 830 / IAS 21 method selection, CTA in OCI, highly inflationary economy treatment, net investment hedge interactions, and multi-GAAP comparison across US GAAP, IFRS, German HGB, JGAAP, CAS 19, and Ind AS 21.
 allowed-tools: Skill Read WebFetch Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-02"
   category: finance

@@ -3,7 +3,7 @@ name: kubernetes-pod-security-admission-review
 description: Use this skill for Kubernetes Pod Security Admission (PSA) review covering namespace labels for the three profiles (privileged, baseline, restricted), enforce/audit/warn modes, version pinning, and the migration path from deprecated PodSecurityPolicy. Trigger when the user asks whether a namespace label flip is safe, whether a workload meets a stricter profile, whether the audit/warn modes should be promoted to enforce, or whether an exemption is justified.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-05"
   category: security

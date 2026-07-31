@@ -3,7 +3,7 @@ name: fetch-foundation-model-pricing
 description: Fetch live per-token, per-image, and per-GPU-hour prices for foundation models across Anthropic, OpenAI, Google, AWS Bedrock, Azure OpenAI, OCI Generative AI, and Vertex AI. Supports single-model lookup and comparative multi-provider tables. Every price is labeled with source URL and ISO 8601 fetch timestamp. No credentials accepted.
 allowed-tools: Read Grep Glob WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.1"
   updated: "2026-05-13"
   category: finops

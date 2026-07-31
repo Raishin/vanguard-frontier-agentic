@@ -15,7 +15,7 @@
   "security_notes": "ACK cluster version upgrades cannot be downgraded once complete. Node pool scaling that removes nodes must verify PodDisruptionBudgets and drain posture. Managed/dedicated/serverless cluster types have different mutation procedures. Never approve a cluster version change without explicit rollback posture and PDB audit.",
   "last_verified": "2026-05-08",
   "path": "agents/alibaba/alibaba-live-ack-rollout-guard-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "harness_variants": {
     "codex": "agents/alibaba/alibaba-live-ack-rollout-guard-agent/harnesses/codex.toml",
     "copilot": "agents/alibaba/alibaba-live-ack-rollout-guard-agent/harnesses/copilot.agent.md",

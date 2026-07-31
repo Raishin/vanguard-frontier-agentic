@@ -3,7 +3,7 @@ name: kotlin-kmp-portfolio-decision
 description: "Use this skill to decide whether a product should adopt Kotlin Multiplatform at all, and how much to share, by weighing org topology and team ownership, product-roadmap alignment, platform-differentiation risk, skills/hiring constraints, lifecycle/maintenance cost, and reversibility. This skill can and must be able to recommend against KMP; it reasons from user-supplied context and never designs the expect/actual implementation."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-21"
   category: architecture

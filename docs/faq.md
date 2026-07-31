@@ -61,7 +61,7 @@ Evidence-based answer:
 
 ### Caveats
 
-- Single maintainer (@Raishin) - bus factor of 1
+- Single maintainer (@VincentChuWaiChow) - bus factor of 1
 - Content quality depends on AI harness capabilities (garbage in, garbage out)
 - No runtime guarantees - this provides guidance, not execution sandboxing
 - [NEEDS OWNER INPUT] No formal SLA for uptime or availability of the npm package itself
@@ -87,8 +87,8 @@ Full text: `LICENSE` file in repository root.
 
 | Channel | Purpose |
 |---------|---------|
-| [GitHub Issues](https://github.com/Raishin/vanguard-frontier-agentic/issues) | Bug reports, feature requests |
-| [Security Advisories](https://github.com/Raishin/vanguard-frontier-agentic/security/advisories/new) | Vulnerability reports (private) |
+| [GitHub Issues](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/issues) | Bug reports, feature requests |
+| [Security Advisories](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/security/advisories/new) | Vulnerability reports (private) |
 | Pull Requests | Code contributions, doc fixes |
 
 There is no commercial support offering, chat channel, or email list at this time.

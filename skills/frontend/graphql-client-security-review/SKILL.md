@@ -3,7 +3,7 @@ name: graphql-client-security-review
 description: Statically review GraphQL client configuration (Apollo Client, and urql/similar clients by analogy) for production-enabled devtools/introspection exposure, a normalized cache left uncleared across user sessions, missing persisted-query allowlisting against client-driven query abuse, auth headers attached with no CSRF protection, and sensitive fields cached unmasked -- grounded in Apollo Client's own configuration and security-relevant documentation.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-03"
   category: security

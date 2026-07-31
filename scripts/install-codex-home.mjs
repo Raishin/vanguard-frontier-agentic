@@ -16,7 +16,7 @@ const exporter = path.join(repoRoot, "scripts", "export-marketplace-agents.mjs")
 
 const args = process.argv.slice(2);
 const opts = {
-  marketplace: "Raishin/vanguard-frontier-agentic",
+  marketplace: "VincentChuWaiChow/vanguard-frontier-agentic",
   repo: os.homedir(),
   force: true,
   skipMarketplace: false,
@@ -25,7 +25,7 @@ const opts = {
 
 function usage(exitCode = 0) {
   const out = exitCode === 0 ? console.log : console.error;
-  out(`Usage: node scripts/install-codex-home.mjs [options]\n\nOptions:\n  --marketplace <source>   Codex marketplace source (default: Raishin/vanguard-frontier-agentic)\n  --repo <path>            Target home/repo path whose .codex folder receives agents/skills (default: $HOME)\n  --dry-run                Do not write agents/skills; pass --dry-run to exporter\n  --skip-marketplace       Skip codex plugin marketplace add/upgrade\n  --no-force               Do not pass --force to exporter\n  -h, --help               Show this help\n`);
+  out(`Usage: node scripts/install-codex-home.mjs [options]\n\nOptions:\n  --marketplace <source>   Codex marketplace source (default: VincentChuWaiChow/vanguard-frontier-agentic)\n  --repo <path>            Target home/repo path whose .codex folder receives agents/skills (default: $HOME)\n  --dry-run                Do not write agents/skills; pass --dry-run to exporter\n  --skip-marketplace       Skip codex plugin marketplace add/upgrade\n  --no-force               Do not pass --force to exporter\n  -h, --help               Show this help\n`);
   process.exit(exitCode);
 }
 

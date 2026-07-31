@@ -3,7 +3,7 @@ name: scaleway-maestro
 description: Classify and route Scaleway tasks to the narrowest qualified specialist agent. Use when a user presents a Scaleway request that spans IAM, cost, Kapsule/Kubernetes, networking, or live-guard domains, and the correct specialist is not yet identified. Produces a domain verdict, recommended specialist, and routing rationale without answering specialist questions directly.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-10"
   category: platform

@@ -3,7 +3,7 @@ name: sap-maestro
 description: Route SAP AI workflow requests to the correct domain skill using taxonomy classification, a routing table, and dispatch mode selection. Use when an incoming request spans multiple SAP domains (BTP, S/4HANA, SuccessFactors, Ariba, etc.) and the correct downstream skill or agent must be identified before any action is taken. Does not touch live systems.
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-19"
   category: platform

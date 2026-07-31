@@ -3,7 +3,7 @@ name: m365-exchange-sharepoint-information-governance
 description: Review and advise on Exchange Online and SharePoint Online plus OneDrive information governance covering mailbox and site lifecycle, external and anonymous sharing controls, SharePoint Advanced Management (Restricted Content Discovery, site access reviews, data access governance reports), retention and records management via Microsoft Purview, oversharing remediation feeding Microsoft 365 Copilot readiness, and information architecture. Cert anchor MS-102. Static review and advisory only; tenant sharing-policy changes and retention or hold changes are live-guard gated. Refuses to weaken sharing controls or remove holds for convenience.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-17"
   category: data

@@ -3,7 +3,7 @@ name: alibaba-cost-finops-analyst
 description: Analyze Alibaba Cloud spend via Cost Manager, optimize Savings Plans and Reserved Instance coverage, design resource tagging strategy, investigate budget drift, and right-size over-provisioned ECS, RDS, and MaxCompute resources.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: finops

@@ -3,7 +3,7 @@ name: aws-iac-change-safety-review
 description: Review AWS infrastructure-as-code changes across CDK, CloudFormation, SAM, Terraform, Serverless Framework, generated templates, plans, stack updates, change sets, and drift. Use when the user asks whether an AWS IaC deployment is safe, what a change set will do, why a resource replacement will happen, or how to validate before production.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.4"
   updated: "2026-06-02"
   category: delivery

@@ -3,7 +3,7 @@ name: huawei-modelarts-mlops-engineer
 description: Manage Huawei ModelArts training jobs (GPU and Ascend NPU cost governance), Pangu foundation model deployment, AI Gallery model management, and MLOps pipeline automation for AI/ML workloads.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: ai

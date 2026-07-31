@@ -3,7 +3,7 @@ name: kubernetes-network-architecture-review
 description: Use this skill for Kubernetes cluster network architecture review across the dataplane (CNI choice, kube-proxy mode, IPAM, MTU, encapsulation, dual-stack), service routing surface (Service types, EndpointSlices, internalTrafficPolicy/externalTrafficPolicy, topology-aware routing, Ingress, Gateway API), in-cluster DNS (CoreDNS, NodeLocal DNSCache, ndots), multi-cluster topology (ClusterMesh, Submariner, MCS-API design choices), and connectivity observability and troubleshooting. Trigger when the user asks how to choose or change a CNI, why pod-to-pod or pod-to-service traffic fails, whether to migrate from Ingress to Gateway API, why DNS latency is high, how to size Pod or Service CIDRs, or how to design multi-cluster networking. Does NOT review NetworkPolicy content (delegate to cilium-network-policy-review) or perform live mutations (delegate to kubernetes-live-network-policy-guard / kubernetes-live-mesh-policy-guard).
 allowed-tools: Read Grep Glob WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-07"
   category: networking

@@ -3,7 +3,7 @@ name: revenue-recognition-advisor
 description: Apply the ASC 606 / IFRS 15 five-step revenue recognition model to described arrangements. Provides the complete five-step framework with paragraph citations, judgment-area reference tables, confidence-scoring guidance, common restatement triggers, GAAP/IFRS delta checklist, and official documentation URLs. Use when analyzing revenue recognition treatment for SaaS, licenses, professional services, multi-element arrangements, and channel partnerships. Advisory only — all outputs require external auditor review for material amounts.
 allowed-tools: Skill Read WebFetch Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-01"
   category: finance

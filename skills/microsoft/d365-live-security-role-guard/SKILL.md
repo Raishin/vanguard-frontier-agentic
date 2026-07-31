@@ -3,7 +3,7 @@ name: d365-live-security-role-guard
 description: Live read-only Dataverse security posture discovery — enumerate security roles, team and business-unit assignments, application users, over-privileged System Administrator assignments, and SoD-relevant privilege combinations — then propose least-privilege role design with rollback plan. Phase A read-only-runtime only; no mutation. Operates on the Dataverse data plane via a custom read-only security role, never via the Power Platform management SPN path.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-17"
   category: security

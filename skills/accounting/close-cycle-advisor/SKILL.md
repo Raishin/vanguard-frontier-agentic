@@ -3,7 +3,7 @@ name: close-cycle-advisor
 description: Multi-jurisdiction financial close cycle reference framework covering month-end, quarter-end, and year-end close. Provides regulatory filing deadlines by jurisdiction (SEC, EU TD, UK DTR, TSE/FSA, CSRC, SEBI, ASX, HKEX), record-to-report process steps, reconciliation standards, intercompany elimination requirements (ASC 810/IFRS 10), FX translation methodology (ASC 830/IAS 21), deferred tax computation (ASC 740/IAS 12), and GAAP variant comparison tables across US GAAP, IFRS, UK FRS 102, German HGB, JGAAP, CAS, and Ind AS. Advisory only — all outputs require external auditor verification for local statutory purposes.
 allowed-tools: Skill Read WebFetch Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-01"
   category: finance

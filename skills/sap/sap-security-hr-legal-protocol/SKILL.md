@@ -3,7 +3,7 @@ name: sap-security-hr-legal-protocol
 description: Cross-functional escalation protocol governing handoffs between SAP Security, HR, and Legal when identity misuse, privileged-access anomalies, SoD violations, insider-risk signals, HR-sensitive system access, joiner/mover/leaver lifecycle events, or fraud-sensitive access patterns require coordinated response. Defines decision rights, evidence standards, redaction policy, approval gates, and audit packaging. Never mutates live systems and never bypasses any guarded-mutating gate.
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-19"
   category: compliance

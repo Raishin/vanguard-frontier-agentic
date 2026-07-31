@@ -3,7 +3,7 @@ name: python-application-security
 description: "Use this skill to statically review Python application code for high-severity security defects: unsafe deserialization (pickle, yaml.load), dynamic execution (eval/exec), subprocess and shell injection, SSRF, path traversal and unsafe archive extraction, secrets exposure, cryptography misuse, and fail-open exception handling. Reads source only; it never runs code, writes an exploit, or opens a live connection."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-26"
   category: security

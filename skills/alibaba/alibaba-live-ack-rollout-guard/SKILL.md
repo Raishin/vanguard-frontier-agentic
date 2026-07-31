@@ -3,7 +3,7 @@ name: alibaba-live-ack-rollout-guard
 description: Gate ACK deployment mutations, node pool scaling, and cluster version upgrades against rollback posture and workload disruption budget. Prevents irreversible cluster version upgrades from proceeding without PodDisruptionBudget verification, node drain confirmation, and explicit operator approval.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: delivery

@@ -3,7 +3,7 @@ name: tree-shaking-dead-code-review
 description: Verifies that a bundler's tree-shaking actually eliminated dead code by inspecting output bytes and sideEffects/module-format configuration, rather than trusting a clean build as proof of elimination.
 allowed-tools: Read Grep Glob Bash(npm run build:*)
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: operational

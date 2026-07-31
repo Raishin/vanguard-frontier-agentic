@@ -29,7 +29,7 @@
   "security_notes": "This protocol accepts only user-provided architecture descriptions and access control inventories. Never accept or process OAuth tokens, API keys, AI Core service keys, resource group credentials, system prompt content containing proprietary business logic, or PII from model inputs or outputs without prior redaction. This protocol does not invoke any guarded-mutating operator gate. All irreversible AI workload actions (model deployment, data scope expansion, content filter removal) require named human approval before a handoff package is submitted to an operator. Prompt content submitted as evidence must be minimally scoped to the governance question and stripped of sensitive internal context.",
   "last_verified": "2026-06-19",
   "path": "skills/sap/sap-ai-governance-security-architecture-protocol",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "lifecycle": "experimental"
 }

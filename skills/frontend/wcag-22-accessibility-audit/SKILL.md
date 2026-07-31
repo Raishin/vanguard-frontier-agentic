@@ -3,7 +3,7 @@ name: wcag-22-accessibility-audit
 description: Audit frontend markup, components, and design-system primitives against WCAG 2.2 Level A/AA success criteria and ARIA APG interaction patterns, separating automated-detectable violations from manual-verification-required items and flagging legal exposure, with reference material loaded progressively per success-criteria category.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: compliance

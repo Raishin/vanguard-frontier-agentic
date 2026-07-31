@@ -3,7 +3,7 @@ name: wordpress-rest-block-security-review
 description: Use this skill to review WordPress plugin, theme, REST API, and block-editor code for missing or overly permissive REST permission_callback registration, unescaped dynamic block render_callback output, missing input validation/sanitization or output escaping, and missing nonce/capability checks on state-changing requests. Use when reviewing register_rest_route() calls, dynamic block render_callback/render.php files, form/admin-ajax handlers, or any code path that takes untrusted input and produces WordPress-rendered output. Static review only; it does not execute plugin/theme code and never contacts a live, sandbox, or staging WordPress install.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-16"
   category: security

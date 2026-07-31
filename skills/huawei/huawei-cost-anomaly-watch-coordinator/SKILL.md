@@ -3,7 +3,7 @@ name: huawei-cost-anomaly-watch-coordinator
 description: Coordinate Huawei Cloud cost anomaly detection — CBC Cost Center delta analysis (>15% day-over-day threshold), budget alert configuration via Budget Management, ECS/GaussDB Yearly/Monthly vs On-Demand mode cost anomalies, OBS request cost spikes, unattached EVS volume waste, DWS idle cluster detection, and reserved instance coverage gaps.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: cost-management

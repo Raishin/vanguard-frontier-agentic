@@ -8,7 +8,7 @@ keywords:
   - hipaa
   - ferpa
   - vertical-routing
-author: "github: Raishin"
+author: "github: VincentChuWaiChow"
 ---
 
 # Salesforce Industry Cloud Agent

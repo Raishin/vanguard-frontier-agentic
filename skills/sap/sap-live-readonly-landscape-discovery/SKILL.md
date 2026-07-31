@@ -3,7 +3,7 @@ name: sap-live-readonly-landscape-discovery
 description: Enumerate and export SAP BTP and S/4HANA landscape configuration using read-only list, get, describe, and export operations only. Use when read-only discovery of subaccounts, service instances, entitlements, destinations, ABAP system landscape objects, or transport routes is needed as evidence for advisory, audit, or compliance purposes. Requires pre-authorized read-only credentials. Never creates, updates, deletes, deploys, assigns, rotates, imports, or triggers any change.
 allowed-tools: Read Grep Glob WebSearch WebFetch Bash
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-19"
   category: platform

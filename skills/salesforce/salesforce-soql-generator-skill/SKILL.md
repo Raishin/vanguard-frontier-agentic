@@ -4,7 +4,7 @@ description: "Generates SOQL queries from natural-language requirements without 
 license: MIT
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: 0.1.0
   updated: 2026-05-21
   category: generation

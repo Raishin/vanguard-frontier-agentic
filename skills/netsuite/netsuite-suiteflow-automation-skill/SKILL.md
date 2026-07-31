@@ -3,7 +3,7 @@ name: netsuite-suiteflow-automation-skill
 description: "Flashlight skill for static review of SuiteFlow workflow designs in NetSuite — state machine correctness, condition logic, approval routing, action configuration, trigger alignment, and run-as role least-privilege posture. T0 static review — no live account connection required. TRIGGER when: user submits a SuiteFlow workflow definition for review, asks about workflow state machine design, condition logic coverage, approval routing configuration, workflow action correctness, trigger event alignment, or run-as role permissions for a workflow. Trigger phrases: SuiteFlow review, workflow state machine, approval routing workflow, workflow condition logic, workflow action review, trigger configuration workflow, workflow run-as role, SuiteFlow design. DO NOT TRIGGER when: request involves activating, enabling, or changing workflow status in any environment (escalate to netsuite-live-org-mutation-guard-agent — NEVER activate workflows live); SuiteScript code security within workflow-called scripts (use netsuite-suitescript-secure-code-review-agent); SOX approval control design (use netsuite-audit-controls-sox-agent); SDF deployment pipeline for workflows (use netsuite-sdf-devops-release-agent); or OAuth/TBA authentication setup (use netsuite-sso-oauth-tba-agent)."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-09"
   category: platform

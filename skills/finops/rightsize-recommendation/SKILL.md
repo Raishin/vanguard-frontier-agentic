@@ -3,7 +3,7 @@ name: rightsize-recommendation
 description: Emit pod CPU and memory request/limit recommendations from user-pasted p50, p95, and p99 utilization metrics over a 7-14 day window. Outputs recommended requests at p95 plus 20% headroom, limits at p99 plus 30%, estimated monthly savings, and Karpenter consolidation eligibility flag. Read-only, no kubectl.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.2"
   updated: "2026-05-13"
   category: finops

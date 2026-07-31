@@ -15,9 +15,9 @@ crate is pre-1.0, only the most recent minor series receives security updates.
 If you discover a security vulnerability in `vfa-tui`, please report it
 privately so it can be addressed before public disclosure.
 
-- **Contact:** open a [GitHub Security Advisory](https://github.com/Raishin/vanguard-frontier-agentic/security/advisories/new)
+- **Contact:** open a [GitHub Security Advisory](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/security/advisories/new)
   for the repository, or email the maintainers at
-  `raishin@users.noreply.github.com` with the subject line `vfa-tui security`.
+  `15792229+VincentChuWaiChow@users.noreply.github.com` with the subject line `vfa-tui security`.
 - **Do not** open a public issue for undisclosed vulnerabilities.
 
 ### What to include

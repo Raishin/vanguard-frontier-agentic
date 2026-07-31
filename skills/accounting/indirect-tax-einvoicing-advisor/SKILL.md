@@ -3,7 +3,7 @@ name: indirect-tax-einvoicing-advisor
 description: Multi-jurisdiction indirect tax and e-invoicing reference framework covering VAT/GST compliance and mandatory electronic invoicing mandates across EU, Brazil, India, Mexico, China, UK, and Australia.
 allowed-tools: Skill Read WebFetch Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-02"
   category: finance

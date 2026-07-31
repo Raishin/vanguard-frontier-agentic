@@ -3,7 +3,7 @@ name: playwright-e2e-execution-run
 description: Use this skill when an operator wants to actually execute an existing Playwright end-to-end suite against a confirmed non-production target and receive a structured, attested run report — pass/fail counts, flaky tests, durations, and trace artifacts. Trigger when the user asks to "run the e2e suite", "execute the Playwright tests against staging", or hands the agent a Playwright project plus a target base URL. This is the live-execution counterpart to the static-review skill `playwright-e2e-suite-review`. Default mode is static and runs nothing; runtime execution is a per-session opt-in that requires explicit target confirmation.
 allowed-tools: Read Grep Glob Bash(npx playwright test*) Bash(npx playwright install*) Bash(npx playwright show-report*)
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-17"
   category: delivery

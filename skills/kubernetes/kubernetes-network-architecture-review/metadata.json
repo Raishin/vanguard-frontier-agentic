@@ -29,6 +29,6 @@
   "security_notes": "CNI and Pod CIDR are one-way architectural choices on most stacks — resizing requires cluster rebuild. kube-proxy mode swap can break in-flight connections. MTU mismatch between underlay and overlay is a silent payload-stall failure. externalTrafficPolicy: Local preserves source IP but black-holes traffic when no local endpoint exists. NodeLocal DNSCache OOM produces a node-wide DNS outage via stale packet-filter redirect. Multi-cluster pod CIDR collisions break any cross-cluster scheme regardless of policy correctness. ndots:5 plus search path is the dominant cluster DNS load on most installations.",
   "last_verified": "2026-05-07",
   "path": "skills/kubernetes/kubernetes-network-architecture-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

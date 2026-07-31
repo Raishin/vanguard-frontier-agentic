@@ -3,7 +3,7 @@ name: gcp-alloydb-ai-developer
 description: "Design and build AI-powered applications on AlloyDB for PostgreSQL using AlloyDB AI — covering vector search, hybrid search (vector + full-text), AI SQL functions (ai_generate, ai_classify, ai_score, ai_embed), model endpoint management, and the AlloyDB Omni edge runtime. Prefer gcp-alloydb-cloudsql-dba for cluster operations, backup, HA, and DBA tasks; use this skill when the request is primarily about AlloyDB AI search, SQL AI functions, or embedding pipelines."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: data

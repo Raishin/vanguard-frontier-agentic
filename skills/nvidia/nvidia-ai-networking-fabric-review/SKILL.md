@@ -3,7 +3,7 @@ name: nvidia-ai-networking-fabric-review
 description: Use this skill when reviewing NVIDIA AI networking fabrics — Spectrum-X Ethernet or InfiniBand topology, NCCL collective tuning, RoCEv2 lossless DCQCN/PFC config, adaptive routing, congestion control, and east-west isolation between training jobs. Trigger when the user asks whether the fabric is non-blocking, whether NCCL chooses the right transport, whether PFC/ECN is configured correctly, or whether the deployment meets NCP-AIN expectations.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-10"
   category: networking

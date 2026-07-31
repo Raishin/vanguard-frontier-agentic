@@ -122,7 +122,7 @@ for three artifacts at release time:
 
 These attestations are uploaded to the GitHub Release alongside the
 artifacts themselves. Verifiable with `gh attestation verify <file>
---owner Raishin` and stored in the public Sigstore Rekor transparency
+--owner VincentChuWaiChow` and stored in the public Sigstore Rekor transparency
 log.
 
 This covers **out-of-registry distribution**: a consumer who clones

@@ -3,7 +3,7 @@ name: frontend-migration-modernization-plan
 description: Build a phased, reversible plan to migrate or modernize a legacy frontend surface (jQuery/Backbone/AngularJS to a modern framework, CRA/Webpack to Vite, or a same-framework major-version bump) using strangler-fig sequencing with measurable exit criteria per phase, without defaulting to a full rewrite.
 allowed-tools: Read Grep Glob WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: architecture

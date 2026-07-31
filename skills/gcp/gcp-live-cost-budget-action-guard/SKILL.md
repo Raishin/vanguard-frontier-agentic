@@ -3,7 +3,7 @@ name: gcp-live-cost-budget-action-guard
 description: Gate Cloud Billing budget threshold changes, committed-use discount (CUD) purchases, and quota increase requests with explicit financial-authority approval. CUD contracts are 1-3 year financial commitments that cannot be cancelled — this guard ensures every billing action is backed by spend-impact assessment, budget inventory review, and confirmed financial authority before execution.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: finops

@@ -23,6 +23,6 @@
   "security_notes": "Terraform state files contain sensitive resource attributes — backend bucket must use CMEK and uniform bucket-level access. Org-level IAM and org policy changes via Terraform have org-wide blast radius — require dual approval and tested rollback. Force-unlocking state under an active apply causes corruption.",
   "last_verified": "2026-05-09",
   "path": "skills/gcp/gcp-iac-change-safety-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

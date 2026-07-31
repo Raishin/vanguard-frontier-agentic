@@ -3,7 +3,7 @@ name: sap-transformation-portfolio-triage-review
 description: Advisory triage of an SAP transformation program portfolio: workstream prioritization, dependency and risk mapping, value vs effort classification, readiness gating across S/4HANA, BTP, integration, and security workstreams, and RAID log assessment. Does not touch or mutate any live system.
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-19"
   category: architecture

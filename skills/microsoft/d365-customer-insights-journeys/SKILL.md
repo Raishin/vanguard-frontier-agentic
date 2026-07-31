@@ -3,7 +3,7 @@ name: d365-customer-insights-journeys
 description: Review Dynamics 365 Customer Insights — Data (CDP: data unification, segments, measures) and Customer Insights — Journeys (real-time marketing journeys, triggers, consent/compliance, channel orchestration) design and configuration. Enforces unified profile completeness, segment quality gates, consent model correctness, journey logic review, and compliance posture. Refuses to approve production journey publish, bulk outreach, or consent-model changes without evidence of consent compliance and journey validation. Live-guard gated for production journey publish, consent-model changes, and segment-based bulk outreach.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-17"
   category: data

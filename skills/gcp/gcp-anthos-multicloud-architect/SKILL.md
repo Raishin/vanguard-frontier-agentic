@@ -3,7 +3,7 @@ name: gcp-anthos-multicloud-architect
 description: Design and operate Anthos / GKE Enterprise fleet management, Config Management (GitOps with Policy Controller), multi-cloud Kubernetes across GCP, AWS, and Azure.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: platform

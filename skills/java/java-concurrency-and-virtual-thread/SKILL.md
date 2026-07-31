@@ -3,7 +3,7 @@ name: java-concurrency-and-virtual-thread
 description: Use this skill when statically reviewing Java concurrency and Project Loom virtual-thread adoption for correctness and safety at scale — pooling or capping virtual threads, a virtual-thread migration that strips a bound on a limited downstream resource (connection pool, rate-limited API) without re-imposing it via a Semaphore, JDK-version-gated carrier-pinning risk from synchronized blocks (materially reduced from JDK 24 onward by JEP 491 versus JDK 21's JEP 444), ThreadLocal cost at millions-of-threads scale, StructuredTaskScope's preview status, and classic concurrency hygiene (visibility/atomicity, unbounded ExecutorService queues, ThreadLocal leaks in pooled executors). Trigger when a user provides Java source using Thread.ofVirtual/Executors.newVirtualThreadPerTaskExecutor, ExecutorService construction, synchronized blocks, or JFR pinning output and asks whether their virtual-thread usage or concurrency code is correct. Reads source and sanitized configuration only; it never runs a build, invokes a JDK, attaches a profiler, or contacts a live system.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-17"
   category: compute

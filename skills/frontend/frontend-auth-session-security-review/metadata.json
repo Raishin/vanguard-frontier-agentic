@@ -23,6 +23,6 @@
   "security_notes": "Never asks for or prints real session tokens, cookies, client secrets, or OAuth credentials during review; treats any such value found in fixtures/logs as a redaction target. Does not perform live session hijacking, token replay, or CSRF exploitation testing against real systems. Static-review-only skill: reads and greps auth/session code but never executes, builds, or runs application code, and never sends live requests.",
   "last_verified": "2026-07-02",
   "path": "skills/frontend/frontend-auth-session-security-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

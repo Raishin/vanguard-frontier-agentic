@@ -3,7 +3,7 @@ name: kubernetes-pod-spec-review
 description: Use this skill when reviewing a Kubernetes Pod spec, Deployment spec, or StatefulSet spec for correctness, security posture, and production-readiness. Trigger on any request to audit, validate, or score a workload manifest.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-05"
   category: platform

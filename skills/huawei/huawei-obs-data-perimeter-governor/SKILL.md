@@ -3,7 +3,7 @@ name: huawei-obs-data-perimeter-governor
 description: Govern Huawei Cloud OBS (Object Storage Service) data perimeters — bucket policy and ACL public exposure, Block Public Access configuration, VPC endpoint binding for private access, WORM (Object Lock), cross-region replication compliance, and MLPS 2.0 data residency enforcement.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: security

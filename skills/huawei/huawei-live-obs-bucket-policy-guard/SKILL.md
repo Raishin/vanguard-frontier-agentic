@@ -3,7 +3,7 @@ name: huawei-live-obs-bucket-policy-guard
 description: Gate OBS bucket ACL and policy mutations — public-read/write ACL exposes data immediately and CN-* cross-border replication may violate MLPS 2.0/CSL data localization requirements.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: storage

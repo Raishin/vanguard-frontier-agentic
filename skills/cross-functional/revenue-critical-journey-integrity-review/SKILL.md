@@ -3,7 +3,7 @@ name: revenue-critical-journey-integrity-review
 description: Use this skill to review the cross-tier seams of revenue-critical journeys — checkout, payment submission, account creation, and login — for idempotency of money-moving and account-creating requests, server-side re-validation of client-enforced rules, webhook duplicate/out-of-order handling, retry-storm safeguards, and PCI DSS SAQ-scope judgment. Use when a request crosses client-to-server, system-to-processor, or webhook-back-into-system and a failure at that seam would double-charge, double-fulfill, bypass a required step, drop revenue, or misjudge PCI scope. Static review only; it does not execute payment flows and its PCI SAQ output is an advisory scoping opinion, never a compliance attestation.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-16"
   category: resilience

@@ -8,7 +8,7 @@ keywords:
   - ai-safety
   - human-handoff
   - hallucination
-author: "github: Raishin"
+author: "github: VincentChuWaiChow"
 ---
 
 # Salesforce Agentforce AI Agent

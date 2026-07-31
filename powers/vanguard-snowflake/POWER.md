@@ -3,7 +3,7 @@ name: "vanguard-snowflake"
 displayName: "Vanguard Frontier — Snowflake (Azure)"
 description: "Curated Snowflake-on-Azure agents for RBAC access governance and data-platform engineering — static review only, no account or production mutations. Covers role hierarchy and least privilege, ACCOUNTADMIN restriction, SECURITYADMIN/SYSADMIN separation of duties, future grants and managed-access schemas, network policies, key-pair/Entra OAuth/SSO/SCIM authentication, Azure Private Link and storage integration, and masking/row-access/tagging governance. Snowflake and Azure surfaces are drift-prone; agents always verify against current Snowflake and Microsoft Learn documentation before rendering findings."
 keywords: ["snowflake", "azure", "rbac", "least-privilege", "data-governance", "private-link", "static-review"]
-author: "Raishin"
+author: "VincentChuWaiChow"
 ---
 # Vanguard Frontier — Snowflake (Azure)
 
@@ -34,9 +34,9 @@ Live-guard agents enforce approval, target confirmation, evidence capture, and r
 
 ## Where the agents live
 
-Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see `agents/snowflake/` in that repository. All 3 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
+Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic) marketplace. For this provider, see `agents/snowflake/` in that repository. All 3 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
 
 ## Companion install paths
 
-- **Claude Code:** `/plugin marketplace add Raishin/vanguard-frontier-agentic` then `/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic`
+- **Claude Code:** `/plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic` then `/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic`
 - **Codex / Copilot / Cursor / Gemini CLI / Kiro (file export):** `npx vfa-export-agents --platform <harness> --provider snowflake --repo .`

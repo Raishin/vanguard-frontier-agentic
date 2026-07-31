@@ -3,7 +3,7 @@ name: gcp-registry-artifact-governor
 description: Govern GCP Artifact Registry — container image signing via Binary Authorization, vulnerability scanning via Container Analysis, repository IAM least privilege, artifact retention policies, and supply chain security posture.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: security

@@ -3,7 +3,7 @@ name: huawei-iac-change-safety-review
 description: Review Terraform and RFS (Resource Formation Service) changes targeting Huawei Cloud — blast radius analysis, resource deletion detection, Organizations SCP cascade scope, cross-stack dependency impact, state file security, and rollback plan completeness.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: delivery

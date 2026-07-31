@@ -3,7 +3,7 @@ name: dotnet-csharp-runtime-review
 description: Use this skill when reviewing C# language and runtime correctness — nullable reference types, async/await, cancellation, disposal, allocations on hot paths, LINQ misuse, and Native AOT / trimming hazards. Trigger when a user provides C# source or project files and asks whether the code is correct, why it deadlocks or starves the thread pool, why exceptions are being lost, why allocations are high, or whether the code is AOT- or trim-safe. This skill reviews C# source statically; it never compiles, runs, or instruments code.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-19"
   category: architecture

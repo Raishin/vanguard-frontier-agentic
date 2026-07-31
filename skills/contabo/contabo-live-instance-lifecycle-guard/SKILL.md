@@ -3,7 +3,7 @@ name: contabo-live-instance-lifecycle-guard
 description: Live-guard skill for Contabo VPS and VDS lifecycle operations including instance creation with product selection and region, reinstallation with image and Cloud-Init userData, and cancellation. Requires mandatory contract period acknowledgment (1, 3, 6, or 12 months), billing impact confirmation, and a rollback plan before any mutation. Hard-stops any lifecycle action that lacks explicit period acknowledgment or rollback documentation.
 allowed-tools: Read Grep Glob Bash
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-10"
   category: platform

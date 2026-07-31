@@ -3,7 +3,7 @@ name: kubernetes-manifest-quality-review
 description: Use this skill when the user provides raw Kubernetes YAML manifests or asks to review K8s manifests for quality, security, or policy compliance — covering Deployment, StatefulSet, DaemonSet, Service, Ingress, NetworkPolicy, RBAC, and CRD resources.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-17"
   category: delivery

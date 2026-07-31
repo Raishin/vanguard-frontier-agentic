@@ -4,7 +4,7 @@ description: "Executes Apex tests against a connected SANDBOX org via sf apex ru
 license: MIT
 allowed-tools: Bash(sf apex run test:*) Bash(sf org display:*) Bash(sf apex get test:*) Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-21"
   category: operational

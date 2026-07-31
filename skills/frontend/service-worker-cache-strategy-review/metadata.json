@@ -24,6 +24,6 @@
   "security_notes": "Hard-block caching of any response carrying Set-Cookie, an echoed Authorization value, or clearly PII/payment-bearing JSON without explicit, reviewed justification. Hard-block a service-worker scope broader than the routes it is meant to control unless justified. Flag cache.put() calls on opaque (no-cors) cross-origin responses as an unreviewable-content risk per OWASP cache-poisoning concerns. Do not paste real user session data, cookies, or authenticated response bodies into review examples.",
   "last_verified": "2026-07-02",
   "path": "skills/frontend/service-worker-cache-strategy-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

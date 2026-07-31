@@ -23,6 +23,6 @@
   "security_notes": "Direct DOM manipulation combined with dynamic string content (innerHTML-equivalent native calls) bypasses Angular's built-in sanitization pipeline -- treat any such pattern touching user-influenced data as an XSS-class finding, escalated to HIGH, in addition to the hydration-correctness finding. Static-review-only skill: it reads and greps bootstrap configuration and component source but never executes, builds, or runs application code.",
   "last_verified": "2026-07-02",
   "path": "skills/frontend/angular-ssr-hydration-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

@@ -3,7 +3,7 @@ name: huawei-compliance-sovereignty
 description: Advise on Huawei Cloud MLPS 2.0 Level 3 technical controls mapping, China data localization requirements, Trusted Cloud (CAICT) certification controls, and government cloud configuration requirements for sovereignty-aware workloads.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: compliance

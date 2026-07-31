@@ -3,7 +3,7 @@ name: gcp-serverless-production-readiness
 description: Review Cloud Run and Cloud Functions gen2 for production readiness — min-instances cold start, memory and CPU allocation, VPC connector configuration, Secret Manager injection, CMEK encryption, concurrency limits, and traffic splitting safety.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: platform

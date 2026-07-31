@@ -3,7 +3,7 @@ name: field-service-to-cash-protocol
 description: Use this skill to orchestrate the field service to cash process (service to deliver) across Dynamics 365 Field Service and Dynamics 365 Finance, covering work order creation through service delivery, parts and inventory consumption, invoicing, and accounts receivable settlement. The skill defines stage gates, agent handoff rules, and escalation triggers so that service work is verified before invoicing, inventory is accurately consumed, and revenue is recognized correctly. It does not create or modify work orders, post invoices, approve service completions, or access field engineer credentials; all production-impacting steps are escalated to the relevant specialist or human owner.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-16"
   category: operational

@@ -3,7 +3,7 @@ name: ovhcloud-network-architect
 description: Design and review OVHcloud network topology including vRack private network segmentation, VLAN configuration, Public Cloud private network attachment, dedicated server connectivity, load balancer placement, DNS zone design, security group rules, and blast-radius scoping for topology changes. Use when the user needs vRack design guidance, network isolation review, or Terraform IaC review for `ovh_vrack` and related resources.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-10"
   category: networking

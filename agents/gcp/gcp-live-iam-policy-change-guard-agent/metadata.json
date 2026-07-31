@@ -22,7 +22,7 @@
   "security_notes": "IAM bindings at org level propagate to ALL folders and projects. Service Account key creation creates long-lived credentials that cannot be auto-expired. Removing a binding can cause immediate lockout. Adding a binding to the wrong principal gives persistent access. Requires CISO-equivalent or security-authority approval for org-level changes.",
   "last_verified": "2026-05-08",
   "path": "agents/gcp/gcp-live-iam-policy-change-guard-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "harness_variants": {
     "codex": "agents/gcp/gcp-live-iam-policy-change-guard-agent/harnesses/codex.toml",

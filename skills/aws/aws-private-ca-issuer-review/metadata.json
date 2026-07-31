@@ -22,6 +22,6 @@
   "security_notes": "Using a Root CA ARN in AWSPCAIssuer exposes the root of trust directly to cert-manager. A SubordinateCACertificate template allows cert-manager to issue intermediate CAs, enabling an attacker with cert-manager IRSA access to create a shadow CA trusted by the entire corporate PKI. IRSA role must exclude acm-pca:DeleteCertificateAuthority and acm-pca:CreateCertificateAuthority.",
   "last_verified": "2026-06-02",
   "path": "skills/aws/aws-private-ca-issuer-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.4"
 }

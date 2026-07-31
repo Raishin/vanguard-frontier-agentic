@@ -3,7 +3,7 @@ name: gcp-iac-change-safety-review
 description: Review Terraform and Deployment Manager changes targeting GCP — blast radius analysis, destroy-operation detection, cross-project impact, state file conflicts, org policy drift, and rollback plan completeness.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: delivery

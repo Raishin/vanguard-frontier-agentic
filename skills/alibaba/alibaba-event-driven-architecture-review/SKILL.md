@@ -3,7 +3,7 @@ name: alibaba-event-driven-architecture-review
 description: Review Alibaba Cloud EventBridge, MNS (Message Notification Service), RocketMQ, and MSE event-driven designs — dead-letter queues, message ordering, idempotency, retry storm prevention, schema registry, and consumer group lag monitoring.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: platform

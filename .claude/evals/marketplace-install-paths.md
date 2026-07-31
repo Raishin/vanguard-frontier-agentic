@@ -34,10 +34,10 @@ Copilot CLI, Cursor, Kiro) + 14 per-provider Kiro Powers.
 - [ ] `validate:kiro-powers` is in the chain (Kiro)
 
 ### C4. Install-command runnability
-- [ ] Claude Code: `/plugin marketplace add Raishin/vanguard-frontier-agentic`
-- [ ] Copilot CLI: `copilot plugin marketplace add Raishin/vanguard-frontier-agentic`
+- [ ] Claude Code: `/plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic`
+- [ ] Copilot CLI: `copilot plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic`
 - [ ] Cursor: `vscode.cursor.plugins.registerPath(...)` call shape
-- [ ] Codex: `codex plugin marketplace add Raishin/vanguard-frontier-agentic`
+- [ ] Codex: `codex plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic`
 - [ ] Kiro: clone + Add Custom Power per Power directory (no CLI command, UI-driven)
 
 ## Regression Evals (don't break what already worked)

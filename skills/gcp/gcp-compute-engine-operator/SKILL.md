@@ -3,7 +3,7 @@ name: gcp-compute-engine-operator
 description: Operate GCE instances, manage Managed Instance Groups (MIGs), configure OS patch management via VM Manager, design preemptible/spot VM strategies, and manage startup/shutdown scripts.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: platform

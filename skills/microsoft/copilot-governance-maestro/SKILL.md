@@ -3,7 +3,7 @@ name: copilot-governance-maestro
 description: Route Microsoft Copilot and Copilot Studio governance requests to the narrowest specialist or team of specialists from the catalog. Use when you do not already know the specialist. Not for direct Copilot governance answers; Maestro classifies, dispatches, and synthesizes only. Dispatches single agent for focused tasks, parallel team (max 4) for multi-domain tasks. Never auto-dispatches live-guard agents — requires explicit human confirmation with blast-radius and rollback before routing to any broad agent publishing or connector/plugin access grant operation.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-16"
   category: ai

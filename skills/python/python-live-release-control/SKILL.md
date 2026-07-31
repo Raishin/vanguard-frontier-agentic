@@ -3,7 +3,7 @@ name: python-live-release-control
 description: "Use this skill to execute exactly one bounded release, canary increment, rollback, or single-instance restart under mutating-runtime controlled execution: confirm an independent approval bound to the plan digest and target, target-scoped JIT credentials, a captured before-state, and a pre-approved rollback exist before acting, then capture the after-state and route verification to an independent check. It never executes a fleet-wide or unbounded change and never self-attests success."
 allowed-tools: Read Grep Glob WebSearch WebFetch Bash
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-26"
   category: delivery

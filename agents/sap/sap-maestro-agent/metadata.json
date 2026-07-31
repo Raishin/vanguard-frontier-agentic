@@ -22,7 +22,7 @@
   "security_notes": "Classification and coordination only. Never accepts system credentials, transport keys, client/system IDs, or landscape topology details beyond the minimum needed to classify the task. Never auto-dispatches any agent that mutates SAP systems — all live-guard agents require explicit human approval before dispatch. All outputs are advisory; production changes require change-management approval.",
   "last_verified": "2026-06-19",
   "path": "agents/sap/sap-maestro-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "companion_skills": ["sap-maestro"],
   "execution_tier": "read-only-runtime",

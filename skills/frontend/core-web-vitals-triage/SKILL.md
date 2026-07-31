@@ -3,7 +3,7 @@ name: core-web-vitals-triage
 description: Decomposes LCP, INP, and CLS regressions into their documented sub-phases using lab and field evidence, and refuses to declare a metric fixed without a field-data or CI-budget verification path.
 allowed-tools: Read Grep Glob Bash(lighthouse:*) WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: operational

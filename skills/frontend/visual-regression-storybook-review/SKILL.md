@@ -3,7 +3,7 @@ name: visual-regression-storybook-review
 description: Reviews Storybook visual-testing setup -- test-runner wiring, Chromatic integration, and the a11y addon's axe-core gating -- to ensure visually-critical components have deterministic pixel-diff and accessibility coverage before merge, grounded in current Storybook docs.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: delivery

@@ -3,7 +3,7 @@ name: m365-backup-bcdr-data-resilience
 description: Review Microsoft 365 backup posture and business continuity readiness — Microsoft 365 Backup coverage for Exchange Online, SharePoint, and OneDrive; retention-versus-backup distinction; ransomware recovery readiness; RPO and RTO targets; Backup Storage architecture; and third-party backup solution boundary guidance. Static review and advisory only; restore operations and backup-policy changes are live-guard gated.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-17"
   category: resilience

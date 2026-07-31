@@ -3,7 +3,7 @@ name: alibaba-live-ram-policy-change-guard
 description: Gate RAM policy/role mutations against the Alibaba Cloud account hierarchy. RAM AdministratorAccess assignment, policy deletion with active STS tokens, and Resource Directory Control Policy changes carry account-wide or org-wide blast radius. This guard enforces blast-radius assessment, STS token impact analysis, and explicit authority approval before any policy mutation is executed.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: security

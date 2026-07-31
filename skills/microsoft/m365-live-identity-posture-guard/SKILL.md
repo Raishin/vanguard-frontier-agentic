@@ -3,7 +3,7 @@ name: m365-live-identity-posture-guard
 description: Live read-only Microsoft Entra identity and Conditional Access posture discovery — enumerate CA policies, MFA coverage gaps, privileged role assignments and PIM configuration, risky sign-ins, and stale guest accounts — then propose least-privilege hardening steps with blast-radius assessment and rollback plan. Phase A read-only-runtime only; no mutation.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-17"
   category: security

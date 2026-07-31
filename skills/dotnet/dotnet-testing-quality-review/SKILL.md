@@ -3,7 +3,7 @@ name: dotnet-testing-quality-review
 description: Use this skill when statically reviewing .NET test suites for false confidence — assertion-free and tautological tests, over-mocking, coverage theater, weak test isolation, flaky patterns, and missing negative or security tests across xUnit, NUnit, and MSTest. Trigger when a user provides .NET test source (test classes, fixtures, mock setups, coverage configuration), asks why their green test suite still ships bugs, or wants to know whether their tests actually verify the system instead of inflating a coverage number. This skill reads test source only; it never runs the test suite, a coverage tool, or a test container.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-19"
   category: delivery

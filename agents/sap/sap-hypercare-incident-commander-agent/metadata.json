@@ -24,7 +24,7 @@
   "security_notes": "Static review only — no Bash, no SAP system API calls, no incident record mutations, no hypercare plan modifications, no support ticket updates, no cutover checklist changes. Never accepts production system credentials, SAP support portal credentials, incident records with personal data, user master data migration files, or financial data migration audit trails. Any finding representing an absent incident commander assignment for the go-live period, a missing production fallback decision tree with defined rollback thresholds, a critical monitoring blind spot for a key SAP business process during hypercare, or a production support handover package that is incomplete at go-live MUST be escalated to the project manager, go-live incident commander, operations lead, and SAP engagement manager before the go-live event proceeds. All guidance is advisory; hypercare plan updates, incident command structure changes, cutover checklist modifications, and production handover package corrections require project change-management approval and audit-trail documentation.",
   "last_verified": "2026-06-19",
   "path": "agents/sap/sap-hypercare-incident-commander-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "companion_skills": [
     "sap-hypercare-incident-commander-review"
   ],

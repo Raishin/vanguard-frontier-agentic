@@ -3,7 +3,7 @@ name: change-request-to-go-live-protocol
 description: Use this skill when a Dynamics 365 change request must be structured and progressed through impact assessment, fit-gap analysis, UAT sign-off, go/no-go decision, go-live execution, and hypercare using the Success by Design framework. Defines the full change-to-go-live flow — change request intake, solution blueprint alignment, testing gates, cutover plan verification, go/no-go decision, deployment, and hypercare. Does not authorize go-live, cutover execution, or production deployments; all production-impacting actions require human approval from the project sponsor, release manager, and Microsoft FastTrack for Dynamics 365 team (where engaged). Does not replace a qualified Dynamics 365 architect or implementation partner.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-16"
   category: delivery

@@ -25,6 +25,6 @@
   "security_notes": "Static-review-only skill: it reads and greps source but never executes, builds, or runs application code. Reject any store design that persists auth tokens, session identifiers, or PII to localStorage/sessionStorage without an explicit encryption/expiry justification or a documented partialize exclusion, and reject any SSR queryClient/store pattern that instantiates as a module-level singleton, which risks cross-request/cross-user data leakage. Missing optimistic-update rollback and SSR singleton instantiation are treated as HARD STOP findings, not style notes.",
   "last_verified": "2026-07-02",
   "path": "skills/frontend/state-management-decision-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

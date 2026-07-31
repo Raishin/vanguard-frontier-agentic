@@ -3,7 +3,7 @@ name: microsoft-maestro
 description: Route Microsoft SaaS tasks to the right sub-maestro (m365-maestro-agent, d365-maestro-agent, power-platform-maestro-agent, copilot-governance-maestro-agent) or directly to a specialist. Use when you do not already know the specialist. Not for direct Microsoft answers; Maestro classifies, dispatches, and synthesizes only. Dispatches single sub-maestro or agent for focused tasks, parallel team (max 4) for multi-domain tasks. Refuses Azure IaaS and infrastructure tasks and deflects to azure-maestro. Never auto-dispatches live-guard agents — requires explicit human confirmation with blast-radius and rollback before routing to any live-tenant-mutation agent.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-16"
   category: platform

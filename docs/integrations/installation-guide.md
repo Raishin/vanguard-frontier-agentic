@@ -52,7 +52,7 @@ For the trust model (signed artifacts vs. raw HEAD vs. third-party) see
 
 ```bash
 # Step 1: register the marketplace
-/plugin marketplace add Raishin/vanguard-frontier-agentic
+/plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic
 
 # Step 2: enable the bundled plugin
 /plugin install vanguard-frontier-agentic@vanguard-frontier-agentic
@@ -73,7 +73,7 @@ Add to `~/.claude/settings.json` (user-level) or `<repo>/.claude/settings.json`
     "vanguard-frontier-agentic": {
       "source": {
         "source": "github",
-        "repo": "Raishin/vanguard-frontier-agentic"
+        "repo": "VincentChuWaiChow/vanguard-frontier-agentic"
       }
     }
   },
@@ -91,7 +91,7 @@ Add to `~/.claude/settings.json` (user-level) or `<repo>/.claude/settings.json`
     "vanguard-frontier-agentic": {
       "source": {
         "source": "github",
-        "repo": "Raishin/vanguard-frontier-agentic",
+        "repo": "VincentChuWaiChow/vanguard-frontier-agentic",
         "ref": "v1.8.0"
       }
     }
@@ -100,7 +100,7 @@ Add to `~/.claude/settings.json` (user-level) or `<repo>/.claude/settings.json`
 ```
 
 Replace `v1.8.0` with any tag from the
-[releases page](https://github.com/Raishin/vanguard-frontier-agentic/releases).
+[releases page](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/releases).
 
 ### What gets installed
 
@@ -134,7 +134,7 @@ Replace `v1.8.0` with any tag from the
 
 ```bash
 # Step 1: register the marketplace
-copilot plugin marketplace add Raishin/vanguard-frontier-agentic
+copilot plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic
 
 # Step 2: enable the plugin
 /plugin install vanguard-frontier-agentic
@@ -150,7 +150,7 @@ Create or update `.github/copilot/settings.json` in your repo:
 ```json
 {
   "extraKnownMarketplaces": [
-    "https://raw.githubusercontent.com/Raishin/vanguard-frontier-agentic/master/.github/plugin/marketplace.json"
+    "https://raw.githubusercontent.com/VincentChuWaiChow/vanguard-frontier-agentic/master/.github/plugin/marketplace.json"
   ]
 }
 ```
@@ -165,7 +165,7 @@ Replace `master` in the URL with a tag or SHA:
 ```json
 {
   "extraKnownMarketplaces": [
-    "https://raw.githubusercontent.com/Raishin/vanguard-frontier-agentic/v1.8.0/.github/plugin/marketplace.json"
+    "https://raw.githubusercontent.com/VincentChuWaiChow/vanguard-frontier-agentic/v1.8.0/.github/plugin/marketplace.json"
   ]
 }
 ```
@@ -197,9 +197,9 @@ Replace `master` in the URL with a tag or SHA:
 **Step 1 — clone the repo:**
 
 ```bash
-git clone https://github.com/Raishin/vanguard-frontier-agentic
+git clone https://github.com/VincentChuWaiChow/vanguard-frontier-agentic
 # For a pinned version:
-git clone --branch v1.8.0 https://github.com/Raishin/vanguard-frontier-agentic
+git clone --branch v1.8.0 https://github.com/VincentChuWaiChow/vanguard-frontier-agentic
 ```
 
 **Step 2 — register the plugin directory in Cursor:**
@@ -316,7 +316,7 @@ This repo ships **{{ site.data.catalog.providers }} Powers** under `powers/`, on
 **Step 1 — clone the repo:**
 
 ```bash
-git clone https://github.com/Raishin/vanguard-frontier-agentic
+git clone https://github.com/VincentChuWaiChow/vanguard-frontier-agentic
 cd vanguard-frontier-agentic
 ```
 
@@ -415,7 +415,7 @@ npx vfa-export-agents --platform gemini --provider aws --repo .
 
 ```bash
 # Step 1: register the marketplace
-codex plugin marketplace add Raishin/vanguard-frontier-agentic
+codex plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic
 
 # Step 2: enable the bundled plugin
 /plugin install vanguard-frontier-agentic@vanguard-frontier-agentic
@@ -430,7 +430,7 @@ path (`.agents/plugins/marketplace.json`) and writes the following block to
 last_updated = "2026-05-11T06:46:00Z"
 last_revision = "<sha>"
 source_type = "git"
-source = "https://github.com/Raishin/vanguard-frontier-agentic.git"
+source = "https://github.com/VincentChuWaiChow/vanguard-frontier-agentic.git"
 
 [plugins."vanguard-frontier-agentic@vanguard-frontier-agentic"]
 enabled = true
@@ -443,7 +443,7 @@ Create or update `~/.codex/config.toml`:
 ```toml
 [marketplaces.vanguard-frontier-agentic]
 source_type = "git"
-source = "https://github.com/Raishin/vanguard-frontier-agentic.git"
+source = "https://github.com/VincentChuWaiChow/vanguard-frontier-agentic.git"
 
 [plugins."vanguard-frontier-agentic@vanguard-frontier-agentic"]
 enabled = true
@@ -454,7 +454,7 @@ enabled = true
 ```toml
 [marketplaces.vanguard-frontier-agentic]
 source_type = "git"
-source = "https://github.com/Raishin/vanguard-frontier-agentic.git"
+source = "https://github.com/VincentChuWaiChow/vanguard-frontier-agentic.git"
 ref = "v1.8.0"
 ```
 
@@ -592,7 +592,7 @@ Use `npx vfa-export-agents --list-roles` for the current list.
 ### Install
 
 ```bash
-npx skills add Raishin/vanguard-frontier-agentic
+npx skills add VincentChuWaiChow/vanguard-frontier-agentic
 ```
 
 This fetches **skills only** (no agents, no rules, no MCP references) from the
@@ -700,7 +700,7 @@ The marketplace was added but the plugin ID is wrong. The ID is the key in the
 `vanguard-frontier-agentic@vanguard-frontier-agentic`. Run:
 
 ```bash
-/plugin marketplace add Raishin/vanguard-frontier-agentic
+/plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic
 /plugin install vanguard-frontier-agentic@vanguard-frontier-agentic
 ```
 

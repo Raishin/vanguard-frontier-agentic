@@ -3,7 +3,7 @@ name: frontend-platform-architecture-review
 description: Reviews cross-cutting frontend architecture decisions (module boundaries, rendering topology, technology adoption) against a rewrite-averse, evidence-grounded standard before they are approved, producing an ADR-quality verdict rather than a stylistic opinion.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: architecture

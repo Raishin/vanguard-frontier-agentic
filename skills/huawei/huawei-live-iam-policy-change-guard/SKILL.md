@@ -3,7 +3,7 @@ name: huawei-live-iam-policy-change-guard
 description: Gate IAM fine-grained policy and SCP mutations — account-wide blast radius, privilege escalation, and potential full access denial. SCP deny statements at Organizations level cascade to ALL member accounts and cannot be overridden by IAM policies. Prevents dangerous policy mutations from proceeding without blast-radius assessment, agency trust enumeration, and explicit operator approval.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: security

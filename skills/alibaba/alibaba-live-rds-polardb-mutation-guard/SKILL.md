@@ -3,7 +3,7 @@ name: alibaba-live-rds-polardb-mutation-guard
 description: Gate RDS/PolarDB instance deletion, spec downgrade, and backup policy removal — database deletion without verified backup is permanently destructive.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: database

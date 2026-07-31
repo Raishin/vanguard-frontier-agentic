@@ -3,7 +3,7 @@ name: sap-custom-code-remediation-review
 description: Review custom ABAP code remediation plans and ATC findings for S/4HANA readiness. Assesses SAP simplification item violations, ABAP Test Cockpit results using S/4HANA readiness check variants, custom code migration app output, deprecated API usage, replacement API mapping, and clean-core alignment of proposed remediation paths. Advisory only — does not access or modify live SAP systems.
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-19"
   category: architecture

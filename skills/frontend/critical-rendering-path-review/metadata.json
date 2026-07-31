@@ -26,6 +26,6 @@
   "security_notes": "Flag preload/prefetch/preconnect resource hints pointed at third-party origins without considering the information-leakage/timing implications of establishing early connections to those origins. Flag any performance 'optimization' that removes Subresource Integrity (SRI) from a script/style tag to save a round trip — integrity checks are not a discretionary performance cost. Do not recommend inlining third-party scripts to avoid a network request in a way that bypasses CSP script-src allow-listing.",
   "last_verified": "2026-07-02",
   "path": "skills/frontend/critical-rendering-path-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

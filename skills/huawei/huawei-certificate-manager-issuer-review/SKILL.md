@@ -3,7 +3,7 @@ name: huawei-certificate-manager-issuer-review
 description: Review Huawei Cloud SSL certificate management — SCM certificate lifecycle, ELB SSL certificate binding, DEW-managed certificate storage, renewal automation, wildcard vs SAN cert selection, certificate expiry alerting via CES, and HTTPS enforcement on ELB listeners.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: security

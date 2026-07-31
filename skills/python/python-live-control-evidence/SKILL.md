@@ -3,7 +3,7 @@ name: python-live-control-evidence
 description: "Use this skill to collect, hash, and seal control evidence to an approved, access-controlled, retention-managed destination and map it to controls as candidate support. It captures evidence quality dimensions, applies redaction/tokenization and retention/legal-hold, and never asserts a control is effective or a framework is satisfied."
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-26"
   category: compliance

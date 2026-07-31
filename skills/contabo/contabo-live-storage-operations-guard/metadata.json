@@ -20,6 +20,6 @@
   "security_notes": "OAuth2 password grant tokens expire in ~5 minutes — refresh handling must not log token values. Credentials must remain in environment variables. Contabo Object Storage is S3-compatible — S3 access key and secret key must be stored as environment variables, never hardcoded. x-request-id (UUIDv4) is mandatory for Contabo REST API calls. Hard-stop on any bucket deletion without verified backup evidence. Contabo has no official Terraform provider or SDK; recommend cntb CLI or REST API with curl + jq and S3-compatible tools for Object Storage.",
   "last_verified": "2026-05-10",
   "path": "skills/contabo/contabo-live-storage-operations-guard",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

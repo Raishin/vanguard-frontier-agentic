@@ -13,7 +13,7 @@ canonical path when you run `codex plugin marketplace add owner/repo`.
 ## How users install
 
 ```bash
-codex plugin marketplace add Raishin/vanguard-frontier-agentic
+codex plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic
 /plugin install vanguard-frontier-agentic@vanguard-frontier-agentic
 ```
 
@@ -25,7 +25,7 @@ After `codex plugin marketplace add`, Codex writes the following into
 last_updated = "2026-05-11T06:46:00Z"
 last_revision = "<sha>"
 source_type = "git"
-source = "https://github.com/Raishin/vanguard-frontier-agentic.git"
+source = "https://github.com/VincentChuWaiChow/vanguard-frontier-agentic.git"
 
 [plugins."vanguard-frontier-agentic@vanguard-frontier-agentic"]
 enabled = true

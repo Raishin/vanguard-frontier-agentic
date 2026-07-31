@@ -3,7 +3,7 @@ name: gcp-apigee-api-platform-operator
 description: Design and operate Apigee X API proxies — rate limiting, OAuth/JWT security policies, quota plans, developer portal setup, and API product management.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: networking

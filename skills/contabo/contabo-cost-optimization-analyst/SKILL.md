@@ -3,7 +3,7 @@ name: contabo-cost-optimization-analyst
 description: Advisory skill for analyzing Contabo cost posture across contract periods, VPS/VDS product tiers, Storage VPS options, and add-ons including Private Networking, Additional IPs, Extra Storage, and Custom Images. Use when the user asks to reduce, explain, or optimize Contabo spending or when evaluating billing impact of period or sizing changes.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-10"
   category: finops

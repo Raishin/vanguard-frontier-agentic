@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://github.com/Raishin/vanguard-frontier-agentic/schemas/model-registry.schema.json",
+  "$id": "https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/schemas/model-registry.schema.json",
   "title": "VFA Model Registry",
   "description": "Verified model-name and reasoning-effort capability matrix per harness. Consumed by scripts/model-policy.mjs to fail closed on values that would 404 (model_not_found) or be silently dropped at request time. Namespaces are evaluated in array order; the first whose 'match' pattern accepts the value classifies it. 'closed' membership requires the model to be listed in 'models'; 'open' namespaces (catalogs too large to enumerate, e.g. Ollama/OpenRouter) validate shape only. Refresh via .claude/skills/model-registry-refresh/SKILL.md; human-readable companion: docs/model-policy-matrix.md.",
   "type": "object",

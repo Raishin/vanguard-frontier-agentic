@@ -3,7 +3,7 @@ name: snowflake-data-platform-engineering-at-azure
 description: Design and review Snowflake data platform engineering on Azure, covering warehouse sizing and cost governance, Azure Private Link requirements, storage integration with ADLS Gen2 and Azure Blob, Snowpipe automation, object tagging, dynamic data masking, row access policies, and ACCESS_HISTORY lineage for GDPR and CCPA compliance.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-17"
   category: data

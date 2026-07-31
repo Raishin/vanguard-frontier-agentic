@@ -3,7 +3,7 @@ name: gcp-spanner-architect
 description: Design Cloud Spanner schemas with hotspot avoidance, interleaving strategies, optimal indexing, processing-unit sizing, and global write patterns for distributed OLTP at scale.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: data

@@ -13,7 +13,7 @@ Cursor loads any directory with `.cursor-plugin/plugin.json` as a plugin.
 
 ```bash
 # Clone the repo, then register it as a plugin directory in Cursor:
-git clone https://github.com/Raishin/vanguard-frontier-agentic
+git clone https://github.com/VincentChuWaiChow/vanguard-frontier-agentic
 ```
 
 In Cursor: **Settings → Plugins → Add Plugin Directory** → pick the cloned repo path.

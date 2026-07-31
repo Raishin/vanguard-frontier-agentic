@@ -3,7 +3,7 @@ name: martech-access-governance-review
 description: Use this skill when reviewing access governance across a marketing technology stack — OAuth grants and connected apps, API keys and tokens, CRM and marketing-automation role assignments, and integration scopes. Trigger when a user provides an OAuth connected-app inventory, an integration scope list, a CRM/MAP role matrix, an API-key inventory, or asks whether their martech integrations are over-permissioned, whether stale connectors still hold live tokens, or how to apply least privilege to their marketing stack.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-17"
   category: security

@@ -3,7 +3,7 @@ name: typescript-contracts-review
 description: Review TypeScript diffs and tsconfig strictness posture for sound type contracts — auditing any/assertion usage at trust boundaries, unsound narrowing, and exported public-API type-surface breakage — so that a passing compile is meaningful evidence rather than a decorative pass, and requiring paired runtime validation wherever external data enters the type system.
 allowed-tools: Read Grep Glob Bash(git diff:*) Bash(tsc --noEmit:*) WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: compliance

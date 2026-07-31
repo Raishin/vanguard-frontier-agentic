@@ -3,7 +3,7 @@ name: gcp-secret-kms-lifecycle-steward
 description: Audit and govern Cloud KMS key lifecycles, Secret Manager secrets, CMEK configurations across GCP services (Cloud SQL, BigQuery, GCS, Compute), key rotation schedules, and envelope encryption patterns. Prefer gcp-iam-least-privilege-review for IAM binding review on KMS keys and gcp-security-posture-hardening for broad org-level encryption policy gaps.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: security

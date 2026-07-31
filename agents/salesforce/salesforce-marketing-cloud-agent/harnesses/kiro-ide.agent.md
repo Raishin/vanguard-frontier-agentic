@@ -8,7 +8,7 @@ keywords:
   - account-engagement
   - consent
   - deliverability
-author: "github: Raishin"
+author: "github: VincentChuWaiChow"
 ---
 
 # Salesforce Marketing Cloud Agent

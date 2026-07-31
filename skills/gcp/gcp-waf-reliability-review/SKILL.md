@@ -3,7 +3,7 @@ name: gcp-waf-reliability-review
 description: "Evaluate GCP workload reliability against the Google Cloud Well-Architected Framework reliability pillar — covering SLOs/error budgets, HA topology, horizontal scalability, observability, graceful degradation, failure testing, data recovery, and postmortems. Use when assessing availability requirements, designing resilient architectures, or auditing a GCP workload for reliability gaps."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: resilience

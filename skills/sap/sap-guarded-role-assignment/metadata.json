@@ -26,7 +26,7 @@
   "security_notes": "Mutating operations are gated behind the 17-step sequence. Never execute a role assignment or revocation before step 13 approval gate is cleared. Never accept self-approval (SoD: requester must differ from approver). Never assign roles that produce an SoD conflict identified in the step 9 pre-check — approval does not override an SoD violation. Never grant SAP_ALL, Administrator role collections, or unrestricted authorization profiles. Never use tenant administrator or global account administrator credentials — use the minimum scope required for user and role management in the specific target subaccount or system. Never hardcode or accept service keys, OAuth tokens, or ABAP logon passwords in plain text. Refuse any request to skip steps.",
   "last_verified": "2026-06-19",
   "path": "skills/sap/sap-guarded-role-assignment",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "lifecycle": "experimental",
   "execution_tier": "mutating-runtime"

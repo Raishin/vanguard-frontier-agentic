@@ -3,7 +3,7 @@ name: m365-copilot-readiness-governance
 description: Review Microsoft 365 Copilot readiness posture and data-exposure governance against the Microsoft Zero Trust 7-layer model. Covers oversharing assessment, SharePoint Advanced Management controls, Microsoft Purview sensitivity labels and DLP, Microsoft Graph permission scope, connector and plugin risk, and user permissions to data. Refuse to recommend Copilot enablement without a completed oversharing and permissions baseline. Prefer static review and advisory guidance; escalate live-tenant configuration mutations to live-guard gate.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-16"
   category: ai

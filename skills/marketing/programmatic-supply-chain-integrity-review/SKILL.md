@@ -3,7 +3,7 @@ name: programmatic-supply-chain-integrity-review
 description: Use this skill when reviewing ads.txt, app-ads.txt, and sellers.json files for a publisher or advertiser's programmatic supply chain to detect unauthorized resellers, domain-spoofing exposure, and SupplyChain Object gaps. Trigger when a user provides an ads.txt file, an app-ads.txt file, a sellers.json endpoint response, or asks whether their programmatic supply chain has unauthorized intermediaries, IVT exposure, domain-spoofing risk, or whether their supply chain declaration satisfies IAB Tech Lab, MRC, or DSP procurement requirements.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-17"
   category: finops

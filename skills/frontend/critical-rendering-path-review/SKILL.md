@@ -3,7 +3,7 @@ name: critical-rendering-path-review
 description: Review page-load resource sequencing, render-blocking CSS/JS, layout-shift sources, and Core Web Vitals (LCP/CLS/INP) budget adherence against the critical rendering path model, explicitly separating lab/synthetic measurement (Lighthouse) from field/real-user measurement (CrUX/RUM) so performance claims are evidence-graded rather than asserted from a single synthetic run.
 allowed-tools: Read Grep Glob Bash(git diff:*) WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-02"
   category: operational

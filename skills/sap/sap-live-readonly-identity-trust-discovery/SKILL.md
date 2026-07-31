@@ -3,7 +3,7 @@ name: sap-live-readonly-identity-trust-discovery
 description: Inspect SAP Cloud Identity Services (IAS/IPS), BTP trust and federation configuration, XSUAA role collections, and identity provider settings using read-only list, get, describe, and export operations only. Use when read-only discovery of IAS application assignments, IPS connector configuration, XSUAA role collection assignments, corporate identity provider federation, or BTP trust configurations is needed as evidence for advisory, audit, or compliance purposes. Requires pre-authorized read-only credentials. Never creates, updates, deletes, assigns, rotates, modifies trust, or triggers any mutation.
 allowed-tools: Read Grep Glob WebSearch WebFetch Bash
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-19"
   category: security

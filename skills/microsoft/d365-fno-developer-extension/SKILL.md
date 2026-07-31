@@ -3,7 +3,7 @@ name: d365-fno-developer-extension
 description: Review Dynamics 365 Finance & Operations developer and extension engineering work — X++ extensions (not over-layering), Chain of Command, extension models, deployable packages, Azure DevOps and Lifecycle Services ALM, build and test automation, upgrade-safe customization, and performance. Detects unsafe customizations, upgrade blockers, fragile extensions, and ALM anti-patterns. Refuses to approve production deployable package deployment or schema changes without sandbox validation evidence and rollback plan. Live-guard gated for deploying packages to production and schema changes.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-17"
   category: devsecops

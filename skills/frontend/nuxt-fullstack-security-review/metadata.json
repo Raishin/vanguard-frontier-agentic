@@ -27,6 +27,6 @@
   "security_notes": "This skill's entire scope is security-critical: a runtimeConfig.public/NUXT_PUBLIC_* secret is a client-bundle credential leak, useState/module-scope pollution in Nitro is a cross-tenant/cross-user data-exposure defect, server-route SSRF and blind header forwarding can leak credentials or reach internal network targets, payload/useState reaching an unsanitized sink is XSS, and missing security response headers weakens the app's baseline browser-side defenses. Every finding in this skill defaults to HIGH severity unless proven otherwise with concrete evidence (a private key correctly scoped, an allowlisted outbound host, a sanitizer visibly on the traced path, or documented header coverage of the routes in scope). Static-review-only skill: it reads and greps nuxt.config.ts, composables/plugins/server code, and templates but never executes, builds, or runs application code, and never sends live requests.",
   "last_verified": "2026-07-03",
   "path": "skills/frontend/nuxt-fullstack-security-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

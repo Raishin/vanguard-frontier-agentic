@@ -22,6 +22,6 @@
   "security_notes": "Server-only secrets, database clients, or privileged third-party API keys reachable from a +page.js/+layout.js (universal load, which runs in the browser too) is a credential-exposure defect — escalate as HIGH, not a style preference. Static-review-only skill: it reads and greps route source but never executes, builds, or runs application code.",
   "last_verified": "2026-07-02",
   "path": "skills/frontend/sveltekit-routing-load-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

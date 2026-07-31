@@ -3,7 +3,7 @@ name: python-business-critical-automation-governance
 description: "Use this skill to statically review business-critical Python automation governance: unowned scripts, notebooks, bots, and schedulers whose failure creates financial, regulatory, or operational exposure. Reads automation source, configuration, and process description only; it never runs the automation and makes no accounting, legal, or regulatory conclusion — those route to the finance/accounting and legal boards."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-26"
   category: operational

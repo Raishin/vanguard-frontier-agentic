@@ -3,7 +3,7 @@ name: huawei-waf-reliability-review
 description: "Assess Huawei Cloud workload reliability using the Well-Architected Framework Reliability pillar: AZ distribution, ELB load balancing, Auto Scaling, GaussDB and RDS multi-AZ HA, and CBR data protection."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: resilience

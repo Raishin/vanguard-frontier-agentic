@@ -22,5 +22,5 @@
   "security_notes": "Read-only-runtime: captures interpreter, process, worker, thread, memory, and health state via allowlisted read-only diagnostics only (sys, gc, faulthandler) and never restarts, kills, scales, or reconfigures a process. Emits an audit event for every diagnostic read, never uses shared or standing credentials, never retrieves raw secret values, and redacts personally identifiable fields captured in a diagnostic dump.",
   "last_verified": "2026-07-26",
   "path": "skills/python/python-live-runtime-control",
-  "author": "github: Raishin"
+  "author": "github: VincentChuWaiChow"
 }

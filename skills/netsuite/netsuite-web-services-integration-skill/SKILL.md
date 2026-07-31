@@ -3,7 +3,7 @@ name: netsuite-web-services-integration-skill
 description: "Static-review flashlight for NetSuite SuiteTalk REST/SOAP API design, integration record configuration, and OAuth 2.0 authentication posture. Reviews REST record endpoints, RESTlet definitions, integration record settings, and authentication method selection against Oracle's documented posture. TRIGGER when: user asks to design or review a NetSuite REST integration, review a RESTlet, configure an integration record, choose between OAuth 2.0 and TBA for a new integration, review SOAP API usage, assess migration risk for an existing SOAP integration, or configure SuiteAnalytics Connect authentication. Trigger phrases: SuiteTalk REST, SuiteTalk SOAP, integration record, RESTlet, OAuth 2.0 NetSuite, REST API design NetSuite, SOAP migration risk. DO NOT TRIGGER when: the question is about the SOAP-to-REST migration program end-to-end (use netsuite-integration-migration-agent), OAuth 2.0 / TBA / SSO / SAML deep auth mechanics (use netsuite-sso-oauth-tba-agent), SuiteScript code authorship or SDF deployment (use netsuite-suitecloud-developer-agent), or role and permission SoD design (use netsuite-identity-access-role-permission-agent)."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-09"
   category: platform

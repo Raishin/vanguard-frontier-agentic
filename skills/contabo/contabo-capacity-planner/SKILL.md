@@ -3,7 +3,7 @@ name: contabo-capacity-planner
 description: Advisory skill for Contabo resource planning across regions (EU, US-central, US-east, US-west, SIN, UK, AUS, JPN, IND), instance tiers (VPS, VDS, Storage VPS), and add-ons (Private Networking, Additional IPs, Extra Storage, Custom Images). Includes Cloud-Init userData strategy and SSH key management via secret IDs. Use when the user needs to plan new deployments, evaluate region coverage, or compare instance tiers.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-10"
   category: platform

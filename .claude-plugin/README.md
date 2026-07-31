@@ -14,7 +14,7 @@ for them at exactly these paths.
 ## How users install
 
 ```bash
-/plugin marketplace add Raishin/vanguard-frontier-agentic
+/plugin marketplace add VincentChuWaiChow/vanguard-frontier-agentic
 /plugin install vanguard-frontier-agentic@vanguard-frontier-agentic
 ```
 
@@ -24,7 +24,7 @@ Or via `~/.claude/settings.json`:
 {
   "extraKnownMarketplaces": {
     "vanguard-frontier-agentic": {
-      "source": { "source": "github", "repo": "Raishin/vanguard-frontier-agentic" }
+      "source": { "source": "github", "repo": "VincentChuWaiChow/vanguard-frontier-agentic" }
     }
   },
   "enabledPlugins": {

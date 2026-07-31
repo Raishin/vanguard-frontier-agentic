@@ -3,7 +3,7 @@ name: alibaba-solution-architect
 description: Design Alibaba Cloud solutions — product selection (PolarDB vs RDS, ACK vs ASK vs SAE, MaxCompute vs AnalyticDB), architecture patterns, landing zone design, and disaster recovery strategies aligned to the Alibaba Well-Architected Framework.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: platform

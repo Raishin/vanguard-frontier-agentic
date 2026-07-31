@@ -3,7 +3,7 @@ name: gcp-solution-architect
 description: Design GCP solutions aligned with the Google Cloud Architecture Framework when the request spans resource hierarchy, product selection, or multi-service architecture decisions. Prefer narrower GCP skills for single-domain network, GKE, Cloud Run, data pipeline, database, or landing zone asks.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: platform

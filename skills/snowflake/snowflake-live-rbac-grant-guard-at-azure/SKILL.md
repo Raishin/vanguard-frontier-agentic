@@ -3,7 +3,7 @@ name: snowflake-live-rbac-grant-guard-at-azure
 description: Mutating-runtime live guard for Snowflake RBAC privilege management on Azure. Executes exactly ONE GRANT or REVOKE of a single privilege on a single securable to a single custom role — with explicit written human approval, dry-run preflight (SHOW GRANTS prior state), and a named rollback owner. Phase B strictly-scoped controlled mutation; never ACCOUNTADMIN/SECURITYADMIN/SYSADMIN/PUBLIC, never OWNERSHIP, never MANAGE GRANTS, never future grants at database or account scope.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-17"
   category: security

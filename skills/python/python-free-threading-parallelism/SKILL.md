@@ -3,7 +3,7 @@ name: python-free-threading-parallelism
 description: "Use this skill to statically review Python free-threaded (no-GIL) adoption: invalidated GIL thread-safety assumptions, shared-state races, C-extension compatibility, and synchronization needs. Reads source, build config, and extension manifests only; it never builds or runs the free-threaded interpreter."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-26"
   category: architecture

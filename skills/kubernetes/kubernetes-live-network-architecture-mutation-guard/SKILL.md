@@ -3,7 +3,7 @@ name: kubernetes-live-network-architecture-mutation-guard
 description: Guard live kubectl apply, patch, or create operations on Kubernetes networking *architecture* surface — Service spec (`internalTrafficPolicy`, `externalTrafficPolicy`, `topology-mode`, `trafficDistribution`), CoreDNS Corefile, NodeLocal DNSCache install, Gateway API resources (Gateway / HTTPRoute / GRPCRoute / TLSRoute / ReferenceGrant), and ClusterMesh peer Secrets. HARD REFUSE one-way doors (CNI replacement, kube-proxy mode swap, MTU change, Pod / Service CIDR resize, namespace deletion). Pre-flight `kubectl auth can-i` matrix against a least-privilege ServiceAccount before any write. Use only when an intentional architecture-level networking mutation is requested against a confirmed cluster target with a documented rollback path.
 allowed-tools: Bash Read Edit Grep Glob WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: networking

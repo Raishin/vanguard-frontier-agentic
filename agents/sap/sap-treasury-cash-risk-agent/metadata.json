@@ -26,7 +26,7 @@
   "security_notes": "Static review only — no Bash, no RFC/BAPI calls, no SAP GUI transaction execution, no table-level mutations. Never executes a payment, trade, money market transaction, FX deal, or hedge designation. Never creates or modifies a bank account master record, payment approval workflow, market risk position, hedge relationship, financial instrument valuation run, or intercompany netting agreement. Never accepts real SAP system credentials, SAP basis passwords, treasury dealing passwords, bank account numbers or IBANs from live systems, actual trade confirmations or settlement amounts, counterparty credit agreements, or legally sensitive netting master agreements. Findings indicating payments executable without dual authorisation, hedge accounting designation documents incomplete for active hedge relationships, market risk position limits not configured for material FX or interest rate exposures, or IHC on-behalf-of payments releasable without a second approver MUST be escalated to the Group Treasurer and the Chief Risk Officer before any remediation is applied. All guidance is advisory; TRM configuration changes require transport management, change-control board approval, regression testing of valuation runs and payment workflows in a quality system, and coordination with the Group Treasurer before transport to production.",
   "last_verified": "2026-06-19",
   "path": "agents/sap/sap-treasury-cash-risk-agent",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "companion_skills": [
     "sap-treasury-cash-risk-review"
   ],

@@ -3,7 +3,7 @@ name: focus-spec-normalizer
 description: Normalize vendor-specific billing rows (AWS CUR, Azure Cost Management, GCP Billing Export, OCI) into FOCUS v1.2 columns from user-pasted CSV or JSON input. Refuses to invent column values not derivable from the input. No credentials accepted; operates on user-supplied data only.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.1"
   updated: "2026-05-13"
   category: finops

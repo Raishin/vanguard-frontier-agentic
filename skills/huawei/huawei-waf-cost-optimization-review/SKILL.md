@@ -3,7 +3,7 @@ name: huawei-waf-cost-optimization-review
 description: "Assess Huawei Cloud cost efficiency using the Well-Architected Framework Cost Optimization pillar: ECS flavor selection including Kunpeng Arm, Yearly/Monthly vs Pay-Per-Use billing, Spot Instances, Enterprise Project cost attribution, and Cost Center monitoring."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: finops

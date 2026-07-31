@@ -27,7 +27,7 @@
   "security_notes": "Read-only enforced. Never request or accept write-capable credentials. Use viewer/auditor roles only (BTP subaccount viewer, CF SpaceAuditor/OrgAuditor, kubectl read-only ClusterRole, ABAP display user). Redact all credential values, service keys, and OAuth tokens from output. Log every command executed. Refuse any request that maps to a create/update/delete/deploy/assign/rotate/import/trigger action.",
   "last_verified": "2026-06-19",
   "path": "skills/sap/sap-live-readonly-landscape-discovery",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "lifecycle": "experimental",
   "execution_tier": "read-only-runtime"

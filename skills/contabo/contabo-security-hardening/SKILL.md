@@ -3,7 +3,7 @@ name: contabo-security-hardening
 description: Advisory skill for hardening Contabo infrastructure security: SSH key management via secret IDs, default root and admin user policy, firewall posture review, OAuth2 credential hygiene including token short TTL and environment variable storage, and x-request-id UUIDv4 traceability for audit compliance. Use when the user needs to assess or improve Contabo instance or API security posture.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-10"
   category: security

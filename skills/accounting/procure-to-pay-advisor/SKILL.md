@@ -3,7 +3,7 @@ name: procure-to-pay-advisor
 description: Multi-jurisdiction procure-to-pay accounting reference covering PO matching, AP accruals, vendor management, and related compliance.
 allowed-tools: Skill Read WebFetch Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-02"
   category: finance

@@ -3,7 +3,7 @@ name: kotlin-language-api-correctness
 description: "Use this skill to statically review Kotlin language-level correctness: nullability and Java-interop platform types, inline functions with reified type parameters past JVM erasure, @JvmInline value-class boxing behavior, statically-dispatched extension functions vs member precedence, and lateinit use-before-init hazards. Reads source only; it never compiles or runs code to observe runtime null-pointer or boxing behavior."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-21"
   category: architecture

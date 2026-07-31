@@ -3,7 +3,7 @@ name: python-numerical-scientific-correctness
 description: "Use this skill to statically review Python numerical and scientific correctness: binary float used for money, rounding-mode errors, silent dtype coercion and integer overflow, missing-data (NaN) handling, timezone-naive timestamps, unseeded randomness and irreproducibility, numerical instability, and unbenchmarked vectorization claims. Reads source only; it never runs the calculation, notebook, or benchmark."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-26"
   category: data

@@ -23,7 +23,7 @@
   "security_notes": "Static review only. Do not modify production workspace roles, row-level/object-level security, sensitivity labels, DLP policies, or Fabric capacity; these are escalated to a Fabric administrator with a rollback plan. Note RLS only restricts Viewer-role users — it does not apply to Admin/Member/Contributor. Do not ask for credentials, tenant IDs, workspace URLs, or customer data. Treat duplicated/uncertified semantic models, reports on personal models, missing RLS on sensitive models, and over-broad workspace roles as metric-trust and data-exposure risks until reviewed.",
   "last_verified": "2026-06-16",
   "path": "skills/microsoft/fabric-power-bi-business-insights-governance",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "category": "observability",
   "companion_agents": ["fabric-power-bi-business-insights-governance-agent"]

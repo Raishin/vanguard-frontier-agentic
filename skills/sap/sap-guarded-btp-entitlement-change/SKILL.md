@@ -3,7 +3,7 @@ name: sap-guarded-btp-entitlement-change
 description: Change SAP BTP entitlements, quotas, and service plan subscriptions using a mandatory 17-step guarded mutation sequence covering classification, target global account and subaccount confirmation, criticality, requester, approver (platform-owner plus FinOps required), ticket, scope, read-only current state, diff of entitlement changes, blast radius (cost and dependent applications), rollback, post-change verification, and audit evidence. Refuses if any step is missing, if FinOps approval is absent for entitlement increases, or if a cost-impact assessment has not been produced. Use when a confirmed and approved BTP entitlement, quota, or subscription change must be executed under traceable controls.
 allowed-tools: Read Grep Glob WebSearch WebFetch Bash
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-19"
   category: platform

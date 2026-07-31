@@ -3,7 +3,7 @@ name: huawei-load-balancer-traffic-engineer
 description: Engineer and review Huawei Cloud ELB traffic configurations — dedicated vs shared ELB type selection, HTTP/HTTPS/TCP/UDP protocol listener setup, health check configuration, WAF integration on ELB, backend server group routing, connection draining, and TLS policy enforcement on Dedicated ELB.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: networking

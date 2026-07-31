@@ -3,7 +3,7 @@ name: huawei-serverless-production-readiness
 description: Review FunctionGraph production readiness on Huawei Cloud — VPC access configuration, concurrency limits and reserved instances, cold-start optimization, observability via LTS and AOM, timeout configuration, dependency package size, custom vs managed runtimes, and ServiceStage application lifecycle.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: serverless

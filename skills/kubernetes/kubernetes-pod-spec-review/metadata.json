@@ -17,6 +17,6 @@
   "security_notes": "Secrets mounted as environment variables appear in kubectl describe pod output and in /proc/self/environ, accessible to any process in the container. Root containers can write to host paths if hostPath volumes are present. Missing runAsNonRoot allows container breakout to node if combined with hostPath or privileged mode.",
   "last_verified": "2026-05-02",
   "path": "skills/kubernetes/kubernetes-pod-spec-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

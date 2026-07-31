@@ -22,6 +22,6 @@
   "security_notes": "Static-review-only skill: it reads and greps route handler code, authorization middleware, and contract documentation but never executes, builds, or runs application code, and never issues live requests. Every finding of client-side-only authorization or excessive data exposure is treated as a security-severity finding, not a style note. Wildcard CORS combined with credentialed requests is an automatic blocking finding. Raw upstream error forwarding to the client is a blocking finding.",
   "last_verified": "2026-07-02",
   "path": "skills/frontend/api-integration-contract-review",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0"
 }

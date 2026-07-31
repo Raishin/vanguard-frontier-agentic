@@ -23,7 +23,7 @@
   "security_notes": "Static review only. Never execute production Spark notebooks, trigger production pipeline runs, promote deployment-pipeline stages, resize or pause Fabric capacity, or modify OneLake folder-level or item-level access controls without explicit human approval, blast-radius assessment, and a documented rollback path; these are live-guard gated and must be escalated to a Fabric administrator. Do not ask for credentials, tenant IDs, workspace URLs, connection strings, or customer data. Treat unpartitioned bronze tables, missing Delta optimization (V-Order, Liquid Clustering), unbounded Spark jobs, unchecked CU consumption, missing incremental-load logic, and eventstream destinations without error handling as reliability and capacity risks until reviewed. Label every finding as documented artifact, user-provided sanitized evidence, documentation-based, or inference.",
   "last_verified": "2026-06-17",
   "path": "skills/microsoft/fabric-data-engineering",
-  "author": "github: Raishin",
+  "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
   "category": "data",
   "companion_agents": ["fabric-data-engineering-agent"]

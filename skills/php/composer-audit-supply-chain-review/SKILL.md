@@ -3,7 +3,7 @@ name: composer-audit-supply-chain-review
 description: Use this skill to review PHP Composer dependency supply-chain posture — whether composer audit is wired into CI with a failing exit-code gate on security advisories, whether config.policy.advisories.audit and config.policy.abandoned settings are configured to actually surface risk, whether abandoned packages have a tracked replacement plan, and whether composer.lock is present, current, and pins dependencies at security-sensitive boundaries. Use when a vulnerable or abandoned Packagist dependency could reach production because the audit gate is missing or non-blocking, an abandoned package has no owner, or the lock file is absent, drifted, or bypassed by unpinned constraints. Static review only; it never installs packages, runs Composer commands, or contacts Packagist.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-16"
   category: security

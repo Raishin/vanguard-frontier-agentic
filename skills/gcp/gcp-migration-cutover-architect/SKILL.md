@@ -3,7 +3,7 @@ name: gcp-migration-cutover-architect
 description: Plan and execute migrations to GCP using Migrate to Virtual Machines, Database Migration Service, Storage Transfer Service, and design cutover sequencing with rollback plans.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: platform

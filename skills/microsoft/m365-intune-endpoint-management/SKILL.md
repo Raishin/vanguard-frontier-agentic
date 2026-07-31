@@ -3,7 +3,7 @@ name: m365-intune-endpoint-management
 description: Review and advise on Microsoft Intune endpoint management posture covering device enrollment, compliance policies, configuration profiles, app protection (MAM) policies, Conditional Access device-compliance signal, Windows Autopilot, update rings, and endpoint security baselines. Applies Zero Trust device-health-as-signal principles. Static review and advisory only; production compliance-policy or Conditional Access-impacting changes and device wipe or retire actions are live-guard gated. Refuses to weaken device compliance or Conditional Access requirements for convenience.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-17"
   category: platform

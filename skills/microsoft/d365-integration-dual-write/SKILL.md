@@ -3,7 +3,7 @@ name: d365-integration-dual-write
 description: Review Dynamics 365 integration design and operations — dual-write (Finance & Operations to/from Dataverse bidirectional sync), virtual entities, table map configuration, initial sync planning, error handling and monitoring, master-data ownership, and Power Platform integration boundary. Detects ERP/CRM data inconsistency, dual-write drift, integration failures, and broken master-data ownership. Refuses to approve enabling or disabling dual-write table maps in production or initial sync runs without dependency analysis, conflict resolution plan, and rollback readiness. Live-guard gated for enabling or disabling dual-write maps in production and initial sync runs.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-17"
   category: platform

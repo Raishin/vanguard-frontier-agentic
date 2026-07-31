@@ -3,7 +3,7 @@ name: gcp-live-gke-rollout-guard
 description: Gate GKE deployment mutations, node pool upgrades, and cluster control-plane version changes against rollback posture and PDB audit before any production change. Prevents irreversible node pool upgrades from proceeding without PodDisruptionBudget verification, surge settings review, and explicit operator approval.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-08"
   category: delivery

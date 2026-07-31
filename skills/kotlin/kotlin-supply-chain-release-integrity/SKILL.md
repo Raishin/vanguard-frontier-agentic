@@ -3,7 +3,7 @@ name: kotlin-supply-chain-release-integrity
 description: "Use this skill to statically review Kotlin/Gradle dependency trust and release integrity: whether `gradle/verification-metadata.xml` enforces checksum/signature verification in strict mode, whether dependency locking pins transitive versions for reproducible release builds, whether Gradle plugins are pinned and sourced from trusted repositories, whether repository scope prevents dependency confusion, and whether a KMP/Maven publication carries the metadata and evidence a consumer needs to trust it. Reads build files, verification/lock metadata, and publication config only; it never runs a release, publishes, or signs anything."
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-21"
   category: devsecops

@@ -3,7 +3,7 @@ name: erp-crm-cutover-protocol
 description: Use this skill when a Dynamics 365 ERP or CRM implementation is approaching go-live and must progress through mock migration, data reconciliation, cutover runbook execution, rollback testing, and the Success by Design go-live gate before production switchover. Orchestrates d365-data-migration-cutover-agent as primary, d365-success-by-design-governance-agent for SbD gate sign-off, and d365-security-sod-governance-agent for separation-of-duties validation. Gates include reconciliation sign-off, rollback readiness, and SbD go-live gate. Never makes the go/no-go decision autonomously; all production-impacting steps require human owner and Microsoft FastTrack confirmation where applicable.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-06-16"
   category: data

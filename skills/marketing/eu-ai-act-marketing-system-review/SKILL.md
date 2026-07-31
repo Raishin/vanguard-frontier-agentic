@@ -3,7 +3,7 @@ name: eu-ai-act-marketing-system-review
 description: Use this skill when reviewing a marketing AI system's description card against EU AI Act risk-tier criteria to classify the system (prohibited / high-risk / limited-risk / minimal-risk), flag documentation obligations, and identify deployment-readiness gaps before the August 2, 2026 full-enforcement date. Trigger when a user provides an AI system description card covering system purpose, input data types, output decisions, human-oversight mechanism, deployment geography, and whether it profiles natural persons — or when they ask whether their marketing AI tool, lead-scoring model, content personalization engine, or automated ad-decisioning system requires a conformity assessment or transparency notice under EU AI Act Regulation 2024/1689.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-17"
   category: compliance

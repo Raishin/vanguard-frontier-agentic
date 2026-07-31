@@ -3,7 +3,7 @@ name: gcp-certificate-manager-issuer-review
 description: Review GCP Certificate Manager and classic Google-managed TLS certificates — certificate map configuration, DNS authorization, CAA record validation, certificate rotation automation, wildcard vs SAN design, and expiry monitoring.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-09"
   category: security

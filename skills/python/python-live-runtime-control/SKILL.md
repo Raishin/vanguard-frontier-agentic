@@ -3,7 +3,7 @@ name: python-live-runtime-control
 description: "Use this skill to read live Python interpreter, process, worker, task, thread, memory, and health state through allowlisted read-only diagnostics, and to flag health signals as findings. Read-only-runtime: it never restarts, kills, scales, or reconfigures a process."
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-07-26"
   category: observability

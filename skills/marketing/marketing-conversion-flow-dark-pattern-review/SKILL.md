@@ -3,7 +3,7 @@ name: marketing-conversion-flow-dark-pattern-review
 description: Use this skill when reviewing marketing conversion flow specifications — subscription sign-up, upsell interstitial, free-trial enrollment, and cancellation path — for dark-pattern practices that invalidate consent or constitute unfair or deceptive acts under FTC Section 5 and state privacy laws. Trigger when a user provides a UX flow specification including step-by-step page descriptions, annotated wireframes, CTA labels, pre-checked options, visual weight of accept vs decline paths, countdown timer specs, or cancellation flow step counts. Scope is limited to marketing conversion flows; consent banner review is handled by a separate skill.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
+  author: "github: VincentChuWaiChow"
   version: "0.1.0"
   updated: "2026-05-17"
   category: compliance
