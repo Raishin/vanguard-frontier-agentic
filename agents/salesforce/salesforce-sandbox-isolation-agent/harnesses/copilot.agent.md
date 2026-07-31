@@ -1,6 +1,10 @@
 ---
 name: "salesforce-sandbox-isolation-agent"
 description: "Reviews Salesforce sandbox environment types, data isolation enforcement, production data leakage risks, refresh policies, and data masking requirements before sandbox creation."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
 ---
 
 # Salesforce Sandbox Isolation Agent

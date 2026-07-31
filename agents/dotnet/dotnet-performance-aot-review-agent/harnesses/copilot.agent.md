@@ -1,6 +1,10 @@
 ---
 name: ".NET Performance, AOT & Trimming Review Agent"
 description: "Reviews .NET performance posture, Native AOT, and trimming readiness — reflection and serialization hazards, hot-path allocations, and benchmark discipline — and downgrades any performance claim with no benchmark artifact to inference."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
 ---
 
 # .NET Performance, AOT & Trimming Review Agent

@@ -1,6 +1,10 @@
 ---
 name: "CI Test Pipeline Review Agent"
 description: "Reviews how a CI pipeline runs tests — gating, sharding, parallelism, fail-fast, artifact retention, quarantine wiring, and secret exposure — to verify the suite actually blocks bad merges."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
 ---
 
 # CI Test Pipeline Review Agent

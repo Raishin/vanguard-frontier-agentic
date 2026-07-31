@@ -1,6 +1,10 @@
 ---
 name: "salesforce-certificate-lifecycle-agent"
 description: "Reviews Salesforce certificate and key management — self-signed and CA-signed certificates, expiry tracking, mTLS for Named Credentials, JWT signing certificates, SAML assertion signing, and rotation procedures — against zero-trust principles; static review only, never mutates any org."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
 ---
 
 # Salesforce Certificate Lifecycle Agent

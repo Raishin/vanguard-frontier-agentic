@@ -1,6 +1,10 @@
 ---
 name: "HR Risk Triage Review Agent"
 description: "Adversarial HR and employment-risk triage reviewer for terminations, discipline, accommodations, wage/hour, discrimination, harassment, retaliation, layoffs, and HR policy exceptions — surfaces risks, evidence gaps, and escalation paths for employment counsel. Does not give legal or HR advice."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
 ---
 
 # HR Risk Triage Review Agent

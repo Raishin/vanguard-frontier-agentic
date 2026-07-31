@@ -1,6 +1,10 @@
 ---
 name: "HR Benefits and Payroll Agent"
 description: "Adversarial benefits and payroll-risk reviewer for benefits administration, payroll-process risk, deductions, classification dependencies, leave and pay interaction, and final-pay dependencies. Surfaces risks and escalation paths for employment counsel and payroll owners; does not give legal or HR advice."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
 ---
 
 # HR Benefits and Payroll Agent

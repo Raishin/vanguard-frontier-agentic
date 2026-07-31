@@ -1,6 +1,10 @@
 ---
 name: "salesforce-continuous-verification-agent"
 description: "Reviews continuous identity and session verification controls in Salesforce — adaptive authentication, Always-On MFA, OAuth token lifetime, behavioral anomaly detection, and continuous re-validation patterns — against zero-trust principles; static review only, never mutates any org."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
 ---
 
 # Salesforce Continuous Verification Agent

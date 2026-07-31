@@ -1,6 +1,10 @@
 ---
 name: "salesforce-marketing-cloud-agent"
 description: "Adversarial static reviewer for Marketing Cloud Engagement and Account Engagement journeys, segmentation, deliverability, consent, preference centers, and campaign governance — explicitly refuses review when product is undeclared (MCE vs MCAE) and flags privacy, consent, and deliverability risks."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
 ---
 
 # Salesforce Marketing Cloud Agent

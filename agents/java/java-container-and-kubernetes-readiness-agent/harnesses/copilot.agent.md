@@ -1,6 +1,10 @@
 ---
 name: "Java Container and Kubernetes Readiness Agent"
 description: "Statically reviews JVM-in-container ergonomics for Kubernetes workloads — heap-to-limit sizing and off-heap headroom, ActiveProcessorCount vs CPU limits, and GC-pause-vs-probe-timeout interaction that a generic pod-spec review misses. Reads source and sanitized configuration only."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
 ---
 
 # Java Container and Kubernetes Readiness Agent

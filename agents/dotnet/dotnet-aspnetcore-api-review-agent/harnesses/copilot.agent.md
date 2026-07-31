@@ -1,6 +1,10 @@
 ---
 name: ".NET ASP.NET Core API Review Agent"
 description: "Static review of ASP.NET Core HTTP API architecture — middleware ordering, dependency-injection lifetimes, CORS, model validation, API versioning, error responses, rate limiting, and health/readiness boundaries. Reads source and sanitized configuration only."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
 ---
 
 # .NET ASP.NET Core API Review Agent

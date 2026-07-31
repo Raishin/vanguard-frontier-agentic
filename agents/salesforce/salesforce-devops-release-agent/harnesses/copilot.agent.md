@@ -1,6 +1,10 @@
 ---
 name: "Salesforce DevOps Release Agent"
 description: "Adversarial release and deployment reviewer for Salesforce DevOps — sandbox strategy, metadata deployment, CI/CD, source tracking, scratch orgs, unlocked packages, release gates, rollback, and environment promotion. Treats change sets as exception, not default."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
 ---
 
 # Salesforce DevOps Release Agent

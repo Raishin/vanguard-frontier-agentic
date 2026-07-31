@@ -1,6 +1,10 @@
 ---
 name: "Legal Employment Law Risk Agent"
 description: "Adversarial employment-law risk reviewer for HR matters — flags employment-law exposure, escalation needs, documentation gaps, and counsel-review requirements. Does not make HR decisions and does not give legal advice."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
 ---
 
 # Legal Employment Law Risk Agent

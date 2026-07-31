@@ -221,6 +221,68 @@ Skills without an `execution_tier` declaration are treated as `static-review`
 - `schemas/skill.schema.json` — accepts the same fields at the catalog
   level via `additionalProperties: true`
 
+## Harness tool grants must match the declared tier
+
+A tier is only a contract until some harness actually enforces it. The harnesses in
+this repo enforce posture in three different places, and they are **not**
+interchangeable — be precise about which one is doing the work:
+
+| Harness surface | How posture is expressed | Enforced? |
+|---|---|---|
+| `harnesses/codex.toml` | `sandbox_mode` (`read-only` vs `workspace-write`) | Yes — sandbox-level |
+| `harnesses/copilot.agent.md` | per-agent `tools:` allowlist | Yes — the agent gets exactly these tools |
+| companion `SKILL.md` | `allowed-tools` | Yes — at skill-invocation level |
+| `claude-code` / `cursor` / `gemini` / `kiro-ide` `.agent.md` | `name` + `description` only | **No** — carried by the agent's operating rules, not a tool grant |
+| `harnesses/kiro-cli.agent.json` | no tools key | **No** — same as above |
+
+The Copilot adapter is therefore the one **agent-level** tool grant in this catalog, and
+`tests/validate-agent-tool-tiers.py` (`npm run validate:agent-tool-tiers`) enforces that
+it agrees with the agent's declared tier:
+
+1. **An agent that declares a tier must carry an explicit `tools:` block.** Omitting the
+   block is not "no permissions" — it inherits every tool the harness offers, which is an
+   implicit grant strictly wider than any tier allows.
+2. **`static-review` must never carry an execution tool** (`execute/*`,
+   `run_terminal_command`). It reads source; it never runs anything. Tools that only
+   *read* terminal state (`read/terminalLastCommand`, `read/terminalSelection`) are not
+   execution and are permitted.
+3. **`read-only-runtime` must not carry an execution tool either**, unless the agent is on
+   the gate's small `EXEC_ALLOWLIST` — reserved for agents whose documented job is to run
+   a read-only command. Routers, maestros, and advisors never qualify: classifying a task
+   or fetching a public price needs no terminal.
+4. **`mutating-runtime` may carry execution tools.** The gate permits but does not
+   *require* them — an operator that mutates through an API rather than a shell should not
+   be handed a terminal just to satisfy a rule. Widening a grant needs a per-agent
+   justification, the same as narrowing one.
+
+The gate also **fails closed on a grant it cannot fully parse.** Every entry must be the
+canonical `  - "tool"` form; a block mixing in an unquoted scalar, a single-quoted entry,
+a comment, or a nested map is rejected rather than partially read. Silently ignoring an
+entry it does not understand is precisely how a gate reports green while the agent holds
+the tool the gate exists to forbid.
+
+Fix violations with `npm run agent-tool-tiers:write`. It is surgical and **never widens a
+grant**: it removes offending execution entries, and where no block exists it inserts the
+narrowest useful set — `read`, `search`, `search/codebase`, with **no network and no
+terminal, for every tier including `mutating-runtime`**. Inventing a grant is not the
+moment to hand out capability: an operator that mutates through an API needs no shell, so
+terminal and network access must be added deliberately in a reviewable diff rather than
+appearing as a side effect of running the fixer.
+
+> [!NOTE]
+> **Network egress is reported, not failed.** T0 above is defined as "No network egress",
+> but a substantial number of static-review agents already declare `web/fetch` on purpose,
+> because their own contracts require checking current vendor documentation before
+> rendering a finding. That is a genuine conflict between this tier definition and those
+> board contracts, and resolving it is a decision for those boards — so the gate prints the
+> count instead of silently revoking the capability.
+
+> [!NOTE]
+> The gate only polices agents that **declare** an `execution_tier`. `execution_tier` is
+> optional in `schemas/agent.schema.json` and a large share of the cloud-board agents omit
+> it; assigning those tiers is a per-agent judgement call and a separate change. The gate
+> deliberately does not guess a tier in order to police one.
+
 ## Enforcement Roadmap
 
 Wave 4 ships the **declaration model**. Wave 5+ will ship harness-side

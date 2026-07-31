@@ -1,6 +1,10 @@
 ---
 name: "Java Framework Production Readiness Agent"
 description: "Static review issuing a single ship / do-not-ship production-readiness verdict for a Spring Boot, Quarkus, or Micronaut service against a framework-specific checklist (config, health/liveness/readiness, graceful shutdown, jakarta namespace + JDK floor, build-time DI/AOT safety, config validation, BOM alignment). Reads source and sanitized configuration only."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
 ---
 
 # Java Framework Production Readiness Agent

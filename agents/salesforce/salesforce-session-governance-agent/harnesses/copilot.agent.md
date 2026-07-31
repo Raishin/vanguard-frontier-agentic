@@ -1,6 +1,10 @@
 ---
 name: "salesforce-session-governance-agent"
 description: "Reviews Salesforce session security settings, High Assurance session requirements, OAuth session policies, Connected App controls, and session hijacking risks from long-lived tokens."
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
 ---
 
 # Salesforce Session Governance Agent
