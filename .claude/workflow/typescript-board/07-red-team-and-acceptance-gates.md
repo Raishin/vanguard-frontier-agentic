@@ -1,6 +1,7 @@
 # Red Team and Acceptance Gates
 
-> Status: **PLAN — not implementation.** This document scores the design, not a built board.
+> Status: **PLAN — Phase 0 code registration LANDED (commit `2ff7461a`); no board asset built.**
+> This document scores the design, not a built board.
 > Previous: [06-implementation-roadmap-and-integration.md](./06-implementation-roadmap-and-integration.md) · Next: [08-authoring-templates.md](./08-authoring-templates.md)
 
 ## 1. Method
@@ -186,7 +187,7 @@ Scored against the design as it stands, not against an implementation that does 
 | Business-impact honesty | 4 | The economics agent is accepted conditionally with a refusal contract and a removal date; P09's score is explicitly called an understatement of tail risk | No measured figures exist anywhere in the plan, by design — which is correct but means every economic claim is a formula, not a result | High | Nothing at plan time; this axis is capped until a user supplies measurements |
 | Repository-convention fidelity | 4 | Layout, metadata, harness set, tier, tool grants, category enum, roles, and generator ordering all derived from cited repo evidence; six brief assumptions refuted with evidence | The category assignments and role lists are unvalidated against the gates until assets exist | High | Running `npm run validate` with the assets present |
 | Routing robustness | 3 | Grader mechanics read from source; anchors designed for lexical uniqueness against the IDF filter; four adversarial fixtures retained | Anchors are illustrative and unfitted; the alphabetical tie-break is arbitrary; thirteen domains is a dense space for a keyword-count grader | Medium | Generating the fixtures and confirming every domain routes at score above zero |
-| Implementation readiness | 2 | Phase 0 is fully specified with eight verified registration points; the file inventory, role coverage, generator ordering, and gate commands are concrete | **Nothing is built.** Phase 0 is unmet, 126 agent files and 76 skill files are unwritten, and the fixture does not exist | High | Executing phases 6 to 11 |
+| Implementation readiness | 3 | Phase 0's five code registration points are landed and gate-verified (commit `2ff7461a`), including the silently-failing `infer_provider` arm and its test; the file inventory, role coverage, generator ordering, and gate commands are concrete | **No asset is built.** 126 agent files and 76 skill files are unwritten, the routing fixture does not exist, and the board does nothing yet | High | Executing phases 7 to 11 |
 
 No axis scores 5 except compile-time versus runtime separation, which is the one place where the
 design's central claim is fully grounded in verified primary documentation and structurally
@@ -358,8 +359,12 @@ CI and must be checked by a human.
 
 Blockers:
 
-1. **Phase 0 is unmet.** `typescript` is not a registered provider in any of the eight points, so
-   no asset can merge. This is a hard gate, not a task.
+1. **Phase 0 is partially met.** The five code registration points are landed and verified
+   (commit `2ff7461a`): both schema enums, `ALLOWED_PROVIDERS`, the docs-data taxonomy row, and
+   both Rust touch points including the `infer_provider` arm and its path-mapping test. The Kiro
+   Power and the two hand-written documentation lists remain deferred, the latter deliberately —
+   `provider_list` is derived from agent metadata, so a `docs/taxonomy.md` bullet added before the
+   first agent would break the provider invariant, and nothing machine-checks that equality.
 2. **No implementation exists.** 126 agent files, 76 skill and reference files, and one routing
    fixture are unwritten. The plan is complete; the board is not.
 3. **External version facts must be re-verified at authoring time.** TypeScript invalidated the

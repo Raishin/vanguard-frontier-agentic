@@ -1,21 +1,24 @@
 # Implementation Roadmap and Integration
 
-> Status: **PLAN — not implementation.** Nothing in this document has been executed.
+> Status: **PLAN — Phase 0 code registration LANDED (commit `2ff7461a`); no board asset built.**
+> Phase 0 steps 0.1 to 0.5 are executed and gate-verified; everything from Phase 7 on is not.
 > Previous: [05-skill-and-reference-architecture.md](./05-skill-and-reference-architecture.md) · Next: [07-red-team-and-acceptance-gates.md](./07-red-team-and-acceptance-gates.md)
 
 ## 1. Phase 0 — provider registration (hard gate)
 
-Nothing merges before all of this lands. Ordered checklist:
+Nothing merges before all of this lands. Ordered checklist — **steps 0.1 to 0.5 are LANDED in
+commit `2ff7461a`**, verified by `npm run validate` (exit 0), `codespell`, `markdownlint`, and the
+three cargo gates on rustc 1.97.1:
 
 | Step | File | Change | Verify |
 |---|---|---|---|
-| 0.1 | `schemas/agent.schema.json` | add `"typescript"` to the `provider` enum | `npm run validate:agent-schema` |
-| 0.2 | `schemas/skill.schema.json` | add `"typescript"` to the `provider` enum | `npm run validate:skill-schema` |
-| 0.3 | `tests/validate-catalog.py` | add `"typescript"` to `ALLOWED_PROVIDERS` (line 21 onward) | `npm run validate:catalog` |
-| 0.4a | `tools/vfa-tui/src/models/provider.rs` | add the `Typescript` variant; kebab-case serde already yields `typescript` | `cargo fmt --check && cargo clippy --all-targets -- -D warnings && cargo test` in `tools/vfa-tui` |
-| 0.4b | `tools/vfa-tui/src/federation/coverage.rs:331` (`infer_provider`) | add the `"typescript" => Provider::Typescript` arm, plus a focused path-mapping test asserting `agents/typescript/x` and `skills/typescript/x` infer `Provider::Typescript` | the same three cargo gates; **the new test is the only thing that catches this** |
-| 0.5 | `scripts/generate-docs-data.mjs` | add `typescript` to the `Developer Platforms` taxonomy row (line 59) | `npm run docs-data:write` then inspect `docs/_data/catalog.yml` |
-| 0.6 | `scripts/generate-kiro-powers.mjs` | optional: add a `PROVIDERS` entry and `DERIVED_KEYWORDS` if the board ships a Kiro Power | `npm run kiro-powers:write && npm run validate:kiro-powers` |
+| 0.1 ✅ | `schemas/agent.schema.json` | add `"typescript"` to the `provider` enum | `npm run validate:agent-schema` |
+| 0.2 ✅ | `schemas/skill.schema.json` | add `"typescript"` to the `provider` enum | `npm run validate:skill-schema` |
+| 0.3 ✅ | `tests/validate-catalog.py` | add `"typescript"` to `ALLOWED_PROVIDERS` (line 21 onward) | `npm run validate:catalog` |
+| 0.4a ✅ | `tools/vfa-tui/src/models/provider.rs` | add the `Typescript` variant; kebab-case serde already yields `typescript` | `cargo fmt --check && cargo clippy --all-targets -- -D warnings && cargo test` in `tools/vfa-tui` |
+| 0.4b ✅ | `tools/vfa-tui/src/federation/coverage.rs:331` (`infer_provider`) | add the `"typescript" => Provider::Typescript` arm, plus a focused path-mapping test asserting `agents/typescript/x` and `skills/typescript/x` infer `Provider::Typescript` | the same three cargo gates; **the new test is the only thing that catches this** |
+| 0.5 ✅ | `scripts/generate-docs-data.mjs` | add `typescript` to the `Developer Platforms` taxonomy row (line 59) | `npm run docs-data:write` then inspect `docs/_data/catalog.yml` |
+| 0.6 ⏸ deferred to Phase 10 | `scripts/generate-kiro-powers.mjs` | optional: add a `PROVIDERS` entry and `DERIVED_KEYWORDS` if the board ships a Kiro Power | `npm run kiro-powers:write && npm run validate:kiro-powers` |
 
 **Step 0.4 is the one that gets skipped, and it is two edits.** CI's `Gate` job is path-filtered
 to `tools/vfa-tui/**`, so a pull request that only touches schemas, tests, and the catalog passes CI
@@ -28,9 +31,11 @@ produces a build where every gate is green, `cargo test` passes, and the entire 
 displayed and grouped as Generic in the TUI's federation coverage view. Nothing in the repository
 detects that but a test written for it, which is why 0.4b requires one.
 
-Decision on step 0.6: **ship a Kiro Power.** The board is a first-class language board and Kiro
-users should be able to install it in one step. This is a choice, not a requirement — netsuite and
-finance ship no Power — and it must be made explicitly rather than by omission.
+Decision on step 0.6: **ship a Kiro Power, in Phase 10 rather than Phase 0.** The board is a
+first-class language board and Kiro users should be able to install it in one step. Shipping one is
+a choice, not a requirement — netsuite and finance ship no Power — and it must be made explicitly
+rather than by omission. The timing is forced: the generator derives Power content from catalog
+agents, so registering it before any agent exists would emit an empty Power.
 
 ### 1.1 What is deliberately NOT in Phase 0
 
@@ -50,8 +55,10 @@ Same reasoning applies to the Kiro Power in step 0.6 if the generator derives it
 catalog agents — regenerate it in Phase 10 after the agents exist, and treat the Phase 0 edit as
 registration only.
 
-**Exit criterion:** `npm run validate` passes, and the three cargo gates pass, with the provider
-registered and **zero** TypeScript assets present. `docs/taxonomy.md` and
+**Exit criterion — MET.** `npm run validate` passes (exit 0), and the three cargo gates pass, with
+the provider registered and **zero** TypeScript assets present. The `infer_provider` path-mapping
+test (`federation::coverage::tests::infer_provider_maps_typescript_board`) passes alongside 776
+other unit tests. `docs/taxonomy.md` and
 `docs/language-stack-boards.md` are unchanged at this point — see §1.1. Prove the registration in
 isolation before any asset depends on it.
 
@@ -76,8 +83,11 @@ isolation before any asset depends on it.
 agent that is absent from `catalog/agents.json` — `tests/validate-maestro-routing.py:123` fails on
 exactly that. Specialists must exist and be cataloged before the routing table is finalized.
 
-Phase 6 has two commits because the schema change and the Rust change are reviewed by different
-people and the Rust one has its own gate job.
+Phase 6 landed as a single commit (`2ff7461a`) rather than the two originally planned: the
+provider value has to be registered everywhere at once or the tree is internally inconsistent —
+a schema that accepts `typescript` while `ALLOWED_PROVIDERS` rejects it is a broken intermediate
+state, not a reviewable increment. The Rust half still has its own gate job, and the cargo gates
+were run locally because CI's `Gate` is path-filtered.
 
 ## 3. File inventory
 

@@ -1,8 +1,11 @@
 # Ultracode Workflow — TypeScript Agentic Board
 
-> Status: **PLAN ONLY — not implemented.** This directory is the execution plan for adding a
-> TypeScript agent and skill board to `vanguard-frontier-agentic`. No agent, skill, schema,
-> catalog, or fixture file has been created. Read
+> Status: **PLAN — Phase 0 code registration LANDED, no assets built.** This directory is the
+> execution plan for adding a TypeScript agent and skill board to `vanguard-frontier-agentic`.
+> The provider value is now registered in the schemas, the catalog validator, the docs-data
+> generator, and both Rust touch points (commit `2ff7461a`). **No agent, skill, reference, or
+> routing-fixture file exists**, and the hand-written provider documentation is deliberately
+> deferred — see [06 §1](./06-implementation-roadmap-and-integration.md). Read
 > [00-reconnaissance-and-evidence-map.md](./00-reconnaissance-and-evidence-map.md) first.
 
 ## Executive verdict
@@ -59,9 +62,10 @@ The precedent for this artifact shape is [`.claude/workflow/m365-d365/`](../m365
 
 ## The two findings that gate everything
 
-**1. `typescript` is not a provider yet, and adding one touches eight places.** The provider
-value is a closed enum enforced independently in several files, plus two hand-written
-documentation lists:
+**1. Registering `typescript` as a provider touches eight places.** The provider value is a
+closed enum enforced independently in several files, plus two hand-written documentation lists.
+The code points are **now registered** (commit `2ff7461a`); the two documentation lists are
+deliberately still pending:
 
 - `schemas/agent.schema.json` (provider enum)
 - `schemas/skill.schema.json` (provider enum)

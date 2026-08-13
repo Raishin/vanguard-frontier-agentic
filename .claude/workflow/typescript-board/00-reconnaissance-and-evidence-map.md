@@ -1,7 +1,7 @@
 # Phase 0 — Reconnaissance and Evidence Map
 
-> Status: **PLAN — not implementation.** No catalog, schema, agent, skill, or fixture file was
-> modified to produce this document.
+> Status: **PLAN — Phase 0 code registration LANDED (commit `2ff7461a`); no board asset built.**
+> No agent, skill, reference, or routing-fixture file exists.
 > Previous: [README.md](./README.md) · Next: [01-enterprise-pain-register.md](./01-enterprise-pain-register.md)
 
 ## Evidence labels
@@ -16,10 +16,12 @@ failed, the document says so. An unverified claim is never upgraded to a verifie
 
 ## 1. The two findings that gate everything
 
-### 1.1 `typescript` is not a provider, and adding one touches eight places
+### 1.1 Registering `typescript` as a provider touches eight places
 
 The `provider` value is a closed enum enforced independently in several files, plus two
-hand-written documentation lists. `typescript` appears in none of them (E2):
+hand-written documentation lists (E2). Status as of commit `2ff7461a`: points 1 to 5 are
+**LANDED**, point 6 is deferred with the first agent, and points 7 and 8 are deliberately
+deferred for the invariant reason below:
 
 | # | File | What must change | Failure if skipped |
 |---|------|------------------|--------------------|
