@@ -57,6 +57,7 @@ pub enum Provider {
     Velero,
     Php,
     Python,
+    Typescript,
 }
 
 impl std::fmt::Display for Provider {

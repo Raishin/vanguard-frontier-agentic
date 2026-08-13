@@ -342,6 +342,7 @@ fn infer_provider(asset_id: &str) -> Provider {
             "kotlin" => Provider::Kotlin,
             "php" => Provider::Php,
             "python" => Provider::Python,
+            "typescript" => Provider::Typescript,
             _ => Provider::Generic,
         }
     } else {
@@ -645,6 +646,23 @@ mod tests {
         assert_eq!(
             infer_provider("skills/java/java-jdk-lifecycle-and-upgrade"),
             Provider::Java
+        );
+    }
+
+    #[test]
+    fn infer_provider_maps_typescript_board() {
+        // The `typescript` provider is registered in two places: the strict serde
+        // enum in models::provider (which fails loudly on a missing variant when the
+        // catalog is deserialized) and this path mapping (which fails silently —
+        // an unmapped component falls through to Generic below, so the whole board
+        // would render and group as Generic with every gate still green).
+        assert_eq!(
+            infer_provider("agents/typescript/typescript-maestro-agent"),
+            Provider::Typescript
+        );
+        assert_eq!(
+            infer_provider("skills/typescript/typescript-runtime-boundary-contract"),
+            Provider::Typescript
         );
     }
 
