@@ -1,3 +1,236 @@
+## 🛡️ v3.7.0 — *Provenance · Policy · Portability*
+_Released 2026-08-13_
+
+> _Curated multi-cloud, zero-trust agent marketplace — `AWS` · `Azure` · `OCI` · `GCP` · `Terraform`._
+> Least privilege, live evidence, safe rollback paths.
+
+**Release type:** New capabilities — review the sections below before upgrading.
+
+* **schemas:** register the typescript provider across all code registration points ([`2ff7461`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/2ff7461abee2edee7035917afa1bf051468a9ed6))
+Phase 0 of .claude/workflow/typescript-board/06, steps 0.1-0.5. Registers the
+provider value only; no TypeScript agent or skill asset is added.
+
+- schemas/agent.schema.json, schemas/skill.schema.json: add "typescript" to the
+  provider enums.
+- tests/validate-catalog.py: add "typescript" to ALLOWED_PROVIDERS (a separate
+  hardcoded set from the schemas).
+- scripts/generate-docs-data.mjs: add typescript to the Developer Platforms
+  taxonomy row. The generator filters on providerCounts[p] > 0, so it emits
+  nothing until the first agent lands.
+- tools/vfa-tui/src/models/provider.rs: add the Typescript variant. The TUI
+  deserializes the catalog with a strict enum, so a missing variant breaks
+  cargo test once an asset exists.
+- tools/vfa-tui/src/federation/coverage.rs: add the "typescript" arm to
+  infer_provider, plus a path-mapping test. This is the half that fails
+  SILENTLY — the _ => Provider::Generic fallback would group the whole board
+  under Generic with every gate green. The test is the only thing that catches
+  it, which is why it ships with the arm.
+
+Also regenerates docs/_data/catalog.yml, which was stale on `version`
+(3.6.0 -> 3.6.1) from the last release, and refreshes the asset-integrity
+manifest for the touched trees.
+
+Deliberately NOT included: the hand-written provider lists in docs/taxonomy.md
+and docs/language-stack-boards.md, and the README board table. provider_list in
+docs/_data/catalog.yml is derived from agent metadata
+(scripts/generate-docs-data.mjs:27), so adding a bullet while zero TypeScript
+agents exist would break CLAUDE.md's provider invariant — and nothing
+machine-checks that equality, so the drift would be silent. Those land with the
+first agent.
+
+Verified: npm run validate exit 0; codespell clean; markdownlint clean across
+7525 files; cargo fmt --check, cargo clippy --all-targets -- -D warnings, and
+cargo test (777 unit + 276 integration/property) all pass on rustc 1.97.1.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+* **workflow:** correct eight findings from the second Codex review ([`e1287d4`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/e1287d49e164e5edd2d899b2a1afe628514a658e))
+All eight verified against the repo before fixing. Three were P1.
+
+- Catalog upsert was missing from the generator chain. `npm run manifest:write`
+  rebuilds skill-manifest.json from entries ALREADY in catalog/skills.json; it
+  never adds an agent or skill to catalog/agents.json or skills.json. The upsert
+  path is scripts/update-catalog-new-agents.py, which is not an npm script and
+  appears in no contributor doc. Without it the fixture generator prints
+  "SKIP typescript (no agents in catalog)" and every downstream generator omits
+  the board — with npm run validate still green, because an empty catalog has
+  nothing to fail on. Added as the first step in 06 §6 and 04 §5.5.
+- The provider-invariant window was moved, not closed. Deferring the docs to
+  Phase 10 while Phase 7 lands all 13 agents leaves the invariant false for three
+  phases. The invariant breaks in both directions; docs now land in the same
+  commit as the first agent (Phase 7), atomically.
+- WebFetch removed from all three skills that had it. docs/execution-tiers.md:15
+  defines T0 static-review as "No network egress", and 05 §3 is this plan's own
+  rule that a skill's grant must agree with its agent's tier. Writing that rule
+  and breaking it in the next table is worse than not having it. Version
+  sensitivity stays in committed official-sources.md references and the operator
+  -side Context7 protocol.
+- Taxonomy domain keys did not match the generator. build_taxonomy() derives each
+  key from the agent id minus the typescript- prefix and -agent suffix, so
+  "runtime-boundary" is really "runtime-boundary-contract", and so on for 11 of
+  13. Template G and the anchors table now carry the derived keys; the short
+  names elsewhere are labelled as shorthand.
+- Template F was 110 lines with no lazy-load marker, violating two board rules it
+  is supposed to demonstrate. Trimmed to 89 lines, and 05 §1 now exempts
+  reference-free router skills from the marker (a marker indexing an empty set
+  advertises material that does not exist).
+- 04 §5's layout block still labelled taxonomy.json "authored (SOURCE)" after the
+  earlier fix corrected the procedure; now marked GENERATED.
+- README executive verdict still said the provider was unregistered, contradicting
+  the landed commit and its own status banner.
+- Phase 10 deliverables now name the README board table and the hand-written
+  Powers table in docs/integrations/installation-guide.md; neither is produced by
+  readme-counts:write or kiro-powers:write.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+* **workflow:** correct four defective instructions in the TypeScript board plan ([`9a20abc`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/9a20abc879b2e968c6a4cb080e27879781c0df3d))
+Automated review found seven issues; all seven verified against the repo and
+fixed. Four were defects in load-bearing instructions an implementer would have
+executed verbatim.
+
+- taxonomy.json is GENERATED, not authored. _generate_maestro_routing_fixtures.py:308
+  overwrites it on every run, so the old procedure ("author it, then run the
+  generator") destroyed the artifact it had just created — and the regenerated
+  expected/ files kept the gate green over the loss. Keywords are now driven
+  through agent summaries (making summary wording a routing input); durable
+  curation requires a generator change in its own commit.
+- live_guard_intent must contain destructive verbs only, never a domain noun.
+  The old regex carried publish|migrate|backfill, which are anchors for three
+  domains on this board; validate-maestro-routing.py:100 returns an empty route
+  before domain scoring when live_guards is empty, so those three specialists
+  were unreachable. Now uses the generator's own default, as java and php do.
+- The hand-written docs provider lists move out of Phase 0 into Phase 10.
+  generate-docs-data.mjs:27 derives provider_list from agent metadata, so a
+  taxonomy.md bullet added at the zero-asset exit criterion made CLAUDE.md's
+  provider invariant false by construction.
+- Phase 0 step 0.4 is two Rust edits: the provider.rs enum plus the
+  infer_provider arm in federation/coverage.rs, whose _ => Provider::Generic
+  fallback silently groups the whole board under Generic with every gate green.
+  Step 0.4b now requires a path-mapping test.
+
+Also: the ROADMAP entry no longer hardcodes agent/skill counts; official-sources.md
+is permitted in six skills (runtime-boundary's library facts are version-gated),
+reconciling the anti-landfill rule with the inventory and template; and the
+economics agent's contract now carries all three binding acceptance conditions
+including the re-prosecution deadline.
+
+Recorded as findings 14-18 in 07-red-team-and-acceptance-gates.md rather than
+fixed quietly, and added to the gate-blind acceptance checklist.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+* **workflow:** add TypeScript board authoring templates ([`ca2cb69`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/ca2cb691eb2a91bddebf430ee80192a24ecc5613))
+Copy-ready templates for phases 7-9: the maestro and a specialist AGENT.md
+with metadata.json, all seven harness adapters (Copilot tools block, Codex
+sandbox_mode and developer_instructions, the shared Markdown-family body,
+Kiro CLI JSON), a companion SKILL.md under the 90-line board rule with no
+bash fence, one complete reference file, the maestro routing skill with the
+13-row table, the routing taxonomy.json with per-domain anchors and an empty
+live_guards set, the four install-role entries, and a per-file authoring
+checklist. Model and effort keys are deliberately omitted so the policy
+engine writes them.
+
+Completes the plan document set. Repo gates verified green: npm run validate,
+codespell, and markdownlint across 7525 files.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+* **workflow:** add TypeScript board prosecution scorecard and board contracts ([`ce292c7`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/ce292c78b99950246cd9329189f225e86bf785ce))
+- 02: all 19 candidates scored across seven dimensions with the acceptance rule
+  (>=26 and Non-overlap >=3) and the disqualifying rule (Non-overlap <=2 fails
+  regardless of total). Per-candidate prosecution states the strongest case
+  against each agent before any rebuttal. Rejects the five generic agent names
+  and gives each accepted agent's single bounded decision.
+- 03: the accepted 14 with owns/refuses/hands-off, adversarial hypotheses and
+  refusal triggers; the frontend artifact-scope boundary contract; the
+  static-review-only tier decision with the five controls a mutating tier would
+  cost; the ten-boundary cross-domain handoff matrix; and three concerns the
+  board explicitly refuses to claim.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+* **workflow:** add TypeScript board reconnaissance and pain register ([`d2c215d`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/d2c215da526980c794f674ca804b6db9aa7cfd2b))
+Start the ultracode workflow plan for a TypeScript agent/skill board under
+.claude/workflow/typescript-board/, following the .claude/workflow/m365-d365
+plan-only precedent.
+
+- README: executive verdict (14 agents accepted from 19 candidates), the two
+  gating findings, doc index, evidence labels.
+- 00: repo evidence map with file:line citations, the eight provider
+  registration points, source-of-truth vs generated map, and the
+  brief-vs-reality corrections. Records that TypeScript 7.0 is already GA
+  (npm latest 7.0.2) and that the official tsconfig prose page is stale on the
+  removed module/moduleResolution values.
+- 01: 16 ranked enterprise pains, each with stakeholder, trigger, consequence,
+  current partial owner, ownership verdict, and handoff boundary.
+
+No catalog, schema, agent, or skill file is modified: this is a plan.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+* **workflow:** add TypeScript board roadmap and red-team acceptance gates ([`d3ae22f`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/d3ae22f0d70477555915e8d4421d1f64756fe181))
+- 06: Phase 0 provider registration as a hard gate across all eight points
+  (flagging that CI's path-filtered Gate job will not catch the Rust enum),
+  phases 1-12 with exit criteria and commit scopes, the full file inventory,
+  four install roles with a coverage proof, generator ordering with the
+  asset-integrity caveat, the two decisive probes, and a 13-row risk register.
+- 07: fifteen attacks with method, correct behavior, the design change already
+  made, and residual risk; a ten-axis design scorecard with confidence levels
+  and no unearned 5s; duplicate-agent probes for the three closest pairs with
+  their tie-breaks; thirteen adversarial findings recording what was designed
+  wrong first and corrected; a gate-blind acceptance checklist; and the final
+  gate: CONDITIONAL PASS with five blockers.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+* **workflow:** add TypeScript board routing and reference architecture ([`ffeab03`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/ffeab03cd536ea937fa0f9dba8fb8e1c72edf2f5))
+- 04: maestro router contract with refusal list, 13-domain taxonomy, a
+  23-row routing matrix including the out-of-board declines, dispatch-mode
+  examples, and the routing-fixture design against the real grader
+  (keyword matching, tie-break, parallel threshold, IDF keyword collisions).
+  Records that the gate SKIPs a provider with no taxonomy.json, so the
+  fixture is a self-imposed requirement rather than a CI-enforced one.
+- 05: skill shape and tool grants (Context7 is unrepresentable in
+  allowed-tools under the enforced token grammar), the category-enum
+  assignment with the invalid-category correction, the reference ownership
+  matrix with per-skill file specs, anti-landfill rules, the Context7
+  protocol with its evidence-precedence ladder, and the provenance ledger
+  including the four facts that stay unverified.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+* **workflow:** record Phase 0 registration as landed in the TypeScript plan ([`3a454d8`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/3a454d8306ee029cc1ef9887f87847035f997f4c))
+The plan claimed no schema or catalog file was modified; commit 2ff7461a made
+that false. Reconciled rather than left stale:
+
+- README and doc banners now read "Phase 0 code registration LANDED; no board
+  asset built" instead of "PLAN ONLY".
+- 00 §1.1 marks points 1-5 landed, 6 deferred, 7-8 deliberately deferred.
+- 06 §1 marks steps 0.1-0.5 with their verification, records the exit criterion
+  as MET, moves the Kiro Power to Phase 10 with the reason (its generator
+  derives content from catalog agents, so it would emit an empty Power today),
+  and replaces the planned two-commit split with what actually happened and why
+  a single commit was correct.
+- 07 blocker 1 downgraded from "Phase 0 is unmet" to partially met, and the
+  implementation-readiness axis re-scored 2 -> 3 on the landed, gate-verified
+  registration. No other axis moved: no board asset exists.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+
+---
+
+### 📥 Install
+```bash
+npm install @raishin/vanguard-frontier-agentic@3.7.0
+```
+
+### 🔐 Supply-chain provenance
+Every release ships a build attestation (SLSA provenance) and an SBOM. Verify the tag with `gh attestation verify` before installing.
+
+**Full changelog:** https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/compare/v3.6.1...v3.7.0
+
 ## 🛡️ v3.6.1 — *Provenance · Policy · Portability*
 _Released 2026-07-31_
 
