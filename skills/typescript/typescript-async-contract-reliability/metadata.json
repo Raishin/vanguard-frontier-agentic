@@ -1,0 +1,26 @@
+{
+  "id": "typescript-async-contract-reliability",
+  "name": "typescript-async-contract-reliability",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "typescript",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review of server-side TypeScript async reliability: floating and ignored promises, AbortSignal cancellation plumbing, unhandled-rejection posture and process-exit behavior, stream/async-iterable backpressure, concurrency bounds, cleanup, and typed error channels. Reads source and Node/lint configuration only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://typescript-eslint.io/packages/parser/",
+    "https://nodejs.org/api/process.html",
+    "https://nodejs.org/api/stream.html"
+  ],
+  "security_notes": "Static review only — reads TypeScript/JavaScript source, the declared Node version, and lint configuration; never runs, builds, deploys, or publishes the code, never contacts a live process or system, and never requests secrets, credentials, or customer data. A process-exit-behavior verdict made without a confirmed Node version is labelled inference, not confirmed.",
+  "last_verified": "2026-08-13",
+  "path": "skills/typescript/typescript-async-contract-reliability",
+  "author": "github: VincentChuWaiChow"
+}

@@ -1,0 +1,26 @@
+{
+  "id": "typescript-mcp-tool-contract",
+  "name": "typescript-mcp-tool-contract",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "typescript",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review of MCP tool-contract fidelity in TypeScript servers: whether `inputSchema`/`outputSchema` match handler behavior against the 2026-07-28 specification revision, JSON Schema dialect correctness, `structuredContent` vs `content`, protocol-version negotiation, and protocol vs tool-execution error classification. Reads tool definitions, handler source, and SDK/package metadata only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://modelcontextprotocol.io/specification/2026-07-28",
+    "https://json-schema.org/specification",
+    "https://json-schema.org/draft/2020-12/schema"
+  ],
+  "security_notes": "Static review only — reads declared tool schemas, handler source, `package.json` SDK versions, and the declared protocol version; never hosts, deploys, or contacts a live MCP server or transport. Never requests secrets, credentials, or customer data.",
+  "last_verified": "2026-08-13",
+  "path": "skills/typescript/typescript-mcp-tool-contract",
+  "author": "github: VincentChuWaiChow"
+}

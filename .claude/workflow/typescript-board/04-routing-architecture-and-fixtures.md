@@ -155,7 +155,7 @@ tests/fixtures/typescript-maestro-routing/
 | `provider` | string, `"typescript"` | `tests/validate-maestro-routing.py:120` |
 | `domains` | object of `{ keywords: string[], agent: string }` | `tests/validate-maestro-routing.py:102`; the agent must exist in `catalog/agents.json` (`:123`); empty `keywords` fails (`:125`) |
 | `live_guards` | string array | `tests/validate-maestro-routing.py:83`; each entry must exist in the catalog (`:128`) |
-| `live_guard_intent` | string regex | `tests/validate-maestro-routing.py:80` |
+| `live_guard_intent` | string regex, optional | `tests/validate-maestro-routing.py:80`; absent on this board and on hr/legal/netsuite — the gate branch is skipped entirely when the key is missing (`:81`) |
 | `gate_mode` | string, optional | `tests/validate-maestro-routing.py:79`, defaults to `live-guard-gate` |
 | `parallel_threshold` | number, optional | `tests/validate-maestro-routing.py:109`; the validator's fallback when the key is absent is `0.6` (`:60`), but the generator emits `0.8` (`tests/_generate_maestro_routing_fixtures.py:169`) — expect `0.8` in a generated taxonomy |
 
@@ -163,7 +163,8 @@ This board sets `live_guards: []`. There are no mutating agents in v1
 ([03 §4](./03-final-board-and-boundary-contracts.md)). The key stays present so the fixture shape
 matches every other provider — java and php both ship `live_guards: []` too — and so a future live
 plane does not require a shape change. But an empty `live_guards` makes `live_guard_intent`
-**dangerous rather than inert**; see §5.4.
+**dangerous rather than inert**, which is why the shipped taxonomy omits that key altogether;
+see §5.4.
 
 ### 5.2 How the grader actually decides
 
@@ -238,17 +239,33 @@ whose anchors those words are: `publication-integrity`, `modernization`, and
 what `typescript-business-critical-automation-governance-agent` exists for — would return an empty
 route. The gate would still pass, because `expected/` is generated from the same grader.
 
-The repo already gets this right and is the reference: the generator's default
-(`tests/_generate_maestro_routing_fixtures.py:168`), carried by java and php, matches destructive
-**verbs and imperative live-operation phrases** only —
+The generator's default (`tests/_generate_maestro_routing_fixtures.py`), carried by java and php,
+matches destructive **verbs and imperative live-operation phrases** only —
 `(destroy|delete|terminate|rollout to prod|rollout to production|approve.*production|promo…)`.
 Frontend's variant requires a deployment verb near a production noun rather than either alone.
 
-Board rule: **`live_guard_intent` may only contain destructive verbs and imperative
-live-operation phrases, never a domain noun.** Take the generator's default and do not widen it. If
-a mutation-intent phrase would collide with a domain anchor, the domain anchor wins and the
-mutation phrase is dropped — the maestro's own refusal rules ([§1](#1-the-maestro-is-a-router-not-the-smartest-agent-on-the-board))
-already decline mutation requests, so the regex is a second line of defence, not the only one.
+**Resolved during implementation: this board ships no `live_guard_intent` at all.** The analysis
+above was correct about domain nouns and incomplete about verbs. Probing the generator's default
+against real TypeScript review prose showed the bare verbs are themselves this board's vocabulary:
+`delete` is a TypeScript operator, so "Is `delete obj.key` sound under `exactOptionalPropertyTypes`?"
+— a pure type-soundness question — black-holed; `terminate` and `destroy` name process and resource
+lifecycles a static reviewer discusses constantly. Narrowing the regex only relocates the failure,
+because anchoring the verbs to operational objects then black-holes "review the workflow that runs
+`npm publish`", which is `package-publication-integrity`'s core subject. On a board where three of
+thirteen specialists exist to review publishing, migrations, and privileged scripts, *any*
+vocabulary-matching gate fights the board's purpose.
+
+Board rule, restated: **a board with `live_guards: []` and a mutation-review mandate carries no
+`live_guard_intent`.** The key is omitted, as hr, legal, and netsuite already omit it, and the gate
+branch is skipped entirely (`tests/validate-maestro-routing.py:81`). Nothing is lost: the gate exists
+to stop auto-dispatch to a live-mutating agent and this board has none, so a mutation request now
+falls through to the specialist that owns the subject — which closes its operating rules with
+*"Static review only: never … compile, build, run, deploy, sign, publish, or contact a live system —
+route any such request to the named human owner"* — while the maestro's own HIGH rule
+([§1](#1-the-maestro-is-a-router-not-the-smartest-agent-on-the-board)) already refuses to dispatch
+production mutation. The failure mode degrades to the right answer one hop later rather than to
+silence. Reinstate the gate only when a live-mutating agent is added; at that point `live_guards` is
+non-empty and a gate hit routes to the guard instead of nowhere.
 
 ### 5.5 Generation procedure
 

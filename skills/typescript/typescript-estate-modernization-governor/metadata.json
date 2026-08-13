@@ -1,0 +1,26 @@
+{
+  "id": "typescript-estate-modernization-governor",
+  "name": "typescript-estate-modernization-governor",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "typescript",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review of TypeScript estate-migration sequencing and reversibility: staged strictness adoption, compiler-major upgrades (including the TS 6.0→7.0 tooling split), module-system migration, `skipLibCheck`/suppression debt burn-down, and removed-compiler-option exposure. Owns sequencing and reversibility, not per-file fixes. Reads configuration and version evidence only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.typescriptlang.org/tsconfig",
+    "https://devblogs.microsoft.com/typescript/announcing-typescript-6-0/",
+    "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/"
+  ],
+  "security_notes": "Static review only — reads `tsconfig.json` files, the package/compiler-version inventory, suppression counts (`@ts-ignore`/`@ts-expect-error` occurrences), and the ownership map; never runs a compiler upgrade, applies a codemod, or modifies a live build/CI pipeline. Never requests secrets, credentials, or customer data.",
+  "last_verified": "2026-08-13",
+  "path": "skills/typescript/typescript-estate-modernization-governor",
+  "author": "github: VincentChuWaiChow"
+}

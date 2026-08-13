@@ -1,0 +1,26 @@
+{
+  "id": "typescript-build-graph-performance",
+  "name": "typescript-build-graph-performance",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "typescript",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review, from supplied measurement evidence only, of what in a TypeScript program graph costs measured build or editor time: project references, composite/incremental/.tsbuildinfo behavior, generated-code volume, pathological type instantiation, and duplicated checking across lint, test, and build. Reads measurement output and configuration only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://github.com/microsoft/TypeScript/wiki/Performance",
+    "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+    "https://www.typescriptlang.org/docs/handbook/project-references.html"
+  ],
+  "security_notes": "Static review of supplied measurement evidence only — reads `--diagnostics`/`--extendedDiagnostics` output, `--generateTrace` traces, `tsconfig.json` files, and package topology; never invokes the compiler, runs a build, or measures a live system, and never requests secrets, credentials, or customer data. Never prescribes a restructuring without a supplied measurement, and always records which compiler binary produced it.",
+  "last_verified": "2026-08-13",
+  "path": "skills/typescript/typescript-build-graph-performance",
+  "author": "github: VincentChuWaiChow"
+}

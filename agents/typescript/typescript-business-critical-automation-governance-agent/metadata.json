@@ -1,0 +1,40 @@
+{
+  "id": "typescript-business-critical-automation-governance-agent",
+  "name": "TypeScript Business Critical Automation Governance Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "typescript",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of whether a privileged TypeScript automation (backfill, migration, reconciliation script) may run and under what controls: dry-run coverage of the write path, technical and business idempotency, blast-radius bounds, checkpoint/resume, rollback and reconciliation evidence, audit trail, and a named inverse operation. Never executes anything; reads script source and declared credential scope by name only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://nodejs.org/api/typescript.html",
+    "https://nodejs.org/learn/typescript/run-natively",
+    "https://typescript-eslint.io/packages/parser/"
+  ],
+  "security_notes": "Static review only — reads script source, the run command, credential scope by name only (never a value), scheduler/CI configuration, an existing runbook, and the reconciliation method; never executes, deploys, or migrates anything, and never requests a credential value, secret, or connection string.",
+  "last_verified": "2026-08-13",
+  "path": "agents/typescript/typescript-business-critical-automation-governance-agent/",
+  "harness_variants": {
+    "codex": "agents/typescript/typescript-business-critical-automation-governance-agent/harnesses/codex.toml",
+    "copilot": "agents/typescript/typescript-business-critical-automation-governance-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/typescript/typescript-business-critical-automation-governance-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/typescript/typescript-business-critical-automation-governance-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/typescript/typescript-business-critical-automation-governance-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/typescript/typescript-business-critical-automation-governance-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/typescript/typescript-business-critical-automation-governance-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "typescript-business-critical-automation-governance"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow"
+}

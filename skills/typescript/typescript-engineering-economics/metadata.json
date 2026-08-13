@@ -1,0 +1,26 @@
+{
+  "id": "typescript-engineering-economics",
+  "name": "typescript-engineering-economics",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "typescript",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static conversion of another specialist's supplied measurements into a funding decision: annual engineering-hours lost, CI compute cost, migration cost, break-even point, cost of postponement, and investment priority — with formulas, sensitivity, and every value labelled measured, supplied, or assumed. Never originates a measurement and is never dispatched first.",
+  "source_type": "original",
+  "official_docs": [
+    "https://github.com/microsoft/TypeScript/wiki/Performance",
+    "https://typescript-eslint.io/packages/parser/",
+    "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/"
+  ],
+  "security_notes": "Static review only — reads user-supplied figures (CI durations, headcount and loaded cost, wait times, incident counts, ticket volume, migration-effort estimates) and the measurements handed off by other specialists; never originates a measurement itself, never contacts a live system, and never requests cost data beyond what the user volunteers. Never requests secrets, credentials, or customer data.",
+  "last_verified": "2026-08-13",
+  "path": "skills/typescript/typescript-engineering-economics",
+  "author": "github: VincentChuWaiChow"
+}

@@ -2,17 +2,17 @@
 # Do NOT edit manually — run: node scripts/generate-docs-data.mjs
 # This file is the single source of truth for all catalog counts in Jekyll docs.
 
-agents: 666
-skills: 689
-providers: 44
+agents: 680
+skills: 703
+providers: 45
 mcp_references: 3
 rules: 1
-install_roles: 56
+install_roles: 60
 validation_gates: 23
-agent_directories: 48
-skill_directories: 48
+agent_directories: 49
+skill_directories: 49
 maestro_scenarios: 357
-version: "3.6.1"
+version: "3.7.0"
 
 # Provider list (flat)
 provider_list:
@@ -60,6 +60,7 @@ provider_list:
   - "sigstore"
   - "snowflake"
   - "terraform"
+  - "typescript"
 
 # Provider taxonomy (grouped by category with agent counts)
 provider_taxonomy:
@@ -143,6 +144,8 @@ provider_taxonomy:
         agents: 5
       - name: "python"
         agents: 35
+      - name: "typescript"
+        agents: 14
       - name: "generic"
         agents: 11
       - name: "multi-cloud"
@@ -236,6 +239,10 @@ role_list:
   - "qa-test-quality-engineer"
   - "salesforce-portfolio-architect"
   - "sap-transformation-operations"
+  - "typescript-agentic-contract-engineer"
+  - "typescript-application-review-engineer"
+  - "typescript-library-maintainer"
+  - "typescript-platform-build-engineer"
 
 # Harness list
 harness_list:

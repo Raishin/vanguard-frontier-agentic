@@ -1,0 +1,26 @@
+{
+  "id": "typescript-package-publication-integrity",
+  "name": "typescript-package-publication-integrity",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "typescript",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review of npm package publication integrity: publish identity and authority (trusted publishing/OIDC versus long-lived tokens), provenance attestation, the release-automation trust path, tarball contents, and registry/scope configuration. Reads the publish workflow and sanitized package configuration only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.npmjs.com/generating-provenance-statements",
+    "https://publint.dev/rules",
+    "https://arethetypeswrong.github.io"
+  ],
+  "security_notes": "Static review only — reads the release-automation workflow definition, `.npmrc`/`publishConfig`, the packed file list (e.g. `npm pack --dry-run` output), and registry/scope settings; never runs `npm publish`, signs an artifact, rotates or issues a token, or contacts a live registry. Never requests secrets, registry tokens, signing keys, or customer data.",
+  "last_verified": "2026-08-13",
+  "path": "skills/typescript/typescript-package-publication-integrity",
+  "author": "github: VincentChuWaiChow"
+}

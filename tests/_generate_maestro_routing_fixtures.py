@@ -34,12 +34,17 @@ SKILLS_DIR = ROOT / "skills"
 FIXTURES_ROOT = ROOT / "tests" / "fixtures"
 
 # Stopwords removed from id-token keywords (too generic to discriminate).
+# `and` and `never` are here for a different reason than the role nouns: they
+# are ordinary English that the IDF filter cannot catch (they occur in too few
+# domains to cross the 25% threshold) yet appear in nearly every real task, so
+# they hand a free point to whichever domains happen to carry them.
 STOPWORDS = {
     "agent", "review", "operator", "advisor", "coordinator", "steward",
     "governor", "guardian", "manager", "architect", "investigator",
     "developer", "engineer", "responder", "remediator", "executor",
     "designer", "mapper", "skill", "agentic", "ai", "cloud", "service",
     "platform", "operations", "task", "workload", "general", "hardening",
+    "and", "never",
 }
 
 # Live-guard pattern: any *-live-* in id, or *-guard-agent, or *-destruction-*
@@ -53,6 +58,20 @@ GATE_INTENT = {
                r"promote.*to (?:prod|production)|key destruction|policy change in prod|"
                r"mutate (?:rbac|iam|policy)|change-set.*apply|live (?:apply|push|deploy)|"
                r"force[- ]push.*main|drop\s+(?:table|database)|swap\s+production\s+slot)",
+    # TypeScript opts out of the gate entirely (`None` omits the key, matching
+    # hr/legal/netsuite, whose taxonomies carry no `live_guard_intent` either).
+    # The gate exists to stop a router auto-dispatching to a *live-mutating*
+    # agent; this board registers none, so a gate hit returns an empty route
+    # (validate-maestro-routing.py:100) and classifies nothing. Against that
+    # zero upside sits a real cost: mutation vocabulary is this board's own
+    # subject matter. `delete` is a TypeScript operator; `publish`, `migrate`,
+    # `backfill`, and `deploy` name what three of its thirteen specialists
+    # exist to review. Any regex broad enough to catch a genuine mutation
+    # request also black-holes the review requests those specialists own,
+    # whereas dropping the gate degrades a mutation request into a route to a
+    # specialist that holds no execution tool and refuses by contract — one
+    # extra hop to the right answer. Precision wins on this board.
+    "typescript": None,
 }
 
 # Per-provider gate mode override (nvidia uses runtime-evidence-gate).
@@ -165,9 +184,15 @@ def build_taxonomy(provider: str, agents: list[dict]) -> dict:
         "domains": domains,
         "live_guards": sorted(live_guards),
         "gate_mode": GATE_MODE.get(provider, "live-guard-gate"),
-        "live_guard_intent": GATE_INTENT["default"],
-        "parallel_threshold": 0.8,
     }
+    # A provider mapped to None in GATE_INTENT opts out of the gate; omit the
+    # key rather than emitting a null, so the taxonomy matches the shape the
+    # gateless providers (hr, legal, netsuite) already ship. Inserted here, not
+    # appended, so every other provider's key order is byte-identical.
+    intent = GATE_INTENT.get(provider, GATE_INTENT["default"])
+    if intent:
+        taxonomy["live_guard_intent"] = intent
+    taxonomy["parallel_threshold"] = 0.8
     return taxonomy
 
 

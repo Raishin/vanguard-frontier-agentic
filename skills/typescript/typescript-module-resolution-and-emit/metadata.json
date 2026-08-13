@@ -1,0 +1,28 @@
+{
+  "id": "typescript-module-resolution-and-emit",
+  "name": "typescript-module-resolution-and-emit",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "typescript",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review of whether a TypeScript package resolves, imports, and emits correctly for every consumer mode it claims to support: the `module`/`moduleResolution` matrix, `exports`/`imports` conditional-export ordering, the `types` condition, `.mts`/`.cts`, and the dual-package hazard. Reads `package.json`, every `tsconfig.json`, and emitted output only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.typescriptlang.org/tsconfig",
+    "https://nodejs.org/api/packages.html",
+    "https://nodejs.org/api/modules.html",
+    "https://publint.dev/rules",
+    "https://arethetypeswrong.github.io"
+  ],
+  "security_notes": "Static review only — reads `package.json`, every `tsconfig.json`, emitted declaration/output files, and sanitized build configuration; never compiles, bundles, publishes, or contacts a live registry, and never requests secrets, credentials, or customer data. A resolution claim not confirmed by the compiler's actual `--showConfig` output or the emitted files is labelled assumption, never confirmed.",
+  "last_verified": "2026-08-13",
+  "path": "skills/typescript/typescript-module-resolution-and-emit",
+  "author": "github: VincentChuWaiChow"
+}

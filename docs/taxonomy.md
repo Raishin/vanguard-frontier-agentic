@@ -46,6 +46,7 @@
 - `snowflake`
 - `php`
 - `python`
+- `typescript`
 
 ## Language and stack boards
 

@@ -302,7 +302,14 @@ load-bearing instructions — the kind that would have been executed verbatim by
     route — so "review this backfill for idempotency" could never reach the agent built to review
     it, and the fixture would have passed. The repo's own generator default uses destructive verbs
     only; the plan had diverged from a convention that was already correct. Corrected in
-    [04 §5.4](./04-routing-architecture-and-fixtures.md) with a board rule.
+    [04 §5.4](./04-routing-architecture-and-fixtures.md) with a board rule — **and then corrected
+    again during implementation, because the board rule was still wrong.** Probing the generator's
+    default against real review prose showed the *bare verbs* are this board's vocabulary too:
+    `delete` is a TypeScript operator, so a type-soundness question black-holed. Narrowing the regex
+    only moves the black hole onto "review the workflow that runs `npm publish`". The shipped
+    taxonomy therefore carries no `live_guard_intent` at all, joining hr/legal/netsuite; the gate
+    protects against auto-dispatch to a live-mutating agent, and this board registers none. See
+    [04 §5.4](./04-routing-architecture-and-fixtures.md) for the restated rule and the evidence.
 16. **Putting the hand-written provider documentation in Phase 0.** `generate-docs-data.mjs:27`
     derives the provider list from agent metadata, so a `docs/taxonomy.md` bullet added while zero
     agents exist makes `CLAUDE.md`'s provider invariant false — the phase's own zero-asset exit
@@ -334,8 +341,11 @@ CI and must be checked by a human.
 - [ ] Every skill `category` is a value in the closed enum.
 - [ ] `tests/fixtures/typescript-maestro-routing/taxonomy.json` exists and `inputs/` is non-empty.
       **Gate-blind** — the gate prints `SKIP`.
-- [ ] The generated `taxonomy.json` was diffed after the last `maestro-routing:write`, and its
-      `live_guard_intent` contains no domain noun. **Gate-blind** — a black-holed domain still passes.
+- [ ] The generated `taxonomy.json` was diffed after the last `maestro-routing:write`, and it carries
+      **no `live_guard_intent` key** ([04 §5.4](./04-routing-architecture-and-fixtures.md)).
+      **Gate-blind** — a black-holed domain still passes, so this is checked by probing the grader
+      directly with benign-vocabulary prose (`delete obj.key`, "review the workflow that runs
+      `npm publish`") and confirming each reaches a specialist rather than an empty route.
 - [ ] `infer_provider` in `tools/vfa-tui/src/federation/coverage.rs` has a `typescript` arm and a
       path-mapping test. **Gate-blind** — omitting it keeps every gate green.
 - [ ] `docs/taxonomy.md` and `docs/language-stack-boards.md` were updated with the first agent, not

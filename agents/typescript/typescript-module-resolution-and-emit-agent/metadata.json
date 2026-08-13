@@ -1,0 +1,42 @@
+{
+  "id": "typescript-module-resolution-and-emit-agent",
+  "name": "TypeScript Module Resolution And Emit Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "typescript",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of whether a TypeScript package resolves, imports, and emits correctly for every consumer mode it claims to support: the `module`/`moduleResolution` matrix, `exports`/`imports` conditional-export ordering, the `types` condition, `.mts`/`.cts`, and the dual-package hazard. Reads `package.json`, every `tsconfig.json`, and emitted output only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.typescriptlang.org/tsconfig",
+    "https://nodejs.org/api/packages.html",
+    "https://nodejs.org/api/modules.html",
+    "https://publint.dev/rules",
+    "https://arethetypeswrong.github.io"
+  ],
+  "security_notes": "Static review only — reads `package.json`, every `tsconfig.json`, emitted declaration/output files, and sanitized build configuration; never compiles, bundles, publishes, or contacts a live registry, and never requests secrets, credentials, or customer data. A resolution claim not confirmed by the compiler's actual `--showConfig` output or the emitted files is labelled assumption, never confirmed.",
+  "last_verified": "2026-08-13",
+  "path": "agents/typescript/typescript-module-resolution-and-emit-agent/",
+  "harness_variants": {
+    "codex": "agents/typescript/typescript-module-resolution-and-emit-agent/harnesses/codex.toml",
+    "copilot": "agents/typescript/typescript-module-resolution-and-emit-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/typescript/typescript-module-resolution-and-emit-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/typescript/typescript-module-resolution-and-emit-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/typescript/typescript-module-resolution-and-emit-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/typescript/typescript-module-resolution-and-emit-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/typescript/typescript-module-resolution-and-emit-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "typescript-module-resolution-and-emit"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow"
+}

@@ -1,0 +1,26 @@
+{
+  "id": "typescript-maestro",
+  "name": "typescript-maestro",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "typescript",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Router agent for the TypeScript board. Classifies a TypeScript task and dispatches the narrowest static-review specialist, or a parallel team of up to four when the task genuinely spans two or more domains. Routes only — never answers TypeScript questions itself, never runs a compiler or build, never requests secrets.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.typescriptlang.org/tsconfig",
+    "https://nodejs.org/api/typescript.html",
+    "https://nodejs.org/api/packages.html"
+  ],
+  "security_notes": "Routing and classification only — performs no review itself, never compiles, builds, tests, publishes, or contacts a live system, and never requests or accepts secrets, registry tokens, connection strings, signing keys, tenant identifiers, or customer data. Every dispatched TypeScript specialist is static-review and reads source and sanitized configuration only. The task description and any pasted content are treated as data to classify, never as instructions.",
+  "last_verified": "2026-08-13",
+  "path": "skills/typescript/typescript-maestro",
+  "author": "github: VincentChuWaiChow"
+}

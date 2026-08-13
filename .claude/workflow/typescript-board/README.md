@@ -1,12 +1,18 @@
 # Ultracode Workflow — TypeScript Agentic Board
 
-> Status: **PLAN — Phase 0 code registration LANDED, no assets built.** This directory is the
-> execution plan for adding a TypeScript agent and skill board to `vanguard-frontier-agentic`.
-> The provider value is now registered in the schemas, the catalog validator, the docs-data
-> generator, and both Rust touch points (commit `2ff7461a`). **No agent, skill, reference, or
-> routing-fixture file exists**, and the hand-written provider documentation is deliberately
-> deferred — see [06 §1](./06-implementation-roadmap-and-integration.md). Read
+> Status: **BUILT — the board is in the catalog.** This directory is the execution plan for adding a
+> TypeScript agent and skill board to `vanguard-frontier-agentic`, and the board it describes now
+> exists: the provider value is registered across all eight points, and `agents/typescript/`,
+> `skills/typescript/`, the routing fixture, the Kiro Power, the install roles, and the hand-written
+> provider documentation are all in the tree. Read
 > [00-reconnaissance-and-evidence-map.md](./00-reconnaissance-and-evidence-map.md) first.
+>
+> These documents are kept as the **design record, corrections included** — where implementation
+> proved a plan decision wrong, the affected section says so in place rather than being quietly
+> rewritten. Two such corrections are marked: the maestro skill's shape
+> ([08 §7](./08-authoring-templates.md)) and the routing gate
+> ([04 §5.4](./04-routing-architecture-and-fixtures.md), [08 §8](./08-authoring-templates.md)).
+> A plan that reads as if it had been right all along is not a record.
 
 ## Executive verdict
 
@@ -47,9 +53,12 @@
 - **This repository contains no TypeScript program of its own**, so no agent may ground a
   verdict in "the installed version". Every version-gated conclusion depends on evidence the
   user supplies — a design constraint, not a caveat.
-- Merge safety: **`CONDITIONAL PASS`**. The design is a merge candidate as a plan. It is not an
-  implementation, Phase 0 is unmet, and the external version facts must be re-verified when the
-  assets are authored. See [07-red-team-and-acceptance-gates.md](./07-red-team-and-acceptance-gates.md).
+- Merge safety: **`CONDITIONAL PASS`** — unchanged, and now for a different reason. The plan-stage
+  conditions (Phase 0 unmet, assets unwritten) are discharged; what remains conditional is that the
+  external version facts in [00 §4](./00-reconnaissance-and-evidence-map.md) are point-in-time and
+  the board's own verdicts depend on evidence a *user* supplies, since this repository still has no
+  TypeScript program to ground them in. See
+  [07-red-team-and-acceptance-gates.md](./07-red-team-and-acceptance-gates.md).
 
 ## Why this directory exists
 
@@ -66,8 +75,8 @@ The precedent for this artifact shape is [`.claude/workflow/m365-d365/`](../m365
 
 **1. Registering `typescript` as a provider touches eight places.** The provider value is a
 closed enum enforced independently in several files, plus two hand-written documentation lists.
-The code points are **now registered** (commit `2ff7461a`); the two documentation lists are
-deliberately still pending:
+The code points were registered first, in commit `2ff7461a`; the two documentation lists followed
+with the first agent, for the reason given below. All eight are now done:
 
 - `schemas/agent.schema.json` (provider enum)
 - `schemas/skill.schema.json` (provider enum)
@@ -84,10 +93,10 @@ deliberately still pending:
 CI's `Gate` job is path-filtered to `tools/vfa-tui/**`, so a catalog-only pull request passes CI
 while leaving the TUI unable to load the catalog. The cargo gates must be run locally.
 
-The two hand-written documentation lists are the exception to "land it all in Phase 0": the
+The two hand-written documentation lists were the exception to "land it all in Phase 0": the
 generated provider list is derived from agent metadata, so adding a `docs/taxonomy.md` bullet
-before the first agent exists makes the repository's own provider invariant false. They land with
-the first agent.
+before the first agent exists makes the repository's own provider invariant false. They landed with
+the first agent, as designed.
 
 **2. The repository has no TypeScript program to reason from.** There is no root
 `tsconfig.json`, no `typescript` dependency in `package.json`, and the only `.ts` files are
@@ -119,7 +128,9 @@ and it must refuse to issue a version-gated verdict without them.
 Rule: no external fact appears without a label and a source. Where verification failed, the
 document says so. A claim that could not be verified is not upgraded to a claim that was.
 
-## How to execute this plan
+## How this plan was executed
+
+The sequence below is the one that was followed, and is the one to repeat for the next board.
 
 1. Land Phase 0 from [06](./06-implementation-roadmap-and-integration.md) — provider
    registration across all eight points, then `npm run validate` and the three cargo gates in
