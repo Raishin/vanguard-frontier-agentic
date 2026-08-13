@@ -35,10 +35,12 @@
   already generally available and is npm's `latest`; it is not, as the brief states, a future
   effort that 6.0 leads toward. Every version-dependent claim in these documents carries a
   label, a source, and a retrieval date for exactly this reason.
-- **Phase 0 is a hard gate.** `typescript` is not a registered provider in any of the eight
-  registration points, so zero TypeScript assets can merge until they are all updated —
-  including both Rust edits in `tools/vfa-tui/`, which CI's path-filtered `Gate` job will not
-  catch.
+- **Phase 0 was a hard gate; its code half is now done.** The provider is registered in both
+  schema enums, the catalog validator, the docs-data generator, and both Rust touch points —
+  including `infer_provider`, whose omission CI's path-filtered `Gate` job would not have caught
+  (commit `2ff7461a`, gates green). Still outstanding by design: the Kiro Power, and the two
+  hand-written documentation lists, which land in the same commit as the first agent because the
+  generated provider list is derived from agent metadata.
 - **The board ships static-review only.** No agent runs a command, publishes a package, or
   mutates anything. The automation-governance specialist reviews privileged scripts and never
   executes them; a live control plane is explicitly deferred with named entry criteria.

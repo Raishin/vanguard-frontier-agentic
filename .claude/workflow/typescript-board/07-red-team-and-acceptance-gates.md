@@ -153,7 +153,7 @@ Residual risk: medium — the check is a human diff of `taxonomy.json` after eve
 |---|---|
 | Method | Compare an agent's declared `execution_tier` and its prose against its companion skill's `allowed-tools`. |
 | Correct behavior | They agree. A `static-review` agent's skill grants no Bash. |
-| Design change made | The live example is in the repository: `agents/frontend/typescript-contracts-agent/AGENT.md` forbids Bash execution of `tsc` while `skills/frontend/typescript-contracts-review/SKILL.md` grants `Bash(tsc --noEmit:*)`. Documented in [05 §3](./05-skill-and-reference-architecture.md) as precedent not to copy; every TypeScript board skill grants `Read Grep Glob`, with `WebFetch` on three named skills. |
+| Design change made | The live example is in the repository: `agents/frontend/typescript-contracts-agent/AGENT.md` forbids Bash execution of `tsc` while `skills/frontend/typescript-contracts-review/SKILL.md` grants `Bash(tsc --noEmit:*)`. Documented in [05 §3](./05-skill-and-reference-architecture.md) as precedent not to copy; every TypeScript board skill grants exactly `Read Grep Glob` — no Bash, and no network tool, because `docs/execution-tiers.md:15` defines T0 as no network egress. An earlier draft granted `WebFetch` to three skills and was withdrawn for contradicting this board's own rule. |
 | Residual risk | Low for new assets. The existing defect is left in place deliberately — fixing another board's asset is a separate change, argued on its own merits. |
 
 ### A15 — Provider registered in the schemas but not in the Rust enum

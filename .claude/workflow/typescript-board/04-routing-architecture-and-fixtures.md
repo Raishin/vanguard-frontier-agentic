@@ -46,7 +46,10 @@ names the escalation path. It does not pick a winner it has no basis to pick.
 
 ## 2. Domain taxonomy
 
-| Domain | Covers | Agent |
+Short names here are shorthand. The generated `taxonomy.json` keys are the agent id minus the
+`typescript-` prefix and `-agent` suffix — see §5.3.
+
+| Domain (shorthand) | Covers | Agent |
 |---|---|---|
 | `type-soundness` | variance, predicates, conditional and mapped types, `satisfies`, branded types, complexity theatre in shared code | `typescript-type-soundness-agent` |
 | `runtime-boundary` | trust-boundary inventory, parse-don't-validate, `unknown`-first ingestion, schema and type single source of truth, generated-type drift, error taxonomy | `typescript-runtime-boundary-contract-agent` |
@@ -140,7 +143,7 @@ Layout, matching every other provider in `tests/fixtures/`:
 
 ```text
 tests/fixtures/typescript-maestro-routing/
-  taxonomy.json          # authored (SOURCE)
+  taxonomy.json          # GENERATED — overwritten by every maestro-routing:write
   inputs/NNN-name.json   # generated
   expected/NNN-name.json # generated
 ```
@@ -190,21 +193,25 @@ lexically unique anchors. Illustrative anchor sets — the real ones come from
 `npm run maestro-routing:write`, and these exist to show the shape and to prove uniqueness is
 achievable:
 
-| Domain | Unique anchors |
+Domain keys below are the ones `build_taxonomy()` derives — the agent id minus the `typescript-`
+prefix and the `-agent` suffix (`tests/_generate_maestro_routing_fixtures.py:123`–`:128`). Section 2
+and the routing matrix use readable shorthand for the same domains; the generated file uses these.
+
+| Domain (generated key) | Unique anchors |
 |---|---|
 | `type-soundness` | `variance`, `predicate`, `satisfies`, `branded`, `narrowing` |
-| `runtime-boundary` | `parse`, `payload`, `webhook`, `unknown`, `validator` |
-| `module-resolution` | `exports`, `moduleResolution`, `nodenext`, `cjs`, `esm` |
-| `node-execution` | `strip-types`, `erasableSyntaxOnly`, `tsx`, `entrypoint` |
-| `public-api` | `d.ts`, `declaration`, `semver`, `consumer`, `rollup` |
-| `build-graph` | `tsbuildinfo`, `composite`, `references`, `generateTrace`, `incremental` |
-| `static-enforcement` | `projectService`, `lint`, `strict`, `suppression`, `parity` |
-| `async` | `AbortSignal`, `rejection`, `floating`, `backpressure`, `cancellation` |
-| `publication-integrity` | `provenance`, `publish`, `OIDC`, `tarball`, `registry` |
-| `modernization` | `upgrade`, `migration`, `skipLibCheck`, `estate`, `sequencing` |
+| `runtime-boundary-contract` | `parse`, `payload`, `webhook`, `unknown`, `validator` |
+| `module-resolution-and-emit` | `exports`, `moduleResolution`, `nodenext`, `cjs`, `esm` |
+| `node-execution-compatibility` | `strip-types`, `erasableSyntaxOnly`, `tsx`, `entrypoint` |
+| `public-api-and-declaration-governance` | `d.ts`, `declaration`, `semver`, `consumer`, `rollup` |
+| `build-graph-performance` | `tsbuildinfo`, `composite`, `references`, `generateTrace`, `incremental` |
+| `static-enforcement-policy` | `projectService`, `lint`, `strict`, `suppression`, `parity` |
+| `async-contract-reliability` | `AbortSignal`, `rejection`, `floating`, `backpressure`, `cancellation` |
+| `package-publication-integrity` | `provenance`, `publish`, `OIDC`, `tarball`, `registry` |
+| `estate-modernization-governor` | `upgrade`, `migration`, `skipLibCheck`, `estate`, `sequencing` |
 | `mcp-tool-contract` | `inputSchema`, `structuredContent`, `MCP`, `protocol` |
-| `automation-governance` | `backfill`, `dry-run`, `idempotency`, `blast`, `privileged` |
-| `economics` | `break-even`, `hours`, `postponement`, `investment` |
+| `business-critical-automation-governance` | `backfill`, `dry-run`, `idempotency`, `blast`, `privileged` |
+| `engineering-economics` | `break-even`, `hours`, `postponement`, `investment` |
 
 Two anchors deserve attention. `strict` appears in both `static-enforcement` and, conceptually,
 `modernization` — it is assigned to `static-enforcement` only, and `modernization` uses
@@ -258,7 +265,12 @@ routing discrimination, not only for the catalog.
 
 1. Write the 13 specialist agents first, with summaries chosen so that each domain's distinctive
    vocabulary appears in exactly one summary. This is the real lever on routing quality.
-2. Run `npm run maestro-routing:write`. It writes `taxonomy.json`, then emits one happy-path
+2. Run `python3 scripts/update-catalog-new-agents.py` **first**, to upsert the new agents into
+   `catalog/agents.json`. The fixture generator reads that catalog and prints
+   `SKIP typescript (no agents in catalog)` without it
+   (`tests/_generate_maestro_routing_fixtures.py:359`); `npm run manifest:write` does not perform
+   this upsert.
+3. Run `npm run maestro-routing:write`. It writes `taxonomy.json`, then emits one happy-path
    fixture per non-maestro, non-live-guard domain, one gate fixture per live-guard agent (none
    here), and four shared stress fixtures: instruction-injection, persona-replacement,
    secrets-bait, and ambiguous.

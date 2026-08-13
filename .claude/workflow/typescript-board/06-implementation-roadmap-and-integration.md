@@ -41,7 +41,13 @@ agents, so registering it before any agent exists would emit an empty Power.
 
 The two hand-written documentation lists — `docs/taxonomy.md`'s provider bullets and
 `docs/language-stack-boards.md`'s board enumeration — **must not** be updated in Phase 0. They land
-in Phase 10, with the first agent.
+in **Phase 7, in the same commit as the first agent** — not in Phase 10.
+
+That precision matters and an earlier draft got it wrong by saying "Phase 10". The invariant is
+violated in *either* direction: with a bullet and no agent (the Phase 0 error), **and** with an
+agent and no bullet. Phase 7 is when `{distinct providers with at least one agent}` starts
+containing `typescript`, so if the documentation waits for Phase 10 the invariant is silently false
+for three phases instead of zero. The agent-bearing commit and the documentation are atomic.
 
 `scripts/generate-docs-data.mjs:27` derives `providers` as
 `[...new Set(agents.map(a => a.provider))]` — from agent metadata only. `CLAUDE.md`'s provider
@@ -51,9 +57,11 @@ exist makes the invariant false in the middle of Phase 0: the bullet asserts a p
 generated list cannot contain. The schema and enum registration is safe to land alone; the
 documentation is not.
 
-Same reasoning applies to the Kiro Power in step 0.6 if the generator derives its content from
-catalog agents — regenerate it in Phase 10 after the agents exist, and treat the Phase 0 edit as
-registration only.
+Same reasoning applies to the Kiro Power in step 0.6: its generator derives content from catalog
+agents, so it is registered and regenerated in Phase 10 once the board is complete. Its
+hand-written row in `docs/integrations/installation-guide.md` (the Powers table) is **not** produced
+by `kiro-powers:write` and must be added by hand in the same commit — otherwise the Power ships
+unlisted in the user-facing inventory.
 
 **Exit criterion — MET.** `npm run validate` passes (exit 0), and the three cargo gates pass, with
 the provider registered and **zero** TypeScript assets present. The `infer_provider` path-mapping
@@ -72,10 +80,10 @@ isolation before any asset depends on it.
 | 4 | Boundary design | [03](./03-final-board-and-boundary-contracts.md) | every agent has an owns/refuses/hands-off contract and the frontend split is written | `docs(workflow):` |
 | 5 | Reference architecture | [05](./05-skill-and-reference-architecture.md) | the ownership matrix has no unjustified shared source and the ledger labels every claim | `docs(workflow):` |
 | 6 | Provider registration | §1 above | `npm run validate` and the cargo gates green with zero assets | `feat(schemas):` + `feat(vfa-tui):` |
-| 7 | Specialist agents | 13 agent directories, 9 files each | `validate:agent-schema`, `validate:catalog`, `validate:agent-tool-tiers` green | `feat(typescript):` |
+| 7 | Specialist agents **plus the deferred provider documentation** | 13 agent directories, 9 files each; `docs/taxonomy.md` bullet; `docs/language-stack-boards.md` board section; README board-table row; catalog sync + regenerated outputs | `validate:agent-schema`, `validate:catalog`, `validate:agent-tool-tiers`, `validate:readme-counts` green **and** `provider_list` in `docs/_data/catalog.yml` contains `typescript` | `feat(typescript):` |
 | 8 | Specialist skills | 13 skill directories plus references | `validate:skill-schema`, `validate:allowed-tools`, `validate:skill-coherence`, `manifest:check` green | `feat(typescript):` |
 | 9 | Maestro agent, skill, and fixture | 1 agent directory, 1 skill, `taxonomy.json`, generated fixtures | `validate:maestro-routing` green with non-empty `inputs/` | `feat(typescript):` |
-| 10 | Repository integration | `agents/typescript/README.md`, `catalog/install-roles.json`, the two hand-written docs lists deferred from Phase 0 (§1.1), ROADMAP entry, generated outputs | `validate:install-coverage`, `validate:readme-counts`, `validate:plugin-manifest`, `validate:multi-harness-marketplace`, `validate:codex-marketplace` green | `feat(typescript):` + `docs:` |
+| 10 | Repository integration | `agents/typescript/README.md`, `catalog/install-roles.json`, the Kiro Power (`scripts/generate-kiro-powers.mjs` + its hand-written row in `docs/integrations/installation-guide.md`), ROADMAP entry, generated outputs | `validate:install-coverage`, `validate:readme-counts`, `validate:plugin-manifest`, `validate:multi-harness-marketplace`, `validate:codex-marketplace` green | `feat(typescript):` + `docs:` |
 | 11 | Validation | the full gate suite in §6 | zero failures across all four gate families | — |
 | 12 | Hostile review | [07](./07-red-team-and-acceptance-gates.md) executed against the built assets | every attack has a recorded outcome; no unresolved duplicate | `docs(workflow):` |
 
@@ -191,11 +199,24 @@ Constraints on this change:
 Generators, in this order:
 
 ```bash
+python3 scripts/update-catalog-new-agents.py
 npm run manifest:write:all
 npm run docs-data:write
 npm run maestro-routing:write
 npm run asset-integrity:write
 ```
+
+**The first line is the one that is easy to miss, and everything downstream depends on it.**
+`npm run manifest:write` rebuilds `catalog/skill-manifest.json` from entries **already present** in
+`catalog/skills.json` — it never adds an agent or skill to `catalog/agents.json` or
+`catalog/skills.json`. The upsert path is `scripts/update-catalog-new-agents.py`, which is **not an
+npm script** and is not mentioned in `CLAUDE.md`, `CONTRIBUTING.md`, or `docs/`. Skip it and every
+new asset stays uncataloged, so: `tests/_generate_maestro_routing_fixtures.py:359` prints
+`SKIP typescript (no agents in catalog)` and emits no fixture; `generate-docs-data.mjs` omits the
+provider; and the plugin, cursor, Kiro-Power, README-count, and model-policy generators all produce
+output with the board missing — while `npm run validate` stays green, because a catalog that does
+not mention the assets has nothing to fail on. That the repository's own contributor documentation
+omits this step is a gap worth reporting upstream separately.
 
 `manifest:write:all` runs its generators in parallel with `&` … `wait`, so
 `asset-integrity:write` inside it can hash the tree before README counts, the plugin manifests,

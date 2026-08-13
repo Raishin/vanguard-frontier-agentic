@@ -16,7 +16,7 @@ These are self-imposed. `tests/validate-aws-progressive-disclosure.py:12` scopes
 | Rule | Reason |
 |---|---|
 | `SKILL.md` at or under 90 lines | matches the AWS gate's own threshold (`tests/validate-aws-progressive-disclosure.py:52`); a trigger-time document must be cheap to load |
-| Contains the literal string `Load these only when needed` | the AWS gate's lazy-load marker; adopting the exact phrasing keeps the board consistent if the gate is ever generalized |
+| Contains the literal string `Load these only when needed` — **unless the skill declares no `references/` at all** | the AWS gate's lazy-load marker; adopting the exact phrasing keeps the board consistent if the gate is ever generalized. The exemption covers reference-free router skills such as `typescript-maestro` (matching `skills/java/java-maestro/SKILL.md`, which has no `references/`): a marker that indexes an empty set advertises material that does not exist. |
 | Every declared reference is linked from `SKILL.md` | an unlinked reference is dead weight nobody loads |
 | **No bash fence in `SKILL.md`** | `tests/validate-skill-coherence.py:311` requires every command in a `bash`/`sh`/`shell`/`console` fence to be covered by a Bash grant in `allowed-tools`. A `static-review` skill that shows a command therefore has to request execution capability it must not hold. |
 | Deep material lives in `references/`, not `SKILL.md` | `tests/validate-skill-coherence.py` does not scan `references/*.md`, and progressive disclosure is the point |
@@ -26,18 +26,25 @@ These are self-imposed. `tests/validate-aws-progressive-disclosure.py:12` scopes
 | Skill | `allowed-tools` | Justification |
 |---|---|---|
 | `typescript-maestro` | `Agent Skill Read Grep Glob` | matches `skills/java/java-maestro/SKILL.md`; a router dispatches, so it needs `Agent` and `Skill` |
-| `typescript-node-execution-compatibility` | `Read Grep Glob WebFetch` | its verdicts turn on the Node release schedule and the type-stripping documentation, both of which change per release |
-| `typescript-package-publication-integrity` | `Read Grep Glob WebFetch` | registry policy is dated and moving — trusted publishing reached GA 2025-07-31 and classic tokens were revoked 2025-12-09; guidance from memory is wrong within a quarter |
-| `typescript-mcp-tool-contract` | `Read Grep Glob WebFetch` | the specification revision is the contract; the current revision is `2026-07-28` and the previous one is not compatible with it |
-| The other ten specialists | `Read Grep Glob` | least privilege; their evidence is the user's source and configuration |
+| All 13 specialists | `Read Grep Glob` | least privilege; their evidence is the user's source and configuration |
 
-No skill on this board grants Bash. Nothing on this board runs a command.
+No skill on this board grants Bash, and **none grants `WebFetch`**. Nothing on this board runs a
+command or reaches the network.
 
-`typescript-estate-modernization-governor` does **not** get `WebFetch`, which is a deliberate and
-arguable call: it consumes release-note facts but its deliverable is a sequencing plan built from
-user-supplied inventory, and it carries an `official-sources.md` reference instead. If practice
-shows it needs live fetching, widening the grant is a reviewable one-line change — which is the
-right direction for a grant to move.
+An earlier draft granted `WebFetch` to node-execution, publication-integrity, and mcp-tool-contract,
+on the reasoning that their verdicts turn on dated vendor facts. That was wrong on this board's own
+terms and is withdrawn. `docs/execution-tiers.md:15`–`:25` defines T0 `static-review` as **"No
+network egress"** with allowed tools **"Read, Grep, Glob"**, and §3 below states the board rule that
+a skill's grant must agree with its agent's declared tier. Granting network access under a tier
+advertised as file-and-conversation-only is exactly the incoherence §3 exists to reject — writing
+the rule and then breaking it in the next table is worse than not having the rule.
+
+The three skills keep their version sensitivity without the grant: each carries an
+`official-sources.md` reference with the dated facts committed to the repository, each states its
+evidence preconditions, and the Context7 protocol in §7 is a workflow step available to the
+*operator*, not a capability the skill declares. If a board genuinely needs live fetching, the
+correct move is to declare a tier that permits it and accept that tier's controls — not to smuggle
+egress into T0.
 
 ### 2.1 Context7 cannot be a tool grant
 

@@ -20,8 +20,8 @@ failed, the document says so. An unverified claim is never upgraded to a verifie
 
 The `provider` value is a closed enum enforced independently in several files, plus two
 hand-written documentation lists (E2). Status as of commit `2ff7461a`: points 1 to 5 are
-**LANDED**, point 6 is deferred with the first agent, and points 7 and 8 are deliberately
-deferred for the invariant reason below:
+**LANDED**, point 6 (the Kiro Power) is deferred to Phase 10, and points 7 and 8 land in the same
+commit as the first agent, for the invariant reason below:
 
 | # | File | What must change | Failure if skipped |
 |---|------|------------------|--------------------|
@@ -51,8 +51,10 @@ only**. `CLAUDE.md`'s provider invariant requires
 `set(provider bullets in docs/taxonomy.md) == provider_list in docs/_data/catalog.yml ==
 {distinct providers that have at least one agent}`. Adding the `typescript` bullet while zero
 TypeScript agents exist breaks that invariant in the middle: the hand-written bullet says the
-provider exists and the generated list cannot. **The documentation edits must land with the first
-agent, not with the schema registration.** See [06 §1](./06-implementation-roadmap-and-integration.md).
+provider exists and the generated list cannot. **The documentation edits must land in the same commit as the
+first agent** — not with the schema registration, and equally not later: the invariant is false with
+a bullet and no agent, and just as false with an agent and no bullet. See
+[06 §1.1](./06-implementation-roadmap-and-integration.md).
 
 ### 1.2 This repository has no TypeScript program to reason from
 
@@ -108,7 +110,8 @@ declares `allowed-tools: Read Grep Glob Bash(git diff:*) Bash(tsc --noEmit:*) We
 The agent's contract and its skill's tool grant contradict each other. The grant is what a
 harness enforces; the prose is what a reviewer reads. **Board rule:** an agent's declared tier
 and its companion skill's `allowed-tools` must agree, and every specialist on this board grants
-`Read Grep Glob` with `WebFetch` added only where the skill's own workflow fetches a vendor page.
+`Read Grep Glob` — no Bash and no network tool, matching the `static-review` tier every agent on
+the board declares.
 
 ## 4. Brief-versus-reality corrections
 
