@@ -723,13 +723,15 @@ Return, at minimum:
 - Recommended next actions, and for out-of-board or mutation requests, the named handoff target.
 ```
 
-## 8. Template G — the routing taxonomy
+## 8. Template G — the expected routing taxonomy
 
-`tests/fixtures/typescript-maestro-routing/taxonomy.json`. Authored by hand; `inputs/` and
-`expected/` come from `npm run maestro-routing:write` and `expected/` must never be hand-written.
-Keywords below are the starting anchors from
-[04 §5.3](./04-routing-architecture-and-fixtures.md) — regenerate and verify that every domain
-scores above zero on its own fixture.
+**This file is generated, not authored.** `npm run maestro-routing:write` writes
+`tests/fixtures/typescript-maestro-routing/taxonomy.json`, `inputs/`, and `expected/`;
+`tests/_generate_maestro_routing_fixtures.py:308` overwrites the taxonomy on every run. Treat the
+block below as the **shape to verify after generating**, not as a file to create — a hand-written
+copy is reverted by the next regeneration, and the regenerated `expected/` files keep the gate green
+over the loss. Keywords are derived from agent ids and summaries, so the lever is the summary
+wording. See [04 §5.5](./04-routing-architecture-and-fixtures.md).
 
 ```json
 {
@@ -790,14 +792,20 @@ scores above zero on its own fixture.
   },
   "live_guards": [],
   "gate_mode": "live-guard-gate",
-  "live_guard_intent": "\\b(publish|deploy|migrate|backfill|rotate|delete)\\b",
-  "parallel_threshold": 0.6
+  "live_guard_intent": "(destroy|delete|terminate|rollout to prod|rollout to production|approve.*production)",
+  "parallel_threshold": 0.8
 }
 ```
 
-`live_guards` is empty by design — there are no mutating agents in v1. The `live_guard_intent`
-pattern is present so a mutation-shaped request is recognized as one and refused rather than
-dispatched, and so the key does not have to be introduced later if a live plane is ever justified.
+`live_guards` is empty by design — there are no mutating agents in v1 — and that is exactly why
+`live_guard_intent` must contain **destructive verbs only, never a domain noun**. With an empty
+`live_guards`, a match returns an empty route in gate mode and never falls through to domain scoring
+(`tests/validate-maestro-routing.py:100`), so a regex containing `publish`, `migrate`, or `backfill`
+would black-hole `publication-integrity`, `modernization`, and `automation-governance` — the three
+specialists those words belong to. The value above is the generator's own default, which java and php
+both carry unchanged. Take it as-is and do not widen it. `parallel_threshold` is `0.8` because that
+is what the generator emits (`:169`); the validator's `0.6` is only its fallback when the key is
+absent.
 
 ## 9. Template H — install roles
 

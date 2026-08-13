@@ -154,12 +154,13 @@ tests/fixtures/typescript-maestro-routing/
 | `live_guards` | string array | `tests/validate-maestro-routing.py:83`; each entry must exist in the catalog (`:128`) |
 | `live_guard_intent` | string regex | `tests/validate-maestro-routing.py:80` |
 | `gate_mode` | string, optional | `tests/validate-maestro-routing.py:79`, defaults to `live-guard-gate` |
-| `parallel_threshold` | number, optional | `tests/validate-maestro-routing.py:109`, defaults to `0.6` (`:60`) |
+| `parallel_threshold` | number, optional | `tests/validate-maestro-routing.py:109`; the validator's fallback when the key is absent is `0.6` (`:60`), but the generator emits `0.8` (`tests/_generate_maestro_routing_fixtures.py:169`) — expect `0.8` in a generated taxonomy |
 
 This board sets `live_guards: []`. There are no mutating agents in v1
-([03 §4](./03-final-board-and-boundary-contracts.md)), so the live-guard branch exists in the
-taxonomy and never fires. That is deliberate: the key stays present so the fixture shape matches
-every other provider and so a future live plane does not require a schema change to the fixture.
+([03 §4](./03-final-board-and-boundary-contracts.md)). The key stays present so the fixture shape
+matches every other provider — java and php both ship `live_guards: []` too — and so a future live
+plane does not require a shape change. But an empty `live_guards` makes `live_guard_intent`
+**dangerous rather than inert**; see §5.4.
 
 ### 5.2 How the grader actually decides
 
@@ -210,21 +211,77 @@ Two anchors deserve attention. `strict` appears in both `static-enforcement` and
 `sequencing` and `skipLibCheck` instead. `MCP` is short and uppercase; the grader lowercases, so it
 matches the word `mcp` on a boundary, which is what is wanted.
 
-### 5.4 Generation procedure
+These are **verification targets**, not authored values. The generator derives the real keywords
+from agent ids and summaries, so the way to obtain these anchors is to write the summaries that
+produce them, then confirm the generated taxonomy against this table. See §5.5.
 
-1. Author `taxonomy.json` by hand. It is a SOURCE file.
-2. Run `npm run maestro-routing:write` (`tests/_generate_maestro_routing_fixtures.py`). It emits
-   one happy-path fixture per non-maestro, non-live-guard domain, one gate fixture per live-guard
-   agent (none here), and four shared stress fixtures: instruction-injection,
-   persona-replacement, secrets-bait, and ambiguous.
-3. **Keep all four stress fixtures.** They are free adversarial coverage: the ambiguous fixture
+### 5.4 `live_guard_intent` must never contain a domain noun
+
+This is the sharpest trap in the fixture, and it is easy to walk into while trying to be careful
+about mutation safety.
+
+`tests/validate-maestro-routing.py:79`–`:101` runs the `live_guard_intent` regex **before** any
+domain scoring. When it matches and `live_guards` is empty, the grader returns
+`{"route": [], "mode": gate_mode}` and **does not fall through to domain routing** (`:100`). A
+matched task is therefore routed nowhere.
+
+So a gate regex containing `publish`, `migrate`, or `backfill` would black-hole the three domains
+whose anchors those words are: `publication-integrity`, `modernization`, and
+`automation-governance`. "Review this backfill for idempotency" — a static review request, exactly
+what `typescript-business-critical-automation-governance-agent` exists for — would return an empty
+route. The gate would still pass, because `expected/` is generated from the same grader.
+
+The repo already gets this right and is the reference: the generator's default
+(`tests/_generate_maestro_routing_fixtures.py:168`), carried by java and php, matches destructive
+**verbs and imperative live-operation phrases** only —
+`(destroy|delete|terminate|rollout to prod|rollout to production|approve.*production|promo…)`.
+Frontend's variant requires a deployment verb near a production noun rather than either alone.
+
+Board rule: **`live_guard_intent` may only contain destructive verbs and imperative
+live-operation phrases, never a domain noun.** Take the generator's default and do not widen it. If
+a mutation-intent phrase would collide with a domain anchor, the domain anchor wins and the
+mutation phrase is dropped — the maestro's own refusal rules ([§1](#1-the-maestro-is-a-router-not-the-smartest-agent-on-the-board))
+already decline mutation requests, so the regex is a second line of defence, not the only one.
+
+### 5.5 Generation procedure
+
+**`taxonomy.json` is generated, not authored.** `tests/_generate_maestro_routing_fixtures.py:308`
+calls `build_taxonomy(provider, agents)` and writes the result to `taxonomy.json` unconditionally,
+before emitting any fixture. A hand-authored taxonomy is therefore destroyed by the very next run
+of `npm run maestro-routing:write` — and because `expected/` is regenerated from the grader against
+the *replacement* taxonomy, the gate still passes afterwards. The loss is silent.
+
+That has a consequence worth stating plainly: **agent `summary` wording is a routing input.**
+Keywords are derived from agent ids and summaries (`:74`–`:105`), so the way a specialist's summary
+is phrased determines whether its domain is reachable. Summaries on this board must be written for
+routing discrimination, not only for the catalog.
+
+1. Write the 13 specialist agents first, with summaries chosen so that each domain's distinctive
+   vocabulary appears in exactly one summary. This is the real lever on routing quality.
+2. Run `npm run maestro-routing:write`. It writes `taxonomy.json`, then emits one happy-path
+   fixture per non-maestro, non-live-guard domain, one gate fixture per live-guard agent (none
+   here), and four shared stress fixtures: instruction-injection, persona-replacement,
+   secrets-bait, and ambiguous.
+3. **Inspect the generated `taxonomy.json`.** Confirm every domain received at least one
+   discriminative keyword and that no domain scores zero on its own fixture. A domain whose tokens
+   were all removed by the inverse-document-frequency filter is unreachable, and the gate will not
+   say so.
+4. If the derived keywords are inadequate, the fix is to **change the agent summaries and
+   regenerate** — not to hand-edit `taxonomy.json`, which the next regeneration reverts.
+5. **Keep all four stress fixtures.** They are free adversarial coverage: the ambiguous fixture
    asserts `unclassified` rather than a guess, and the secrets-bait fixture is the reason the
    validator refuses a fixture containing a credential-shaped string without a `<FAKE>` marker.
-4. Never hand-write an `expected/` file. They are generated from the grader, so a hand-written
+6. Never hand-write an `expected/` file. They are generated from the grader, so a hand-written
    expectation encodes what the author wished the grader did.
-5. Run `npm run validate:maestro-routing`, then the full `npm run validate`.
+7. Run `npm run validate:maestro-routing`, then the full `npm run validate`.
 
-### 5.5 Two decisive probes
+If durable curation of a taxonomy ever becomes necessary — for a threshold or a gate regex the
+generator's defaults get wrong for this board — the correct fix is a **repo change**, not a local
+edit: either teach `build_taxonomy()` to preserve an existing taxonomy, or add a fixtures-only
+generation path. That is a Phase 9 prerequisite and belongs in its own reviewed commit, not in a
+board author's working tree.
+
+### 5.6 Two decisive probes
 
 Positive: a task reading "our nodenext package exports resolve wrongly for a CommonJS consumer"
 routes to `typescript-module-resolution-and-emit-agent`, mode `single`.

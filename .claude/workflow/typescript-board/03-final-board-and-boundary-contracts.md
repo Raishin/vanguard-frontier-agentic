@@ -380,6 +380,7 @@ question owned by accounting, legal or HR.
 | Required evidence | User-supplied figures only: CI durations, developer headcount and loaded cost, local wait times, incident counts, support-ticket volume, migration effort estimates |
 | Key references | cost model formulas; measurement intake and refusal |
 | Business impact | Prevents both failure directions — a year of platform effort with no measurable return, and a cheap high-return fix deferred indefinitely |
+| Acceptance conditions (all three binding) | (1) consumes another specialist's measurements and never originates one; (2) never dispatched first on a task; (3) **re-prosecuted two quarters after shipping under [02 §1](./02-agent-prosecution-scorecard.md), and removed if it has produced no engineering decision in that window.** The owner of the re-prosecution is the board maintainer who merges this agent. This agent's acceptance is conditional and time-boxed; an implementation that omits condition (3) has converted a conditional acceptance into a permanent agent. |
 
 > I own what the supplied measurements make worth funding. I do not own producing the
 > measurements. When a measurement is missing, I name it and refuse rather than estimate it.

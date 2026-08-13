@@ -26,15 +26,31 @@ hand-written documentation lists. `typescript` appears in none of them (E2):
 | 1 | `schemas/agent.schema.json` | add `typescript` to the `provider` enum | `validate:agent-schema` fails |
 | 2 | `schemas/skill.schema.json` | add `typescript` to the `provider` enum | `validate:skill-schema` fails |
 | 3 | `tests/validate-catalog.py:21` (`ALLOWED_PROVIDERS`) | add `"typescript"` | `validate:catalog` fails at `tests/validate-catalog.py:135` |
-| 4 | `tools/vfa-tui/src/models/provider.rs` | add the `Typescript` variant (kebab-case serde) | `cargo test` fails; the TUI cannot deserialize the catalog |
+| 4 | `tools/vfa-tui/src/models/provider.rs` **and** `tools/vfa-tui/src/federation/coverage.rs:331` | add the `Typescript` variant (kebab-case serde) **and** the `"typescript" => Provider::Typescript` arm to `infer_provider` | the enum omission fails `cargo test` (the TUI cannot deserialize the catalog); the `infer_provider` omission fails **silently** — its `_ => Provider::Generic` fallback at line 345 groups every `agents/typescript/**` and `skills/typescript/**` row under Generic while all gates stay green |
 | 5 | `scripts/generate-docs-data.mjs:59` | add `typescript` to the `Developer Platforms` taxonomy row | provider silently omitted from `provider_taxonomy` |
 | 6 | `scripts/generate-kiro-powers.mjs` | optional — only if the board ships a Kiro Power | no Power generated (acceptable; netsuite and finance ship none) |
 | 7 | `docs/taxonomy.md` (provider bullet list, lines 5–48) | add the `typescript` bullet | provider invariant in `CLAUDE.md` violated |
 | 8 | `docs/language-stack-boards.md` | add the board section and update the enumerations | documentation drifts from the catalog |
 
-Point 4 is the trap. CI's `Gate` job is path-filtered to `tools/vfa-tui/**`, so a catalog-only
-pull request passes CI while leaving the TUI broken against the new provider. The three cargo
-gates must be run locally (E2, `CLAUDE.md` "Adding a new provider").
+Point 4 is the trap, twice over. CI's `Gate` job is path-filtered to `tools/vfa-tui/**`, so a
+catalog-only pull request passes CI while leaving the TUI broken against the new provider — the
+three cargo gates must be run locally (E2, `CLAUDE.md` "Adding a new provider"). And the Rust
+point is **two edits, not one**: the strict enum in `provider.rs` is what breaks loudly, while
+`infer_provider` in `federation/coverage.rs` maps the provider path component separately and falls
+back to `Provider::Generic` for anything unlisted. Adding only the enum variant produces a build
+that passes every gate and displays the entire TypeScript board as Generic in the federation
+coverage view. Phase 0 therefore requires the `infer_provider` arm plus a focused path-mapping
+test.
+
+Points 7 and 8 have a **sequencing constraint** that is easy to get backwards, and it is not a
+matter of taste. `scripts/generate-docs-data.mjs:27` computes `providers` as
+`[...new Set(agents.map(a => a.provider))]` — the provider list is derived from **agent metadata
+only**. `CLAUDE.md`'s provider invariant requires
+`set(provider bullets in docs/taxonomy.md) == provider_list in docs/_data/catalog.yml ==
+{distinct providers that have at least one agent}`. Adding the `typescript` bullet while zero
+TypeScript agents exist breaks that invariant in the middle: the hand-written bullet says the
+provider exists and the generated list cannot. **The documentation edits must land with the first
+agent, not with the schema registration.** See [06 §1](./06-implementation-roadmap-and-integration.md).
 
 ### 1.2 This repository has no TypeScript program to reason from
 
@@ -68,7 +84,9 @@ resolution verdict without them is guessing, and the plan requires it to refuse 
 | Specialist section contract | `agents/java/java-concurrency-and-virtual-thread-agent/AGENT.md`: Mission · Business pain removed · Failure classes prevented · Decision rights · Anti-goals · Required inputs · Outputs · Operating Rules · Escalation triggers · Validation gates · Metrics · Adversarial review checklist · Tools · Response Shape | reproduce this section set |
 | Tool-tier gate | `tests/validate-agent-tool-tiers.py` — a tiered agent must carry an explicit `tools:` block in `copilot.agent.md`; execution tools are `execute/*` plus `run_terminal_command`, `runCommands`, `terminal` (lines 66–67, test at line 98); synthesized default is `["read", "search", "search/codebase"]` (line 86); network egress is reported, not failed | all 14 copilot adapters carry exactly `read`, `search`, `search/codebase` |
 | Model policy projection | `scripts/model-policy.mjs:91` `HARNESS_CAPABILITIES` — codex projects `model` + `model_reasoning_effort` (`reasoning_key` at line 95); claude-code projects `model` + `effort` (line 102); cursor projects `model` only; copilot, gemini, and kiro are unmanaged | never hand-edit those keys; policy changes go in `catalog/model-policy.json` |
-| Maestro routing fixture | `tests/fixtures/<provider>-maestro-routing/` with `taxonomy.json` + `inputs/` + `expected/`; generated by `tests/_generate_maestro_routing_fixtures.py` (discovers providers by their `*-maestro` skill directory) | fixture required for the board's maestro |
+| Maestro routing fixture | `tests/fixtures/<provider>-maestro-routing/` with `taxonomy.json` + `inputs/` + `expected/`; **all three** generated by `tests/_generate_maestro_routing_fixtures.py` (discovers providers by their `*-maestro` skill directory; `:308` overwrites `taxonomy.json` from agent ids and summaries on every run) | fixture required for the board's maestro; **agent summary wording is a routing input**, not just documentation |
+| Generated `live_guard_intent` | `tests/_generate_maestro_routing_fixtures.py:168` emits `GATE_INTENT["default"]`; java and php both carry `(destroy\|delete\|terminate\|rollout to prod\|…)` — destructive **verbs**, never domain nouns | a gate regex containing a domain noun black-holes that domain (see [04 §5.4](./04-routing-architecture-and-fixtures.md)) |
+| Generated `parallel_threshold` | `tests/_generate_maestro_routing_fixtures.py:169` emits `0.8`; the validator's fallback when the key is absent is `0.6` (`tests/validate-maestro-routing.py:60`) | expect `0.8` in a generated taxonomy, not the validator default |
 | Routing grader mechanics | `tests/validate-maestro-routing.py:65` lowercases the task; `:77` `evaluate()`; word-boundary match for word-only keywords and substring match for keywords containing non-word characters; score is the keyword hit count, sorted by score descending then domain name ascending; `:60` `DEFAULT_PARALLEL_THRESHOLD = 0.6`; `:106` score 0 returns `unclassified`; `:81` `live_guard_intent` regex triggers gate mode | domain keywords must be lexically discriminative |
 | Routing gate hard failures | `:123` a domain's agent must exist in `catalog/agents.json`; `:128` the same for every `live_guards` entry; route or mode mismatch fails | the taxonomy cannot reference an agent before it exists |
 | Routing gate softness | `:155` prints `SKIP` for a provider directory with no `taxonomy.json`; an empty `inputs/` directory only warns | the gate will **not** force the fixture — treat it as a self-imposed requirement |
@@ -198,7 +216,7 @@ Consolidated load-bearing facts. Retrieval date for all rows: 2026-08-12.
 | `docs/taxonomy.md`, `docs/language-stack-boards.md` | SOURCE | hand-edited (provider invariant) |
 | `catalog/install-roles.json` | SOURCE | hand-edited |
 | `agents/typescript/**`, `skills/typescript/**` | SOURCE | authored |
-| `tests/fixtures/typescript-maestro-routing/taxonomy.json` | SOURCE | authored |
+| `tests/fixtures/typescript-maestro-routing/taxonomy.json` | **GENERATED** | `npm run maestro-routing:write` — `tests/_generate_maestro_routing_fixtures.py:308` calls `build_taxonomy()` and unconditionally overwrites this file on every run. Any hand curation survives only until the next regeneration. See [04 §5.5](./04-routing-architecture-and-fixtures.md). |
 | `tests/fixtures/typescript-maestro-routing/inputs/`, `expected/` | GENERATED | `npm run maestro-routing:write` |
 | `catalog/agents.json`, `catalog/skills.json`, `catalog/skill-manifest.json` | GENERATED | `npm run manifest:write` and the manifest chain |
 | `.claude-plugin/plugin.json` | GENERATED | `npm run plugin-manifest:write` |

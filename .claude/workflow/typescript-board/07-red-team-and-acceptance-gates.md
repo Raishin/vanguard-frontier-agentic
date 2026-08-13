@@ -36,7 +36,7 @@ and were found during reconnaissance.
 |---|---|
 | Method | Normalize every skill's reference source list and compare. Flag repeated source sets, repeated prose, and references present without a specialist rationale. |
 | Correct behavior | No two skills carry the same source set; every shared source has a stated different question. |
-| Design change made | The reference ownership matrix in [05 §5](./05-skill-and-reference-architecture.md) requires a per-skill question for every shared source; `official-sources.md` is limited to five skills and `safety-checklist.md` to two; four anti-landfill rules name the specific sources that must appear nowhere as standalone entries. |
+| Design change made | The reference ownership matrix in [05 §5](./05-skill-and-reference-architecture.md) requires a per-skill question for every shared source; `official-sources.md` is limited to six skills and `safety-checklist.md` to two; four anti-landfill rules name the specific sources that must appear nowhere as standalone entries. |
 | Residual risk | Medium. The matrix is a plan; bulk authoring is where duplication actually enters, which is why it is also a risk-register row in [06 §9](./06-implementation-roadmap-and-integration.md). |
 
 ### A3 — Stale TypeScript assumptions
@@ -138,6 +138,14 @@ and were found during reconnaissance.
 | Design change made | [04 §6](./04-routing-architecture-and-fixtures.md) states the softness explicitly and makes the fixture a self-imposed requirement. This document treats a missing or empty fixture as a blocker regardless of what CI reports. |
 | Residual risk | Low once known. High for anyone who trusts a green pipeline. |
 
+A second, worse variant of the same class was found in review: `taxonomy.json` is **generated**, and
+`tests/_generate_maestro_routing_fixtures.py:308` overwrites it on every run. A hand-curated taxonomy
+is destroyed by the next `maestro-routing:write`, and because `expected/` is regenerated from the
+grader against the replacement, **the gate passes afterwards**. The green pipeline actively conceals
+the loss. Corrected in [04 §5.5](./04-routing-architecture-and-fixtures.md): keywords are driven
+through agent summaries, and durable curation requires a generator change in its own commit.
+Residual risk: medium — the check is a human diff of `taxonomy.json` after every regeneration.
+
 ### A14 — Agent tier versus skill grant incoherence
 
 | Field | Value |
@@ -153,8 +161,15 @@ and were found during reconnaissance.
 |---|---|
 | Method | Add `typescript` to the schemas, the catalog validator, and the generators, but not to `tools/vfa-tui/src/models/provider.rs`. Open a catalog-only pull request. |
 | Correct behavior | Recognize that CI's `Gate` job is path-filtered to `tools/vfa-tui/**`, so the pull request passes while the TUI can no longer deserialize the catalog. |
-| Design change made | Step 0.4 in [06 §1](./06-implementation-roadmap-and-integration.md) with the mandatory local cargo gates, and a high-likelihood row in the risk register. |
+| Design change made | Steps 0.4a and 0.4b in [06 §1](./06-implementation-roadmap-and-integration.md) with the mandatory local cargo gates, and two rows in the risk register. |
 | Residual risk | Low if the checklist is followed, high otherwise — this is a process control, not a technical one. |
+
+Review found the harder half of this attack: the Rust registration is **two edits**, and only the
+first fails loudly. `infer_provider` at `tools/vfa-tui/src/federation/coverage.rs:331` maps the
+provider path component through a separate hardcoded match whose `_ => Provider::Generic` fallback
+(line 345) silently groups the whole board under Generic. Adding only the enum variant yields green
+schemas, a green `cargo test`, and a wrong TUI. Nothing in the repository detects it, which is why
+step 0.4b requires a focused path-mapping test as part of the fix rather than as a nicety.
 
 ## 3. Design scorecard
 
@@ -166,7 +181,7 @@ Scored against the design as it stands, not against an implementation that does 
 | Frontend non-duplication | 3 | The artifact-scope split is written, with a tie-break rule and named refusals | It depends on editing another board's asset, which has not been agreed. Until then, two agents can claim the same diff | Medium | Frontend-board owner sign-off on the split |
 | Compile-time versus runtime separation | 5 | The distinction is the basis for two separate agents (runtime-boundary, node-execution), with verbatim documentation quotes and a pain register that ranks the two erasure pains first and second | None material | High | — |
 | Version currency | 3 | Every external fact carries a label, source, and retrieval date; the brief's own TypeScript premise was refuted and corrected | Four facts remain unverified; the official tsconfig page is demonstrably stale; TypeScript moved during this work and will move again | Medium | Re-verification at build time, which the plan requires but cannot perform in advance |
-| Reference specificity and non-duplication | 4 | Ownership matrix with a per-skill question for every shared source; `official-sources.md` limited to five skills; four anti-landfill rules | No reference file exists yet, so duplication is prevented by rule rather than by inspection | Medium | Authoring the references and running the A2 normalized comparison |
+| Reference specificity and non-duplication | 4 | Ownership matrix with a per-skill question for every shared source; `official-sources.md` limited to six skills; four anti-landfill rules | No reference file exists yet, so duplication is prevented by rule rather than by inspection | Medium | Authoring the references and running the A2 normalized comparison |
 | Evidence discipline | 4 | Six-label scheme applied throughout; unverified rows stay unverified; a Context7 claim was overridden by primary sources and the conflict recorded | Repo `file:line` citations were verified selectively rather than exhaustively | High | An audit pass re-checking every cited line |
 | Business-impact honesty | 4 | The economics agent is accepted conditionally with a refusal contract and a removal date; P09's score is explicitly called an understatement of tail risk | No measured figures exist anywhere in the plan, by design — which is correct but means every economic claim is a formula, not a result | High | Nothing at plan time; this axis is capped until a user supplies measurements |
 | Repository-convention fidelity | 4 | Layout, metadata, harness set, tier, tool grants, category enum, roles, and generator ordering all derived from cited repo evidence; six brief assumptions refuted with evidence | The category assignments and role lists are unvalidated against the gates until assets exist | High | Running `npm run validate` with the assets present |
@@ -270,6 +285,38 @@ Each finding names the wrong initial design, the evidence that killed it, and th
     `.claude/workflow/m365-d365/` plan is referenced from nowhere in the repository. Corrected:
     the ROADMAP entry moves to implementation time so the two workflow directories stay consistent.
 
+Findings 14 to 18 were caught by automated review of this plan, not during authoring. They are
+recorded here rather than quietly fixed, because four of them are defects in the plan's most
+load-bearing instructions — the kind that would have been executed verbatim by an implementer.
+
+14. **Calling `taxonomy.json` a hand-authored SOURCE file, and telling the author to write it and
+    then run the generator.** `tests/_generate_maestro_routing_fixtures.py:308` overwrites it
+    unconditionally, so step 2 of the procedure destroyed the artifact step 1 created — and the
+    regenerated `expected/` files kept the gate green over the loss. Corrected: `taxonomy.json` is
+    generated, keywords are driven through agent summaries (which makes summary wording a routing
+    input), and durable curation requires a generator change in its own commit.
+15. **A `live_guard_intent` regex containing `publish`, `migrate`, and `backfill`.** Those are
+    domain anchors for three specialists on this board. Because the gate branch runs before domain
+    scoring and `live_guards` is empty, `tests/validate-maestro-routing.py:100` returns an empty
+    route — so "review this backfill for idempotency" could never reach the agent built to review
+    it, and the fixture would have passed. The repo's own generator default uses destructive verbs
+    only; the plan had diverged from a convention that was already correct. Corrected in
+    [04 §5.4](./04-routing-architecture-and-fixtures.md) with a board rule.
+16. **Putting the hand-written provider documentation in Phase 0.** `generate-docs-data.mjs:27`
+    derives the provider list from agent metadata, so a `docs/taxonomy.md` bullet added while zero
+    agents exist makes `CLAUDE.md`'s provider invariant false — the phase's own zero-asset exit
+    criterion guaranteed the violation. Corrected: both docs lists defer to Phase 10.
+17. **Hardcoding "14 agents and 14 skills" in the proposed ROADMAP text.** `ROADMAP.md` has no
+    count generator, `CLAUDE.md` forbids hardcoded counts, and this board explicitly permits
+    re-prosecution and removal — so the number was stale by design. Corrected to describe coverage
+    without cardinality.
+18. **Two smaller internal contradictions.** The anti-landfill rule capped `official-sources.md` at
+    five skills while the inventory and the copy-ready template both gave runtime-boundary a sixth —
+    corrected to six, with runtime-boundary's version-gated library facts as the justification. And
+    the economics agent's contract in [03 §2.14](./03-final-board-and-boundary-contracts.md) carried
+    two of its three binding acceptance conditions, omitting the re-prosecution deadline — which
+    would have silently converted a conditional acceptance into a permanent agent. Both corrected.
+
 ## 6. Acceptance checklist for the implementation
 
 Every line must be true before review is requested. Items marked **gate-blind** are not caught by
@@ -286,6 +333,12 @@ CI and must be checked by a human.
 - [ ] Every skill `category` is a value in the closed enum.
 - [ ] `tests/fixtures/typescript-maestro-routing/taxonomy.json` exists and `inputs/` is non-empty.
       **Gate-blind** — the gate prints `SKIP`.
+- [ ] The generated `taxonomy.json` was diffed after the last `maestro-routing:write`, and its
+      `live_guard_intent` contains no domain noun. **Gate-blind** — a black-holed domain still passes.
+- [ ] `infer_provider` in `tools/vfa-tui/src/federation/coverage.rs` has a `typescript` arm and a
+      path-mapping test. **Gate-blind** — omitting it keeps every gate green.
+- [ ] `docs/taxonomy.md` and `docs/language-stack-boards.md` were updated with the first agent, not
+      during Phase 0, and `provider_list` in `docs/_data/catalog.yml` now contains `typescript`.
 - [ ] Every domain in the taxonomy routes at a score above zero for its own generated fixture.
 - [ ] The four adversarial fixtures are present and passing.
 - [ ] All 14 agents appear in at least one install role.

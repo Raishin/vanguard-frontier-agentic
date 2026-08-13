@@ -12,24 +12,48 @@ Nothing merges before all of this lands. Ordered checklist:
 | 0.1 | `schemas/agent.schema.json` | add `"typescript"` to the `provider` enum | `npm run validate:agent-schema` |
 | 0.2 | `schemas/skill.schema.json` | add `"typescript"` to the `provider` enum | `npm run validate:skill-schema` |
 | 0.3 | `tests/validate-catalog.py` | add `"typescript"` to `ALLOWED_PROVIDERS` (line 21 onward) | `npm run validate:catalog` |
-| 0.4 | `tools/vfa-tui/src/models/provider.rs` | add the `Typescript` variant; kebab-case serde already yields `typescript` | `cargo fmt --check && cargo clippy --all-targets -- -D warnings && cargo test` in `tools/vfa-tui` |
+| 0.4a | `tools/vfa-tui/src/models/provider.rs` | add the `Typescript` variant; kebab-case serde already yields `typescript` | `cargo fmt --check && cargo clippy --all-targets -- -D warnings && cargo test` in `tools/vfa-tui` |
+| 0.4b | `tools/vfa-tui/src/federation/coverage.rs:331` (`infer_provider`) | add the `"typescript" => Provider::Typescript` arm, plus a focused path-mapping test asserting `agents/typescript/x` and `skills/typescript/x` infer `Provider::Typescript` | the same three cargo gates; **the new test is the only thing that catches this** |
 | 0.5 | `scripts/generate-docs-data.mjs` | add `typescript` to the `Developer Platforms` taxonomy row (line 59) | `npm run docs-data:write` then inspect `docs/_data/catalog.yml` |
 | 0.6 | `scripts/generate-kiro-powers.mjs` | optional: add a `PROVIDERS` entry and `DERIVED_KEYWORDS` if the board ships a Kiro Power | `npm run kiro-powers:write && npm run validate:kiro-powers` |
-| 0.7 | `docs/taxonomy.md` | add the `typescript` provider bullet | manual; the provider invariant in `CLAUDE.md` |
-| 0.8 | `docs/language-stack-boards.md` | add the board section and update the enumerations and tables | manual |
 
-**Step 0.4 is the one that gets skipped.** CI's `Gate` job is path-filtered to
-`tools/vfa-tui/**`, so a pull request that only touches schemas, tests, and the catalog passes CI
-while the TUI can no longer deserialize `catalog/agents.json`. The cargo gates must be run
-locally, every time a provider is added.
+**Step 0.4 is the one that gets skipped, and it is two edits.** CI's `Gate` job is path-filtered
+to `tools/vfa-tui/**`, so a pull request that only touches schemas, tests, and the catalog passes CI
+while the TUI can no longer deserialize `catalog/agents.json`. The cargo gates must be run locally,
+every time a provider is added.
+
+Worse, 0.4b fails **silently**. `infer_provider` maps the provider path component through its own
+hardcoded match with `_ => Provider::Generic` at `coverage.rs:345`. Adding only the enum variant
+produces a build where every gate is green, `cargo test` passes, and the entire TypeScript board is
+displayed and grouped as Generic in the TUI's federation coverage view. Nothing in the repository
+detects that but a test written for it, which is why 0.4b requires one.
 
 Decision on step 0.6: **ship a Kiro Power.** The board is a first-class language board and Kiro
 users should be able to install it in one step. This is a choice, not a requirement — netsuite and
 finance ship no Power — and it must be made explicitly rather than by omission.
 
+### 1.1 What is deliberately NOT in Phase 0
+
+The two hand-written documentation lists — `docs/taxonomy.md`'s provider bullets and
+`docs/language-stack-boards.md`'s board enumeration — **must not** be updated in Phase 0. They land
+in Phase 10, with the first agent.
+
+`scripts/generate-docs-data.mjs:27` derives `providers` as
+`[...new Set(agents.map(a => a.provider))]` — from agent metadata only. `CLAUDE.md`'s provider
+invariant requires the hand-written bullets, the generated `provider_list`, and the set of providers
+with at least one agent to be equal. Adding the `typescript` bullet while zero TypeScript agents
+exist makes the invariant false in the middle of Phase 0: the bullet asserts a provider the
+generated list cannot contain. The schema and enum registration is safe to land alone; the
+documentation is not.
+
+Same reasoning applies to the Kiro Power in step 0.6 if the generator derives its content from
+catalog agents — regenerate it in Phase 10 after the agents exist, and treat the Phase 0 edit as
+registration only.
+
 **Exit criterion:** `npm run validate` passes, and the three cargo gates pass, with the provider
-registered and **zero** TypeScript assets present. Prove the registration in isolation before any
-asset depends on it.
+registered and **zero** TypeScript assets present. `docs/taxonomy.md` and
+`docs/language-stack-boards.md` are unchanged at this point — see §1.1. Prove the registration in
+isolation before any asset depends on it.
 
 ## 2. Phases 1 to 12
 
@@ -44,7 +68,7 @@ asset depends on it.
 | 7 | Specialist agents | 13 agent directories, 9 files each | `validate:agent-schema`, `validate:catalog`, `validate:agent-tool-tiers` green | `feat(typescript):` |
 | 8 | Specialist skills | 13 skill directories plus references | `validate:skill-schema`, `validate:allowed-tools`, `validate:skill-coherence`, `manifest:check` green | `feat(typescript):` |
 | 9 | Maestro agent, skill, and fixture | 1 agent directory, 1 skill, `taxonomy.json`, generated fixtures | `validate:maestro-routing` green with non-empty `inputs/` | `feat(typescript):` |
-| 10 | Repository integration | `agents/typescript/README.md`, `catalog/install-roles.json`, docs, ROADMAP entry, generated outputs | `validate:install-coverage`, `validate:readme-counts`, `validate:plugin-manifest`, `validate:multi-harness-marketplace`, `validate:codex-marketplace` green | `feat(typescript):` + `docs:` |
+| 10 | Repository integration | `agents/typescript/README.md`, `catalog/install-roles.json`, the two hand-written docs lists deferred from Phase 0 (§1.1), ROADMAP entry, generated outputs | `validate:install-coverage`, `validate:readme-counts`, `validate:plugin-manifest`, `validate:multi-harness-marketplace`, `validate:codex-marketplace` green | `feat(typescript):` + `docs:` |
 | 11 | Validation | the full gate suite in §6 | zero failures across all four gate families | — |
 | 12 | Hostile review | [07](./07-red-team-and-acceptance-gates.md) executed against the built assets | every attack has a recorded outcome; no unresolved duplicate | `docs(workflow):` |
 
@@ -216,13 +240,18 @@ Milestone M3 ("Provider & domain breadth") in `ROADMAP.md` is already the home f
 Add, under M3's candidate list:
 
 ```markdown
-- TypeScript board (`provider: typescript`): 14 agents and 14 skills covering compiler policy,
-  runtime boundaries, module resolution and emit, Node execution, declaration governance, build
-  graph, async contracts, publication integrity, modernization, MCP tool contracts, privileged
-  automation governance, and engineering economics. Plan and acceptance gates:
-  `.claude/workflow/typescript-board/`. Entry criterion: Phase 0 provider registration across all
-  eight points, including `tools/vfa-tui/src/models/provider.rs`.
+- TypeScript board (`provider: typescript`): a maestro plus specialists covering compiler
+  enforcement policy, runtime boundaries, module resolution and emit, Node execution, declaration
+  governance, build graph, async contracts, publication integrity, modernization, MCP tool
+  contracts, privileged automation governance, and engineering economics. Plan and acceptance
+  gates: `.claude/workflow/typescript-board/`. Entry criterion: Phase 0 provider registration
+  across all eight points, including both Rust edits in `tools/vfa-tui/`.
 ```
+
+No agent or skill counts appear in that text, deliberately. `ROADMAP.md` has no count generator
+and no marker replacement, and `CLAUDE.md` forbids hardcoded counts in documentation — a number
+written there is stale the moment an agent is added, removed, or re-prosecuted, which this board
+explicitly allows. Describe the coverage, never the cardinality.
 
 `ROADMAP.md` is a hashed root file, so the integrity manifest must be refreshed after editing it.
 
@@ -241,7 +270,11 @@ at implementation time, so the two workflow directories stay consistent with eac
 | Reference duplication creeps in during bulk authoring | High | Medium | normalized comparison of reference source lists across skills | The ownership matrix and the five-skill limit on `official-sources.md`; attack A2 in [07](./07-red-team-and-acceptance-gates.md) |
 | An author or delegate invents a compiler flag, CLI switch, or config key | Medium | High | cross-check every flag against the installed compiler and the provenance ledger | No claim ships without a ledger row; unverified rows stay unverified |
 | The `category` value chosen for a skill is not in the closed enum | Medium | Low | `validate:skill-schema` | The assignment table in [05 §4](./05-skill-and-reference-architecture.md) |
-| `tools/vfa-tui/src/models/provider.rs` is forgotten | High | High | `cargo test` locally; CI will not catch it on a catalog-only change | Phase 0 step 0.4 plus the mandatory local cargo gates |
+| `tools/vfa-tui/src/models/provider.rs` is forgotten | High | High | `cargo test` locally; CI will not catch it on a catalog-only change | Phase 0 step 0.4a plus the mandatory local cargo gates |
+| `infer_provider` in `coverage.rs` is forgotten while the enum is added | High | Medium | **nothing detects it** — every gate stays green and the board silently renders as Generic in the TUI | Phase 0 step 0.4b requires the arm plus a path-mapping test |
+| The generator overwrites a hand-curated `taxonomy.json`, and the regenerated `expected/` files make the gate pass against the replacement | High | High | diff `taxonomy.json` after any `maestro-routing:write`; check that every domain scores above zero on its own fixture | Treat `taxonomy.json` as generated ([04 §5.5](./04-routing-architecture-and-fixtures.md)); drive keywords through agent summaries; durable curation requires a generator change in its own commit |
+| A gate regex (`live_guard_intent`) contains a domain noun and black-holes that domain | Medium | High | a clear task for `publication-integrity`, `modernization`, or `automation-governance` returns an empty route in gate mode | Use the generator's destructive-verb default unchanged ([04 §5.4](./04-routing-architecture-and-fixtures.md)) |
+| The docs provider bullets land before the first agent, breaking the provider invariant | Medium | Medium | `npm run docs-data:write` then compare `provider_list` against the bullets | §1.1 defers both docs lists to Phase 10 |
 | A skill's `SKILL.md` contains a bash fence and forces a Bash grant that contradicts its tier | Medium | Medium | `validate:skill-coherence`, and reading the frontmatter | Board rule: no bash fences in `SKILL.md` ([05 §1](./05-skill-and-reference-architecture.md)) |
 | Scope creep back toward the rejected candidates during authoring — a codegen section grows inside runtime-boundary until it is a separate agent again | Medium | Medium | compare each agent's Owns list against [03](./03-final-board-and-boundary-contracts.md) | The Owns lists are a contract, not a starting point; additions require re-prosecution |
 | `asset-integrity:write` runs before the other generators settle, so the manifest is stale on arrival | High | Low | `validate:asset-integrity` | Run it last, on its own, per §6 |

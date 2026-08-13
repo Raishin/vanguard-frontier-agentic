@@ -34,7 +34,8 @@
   label, a source, and a retrieval date for exactly this reason.
 - **Phase 0 is a hard gate.** `typescript` is not a registered provider in any of the eight
   registration points, so zero TypeScript assets can merge until they are all updated —
-  including the Rust `Provider` enum, which CI's path-filtered `Gate` job will not catch.
+  including both Rust edits in `tools/vfa-tui/`, which CI's path-filtered `Gate` job will not
+  catch.
 - **The board ships static-review only.** No agent runs a command, publishes a package, or
   mutates anything. The automation-governance specialist reviews privileged scripts and never
   executes them; a live control plane is explicitly deferred with named entry criteria.
@@ -65,8 +66,10 @@ documentation lists:
 - `schemas/agent.schema.json` (provider enum)
 - `schemas/skill.schema.json` (provider enum)
 - `tests/validate-catalog.py` (`ALLOWED_PROVIDERS`, a separate hardcoded set)
-- `tools/vfa-tui/src/models/provider.rs` (the Rust `Provider` enum — the TUI deserializes the
-  catalog with a strict enum, so a missing variant breaks `cargo test`)
+- `tools/vfa-tui/` — **two edits.** `src/models/provider.rs` (the Rust `Provider` enum — the TUI
+  deserializes the catalog with a strict enum, so a missing variant breaks `cargo test`) **and**
+  `src/federation/coverage.rs` (`infer_provider`, whose `_ => Provider::Generic` fallback silently
+  groups the whole board under Generic if the arm is missing — no gate detects it)
 - `scripts/generate-docs-data.mjs` (taxonomy grouping)
 - `scripts/generate-kiro-powers.mjs` (only if the board ships a Kiro Power — optional)
 - `docs/taxonomy.md` (hand-written provider bullet list)
@@ -74,6 +77,11 @@ documentation lists:
 
 CI's `Gate` job is path-filtered to `tools/vfa-tui/**`, so a catalog-only pull request passes CI
 while leaving the TUI unable to load the catalog. The cargo gates must be run locally.
+
+The two hand-written documentation lists are the exception to "land it all in Phase 0": the
+generated provider list is derived from agent metadata, so adding a `docs/taxonomy.md` bullet
+before the first agent exists makes the repository's own provider invariant false. They land with
+the first agent.
 
 **2. The repository has no TypeScript program to reason from.** There is no root
 `tsconfig.json`, no `typescript` dependency in `package.json`, and the only `.ts` files are

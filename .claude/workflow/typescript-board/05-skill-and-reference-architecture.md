@@ -173,10 +173,13 @@ question it asks.
    canonical source; they may not share the same question.
 3. No duplicated reference prose. Where two skills need overlapping background, the second states
    its own question and points at the decision, not at a copy of the paragraph.
-4. `official-sources.md` exists in exactly five skills — node-execution, module-resolution,
-   mcp-tool-contract, publication-integrity, and modernization — because those five have verdicts
-   that flip on a dated vendor fact. The other nine do not get one: a file whose only purpose is
-   to hold links the skill never consults is the landfill.
+4. `official-sources.md` exists in exactly six skills — runtime-boundary, node-execution,
+   module-resolution, mcp-tool-contract, publication-integrity, and modernization — because those
+   six have verdicts that flip on a dated vendor fact. Runtime-boundary is in the set because its
+   rulings depend on the installed validator's documented behavior and on the current JSON Schema
+   dialect, both of which are versioned facts it must not assert from memory. The other eight do
+   not get one: a file whose only purpose is to hold links the skill never consults is the
+   landfill.
 5. `safety-checklist.md` exists in exactly two skills — runtime-boundary and
    automation-governance — the two whose findings gate an action with real blast radius.
 
