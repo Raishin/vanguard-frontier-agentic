@@ -56,7 +56,7 @@ const taxonomy = [
   { category: 'Infrastructure as Code', providers: ['terraform'] },
   { category: 'AI & Compute', providers: ['nvidia'] },
   { category: 'Frontend & Web', providers: ['frontend'] },
-  { category: 'Developer Platforms', providers: ['backstage', 'dotnet', 'java', 'kotlin', 'php', 'python', 'generic', 'multi-cloud'] },
+  { category: 'Developer Platforms', providers: ['backstage', 'dotnet', 'java', 'kotlin', 'php', 'python', 'typescript', 'generic', 'multi-cloud'] },
   { category: 'ERP & Finance', providers: ['netsuite', 'accounting', 'finance', 'sap'] },
   { category: 'Business Functions', providers: ['salesforce', 'legal', 'hr', 'marketing'] },
   { category: 'Microsoft 365 & Dynamics 365', providers: ['microsoft'] },
