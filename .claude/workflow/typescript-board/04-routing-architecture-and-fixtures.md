@@ -276,13 +276,13 @@ of `npm run maestro-routing:write` — and because `expected/` is regenerated fr
 the *replacement* taxonomy, the gate still passes afterwards. The loss is silent.
 
 That has a consequence worth stating plainly: **agent `summary` wording is a routing input.**
-Keywords are derived from agent ids and summaries (`:74`–`:105`), so the way a specialist's summary
+Keywords now come first from each agent's declared `routing_keywords` in its `metadata.json`, and only then from the mined id and summary tokens. Mining alone recovers what an agent is *called*, never the constructs it owns — before the declared vocabulary was wired in, `Is satisfies safer than an annotation here?` matched nothing at all and returned `unclassified`. The mined layer still matters, so the way a specialist's summary
 is phrased determines whether its domain is reachable. Summaries on this board must be written for
 routing discrimination, not only for the catalog.
 
 1. Write the 13 specialist agents first, with summaries chosen so that each domain's distinctive
    vocabulary appears in exactly one summary. This is the real lever on routing quality.
-2. Run `python3 scripts/update-catalog-new-agents.py` **first**, to upsert the new agents into
+2. Run `python3 scripts/update-catalog-new-agents.py --provider typescript` **first**, to upsert the new agents into
    `catalog/agents.json`. The fixture generator reads that catalog and prints
    `SKIP typescript (no agents in catalog)` without it
    (`tests/_generate_maestro_routing_fixtures.py:359`); `npm run manifest:write` does not perform

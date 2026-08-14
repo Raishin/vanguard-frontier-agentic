@@ -199,14 +199,24 @@ Constraints on this change:
 Generators, in this order:
 
 ```bash
-python3 scripts/update-catalog-new-agents.py
+python3 scripts/update-catalog-new-agents.py --provider typescript
 npm run manifest:write:all
 npm run docs-data:write
 npm run maestro-routing:write
 npm run asset-integrity:write
 ```
 
-**The first line is the one that is easy to miss, and everything downstream depends on it.**
+**`--provider` is not optional here, it is the whole safety of the step.** Unscoped, the upsert
+walks every provider and its merge is `{**catalog_entry, **projected_metadata}` — projected keys
+win. That is right when `metadata.json` is the newer side and wrong when it is not, and in this
+repository it is sometimes not: the ionos, ovhcloud, and scaleway agents each declare two harnesses
+in `metadata.json` while all seven adapter files sit beside them on disk. An unscoped run rewrites
+those catalog entries from the stale side, and because the Kiro Powers set is derived from
+cataloged harnesses, three whole providers drop out of it. **No gate catches any of it.** Scope
+every routine run; reserve the unscoped run for a deliberate catalog reconciliation whose full
+diff you read before committing.
+
+**The first line is also the one that is easy to miss, and everything downstream depends on it.**
 `npm run manifest:write` rebuilds `catalog/skill-manifest.json` from entries **already present** in
 `catalog/skills.json` — it never adds an agent or skill to `catalog/agents.json` or
 `catalog/skills.json`. The upsert path is `scripts/update-catalog-new-agents.py`, which is **not an

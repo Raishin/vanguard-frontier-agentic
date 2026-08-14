@@ -3,18 +3,34 @@
   "domains": {
     "async-contract-reliability": {
       "keywords": [
+        "AbortSignal",
+        "rejection",
+        "floating",
+        "backpressure",
+        "cancellation",
+        "unhandled-rejection",
+        "uncaughtException",
+        "concurrency-bounds",
+        "async-iterable",
         "async",
         "contract",
         "reliability",
         "server-side",
-        "AbortSignal",
-        "unhandled-rejection",
         "process-exit"
       ],
       "agent": "typescript-async-contract-reliability-agent"
     },
     "build-graph-performance": {
       "keywords": [
+        "tsbuildinfo",
+        "composite",
+        "references",
+        "generateTrace",
+        "incremental",
+        "extendedDiagnostics",
+        "type instantiation",
+        "language service",
+        "editor latency",
         "build",
         "graph",
         "performance",
@@ -24,27 +40,50 @@
     },
     "business-critical-automation-governance": {
       "keywords": [
+        "backfill",
+        "dry-run",
+        "idempotency",
+        "blast radius",
+        "privileged script",
+        "checkpoint and resume",
+        "reconciliation evidence",
+        "inverse operation",
+        "approval separation",
         "business",
         "critical",
         "automation",
         "governance",
-        "dry-run",
         "blast-radius"
       ],
       "agent": "typescript-business-critical-automation-governance-agent"
     },
     "engineering-economics": {
       "keywords": [
-        "engineering",
-        "economics",
+        "break-even",
         "engineering-hours",
-        "break-even"
+        "postponement",
+        "investment priority",
+        "CI compute cost",
+        "sensitivity analysis",
+        "funding decision",
+        "migration cost",
+        "loaded cost",
+        "engineering",
+        "economics"
       ],
       "agent": "typescript-engineering-economics-agent"
     },
     "estate-modernization-governor": {
       "keywords": [
+        "upgrade",
+        "migration",
+        "skipLibCheck",
         "estate",
+        "sequencing",
+        "staged strictness",
+        "compiler major",
+        "removed compiler option",
+        "rollback point",
         "modernization",
         "estate-migration",
         "compiler-major",
@@ -55,42 +94,74 @@
     },
     "mcp-tool-contract": {
       "keywords": [
-        "mcp",
+        "inputSchema",
+        "outputSchema",
+        "structuredContent",
+        "MCP",
+        "protocol",
+        "JSON-RPC",
+        "server/discover",
+        "annotations",
+        "isError",
         "tool",
         "contract",
         "tool-contract",
-        "2026-07",
-        "JSON Schema"
+        "JSON Schema",
+        "protocol-version"
       ],
       "agent": "typescript-mcp-tool-contract-agent"
     },
     "module-resolution-and-emit": {
       "keywords": [
+        "exports",
+        "moduleResolution",
+        "nodenext",
+        "cjs",
+        "esm",
+        "bundler",
+        "subpath",
+        "mts",
+        "cts",
+        "dual-package",
         "module",
         "resolution",
         "emit",
-        "conditional-export",
-        "dual-package"
+        "conditional-export"
       ],
       "agent": "typescript-module-resolution-and-emit-agent"
     },
     "node-execution-compatibility": {
       "keywords": [
+        "strip-types",
+        "erasableSyntaxOnly",
+        "tsx",
+        "entrypoint",
+        "node_modules",
+        "transform-types",
+        "type-stripping",
+        "unsupported-syntax",
         "node",
         "execution",
         "compatibility",
         "type-checked",
-        "type-stripping",
         "runtime-unsupported"
       ],
       "agent": "typescript-node-execution-compatibility-agent"
     },
     "package-publication-integrity": {
       "keywords": [
+        "provenance",
+        "trusted publishing",
+        "OIDC",
+        "tarball",
+        "registry",
+        "npm audit signatures",
+        "lifecycle script",
+        "unscoped package",
+        "release automation",
         "package",
         "publication",
         "integrity",
-        "OIDC",
         "long-lived",
         "release-automation"
       ],
@@ -98,12 +169,20 @@
     },
     "public-api-and-declaration-governance": {
       "keywords": [
+        "d.ts",
+        "declaration",
+        "semver",
+        "consumer",
+        "rollup",
+        "isolatedDeclarations",
+        "breaking-change",
+        "expectTypeOf",
+        "ts-expect-error",
+        "API report",
         "public",
         "api",
-        "declaration",
         "governance",
         "public-versus",
-        "breaking-change",
         "compile-time",
         "type-contract"
       ],
@@ -111,6 +190,15 @@
     },
     "runtime-boundary-contract": {
       "keywords": [
+        "parse",
+        "payload",
+        "webhook",
+        "unknown",
+        "validator",
+        "ingestion",
+        "safeParse",
+        "drift",
+        "deserialize",
         "runtime",
         "boundary",
         "contract",
@@ -123,10 +211,18 @@
     },
     "static-enforcement-policy": {
       "keywords": [
+        "projectService",
+        "lint",
+        "strict",
+        "suppression",
+        "parity",
+        "allowDefaultProject",
+        "ts-ignore",
+        "typed-lint",
+        "silent-loosening",
         "enforcement",
         "policy",
         "strict-family",
-        "typed-lint",
         "Project Service",
         "editor-versus"
       ],
@@ -134,8 +230,16 @@
     },
     "type-soundness": {
       "keywords": [
-        "type",
+        "variance",
+        "bivariant",
+        "predicate",
+        "satisfies",
+        "branded",
+        "narrowing",
+        "discriminated",
+        "nominal",
         "soundness",
+        "type",
         "type-level"
       ],
       "agent": "typescript-type-soundness-agent"

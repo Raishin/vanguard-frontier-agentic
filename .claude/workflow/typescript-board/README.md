@@ -8,10 +8,14 @@
 > [00-reconnaissance-and-evidence-map.md](./00-reconnaissance-and-evidence-map.md) first.
 >
 > These documents are kept as the **design record, corrections included** — where implementation
-> proved a plan decision wrong, the affected section says so in place rather than being quietly
-> rewritten. Two such corrections are marked: the maestro skill's shape
-> ([08 §7](./08-authoring-templates.md)) and the routing gate
-> ([04 §5.4](./04-routing-architecture-and-fixtures.md), [08 §8](./08-authoring-templates.md)).
+> or review proved a plan decision wrong, the affected section says so in place rather than being
+> quietly rewritten. Three such corrections are marked: the maestro skill's shape
+> ([08 §7](./08-authoring-templates.md)); the routing gate
+> ([04 §5.4](./04-routing-architecture-and-fixtures.md), [08 §8](./08-authoring-templates.md));
+> and the taxonomy's keyword source, which the plan described as mined from agent ids and
+> summaries and which now reads each agent's declared `routing_keywords` first
+> ([04 §5.5](./04-routing-architecture-and-fixtures.md)) — review showed the mined-only taxonomy
+> left `Is satisfies safer than an annotation here?` unclassified.
 > A plan that reads as if it had been right all along is not a record.
 
 ## Executive verdict

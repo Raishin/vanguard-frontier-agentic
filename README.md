@@ -260,11 +260,11 @@ vscode.cursor.plugins.registerPath("/absolute/path/to/vanguard-frontier-agentic"
 </details>
 
 <details>
-<summary><strong>🔮 Kiro (Powers + agents)</strong> &nbsp;—&nbsp; <em>42 ready-to-add Powers</em></summary>
+<summary><strong>🔮 Kiro (Powers + agents)</strong> &nbsp;—&nbsp; <em>45 ready-to-add Powers</em></summary>
 
 <br>
 
-Kiro Powers UI is per-Power directory add — there is no single-command marketplace flow. This repo ships **42 Powers** under `powers/`, one per provider, so Kiro users can add only what they need.
+Kiro Powers UI is per-Power directory add — there is no single-command marketplace flow. This repo ships **45 Powers** under `powers/`, one per provider, so Kiro users can add only what they need.
 
 ```bash
 # 1. Clone this repo
@@ -279,7 +279,7 @@ cd vanguard-frontier-agentic
 #       /absolute/path/to/vanguard-frontier-agentic/powers/vanguard-terraform
 ```
 
-- **Powers available:** `vanguard-accounting`, `vanguard-alibaba`, `vanguard-argocd`, `vanguard-aws`, `vanguard-azure`, `vanguard-backstage`, `vanguard-cert-manager`, `vanguard-cilium`, `vanguard-contabo`, `vanguard-databricks`, `vanguard-dotnet`, `vanguard-falco`, `vanguard-finance`, `vanguard-fluxcd`, `vanguard-frontend`, `vanguard-gcp`, `vanguard-generic`, `vanguard-hetzner`, `vanguard-hr`, `vanguard-huawei`, `vanguard-ionos`, `vanguard-istio`, `vanguard-java`, `vanguard-kotlin`, `vanguard-kubernetes`, `vanguard-kyverno`, `vanguard-legal`, `vanguard-marketing`, `vanguard-microsoft`, `vanguard-multi-cloud`, `vanguard-netsuite`, `vanguard-nvidia`, `vanguard-oci`, `vanguard-opentelemetry`, `vanguard-ovhcloud`, `vanguard-php`, `vanguard-prometheus`, `vanguard-python`, `vanguard-salesforce`, `vanguard-sap`, `vanguard-scaleway`, `vanguard-sigstore`, `vanguard-snowflake`, `vanguard-terraform`
+- **Powers available:** `vanguard-accounting`, `vanguard-alibaba`, `vanguard-argocd`, `vanguard-aws`, `vanguard-azure`, `vanguard-backstage`, `vanguard-cert-manager`, `vanguard-cilium`, `vanguard-contabo`, `vanguard-databricks`, `vanguard-dotnet`, `vanguard-falco`, `vanguard-finance`, `vanguard-fluxcd`, `vanguard-frontend`, `vanguard-gcp`, `vanguard-generic`, `vanguard-hetzner`, `vanguard-hr`, `vanguard-huawei`, `vanguard-ionos`, `vanguard-istio`, `vanguard-java`, `vanguard-kotlin`, `vanguard-kubernetes`, `vanguard-kyverno`, `vanguard-legal`, `vanguard-marketing`, `vanguard-microsoft`, `vanguard-multi-cloud`, `vanguard-netsuite`, `vanguard-nvidia`, `vanguard-oci`, `vanguard-opentelemetry`, `vanguard-ovhcloud`, `vanguard-php`, `vanguard-prometheus`, `vanguard-python`, `vanguard-salesforce`, `vanguard-sap`, `vanguard-scaleway`, `vanguard-sigstore`, `vanguard-snowflake`, `vanguard-terraform`, `vanguard-typescript`
 - **Each Power ships:** routing pattern (maestro entry), live-mutation discipline, provider invariants (account-ID/region, MLPS 2.0, EU sovereignty, etc.)
 - **Frontmatter:** strict-5 fields (`name`, `displayName`, `description`, `keywords`, `author`) per Kiro spec
 - **For Kiro agent adapter files** (`.kiro/agents/*.md`, `.kiro/agents/*.json`): use the npm-export path below

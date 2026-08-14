@@ -19,7 +19,7 @@ the whole board stays consistent and reproducible (behaviour changes only when t
 committed data changes).
 
 Run:  python3 scripts/gen_typescript_agents.py
-Then: python3 scripts/update-catalog-new-agents.py && npm run manifest:write:all
+Then: python3 scripts/update-catalog-new-agents.py --provider typescript && npm run manifest:write:all
       && npm run docs-data:write && npm run model-policy:apply
       && npm run asset-integrity:write && npm run validate
 
@@ -262,6 +262,13 @@ def agent_metadata(a: dict) -> str:
         "lifecycle": "experimental",
         "author": AUTHOR,
     }
+    # The constructs this agent routes on, in its own words. Consumed by
+    # tests/_generate_maestro_routing_fixtures.py, which otherwise mines the id
+    # and summary and so can only recover what the agent is *called*. Stays out
+    # of catalog/agents.json — update-catalog-new-agents.py projects a fixed key
+    # allowlist — so no schema, catalog, or TUI struct change is implied.
+    if a.get("routing_keywords"):
+        obj["routing_keywords"] = a["routing_keywords"]
     return json.dumps(obj, indent=2, ensure_ascii=False) + "\n"
 
 

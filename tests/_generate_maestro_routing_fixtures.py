@@ -50,6 +50,11 @@ STOPWORDS = {
 # Live-guard pattern: any *-live-* in id, or *-guard-agent, or *-destruction-*
 LIVE_GUARD_RE = re.compile(r"(^|-)(live-|.+-guard|.+-destruction)", re.IGNORECASE)
 
+# A bare year, year-month, or ISO date. Never a routing signal — see summary_tokens.
+# `tests/validate-maestro-routing.py` enforces the same shape on every committed
+# taxonomy, so a date cannot re-enter through a hand edit either.
+DATE_SHAPED = re.compile(r"^\d{4}(-\d{2}){0,2}$")
+
 # Provider-specific live-guard intent regex (used by the generic grader).
 GATE_INTENT = {
     # All providers share a common destructive/promotion-intent regex unless
@@ -109,6 +114,14 @@ def summary_tokens(summary: str) -> list[str]:
     for c in candidates:
         if c.lower() in STOPWORDS:
             continue
+        if DATE_SHAPED.match(c):
+            # A date is never a domain signal. The `\w+-\w+` arm above happily
+            # matches a spec or release date quoted in a summary (e.g. the MCP
+            # protocol revision `2026-07-28`), and because keywords containing a
+            # non-word character are matched as substrings, that token then
+            # captures any task mentioning that year-month for any reason —
+            # "our migration planned for 2026-07" routed to the MCP specialist.
+            continue
         if len(c) < 3:
             continue
         if c.lower() in {"the", "and", "for", "with", "use", "see", "agent"}:
@@ -122,6 +135,28 @@ def summary_tokens(summary: str) -> list[str]:
             seen.add(c.lower())
             out.append(c)
     return out[:6]
+
+
+def declared_keywords(provider: str, agent_id: str) -> list[str]:
+    """Routing terms an agent declares for itself in its ``metadata.json``.
+
+    Read from disk rather than from ``catalog/agents.json`` on purpose: the
+    catalog projection in ``scripts/update-catalog-new-agents.py`` carries a
+    fixed key allowlist, so this vocabulary never reaches the catalog and the
+    TUI's ``deny_unknown_fields`` structs never have to know about it. Absent or
+    malformed field → empty list, and the miner behaves exactly as before.
+    """
+    meta = ROOT / "agents" / provider / agent_id / "metadata.json"
+    if not meta.is_file():
+        return []
+    try:
+        data = json.loads(meta.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return []
+    declared = data.get("routing_keywords")
+    if not isinstance(declared, list):
+        return []
+    return [k for k in declared if isinstance(k, str) and k.strip()]
 
 
 def build_taxonomy(provider: str, agents: list[dict]) -> dict:
@@ -148,6 +183,17 @@ def build_taxonomy(provider: str, agents: list[dict]) -> dict:
 
         kws: list[str] = []
         seen_lower: set[str] = set()
+        # Declared vocabulary first. Mining an agent id and summary recovers
+        # what the agent is *called*; it cannot recover the constructs it owns,
+        # so a user asking "is `satisfies` safer than an annotation?" matched
+        # nothing at all. An agent that names its own routing terms in
+        # `metadata.json` gets them ranked ahead of the mined tokens; agents
+        # that declare none behave exactly as before.
+        for t in declared_keywords(provider, aid):
+            if t.lower() in seen_lower:
+                continue
+            seen_lower.add(t.lower())
+            kws.append(t)
         for t in id_tokens(aid, provider):
             if t.lower() in seen_lower:
                 continue

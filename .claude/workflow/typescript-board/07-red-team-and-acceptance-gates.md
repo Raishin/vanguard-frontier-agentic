@@ -294,7 +294,7 @@ load-bearing instructions — the kind that would have been executed verbatim by
     then run the generator.** `tests/_generate_maestro_routing_fixtures.py:308` overwrites it
     unconditionally, so step 2 of the procedure destroyed the artifact step 1 created — and the
     regenerated `expected/` files kept the gate green over the loss. Corrected: `taxonomy.json` is
-    generated, keywords are driven through agent summaries (which makes summary wording a routing
+    generated, keywords are driven first by each agent's declared `routing_keywords` and then by agent summaries (which keeps summary wording a routing
     input), and durable curation requires a generator change in its own commit.
 15. **A `live_guard_intent` regex containing `publish`, `migrate`, and `backfill`.** Those are
     domain anchors for three specialists on this board. Because the gate branch runs before domain

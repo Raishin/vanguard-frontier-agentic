@@ -19,7 +19,7 @@ the whole board stays consistent and reproducible (behaviour changes only when t
 committed data changes).
 
 Run:  python3 scripts/gen_kotlin_agents.py
-Then: python3 scripts/update-catalog-new-agents.py && npm run manifest:write:all
+Then: python3 scripts/update-catalog-new-agents.py --provider kotlin && npm run manifest:write:all
       && npm run docs-data:write && npm run model-policy:apply
       && npm run asset-integrity:write && npm run validate
 

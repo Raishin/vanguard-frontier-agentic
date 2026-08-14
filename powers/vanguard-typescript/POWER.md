@@ -1,17 +1,17 @@
 ---
 name: "vanguard-typescript"
-displayName: "Vanguard Frontier — Typescript"
-description: "Curated Typescript agents for typescript async contract reliability, typescript build graph performance, typescript business critical automation governance, typescript engineering economics. Routes via typescript-maestro-agent to specialist agents based on task scope. Static review only; no live mutations."
-keywords: ["typescript", "static-review", "configuration-audit", "best-practices"]
+displayName: "Vanguard Frontier — TypeScript"
+description: "Curated TypeScript agents for the TypeScript program and the published package — type soundness in shared code, runtime boundary contracts, module resolution and emit, Node execution compatibility, declaration governance, build-graph cost, static enforcement policy, async contract reliability, publication integrity, estate modernization, and MCP tool contracts. Routes via typescript-maestro to specialist agents based on task scope. Static review only; no live mutations."
+keywords: ["typescript", "tsconfig", "tsc", "declaration-emit", "module-resolution", "type-safety", "npm-publish", "static-review"]
 author: "VincentChuWaiChow"
 ---
-# Vanguard Frontier — Typescript
+# Vanguard Frontier — TypeScript
 
-Curated Typescript agents for typescript async contract reliability, typescript build graph performance, typescript business critical automation governance, typescript engineering economics. Routes via typescript-maestro-agent to specialist agents based on task scope. Static review only; no live mutations.
+Curated TypeScript agents for the TypeScript program and the published package — type soundness in shared code, runtime boundary contracts, module resolution and emit, Node execution compatibility, declaration governance, build-graph cost, static enforcement policy, async contract reliability, publication integrity, estate modernization, and MCP tool contracts. Routes via typescript-maestro to specialist agents based on task scope. Static review only; no live mutations.
 
 ## When to engage this Power
 
-Activate when the task references Typescript services, resources, or operations. Do not activate on unrelated requests — narrow keyword matching is required to avoid false activations (Kiro Powers convention).
+Activate when the task references TypeScript services, resources, or operations. Do not activate on unrelated requests — narrow keyword matching is required to avoid false activations (Kiro Powers convention).
 
 ## Routing pattern
 
@@ -27,8 +27,11 @@ Live-guard agents enforce approval, target confirmation, evidence capture, and r
 
 ## Invariants
 
-- Route all tasks through typescript-maestro-agent for proper classification and dispatch.
-- Static review only -- agents analyze configuration and provide findings without mutating live systems.
+- Static review only — agents read source and sanitized configuration, and never compile, build, test, publish, deploy, sign, or contact a live system.
+- Never request or accept secrets, npm or registry tokens, signing keys, connection strings, tenant identifiers, or customer data.
+- This repository contains no TypeScript program of its own, so no verdict may be grounded in an assumed compiler, tsconfig, or Node version — a version-gated conclusion requires evidence the user supplies, and its absence is a refuse-and-ask.
+- Compile-time is not runtime: types are erased, so a passing build is evidence about the source and never about the payload crossing an I/O boundary.
+- Frontend application diffs, framework specifics, bundler configuration, dependency intake, and the monorepo task graph belong to the frontend board — hand them off rather than absorbing them.
 
 ## Where the agents live
 

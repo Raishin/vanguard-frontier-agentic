@@ -756,7 +756,7 @@ generated keys, never values to type into a file. `npm run maestro-routing:write
 `tests/_generate_maestro_routing_fixtures.py:308` overwrites the taxonomy on every run. Treat the
 block below as the **shape to verify after generating**, not as a file to create — a hand-written
 copy is reverted by the next regeneration, and the regenerated `expected/` files keep the gate green
-over the loss. Keywords are derived from agent ids and summaries, so the lever is the summary
+over the loss. Keywords come from each agent's declared `routing_keywords` first and the mined id/summary tokens second, so the primary lever is the declared vocabulary and the secondary one is the summary
 wording. See [04 §5.5](./04-routing-architecture-and-fixtures.md).
 
 ```json

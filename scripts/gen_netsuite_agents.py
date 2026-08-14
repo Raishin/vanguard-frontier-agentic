@@ -17,7 +17,7 @@ static-review (T0) house style:
   skills/netsuite/<skill-id>/references/*.md
 
 Run:  python3 scripts/gen_netsuite_agents.py
-Then: python3 scripts/update-catalog-new-agents.py && npm run manifest:write:all
+Then: python3 scripts/update-catalog-new-agents.py --provider netsuite && npm run manifest:write:all
       && python3 tests/validate-asset-integrity.py --write && npm run validate
 """
 from __future__ import annotations

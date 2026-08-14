@@ -115,6 +115,9 @@ def evaluate(task: str, taxonomy: dict) -> dict:
     return {"route": agents, "mode": mode}
 
 
+DATE_SHAPED_KEYWORD = re.compile(r"^\d{4}(-\d{2}){0,2}$")
+
+
 def _validate_taxonomy(taxonomy: dict, catalog_ids: set[str]) -> list[str]:
     errors: list[str] = []
     provider = taxonomy.get("provider", "?")
@@ -124,6 +127,18 @@ def _validate_taxonomy(taxonomy: dict, catalog_ids: set[str]) -> list[str]:
             errors.append(f"[{provider}] regression: domain {domain!r} maps to unknown agent {agent_id!r}")
         if not conf.get("keywords"):
             errors.append(f"[{provider}] regression: domain {domain!r} has empty keywords list")
+        # A date is never a domain signal. Keywords containing a non-word
+        # character match as substrings, so a spec or release date quoted in an
+        # agent summary (e.g. an MCP protocol revision) silently captures every
+        # task that mentions that year-month for any unrelated reason. The
+        # generator filters these out of mined tokens; this gate stops one
+        # re-entering through a hand edit.
+        for kw in conf.get("keywords", []):
+            if DATE_SHAPED_KEYWORD.match(kw):
+                errors.append(
+                    f"[{provider}] regression: domain {domain!r} carries date-shaped "
+                    f"keyword {kw!r} — a date is not a routing signal"
+                )
     for guard in taxonomy.get("live_guards", []):
         if guard not in catalog_ids:
             errors.append(f"[{provider}] regression: live_guard {guard!r} not in catalog")
