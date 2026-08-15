@@ -607,12 +607,24 @@ payloads — cite `file:line` and quote the minimum that carries the finding.
 
 ## 7. Template F — the maestro skill
 
-`skills/typescript/typescript-maestro/SKILL.md`. No `references/` directory: the routing table is
-the content, matching `skills/java/java-maestro/SKILL.md`, which has none. Because it declares no
-references, it carries **no `Load these only when needed` marker** — that marker indexes a lazy-load
-set, and a skill with nothing to lazy-load would be advertising a set that does not exist. The board
-rule in [05 §1](./05-skill-and-reference-architecture.md) exempts reference-free router skills
-explicitly. The 90-line limit still applies and this template satisfies it.
+`skills/typescript/typescript-maestro/SKILL.md`.
+
+> **Superseded during implementation.** This template originally specified an inline routing table
+> and **no** `references/` directory, on the `skills/java/java-maestro/SKILL.md` precedent. The
+> board as shipped follows the *other* in-repo precedent — `skills/kotlin/kotlin-maestro/`, which
+> the generator encodes — and carries the routing table plus the boundary rules in
+> `references/routing-taxonomy.md`. Two things drove the change: the boundary rules that keep
+> thirteen domains apart are the substance of routing and are exactly what a lazy-load reference is
+> for, and keeping the table out of `SKILL.md` holds the file to 58 lines against the 90-line limit.
+> The rendered table below is what `references/routing-taxonomy.md` now contains — it is generated
+> from the `table` block in `scripts/typescript_data/agents/00-typescript-maestro-agent.json`, not
+> hand-written into either file.
+>
+> The reference-free exemption in [05 §1](./05-skill-and-reference-architecture.md) still stands and
+> is still enforced by the generator: a skill that declares no references emits **no `Load these
+> only when needed` marker**, because that marker indexes a lazy-load set and a skill with nothing
+> to lazy-load would advertise a set that does not exist. It simply no longer applies to the
+> maestro, which now declares one reference.
 
 ```markdown
 ---
@@ -657,23 +669,11 @@ Before dispatching a version-dependent task, establish: the TypeScript version, 
 - MEDIUM: When specialists disagree, return both verdicts with evidence labels and the escalation path. Never hide a disagreement.
 - LOW: Three lines per decision — Route / Reason / Mode.
 
-## Routing table
+## References
 
-| Agent | Route when the task is about... |
-|-------|---------------------------------|
-| `typescript-type-soundness-agent` | whether a type abstraction in shared or published code proves what its signature claims: variance, predicates, conditional and mapped types, `satisfies`, branded types |
-| `typescript-runtime-boundary-contract-agent` | external data entering the program — HTTP, queues, env/config, DB reads, third-party SDKs, webhooks — or generated types trusted at runtime |
-| `typescript-module-resolution-and-emit-agent` | how a package resolves, imports, or emits for consumers: `exports`, condition ordering, ESM/CJS, `.mts`/`.cts`, dual-package hazard |
-| `typescript-node-execution-compatibility-agent` | whether the code runs on the target Node and is type-checked anywhere: type stripping, unsupported syntax, a missing `tsc --noEmit` gate |
-| `typescript-public-api-and-declaration-governance-agent` | a `.d.ts` or exported type change, a semver decision, declaration emit, or consumer compilation and type-level tests |
-| `typescript-build-graph-performance-agent` | compile or editor slowness with a measurement: project references, `composite`, `.tsbuildinfo`, `--generateTrace` |
-| `typescript-static-enforcement-policy-agent` | what the toolchain must prove and at what cost: strict-family policy, per-package divergence, typed-lint rules and Project Service, editor/CI parity |
-| `typescript-async-contract-reliability-agent` | promises, cancellation, backpressure, or concurrency bounds on the server: floating promises, `AbortSignal`, unhandled rejections |
-| `typescript-package-publication-integrity-agent` | who may publish and what ships: trusted publishing, provenance, tarball and types surface, registry and scope configuration |
-| `typescript-estate-modernization-governor-agent` | sequencing a migration or compiler-major upgrade across packages, staged strictness, suppression debt |
-| `typescript-mcp-tool-contract-agent` | an MCP tool schema, protocol version, error contract, cancellation, or handler drift |
-| `typescript-business-critical-automation-governance-agent` | a privileged script — backfill, migration, reconciliation, admin CLI — and its dry-run, idempotency, blast radius, and rollback |
-| `typescript-engineering-economics-agent` | what something costs or what is worth funding, when measurements are supplied |
+Load these only when needed:
+
+- [Routing Taxonomy](references/routing-taxonomy.md)
 
 ## Out of scope
 This board reviews TypeScript programs and packages, static-review only. It does not run a compiler, build, test, or publish. It does not own frontend applications or frameworks, bundler configuration, the monorepo task graph, dependency intake, DOM security, cluster or cloud operations, database schema design, signing infrastructure, or organization-wide identity and secrets policy. When a task is purely one of those, say it is out of scope and name the owner rather than routing it to a TypeScript specialist.
@@ -706,6 +706,44 @@ Return, at minimum:
 - Recommended next actions, and for out-of-board or mutation requests, the named handoff target.
 ```
 
+### Template F′ — the maestro's one reference
+
+`skills/typescript/typescript-maestro/references/routing-taxonomy.md`. Generated from the
+`references[0]` entry of `scripts/typescript_data/agents/00-typescript-maestro-agent.json`: the
+`claims` array renders as the boundary bullets, the `table` block renders as the routing table.
+The boundary bullets come first deliberately — the table says which agent to call, the bullets say
+where one domain stops and the next begins, and a router that reads only the table will misroute
+exactly the pairs the bullets exist to separate (soundness vs enforcement, resolution vs execution,
+program graph vs task graph, publication vs intake, contract fidelity vs exploitation).
+
+```markdown
+# Routing Taxonomy
+
+The thirteen domains, the signals that select each one, and the boundaries that keep them apart.
+
+- `type-soundness` owns whether a type abstraction in shared or published code proves what its signature claims … It does NOT own frontend application diffs: those belong to `typescript-contracts-agent` on the frontend board.
+- `runtime-boundary-contract` owns every point where external data enters the program … It does NOT own exploitation, authorization, or secrets, which belong to the application security board.
+- … one bullet per boundary pair; see the shipped file for the full set …
+
+## Routing table
+
+| Agent | Route when the task is about… |
+|---|---|
+| `typescript-type-soundness-agent` | whether a type abstraction in shared or published code proves what its signature claims: variance, type predicates, conditional and mapped types, `satisfies`, branded types |
+| `typescript-runtime-boundary-contract-agent` | external data entering the program — HTTP, queues, environment and configuration, database reads, third-party SDKs, webhooks — or a generated type trusted as if it were a check on the payload |
+| `typescript-module-resolution-and-emit-agent` | how a package resolves, imports, or emits for its consumers: `exports`, condition ordering, ESM/CJS, `.mts`/`.cts`, the dual-package hazard |
+| `typescript-node-execution-compatibility-agent` | whether the code runs on the target Node and is type-checked anywhere: type stripping, unsupported syntax, a missing `tsc --noEmit` gate |
+| `typescript-public-api-and-declaration-governance-agent` | a `.d.ts` or exported-type change, a semver decision, declaration emit, or consumer compilation and type-level tests |
+| `typescript-build-graph-performance-agent` | compile or editor slowness backed by a measurement: project references, `composite`, `.tsbuildinfo`, `--generateTrace` |
+| `typescript-static-enforcement-policy-agent` | what the toolchain must prove and at what cost: strict-family policy, per-package divergence, typed-lint rules and Project Service, editor/CI parity |
+| `typescript-async-contract-reliability-agent` | promises, cancellation, backpressure, or concurrency bounds on the server: floating promises, `AbortSignal`, unhandled rejections |
+| `typescript-package-publication-integrity-agent` | who may publish and what ships: trusted publishing, provenance, the tarball and types surface, registry and scope configuration |
+| `typescript-estate-modernization-governor-agent` | sequencing a migration or compiler-major upgrade across packages: staged strictness, suppression debt, burn-down |
+| `typescript-mcp-tool-contract-agent` | an MCP tool schema, protocol version, error contract, cancellation, or drift between a declared contract and its handler |
+| `typescript-business-critical-automation-governance-agent` | a privileged script — backfill, migration, reconciliation, admin CLI — and its dry-run, idempotency, blast radius, and rollback |
+| `typescript-engineering-economics-agent` | what something costs or what is worth funding, when the measurements are supplied rather than requested |
+```
+
 ## 8. Template G — the expected routing taxonomy
 
 **This file is generated, not authored — and its domain keys are derived, not chosen.**
@@ -718,7 +756,7 @@ generated keys, never values to type into a file. `npm run maestro-routing:write
 `tests/_generate_maestro_routing_fixtures.py:308` overwrites the taxonomy on every run. Treat the
 block below as the **shape to verify after generating**, not as a file to create — a hand-written
 copy is reverted by the next regeneration, and the regenerated `expected/` files keep the gate green
-over the loss. Keywords are derived from agent ids and summaries, so the lever is the summary
+over the loss. Keywords come from each agent's declared `routing_keywords` first and the mined id/summary tokens second, so the primary lever is the declared vocabulary and the secondary one is the summary
 wording. See [04 §5.5](./04-routing-architecture-and-fixtures.md).
 
 ```json
@@ -780,20 +818,39 @@ wording. See [04 §5.5](./04-routing-architecture-and-fixtures.md).
   },
   "live_guards": [],
   "gate_mode": "live-guard-gate",
-  "live_guard_intent": "(destroy|delete|terminate|rollout to prod|rollout to production|approve.*production)",
   "parallel_threshold": 0.8
 }
 ```
 
-`live_guards` is empty by design — there are no mutating agents in v1 — and that is exactly why
-`live_guard_intent` must contain **destructive verbs only, never a domain noun**. With an empty
-`live_guards`, a match returns an empty route in gate mode and never falls through to domain scoring
-(`tests/validate-maestro-routing.py:100`), so a regex containing `publish`, `migrate`, or `backfill`
-would black-hole `publication-integrity`, `modernization`, and `automation-governance` — the three
-specialists those words belong to. The value above is the generator's own default, which java and php
-both carry unchanged. Take it as-is and do not widen it. `parallel_threshold` is `0.8` because that
-is what the generator emits (`:169`); the validator's `0.6` is only its fallback when the key is
-absent.
+**Correction — the shipped taxonomy carries no `live_guard_intent` at all.** This section previously
+specified the generator's default regex with the instruction to "take it as-is and do not widen it",
+reasoning that the regex must hold destructive verbs only and never a domain noun, because an empty
+`live_guards` turns a gate hit into an empty route that never falls through to domain scoring
+(`tests/validate-maestro-routing.py:100`). That reasoning was right and did not go far enough: the
+default regex's *bare verbs* are themselves this board's vocabulary. `delete` is a TypeScript
+operator; `terminate` and `destroy` describe process and resource lifecycles a static reviewer
+discusses constantly. Probing the default against real review prose black-holed
+"Is `delete obj.key` sound under `exactOptionalPropertyTypes`?" — a pure type-soundness question.
+
+Narrowing the regex does not escape the problem, it relocates it: anchoring the verbs to operational
+objects catches genuine mutation requests but then black-holes "review the workflow that runs
+`npm publish`", which is `package-publication-integrity`'s core subject. Mutation vocabulary *is*
+what three of the thirteen specialists exist to review.
+
+So `typescript` opts out of the gate entirely, joining hr, legal, and netsuite, whose taxonomies
+already ship without the key. The gate exists to stop a router auto-dispatching to a live-mutating
+agent, and this board registers none — its upside here is zero. Removing it costs nothing safety-wise:
+a mutation request now falls through to the specialist that owns the subject, and all thirteen
+specialists close their operating rules with *"Static review only: never … compile, build, run,
+deploy, sign, publish, or contact a live system — route any such request to the named human owner"*,
+while the maestro's own HIGH rule refuses to dispatch production mutation in the first place. The
+failure mode degrades to the right answer one hop later instead of to silence.
+
+Mechanically: `GATE_INTENT["typescript"] = None` in `tests/_generate_maestro_routing_fixtures.py`,
+which also had to be wired — the dict's own comment promised a per-provider override but
+`build_taxonomy()` read `GATE_INTENT["default"]` unconditionally, so no override could ever have
+taken effect. `parallel_threshold` is `0.8` because that is what the generator emits; the
+validator's `0.6` is only its fallback when the key is absent.
 
 ## 9. Template H — install roles
 

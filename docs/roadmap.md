@@ -69,7 +69,7 @@ Potential additions: [NEEDS OWNER INPUT]
 
 ### Deeper MCP Integration
 
-Current: 3 MCP references.
+Current: {{ site.data.catalog.mcp_references }} MCP references.
 
 Planned:
 - [NEEDS OWNER INPUT] Expand MCP reference catalog

@@ -10,10 +10,30 @@ so it is safe to re-run at any point in the generation workflow.
 It does NOT prune: a catalog entry whose ``metadata.json`` was deleted is left
 untouched — removal is a deliberate, separate operation, never a side effect of
 a sync.
+
+Scope it. ``--provider <id>`` (repeatable) restricts the sync to one provider's
+assets and is what a board generator should document as its regeneration step::
+
+    python3 scripts/update-catalog-new-agents.py --provider typescript
+
+An unscoped run walks every provider, and the merge below is
+``{**catalog_entry, **projected_metadata}`` — projected keys win. That is
+correct when ``metadata.json`` is the newer side, but it is not always: some
+committed metadata files are *older* than the catalog and understate what is on
+disk (e.g. ionos/ovhcloud/scaleway agents declare two harnesses each while all
+seven adapter files exist beside them). An unscoped run silently rewrites those
+catalog entries from the stale side, which then propagates into every generated
+inventory downstream — the Kiro Powers set is derived from cataloged harnesses,
+so whole providers can drop out of it. No gate catches that.
+
+So: scope every routine run to what you actually changed. Reserve the unscoped
+run for a deliberate, reviewed catalog reconciliation, and read its full diff
+before committing it.
 """
 
 from __future__ import annotations
 
+import argparse
 import json
 from pathlib import Path
 
@@ -91,11 +111,45 @@ def _write(catalog: list[dict], path: Path) -> None:
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument(
+        "--provider",
+        action="append",
+        metavar="ID",
+        help="Restrict the sync to one provider's assets (repeatable). Omit to "
+             "walk every provider — see the module docstring before doing that.",
+    )
+    args = parser.parse_args()
+
     agents_catalog: list[dict] = json.loads(CATALOG_AGENTS.read_text(encoding="utf-8"))
     skills_catalog: list[dict] = json.loads(CATALOG_SKILLS.read_text(encoding="utf-8"))
 
-    a_added, a_updated = sync_catalog(agents_catalog, "agents/**/metadata.json", "agent")
-    s_added, s_updated = sync_catalog(skills_catalog, "skills/**/metadata.json", "skill")
+    if args.provider:
+        agent_globs = [f"agents/{p}/*/metadata.json" for p in args.provider]
+        skill_globs = [f"skills/{p}/*/metadata.json" for p in args.provider]
+        print(f"Scoped to provider(s): {', '.join(sorted(args.provider))}")
+    else:
+        agent_globs = ["agents/**/metadata.json"]
+        skill_globs = ["skills/**/metadata.json"]
+        print(
+            "WARNING: unscoped run — every provider is in scope, and a stale "
+            "metadata.json will overwrite a newer catalog entry. Read the full "
+            "diff before committing. Use --provider <id> for routine runs."
+        )
+
+    a_added: list[str] = []
+    a_updated: list[str] = []
+    for pat in agent_globs:
+        added, updated = sync_catalog(agents_catalog, pat, "agent")
+        a_added += added
+        a_updated += updated
+
+    s_added: list[str] = []
+    s_updated: list[str] = []
+    for pat in skill_globs:
+        added, updated = sync_catalog(skills_catalog, pat, "skill")
+        s_added += added
+        s_updated += updated
 
     for kind, added, updated in (
         ("agent", a_added, a_updated),

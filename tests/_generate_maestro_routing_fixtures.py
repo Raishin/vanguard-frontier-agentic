@@ -34,16 +34,26 @@ SKILLS_DIR = ROOT / "skills"
 FIXTURES_ROOT = ROOT / "tests" / "fixtures"
 
 # Stopwords removed from id-token keywords (too generic to discriminate).
+# `and` and `never` are here for a different reason than the role nouns: they
+# are ordinary English that the IDF filter cannot catch (they occur in too few
+# domains to cross the 25% threshold) yet appear in nearly every real task, so
+# they hand a free point to whichever domains happen to carry them.
 STOPWORDS = {
     "agent", "review", "operator", "advisor", "coordinator", "steward",
     "governor", "guardian", "manager", "architect", "investigator",
     "developer", "engineer", "responder", "remediator", "executor",
     "designer", "mapper", "skill", "agentic", "ai", "cloud", "service",
     "platform", "operations", "task", "workload", "general", "hardening",
+    "and", "never",
 }
 
 # Live-guard pattern: any *-live-* in id, or *-guard-agent, or *-destruction-*
 LIVE_GUARD_RE = re.compile(r"(^|-)(live-|.+-guard|.+-destruction)", re.IGNORECASE)
+
+# A bare year, year-month, or ISO date. Never a routing signal — see summary_tokens.
+# `tests/validate-maestro-routing.py` enforces the same shape on every committed
+# taxonomy, so a date cannot re-enter through a hand edit either.
+DATE_SHAPED = re.compile(r"^\d{4}(-\d{2}){0,2}$")
 
 # Provider-specific live-guard intent regex (used by the generic grader).
 GATE_INTENT = {
@@ -53,6 +63,20 @@ GATE_INTENT = {
                r"promote.*to (?:prod|production)|key destruction|policy change in prod|"
                r"mutate (?:rbac|iam|policy)|change-set.*apply|live (?:apply|push|deploy)|"
                r"force[- ]push.*main|drop\s+(?:table|database)|swap\s+production\s+slot)",
+    # TypeScript opts out of the gate entirely (`None` omits the key, matching
+    # hr/legal/netsuite, whose taxonomies carry no `live_guard_intent` either).
+    # The gate exists to stop a router auto-dispatching to a *live-mutating*
+    # agent; this board registers none, so a gate hit returns an empty route
+    # (validate-maestro-routing.py:100) and classifies nothing. Against that
+    # zero upside sits a real cost: mutation vocabulary is this board's own
+    # subject matter. `delete` is a TypeScript operator; `publish`, `migrate`,
+    # `backfill`, and `deploy` name what three of its thirteen specialists
+    # exist to review. Any regex broad enough to catch a genuine mutation
+    # request also black-holes the review requests those specialists own,
+    # whereas dropping the gate degrades a mutation request into a route to a
+    # specialist that holds no execution tool and refuses by contract — one
+    # extra hop to the right answer. Precision wins on this board.
+    "typescript": None,
 }
 
 # Per-provider gate mode override (nvidia uses runtime-evidence-gate).
@@ -90,6 +114,14 @@ def summary_tokens(summary: str) -> list[str]:
     for c in candidates:
         if c.lower() in STOPWORDS:
             continue
+        if DATE_SHAPED.match(c):
+            # A date is never a domain signal. The `\w+-\w+` arm above happily
+            # matches a spec or release date quoted in a summary (e.g. the MCP
+            # protocol revision `2026-07-28`), and because keywords containing a
+            # non-word character are matched as substrings, that token then
+            # captures any task mentioning that year-month for any reason —
+            # "our migration planned for 2026-07" routed to the MCP specialist.
+            continue
         if len(c) < 3:
             continue
         if c.lower() in {"the", "and", "for", "with", "use", "see", "agent"}:
@@ -103,6 +135,28 @@ def summary_tokens(summary: str) -> list[str]:
             seen.add(c.lower())
             out.append(c)
     return out[:6]
+
+
+def declared_keywords(provider: str, agent_id: str) -> list[str]:
+    """Routing terms an agent declares for itself in its ``metadata.json``.
+
+    Read from disk rather than from ``catalog/agents.json`` on purpose: the
+    catalog projection in ``scripts/update-catalog-new-agents.py`` carries a
+    fixed key allowlist, so this vocabulary never reaches the catalog and the
+    TUI's ``deny_unknown_fields`` structs never have to know about it. Absent or
+    malformed field → empty list, and the miner behaves exactly as before.
+    """
+    meta = ROOT / "agents" / provider / agent_id / "metadata.json"
+    if not meta.is_file():
+        return []
+    try:
+        data = json.loads(meta.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return []
+    declared = data.get("routing_keywords")
+    if not isinstance(declared, list):
+        return []
+    return [k for k in declared if isinstance(k, str) and k.strip()]
 
 
 def build_taxonomy(provider: str, agents: list[dict]) -> dict:
@@ -129,6 +183,17 @@ def build_taxonomy(provider: str, agents: list[dict]) -> dict:
 
         kws: list[str] = []
         seen_lower: set[str] = set()
+        # Declared vocabulary first. Mining an agent id and summary recovers
+        # what the agent is *called*; it cannot recover the constructs it owns,
+        # so a user asking "is `satisfies` safer than an annotation?" matched
+        # nothing at all. An agent that names its own routing terms in
+        # `metadata.json` gets them ranked ahead of the mined tokens; agents
+        # that declare none behave exactly as before.
+        for t in declared_keywords(provider, aid):
+            if t.lower() in seen_lower:
+                continue
+            seen_lower.add(t.lower())
+            kws.append(t)
         for t in id_tokens(aid, provider):
             if t.lower() in seen_lower:
                 continue
@@ -165,9 +230,15 @@ def build_taxonomy(provider: str, agents: list[dict]) -> dict:
         "domains": domains,
         "live_guards": sorted(live_guards),
         "gate_mode": GATE_MODE.get(provider, "live-guard-gate"),
-        "live_guard_intent": GATE_INTENT["default"],
-        "parallel_threshold": 0.8,
     }
+    # A provider mapped to None in GATE_INTENT opts out of the gate; omit the
+    # key rather than emitting a null, so the taxonomy matches the shape the
+    # gateless providers (hr, legal, netsuite) already ship. Inserted here, not
+    # appended, so every other provider's key order is byte-identical.
+    intent = GATE_INTENT.get(provider, GATE_INTENT["default"])
+    if intent:
+        taxonomy["live_guard_intent"] = intent
+    taxonomy["parallel_threshold"] = 0.8
     return taxonomy
 
 

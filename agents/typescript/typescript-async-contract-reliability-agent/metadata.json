@@ -1,0 +1,51 @@
+{
+  "id": "typescript-async-contract-reliability-agent",
+  "name": "TypeScript Async Contract Reliability Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "typescript",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of server-side TypeScript async reliability: floating and ignored promises, AbortSignal cancellation plumbing, unhandled-rejection posture and process-exit behavior, stream/async-iterable backpressure, concurrency bounds, cleanup, and typed error channels. Reads source and Node/lint configuration only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://typescript-eslint.io/packages/parser/",
+    "https://nodejs.org/api/process.html",
+    "https://nodejs.org/api/stream.html"
+  ],
+  "security_notes": "Static review only — reads TypeScript/JavaScript source, the declared Node version, and lint configuration; never runs, builds, deploys, or publishes the code, never contacts a live process or system, and never requests secrets, credentials, or customer data. A process-exit-behavior verdict made without a confirmed Node version is labelled inference, not confirmed.",
+  "last_verified": "2026-08-13",
+  "path": "agents/typescript/typescript-async-contract-reliability-agent/",
+  "harness_variants": {
+    "codex": "agents/typescript/typescript-async-contract-reliability-agent/harnesses/codex.toml",
+    "copilot": "agents/typescript/typescript-async-contract-reliability-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/typescript/typescript-async-contract-reliability-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/typescript/typescript-async-contract-reliability-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/typescript/typescript-async-contract-reliability-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/typescript/typescript-async-contract-reliability-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/typescript/typescript-async-contract-reliability-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "typescript-async-contract-reliability"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "routing_keywords": [
+    "AbortSignal",
+    "rejection",
+    "floating",
+    "backpressure",
+    "cancellation",
+    "unhandled-rejection",
+    "uncaughtException",
+    "concurrency-bounds",
+    "async-iterable"
+  ]
+}

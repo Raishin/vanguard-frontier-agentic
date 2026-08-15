@@ -1,0 +1,26 @@
+{
+  "id": "typescript-static-enforcement-policy",
+  "name": "typescript-static-enforcement-policy",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "typescript",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review of what 'it passes' must mean for each TypeScript package and what proving it costs: strict-family flag policy and silent loosening, typed-lint rule selection and Project Service configuration, editor-versus-CI parity, and suppression policy. Reads tsconfig, lint, and CI job configuration only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.typescriptlang.org/tsconfig",
+    "https://devblogs.microsoft.com/typescript/announcing-typescript-6-0/",
+    "https://typescript-eslint.io/packages/parser/"
+  ],
+  "security_notes": "Static review only — reads every `tsconfig.json` and its effective (resolved) configuration, lint configuration, and CI job definitions; never runs the compiler, the linter, a build, or a test, never contacts a live CI system, and never requests secrets, credentials, or customer data. A configuration finding made without the effective (extends-resolved) file is labelled inference, not confirmed.",
+  "last_verified": "2026-08-13",
+  "path": "skills/typescript/typescript-static-enforcement-policy",
+  "author": "github: VincentChuWaiChow"
+}

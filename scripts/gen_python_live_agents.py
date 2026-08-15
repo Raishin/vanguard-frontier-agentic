@@ -17,7 +17,7 @@ static generator, with three live-plane differences:
   3. Live skills declare allowed-tools `Read Grep Glob WebSearch WebFetch Bash`.
 
 Run:  python3 scripts/gen_python_live_agents.py
-Then: python3 scripts/update-catalog-new-agents.py && npm run manifest:write:all
+Then: python3 scripts/update-catalog-new-agents.py --provider python && npm run manifest:write:all
       && npm run docs-data:write && npm run model-policy:apply
       && npm run asset-integrity:write && npm run validate
 """

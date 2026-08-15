@@ -1,0 +1,251 @@
+{
+  "provider": "typescript",
+  "domains": {
+    "async-contract-reliability": {
+      "keywords": [
+        "AbortSignal",
+        "rejection",
+        "floating",
+        "backpressure",
+        "cancellation",
+        "unhandled-rejection",
+        "uncaughtException",
+        "concurrency-bounds",
+        "async-iterable",
+        "async",
+        "contract",
+        "reliability",
+        "server-side",
+        "process-exit"
+      ],
+      "agent": "typescript-async-contract-reliability-agent"
+    },
+    "build-graph-performance": {
+      "keywords": [
+        "tsbuildinfo",
+        "composite",
+        "references",
+        "generateTrace",
+        "incremental",
+        "extendedDiagnostics",
+        "type instantiation",
+        "language service",
+        "editor latency",
+        "build",
+        "graph",
+        "performance",
+        "generated-code"
+      ],
+      "agent": "typescript-build-graph-performance-agent"
+    },
+    "business-critical-automation-governance": {
+      "keywords": [
+        "backfill",
+        "dry-run",
+        "idempotency",
+        "blast radius",
+        "privileged script",
+        "checkpoint and resume",
+        "reconciliation evidence",
+        "inverse operation",
+        "approval separation",
+        "business",
+        "critical",
+        "automation",
+        "governance",
+        "blast-radius"
+      ],
+      "agent": "typescript-business-critical-automation-governance-agent"
+    },
+    "engineering-economics": {
+      "keywords": [
+        "break-even",
+        "engineering-hours",
+        "postponement",
+        "investment priority",
+        "CI compute cost",
+        "sensitivity analysis",
+        "funding decision",
+        "migration cost",
+        "loaded cost",
+        "engineering",
+        "economics"
+      ],
+      "agent": "typescript-engineering-economics-agent"
+    },
+    "estate-modernization-governor": {
+      "keywords": [
+        "upgrade",
+        "migration",
+        "skipLibCheck",
+        "estate",
+        "sequencing",
+        "staged strictness",
+        "compiler major",
+        "removed compiler option",
+        "rollback point",
+        "modernization",
+        "estate-migration",
+        "compiler-major",
+        "module-system",
+        "burn-down"
+      ],
+      "agent": "typescript-estate-modernization-governor-agent"
+    },
+    "mcp-tool-contract": {
+      "keywords": [
+        "inputSchema",
+        "outputSchema",
+        "structuredContent",
+        "MCP",
+        "protocol",
+        "JSON-RPC",
+        "server/discover",
+        "annotations",
+        "isError",
+        "tool",
+        "contract",
+        "tool-contract",
+        "JSON Schema",
+        "protocol-version"
+      ],
+      "agent": "typescript-mcp-tool-contract-agent"
+    },
+    "module-resolution-and-emit": {
+      "keywords": [
+        "exports",
+        "moduleResolution",
+        "nodenext",
+        "cjs",
+        "esm",
+        "bundler",
+        "subpath",
+        "mts",
+        "cts",
+        "dual-package",
+        "module",
+        "resolution",
+        "emit",
+        "conditional-export"
+      ],
+      "agent": "typescript-module-resolution-and-emit-agent"
+    },
+    "node-execution-compatibility": {
+      "keywords": [
+        "strip-types",
+        "erasableSyntaxOnly",
+        "tsx",
+        "entrypoint",
+        "node_modules",
+        "transform-types",
+        "type-stripping",
+        "unsupported-syntax",
+        "node",
+        "execution",
+        "compatibility",
+        "type-checked",
+        "runtime-unsupported"
+      ],
+      "agent": "typescript-node-execution-compatibility-agent"
+    },
+    "package-publication-integrity": {
+      "keywords": [
+        "provenance",
+        "trusted publishing",
+        "OIDC",
+        "tarball",
+        "registry",
+        "npm audit signatures",
+        "lifecycle script",
+        "unscoped package",
+        "release automation",
+        "package",
+        "publication",
+        "integrity",
+        "long-lived",
+        "release-automation"
+      ],
+      "agent": "typescript-package-publication-integrity-agent"
+    },
+    "public-api-and-declaration-governance": {
+      "keywords": [
+        "d.ts",
+        "declaration",
+        "semver",
+        "consumer",
+        "rollup",
+        "isolatedDeclarations",
+        "breaking-change",
+        "expectTypeOf",
+        "ts-expect-error",
+        "API report",
+        "public",
+        "api",
+        "governance",
+        "public-versus",
+        "compile-time",
+        "type-contract"
+      ],
+      "agent": "typescript-public-api-and-declaration-governance-agent"
+    },
+    "runtime-boundary-contract": {
+      "keywords": [
+        "parse",
+        "payload",
+        "webhook",
+        "unknown",
+        "validator",
+        "ingestion",
+        "safeParse",
+        "drift",
+        "deserialize",
+        "runtime",
+        "boundary",
+        "contract",
+        "trust-boundary",
+        "HTTP",
+        "third-party",
+        "SDKs"
+      ],
+      "agent": "typescript-runtime-boundary-contract-agent"
+    },
+    "static-enforcement-policy": {
+      "keywords": [
+        "projectService",
+        "lint",
+        "strict",
+        "suppression",
+        "parity",
+        "allowDefaultProject",
+        "ts-ignore",
+        "typed-lint",
+        "silent-loosening",
+        "enforcement",
+        "policy",
+        "strict-family",
+        "Project Service",
+        "editor-versus"
+      ],
+      "agent": "typescript-static-enforcement-policy-agent"
+    },
+    "type-soundness": {
+      "keywords": [
+        "variance",
+        "bivariant",
+        "predicate",
+        "satisfies",
+        "branded",
+        "narrowing",
+        "discriminated",
+        "nominal",
+        "soundness",
+        "type",
+        "type-level"
+      ],
+      "agent": "typescript-type-soundness-agent"
+    }
+  },
+  "live_guards": [],
+  "gate_mode": "live-guard-gate",
+  "parallel_threshold": 0.8
+}

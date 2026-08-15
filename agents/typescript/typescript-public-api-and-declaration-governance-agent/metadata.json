@@ -1,0 +1,52 @@
+{
+  "id": "typescript-public-api-and-declaration-governance-agent",
+  "name": "TypeScript Public API and Declaration Governance Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "typescript",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of a published TypeScript type surface: `.d.ts` correctness and emit strategy, public-versus-accidental exports, breaking-change classification and the semver decision, the consumer compilation matrix, and compile-time type-contract tests. Reads declarations, API reports, and configuration only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.typescriptlang.org/docs/handbook/modules/appendices/esm-cjs-interop.html",
+    "https://api-extractor.com/",
+    "https://vitest.dev/guide/testing-types"
+  ],
+  "security_notes": "Static review only — reads declaration files (`.d.ts`), API reports/rollups, `package.json`, consumer `tsconfig.json` files, and Vitest type-test source; never compiles, builds, runs, publishes, or executes the package, never contacts a live registry or consumer, and never requests secrets, credentials, registry tokens, or customer data. A breaking-change classification made without a supplied baseline surface is labelled inference, not confirmed.",
+  "last_verified": "2026-08-13",
+  "path": "agents/typescript/typescript-public-api-and-declaration-governance-agent/",
+  "harness_variants": {
+    "codex": "agents/typescript/typescript-public-api-and-declaration-governance-agent/harnesses/codex.toml",
+    "copilot": "agents/typescript/typescript-public-api-and-declaration-governance-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/typescript/typescript-public-api-and-declaration-governance-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/typescript/typescript-public-api-and-declaration-governance-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/typescript/typescript-public-api-and-declaration-governance-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/typescript/typescript-public-api-and-declaration-governance-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/typescript/typescript-public-api-and-declaration-governance-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "typescript-public-api-and-declaration-governance"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "routing_keywords": [
+    "d.ts",
+    "declaration",
+    "semver",
+    "consumer",
+    "rollup",
+    "isolatedDeclarations",
+    "breaking-change",
+    "expectTypeOf",
+    "ts-expect-error",
+    "API report"
+  ]
+}

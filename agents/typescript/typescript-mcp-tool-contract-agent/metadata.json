@@ -1,0 +1,51 @@
+{
+  "id": "typescript-mcp-tool-contract-agent",
+  "name": "TypeScript MCP Tool Contract Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "typescript",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of MCP tool-contract fidelity in TypeScript servers: whether `inputSchema`/`outputSchema` match handler behavior against the 2026-07-28 specification revision, JSON Schema dialect correctness, `structuredContent` vs `content`, protocol-version negotiation, and protocol vs tool-execution error classification. Reads tool definitions, handler source, and SDK/package metadata only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://modelcontextprotocol.io/specification/2026-07-28",
+    "https://json-schema.org/specification",
+    "https://json-schema.org/draft/2020-12/schema"
+  ],
+  "security_notes": "Static review only — reads declared tool schemas, handler source, `package.json` SDK versions, and the declared protocol version; never hosts, deploys, or contacts a live MCP server or transport. Never requests secrets, credentials, or customer data.",
+  "last_verified": "2026-08-13",
+  "path": "agents/typescript/typescript-mcp-tool-contract-agent/",
+  "harness_variants": {
+    "codex": "agents/typescript/typescript-mcp-tool-contract-agent/harnesses/codex.toml",
+    "copilot": "agents/typescript/typescript-mcp-tool-contract-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/typescript/typescript-mcp-tool-contract-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/typescript/typescript-mcp-tool-contract-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/typescript/typescript-mcp-tool-contract-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/typescript/typescript-mcp-tool-contract-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/typescript/typescript-mcp-tool-contract-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "typescript-mcp-tool-contract"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "routing_keywords": [
+    "inputSchema",
+    "outputSchema",
+    "structuredContent",
+    "MCP",
+    "protocol",
+    "JSON-RPC",
+    "server/discover",
+    "annotations",
+    "isError"
+  ]
+}

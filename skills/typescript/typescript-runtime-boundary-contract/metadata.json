@@ -1,0 +1,26 @@
+{
+  "id": "typescript-runtime-boundary-contract",
+  "name": "typescript-runtime-boundary-contract",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "typescript",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review of runtime trust-boundary handling in TypeScript: whether every value entering the program (HTTP, queue, environment/configuration, database reads, third-party SDKs, webhooks, `JSON.parse`, files, agent/tool calls) is parsed against a schema rather than merely asserted, `unknown`-first ingestion, one source of truth between a schema and its TypeScript type, and generated-type drift. Reads source and sanitized configuration/schema files only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://json-schema.org/specification",
+    "https://zod.dev",
+    "https://ajv.js.org/"
+  ],
+  "security_notes": "Static review only — reads TypeScript source, declared schemas, and sanitized configuration or lockfile snippets showing the installed validator and version; never compiles, builds, runs, or contacts a live system, and never requests secrets, credentials, connection strings, or customer data. A runtime-behavior or data-shape claim not confirmed by the visible schema or source is labelled assumption, never confirmed.",
+  "last_verified": "2026-08-13",
+  "path": "skills/typescript/typescript-runtime-boundary-contract",
+  "author": "github: VincentChuWaiChow"
+}

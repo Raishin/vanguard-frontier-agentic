@@ -28,8 +28,10 @@ every later axis multiplies whatever quality level exists when it lands.
 
 What already exists and works (do not rebuild, do not break):
 
-- **Catalog**: ~619 skills and ~590 agents across 43 providers; machine indexes under
-  `catalog/`; JSON-schema contracts under `schemas/`.
+- **Catalog**: several hundred skills and agents across dozens of providers; machine indexes
+  under `catalog/`; JSON-schema contracts under `schemas/`. **Never restate the counts here** —
+  `docs/_data/catalog.yml` is generated from the catalog and is the only place they are current
+  (`npm run docs-data:write`). The board roster is enumerated in `docs/language-stack-boards.md`.
 - **Gate suite**: 20+ deterministic gates behind `npm run validate` (see `package.json`
   `validate:*`), plus codespell, markdownlint, and the Rust `Gate` job (fmt/clippy/test in
   `tools/vfa-tui`) as separate CI jobs.

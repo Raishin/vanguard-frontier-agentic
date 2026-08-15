@@ -1,0 +1,27 @@
+{
+  "id": "typescript-node-execution-compatibility",
+  "name": "typescript-node-execution-compatibility",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "typescript",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review of whether TypeScript code actually runs on the target Node version and is type-checked somewhere: type-stripping limits and their runtime consequences, proof of a separate `tsc --noEmit` gate, runtime-unsupported syntax, import-extension requirements, and Node version/API gating. Reads source, the run command, CI configuration, and every `tsconfig.json` only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://nodejs.org/api/typescript.html",
+    "https://nodejs.org/learn/typescript/run-natively",
+    "https://github.com/nodejs/Release",
+    "https://nodejs.org/api/packages.html"
+  ],
+  "security_notes": "Static review only — reads source, the exact run command and flags, CI job definitions, every `tsconfig.json`, and the container entrypoint; never executes the code, never invokes Node or `tsc`, never contacts a live system, and never requests secrets, credentials, or customer data. A claim about a Node version not stated by the user is labelled assumption, never confirmed — the agent asks for the version rather than guessing.",
+  "last_verified": "2026-08-13",
+  "path": "skills/typescript/typescript-node-execution-compatibility",
+  "author": "github: VincentChuWaiChow"
+}

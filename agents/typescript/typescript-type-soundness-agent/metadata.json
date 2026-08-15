@@ -1,0 +1,51 @@
+{
+  "id": "typescript-type-soundness-agent",
+  "name": "TypeScript Type Soundness Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "typescript",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of type-level soundness in shared or published TypeScript code: generic variance, conditional and mapped type correctness, type predicates that assert more than they check, unsound narrowing, `satisfies` versus an explicit annotation, branded and nominal modelling, and `unknown`-first discipline. Reads source and sanitized `tsconfig.json` only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.typescriptlang.org/tsconfig",
+    "https://devblogs.microsoft.com/typescript/announcing-typescript-6-0/",
+    "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/"
+  ],
+  "security_notes": "Static review only — reads TypeScript/JavaScript source and sanitized `tsconfig.json`; never compiles, type-checks, builds, runs, publishes, or contacts a live system, and never requests secrets, credentials, tokens, or customer data. A claim about the installed compiler version or actual runtime behavior not shown in the supplied artifacts is labelled assumption, never confirmed.",
+  "last_verified": "2026-08-13",
+  "path": "agents/typescript/typescript-type-soundness-agent/",
+  "harness_variants": {
+    "codex": "agents/typescript/typescript-type-soundness-agent/harnesses/codex.toml",
+    "copilot": "agents/typescript/typescript-type-soundness-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/typescript/typescript-type-soundness-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/typescript/typescript-type-soundness-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/typescript/typescript-type-soundness-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/typescript/typescript-type-soundness-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/typescript/typescript-type-soundness-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "typescript-type-soundness"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "routing_keywords": [
+    "variance",
+    "bivariant",
+    "predicate",
+    "satisfies",
+    "branded",
+    "narrowing",
+    "discriminated",
+    "nominal",
+    "soundness"
+  ]
+}

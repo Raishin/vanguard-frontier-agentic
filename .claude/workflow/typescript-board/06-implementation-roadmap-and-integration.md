@@ -199,14 +199,24 @@ Constraints on this change:
 Generators, in this order:
 
 ```bash
-python3 scripts/update-catalog-new-agents.py
+python3 scripts/update-catalog-new-agents.py --provider typescript
 npm run manifest:write:all
 npm run docs-data:write
 npm run maestro-routing:write
 npm run asset-integrity:write
 ```
 
-**The first line is the one that is easy to miss, and everything downstream depends on it.**
+**`--provider` is not optional here, it is the whole safety of the step.** Unscoped, the upsert
+walks every provider and its merge is `{**catalog_entry, **projected_metadata}` — projected keys
+win. That is right when `metadata.json` is the newer side and wrong when it is not, and in this
+repository it is sometimes not: the ionos, ovhcloud, and scaleway agents each declare two harnesses
+in `metadata.json` while all seven adapter files sit beside them on disk. An unscoped run rewrites
+those catalog entries from the stale side, and because the Kiro Powers set is derived from
+cataloged harnesses, three whole providers drop out of it. **No gate catches any of it.** Scope
+every routine run; reserve the unscoped run for a deliberate catalog reconciliation whose full
+diff you read before committing.
+
+**The first line is also the one that is easy to miss, and everything downstream depends on it.**
 `npm run manifest:write` rebuilds `catalog/skill-manifest.json` from entries **already present** in
 `catalog/skills.json` — it never adds an agent or skill to `catalog/agents.json` or
 `catalog/skills.json`. The upsert path is `scripts/update-catalog-new-agents.py`, which is **not an
@@ -304,7 +314,7 @@ at implementation time, so the two workflow directories stay consistent with eac
 | `tools/vfa-tui/src/models/provider.rs` is forgotten | High | High | `cargo test` locally; CI will not catch it on a catalog-only change | Phase 0 step 0.4a plus the mandatory local cargo gates |
 | `infer_provider` in `coverage.rs` is forgotten while the enum is added | High | Medium | **nothing detects it** — every gate stays green and the board silently renders as Generic in the TUI | Phase 0 step 0.4b requires the arm plus a path-mapping test |
 | The generator overwrites a hand-curated `taxonomy.json`, and the regenerated `expected/` files make the gate pass against the replacement | High | High | diff `taxonomy.json` after any `maestro-routing:write`; check that every domain scores above zero on its own fixture | Treat `taxonomy.json` as generated ([04 §5.5](./04-routing-architecture-and-fixtures.md)); drive keywords through agent summaries; durable curation requires a generator change in its own commit |
-| A gate regex (`live_guard_intent`) contains a domain noun and black-holes that domain | Medium | High | a clear task for `publication-integrity`, `modernization`, or `automation-governance` returns an empty route in gate mode | Use the generator's destructive-verb default unchanged ([04 §5.4](./04-routing-architecture-and-fixtures.md)) |
+| A gate regex (`live_guard_intent`) black-holes a domain — via a domain noun, or via a bare verb that is ordinary board vocabulary (`delete` is a TypeScript operator) | Medium | High | a clear task for `type-soundness`, `publication-integrity`, `modernization`, or `automation-governance` returns an empty route in gate mode | Ship no `live_guard_intent` while `live_guards` is empty ([04 §5.4](./04-routing-architecture-and-fixtures.md)); probe the grader with benign-vocabulary prose after every regeneration |
 | The docs provider bullets land before the first agent, breaking the provider invariant | Medium | Medium | `npm run docs-data:write` then compare `provider_list` against the bullets | §1.1 defers both docs lists to Phase 10 |
 | A skill's `SKILL.md` contains a bash fence and forces a Bash grant that contradicts its tier | Medium | Medium | `validate:skill-coherence`, and reading the frontmatter | Board rule: no bash fences in `SKILL.md` ([05 §1](./05-skill-and-reference-architecture.md)) |
 | Scope creep back toward the rejected candidates during authoring — a codegen section grows inside runtime-boundary until it is a separate agent again | Medium | Medium | compare each agent's Owns list against [03](./03-final-board-and-boundary-contracts.md) | The Owns lists are a contract, not a starting point; additions require re-prosecution |

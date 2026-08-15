@@ -1,0 +1,51 @@
+{
+  "id": "typescript-runtime-boundary-contract-agent",
+  "name": "TypeScript Runtime Boundary Contract Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "typescript",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of runtime trust-boundary handling in TypeScript: whether every value entering the program (HTTP, queue, environment/configuration, database reads, third-party SDKs, webhooks, `JSON.parse`, files, agent/tool calls) is parsed against a schema rather than merely asserted, `unknown`-first ingestion, one source of truth between a schema and its TypeScript type, and generated-type drift. Reads source and sanitized configuration/schema files only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://json-schema.org/specification",
+    "https://zod.dev",
+    "https://ajv.js.org/"
+  ],
+  "security_notes": "Static review only — reads TypeScript source, declared schemas, and sanitized configuration or lockfile snippets showing the installed validator and version; never compiles, builds, runs, or contacts a live system, and never requests secrets, credentials, connection strings, or customer data. A runtime-behavior or data-shape claim not confirmed by the visible schema or source is labelled assumption, never confirmed.",
+  "last_verified": "2026-08-13",
+  "path": "agents/typescript/typescript-runtime-boundary-contract-agent/",
+  "harness_variants": {
+    "codex": "agents/typescript/typescript-runtime-boundary-contract-agent/harnesses/codex.toml",
+    "copilot": "agents/typescript/typescript-runtime-boundary-contract-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/typescript/typescript-runtime-boundary-contract-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/typescript/typescript-runtime-boundary-contract-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/typescript/typescript-runtime-boundary-contract-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/typescript/typescript-runtime-boundary-contract-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/typescript/typescript-runtime-boundary-contract-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "typescript-runtime-boundary-contract"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "routing_keywords": [
+    "parse",
+    "payload",
+    "webhook",
+    "unknown",
+    "validator",
+    "ingestion",
+    "safeParse",
+    "drift",
+    "deserialize"
+  ]
+}

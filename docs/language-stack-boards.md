@@ -6,7 +6,7 @@ alongside the provider boards (`aws`, `azure`, `gcp`, and others) and share the
 same `provider` faceting axis: each shipped topical board has its own dedicated
 `provider` enum value.
 
-This document covers the current boards: `frontend`, `.NET`, `Java`, `Kotlin`, `PHP`, `Python`, `legal`, `hr`, `marketing`,
+This document covers the current boards: `frontend`, `.NET`, `Java`, `Kotlin`, `PHP`, `Python`, `TypeScript`, `legal`, `hr`, `marketing`,
 `salesforce`, `netsuite`, `accounting`, `finance`, `sap` (SAP S/4HANA + BTP
 enterprise board), `microsoft` (Microsoft 365 / Dynamics 365), `databricks`,
 and `snowflake` (data and analytics platforms). It also describes how to use
@@ -589,6 +589,66 @@ agents/python/
 Each agent reads source, sanitized configuration, and dependency manifests only. No
 agent runs `pip install`, executes or imports the code, opens a database or network
 connection, deploys, publishes, or edits project files.
+
+---
+
+### TypeScript
+
+The `typescript` board reviews the TypeScript **program** and the **published package** —
+not the frontend application. Its unit of analysis is compiler configuration, module
+resolution and emit, the declaration surface, program-graph cost, Node execution, and the
+runtime boundaries that type erasure leaves undefended. TypeScript is not synonymous with
+React: framework and application-diff work stays with the `frontend` board, and the split is
+written into both boards' refusal lists rather than left to convention.
+
+| Property | Value |
+|----------|-------|
+| `provider` | `typescript` |
+| ID prefix | `typescript-*` |
+| Agent directory | `agents/typescript/` |
+| Skill directory | `skills/typescript/` |
+| Agents | 14 |
+| Skills | 14 (1:1 companion skill per agent) |
+| Install roles | `typescript-application-review-engineer`, `typescript-library-maintainer`, `typescript-platform-build-engineer`, `typescript-agentic-contract-engineer` |
+| Execution tier | `static-review` (all agents) |
+
+**Agent directory layout**
+
+```
+agents/typescript/
+  typescript-maestro-agent/
+  typescript-type-soundness-agent/
+  typescript-runtime-boundary-contract-agent/
+  typescript-module-resolution-and-emit-agent/
+  typescript-node-execution-compatibility-agent/
+  typescript-public-api-and-declaration-governance-agent/
+  typescript-build-graph-performance-agent/
+  typescript-static-enforcement-policy-agent/
+  typescript-async-contract-reliability-agent/
+  typescript-package-publication-integrity-agent/
+  typescript-estate-modernization-governor-agent/
+  typescript-mcp-tool-contract-agent/
+  typescript-business-critical-automation-governance-agent/
+  typescript-engineering-economics-agent/
+```
+
+**Example agents**
+
+| Agent | Scope |
+|-------|-------|
+| `typescript-maestro-agent` | Router; classifies a TypeScript task and dispatches the narrowest specialist or a parallel team of up to four. Never answers TypeScript questions itself. |
+| `typescript-runtime-boundary-contract-agent` | Every point where external data enters the program — HTTP, queues, environment and configuration, database reads, third-party SDKs, webhooks — checking that the value is parsed rather than asserted, and that a generated type is never trusted as a runtime check. |
+| `typescript-node-execution-compatibility-agent` | Whether the code runs on the target Node **and is type-checked somewhere**: type-stripping limits, unsupported syntax, and proof of a separate `tsc --noEmit` gate. Exists to kill the "Node runs TypeScript, so the compiler is optional" misconception. |
+| `typescript-public-api-and-declaration-governance-agent` | `.d.ts` correctness, what is public versus accidentally exported, breaking-change classification against semver, and the consumer-compilation and type-level test matrix that proves it. |
+| `typescript-build-graph-performance-agent` | The TypeScript program graph — project references, `composite`, `.tsbuildinfo`, type-instantiation cost. Refuses to prescribe a restructuring without a supplied measurement. |
+| `typescript-mcp-tool-contract-agent` | Whether a declared MCP tool contract matches its TypeScript handler: `inputSchema`/`outputSchema` fidelity, JSON Schema dialect, `structuredContent`, protocol-version negotiation, and error contracts. |
+
+Every agent reads source and sanitized configuration only. No agent compiles, builds, runs
+tests, publishes, deploys, or contacts a live system — including the automation-governance
+agent, which reviews privileged scripts precisely so that it can withhold approval, and the
+economics agent, which consumes measurements other specialists produce and refuses to
+originate one. The design record, including the candidates that were rejected and why, is in
+[`.claude/workflow/typescript-board/`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/tree/master/.claude/workflow/typescript-board).
 
 ---
 

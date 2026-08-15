@@ -2091,6 +2091,78 @@
         "python-live-continuous-control-testing",
         "python-live-exception-governance"
       ]
+    },
+    "typescript-application-review-engineer": {
+      "label": "TypeScript Application Review Engineer",
+      "description": "Static review for TypeScript services and applications: runtime boundary contracts at every point external data enters the program, type-model soundness in shared code, promise and cancellation contracts, whether the code runs on the target Node and is type-checked anywhere, and what the static toolchain is required to prove. Static review only — never compiles, builds, runs, publishes, or contacts a live system.",
+      "agents": [
+        "typescript-maestro-agent",
+        "typescript-runtime-boundary-contract-agent",
+        "typescript-type-soundness-agent",
+        "typescript-async-contract-reliability-agent",
+        "typescript-node-execution-compatibility-agent",
+        "typescript-static-enforcement-policy-agent"
+      ],
+      "skills": [
+        "typescript-maestro",
+        "typescript-runtime-boundary-contract",
+        "typescript-type-soundness",
+        "typescript-async-contract-reliability",
+        "typescript-node-execution-compatibility",
+        "typescript-static-enforcement-policy"
+      ]
+    },
+    "typescript-library-maintainer": {
+      "label": "TypeScript Library Maintainer",
+      "description": "Static review for published TypeScript packages: declaration correctness and breaking-change classification against semver, module resolution and emit across every consumer mode, publication authority and provenance, and the soundness of the exported type model. Static review only — never publishes, packs, or contacts a registry.",
+      "agents": [
+        "typescript-maestro-agent",
+        "typescript-public-api-and-declaration-governance-agent",
+        "typescript-module-resolution-and-emit-agent",
+        "typescript-package-publication-integrity-agent",
+        "typescript-type-soundness-agent"
+      ],
+      "skills": [
+        "typescript-maestro",
+        "typescript-public-api-and-declaration-governance",
+        "typescript-module-resolution-and-emit",
+        "typescript-package-publication-integrity",
+        "typescript-type-soundness"
+      ]
+    },
+    "typescript-platform-build-engineer": {
+      "label": "TypeScript Platform Build Engineer",
+      "description": "Static review of TypeScript build and enforcement economics: the program graph and what in it costs measured time, the enforcement contract across packages and its cost, migration sequencing across an estate, and the funding case built from supplied measurements. Static review only — never runs a build, and never originates a measurement it was not given.",
+      "agents": [
+        "typescript-maestro-agent",
+        "typescript-build-graph-performance-agent",
+        "typescript-static-enforcement-policy-agent",
+        "typescript-estate-modernization-governor-agent",
+        "typescript-engineering-economics-agent"
+      ],
+      "skills": [
+        "typescript-maestro",
+        "typescript-build-graph-performance",
+        "typescript-static-enforcement-policy",
+        "typescript-estate-modernization-governor",
+        "typescript-engineering-economics"
+      ]
+    },
+    "typescript-agentic-contract-engineer": {
+      "label": "TypeScript Agentic Contract Engineer",
+      "description": "Static review of TypeScript agent and automation contracts: MCP tool schema fidelity against handler behavior, protocol version and error contracts, validation at every point external data enters the program, and governance of privileged automation. Static review only — never executes a tool, a script, or a migration.",
+      "agents": [
+        "typescript-maestro-agent",
+        "typescript-mcp-tool-contract-agent",
+        "typescript-runtime-boundary-contract-agent",
+        "typescript-business-critical-automation-governance-agent"
+      ],
+      "skills": [
+        "typescript-maestro",
+        "typescript-mcp-tool-contract",
+        "typescript-runtime-boundary-contract",
+        "typescript-business-critical-automation-governance"
+      ]
     }
   }
 }

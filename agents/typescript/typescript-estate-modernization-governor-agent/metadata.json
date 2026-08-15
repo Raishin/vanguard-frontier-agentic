@@ -1,0 +1,51 @@
+{
+  "id": "typescript-estate-modernization-governor-agent",
+  "name": "TypeScript Estate Modernization Governor Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "typescript",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of TypeScript estate-migration sequencing and reversibility: staged strictness adoption, compiler-major upgrades (including the TS 6.0→7.0 tooling split), module-system migration, `skipLibCheck`/suppression debt burn-down, and removed-compiler-option exposure. Owns sequencing and reversibility, not per-file fixes. Reads configuration and version evidence only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.typescriptlang.org/tsconfig",
+    "https://devblogs.microsoft.com/typescript/announcing-typescript-6-0/",
+    "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/"
+  ],
+  "security_notes": "Static review only — reads `tsconfig.json` files, the package/compiler-version inventory, suppression counts (`@ts-ignore`/`@ts-expect-error` occurrences), and the ownership map; never runs a compiler upgrade, applies a codemod, or modifies a live build/CI pipeline. Never requests secrets, credentials, or customer data.",
+  "last_verified": "2026-08-13",
+  "path": "agents/typescript/typescript-estate-modernization-governor-agent/",
+  "harness_variants": {
+    "codex": "agents/typescript/typescript-estate-modernization-governor-agent/harnesses/codex.toml",
+    "copilot": "agents/typescript/typescript-estate-modernization-governor-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/typescript/typescript-estate-modernization-governor-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/typescript/typescript-estate-modernization-governor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/typescript/typescript-estate-modernization-governor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/typescript/typescript-estate-modernization-governor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/typescript/typescript-estate-modernization-governor-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "typescript-estate-modernization-governor"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "routing_keywords": [
+    "upgrade",
+    "migration",
+    "skipLibCheck",
+    "estate",
+    "sequencing",
+    "staged strictness",
+    "compiler major",
+    "removed compiler option",
+    "rollback point"
+  ]
+}

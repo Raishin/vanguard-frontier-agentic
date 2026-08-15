@@ -61,7 +61,7 @@
     "validate:codex-marketplace": "python3 tests/validate-codex-marketplace.py",
     "test:codex-plugin-marketplace-install": "node tests/test-codex-plugin-marketplace-install.test.mjs",
     "validate:finops-fixtures": "python3 tests/validate-finops-price-fixtures.py",
-    "validate:readme-counts": "node tests/validate-readme-counts.mjs",
+    "validate:readme-counts": "node tests/validate-readme-counts.mjs && node scripts/generate-readme-counts.mjs --check",
     "validate:qa-cluster": "node tests/eval-qa-cluster.mjs",
     "validate:frontend-security-detection": "python3 tests/validate-frontend-security-detection.py",
     "validate:agent-tool-tiers": "python3 tests/validate-agent-tool-tiers.py",

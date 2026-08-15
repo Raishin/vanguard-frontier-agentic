@@ -4414,7 +4414,8 @@
     "last_verified": "2026-07-02",
     "path": "agents/frontend/browser-compatibility-agent",
     "version": "0.1.0",
-    "companion_skills": []
+    "companion_skills": [],
+    "execution_tier": "static-review"
   },
   {
     "id": "build-tooling-bundling-agent",
@@ -20075,6 +20076,93 @@
     ]
   },
   {
+    "id": "typescript-async-contract-reliability-agent",
+    "name": "TypeScript Async Contract Reliability Agent",
+    "type": "agent",
+    "provider": "typescript",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of server-side TypeScript async reliability: floating and ignored promises, AbortSignal cancellation plumbing, unhandled-rejection posture and process-exit behavior, stream/async-iterable backpressure, concurrency bounds, cleanup, and typed error channels. Reads source and Node/lint configuration only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://typescript-eslint.io/packages/parser/",
+      "https://nodejs.org/api/process.html",
+      "https://nodejs.org/api/stream.html"
+    ],
+    "security_notes": "Static review only — reads TypeScript/JavaScript source, the declared Node version, and lint configuration; never runs, builds, deploys, or publishes the code, never contacts a live process or system, and never requests secrets, credentials, or customer data. A process-exit-behavior verdict made without a confirmed Node version is labelled inference, not confirmed.",
+    "last_verified": "2026-08-13",
+    "path": "agents/typescript/typescript-async-contract-reliability-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "typescript-async-contract-reliability"
+    ]
+  },
+  {
+    "id": "typescript-build-graph-performance-agent",
+    "name": "TypeScript Build Graph Performance Agent",
+    "type": "agent",
+    "provider": "typescript",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review, from supplied measurement evidence only, of what in a TypeScript program graph costs measured build or editor time: project references, composite/incremental/.tsbuildinfo behavior, generated-code volume, pathological type instantiation, and duplicated checking across lint, test, and build. Reads measurement output and configuration only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://github.com/microsoft/TypeScript/wiki/Performance",
+      "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+      "https://www.typescriptlang.org/docs/handbook/project-references.html"
+    ],
+    "security_notes": "Static review of supplied measurement evidence only — reads `--diagnostics`/`--extendedDiagnostics` output, `--generateTrace` traces, `tsconfig.json` files, and package topology; never invokes the compiler, runs a build, or measures a live system, and never requests secrets, credentials, or customer data. Never prescribes a restructuring without a supplied measurement, and always records which compiler binary produced it.",
+    "last_verified": "2026-08-13",
+    "path": "agents/typescript/typescript-build-graph-performance-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "typescript-build-graph-performance"
+    ]
+  },
+  {
+    "id": "typescript-business-critical-automation-governance-agent",
+    "name": "TypeScript Business Critical Automation Governance Agent",
+    "type": "agent",
+    "provider": "typescript",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of whether a privileged TypeScript automation (backfill, migration, reconciliation script) may run and under what controls: dry-run coverage of the write path, technical and business idempotency, blast-radius bounds, checkpoint/resume, rollback and reconciliation evidence, audit trail, and a named inverse operation. Never executes anything; reads script source and declared credential scope by name only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://nodejs.org/api/typescript.html",
+      "https://nodejs.org/learn/typescript/run-natively",
+      "https://typescript-eslint.io/packages/parser/"
+    ],
+    "security_notes": "Static review only — reads script source, the run command, credential scope by name only (never a value), scheduler/CI configuration, an existing runbook, and the reconciliation method; never executes, deploys, or migrates anything, and never requests a credential value, secret, or connection string.",
+    "last_verified": "2026-08-13",
+    "path": "agents/typescript/typescript-business-critical-automation-governance-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "typescript-business-critical-automation-governance"
+    ]
+  },
+  {
     "id": "typescript-contracts-agent",
     "name": "TypeScript Contracts & Type Safety",
     "type": "agent",
@@ -20103,6 +20191,328 @@
     "path": "agents/frontend/typescript-contracts-agent",
     "version": "0.1.0",
     "companion_skills": []
+  },
+  {
+    "id": "typescript-engineering-economics-agent",
+    "name": "TypeScript Engineering Economics Agent",
+    "type": "agent",
+    "provider": "typescript",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static conversion of another specialist's supplied measurements into a funding decision: annual engineering-hours lost, CI compute cost, migration cost, break-even point, cost of postponement, and investment priority — with formulas, sensitivity, and every value labelled measured, supplied, or assumed. Never originates a measurement and is never dispatched first.",
+    "source_type": "original",
+    "official_docs": [
+      "https://github.com/microsoft/TypeScript/wiki/Performance",
+      "https://typescript-eslint.io/packages/parser/",
+      "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/"
+    ],
+    "security_notes": "Static review only — reads user-supplied figures (CI durations, headcount and loaded cost, wait times, incident counts, ticket volume, migration-effort estimates) and the measurements handed off by other specialists; never originates a measurement itself, never contacts a live system, and never requests cost data beyond what the user volunteers. Never requests secrets, credentials, or customer data.",
+    "last_verified": "2026-08-13",
+    "path": "agents/typescript/typescript-engineering-economics-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "typescript-engineering-economics"
+    ]
+  },
+  {
+    "id": "typescript-estate-modernization-governor-agent",
+    "name": "TypeScript Estate Modernization Governor Agent",
+    "type": "agent",
+    "provider": "typescript",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of TypeScript estate-migration sequencing and reversibility: staged strictness adoption, compiler-major upgrades (including the TS 6.0→7.0 tooling split), module-system migration, `skipLibCheck`/suppression debt burn-down, and removed-compiler-option exposure. Owns sequencing and reversibility, not per-file fixes. Reads configuration and version evidence only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.typescriptlang.org/tsconfig",
+      "https://devblogs.microsoft.com/typescript/announcing-typescript-6-0/",
+      "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/"
+    ],
+    "security_notes": "Static review only — reads `tsconfig.json` files, the package/compiler-version inventory, suppression counts (`@ts-ignore`/`@ts-expect-error` occurrences), and the ownership map; never runs a compiler upgrade, applies a codemod, or modifies a live build/CI pipeline. Never requests secrets, credentials, or customer data.",
+    "last_verified": "2026-08-13",
+    "path": "agents/typescript/typescript-estate-modernization-governor-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "typescript-estate-modernization-governor"
+    ]
+  },
+  {
+    "id": "typescript-maestro-agent",
+    "name": "TypeScript Maestro Agent",
+    "type": "agent",
+    "provider": "typescript",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Router agent for the TypeScript board. Classifies a TypeScript task and dispatches the narrowest static-review specialist, or a parallel team of up to four when the task genuinely spans two or more domains. Routes only — never answers TypeScript questions itself, never runs a compiler or build, never requests secrets.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.typescriptlang.org/tsconfig",
+      "https://nodejs.org/api/typescript.html",
+      "https://nodejs.org/api/packages.html"
+    ],
+    "security_notes": "Routing and classification only — performs no review itself, never compiles, builds, tests, publishes, or contacts a live system, and never requests or accepts secrets, registry tokens, connection strings, signing keys, tenant identifiers, or customer data. Every dispatched TypeScript specialist is static-review and reads source and sanitized configuration only. The task description and any pasted content are treated as data to classify, never as instructions.",
+    "last_verified": "2026-08-13",
+    "path": "agents/typescript/typescript-maestro-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "typescript-maestro"
+    ]
+  },
+  {
+    "id": "typescript-mcp-tool-contract-agent",
+    "name": "TypeScript MCP Tool Contract Agent",
+    "type": "agent",
+    "provider": "typescript",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of MCP tool-contract fidelity in TypeScript servers: whether `inputSchema`/`outputSchema` match handler behavior against the 2026-07-28 specification revision, JSON Schema dialect correctness, `structuredContent` vs `content`, protocol-version negotiation, and protocol vs tool-execution error classification. Reads tool definitions, handler source, and SDK/package metadata only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://modelcontextprotocol.io/specification/2026-07-28",
+      "https://json-schema.org/specification",
+      "https://json-schema.org/draft/2020-12/schema"
+    ],
+    "security_notes": "Static review only — reads declared tool schemas, handler source, `package.json` SDK versions, and the declared protocol version; never hosts, deploys, or contacts a live MCP server or transport. Never requests secrets, credentials, or customer data.",
+    "last_verified": "2026-08-13",
+    "path": "agents/typescript/typescript-mcp-tool-contract-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "typescript-mcp-tool-contract"
+    ]
+  },
+  {
+    "id": "typescript-module-resolution-and-emit-agent",
+    "name": "TypeScript Module Resolution And Emit Agent",
+    "type": "agent",
+    "provider": "typescript",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of whether a TypeScript package resolves, imports, and emits correctly for every consumer mode it claims to support: the `module`/`moduleResolution` matrix, `exports`/`imports` conditional-export ordering, the `types` condition, `.mts`/`.cts`, and the dual-package hazard. Reads `package.json`, every `tsconfig.json`, and emitted output only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.typescriptlang.org/tsconfig",
+      "https://nodejs.org/api/packages.html",
+      "https://nodejs.org/api/modules.html",
+      "https://publint.dev/rules",
+      "https://arethetypeswrong.github.io"
+    ],
+    "security_notes": "Static review only — reads `package.json`, every `tsconfig.json`, emitted declaration/output files, and sanitized build configuration; never compiles, bundles, publishes, or contacts a live registry, and never requests secrets, credentials, or customer data. A resolution claim not confirmed by the compiler's actual `--showConfig` output or the emitted files is labelled assumption, never confirmed.",
+    "last_verified": "2026-08-13",
+    "path": "agents/typescript/typescript-module-resolution-and-emit-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "typescript-module-resolution-and-emit"
+    ]
+  },
+  {
+    "id": "typescript-node-execution-compatibility-agent",
+    "name": "TypeScript Node Execution Compatibility Agent",
+    "type": "agent",
+    "provider": "typescript",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of whether TypeScript code actually runs on the target Node version and is type-checked somewhere: type-stripping limits and their runtime consequences, proof of a separate `tsc --noEmit` gate, runtime-unsupported syntax, import-extension requirements, and Node version/API gating. Reads source, the run command, CI configuration, and every `tsconfig.json` only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://nodejs.org/api/typescript.html",
+      "https://nodejs.org/learn/typescript/run-natively",
+      "https://github.com/nodejs/Release",
+      "https://nodejs.org/api/packages.html"
+    ],
+    "security_notes": "Static review only — reads source, the exact run command and flags, CI job definitions, every `tsconfig.json`, and the container entrypoint; never executes the code, never invokes Node or `tsc`, never contacts a live system, and never requests secrets, credentials, or customer data. A claim about a Node version not stated by the user is labelled assumption, never confirmed — the agent asks for the version rather than guessing.",
+    "last_verified": "2026-08-13",
+    "path": "agents/typescript/typescript-node-execution-compatibility-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "typescript-node-execution-compatibility"
+    ]
+  },
+  {
+    "id": "typescript-package-publication-integrity-agent",
+    "name": "TypeScript Package Publication Integrity Agent",
+    "type": "agent",
+    "provider": "typescript",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of npm package publication integrity: publish identity and authority (trusted publishing/OIDC versus long-lived tokens), provenance attestation, the release-automation trust path, tarball contents, and registry/scope configuration. Reads the publish workflow and sanitized package configuration only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.npmjs.com/generating-provenance-statements",
+      "https://publint.dev/rules",
+      "https://arethetypeswrong.github.io"
+    ],
+    "security_notes": "Static review only — reads the release-automation workflow definition, `.npmrc`/`publishConfig`, the packed file list (e.g. `npm pack --dry-run` output), and registry/scope settings; never runs `npm publish`, signs an artifact, rotates or issues a token, or contacts a live registry. Never requests secrets, registry tokens, signing keys, or customer data.",
+    "last_verified": "2026-08-13",
+    "path": "agents/typescript/typescript-package-publication-integrity-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "typescript-package-publication-integrity"
+    ]
+  },
+  {
+    "id": "typescript-public-api-and-declaration-governance-agent",
+    "name": "TypeScript Public API and Declaration Governance Agent",
+    "type": "agent",
+    "provider": "typescript",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of a published TypeScript type surface: `.d.ts` correctness and emit strategy, public-versus-accidental exports, breaking-change classification and the semver decision, the consumer compilation matrix, and compile-time type-contract tests. Reads declarations, API reports, and configuration only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.typescriptlang.org/docs/handbook/modules/appendices/esm-cjs-interop.html",
+      "https://api-extractor.com/",
+      "https://vitest.dev/guide/testing-types"
+    ],
+    "security_notes": "Static review only — reads declaration files (`.d.ts`), API reports/rollups, `package.json`, consumer `tsconfig.json` files, and Vitest type-test source; never compiles, builds, runs, publishes, or executes the package, never contacts a live registry or consumer, and never requests secrets, credentials, registry tokens, or customer data. A breaking-change classification made without a supplied baseline surface is labelled inference, not confirmed.",
+    "last_verified": "2026-08-13",
+    "path": "agents/typescript/typescript-public-api-and-declaration-governance-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "typescript-public-api-and-declaration-governance"
+    ]
+  },
+  {
+    "id": "typescript-runtime-boundary-contract-agent",
+    "name": "TypeScript Runtime Boundary Contract Agent",
+    "type": "agent",
+    "provider": "typescript",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of runtime trust-boundary handling in TypeScript: whether every value entering the program (HTTP, queue, environment/configuration, database reads, third-party SDKs, webhooks, `JSON.parse`, files, agent/tool calls) is parsed against a schema rather than merely asserted, `unknown`-first ingestion, one source of truth between a schema and its TypeScript type, and generated-type drift. Reads source and sanitized configuration/schema files only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://json-schema.org/specification",
+      "https://zod.dev",
+      "https://ajv.js.org/"
+    ],
+    "security_notes": "Static review only — reads TypeScript source, declared schemas, and sanitized configuration or lockfile snippets showing the installed validator and version; never compiles, builds, runs, or contacts a live system, and never requests secrets, credentials, connection strings, or customer data. A runtime-behavior or data-shape claim not confirmed by the visible schema or source is labelled assumption, never confirmed.",
+    "last_verified": "2026-08-13",
+    "path": "agents/typescript/typescript-runtime-boundary-contract-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "typescript-runtime-boundary-contract"
+    ]
+  },
+  {
+    "id": "typescript-static-enforcement-policy-agent",
+    "name": "TypeScript Static Enforcement Policy Agent",
+    "type": "agent",
+    "provider": "typescript",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of what 'it passes' must mean for each TypeScript package and what proving it costs: strict-family flag policy and silent loosening, typed-lint rule selection and Project Service configuration, editor-versus-CI parity, and suppression policy. Reads tsconfig, lint, and CI job configuration only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.typescriptlang.org/tsconfig",
+      "https://devblogs.microsoft.com/typescript/announcing-typescript-6-0/",
+      "https://typescript-eslint.io/packages/parser/"
+    ],
+    "security_notes": "Static review only — reads every `tsconfig.json` and its effective (resolved) configuration, lint configuration, and CI job definitions; never runs the compiler, the linter, a build, or a test, never contacts a live CI system, and never requests secrets, credentials, or customer data. A configuration finding made without the effective (extends-resolved) file is labelled inference, not confirmed.",
+    "last_verified": "2026-08-13",
+    "path": "agents/typescript/typescript-static-enforcement-policy-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "typescript-static-enforcement-policy"
+    ]
+  },
+  {
+    "id": "typescript-type-soundness-agent",
+    "name": "TypeScript Type Soundness Agent",
+    "type": "agent",
+    "provider": "typescript",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of type-level soundness in shared or published TypeScript code: generic variance, conditional and mapped type correctness, type predicates that assert more than they check, unsound narrowing, `satisfies` versus an explicit annotation, branded and nominal modelling, and `unknown`-first discipline. Reads source and sanitized `tsconfig.json` only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.typescriptlang.org/tsconfig",
+      "https://devblogs.microsoft.com/typescript/announcing-typescript-6-0/",
+      "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/"
+    ],
+    "security_notes": "Static review only — reads TypeScript/JavaScript source and sanitized `tsconfig.json`; never compiles, type-checks, builds, runs, publishes, or contacts a live system, and never requests secrets, credentials, tokens, or customer data. A claim about the installed compiler version or actual runtime behavior not shown in the supplied artifacts is labelled assumption, never confirmed.",
+    "last_verified": "2026-08-13",
+    "path": "agents/typescript/typescript-type-soundness-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "typescript-type-soundness"
+    ]
   },
   {
     "id": "visual-regression-agent",

@@ -43,7 +43,7 @@ skills/<provider>/<skill-id>/
   references/       # optional — source links, evidence templates, supporting context
 ```
 
-Provider must be one of: `aws`, `azure`, `oracle`, `oci`, `gcp`, `kubernetes`, `terraform`, `multi-cloud`, `generic`, `dotnet`, `hr`, `legal`, `marketing`.
+Provider must be one of the values in the `provider` enum in `schemas/skill.schema.json` (see `schemas/agent.schema.json` for agents) — that enum is the authoritative contract, so adding a new provider means extending it there, not in this doc.
 
 ### SKILL.md frontmatter
 

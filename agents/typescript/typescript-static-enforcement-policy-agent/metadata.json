@@ -1,0 +1,51 @@
+{
+  "id": "typescript-static-enforcement-policy-agent",
+  "name": "TypeScript Static Enforcement Policy Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "typescript",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of what 'it passes' must mean for each TypeScript package and what proving it costs: strict-family flag policy and silent loosening, typed-lint rule selection and Project Service configuration, editor-versus-CI parity, and suppression policy. Reads tsconfig, lint, and CI job configuration only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.typescriptlang.org/tsconfig",
+    "https://devblogs.microsoft.com/typescript/announcing-typescript-6-0/",
+    "https://typescript-eslint.io/packages/parser/"
+  ],
+  "security_notes": "Static review only — reads every `tsconfig.json` and its effective (resolved) configuration, lint configuration, and CI job definitions; never runs the compiler, the linter, a build, or a test, never contacts a live CI system, and never requests secrets, credentials, or customer data. A configuration finding made without the effective (extends-resolved) file is labelled inference, not confirmed.",
+  "last_verified": "2026-08-13",
+  "path": "agents/typescript/typescript-static-enforcement-policy-agent/",
+  "harness_variants": {
+    "codex": "agents/typescript/typescript-static-enforcement-policy-agent/harnesses/codex.toml",
+    "copilot": "agents/typescript/typescript-static-enforcement-policy-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/typescript/typescript-static-enforcement-policy-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/typescript/typescript-static-enforcement-policy-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/typescript/typescript-static-enforcement-policy-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/typescript/typescript-static-enforcement-policy-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/typescript/typescript-static-enforcement-policy-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "typescript-static-enforcement-policy"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "routing_keywords": [
+    "projectService",
+    "lint",
+    "strict",
+    "suppression",
+    "parity",
+    "allowDefaultProject",
+    "ts-ignore",
+    "typed-lint",
+    "silent-loosening"
+  ]
+}

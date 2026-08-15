@@ -33,7 +33,7 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "a6a3229fcd4f8a2c443007619087be438d79725141cada2e7e109d619456e99b",
+      "aggregate_sha256": "b1efcbd24bb9af5f7a807ec6ba52fe0e36f490913628a687c9e2f6b8f5f8039f",
       "files": [
         {
           "path": "agents/AGENTS.md",
@@ -9632,8 +9632,8 @@
         },
         {
           "path": "agents/frontend/browser-compatibility-agent/metadata.json",
-          "sha256": "b1f92eb546d1b0fe5c48b308dc5907f981b0b68d16e7a514f675a8ba47771bf3",
-          "bytes": 2000
+          "sha256": "36da9b0b11bb56f51748792153c272f2009f056f4c5aad5f9cba5a15036e1a26",
+          "bytes": 1980
         },
         {
           "path": "agents/frontend/build-tooling-bundling-agent/AGENT.md",
@@ -32051,6 +32051,641 @@
           "bytes": 1422
         },
         {
+          "path": "agents/typescript/typescript-async-contract-reliability-agent/AGENT.md",
+          "sha256": "fd3d8d41622e502cf3d6c009e420f51f1fba00ede7c7d5b2b4d72be1ee67407f",
+          "bytes": 8846
+        },
+        {
+          "path": "agents/typescript/typescript-async-contract-reliability-agent/harnesses/claude-code.agent.md",
+          "sha256": "162d26faa6eb8c1a778482c3f4f122c74e43b1ce1d1f5a1f76477cce2b111bda",
+          "bytes": 8209
+        },
+        {
+          "path": "agents/typescript/typescript-async-contract-reliability-agent/harnesses/codex.toml",
+          "sha256": "87ce8700391af293ce3308828713688d91825d181f3756a642a4407a82b92e85",
+          "bytes": 5564
+        },
+        {
+          "path": "agents/typescript/typescript-async-contract-reliability-agent/harnesses/copilot.agent.md",
+          "sha256": "5797da9c30992a98f2a2e5389277f9ef854e1e1a525487957230beaa56b9b49e",
+          "bytes": 8315
+        },
+        {
+          "path": "agents/typescript/typescript-async-contract-reliability-agent/harnesses/cursor.agent.md",
+          "sha256": "162d26faa6eb8c1a778482c3f4f122c74e43b1ce1d1f5a1f76477cce2b111bda",
+          "bytes": 8209
+        },
+        {
+          "path": "agents/typescript/typescript-async-contract-reliability-agent/harnesses/gemini.agent.md",
+          "sha256": "162d26faa6eb8c1a778482c3f4f122c74e43b1ce1d1f5a1f76477cce2b111bda",
+          "bytes": 8209
+        },
+        {
+          "path": "agents/typescript/typescript-async-contract-reliability-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "b92e4d6604de57f64441260d49111b940893eab9dd610be66bd2f108e88c99e9",
+          "bytes": 8289
+        },
+        {
+          "path": "agents/typescript/typescript-async-contract-reliability-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "162d26faa6eb8c1a778482c3f4f122c74e43b1ce1d1f5a1f76477cce2b111bda",
+          "bytes": 8209
+        },
+        {
+          "path": "agents/typescript/typescript-async-contract-reliability-agent/metadata.json",
+          "sha256": "67f22288bd6607b9d8113f6fd457b0c8c5a22039f0fc9668a99d5ed52959955e",
+          "bytes": 2501
+        },
+        {
+          "path": "agents/typescript/typescript-build-graph-performance-agent/AGENT.md",
+          "sha256": "ac92ba9b88b3952779fa6bde0400ac38f417632b7e3c58e5bbb80d89a0cda26c",
+          "bytes": 8705
+        },
+        {
+          "path": "agents/typescript/typescript-build-graph-performance-agent/harnesses/claude-code.agent.md",
+          "sha256": "9af61e387c82109387a7cb72d7c16ab7cb704cef0204903d6350a4a5cbeed8c4",
+          "bytes": 8071
+        },
+        {
+          "path": "agents/typescript/typescript-build-graph-performance-agent/harnesses/codex.toml",
+          "sha256": "806007395950d402b1a0d99b4842ea74bc7c51da915db0f6e05dda03fafebcfb",
+          "bytes": 5528
+        },
+        {
+          "path": "agents/typescript/typescript-build-graph-performance-agent/harnesses/copilot.agent.md",
+          "sha256": "4416add373f7c90bee4a9bdd545c039559ebf036e7554c76c81b0ea9398ca7de",
+          "bytes": 8177
+        },
+        {
+          "path": "agents/typescript/typescript-build-graph-performance-agent/harnesses/cursor.agent.md",
+          "sha256": "9af61e387c82109387a7cb72d7c16ab7cb704cef0204903d6350a4a5cbeed8c4",
+          "bytes": 8071
+        },
+        {
+          "path": "agents/typescript/typescript-build-graph-performance-agent/harnesses/gemini.agent.md",
+          "sha256": "9af61e387c82109387a7cb72d7c16ab7cb704cef0204903d6350a4a5cbeed8c4",
+          "bytes": 8071
+        },
+        {
+          "path": "agents/typescript/typescript-build-graph-performance-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "76fa6bde450db085cb06cfd9b139acad8a9e928b138e78ab77298977a99b3c76",
+          "bytes": 8147
+        },
+        {
+          "path": "agents/typescript/typescript-build-graph-performance-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "9af61e387c82109387a7cb72d7c16ab7cb704cef0204903d6350a4a5cbeed8c4",
+          "bytes": 8071
+        },
+        {
+          "path": "agents/typescript/typescript-build-graph-performance-agent/metadata.json",
+          "sha256": "69e0cb1499b642316f1d7c293f80f0cdc8d61aa7685ff71e6e81e0b4d2d68456",
+          "bytes": 2642
+        },
+        {
+          "path": "agents/typescript/typescript-business-critical-automation-governance-agent/AGENT.md",
+          "sha256": "af3f96f04e061a648e221262b5b2cb725e2b15bf3837627fbb1172869735bb0e",
+          "bytes": 10670
+        },
+        {
+          "path": "agents/typescript/typescript-business-critical-automation-governance-agent/harnesses/claude-code.agent.md",
+          "sha256": "f63a5d875e9d9924ac67673d717be805b27afcb06081f2df78e0f95436ce6269",
+          "bytes": 10020
+        },
+        {
+          "path": "agents/typescript/typescript-business-critical-automation-governance-agent/harnesses/codex.toml",
+          "sha256": "df28ff2f1f48029b8e74e2f1bca0a5f485cb09753b27e9e292ee8d0ac8c7ebc3",
+          "bytes": 6275
+        },
+        {
+          "path": "agents/typescript/typescript-business-critical-automation-governance-agent/harnesses/copilot.agent.md",
+          "sha256": "de261a34987f47bce06c88959d9fd9c109c7ad4ad8d547e788bf4da930e98466",
+          "bytes": 10126
+        },
+        {
+          "path": "agents/typescript/typescript-business-critical-automation-governance-agent/harnesses/cursor.agent.md",
+          "sha256": "f63a5d875e9d9924ac67673d717be805b27afcb06081f2df78e0f95436ce6269",
+          "bytes": 10020
+        },
+        {
+          "path": "agents/typescript/typescript-business-critical-automation-governance-agent/harnesses/gemini.agent.md",
+          "sha256": "f63a5d875e9d9924ac67673d717be805b27afcb06081f2df78e0f95436ce6269",
+          "bytes": 10020
+        },
+        {
+          "path": "agents/typescript/typescript-business-critical-automation-governance-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "6a91bb01f870e3a0ba95cebdefd4a41ef9f8615a50261bcccc086e6b9e90ea29",
+          "bytes": 10103
+        },
+        {
+          "path": "agents/typescript/typescript-business-critical-automation-governance-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "f63a5d875e9d9924ac67673d717be805b27afcb06081f2df78e0f95436ce6269",
+          "bytes": 10020
+        },
+        {
+          "path": "agents/typescript/typescript-business-critical-automation-governance-agent/metadata.json",
+          "sha256": "746c9c5042aacf61e95f5f47648f884e42f307c095ba81014586a6bdd7c88fa4",
+          "bytes": 2713
+        },
+        {
+          "path": "agents/typescript/typescript-engineering-economics-agent/AGENT.md",
+          "sha256": "04f026d5194218736a12cec891ed1b18ec1e67ab0e4d40745fda49152f399fc2",
+          "bytes": 9108
+        },
+        {
+          "path": "agents/typescript/typescript-engineering-economics-agent/harnesses/claude-code.agent.md",
+          "sha256": "a6bdd28b5d23fef5e4014d1719b1f6afd45b838aa49fe5ea2b245c24ca860249",
+          "bytes": 8476
+        },
+        {
+          "path": "agents/typescript/typescript-engineering-economics-agent/harnesses/codex.toml",
+          "sha256": "7bcfd8aa3345f72b1b87bdc01ac2fde2014db62b7e0b25fb63fe6eecf9933531",
+          "bytes": 5507
+        },
+        {
+          "path": "agents/typescript/typescript-engineering-economics-agent/harnesses/copilot.agent.md",
+          "sha256": "720be593b693ba99f74e46dba0719d1ba9c8c2d2d6a4e8c115a14a8dbfdfcc7c",
+          "bytes": 8582
+        },
+        {
+          "path": "agents/typescript/typescript-engineering-economics-agent/harnesses/cursor.agent.md",
+          "sha256": "a6bdd28b5d23fef5e4014d1719b1f6afd45b838aa49fe5ea2b245c24ca860249",
+          "bytes": 8476
+        },
+        {
+          "path": "agents/typescript/typescript-engineering-economics-agent/harnesses/gemini.agent.md",
+          "sha256": "a6bdd28b5d23fef5e4014d1719b1f6afd45b838aa49fe5ea2b245c24ca860249",
+          "bytes": 8476
+        },
+        {
+          "path": "agents/typescript/typescript-engineering-economics-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "3bbe24703d72157f97a7dac158d8b0ca2362d43f59a254d5c512611aa08affa6",
+          "bytes": 8555
+        },
+        {
+          "path": "agents/typescript/typescript-engineering-economics-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "a6bdd28b5d23fef5e4014d1719b1f6afd45b838aa49fe5ea2b245c24ca860249",
+          "bytes": 8476
+        },
+        {
+          "path": "agents/typescript/typescript-engineering-economics-agent/metadata.json",
+          "sha256": "396b04776922a05a1bfc83e41ea9216dbe58c548cf44d08eeab60c90b3f169fe",
+          "bytes": 2600
+        },
+        {
+          "path": "agents/typescript/typescript-estate-modernization-governor-agent/AGENT.md",
+          "sha256": "cd658674e78d9934f71e3e4c7bfd4309c4927d92122d1627ae07c53132cbdb12",
+          "bytes": 8687
+        },
+        {
+          "path": "agents/typescript/typescript-estate-modernization-governor-agent/harnesses/claude-code.agent.md",
+          "sha256": "7d2507f31f8bf97afd5eb9a2c4b6e30b7271f8754452082e471afe8a468ffdf1",
+          "bytes": 8047
+        },
+        {
+          "path": "agents/typescript/typescript-estate-modernization-governor-agent/harnesses/codex.toml",
+          "sha256": "fbe07abcf2843c7688ec6bfc70363615cebac22d64dd4d394996620c1328c8c1",
+          "bytes": 5662
+        },
+        {
+          "path": "agents/typescript/typescript-estate-modernization-governor-agent/harnesses/copilot.agent.md",
+          "sha256": "0b3eee7b2387601942f0cddffeaa72525912f65cc0b2e4d400a3d90b145e9778",
+          "bytes": 8153
+        },
+        {
+          "path": "agents/typescript/typescript-estate-modernization-governor-agent/harnesses/cursor.agent.md",
+          "sha256": "7d2507f31f8bf97afd5eb9a2c4b6e30b7271f8754452082e471afe8a468ffdf1",
+          "bytes": 8047
+        },
+        {
+          "path": "agents/typescript/typescript-estate-modernization-governor-agent/harnesses/gemini.agent.md",
+          "sha256": "7d2507f31f8bf97afd5eb9a2c4b6e30b7271f8754452082e471afe8a468ffdf1",
+          "bytes": 8047
+        },
+        {
+          "path": "agents/typescript/typescript-estate-modernization-governor-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "6f7bc84af8e55ea6c438658db7895a9d1112b0471f4d3518abdb37f2dc9e688f",
+          "bytes": 8124
+        },
+        {
+          "path": "agents/typescript/typescript-estate-modernization-governor-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "7d2507f31f8bf97afd5eb9a2c4b6e30b7271f8754452082e471afe8a468ffdf1",
+          "bytes": 8047
+        },
+        {
+          "path": "agents/typescript/typescript-estate-modernization-governor-agent/metadata.json",
+          "sha256": "6c7a6c07447b90c25ad8c589b74bb8846bce3ced3f9024cb9620531e409241c3",
+          "bytes": 2602
+        },
+        {
+          "path": "agents/typescript/typescript-maestro-agent/AGENT.md",
+          "sha256": "ee58880c5d8934ab97a96f3477dc261d4df73c60c1360752e7267bbffe8f70b4",
+          "bytes": 5693
+        },
+        {
+          "path": "agents/typescript/typescript-maestro-agent/README.md",
+          "sha256": "d3ec04b0b03676f92784efe624b7497a16d7de7898dac7c794778869c50abc04",
+          "bytes": 4076
+        },
+        {
+          "path": "agents/typescript/typescript-maestro-agent/harnesses/claude-code.agent.md",
+          "sha256": "db170e0911370d55dda91d7a1e9a15bedb062b951f18761cad1b3bd19b16bb37",
+          "bytes": 5075
+        },
+        {
+          "path": "agents/typescript/typescript-maestro-agent/harnesses/codex.toml",
+          "sha256": "aef5a2ce93d02fcf597587d51246ca4ca45341423e09165cce59a4fce42ab9d1",
+          "bytes": 4981
+        },
+        {
+          "path": "agents/typescript/typescript-maestro-agent/harnesses/copilot.agent.md",
+          "sha256": "cf952ad1cd44dab14e5f31abad90a5f4c680701d60fb34ca927b56e3406f089c",
+          "bytes": 5181
+        },
+        {
+          "path": "agents/typescript/typescript-maestro-agent/harnesses/cursor.agent.md",
+          "sha256": "db170e0911370d55dda91d7a1e9a15bedb062b951f18761cad1b3bd19b16bb37",
+          "bytes": 5075
+        },
+        {
+          "path": "agents/typescript/typescript-maestro-agent/harnesses/gemini.agent.md",
+          "sha256": "db170e0911370d55dda91d7a1e9a15bedb062b951f18761cad1b3bd19b16bb37",
+          "bytes": 5075
+        },
+        {
+          "path": "agents/typescript/typescript-maestro-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "32a310c2ca8de3940d45fae10a216f60e1f0e564e67c893a5d3a3be169e1d2fb",
+          "bytes": 5129
+        },
+        {
+          "path": "agents/typescript/typescript-maestro-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "db170e0911370d55dda91d7a1e9a15bedb062b951f18761cad1b3bd19b16bb37",
+          "bytes": 5075
+        },
+        {
+          "path": "agents/typescript/typescript-maestro-agent/metadata.json",
+          "sha256": "cc3b482b37056f6ed46585d7a3a3bc536c69a0b9c0651e6baa60e6cdf10f574e",
+          "bytes": 2172
+        },
+        {
+          "path": "agents/typescript/typescript-mcp-tool-contract-agent/AGENT.md",
+          "sha256": "53b8536ab2211ec1c2dcb01d068f39399b255f1994976730e2d272bf17583413",
+          "bytes": 9803
+        },
+        {
+          "path": "agents/typescript/typescript-mcp-tool-contract-agent/harnesses/claude-code.agent.md",
+          "sha256": "21e29d6801645ad65fdd3bc143c580d99d3aa46543e4d21df83f68e6079342c2",
+          "bytes": 9175
+        },
+        {
+          "path": "agents/typescript/typescript-mcp-tool-contract-agent/harnesses/codex.toml",
+          "sha256": "060ac997b4556b0ae787d61bd53370b30a3e9dec2391f7cfea6e3de429884391",
+          "bytes": 5719
+        },
+        {
+          "path": "agents/typescript/typescript-mcp-tool-contract-agent/harnesses/copilot.agent.md",
+          "sha256": "a87226d5a00cf8b070dba65251b29bec43d9bcf75050fa306025fe492a1d2314",
+          "bytes": 9281
+        },
+        {
+          "path": "agents/typescript/typescript-mcp-tool-contract-agent/harnesses/cursor.agent.md",
+          "sha256": "21e29d6801645ad65fdd3bc143c580d99d3aa46543e4d21df83f68e6079342c2",
+          "bytes": 9175
+        },
+        {
+          "path": "agents/typescript/typescript-mcp-tool-contract-agent/harnesses/gemini.agent.md",
+          "sha256": "21e29d6801645ad65fdd3bc143c580d99d3aa46543e4d21df83f68e6079342c2",
+          "bytes": 9175
+        },
+        {
+          "path": "agents/typescript/typescript-mcp-tool-contract-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "48cad0eccb9510e6986feff10f483db60e4694e08f61819df691c9da04d678e6",
+          "bytes": 9257
+        },
+        {
+          "path": "agents/typescript/typescript-mcp-tool-contract-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "21e29d6801645ad65fdd3bc143c580d99d3aa46543e4d21df83f68e6079342c2",
+          "bytes": 9175
+        },
+        {
+          "path": "agents/typescript/typescript-mcp-tool-contract-agent/metadata.json",
+          "sha256": "792acaedc361474654ee85576e2c5c6c53006ea7ad7414624d672f21792f0f26",
+          "bytes": 2357
+        },
+        {
+          "path": "agents/typescript/typescript-module-resolution-and-emit-agent/AGENT.md",
+          "sha256": "5d9176331656fe190e238a6cbc9d7938260a2110ac4f67f4662181e5d4197539",
+          "bytes": 8098
+        },
+        {
+          "path": "agents/typescript/typescript-module-resolution-and-emit-agent/harnesses/claude-code.agent.md",
+          "sha256": "7e08e178cf401e50cb57eab132f8614165a1810536e7e13bd0ccd976f985a955",
+          "bytes": 7461
+        },
+        {
+          "path": "agents/typescript/typescript-module-resolution-and-emit-agent/harnesses/codex.toml",
+          "sha256": "3b9bbdde8fbea657faa46fb05e44d138c00d979bf7b6c5a2a15a926265d7d3d2",
+          "bytes": 5603
+        },
+        {
+          "path": "agents/typescript/typescript-module-resolution-and-emit-agent/harnesses/copilot.agent.md",
+          "sha256": "08001a00e8e586b09f6a28faf58758253e0cb204341e1dae6952191a06aeb713",
+          "bytes": 7567
+        },
+        {
+          "path": "agents/typescript/typescript-module-resolution-and-emit-agent/harnesses/cursor.agent.md",
+          "sha256": "7e08e178cf401e50cb57eab132f8614165a1810536e7e13bd0ccd976f985a955",
+          "bytes": 7461
+        },
+        {
+          "path": "agents/typescript/typescript-module-resolution-and-emit-agent/harnesses/gemini.agent.md",
+          "sha256": "7e08e178cf401e50cb57eab132f8614165a1810536e7e13bd0ccd976f985a955",
+          "bytes": 7461
+        },
+        {
+          "path": "agents/typescript/typescript-module-resolution-and-emit-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "62dd96c6f9130ff817d9e9fcc985f7cb3383cd777ae1699d6a84fd4d7724e4f3",
+          "bytes": 7543
+        },
+        {
+          "path": "agents/typescript/typescript-module-resolution-and-emit-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "7e08e178cf401e50cb57eab132f8614165a1810536e7e13bd0ccd976f985a955",
+          "bytes": 7461
+        },
+        {
+          "path": "agents/typescript/typescript-module-resolution-and-emit-agent/metadata.json",
+          "sha256": "f2cc39b1e8d8a6243e38a66656984703a0483237b04ff3a46c4a51d0b3dc880d",
+          "bytes": 2601
+        },
+        {
+          "path": "agents/typescript/typescript-node-execution-compatibility-agent/AGENT.md",
+          "sha256": "ad572d84341adc307cc3fe5c319283a26f49f6ce0f645f6187a6769b4a640162",
+          "bytes": 8276
+        },
+        {
+          "path": "agents/typescript/typescript-node-execution-compatibility-agent/harnesses/claude-code.agent.md",
+          "sha256": "0666519ced6b569a9ff891f6901a9b5153f7916058d5d5ef5771f3556d9fd4d3",
+          "bytes": 7637
+        },
+        {
+          "path": "agents/typescript/typescript-node-execution-compatibility-agent/harnesses/codex.toml",
+          "sha256": "16c643e226f3629599b17482a6b31f190ff53957972b130277335c206856eaee",
+          "bytes": 5869
+        },
+        {
+          "path": "agents/typescript/typescript-node-execution-compatibility-agent/harnesses/copilot.agent.md",
+          "sha256": "9cb97ee727263510b083f85eb8d8032699090e66a7fe5e7ce5fc9e451e29c1c2",
+          "bytes": 7743
+        },
+        {
+          "path": "agents/typescript/typescript-node-execution-compatibility-agent/harnesses/cursor.agent.md",
+          "sha256": "0666519ced6b569a9ff891f6901a9b5153f7916058d5d5ef5771f3556d9fd4d3",
+          "bytes": 7637
+        },
+        {
+          "path": "agents/typescript/typescript-node-execution-compatibility-agent/harnesses/gemini.agent.md",
+          "sha256": "0666519ced6b569a9ff891f6901a9b5153f7916058d5d5ef5771f3556d9fd4d3",
+          "bytes": 7637
+        },
+        {
+          "path": "agents/typescript/typescript-node-execution-compatibility-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "e91af9c3fe207429c8397ef9bfb8dec7a0c89699f2eb41dfa1c275f07c6ba416",
+          "bytes": 7720
+        },
+        {
+          "path": "agents/typescript/typescript-node-execution-compatibility-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "0666519ced6b569a9ff891f6901a9b5153f7916058d5d5ef5771f3556d9fd4d3",
+          "bytes": 7637
+        },
+        {
+          "path": "agents/typescript/typescript-node-execution-compatibility-agent/metadata.json",
+          "sha256": "f4890bb3d29ee76d0393e59020c05d3e332563cf6cb2b1aba1f22620bce00f73",
+          "bytes": 2669
+        },
+        {
+          "path": "agents/typescript/typescript-package-publication-integrity-agent/AGENT.md",
+          "sha256": "e12795f954285d16ec296297bdccfac76c125d5c38564066b9b164297e10e6f3",
+          "bytes": 9472
+        },
+        {
+          "path": "agents/typescript/typescript-package-publication-integrity-agent/harnesses/claude-code.agent.md",
+          "sha256": "1cd4d70b2e3718ab7e089dbee0d54e748311b1f5caa229b58b89babfe7ab1454",
+          "bytes": 8832
+        },
+        {
+          "path": "agents/typescript/typescript-package-publication-integrity-agent/harnesses/codex.toml",
+          "sha256": "fccc457e3305f2cd26f2466394d7029d19dfc8779bb45609236bb5ea237963be",
+          "bytes": 5992
+        },
+        {
+          "path": "agents/typescript/typescript-package-publication-integrity-agent/harnesses/copilot.agent.md",
+          "sha256": "70ea9daf3f1459a9a3ef6710cafbad502846af5f17a45353392365b67bce0f37",
+          "bytes": 8938
+        },
+        {
+          "path": "agents/typescript/typescript-package-publication-integrity-agent/harnesses/cursor.agent.md",
+          "sha256": "1cd4d70b2e3718ab7e089dbee0d54e748311b1f5caa229b58b89babfe7ab1454",
+          "bytes": 8832
+        },
+        {
+          "path": "agents/typescript/typescript-package-publication-integrity-agent/harnesses/gemini.agent.md",
+          "sha256": "1cd4d70b2e3718ab7e089dbee0d54e748311b1f5caa229b58b89babfe7ab1454",
+          "bytes": 8832
+        },
+        {
+          "path": "agents/typescript/typescript-package-publication-integrity-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "43d91889ad467c93488e018960680ee85d3457d8bd3dd90d99665f4651504776",
+          "bytes": 8910
+        },
+        {
+          "path": "agents/typescript/typescript-package-publication-integrity-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "1cd4d70b2e3718ab7e089dbee0d54e748311b1f5caa229b58b89babfe7ab1454",
+          "bytes": 8832
+        },
+        {
+          "path": "agents/typescript/typescript-package-publication-integrity-agent/metadata.json",
+          "sha256": "e8b9ceec31893a61ce1b52ab1d9d0270ed20a5604c02e649101260ff714de61c",
+          "bytes": 2517
+        },
+        {
+          "path": "agents/typescript/typescript-public-api-and-declaration-governance-agent/AGENT.md",
+          "sha256": "d09082ee0e0da20a20a16ecbb19abb83403cc6815ed22ddf423d1256fd8bf28b",
+          "bytes": 9208
+        },
+        {
+          "path": "agents/typescript/typescript-public-api-and-declaration-governance-agent/harnesses/claude-code.agent.md",
+          "sha256": "b33385953e0c4e0eb75a0bbe3f5ce008629db76f1812124606e968ef7e464a7a",
+          "bytes": 8560
+        },
+        {
+          "path": "agents/typescript/typescript-public-api-and-declaration-governance-agent/harnesses/codex.toml",
+          "sha256": "ccefc6a42f1100251e4126fe6befe7e3edd9befb3c5e44f071424840b3d4355f",
+          "bytes": 5476
+        },
+        {
+          "path": "agents/typescript/typescript-public-api-and-declaration-governance-agent/harnesses/copilot.agent.md",
+          "sha256": "38ed2dc4bb4ddd81ad0fbe462d24804d16b6e2946ceb729e2ad8c491f94421be",
+          "bytes": 8666
+        },
+        {
+          "path": "agents/typescript/typescript-public-api-and-declaration-governance-agent/harnesses/cursor.agent.md",
+          "sha256": "b33385953e0c4e0eb75a0bbe3f5ce008629db76f1812124606e968ef7e464a7a",
+          "bytes": 8560
+        },
+        {
+          "path": "agents/typescript/typescript-public-api-and-declaration-governance-agent/harnesses/gemini.agent.md",
+          "sha256": "b33385953e0c4e0eb75a0bbe3f5ce008629db76f1812124606e968ef7e464a7a",
+          "bytes": 8560
+        },
+        {
+          "path": "agents/typescript/typescript-public-api-and-declaration-governance-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "f9199ce34c1be92a6194e9df235a8241617e95522c281b14fe6147fcda50b188",
+          "bytes": 8638
+        },
+        {
+          "path": "agents/typescript/typescript-public-api-and-declaration-governance-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "b33385953e0c4e0eb75a0bbe3f5ce008629db76f1812124606e968ef7e464a7a",
+          "bytes": 8560
+        },
+        {
+          "path": "agents/typescript/typescript-public-api-and-declaration-governance-agent/metadata.json",
+          "sha256": "80ee931c2a660391ed29b8c1bb750275d8ec81bd2ad25f4da61c4fbce33a580d",
+          "bytes": 2728
+        },
+        {
+          "path": "agents/typescript/typescript-runtime-boundary-contract-agent/AGENT.md",
+          "sha256": "234f43a5a1a19ef2cf6610163ca37b0bc7e5e28107c1ec3f6e7908ee69841e6e",
+          "bytes": 8330
+        },
+        {
+          "path": "agents/typescript/typescript-runtime-boundary-contract-agent/harnesses/claude-code.agent.md",
+          "sha256": "d242db0f93ca7e91502d06167e43f5fbeafbd51a87c49ac6c4d125e659704fda",
+          "bytes": 7694
+        },
+        {
+          "path": "agents/typescript/typescript-runtime-boundary-contract-agent/harnesses/codex.toml",
+          "sha256": "8dca1c9ecbbc210f842b3a7d4154c36e23065ba7c851832775a34658ec9704f6",
+          "bytes": 5497
+        },
+        {
+          "path": "agents/typescript/typescript-runtime-boundary-contract-agent/harnesses/copilot.agent.md",
+          "sha256": "a905670d872f86f63ef208e082883d4d1256ce873d62cafc5f81acffd5820c0c",
+          "bytes": 7800
+        },
+        {
+          "path": "agents/typescript/typescript-runtime-boundary-contract-agent/harnesses/cursor.agent.md",
+          "sha256": "d242db0f93ca7e91502d06167e43f5fbeafbd51a87c49ac6c4d125e659704fda",
+          "bytes": 7694
+        },
+        {
+          "path": "agents/typescript/typescript-runtime-boundary-contract-agent/harnesses/gemini.agent.md",
+          "sha256": "d242db0f93ca7e91502d06167e43f5fbeafbd51a87c49ac6c4d125e659704fda",
+          "bytes": 7694
+        },
+        {
+          "path": "agents/typescript/typescript-runtime-boundary-contract-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "29d91abfa0a7491a6621744e0342d8e3558c2343aee81c3bd03ffe724dc6d223",
+          "bytes": 7773
+        },
+        {
+          "path": "agents/typescript/typescript-runtime-boundary-contract-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "d242db0f93ca7e91502d06167e43f5fbeafbd51a87c49ac6c4d125e659704fda",
+          "bytes": 7694
+        },
+        {
+          "path": "agents/typescript/typescript-runtime-boundary-contract-agent/metadata.json",
+          "sha256": "83982e26ff4b6122a5b2b11b54677360f0c953c3840e9b54f40e622cca8620c0",
+          "bytes": 2590
+        },
+        {
+          "path": "agents/typescript/typescript-static-enforcement-policy-agent/AGENT.md",
+          "sha256": "f039af5dc0d81ec0fd82d6865e01e237c5b082d912480f7c052a079cf8c13c6d",
+          "bytes": 8908
+        },
+        {
+          "path": "agents/typescript/typescript-static-enforcement-policy-agent/harnesses/claude-code.agent.md",
+          "sha256": "dc2fcfc382b2aa47cf6bedc1d25948c4f37281f2407890072098e1159e2de576",
+          "bytes": 8272
+        },
+        {
+          "path": "agents/typescript/typescript-static-enforcement-policy-agent/harnesses/codex.toml",
+          "sha256": "32215a6dfd985ed122d9cc683ece0e648e0c8514389485f116ddd04ff8fcc45c",
+          "bytes": 5447
+        },
+        {
+          "path": "agents/typescript/typescript-static-enforcement-policy-agent/harnesses/copilot.agent.md",
+          "sha256": "ec1524909744f151b1117907ccb14c039dda7bc5006d5ac94126752dce0bf99f",
+          "bytes": 8378
+        },
+        {
+          "path": "agents/typescript/typescript-static-enforcement-policy-agent/harnesses/cursor.agent.md",
+          "sha256": "dc2fcfc382b2aa47cf6bedc1d25948c4f37281f2407890072098e1159e2de576",
+          "bytes": 8272
+        },
+        {
+          "path": "agents/typescript/typescript-static-enforcement-policy-agent/harnesses/gemini.agent.md",
+          "sha256": "dc2fcfc382b2aa47cf6bedc1d25948c4f37281f2407890072098e1159e2de576",
+          "bytes": 8272
+        },
+        {
+          "path": "agents/typescript/typescript-static-enforcement-policy-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "12060aa43729177393f1e734321109658f8dd044c2220c7b49aae6e393ece9e1",
+          "bytes": 8350
+        },
+        {
+          "path": "agents/typescript/typescript-static-enforcement-policy-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "dc2fcfc382b2aa47cf6bedc1d25948c4f37281f2407890072098e1159e2de576",
+          "bytes": 8272
+        },
+        {
+          "path": "agents/typescript/typescript-static-enforcement-policy-agent/metadata.json",
+          "sha256": "99a5dd5a94068c01eb146ca9b361a365bfba0afba5006afda0f1eb646574af62",
+          "bytes": 2526
+        },
+        {
+          "path": "agents/typescript/typescript-type-soundness-agent/AGENT.md",
+          "sha256": "dafaaaba67b3ae3f0162887379a63a92e84543f300274c496bf1aa1c00146d01",
+          "bytes": 8796
+        },
+        {
+          "path": "agents/typescript/typescript-type-soundness-agent/harnesses/claude-code.agent.md",
+          "sha256": "4d81cff2c106ddba1f72db8715ddaecb4daf60204ad6d8c61eaf2fd2396bf94a",
+          "bytes": 8171
+        },
+        {
+          "path": "agents/typescript/typescript-type-soundness-agent/harnesses/codex.toml",
+          "sha256": "16d71ee4c0e645ad45592c34787b2c40d069467353258e6a1743c3cb45f3001d",
+          "bytes": 5523
+        },
+        {
+          "path": "agents/typescript/typescript-type-soundness-agent/harnesses/copilot.agent.md",
+          "sha256": "6f46b249ec4e45772b08bfeb21203ec3d1fede0fd0005efb99d2e33734bd5ee2",
+          "bytes": 8277
+        },
+        {
+          "path": "agents/typescript/typescript-type-soundness-agent/harnesses/cursor.agent.md",
+          "sha256": "4d81cff2c106ddba1f72db8715ddaecb4daf60204ad6d8c61eaf2fd2396bf94a",
+          "bytes": 8171
+        },
+        {
+          "path": "agents/typescript/typescript-type-soundness-agent/harnesses/gemini.agent.md",
+          "sha256": "4d81cff2c106ddba1f72db8715ddaecb4daf60204ad6d8c61eaf2fd2396bf94a",
+          "bytes": 8171
+        },
+        {
+          "path": "agents/typescript/typescript-type-soundness-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "f6fa3c88abb983a8b7ef752d8bc72b3bb6bcc5f6dd8c227ad74dfc6f940ab2bf",
+          "bytes": 8252
+        },
+        {
+          "path": "agents/typescript/typescript-type-soundness-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "4d81cff2c106ddba1f72db8715ddaecb4daf60204ad6d8c61eaf2fd2396bf94a",
+          "bytes": 8171
+        },
+        {
+          "path": "agents/typescript/typescript-type-soundness-agent/metadata.json",
+          "sha256": "2fa3bd3798a81223993eb076b59884440cfb9d1f1b13f6898a4c97bcac3295fa",
+          "bytes": 2449
+        },
+        {
           "path": "agents/velero/README.md",
           "sha256": "8621bbcf78c14315d62ff375d5a9bc7fc1c98855381e322bd87ba14c5018a007",
           "bytes": 1969
@@ -32202,7 +32837,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "b9573ba47da95c7e3a7edea28369724e4b6f4a1285a88043e1e253ae7d20f17c",
+      "aggregate_sha256": "9f5526c2d70bb7eabfb02e08c9bdf34841ad6a625c4933117f3ec6e41253dae4",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -32211,8 +32846,8 @@
         },
         {
           "path": "catalog/agents.json",
-          "sha256": "5f553273f262d434f4d8c48f5cf89c66956861a4ba1d191a7caa3e91a0163b7d",
-          "bytes": 1105420
+          "sha256": "e8b48ac610dff94a529bd1be628684eeeabca102510b47566a26bbb81e4db9db",
+          "bytes": 1127496
         },
         {
           "path": "catalog/index.json",
@@ -32221,8 +32856,8 @@
         },
         {
           "path": "catalog/install-roles.json",
-          "sha256": "e0b107791888a2044c9cc8c2619041034e271c94a36d7714228e5b12e5b8f54e",
-          "bytes": 105482
+          "sha256": "a24710cbe7159f8ac161d8abd28b7cc7c19b1d0f4dacda95c0270e8b99a0f03a",
+          "bytes": 109537
         },
         {
           "path": "catalog/mcp-references.json",
@@ -32231,8 +32866,8 @@
         },
         {
           "path": "catalog/model-assignments.json",
-          "sha256": "b4edced6cd7e31819f8cd480be4481b54c2bb26e8b6731819fbb0d79c0b2f1b6",
-          "bytes": 634841
+          "sha256": "1e19a1079b20e61b38c5c0aa4de1203bbc9b8193bf5cf46e3f91a8e3b48c634d",
+          "bytes": 648311
         },
         {
           "path": "catalog/model-policy.json",
@@ -32251,19 +32886,19 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "00d1ef742cb27f8805f13fca09f3102c2c488684a823e25929d1138acb8ba5b9",
-          "bytes": 968014
+          "sha256": "1c17a7db495e4847235df0fb4673fe4cc7aa6692d126bbe97c621df5382cbd6d",
+          "bytes": 988818
         },
         {
           "path": "catalog/skills.json",
-          "sha256": "2a2fb042a4121cdbab010019fd020727c0b51f2fef87e50aca5d1b5fd3c8249c",
-          "bytes": 1091715
+          "sha256": "4f647c6bbcd4fd081d6794b134093a944ce4c8e92c2c0e866eb8175472e05cb7",
+          "bytes": 1112440
         }
       ]
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "6210774e4d6383307ef3cbda422d2a05147d07a1b8703586e0edd7841646b7bc",
+      "aggregate_sha256": "6942413b06835fa3d63a6d7cb8fbbaf2018f5e9d7e919005bd758748ed802829",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -32287,13 +32922,13 @@
         },
         {
           "path": "scripts/gen_kotlin_agents.py",
-          "sha256": "53ba1fe29c9b50b831e7f0647e4b6179f77b21537f792e771a10ae8c51581e55",
-          "bytes": 19990
+          "sha256": "988e3150534d2c0587cb4b10cb2827e3661311bacafc74bea9659af36201a39e",
+          "bytes": 20008
         },
         {
           "path": "scripts/gen_netsuite_agents.py",
-          "sha256": "158687c8568b8cac8333343860d0acf0844d54c891c096933884c6e76f1c263f",
-          "bytes": 23323
+          "sha256": "fa23c25ce15d4bda384f24e594e08bae6876dff10ffde85a1f9646a174ecb015",
+          "bytes": 23343
         },
         {
           "path": "scripts/gen_oci_live_guards.py",
@@ -32302,13 +32937,13 @@
         },
         {
           "path": "scripts/gen_python_agents.py",
-          "sha256": "cb0e05b3b192bdcdc074aaf44a1e8ef8273dbb4b5a9447662f48e12ead9b24f5",
-          "bytes": 21117
+          "sha256": "52f8b596192c03d150d7f0b7a7cb381caa5a6ff3c4454cef3a6998f214b75775",
+          "bytes": 21135
         },
         {
           "path": "scripts/gen_python_live_agents.py",
-          "sha256": "5db48e739300ddadb5419218199fb4a90cad1ae4ed47ac97797509c95d46b2b6",
-          "bytes": 23635
+          "sha256": "83a2e100695acb551244f93049c7e290bc0b7de0d9db42cab31c34c76cbfcd91",
+          "bytes": 23653
         },
         {
           "path": "scripts/gen_python_live_routing_fixtures.py",
@@ -32319,6 +32954,11 @@
           "path": "scripts/gen_python_routing_fixtures.py",
           "sha256": "294e940916704377ccd927a70be7b5d64249b8378ef5e9081700ca7c932a74d3",
           "bytes": 15026
+        },
+        {
+          "path": "scripts/gen_typescript_agents.py",
+          "sha256": "2d9ab1a6201e5951a61dd6181020c3e5469bf3722b98bf3bb700a7b5d84d8491",
+          "bytes": 22007
         },
         {
           "path": "scripts/generate-changelog-counts.mjs",
@@ -32337,8 +32977,8 @@
         },
         {
           "path": "scripts/generate-kiro-powers.mjs",
-          "sha256": "6aa5738bf3d345dfe857fe2d3147044d01b2fa0e71e4062d71fde8e3108bd35b",
-          "bytes": 48132
+          "sha256": "98a046b43345bf15402b608cef46067c1e2913b9dc8985838a36ff91cd60a442",
+          "bytes": 50153
         },
         {
           "path": "scripts/generate-plugin-manifest.mjs",
@@ -32347,8 +32987,8 @@
         },
         {
           "path": "scripts/generate-readme-counts.mjs",
-          "sha256": "6134b200b037ecaf94d7758d06ad9c35afec05348b4f4fddcafc6bae15e3bb0b",
-          "bytes": 5674
+          "sha256": "235573c81411a6657f0abbe875b9da1cd7e62aaaafaa7a423e103fe0e443b7d0",
+          "bytes": 9290
         },
         {
           "path": "scripts/install-codex-home.mjs",
@@ -32746,20 +33386,90 @@
           "bytes": 10574
         },
         {
+          "path": "scripts/typescript_data/agents/00-typescript-maestro-agent.json",
+          "sha256": "065127ef638d0661425e13302e87a422c9189413e972f3cdd7bc6819d5a342ec",
+          "bytes": 16357
+        },
+        {
+          "path": "scripts/typescript_data/agents/01-typescript-type-soundness-agent.json",
+          "sha256": "d1e0ec05a591a83d1ce751a7eb0648b49118c3205ab9fa8a80d87d795bb9fc97",
+          "bytes": 16630
+        },
+        {
+          "path": "scripts/typescript_data/agents/02-typescript-runtime-boundary-contract-agent.json",
+          "sha256": "16878ced3868d638c8bb305dbbb25a00a6b882375b659203177a8dd3941b52fc",
+          "bytes": 15297
+        },
+        {
+          "path": "scripts/typescript_data/agents/03-typescript-module-resolution-and-emit-agent.json",
+          "sha256": "f506e7343aceb5de2cbfc38a7515f2647e9230acaf6d8799cc4211bcb892f145",
+          "bytes": 14717
+        },
+        {
+          "path": "scripts/typescript_data/agents/04-typescript-node-execution-compatibility-agent.json",
+          "sha256": "4ff883fe661b777a604ba2c00700f522cb75a869584f4a7a528bd373ad5d387d",
+          "bytes": 14486
+        },
+        {
+          "path": "scripts/typescript_data/agents/05-typescript-public-api-and-declaration-governance-agent.json",
+          "sha256": "0cc5da15778cf90bbae61127f4f0c43e795defeea323948729a6ac5d5ea17a5f",
+          "bytes": 17903
+        },
+        {
+          "path": "scripts/typescript_data/agents/06-typescript-build-graph-performance-agent.json",
+          "sha256": "c6214164cb54f62831ee3002886cd58ef453747b57b9e9fd9f2c760a4388cd6f",
+          "bytes": 15668
+        },
+        {
+          "path": "scripts/typescript_data/agents/07-typescript-static-enforcement-policy-agent.json",
+          "sha256": "92947bad8823ce62a3ae061aad75ddb82e44247dff443ce3641243963c413470",
+          "bytes": 14849
+        },
+        {
+          "path": "scripts/typescript_data/agents/08-typescript-async-contract-reliability-agent.json",
+          "sha256": "44ef71c1724b1cae29a5def4c1cd711ab1ee4d0870f93e1bb3c5934438d4124d",
+          "bytes": 14880
+        },
+        {
+          "path": "scripts/typescript_data/agents/09-typescript-package-publication-integrity-agent.json",
+          "sha256": "7662bd86560c07ee82e41493ad68409ec59967b4aface59eba914705a67a4c6c",
+          "bytes": 15727
+        },
+        {
+          "path": "scripts/typescript_data/agents/10-typescript-estate-modernization-governor-agent.json",
+          "sha256": "c9f3e5faaa29f152420ba43169c76f9ac3cd0af32514c73dd3b94945d82e0257",
+          "bytes": 14859
+        },
+        {
+          "path": "scripts/typescript_data/agents/11-typescript-mcp-tool-contract-agent.json",
+          "sha256": "e8dd78bbf75545ac0444d5b2e5239ac3ec1ae27ce802572ff20c3548efcb6b95",
+          "bytes": 16516
+        },
+        {
+          "path": "scripts/typescript_data/agents/12-typescript-business-critical-automation-governance-agent.json",
+          "sha256": "617dc151a4992ef2dbbceaf8850a24672ccbd561d5eb5d016c64eb8c7d98f9f5",
+          "bytes": 17539
+        },
+        {
+          "path": "scripts/typescript_data/agents/13-typescript-engineering-economics-agent.json",
+          "sha256": "2db2ed7dc49cc869880b5849a7b41388818c603aa73cda2777927573a78e7eaf",
+          "bytes": 16683
+        },
+        {
           "path": "scripts/update-catalog-new-agents.py",
-          "sha256": "34330909ff0677f67ae49d5bc1d0e922172768fdb464002fc67fe8b44372009c",
-          "bytes": 5169
+          "sha256": "64ddb9e8990d91f6e95ab6daef716c44c59ab9428a2209eca889a20db132b639",
+          "bytes": 7509
         }
       ]
     },
     {
       "tree": "powers",
-      "aggregate_sha256": "fe34598c6276f7c89556e70c711189656e2d968986262fc2fe6ba97d48a83693",
+      "aggregate_sha256": "afbb2ae70e3fbc549bf6beb776e9efb1197ae6242442f46d00e818c69f1e55b5",
       "files": [
         {
           "path": "powers/README.md",
-          "sha256": "56aa0e0b6c03a0367719b4d1657e9b6a7d4fd9212fbedc3bedaa44e51e6a82db",
-          "bytes": 4932
+          "sha256": "6350aa420de0ec1a3762741c0918e0f90c931695cd5c5935435808bbeab07d5f",
+          "bytes": 4971
         },
         {
           "path": "powers/vanguard-accounting/POWER.md",
@@ -32980,6 +33690,11 @@
           "path": "powers/vanguard-terraform/POWER.md",
           "sha256": "e177f9be9130466a11bc6a15eb1cd9a4b441022c01f447a32efd2d27566e60d3",
           "bytes": 2897
+        },
+        {
+          "path": "powers/vanguard-typescript/POWER.md",
+          "sha256": "6b274d78e895b07f234366c5e49a4ab5909c44118aa7e53ab2ae51d94f16fd0d",
+          "bytes": 3709
         }
       ]
     },
@@ -33016,7 +33731,7 @@
     },
     {
       "tree": ".claude-plugin",
-      "aggregate_sha256": "6f27b9c230ee5f850fe3144d071254116a07abd513323d6590f924d5cd11751b",
+      "aggregate_sha256": "a97644b0b30f2149fe127c70fc6ca4d07507e31ffa7ca99b7722b9e1be6e8476",
       "files": [
         {
           "path": ".claude-plugin/README.md",
@@ -33025,19 +33740,19 @@
         },
         {
           "path": ".claude-plugin/marketplace.json",
-          "sha256": "5deba7a35c4fe947b59c4fed2a16f84aac286f6e0016035f50fd55600ecec314",
+          "sha256": "c8825c22dbace87048302b492c8348c73bf87f7cfcd503f90986e956531f6afc",
           "bytes": 854
         },
         {
           "path": ".claude-plugin/plugin.json",
-          "sha256": "997d02ab551637654edfd4425ad393aafa65ae4145d5b87805d25ce65a88f8d8",
-          "bytes": 61237
+          "sha256": "8b742a247452289f8723cf3e7af76a007cd6648b73fed3d8a03ead3d48181cfc",
+          "bytes": 62647
         }
       ]
     },
     {
       "tree": ".cursor-plugin",
-      "aggregate_sha256": "a80bcf7206a1865f229bd1f4b32dfcda805fc44e40ffaa8f3e53e99a78357182",
+      "aggregate_sha256": "605c63c2401361b2fbcd46935e53565e12cd766de7570c2d8bfb059284904028",
       "files": [
         {
           "path": ".cursor-plugin/README.md",
@@ -33046,8 +33761,8 @@
         },
         {
           "path": ".cursor-plugin/plugin.json",
-          "sha256": "8bd5ca09ad4cefd880affccc31eccae5c9acfafe8e185589d44284d8078b2fb0",
-          "bytes": 57883
+          "sha256": "f95430575e1352c46d42af48dab33eaba10e0af0cdd8de709ccd88f226a56f33",
+          "bytes": 59223
         }
       ]
     },
@@ -33085,7 +33800,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "ff4d6a17b5d364c90d6b78fd26f33d04e2fb3d4f67d8550005e625224a53bbed",
+      "aggregate_sha256": "2f1b72e25cc8dd9fd0ec1b867a330e53f31720d8cd9506822864a14146521148",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -33094,8 +33809,8 @@
         },
         {
           "path": "tests/_generate_maestro_routing_fixtures.py",
-          "sha256": "481a7fdd27464aaad9901a772797233bb5c9f3e33a73985eb57982956bbe27f9",
-          "bytes": 15372
+          "sha256": "9e6765a0bc51019d2be45232af5e8cad22518d41c8d2c39816518e6713c2df17",
+          "bytes": 19479
         },
         {
           "path": "tests/eval-qa-cluster.mjs",
@@ -39284,8 +39999,8 @@
         },
         {
           "path": "tests/fixtures/microsoft-maestro-routing/taxonomy.json",
-          "sha256": "8c1b3130a79b81fb08944eb7fea9cc5ca7ea3b8c67eec70ca7bdd5b55271be2e",
-          "bytes": 11419
+          "sha256": "c9dded7487735497aca49272118e3834616f4ef58d47e77c82e66263a9d3b0d2",
+          "bytes": 11385
         },
         {
           "path": "tests/fixtures/netsuite-maestro-routing/expected/001-happy-finance-setup.json",
@@ -41673,6 +42388,181 @@
           "bytes": 2725
         },
         {
+          "path": "tests/fixtures/typescript-maestro-routing/expected/001-happy-async-contract-reliability.json",
+          "sha256": "317cd8ed90b12c6f6f8079ce4b9cc3dfcfe0e41f46540184a10cdbbbdc9dff25",
+          "bytes": 91
+        },
+        {
+          "path": "tests/fixtures/typescript-maestro-routing/expected/002-happy-build-graph-performance.json",
+          "sha256": "91f5615c43c6711baec456e9a064367fb01e6265d2dbac7c256b70f7fe7c3a50",
+          "bytes": 88
+        },
+        {
+          "path": "tests/fixtures/typescript-maestro-routing/expected/003-happy-business-critical-automation-governance.json",
+          "sha256": "2d35c8684554b2f231105a31ca588aff966d9fcb69162f699c15ca2344b1a259",
+          "bytes": 104
+        },
+        {
+          "path": "tests/fixtures/typescript-maestro-routing/expected/004-happy-engineering-economics.json",
+          "sha256": "66223e8c5497ae79117d3692d98f631713671918fea054c652b80e35f22f4ca7",
+          "bytes": 86
+        },
+        {
+          "path": "tests/fixtures/typescript-maestro-routing/expected/005-happy-estate-modernization-governor.json",
+          "sha256": "d01c29f6badc9edc155b1788486461cb0c55268ef71873e602ac2f32141e71bc",
+          "bytes": 94
+        },
+        {
+          "path": "tests/fixtures/typescript-maestro-routing/expected/006-happy-mcp-tool-contract.json",
+          "sha256": "0ef494b178ff18f1518bed019192139e520769538e31a92ddba248c5ff19b3f9",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/typescript-maestro-routing/expected/007-happy-module-resolution-and-emit.json",
+          "sha256": "f981116286b28d43300c21b67b8a9e55b3bd60bb63b2e91dbd2cb1dca2a01294",
+          "bytes": 91
+        },
+        {
+          "path": "tests/fixtures/typescript-maestro-routing/expected/008-happy-node-execution-compatibility.json",
+          "sha256": "48629a983dbb48b9a2dbf60e612904df14034474d5cacdc9f329cb5e4653f055",
+          "bytes": 93
+        },
+        {
+          "path": "tests/fixtures/typescript-maestro-routing/expected/009-happy-package-publication-integrity.json",
+          "sha256": "ca65b2dca5e87cf42e36f150760e9246138f17a5909d3c2892dfdc01a81b24c1",
+          "bytes": 94
+        },
+        {
+          "path": "tests/fixtures/typescript-maestro-routing/expected/010-happy-public-api-and-declaration-governance.json",
+          "sha256": "5a48a309c976321a5bd2f5847cf66f0e6f5c458f76bdde75b10b6b559b607a9a",
+          "bytes": 102
+        },
+        {
+          "path": "tests/fixtures/typescript-maestro-routing/expected/011-happy-runtime-boundary-contract.json",
+          "sha256": "63c3c4b9e16d37e5f4465d68a507afda91ec916e08bf9755b2cf55643573327f",
+          "bytes": 90
+        },
+        {
+          "path": "tests/fixtures/typescript-maestro-routing/expected/012-happy-static-enforcement-policy.json",
+          "sha256": "55740b6869b351d8cfa06ad362e915892a262a583bf67f5e5a5bb3f9fe394f1b",
+          "bytes": 90
+        },
+        {
+          "path": "tests/fixtures/typescript-maestro-routing/expected/013-happy-type-soundness.json",
+          "sha256": "30621056161a126bfa795ad2dadc17993cf89c4aa8280002eeee887dffb32e3b",
+          "bytes": 79
+        },
+        {
+          "path": "tests/fixtures/typescript-maestro-routing/expected/adv-ambiguous.json",
+          "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
+          "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/typescript-maestro-routing/expected/adv-instruction-injection.json",
+          "sha256": "317cd8ed90b12c6f6f8079ce4b9cc3dfcfe0e41f46540184a10cdbbbdc9dff25",
+          "bytes": 91
+        },
+        {
+          "path": "tests/fixtures/typescript-maestro-routing/expected/adv-persona-replacement.json",
+          "sha256": "317cd8ed90b12c6f6f8079ce4b9cc3dfcfe0e41f46540184a10cdbbbdc9dff25",
+          "bytes": 91
+        },
+        {
+          "path": "tests/fixtures/typescript-maestro-routing/expected/adv-secrets-bait.json",
+          "sha256": "317cd8ed90b12c6f6f8079ce4b9cc3dfcfe0e41f46540184a10cdbbbdc9dff25",
+          "bytes": 91
+        },
+        {
+          "path": "tests/fixtures/typescript-maestro-routing/inputs/001-happy-async-contract-reliability.json",
+          "sha256": "370a282592001985270c43ae84c6be25bd57eb1e29bc20a9ad842373e81961e4",
+          "bytes": 168
+        },
+        {
+          "path": "tests/fixtures/typescript-maestro-routing/inputs/002-happy-build-graph-performance.json",
+          "sha256": "0fa119cd38b8fc1023a7f58ae92d33e82089c667e21cdd2e11def4f8105b0bc7",
+          "bytes": 167
+        },
+        {
+          "path": "tests/fixtures/typescript-maestro-routing/inputs/003-happy-business-critical-automation-governance.json",
+          "sha256": "390ffef72a4dcedff8adb39ab0a8872a26aeb3fed05c11f7f4f38178eeab683c",
+          "bytes": 179
+        },
+        {
+          "path": "tests/fixtures/typescript-maestro-routing/inputs/004-happy-engineering-economics.json",
+          "sha256": "95fcf04bf825f5940dfd719d935ef16d95b1afceff36dc83179a0a21e8a45d2c",
+          "bytes": 174
+        },
+        {
+          "path": "tests/fixtures/typescript-maestro-routing/inputs/005-happy-estate-modernization-governor.json",
+          "sha256": "9de4450329a64cf4ba46d46908a15730ad93fef98e8a770f9cadf2479dd9b2e9",
+          "bytes": 171
+        },
+        {
+          "path": "tests/fixtures/typescript-maestro-routing/inputs/006-happy-mcp-tool-contract.json",
+          "sha256": "5aeeaede7abb6e7dfefbbc1bd316e37577ad32e1923659a816e3c8fb2b4da067",
+          "bytes": 171
+        },
+        {
+          "path": "tests/fixtures/typescript-maestro-routing/inputs/007-happy-module-resolution-and-emit.json",
+          "sha256": "f56d8ce3003aa8f7bde103205eb83bd570955b0c0789a4bceb209038464650bf",
+          "bytes": 171
+        },
+        {
+          "path": "tests/fixtures/typescript-maestro-routing/inputs/008-happy-node-execution-compatibility.json",
+          "sha256": "a5516ffb4d6ce9f2722cfb39fad397eaef18d9e715b529b1c4b2f338e8b971cb",
+          "bytes": 174
+        },
+        {
+          "path": "tests/fixtures/typescript-maestro-routing/inputs/009-happy-package-publication-integrity.json",
+          "sha256": "19c575341266637d0c14ac8dd690bcd86d5bf59bcaea9556b34e7e98ea9ee063",
+          "bytes": 175
+        },
+        {
+          "path": "tests/fixtures/typescript-maestro-routing/inputs/010-happy-public-api-and-declaration-governance.json",
+          "sha256": "48fadf42be79a5a569953a674f73cc4d7426f91683d3fb42f93db3a60ca4df10",
+          "bytes": 172
+        },
+        {
+          "path": "tests/fixtures/typescript-maestro-routing/inputs/011-happy-runtime-boundary-contract.json",
+          "sha256": "77b493bb4e94351d069d7a1fade2ed8e6ab223960571f42e1e8906946ccd39e3",
+          "bytes": 158
+        },
+        {
+          "path": "tests/fixtures/typescript-maestro-routing/inputs/012-happy-static-enforcement-policy.json",
+          "sha256": "f6666aa2a6eb8e570ba5e477fdbe1f992764847b8a4834adcc80f0183e1f0e59",
+          "bytes": 163
+        },
+        {
+          "path": "tests/fixtures/typescript-maestro-routing/inputs/013-happy-type-soundness.json",
+          "sha256": "531ee01be9ed5af6a0afd5ae8c4d212cb593f24738d371516de2983afe85af92",
+          "bytes": 154
+        },
+        {
+          "path": "tests/fixtures/typescript-maestro-routing/inputs/adv-ambiguous.json",
+          "sha256": "719b82ca90bbc8d2f22dbfe237a98cd4e0cd50056835f5c65ca03aa21947c177",
+          "bytes": 113
+        },
+        {
+          "path": "tests/fixtures/typescript-maestro-routing/inputs/adv-instruction-injection.json",
+          "sha256": "4689d8e50b77d1ee197bfc74a04831d18932b0d3fd8f0603eb303cca08ba1296",
+          "bytes": 202
+        },
+        {
+          "path": "tests/fixtures/typescript-maestro-routing/inputs/adv-persona-replacement.json",
+          "sha256": "c24a35edddfabacf8b1a83f0d5603cd45e086a5c17bbafbaa7dfbe2733c35c74",
+          "bytes": 191
+        },
+        {
+          "path": "tests/fixtures/typescript-maestro-routing/inputs/adv-secrets-bait.json",
+          "sha256": "e8657b95cbe318a80b6a3d3cfafb8611658f443c158dd0d4b271daf35a65d8d6",
+          "bytes": 181
+        },
+        {
+          "path": "tests/fixtures/typescript-maestro-routing/taxonomy.json",
+          "sha256": "bd12be961d1056a7df65cb104bc7832840393e3f4af063c3a96d0acc41c1e13f",
+          "bytes": 5942
+        },
+        {
           "path": "tests/fuzz-properties.test.mjs",
           "sha256": "5ac57420ee0a8d6f11f3bdf9ebc2682fa71a1098da4d95788dac2be5ddd85d07",
           "bytes": 6920
@@ -41819,8 +42709,8 @@
         },
         {
           "path": "tests/validate-maestro-routing.py",
-          "sha256": "a22e2ae465286c2f0f005fb355c9135b0a636509fedf0544f6c1b4b243ed3ddb",
-          "bytes": 9731
+          "sha256": "dd08ed21bdd69de37b6c10c4685b5689b57fb2e2274cd2d91aa271b90f6f7c2d",
+          "bytes": 10517
         },
         {
           "path": "tests/validate-mcp-trust-matrix.py",
@@ -41878,8 +42768,8 @@
   "root_files": [
     {
       "path": "README.md",
-      "sha256": "c8bbdfbd02b55d1a3b9b453f7b7effb5df1f63a1c6bfc2bb247cb6a3d63490d5",
-      "bytes": 105004
+      "sha256": "e9d28a3f1cde606fd74d4e75ede7e7eaf29d0802152abbdb2eb49c19a327c2cd",
+      "bytes": 108091
     },
     {
       "path": "SECURITY.md",
@@ -41893,8 +42783,8 @@
     },
     {
       "path": "CONTRIBUTING.md",
-      "sha256": "4229182f0c7e9374d191b866c824e9da72cd7201e89f593d84e636d776704d88",
-      "bytes": 9622
+      "sha256": "83146e8a58a766bf345763a91af881428d5fe3d8f1bdc8eec095eafef56ccf76",
+      "bytes": 9713
     },
     {
       "path": "CODE_OF_CONDUCT.md",
@@ -41918,8 +42808,8 @@
     },
     {
       "path": "package.json",
-      "sha256": "4b090aa1238602d3d124cb3c62a4a705e6bee6fd07429ac0ba3f2cb11cc1bced",
-      "bytes": 6575
+      "sha256": "8f42f9b3de4c175d750a46a1c846764ce1ae88fad4d8b08d382d39a34d0b12b8",
+      "bytes": 6626
     },
     {
       "path": ".releaserc.js",
@@ -41927,5 +42817,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "ee6cba988312aee82367df508d5accb5dca524ea297b3c588202dd0fa615a951"
+  "aggregate_sha256": "eccfb63e483d8eebab0f53af16fbd44c08e7d93fbcab5321f7435329d2e9cc75"
 }

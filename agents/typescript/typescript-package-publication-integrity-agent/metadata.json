@@ -1,0 +1,51 @@
+{
+  "id": "typescript-package-publication-integrity-agent",
+  "name": "TypeScript Package Publication Integrity Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "typescript",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of npm package publication integrity: publish identity and authority (trusted publishing/OIDC versus long-lived tokens), provenance attestation, the release-automation trust path, tarball contents, and registry/scope configuration. Reads the publish workflow and sanitized package configuration only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.npmjs.com/generating-provenance-statements",
+    "https://publint.dev/rules",
+    "https://arethetypeswrong.github.io"
+  ],
+  "security_notes": "Static review only — reads the release-automation workflow definition, `.npmrc`/`publishConfig`, the packed file list (e.g. `npm pack --dry-run` output), and registry/scope settings; never runs `npm publish`, signs an artifact, rotates or issues a token, or contacts a live registry. Never requests secrets, registry tokens, signing keys, or customer data.",
+  "last_verified": "2026-08-13",
+  "path": "agents/typescript/typescript-package-publication-integrity-agent/",
+  "harness_variants": {
+    "codex": "agents/typescript/typescript-package-publication-integrity-agent/harnesses/codex.toml",
+    "copilot": "agents/typescript/typescript-package-publication-integrity-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/typescript/typescript-package-publication-integrity-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/typescript/typescript-package-publication-integrity-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/typescript/typescript-package-publication-integrity-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/typescript/typescript-package-publication-integrity-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/typescript/typescript-package-publication-integrity-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "typescript-package-publication-integrity"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "routing_keywords": [
+    "provenance",
+    "trusted publishing",
+    "OIDC",
+    "tarball",
+    "registry",
+    "npm audit signatures",
+    "lifecycle script",
+    "unscoped package",
+    "release automation"
+  ]
+}
