@@ -45,7 +45,7 @@ running AI agents at scale in environments where a wrong move is a board-level
 incident. It collects reusable **skills**, **agents**, **rules**, **MCP references**,
 and supporting assets for AWS, Azure, OCI, GCP, Alibaba Cloud, Huawei Cloud,
 Kubernetes, and Terraform — plus cross-functional **Legal, HR, Marketing, Salesforce,
-.NET, Java, Kotlin, PHP, Python, FinOps, Accounting, Finance, Oracle NetSuite ERP, SAP S/4HANA + BTP ERP, Microsoft 365 / Dynamics 365, and Azure-ecosystem Databricks and Snowflake data-platform**
+.NET, Java, Kotlin, PHP, Python, TypeScript, FinOps, Accounting, Finance, Oracle NetSuite ERP, SAP S/4HANA + BTP ERP, Microsoft 365 / Dynamics 365, and Azure-ecosystem Databricks and Snowflake data-platform**
 agentic ecosystems.
 
 This is **not** just cloud infrastructure tooling. It is **agentic coordination**:
@@ -535,7 +535,7 @@ Rule of thumb: if the asset teaches **how to do a repeatable task**, it is a ski
 | 🔴 Huawei Cloud     |    43 | advisory, live-guard operators, maestro router                                      |
 | 🟥 OCI              |    39 | advisory, live-guard operators                                                      |
 | 🟦 Azure            |    36 | advisory, live-guard operators                                                      |
-| ☸️ Kubernetes       |    15 | RBAC review, workload identity, PSA, 5 live-guard operators, maestro router         |
+| ☸️ Kubernetes       |    16 | RBAC review, workload identity, PSA, 5 live-guard operators, maestro router         |
 | ☁️ OVHcloud         |     6 | advisory, live KMS guard, maestro router                                            |
 | 🌐 IONOS Cloud      |     6 | advisory, live DB lifecycle guard, maestro router                                   |
 | 🇫🇷 Scaleway        |     6 | advisory, live Kapsule rollout guard, maestro router                                |
@@ -712,7 +712,7 @@ Everything you can install, and exactly how to install it. One section, no hunti
 | `--role`       | see role table below                                  | pick one ↓                              | Install all agents for a job role                    |
 | `--agents`     | comma-separated agent IDs                             | pick one ↓                              | Install specific agents by ID                        |
 | `--all`        | —                                                     | pick one ↓                              | Install every agent for the platform                 |
-| `--provider`   | `aws` `azure` `oci` `gcp` `alibaba` `huawei` `ovhcloud` `ionos` `scaleway` `hetzner` `contabo` `kubernetes` `terraform` `finops` `kyverno` `argocd` `istio` `cilium` `opentelemetry` | ➕ optional | Narrow `--role` results to one provider |
+| `--provider`   | any provider id — run `vfa-export-agents --list-providers` to list them | ➕ optional | Narrow `--role` results to one provider |
 | `--repo`       | path                                                  | ➕ optional                              | Target repo root (defaults to current directory)     |
 | `--force`      | —                                                     | ➕ optional                              | Overwrite files that already exist                   |
 | `--list`       | —                                                     | 🔍 standalone                            | Print all agent IDs, providers, and names; then exit |
@@ -785,35 +785,56 @@ npx vfa-export-agents --platform claude-code --role kubernetes-network-engineer 
 
 Use `--provider` with `--role` to narrow the install to one cloud.
 
-| `--provider` value  | Domain                                   | 🔢 Agents in catalog |
-| ------------------- | ---------------------------------------- | ------------------: |
-| `aws`               | 🟧 Amazon Web Services                    |                  47 |
-| `azure`             | 🟦 Microsoft Azure                        |                  36 |
-| `oci`               | 🟥 Oracle Cloud Infrastructure            |                  39 |
-| `gcp`               | 🟩 Google Cloud Platform                  |                  51 |
-| `alibaba`           | 🟠 Alibaba Cloud                          |                  43 |
-| `huawei`            | 🔴 Huawei Cloud                           |                  43 |
-| `ovhcloud`          | ☁️ OVHcloud                               |                   6 |
-| `ionos`             | 🌐 IONOS Cloud                            |                   6 |
-| `scaleway`          | 🇫🇷 Scaleway                             |                   6 |
-| `hetzner`           | 🇩🇪 Hetzner Cloud                        |                   6 |
-| `contabo`           | 💰 Contabo                                |                   6 |
-| `kubernetes`        | ☸️ Kubernetes (cross-cloud)               |                  15 |
-| `kyverno`           | 🛡️ Kyverno (admission policy)            |                   1 |
-| `argocd`            | 🔄 Argo CD + Argo Rollouts (GitOps)       |                   2 |
-| `istio`             | 🕸️ Istio (service mesh)                  |                   1 |
-| `cilium`            | 🐝 Cilium (network policy)                |                   1 |
-| `opentelemetry`     | 📡 OpenTelemetry (observability)          |                   1 |
-| `terraform`         | 🟩 Terraform (cross-cloud)                |                   2 |
-| `multi-cloud`       | 💰 FinOps / multi-cloud                   |                   1 |
-| `prometheus`        | 📊 Prometheus (alerting + cardinality)    |                   1 |
-| `falco`             | 🦅 Falco (runtime threat detection)       |                   1 |
-| `sigstore`          | 🔏 Sigstore / Cosign (supply chain)       |                   1 |
-| `cert-manager`      | 🔐 cert-manager (PKI / cert lifecycle)    |                   1 |
-| `fluxcd`            | 🔄 FluxCD (GitOps)                        |                   1 |
-| `backstage`         | 🎭 Backstage (IDP / developer platform)   |                   1 |
-| `velero`            | 💾 Velero (backup + restore)              |                   1 |
-| `marketing`         | 📣 Marketing governance (consent, pixel, access, AI, deliverability) |   14 |
+<!-- provider-table:start -->
+<!-- Generated by scripts/generate-readme-counts.mjs — do not edit by hand. Run: npm run readme-counts:write -->
+| `--provider` value | Domain | 🔢 Agents in catalog |
+| --- | --- | ---: |
+| `gcp` | 🟩 Google Cloud Platform | 51 |
+| `aws` | 🟧 Amazon Web Services | 47 |
+| `alibaba` | 🟠 Alibaba Cloud | 43 |
+| `huawei` | 🔴 Huawei Cloud | 43 |
+| `microsoft` | 🟦 Microsoft 365 / Dynamics 365 | 40 |
+| `sap` | 🟨 SAP S/4HANA + BTP | 40 |
+| `oci` | 🟥 Oracle Cloud Infrastructure | 39 |
+| `azure` | 🟦 Microsoft Azure | 36 |
+| `frontend` | 🎨 Frontend (web platform) | 35 |
+| `python` | 🐍 Python | 35 |
+| `salesforce` | ☁️ Salesforce | 30 |
+| `netsuite` | 🟫 Oracle NetSuite ERP | 25 |
+| `kotlin` | 🟧 Kotlin | 16 |
+| `kubernetes` | ☸️ Kubernetes (cross-cloud) | 16 |
+| `hr` | 👥 HR | 15 |
+| `java` | ☕ Java | 15 |
+| `accounting` | 📒 Accounting | 14 |
+| `marketing` | 📣 Marketing governance | 14 |
+| `typescript` | 🔷 TypeScript | 14 |
+| `legal` | ⚖️ Legal | 13 |
+| `nvidia` | 🟩 NVIDIA (GPU / AI platform) | 12 |
+| `generic` | 🧰 Generic (cross-platform) | 11 |
+| `dotnet` | 🟣 .NET | 10 |
+| `finance` | 💹 Finance | 8 |
+| `contabo` | 💰 Contabo | 6 |
+| `hetzner` | 🇩🇪 Hetzner Cloud | 6 |
+| `ionos` | 🌐 IONOS Cloud | 6 |
+| `ovhcloud` | ☁️ OVHcloud | 6 |
+| `scaleway` | 🇫🇷 Scaleway | 6 |
+| `php` | 🐘 PHP | 5 |
+| `databricks` | 🧱 Databricks | 3 |
+| `multi-cloud` | 💰 FinOps / multi-cloud | 3 |
+| `snowflake` | ❄️ Snowflake | 3 |
+| `argocd` | 🔄 Argo CD + Argo Rollouts (GitOps) | 2 |
+| `terraform` | 🟩 Terraform (cross-cloud) | 2 |
+| `backstage` | 🎭 Backstage (IDP / developer platform) | 1 |
+| `cert-manager` | 🔐 cert-manager (PKI / cert lifecycle) | 1 |
+| `cilium` | 🐝 Cilium (network policy) | 1 |
+| `falco` | 🦅 Falco (runtime threat detection) | 1 |
+| `fluxcd` | 🔄 FluxCD (GitOps) | 1 |
+| `istio` | 🕸️ Istio (service mesh) | 1 |
+| `kyverno` | 🛡️ Kyverno (admission policy) | 1 |
+| `opentelemetry` | 📡 OpenTelemetry (observability) | 1 |
+| `prometheus` | 📊 Prometheus (alerting + cardinality) | 1 |
+| `sigstore` | 🔏 Sigstore / Cosign (supply chain) | 1 |
+<!-- provider-table:end -->
 
 ```bash
 # 🟥 Install every OCI agent for a cloud-platform-engineer (OCI-only team)
