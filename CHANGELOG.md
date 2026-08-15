@@ -1,3 +1,191 @@
+## 🛡️ v3.8.0 — *Provenance · Policy · Portability*
+_Released 2026-08-15_
+
+> _Curated multi-cloud, zero-trust agent marketplace — `AWS` · `Azure` · `OCI` · `GCP` · `Terraform`._
+> Least privilege, live evidence, safe rollback paths.
+
+**Release type:** New capabilities — review the sections below before upgrading.
+
+* **typescript:** ship the TypeScript program and package board ([`18b627c`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/18b627c3ea5f333964c5d1c7715378e373761e2f))
+Builds the 14-agent TypeScript board designed in
+`.claude/workflow/typescript-board/`: a maestro router plus 13 static-review
+specialists, each with a companion skill and lazy-loaded references, rendered
+from `scripts/typescript_data/agents/*.json` by a new data-driven generator.
+
+The board's unit of analysis is the TypeScript *program* and the *published
+package* — compiler configuration, module resolution and emit, the declaration
+surface, program-graph cost, Node execution, and the runtime boundaries that
+type erasure leaves undefended. It is deliberately not a second frontend board:
+the split with `agents/frontend/` is drawn on artifact scope (application diff
+vs shared/published program) and written into both boards' refusal lists.
+
+Every agent is static-review only. All 14 copilot adapters grant read/search
+alone, no SKILL.md carries a bash fence, and all 13 specialists close their
+operating rules with "Static review only: never compile, build, run, deploy,
+sign, publish, or contact a live system — route any such request to the named
+human owner."
+
+Two plan decisions were proved wrong during implementation and are corrected
+in place in the design record rather than quietly rewritten:
+
+* The maestro skill ships a `references/routing-taxonomy.md` (kotlin's shape),
+  not an inline routing table (java's). The boundary rules separating thirteen
+  domains are what a lazy-load reference is for, and keeping them out of
+  SKILL.md holds it to 58 lines against the 90-line limit.
+* The routing taxonomy ships no `live_guard_intent`. The plan's rule — the
+  gate regex may hold destructive verbs but never a domain noun — was right and
+  incomplete: the default's *bare* verbs are this board's own vocabulary.
+  `delete` is a TypeScript operator, so a type-soundness question black-holed
+  to an empty route. Anchoring the verbs to operational objects only moves the
+  black hole onto "review the workflow that runs npm publish". The gate exists
+  to stop auto-dispatch to a live-mutating agent and this board registers none,
+  so it is omitted, as hr/legal/netsuite already omit it.
+
+Generator changes, both scoped to their designed extension points:
+
+* `GATE_INTENT` is now actually consulted per provider — its own comment
+  promised an override but `build_taxonomy()` read `["default"]` unconditionally,
+  so no override could ever have taken effect. Key order is preserved for every
+  other provider.
+* `and` and `never` join STOPWORDS. The IDF filter cannot catch them (too few
+  domains to cross the 25% threshold) yet they appear in nearly every real task,
+  handing a free point to whichever domains carry them. Also removes two
+  meaningless `Never` keywords from microsoft's taxonomy.
+
+Also fixes `agents/frontend/browser-compatibility-agent/metadata.json`, whose
+`harnesses` listed the invalid `kiro-cli`/`kiro-ide` split instead of `kiro`,
+and drops ROADMAP's hardcoded catalog counts in favour of a pointer to the
+generated `docs/_data/catalog.yml`.
+
+Gates: `npm run validate`, `lint:spell`, markdownlint (7670 files), the routing
+grader (751 scenarios across 32 maestros), and `cargo fmt`/`clippy`/`test`
+(1053 tests) all green.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+* **docs:** generate the provider-reference table and repair stale provider listings ([`8c6566b`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/8c6566ba58de324f4bb6aab7eccf0d8548c4f8cd))
+An audit of every count and provider listing in the repo, prompted by the new
+TypeScript board. The counts were all correct — `readme-counts` was green and
+re-running the generators produced a zero diff. The *listings* were not.
+
+**The provider-reference table in README.md is now generated, not hand-written.**
+It had drifted badly while nobody was watching: 27 of 45 providers, `kubernetes`
+understated as 15, `multi-cloud` as 1, and a `velero` row claiming one agent for
+a provider that has skills but no agents at all. Its counts summed to 334
+against a real 680. `scripts/generate-readme-counts.mjs` now emits it between
+`provider-table:*` markers, using the same marker contract the counts block
+already used, sorted by agent count then slug for a stable diff.
+
+`validate:readme-counts` now also runs the generator in `--check` mode, so this
+class of drift fails CI instead of accumulating. The gate's own logic is not
+duplicated — it shells out to the generator. Probed both ways: an injected wrong
+count exits 1 naming the line, a clean tree exits 0.
+
+Provider display labels live in the generator with a title-cased fallback, so
+adding a provider never breaks the build. CLAUDE.md already lists eight places a
+new provider must be registered; this is deliberately not a ninth.
+
+Other listings repaired:
+
+* README's opening paragraph named every language board except TypeScript.
+* The `--provider` CLI flag row listed 19 of 45 values and included `finops`,
+  which is not in the provider enum at all — `--provider finops` would be
+  rejected. It now points at `vfa-export-agents --list-providers`, verified to
+  exist and to print all 45 including `typescript 14 agent(s)`.
+* CONTRIBUTING.md pinned a 13-value provider list against a 48-value enum. It
+  now points at the enum in `schemas/skill.schema.json` as the contract.
+* The `## Agents` table understated `kubernetes` as 15. Its `FinOps`, `QA`, and
+  cross-functional rows are hand-curated aggregates with no provider slug and
+  were deliberately left alone.
+* `docs/roadmap.md` hardcoded the MCP-reference count in prose while the same
+  file already used the Liquid variable two dozen lines above.
+
+Verified unchanged and correct: the provider invariant holds exactly
+(taxonomy.md bullets == catalog.yml provider_list == providers with >=1 agent,
+45 each, typescript in all three), and `velero` is correctly absent from all
+three since it is skill-only.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+* **typescript:** address five Codex review findings on the TypeScript board ([`44909d8`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/44909d88c71320b4aef13dc16d0042f9a8021283))
+All five reproduced against the tree before being fixed; each fix carries a
+positive and a negative probe.
+
+**P1 — the documented regeneration path corrupted unrelated providers.**
+`scripts/update-catalog-new-agents.py` gains `--provider <id>` (repeatable), and
+every board generator now documents the scoped invocation. Unscoped, the upsert
+walks every provider and its merge is `{**catalog_entry, **projected_metadata}`
+— projected keys win, which is wrong whenever `metadata.json` is the *older*
+side. It is here: the ionos, ovhcloud, and scaleway agents each declare two
+harnesses in metadata while all seven adapter files sit beside them on disk, so
+an unscoped run silently rewrote 18 catalog entries from the stale side and
+dropped three providers out of the Kiro Powers set. No gate caught it. The
+unscoped path still exists for deliberate reconciliation but now prints a
+warning naming the hazard. Probed both ways: scoped run is a clean no-op;
+unscoped run still reproduces the harness downgrade.
+
+The same trap was documented in four sibling generators (kotlin, netsuite,
+python, python-live); all four now document the scoped command too. Docstring
+only, no behaviour change.
+
+**P2 — declared routing vocabulary was dead data.** Each specialist's data file
+declared `routing_keywords` (118 terms across the board) that no generator ever
+read, so the taxonomy was mined from agent ids and summaries alone. Mining
+recovers what an agent is *called*, never the constructs it owns, and the gap
+showed: `Is satisfies safer than an annotation here?` and a floating-promise /
+cancellation review both returned `unclassified`, and "our package exports and
+types conditions are wrong for ESM consumers" routed to publication-integrity
+because the mined token `package` outweighed every resolution signal.
+
+`build_taxonomy()` now reads `routing_keywords` from each agent's
+`metadata.json` and ranks it ahead of the mined tokens; agents that declare none
+behave exactly as before. Read from disk rather than the catalog on purpose —
+the catalog projection carries a fixed key allowlist, so this vocabulary never
+reaches `catalog/agents.json` and the TUI's `deny_unknown_fields` structs are
+untouched. Verified: zero occurrences of the field in the catalog, and all four
+of the reviewer's examples now reach the right specialist.
+
+**P2 — a release date became a routing signal.** The miner's `\w+-\w+` arm
+matched the MCP protocol revision quoted in a summary, and because keywords
+containing a non-word character match as substrings, `2026-07` then captured any
+task mentioning that year-month: "Assess our TypeScript 7.0 migration planned
+for 2026-07" routed to the MCP specialist. Date-shaped tokens are now filtered
+out of mined keywords, and `validate-maestro-routing.py` rejects a date-shaped
+keyword in any provider's committed taxonomy so one cannot re-enter by hand.
+Only typescript was affected across all 32 maestros. Probed both ways: clean
+tree passes 751 scenarios; an injected `2026-07` fails with the intended message
+and exit 1.
+
+**P2 — the Kiro Power activated on generic prompts.** The board took the
+generator's derived fallback, which produced `configuration-audit` and
+`best-practices` as activation keywords — enough for a database or Terraform
+review with no TypeScript signal to pull in the TypeScript Power — plus a
+truncated description and the wrong casing ("Typescript"). Replaced with a
+proper `PROVIDERS` entry: narrow keywords that are either the language itself or
+a construct unique to TypeScript/Node work, an accurate description, correct
+casing, and the board's static-review invariants.
+
+**P2 — the hand-written Kiro inventories were stale.** `README.md` advertised 42
+Powers and omitted `vanguard-typescript`; the installation guide's table had no
+TypeScript row. Both corrected, and the guide was also missing `vanguard-java`
+— a pre-existing gap, now fixed. All three inventories (disk, README, guide) are
+verified set-equal at 45.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+
+---
+
+### 📥 Install
+```bash
+npm install @raishin/vanguard-frontier-agentic@3.8.0
+```
+
+### 🔐 Supply-chain provenance
+Every release ships a build attestation (SLSA provenance) and an SBOM. Verify the tag with `gh attestation verify` before installing.
+
+**Full changelog:** https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/compare/v3.7.0...v3.8.0
+
 ## 🛡️ v3.7.0 — *Provenance · Policy · Portability*
 _Released 2026-08-13_
 
@@ -9089,7 +9277,7 @@ Collateral: regenerate asset-integrity.json, plugin manifests
 
 ## 🔴 v2.0.0 — *Zero-Trust Scope Enforcement* &mdash; 2026-05-16
 
-> _Provider-scoped exports are now strict and auditable. 666 agents · 689 skills · 44 providers · 56 roles_
+> _Provider-scoped exports are now strict and auditable. 680 agents · 703 skills · 45 providers · 60 roles_
 >
 > This release closes a class of privilege-escalation bugs in the export CLI and hardens the
 > entire provider-scope boundary from user input through to CI attestation.
