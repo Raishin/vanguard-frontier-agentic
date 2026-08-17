@@ -67,7 +67,7 @@
   },
   "operating_rules": [
     "CRITICAL — Never recommend the Snowpipe Streaming classic architecture for a new implementation without first re-verifying Snowflake's current lifecycle guidance. Current documentation states that Snowflake is deprecating the classic architecture in favour of the high-performance architecture, that all future innovation is built on the latter, and that customers should assess pipelines and prioritize upgrading. Recommending the classic path from memory ships a migration the customer did not ask for.",
-    "CRITICAL — Never invent an end-of-life date. Snowflake describes the classic architecture as planned for deprecation without a documented retirement date in the material reviewed here. If official sources conflict or appear stale, report `Status: unresolved` with the action to verify the latest release and deprecation notes, and say plainly that a date was not established. Fabricated certainty about an EOL drives a real migration budget.",
+    "CRITICAL — Never invent an end-of-life date, and never stop at 'unknown' either. Snowflake documents an expected timeline: a formal deprecation announcement carrying the final end-of-life date, followed by an 18-month sunset period for migration. Report the documented expected timeline and whether the announcement has landed yet; where the final date is not published, say so explicitly and give the planning consequence — an 18-month clock that starts on announcement, not on today. Fabricated certainty about an EOL drives a real migration budget; so does an unqualified 'unresolved' that hides a published sunset window.",
     "CRITICAL — Reconcile end to end or state that completeness is `UNKNOWN`. Producer count, connector-reported count, and landing-table count for the same window are three numbers, and the whole domain exists because they can differ while everything reports healthy.",
     "HIGH — Establish the delivery guarantee explicitly at each hop rather than assuming it composes. State the producer's guarantee, the connector's guarantee, the channel's offset semantics, and what an offset commit actually means. 'Exactly once' asserted end to end without naming the mechanism at each hop is a hope.",
     "HIGH — Analyse channel and offset semantics concretely: channel identity and lifetime, what happens when a channel is reopened, whether offsets are monotonic, and what a client restart does. Offset handling is where replay corruption originates.",
@@ -81,7 +81,7 @@
     "'The connector is running fine.' Running is not ingesting. Show throughput per channel over the window and the landing-table count against the producer count.",
     "'We use Snowpipe Streaming, so it's real time.' Show measured lag at the landing table at p95, not the design intent. And show which architecture — classic and high-performance are different products with different futures.",
     "'We'll start on the classic SDK, it's what the team knows.' Current guidance recommends the high-performance architecture for new implementations and describes classic as being deprecated. Starting on classic buys familiarity and books a migration.",
-    "'Classic is going away in <specific date>.' Where is that documented? If no primary source states a date, the honest answer is that the retirement date is unresolved — and building a plan on an invented date is worse than building one on an unknown.",
+    "'Classic is going away in <specific date>.' Where is that documented? No final end-of-life date is published. What IS documented is a formal announcement carrying that date, followed by an 18-month sunset — so the honest answer is neither an invented date nor a shrug: no date yet, an 18-month clock once announced, and the announcement is due.",
     "'Exactly-once, the SDK handles it.' At which hop? Producer to connector, connector to channel, channel to table — name the mechanism for each and where the guarantee stops.",
     "'We alert on connector health.' A connector processing zero records is healthy. Alert on throughput and lag per channel, or the outage is discovered downstream.",
     "'We'll just replay from the source.' What deduplicates? A replay into a landing table with no idempotent key turns missing data into double-counted data.",
@@ -125,9 +125,22 @@
     "The remediation is a live channel, pipe, or connector change → `snowflake-live-pipeline-streaming-change-guard-agent` behind the human approval gate."
   ],
   "routing_keywords": [
-    "snowpipe", "streaming", "snowpipe streaming", "kafka", "connector", "channel",
-    "offset", "ingestion", "ingest", "backpressure", "replay", "openflow",
-    "real-time", "high-performance architecture", "classic architecture", "data loss",
+    "snowpipe",
+    "streaming",
+    "snowpipe streaming",
+    "kafka",
+    "connector",
+    "channel",
+    "offset",
+    "ingestion",
+    "ingest",
+    "backpressure",
+    "replay",
+    "openflow",
+    "real-time",
+    "high-performance architecture",
+    "classic architecture",
+    "data loss",
     "exactly-once"
   ],
   "companion_skill": {
@@ -190,9 +203,10 @@
             "title": "How to hold a lifecycle claim",
             "claims": [
               "Lifecycle status is volatile and load-bearing: it decides whether a new build is starting on a supported path or booking a migration. Carry it with a verification date or do not carry it.",
-              "'Planned for deprecation' and 'retired on date X' are different claims. Snowflake's published material describes the classic architecture as planned for deprecation and directs new work to the high-performance architecture; it does not, in the material reviewed here, publish a retirement date.",
-              "Where a date is needed for planning and none is documented, the correct output is `Status: unresolved — verify against the latest Snowflake release and deprecation notes`, plus a plan that does not depend on the date. Inventing one produces a real budget for a fictional deadline.",
-              "For existing workloads: current guidance is that they remain supported and no immediate change is required, while customers are encouraged to assess pipelines and prioritize upgrading. That is a planning signal, not an emergency — say so, rather than manufacturing urgency."
+              "'Planned for deprecation', 'announced with a date', and 'retired' are three different states. Snowflake's published material puts the classic architecture in the first: deprecation is stated, and a formal announcement carrying the final end-of-life date is documented as expected, with an 18-month sunset period beginning after it.",
+              "Where a final date is needed for planning and none is published, the correct output is not a bare `unresolved`. State three things: no final end-of-life date is published; the documented expectation is a formal announcement followed by an 18-month sunset; and therefore the migration window is bounded by that clock rather than open-ended. Then give the action — re-check the deprecation page and the release notes, because the announcement is the event that starts it.",
+              "For existing workloads: current guidance is that they remain supported and no immediate change is required, while customers are encouraged to assess pipelines and prioritize upgrading. That is a planning signal, not an emergency — say so, rather than manufacturing urgency.",
+              "Check whether the announcement has actually landed before repeating the expected timeline. The documented target was mid-2026; if the page still reads in the future tense the announcement is due or overdue, and that is itself the finding a planner needs — not a reason to report nothing."
             ]
           },
           {
@@ -209,10 +223,17 @@
         "volatile": [
           {
             "claim": "Snowflake is deprecating the Snowpipe Streaming classic architecture in favour of the high-performance architecture; all future innovation is built on the high-performance architecture and the classic architecture will eventually be retired.",
-            "status": "Deprecation announced; no retirement date established in the reviewed material",
+            "status": "Deprecation stated; final end-of-life date not yet published — formal announcement documented as expected, with an 18-month sunset following it",
             "verified": "2026-08-17 via Context7 `/websites/snowflake_en` (snowpipe-streaming-classic-deprecation)",
             "proves": "That a new implementation should target the high-performance architecture",
-            "not_proves": "When the classic architecture stops working — that date is unresolved and must not be invented"
+            "not_proves": "When the classic architecture stops working — no final date is published, so it must not be invented; but the 18-month sunset window and the pending announcement ARE documented and must not be omitted either"
+          },
+          {
+            "claim": "Snowflake documents an expected timeline: a formal deprecation announcement — including the full transition timeline, milestones, migration guides, and the final end-of-life date — planned for mid-2026, followed by an 18-month sunset period for migrating workloads.",
+            "status": "Expected timeline as documented — confirm whether the announcement has landed",
+            "verified": "2026-08-17 via Context7 `/websites/snowflake_en` (snowpipe-streaming-classic-deprecation, 'Expected timeline and migration window')",
+            "proves": "That the migration window is bounded by an 18-month clock starting at announcement, so a programme can be scoped now rather than deferred for lack of a date",
+            "not_proves": "That the announcement has been issued, or what the final end-of-life date is — the documented mid-2026 target had arrived by this verification date while the page still read in the future tense, so re-check before planning on it"
           },
           {
             "claim": "Existing classic-architecture workloads remain fully supported with no immediate change required, while users are encouraged to review migration resources and prioritize upgrading.",
