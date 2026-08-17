@@ -23,7 +23,7 @@
  *   node scripts/generate-workflow-catalog.mjs --check   # verify in sync (CI)
  */
 import { readFileSync, writeFileSync, readdirSync, existsSync, realpathSync } from 'node:fs'
-import { join, dirname, relative } from 'node:path'
+import { join, dirname, relative, sep } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const ROOT = dirname(dirname(fileURLToPath(import.meta.url)))
@@ -249,7 +249,12 @@ function readWorkflow(file) {
   return {
     id: meta.name,
     name: meta.name,
-    path: relative(ROOT, abs),
+    // Forward slashes always. `relative()` emits backslashes on Windows, which would
+    // make generated output platform-dependent: `--check` would fail on one OS against
+    // a catalog committed from another, and the Rust loader test asserts a
+    // `.claude/workflows/` prefix. A repo-relative path in a committed artifact is a
+    // repo path, not a filesystem path.
+    path: relative(ROOT, abs).split(sep).join('/'),
     description: meta.description,
     when_to_use: typeof meta.whenToUse === 'string' ? meta.whenToUse : '',
     phases: Array.isArray(meta.phases)

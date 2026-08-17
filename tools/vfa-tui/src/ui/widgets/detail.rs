@@ -5,7 +5,7 @@ use ratatui::{
     Frame,
 };
 
-use crate::models::{Agent, McpReference, Rule, Skill};
+use crate::models::{Agent, McpReference, Rule, Skill, Workflow};
 
 use super::super::theme::Theme;
 
@@ -360,6 +360,50 @@ pub fn render_rule_detail(rule: &Rule, area: Rect, frame: &mut Frame, scroll: u1
             Block::default()
                 .borders(Borders::ALL)
                 .title(rule.name.clone())
+                .border_style(theme.border_style()),
+        )
+        .wrap(Wrap { trim: false })
+        .scroll((scroll, 0));
+
+    frame.render_widget(paragraph, area);
+}
+
+/// Render a workflow's detail pane: what it is, when to reach for it, and the phase
+/// list with the model tier each phase actually runs on.
+pub fn render_workflow_detail(
+    wf: &Workflow,
+    area: Rect,
+    frame: &mut Frame,
+    scroll: u16,
+    theme: &Theme,
+) {
+    let phases_str = if wf.phases.is_empty() {
+        "N/A".to_string()
+    } else {
+        wf.phases
+            .iter()
+            .enumerate()
+            .map(|(i, p)| format!("{}. {} [{}]", i + 1, p.title, p.model_label()))
+            .collect::<Vec<_>>()
+            .join("  ")
+    };
+
+    let lines = vec![
+        detail_line("ID", &wf.id, theme),
+        detail_line("Invoke", &wf.invocation(), theme),
+        detail_line("Description", &wf.description, theme),
+        detail_line("When To Use", &wf.when_to_use, theme),
+        detail_line("Phases", &format!("{}", wf.phase_count()), theme),
+        detail_line("Sequence", &phases_str, theme),
+        detail_line("Model Tiers", &wf.model_tiers().join(", "), theme),
+        detail_line("Path", &wf.path, theme),
+    ];
+
+    let paragraph = Paragraph::new(lines)
+        .block(
+            Block::default()
+                .borders(Borders::ALL)
+                .title(wf.name.clone())
                 .border_style(theme.border_style()),
         )
         .wrap(Wrap { trim: false })

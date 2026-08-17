@@ -18,6 +18,7 @@ pub fn render_help_bar(view: &View, area: Rect, frame: &mut Frame, theme: &Theme
         | View::ProviderList
         | View::McpList
         | View::RuleList
+        | View::WorkflowList
         | View::ValidationList => {
             " j/k:Navigate  Enter:Select  /:Search  Tab:Section  g/G:Top/Bot  q:Quit"
         }
@@ -26,6 +27,7 @@ pub fn render_help_bar(view: &View, area: Rect, frame: &mut Frame, theme: &Theme
         | View::RoleDetail(_)
         | View::McpDetail(_)
         | View::RuleDetail(_)
+        | View::WorkflowDetail(_)
         | View::IntegrityDetail(_) => " j/k:Scroll  Esc:Back  Tab:Section  q:Quit",
         View::ProviderAgents(_) => {
             " j/k:Navigate  Enter:Select  Esc:Back  Tab:Section  g/G:Top/Bot  q:Quit"

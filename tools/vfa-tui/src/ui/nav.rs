@@ -111,6 +111,8 @@ pub enum View {
     McpDetail(String),
     RuleList,
     RuleDetail(String),
+    WorkflowList,
+    WorkflowDetail(String),
     ValidationList,
     ValidationOutput(String),
     ExportBuilder,
@@ -140,6 +142,10 @@ pub const SIDEBAR_SECTIONS: &[SidebarEntry] = &[
     ("Export", || View::ExportBuilder),
     ("Model Policy", || View::ModelPolicyBuilder),
     ("Integrity", || View::IntegrityOverview),
+    // Appended rather than grouped with the catalog sections above because the
+    // app tests address sidebar sections by hardcoded index; inserting mid-list
+    // silently repoints every one of those numbers at a different section.
+    ("Workflows", || View::WorkflowList),
 ];
 
 // ── Keybinding action enum ───────────────────────────────────────────────────
@@ -431,6 +437,27 @@ impl Default for NavigationState {
 
 #[cfg(test)]
 mod tests {
+    // Regression: the workflow catalog was loaded into CatalogStore but no production
+    // code read it, so the feature was invisible to users. These assert the view is
+    // actually reachable rather than merely defined.
+    #[test]
+    fn workflows_have_a_sidebar_entry() {
+        let labels: Vec<&str> = SIDEBAR_SECTIONS.iter().map(|(l, _)| *l).collect();
+        assert!(
+            labels.contains(&"Workflows"),
+            "Workflows must be reachable from the sidebar; got {labels:?}",
+        );
+    }
+
+    #[test]
+    fn workflows_sidebar_entry_opens_the_workflow_list() {
+        let entry = SIDEBAR_SECTIONS
+            .iter()
+            .find(|(l, _)| *l == "Workflows")
+            .expect("Workflows sidebar entry");
+        assert_eq!((entry.1)(), View::WorkflowList);
+    }
+
     use super::*;
 
     // ── v1 regression tests (unchanged from original) ────────────────────────
@@ -536,7 +563,7 @@ mod tests {
 
     #[test]
     fn sidebar_sections_count() {
-        assert_eq!(SIDEBAR_SECTIONS.len(), 10);
+        assert_eq!(SIDEBAR_SECTIONS.len(), 11);
     }
 
     #[test]
@@ -552,6 +579,7 @@ mod tests {
             View::ExportBuilder,
             View::ModelPolicyBuilder,
             View::IntegrityOverview,
+            View::WorkflowList,
         ];
         for (i, expected) in expected_views.iter().enumerate() {
             let view_fn = SIDEBAR_SECTIONS[i].1;
