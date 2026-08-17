@@ -14,6 +14,7 @@ pub mod report;
 pub mod role;
 pub mod rule;
 pub mod skill;
+pub mod workflow;
 pub mod workspace;
 
 // Re-export all model types for convenient access.
@@ -59,5 +60,7 @@ pub use role::{Role, RoleCatalog};
 pub use rule::{Rule, RuleType};
 #[allow(unused_imports)]
 pub use skill::{Skill, SkillType};
+#[allow(unused_imports)]
+pub use workflow::{Workflow, WorkflowCatalog, WorkflowPhase};
 #[allow(unused_imports)]
 pub use workspace::{ResolvedWorkspace, WorkspaceEntry, WorkspaceStatus};

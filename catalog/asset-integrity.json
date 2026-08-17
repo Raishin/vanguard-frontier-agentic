@@ -33157,7 +33157,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "06a3db724089823080272a03b92e604e647f6c13552d17bd603442d9014c04e5",
+      "aggregate_sha256": "58c7f659205777118c7174a008804ca3aace886ecfaeb2921de73a6cb8ee4fb2",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -33213,12 +33213,17 @@
           "path": "catalog/skills.json",
           "sha256": "a527afac8f5a19a1692c671e26ff18df01fedb9eb02eae42c5ce189364d16db0",
           "bytes": 1129051
+        },
+        {
+          "path": "catalog/workflows.json",
+          "sha256": "7f1433a4b65721df29292029c3687adaa06e53135d857de0b22097beda34e4d8",
+          "bytes": 1805
         }
       ]
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "cd24415dc47e562d8f8a56eb3cacd5bbb354803401a8d4f1846949845df688ce",
+      "aggregate_sha256": "21493453bea1a959d2ff1eb89939ef5a11931100046ac49054cd130bcaa71504",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -33314,6 +33319,11 @@
           "path": "scripts/generate-readme-counts.mjs",
           "sha256": "235573c81411a6657f0abbe875b9da1cd7e62aaaafaa7a423e103fe0e443b7d0",
           "bytes": 9290
+        },
+        {
+          "path": "scripts/generate-workflow-catalog.mjs",
+          "sha256": "91247d0ae62f3cbd8d6dc85a62948ab708bf6074b31e83d79372e57f28460abb",
+          "bytes": 5326
         },
         {
           "path": "scripts/install-codex-home.mjs",
@@ -43273,8 +43283,8 @@
     },
     {
       "path": "package.json",
-      "sha256": "911cb53a38d99dbccf0de3c966318a72c71e7580fc89e0a6b01e8a0da241d403",
-      "bytes": 6626
+      "sha256": "67b43776c551d5bf4527ec24efdacede13046ffe3ce7e52646de6ed48b0c09d7",
+      "bytes": 6859
     },
     {
       "path": ".releaserc.js",
@@ -43282,5 +43292,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "e10c7ed72c96ca2dca81c7c6df9e389d6728e8a438d4297d093288aac47b41f1"
+  "aggregate_sha256": "9e793ad63cf6ca0665f2bd81f6f39f2329b56d654a97723c8eb1aa53a3a393d4"
 }
