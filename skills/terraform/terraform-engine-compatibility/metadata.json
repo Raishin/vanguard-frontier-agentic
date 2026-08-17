@@ -19,7 +19,9 @@
     "https://developer.hashicorp.com/terraform/language/v1-compatibility-promises",
     "https://developer.hashicorp.com/terraform/language/files/dependency-lock",
     "https://opentofu.org/docs/intro/migration/",
-    "https://opentofu.org/docs/intro/"
+    "https://opentofu.org/docs/intro/",
+    "https://opentofu.org/docs/intro/migration/multiple-configurations",
+    "https://developer.hashicorp.com/terraform/plugin/terraform-plugin-protocol"
   ],
   "security_notes": "Static review only — reads version constraints, `.terraform.lock.hcl`, provider deprecation notices, changelog and upgrade-guide excerpts, and configuration; never runs `init`, `init -upgrade`, `plan`, or `apply`, and never contacts a registry. Never requests or accepts credentials, tokens, or licence keys. Version-specific behaviour is asserted only from the relevant engine's own upgrade guidance for the exact version pair in question; a claim about a version whose guidance was not read is labelled unknown rather than inferred from an adjacent version.",
   "last_verified": "2026-08-17",

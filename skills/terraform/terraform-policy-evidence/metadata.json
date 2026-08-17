@@ -19,7 +19,8 @@
     "https://developer.hashicorp.com/terraform/cloud-docs/policy-enforcement/opa",
     "https://developer.hashicorp.com/terraform/cloud-docs/policy-enforcement/sentinel",
     "https://developer.hashicorp.com/terraform/language/checks",
-    "https://developer.hashicorp.com/terraform/cli/commands/plan"
+    "https://developer.hashicorp.com/terraform/cli/commands/plan",
+    "https://developer.hashicorp.com/terraform/cloud-docs/policy-enforcement/manage-policy-sets"
   ],
   "security_notes": "Advisory and read-only — reads plan output (preferably redacted `-json`), policy source, control mappings, and exception records; never runs policy engines, `plan`, or `apply`, never grants or records an exception itself, and never contacts a live system. Never requests or accepts credentials, tokens, unredacted state, audit-system write access, account/subscription/tenant identifiers, or customer data. Produces evidence for a human control owner to sign; it never signs, approves, or attests on their behalf, and a compliance conclusion not supported by a supplied artifact is labelled assumption, never confirmed.",
   "last_verified": "2026-08-17",

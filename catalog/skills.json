@@ -19473,7 +19473,9 @@
       "https://developer.hashicorp.com/terraform/language/v1-compatibility-promises",
       "https://developer.hashicorp.com/terraform/language/files/dependency-lock",
       "https://opentofu.org/docs/intro/migration/",
-      "https://opentofu.org/docs/intro/"
+      "https://opentofu.org/docs/intro/",
+      "https://opentofu.org/docs/intro/migration/multiple-configurations",
+      "https://developer.hashicorp.com/terraform/plugin/terraform-plugin-protocol"
     ],
     "security_notes": "Static review only — reads version constraints, `.terraform.lock.hcl`, provider deprecation notices, changelog and upgrade-guide excerpts, and configuration; never runs `init`, `init -upgrade`, `plan`, or `apply`, and never contacts a registry. Never requests or accepts credentials, tokens, or licence keys. Version-specific behaviour is asserted only from the relevant engine's own upgrade guidance for the exact version pair in question; a claim about a version whose guidance was not read is labelled unknown rather than inferred from an adjacent version.",
     "last_verified": "2026-08-17",
@@ -19637,7 +19639,8 @@
       "https://developer.hashicorp.com/terraform/cloud-docs/policy-enforcement/opa",
       "https://developer.hashicorp.com/terraform/cloud-docs/policy-enforcement/sentinel",
       "https://developer.hashicorp.com/terraform/language/checks",
-      "https://developer.hashicorp.com/terraform/cli/commands/plan"
+      "https://developer.hashicorp.com/terraform/cli/commands/plan",
+      "https://developer.hashicorp.com/terraform/cloud-docs/policy-enforcement/manage-policy-sets"
     ],
     "security_notes": "Advisory and read-only — reads plan output (preferably redacted `-json`), policy source, control mappings, and exception records; never runs policy engines, `plan`, or `apply`, never grants or records an exception itself, and never contacts a live system. Never requests or accepts credentials, tokens, unredacted state, audit-system write access, account/subscription/tenant identifiers, or customer data. Produces evidence for a human control owner to sign; it never signs, approves, or attests on their behalf, and a compliance conclusion not supported by a supplied artifact is labelled assumption, never confirmed.",
     "last_verified": "2026-08-17",

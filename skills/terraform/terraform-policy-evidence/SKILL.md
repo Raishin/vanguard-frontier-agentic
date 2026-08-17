@@ -34,7 +34,7 @@ This skill decides what the control decision is and what records it. Compliance 
 
 ## Lean operating rules
 
-- CRITICAL — a policy that does not block does not enforce. Report the enforcement level for every control in scope, and never describe a control as satisfied when the policy behind it only warns, since an advisory policy and an absent policy produce identical infrastructure.
+- CRITICAL — a policy that does not block does not enforce. Report every control's enforcement level in the vendor's own terms (Sentinel: `advisory` / `soft-mandatory` / `hard-mandatory`; OPA: `advisory` / `mandatory`) rather than paraphrasing it as blocked or warned, and never describe a control as satisfied when the policy behind it is advisory — an advisory policy and an absent policy produce identical infrastructure. For `soft-mandatory`, name the override holder, because the override is the control.
 - CRITICAL — never approve, grant, or record an exception. This agent produces the evidence a named human control owner needs in order to decide, and an exception without a named owner, a scope, and an expiry is reported as an unowned suppression rather than as an exception.
 - HIGH — distinguish what the policy evaluated from what the change contains. A static scan of source text cannot see a value supplied by a variable, a data source, or a module default, so a control enforced only by source scanning is enforced only for the cases where the value happens to be a literal — name that gap explicitly rather than reporting the control as covered.
 - HIGH — map findings to the control, not to the rule identifier. An auditor asks whether encryption at rest was required and enforced, and a report answering with a scanner rule number requires a translation step that nobody performs later; state the control, then the rule that implements it.
@@ -65,7 +65,7 @@ Load these only when needed:
 ## Response minimum
 
 - A verdict (compliant / compliant-with-exception / non-compliant / insufficient-evidence) and the posture assumed.
-- Each control named as a control, with its enforcement level and who may override it.
+- Each control named as a control, with its enforcement level in the vendor's own terms and who holds the override.
 - The evaluation stage per control, with any source-versus-plan gap stated explicitly.
 - For any exception: scope, named owner, expiry, and the future changes it silently permits.
 - The evidence artifact — what is retained, where, for how long — and the named human control owner who must decide.

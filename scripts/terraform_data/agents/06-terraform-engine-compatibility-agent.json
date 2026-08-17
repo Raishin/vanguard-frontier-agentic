@@ -62,6 +62,24 @@
       "version": "OpenTofu 1.12",
       "why_authoritative": "The project's own statement of its current version and stewardship",
       "why_not_redundant": "Version and governance facts that no third party can establish authoritatively"
+    },
+    {
+      "url": "https://opentofu.org/docs/intro/migration/multiple-configurations",
+      "publisher": "OpenTofu (Linux Foundation)",
+      "topic": "Migrating configurations coupled by `terraform_remote_state`, and the state-readability direction",
+      "decision": "Which order to migrate coupled configurations in, and whether the move is reversible",
+      "version": "OpenTofu 1.12",
+      "why_authoritative": "The receiving project's own migration guidance for the multi-configuration case",
+      "why_not_redundant": "The migration overview names the problem; only this page gives the bottom-up rule and the one-way state-readability fact"
+    },
+    {
+      "url": "https://developer.hashicorp.com/terraform/plugin/terraform-plugin-protocol",
+      "publisher": "HashiCorp",
+      "topic": "Provider plugin protocol versions and core/provider negotiation",
+      "decision": "Whether a provider release can still be consumed by the engine the estate runs",
+      "version": "Terraform v1.15",
+      "why_authoritative": "Vendor specification for the protocol that gates provider compatibility",
+      "why_not_redundant": "Protocol support is an engine divergence invisible from any version constraint or lock file"
     }
   ],
   "security_notes": "Static review only — reads version constraints, `.terraform.lock.hcl`, provider deprecation notices, changelog and upgrade-guide excerpts, and configuration; never runs `init`, `init -upgrade`, `plan`, or `apply`, and never contacts a registry. Never requests or accepts credentials, tokens, or licence keys. Version-specific behaviour is asserted only from the relevant engine's own upgrade guidance for the exact version pair in question; a claim about a version whose guidance was not read is labelled unknown rather than inferred from an adjacent version.",
@@ -175,7 +193,12 @@
           "Feature parity is directional and moves over time: both engines add features independently, so a divergence register is a dated snapshot that must be re-verified against both engines' own documentation rather than remembered.",
           "Terraform's current stable line is v1.15 with v1.16 in beta, and OpenTofu's current release is 1.12; version numbers do not correspond between the projects and comparing them numerically is meaningless.",
           "An engine decision has licensing, procurement, and vendor-relationship dimensions that are not compatibility questions; the technical assessment should state what each engine supports for this estate and stop there, leaving the rest to the named human owner.",
-          "Migration guidance is published by the receiving project, so the authoritative statement of what a migration requires comes from OpenTofu rather than from HashiCorp — and the specific supported starting versions must be read from that guidance rather than assumed."
+          "Migration guidance is published by the receiving project, so the authoritative statement of what a migration requires comes from OpenTofu rather than from HashiCorp — and the specific supported starting versions must be read from that guidance rather than assumed.",
+          "Migration between the engines is directional, not symmetric: OpenTofu maintains state compatibility with Terraform 1.x and can read Terraform state, but Terraform may not reliably read state that OpenTofu has written. A migration is therefore far closer to a one-way door than the word `reversible` suggests, and any rollback plan must be a state restore rather than a binary swap.",
+          "Because state readability runs one way, coupled configurations must be migrated bottom-up — dependents before their dependencies. A configuration already on OpenTofu can safely read a producer's state that is still on Terraform, which is what makes a gradual, mixed-engine migration possible; migrating a producer first leaves its consumers on Terraform reading state OpenTofu wrote, which is the documented risky order.",
+          "Provider plugin protocol support is an engine divergence that no version constraint or lock file reveals: OpenTofu commits to supporting protocol version 5 across the whole v1.x series, and notes that individual provider teams may eventually drop support for older protocol versions in their own releases. The exposure is therefore a future provider release dropping the protocol the engine guarantees — check the provider, not only the engine.",
+          "Terraform ships an orchestration layer (Stacks) for coordinating components and deferred changes across environments, for which OpenTofu has no equivalent; an estate depending on it is depending on a Terraform-only capability rather than on infrastructure-as-code generally.",
+          "Test execution differs at the edges: Terraform can dispatch a test run to HCP Terraform for remote execution, while OpenTofu's test framework runs locally. A verification strategy that assumes remote test execution is engine-specific."
         ]
       },
       {

@@ -37,9 +37,10 @@ established whether it matters for their question. Most of the time it does not.
 
 ## Divergence register
 
-Verified 2026-08-17 against each project's own documentation. Terraform's current stable
-line is v1.15 (v1.16 in beta); OpenTofu's current release is 1.12. Version numbers do not
-correspond between the projects and comparing them numerically is meaningless.
+Verified 2026-08-17 against each project's own documentation, and re-verified the same day
+through the Context7 MCP against both projects' primary sources. Terraform's current stable
+line is v1.15 (v1.16 in release-candidate); OpenTofu's current release line is 1.12. Version
+numbers do not correspond between the projects and comparing them numerically is meaningless.
 
 | Concern | Terraform | OpenTofu | Owning specialist |
 |---|---|---|---|
@@ -47,13 +48,28 @@ correspond between the projects and comparing them numerically is meaningless.
 | Encryption key rollover | Not applicable | `fallback` block: reads try the fallback, writes always use the new method | `terraform-state-reliability-agent` |
 | Default provider registry | Resolves to the HashiCorp registry | Resolves to the OpenTofu registry | `terraform-supply-chain-integrity-agent` |
 | Import config generation | `-generate-config-out` supported | Supported but marked experimental, and **cannot** be combined with `for_each` on `import` blocks | `terraform-estate-reconciliation-agent` |
-| Compatibility guarantee | Published v1 compatibility promises with explicit exclusions | Separate project governance and release line | `terraform-engine-compatibility-agent` |
-| Migration guidance | None (does not document migration away) | Published by the receiving project; `terraform_remote_state` coupling needs care | `terraform-engine-compatibility-agent` |
+| Compatibility guarantee | Published v1 compatibility promises with explicit exclusions | Separate promises with its own excluded-command list | `terraform-engine-compatibility-agent` |
+| **State readability direction** | May **not** reliably read state written by OpenTofu | Maintains state compatibility with Terraform 1.x and can read Terraform state | `terraform-engine-compatibility-agent` |
+| Migration guidance | None (does not document migration away) | Published by the receiving project; coupled configurations migrate **bottom-up** | `terraform-engine-compatibility-agent` |
+| Provider plugin protocol | Protocol negotiation across supported major versions | Commits to protocol version 5 across all of v1.x; provider teams may drop older protocols | `terraform-supply-chain-integrity-agent` |
+| Orchestration layer | Stacks — components, deferred changes across environments | No equivalent | `terraform-engine-compatibility-agent` |
+| Test execution | Can dispatch a test run for remote execution in HCP Terraform | Test framework runs locally | `terraform-verification-strategy` (skill) |
 | Language and function surface | Verify against HashiCorp's own function reference | Verify against OpenTofu's own function reference | `terraform-reviewer` |
 
-The single largest divergence is **state and plan encryption**. It is the one place where
-advice given for one engine is actively wrong for the other, which is why it appears as a
-`HIGH` operating rule on the state specialist rather than only in this table.
+Two divergences carry more weight than the rest.
+
+**State and plan encryption** is where advice for one engine is actively *wrong* for the
+other, which is why it is a `HIGH` operating rule on the state specialist rather than only
+a table row.
+
+**State readability is directional**, and this is the one most likely to be misread as
+reassuring. OpenTofu can read Terraform state; Terraform may not reliably read state
+OpenTofu has written. So an engine migration is much closer to a one-way door than the
+word "reversible" suggests — the rollback path is a state restore, not a binary swap. It
+is also why coupled configurations migrate **bottom-up**, dependents before their
+dependencies: a configuration already on OpenTofu can safely read a producer still on
+Terraform, which is what makes a gradual mixed-engine migration possible at all. Migrating
+a producer first leaves its consumers reading state the other engine wrote.
 
 ## What this register is not
 
