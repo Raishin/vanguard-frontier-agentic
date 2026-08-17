@@ -304,19 +304,33 @@ if (refuted.length) log(`REFUTED ${refuted.length}/${authoredOk.length} authored
 // manifest (see the ordering caveat in CLAUDE.md).
 
 phase('Gates')
-const gates = specs.length || a.gates !== false
+const gates = a.gates !== false
   ? await agent(
-      `Run this repository's gate suite from /home/user/vanguard-frontier-agentic and report results.\n\n` +
-        `Run, in this order:\n` +
-        `  1. npm run validate\n` +
-        `  2. npm run lint:spell\n` +
-        `  3. npx --yes markdownlint-cli2 "**/*.md" "#node_modules" "#.git" "#CHANGELOG.md"\n` +
-        `  4. If and only if tools/vfa-tui changed: cd tools/vfa-tui && cargo fmt --check && cargo clippy --all-targets -- -D warnings && cargo test\n` +
-        `  5. ONLY IF every gate above is green AND files it hashes changed: npm run asset-integrity:write\n\n` +
+      `Run this repository's gate suite and report results.\n\n` +
+        `Work from the repository root — the directory containing package.json and CLAUDE.md, which is your ` +
+        `current working directory. Do NOT cd to an absolute path; the checkout location varies by machine.\n\n` +
+        `ORDER MATTERS. Generators first, integrity second, validation last. Running \`npm run validate\` before ` +
+        `refreshing the integrity manifest makes \`validate:asset-integrity\` fail on the stale manifest for any ` +
+        `change that touches a hashed path (agents/, plugins/, .github/plugin/, package.json, or a root file) — ` +
+        `a false failure that also blocks the refresh from ever happening. Run:\n\n` +
+        `  1. Content generators, but ONLY those matching what changed:\n` +
+        `       - catalog assets added/edited -> python3 scripts/update-catalog-new-agents.py [--provider <id>]\n` +
+        `       - skills/ or plugin/power manifests -> npm run manifest:write:all\n` +
+        `       - catalog counts feeding the docs site -> npm run docs-data:write\n` +
+        `       - harness model/effort lines -> npm run model-policy:apply\n` +
+        `     Skip any generator whose inputs did not change. Do NOT run npm run maestro-routing:write: it ` +
+        `regenerates EVERY provider's fixtures, not just the one you changed.\n` +
+        `  2. npm run asset-integrity:write — on its own, after every other generator has finished, so it hashes ` +
+        `the settled tree.\n` +
+        `  3. npm run validate\n` +
+        `  4. npm run lint:spell\n` +
+        `  5. npx --yes markdownlint-cli2 "**/*.md" "#node_modules" "#.git" "#CHANGELOG.md"\n` +
+        `  6. If and only if tools/vfa-tui changed: cd tools/vfa-tui && cargo fmt --check && ` +
+        `cargo clippy --all-targets --locked -- -D warnings && cargo test --locked\n\n` +
         `Report each gate's pass/fail and, for any failure, the RAW verbatim failure output — never a paraphrase ` +
         `like "some tests failed". The orchestrator needs the actual error text to decide the next move.\n\n` +
-        `The ONLY file you may write is catalog/asset-integrity.json, and only via step 5. ` +
-        `No other edits. No git commit. No git push.`,
+        `You may write only the files those generators own (catalog/, docs/_data/, plugin and power manifests, ` +
+        `harness model lines). Make no hand edits of your own. No git commit. No git push.`,
       { label: 'gates', phase: 'Gates', model: 'haiku', effort: 'low', schema: GATE_SCHEMA },
     )
   : null

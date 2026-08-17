@@ -8,7 +8,7 @@
 
 Databricks has been the lakehouse platform of choice for enterprises seeking to consolidate analytics and AI operations on a single infrastructure. Yet choosing Databricks correctly—and using it safely—requires expertise across architecture, governance, data engineering, analytics, platform operations, and business value realization. The platform's scope (multi-workspace accounts, Unity Catalog, streaming, ML lifecycle, serverless compute, Delta Lake, AI agents) crosses multiple specialized domains; asking a single generalist to master all of them leads to either shallow reviews or unsafe assumptions.
 
-The Databricks board exists to partition this surface into 17 specialist agents, each owning a critical decision boundary and none claiming expertise outside its scope. A maestro agent classifies incoming Databricks tasks and routes them to the narrowest specialist(s) that can answer; this prevents both bottlenecking on a single expert and the diffuse accountability of consensus-based review.
+The Databricks board exists to partition this surface into specialists, each owning a critical decision boundary and none claiming expertise outside its scope. A maestro agent classifies incoming Databricks tasks and routes them to the narrowest specialist(s) that can answer; this prevents both bottlenecking on a single expert and the diffuse accountability of consensus-based review. The board table below is the authoritative list — one maestro plus the specialists it routes to.
 
 Three design principles guide the board:
 
@@ -80,10 +80,10 @@ The maestro classifies on seven axes:
 3. **Artifact type** — The specific thing available (SQL, notebook, `databricks.yml`, job JSON, query profile, system-table output, dashboard, model code).
 4. **Blast radius / risk** — Affects one table, one workspace, one account, or the entire organization? Can fail silently or fail loudly?
 5. **Required evidence** — What data does the specialist need to answer this? (Job definition, schema, query profile, cluster policy, system-table snapshot.)
-6. **Implied runtime authority** — T0 (static review), T1 (design approval), T2 (configuration change, test), T3 (production mutation).
-7. **Specialist ownership** — Which 15 domain specialists actually owns this boundary?
+6. **Implied runtime authority** — the same T0–T3 ladder every generated skill on this board declares: **T0** static review (read artifacts only); **T1** read-only runtime (allowlisted read-only queries against a workspace, no writes); **T2** sandbox-mutating (dry-run or non-production only); **T3** mutating-runtime (changes production state, human-approved live guards only).
+7. **Specialist ownership** — which specialist actually owns this decision boundary?
 
-Any task implying T2+ authority leaves the routing table and enters the live-guard gate, requiring explicit written human approval naming the exact target, principal, operation, and rollback owner.
+Every agent on this board is T0. Any task implying authority above T0 leaves the routing table and enters the live-guard gate, requiring explicit written human approval naming the exact target, principal, operation, and rollback owner. Note that a request needing even a read-only workspace query has already risen above T0 — it is not something a static-review agent can satisfy from artifacts alone.
 
 **Worked example 1:** "Our Databricks bill spiked last month. What happened?"
 - Intent: Diagnosis

@@ -27,9 +27,9 @@ Live-guard agents enforce approval, target confirmation, evidence capture, and r
 
 ## Invariants
 
-- Static review only — agents never request workspace tokens, service-principal secrets, storage keys, or customer data, and never mutate a Databricks workspace, Unity Catalog, or Azure resource.
+- Static review only — agents never request workspace tokens, service-principal secrets, storage keys, or customer data, and never mutate a Databricks workspace, Unity Catalog, or any cloud resource.
 - Enforce least privilege: schema-scoped grants (CREATE TABLE/VOLUME/FUNCTION at schema level), no broad ALL PRIVILEGES, assign access to account groups not individuals, separate account/workspace/metastore admin roles.
-- Prefer Azure managed identities over service principals for storage access; production data is operated by service principals, not interactive users.
+- Storage access uses the platform's managed workload identity for the cloud in question — an Azure Access Connector managed identity, an AWS IAM role assumed by a storage credential, or a GCP service account — surfaced through a Unity Catalog storage credential and external location rather than embedded keys. Name the cloud before recommending a mechanism; do not assume Azure. Production workloads run as service principals, never as interactive users, on every cloud.
 - Production grant/role/policy/cluster changes are live-guard gated — never auto-dispatched; require explicit approval, scope confirmation, and rollback plan.
 
 ## Where the agents live

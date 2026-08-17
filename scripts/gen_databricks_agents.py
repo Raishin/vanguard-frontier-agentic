@@ -25,8 +25,22 @@ This generator owns ONLY the cloud-neutral Databricks board. The three pre-exist
 Run:  python3 scripts/gen_databricks_agents.py
 Then: python3 scripts/update-catalog-new-agents.py --provider databricks
       && npm run manifest:write:all && npm run docs-data:write
-      && npm run model-policy:apply && npm run maestro-routing:write
+      && npm run model-policy:apply
       && npm run asset-integrity:write && npm run validate
+
+Routing fixtures are deliberately NOT in that chain. `npm run maestro-routing:write`
+has repo-wide blast radius: its `main()` loops over every provider that owns a
+`*-maestro` skill, and `write_provider()` deletes every existing file under that
+provider's `inputs/` and `expected/` before rebuilding them. Running it for a
+Databricks-only change therefore rewrites — and can destroy hand-curated scenarios
+in — all other providers' fixtures. When the Databricks taxonomy genuinely needs
+regenerating, run it and then scope the result back to this board before
+committing:
+
+    npm run maestro-routing:write
+    git checkout -- tests/fixtures/                       # restore tracked fixtures
+    git clean -fd tests/fixtures/ -e databricks-maestro-routing
+    npm run validate:maestro-routing
 
 Notes:
 - model + model_reasoning_effort are policy-controlled and are projected into
