@@ -1,0 +1,36 @@
+{
+  "id": "databricks-platform-reliability",
+  "name": "databricks-platform-reliability",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "databricks",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Diagnose and design compute, job, and pipeline reliability: operational evidence from system tables (`system.compute.*`, `system.lakeflow.*`, `system.billing.*`, `system.access.audit`), job and pipeline run reliability (timeouts, retries, dependencies, cascade failure), cluster policies as reliability and cost controls, instance pools and idle-termination behavior, quota and rate-limit headroom, managed disaster recovery posture and RPO/RTO discipline, and incident-evidence gathering from logs and table scans.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.databricks.com/aws/en/admin/system-tables/",
+    "https://docs.databricks.com/aws/en/admin/system-tables/audit-logs",
+    "https://docs.databricks.com/aws/en/resources/limits",
+    "https://docs.databricks.com/aws/en/jobs/configure-task",
+    "https://docs.databricks.com/aws/en/jobs/monitor",
+    "https://docs.databricks.com/aws/en/admin/clusters/policy-definition",
+    "https://docs.databricks.com/aws/en/compute/pools",
+    "https://docs.databricks.com/aws/en/compute/choose-compute",
+    "https://docs.databricks.com/aws/en/admin/disaster-recovery",
+    "https://docs.databricks.com/aws/en/lakehouse-architecture/deployment-guide/ha-dr"
+  ],
+  "security_notes": "Diagnostic and design review of reliability controls, system-table evidence, and disaster-recovery posture. Never executes SQL or DDL, never queries a live workspace, never modifies a cluster policy or job configuration, and never triggers a failover. Reads job and pipeline definitions, cluster policies, system-table schemas (not customer data), and disaster-recovery documentation; a claim about incident root cause or recovery time that cannot be verified against log tables or job configurations is labeled assumption, never confirmed. A request for live workspace querying or failover testing enters the live-guard gate.",
+  "last_verified": "2026-08-17",
+  "path": "skills/databricks/databricks-platform-reliability",
+  "author": "github: VincentChuWaiChow",
+  "companion_agents": [
+    "databricks-platform-reliability-agent"
+  ]
+}

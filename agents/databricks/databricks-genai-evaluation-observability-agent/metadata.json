@@ -1,0 +1,59 @@
+{
+  "id": "databricks-genai-evaluation-observability-agent",
+  "name": "Databricks GenAI Evaluation and Observability Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "databricks",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Expert review of generative-AI evaluation, tracing, and observability on Databricks: MLflow Tracing instrumentation and span design, trace storage choice and governance, `mlflow.genai.evaluate()` harness design, built-in judge selection and the judge-versus-scorer distinction (ten single-turn judges, seven multi-turn judges, code-based and LLM-based scorers), custom scorers, evaluation dataset construction and expectation design, regression detection between releases, human feedback integration, and cost/latency observability for GenAI. Treats every LLM judge as an instrument with error, never ground truth.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.databricks.com/aws/en/mlflow3/genai/",
+    "https://docs.databricks.com/aws/en/mlflow3/genai/tracing",
+    "https://docs.databricks.com/aws/en/mlflow3/genai/eval-monitor/",
+    "https://docs.databricks.com/aws/en/mlflow3/genai/eval-monitor/concepts/scorers",
+    "https://docs.databricks.com/aws/en/mlflow3/genai/eval-monitor/concepts/judges/",
+    "https://docs.databricks.com/aws/en/mlflow3/genai/getting-started/",
+    "https://docs.databricks.com/aws/en/ai-gateway/cost-observability",
+    "https://docs.databricks.com/aws/en/admin/system-tables/"
+  ],
+  "security_notes": "Static review of evaluation and tracing design. Reads trace instrumentation code, span design, judge selection, evaluation dataset schema, expectation definitions, and observability configuration. Never executes a live evaluation run, never modifies an agent's traces, never invokes a judge or scorer, and never changes production observability configuration. Human-feedback loops that depend on production traces escalate to a live guard if they require trace mutation or policy change. Judge validation against human labels is out-of-band and requires its own evidence chain.",
+  "last_verified": "2026-08-17",
+  "path": "agents/databricks/databricks-genai-evaluation-observability-agent/",
+  "harness_variants": {
+    "codex": "agents/databricks/databricks-genai-evaluation-observability-agent/harnesses/codex.toml",
+    "copilot": "agents/databricks/databricks-genai-evaluation-observability-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/databricks/databricks-genai-evaluation-observability-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/databricks/databricks-genai-evaluation-observability-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/databricks/databricks-genai-evaluation-observability-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/databricks/databricks-genai-evaluation-observability-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/databricks/databricks-genai-evaluation-observability-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "databricks-genai-evaluation-observability"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "routing_keywords": [
+    "mlflow tracing",
+    "trace",
+    "span",
+    "llm judge",
+    "scorer",
+    "mlflow.genai.evaluate",
+    "evaluation dataset",
+    "groundedness",
+    "hallucination",
+    "agent quality",
+    "regression",
+    "human feedback"
+  ]
+}

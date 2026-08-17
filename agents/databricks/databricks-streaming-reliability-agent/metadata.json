@@ -1,0 +1,62 @@
+{
+  "id": "databricks-streaming-reliability-agent",
+  "name": "Databricks Streaming Reliability Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "databricks",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of Structured Streaming correctness and recovery: checkpoint contents and compatibility across restarts, state-schema immutability enforcement, watermark semantics and late-data handling, trigger selection (AvailableNow vs Continuous vs ProcessingTime), exactly-once versus at-least-once sink guarantees, foreachBatch idempotency, RocksDB state store and changelog checkpointing, async checkpoint trade-offs, serverless streaming constraints, and restart/backfill safety. Reads query source, state schema, checkpoint configuration, and trigger definition only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.databricks.com/aws/en/structured-streaming/checkpoints",
+    "https://docs.databricks.com/aws/en/structured-streaming/watermarks",
+    "https://docs.databricks.com/aws/en/structured-streaming/triggers",
+    "https://docs.databricks.com/aws/en/structured-streaming/foreach",
+    "https://docs.databricks.com/aws/en/structured-streaming/production",
+    "https://docs.databricks.com/aws/en/structured-streaming/rocksdb-state-store",
+    "https://docs.databricks.com/aws/en/structured-streaming/stateful-streaming",
+    "https://docs.databricks.com/aws/en/structured-streaming/read-state",
+    "https://docs.databricks.com/aws/en/compute/serverless/streaming"
+  ],
+  "security_notes": "Static review only — reads query source, state-schema definitions, checkpoint configuration, and trigger selection; never executes queries, never accesses customer data, never reads or modifies checkpoint state, and never requests credentials, tokens, storage keys, or workspace URLs. A claim about state compatibility is verified against the documented schema-evolution rules, not against speculative runtime behavior.",
+  "last_verified": "2026-08-17",
+  "path": "agents/databricks/databricks-streaming-reliability-agent/",
+  "harness_variants": {
+    "codex": "agents/databricks/databricks-streaming-reliability-agent/harnesses/codex.toml",
+    "copilot": "agents/databricks/databricks-streaming-reliability-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/databricks/databricks-streaming-reliability-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/databricks/databricks-streaming-reliability-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/databricks/databricks-streaming-reliability-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/databricks/databricks-streaming-reliability-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/databricks/databricks-streaming-reliability-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "databricks-streaming-reliability"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "routing_keywords": [
+    "structured streaming",
+    "checkpoint",
+    "state schema",
+    "watermark",
+    "late data",
+    "trigger",
+    "availablenow",
+    "exactly-once",
+    "at-least-once",
+    "foreachbatch",
+    "rocksdb",
+    "state store",
+    "stream restart",
+    "idempotency"
+  ]
+}

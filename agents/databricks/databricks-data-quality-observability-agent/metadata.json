@@ -1,0 +1,59 @@
+{
+  "id": "databricks-data-quality-observability-agent",
+  "name": "Databricks Data Quality and Observability Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "databricks",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of Lakeflow pipeline data quality and observability: expectations and violation-mode choice (warn/drop/fail), table constraints (NOT NULL, CHECK, informational foreign/unique/PK), Lakehouse Monitoring profile and drift metrics, freshness and staleness detection, pipeline event-log interrogation for lineage and data-quality results, quality SLA definition and alerting, and quality evidence for downstream consumers. Reads pipeline definitions, expectations code, table schema, event logs, and monitor configuration only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.databricks.com/aws/en/ldp/expectations",
+    "https://docs.databricks.com/aws/en/ldp/expectation-patterns",
+    "https://docs.databricks.com/aws/en/ldp/developer/ldp-python-ref-expectations",
+    "https://docs.databricks.com/aws/en/ldp/monitor-event-logs",
+    "https://docs.databricks.com/aws/en/ldp/observability",
+    "https://docs.databricks.com/aws/en/lakehouse-monitoring/",
+    "https://docs.databricks.com/aws/en/data-governance/unity-catalog/data-quality-monitoring/",
+    "https://docs.databricks.com/aws/en/admin/system-tables/"
+  ],
+  "security_notes": "Static review only — reads pipeline source, table schema, expectations, monitor configuration, and event-log query patterns; never executes pipelines, never modifies expectations or monitors, never accesses customer data records, and never requests credentials, tokens, storage keys, or workspace URLs. A claim about a metric or constraint is verified against the documented semantics, not against assumed runtime behavior.",
+  "last_verified": "2026-08-17",
+  "path": "agents/databricks/databricks-data-quality-observability-agent/",
+  "harness_variants": {
+    "codex": "agents/databricks/databricks-data-quality-observability-agent/harnesses/codex.toml",
+    "copilot": "agents/databricks/databricks-data-quality-observability-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/databricks/databricks-data-quality-observability-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/databricks/databricks-data-quality-observability-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/databricks/databricks-data-quality-observability-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/databricks/databricks-data-quality-observability-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/databricks/databricks-data-quality-observability-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "databricks-data-quality-observability"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "routing_keywords": [
+    "expectations",
+    "expect_or_drop",
+    "expect_or_fail",
+    "data quality",
+    "lakehouse monitoring",
+    "drift",
+    "freshness",
+    "stale",
+    "table constraint",
+    "event log",
+    "quality sla",
+    "profile metrics"
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "id": "databricks-sql-performance-agent",
+  "name": "Databricks SQL Performance Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "databricks",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of SQL warehouse and query performance: warehouse type and sizing for concurrency, Photon and Predictive I/O applicability, three-tier caching semantics and when a cached result is misleading, query-profile reading for skew and spill, data layout for read performance via liquid clustering and data skipping, materialized-view refresh semantics. Evidence: warehouse configuration, query profiles, schema, query text, and system.query.history only. Never executes queries live.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.databricks.com/aws/en/compute/sql-warehouse/warehouse-types",
+    "https://docs.databricks.com/aws/en/compute/sql-warehouse/warehouse-behavior",
+    "https://docs.databricks.com/aws/en/compute/sql-warehouse/create",
+    "https://docs.databricks.com/aws/en/compute/photon",
+    "https://docs.databricks.com/aws/en/sql/user/queries/query-caching",
+    "https://docs.databricks.com/aws/en/sql/user/queries/query-profile",
+    "https://docs.databricks.com/aws/en/sql/user/queries/query-history",
+    "https://docs.databricks.com/aws/en/tables/clustering"
+  ],
+  "security_notes": "Static review only — reads warehouse config, schema definition, query text, query profiles, query history exports, and ANALYZE output; never executes any query, never invokes SQL, never connects to a live warehouse, and never requests credentials, tokens, storage keys, or customer data. Caching can mask data freshness; the agent flags when a cached result may be stale or when result-cache invalidation is tied to a schema change not visible in query text alone. Performance claims are always scoped to a specific warehouse type (serverless, pro, classic) and compute configuration stated by the user.",
+  "last_verified": "2026-08-17",
+  "path": "agents/databricks/databricks-sql-performance-agent/",
+  "harness_variants": {
+    "codex": "agents/databricks/databricks-sql-performance-agent/harnesses/codex.toml",
+    "copilot": "agents/databricks/databricks-sql-performance-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/databricks/databricks-sql-performance-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/databricks/databricks-sql-performance-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/databricks/databricks-sql-performance-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/databricks/databricks-sql-performance-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/databricks/databricks-sql-performance-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "databricks-sql-performance"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "routing_keywords": [
+    "sql warehouse",
+    "query profile",
+    "photon",
+    "slow query",
+    "result cache",
+    "disk cache",
+    "data skipping",
+    "statistics",
+    "analyze",
+    "spill",
+    "shuffle",
+    "skew",
+    "warehouse sizing",
+    "queueing",
+    "predictive i/o"
+  ]
+}

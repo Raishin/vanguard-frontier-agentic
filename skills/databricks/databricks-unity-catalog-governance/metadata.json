@@ -1,0 +1,37 @@
+{
+  "id": "databricks-unity-catalog-governance",
+  "name": "databricks-unity-catalog-governance",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "databricks",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review of Unity Catalog design, GRANT privilege model and inheritance, ownership design and enforcement, workspace-catalog binding enforcement, governed tags and their configuration, lineage and audit evidence, storage credential and external location governance, and least-privilege grant patterns. Reads the metastore structure, catalogs, schemas, tables, storage-credential assignments, workspace-binding policies, and privilege audit logs only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.databricks.com/aws/en/data-governance/unity-catalog/",
+    "https://docs.databricks.com/aws/en/data-governance/unity-catalog/access-control/privileges-reference",
+    "https://docs.databricks.com/aws/en/data-governance/unity-catalog/access-control/permissions-concepts",
+    "https://docs.databricks.com/aws/en/data-governance/unity-catalog/manage-privileges/",
+    "https://docs.databricks.com/aws/en/data-governance/unity-catalog/manage-privileges/admin-privileges",
+    "https://docs.databricks.com/aws/en/data-governance/unity-catalog/access-control/workspace-catalog-binding",
+    "https://docs.databricks.com/aws/en/data-governance/unity-catalog/create-metastore",
+    "https://docs.databricks.com/aws/en/data-governance/unity-catalog/manage-metastore",
+    "https://docs.databricks.com/aws/en/connect/unity-catalog/cloud-storage/manage-storage-credentials",
+    "https://docs.databricks.com/aws/en/admin/governed-tags",
+    "https://docs.databricks.com/aws/en/admin/system-tables/audit-logs"
+  ],
+  "security_notes": "Static review only — reads UC structure, privilege assignments, storage credentials, workspace binding, and audit logs. Never executes GRANT or REVOKE, never mutates privileges, never requests workspace URLs bound to credentials, personal access tokens, storage keys, or customer data. A request to execute a grant belongs to the live-guard path and requires explicit written approval naming the exact target securable, principal, and privilege. Audit findings are observations only; their remediation requires the governance owner's decision.",
+  "last_verified": "2026-08-17",
+  "path": "skills/databricks/databricks-unity-catalog-governance",
+  "author": "github: VincentChuWaiChow",
+  "companion_agents": [
+    "databricks-unity-catalog-governance-agent"
+  ]
+}

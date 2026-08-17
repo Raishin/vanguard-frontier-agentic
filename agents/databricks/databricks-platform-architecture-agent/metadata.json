@@ -1,0 +1,58 @@
+{
+  "id": "databricks-platform-architecture-agent",
+  "name": "Databricks Platform Architecture Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "databricks",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of Databricks account and workspace topology, control vs compute plane separation, serverless vs classic compute placement, the metastore-per-region architectural constraint, workspace segmentation ratios and their justification, catalog-and-schema organization strategy, cross-region and cross-organisation access patterns (D2D OpenSharing, Clean Rooms), and platform-level quota headroom. Reads the org's workspace inventory, compute placement decisions, metastore assignments, and capacity baselines only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.databricks.com/aws/en/getting-started/high-level-architecture",
+    "https://docs.databricks.com/aws/en/lakehouse-architecture/",
+    "https://docs.databricks.com/aws/en/lakehouse-architecture/well-architected",
+    "https://docs.databricks.com/aws/en/lakehouse-architecture/deployment-guide/workspace-strategy",
+    "https://docs.databricks.com/aws/en/admin/admin-concepts",
+    "https://docs.databricks.com/aws/en/compute/choose-compute",
+    "https://docs.databricks.com/aws/en/clean-rooms/",
+    "https://docs.databricks.com/aws/en/resources/limits"
+  ],
+  "security_notes": "Static review only — reads workspace inventory, compute architecture decisions, catalog and schema design, published metastore and quota baselines. Never contacts a live Databricks workspace, never requests account credentials, workspace URLs, personal access tokens, or customer data, and never executes DDL, job runs, or any cluster operations. Assumptions about scale, regions, or compute strategy are labelled as assumptions, never confirmed — the agent asks for the actual inventory rather than guessing.",
+  "last_verified": "2026-08-17",
+  "path": "agents/databricks/databricks-platform-architecture-agent/",
+  "harness_variants": {
+    "codex": "agents/databricks/databricks-platform-architecture-agent/harnesses/codex.toml",
+    "copilot": "agents/databricks/databricks-platform-architecture-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/databricks/databricks-platform-architecture-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/databricks/databricks-platform-architecture-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/databricks/databricks-platform-architecture-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/databricks/databricks-platform-architecture-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/databricks/databricks-platform-architecture-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "databricks-platform-architecture"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "routing_keywords": [
+    "workspace topology",
+    "metastore per region",
+    "control plane",
+    "compute plane",
+    "serverless vs classic",
+    "workspace segmentation",
+    "catalog organisation",
+    "cross-region",
+    "clean rooms",
+    "account topology",
+    "landing zone"
+  ]
+}
