@@ -45,6 +45,14 @@ STOPWORDS = {
     "designer", "mapper", "skill", "agentic", "ai", "cloud", "service",
     "platform", "operations", "task", "workload", "general", "hardening",
     "and", "never",
+    # Sentence-opening verbs. summary_tokens() mines the first word of a summary, so a
+    # summary written as a sentence ("Make the record match reality…", "Read a plan…",
+    # "Turn a change into…", "Own the state file…") donates its opening verb to that
+    # domain as a routing keyword. The grader case-folds, so "Make this variable
+    # optional" then scores the drift domain and returns parallel (2) against a task
+    # with no drift signal at all. These words are never a routing signal on any board.
+    "make", "read", "turn", "own", "decide", "choose", "build", "write", "check",
+    "ensure", "keep", "help", "handle", "provide", "support", "use", "run",
 }
 
 # Live-guard pattern: any *-live-* in id, or *-guard-agent, or *-destruction-*
@@ -96,7 +104,13 @@ GATE_INTENT = {
                  r"state\s+(rm|mv|push|replace-provider))|"
                  r"run\s+(the\s+)?(apply|destroy)\b|"
                  r"(apply|destroy)\s+(this|these|it|that|the)\b|"
-                 r"live\s+(apply|push|deploy)|force[- ]unlock|auto[-\s]?approve|"
+                 r"live\s+(apply|push|deploy)|auto[-\s]?approve|"
+                 # `force-unlock` needs execution context for the same reason
+                 # `destroy` does: "review whether force-unlock is justified" is a
+                 # question `terraform-state-reliability-agent` owns, and gating it
+                 # returns an empty route because this board registers no live guard.
+                 r"(run|execute|just|please|now)\s+(a\s+|the\s+)?force[- ]unlock|"
+                 r"force[- ]unlock\s+(it|this|that|the)\b|"
                  r"promote.*to\s+(?:prod|production)|rollout to prod(uction)?|"
                  r"approve.*production)",
 }

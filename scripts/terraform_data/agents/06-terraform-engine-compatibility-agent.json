@@ -100,7 +100,7 @@
     "Why the upgrade's plan replaces or destroys resources, and the ordering of that change → `terraform-plan-blast-radius-agent`.",
     "Whether state can be recovered if the upgrade goes wrong → `terraform-state-reliability-agent`.",
     "Whether a module's own interface change is breaking for its callers → `terraform-reviewer`.",
-    "Cloud-specific consequences of a provider's changed resource semantics → that cloud's `*-iac-change-safety-review-agent`.",
+    "Cloud-specific consequences of a provider's changed resource semantics → the cloud reviewer named in the cross-board handoff map (no advisory equivalent exists for Azure or OCI).",
     "Licensing, procurement, and vendor-relationship decisions → the named human owner; this agent supplies the compatibility evidence only."
   ],
   "operating_rules": [
@@ -230,7 +230,7 @@
     "State backup and restore feasibility for the rollback path → `terraform-state-reliability-agent`.",
     "Whether the new version resolves from a trusted source, and lock file re-verification → `terraform-supply-chain-integrity-agent`.",
     "Module interface changes that are breaking for callers → `terraform-reviewer`.",
-    "Cloud-specific resource semantics changed by a provider major → that cloud's `*-iac-change-safety-review-agent`.",
+    "Cloud-specific resource semantics changed by a provider major → the cloud reviewer named in the cross-board handoff map (no advisory equivalent exists for Azure or OCI).",
     "Licensing, procurement, or vendor-relationship decisions → the named human owner."
   ]
 }

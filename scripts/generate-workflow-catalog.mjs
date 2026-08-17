@@ -7,10 +7,12 @@
  * files cannot be imported to read their metadata — evaluating one outside the runtime
  * throws on the first `phase()` call.
  *
- * They can, however, be read statically: the workflow contract requires `meta` to be a
- * PURE LITERAL (no variables, calls, spreads, or interpolation), so the object literal
- * following `export const meta =` is safely evaluable on its own. This extracts exactly
- * that literal by brace matching and evaluates it in isolation.
+ * They can, however, be read statically. The workflow contract requires `meta` to be a
+ * PURE LITERAL (no variables, calls, spreads, or interpolation), so this extracts the
+ * object literal following `export const meta =` by brace matching and then PARSES it
+ * with `parseLiteral` — it is never evaluated. Evaluating it would mean `npm run
+ * validate` executing code out of any workflow file a contributor adds; parsing both
+ * removes that and turns the pure-literal contract into something actually enforced.
  *
  * The output exists so `tools/vfa-tui` can display available workflows without
  * re-implementing any of this: the TUI reads generated catalog JSON and never parses
@@ -20,7 +22,7 @@
  *   node scripts/generate-workflow-catalog.mjs           # write
  *   node scripts/generate-workflow-catalog.mjs --check   # verify in sync (CI)
  */
-import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs'
+import { readFileSync, writeFileSync, readdirSync, existsSync, realpathSync } from 'node:fs'
 import { join, dirname, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -71,6 +73,148 @@ function extractMetaLiteral(source) {
   return null
 }
 
+/**
+ * Parse a JavaScript *data* literal without evaluating it.
+ *
+ * Accepts exactly the pure-literal subset the workflow `meta` contract promises:
+ * objects (quoted or bare identifier keys, optional trailing comma), arrays, single-,
+ * double- and backtick-quoted strings with no `${}` substitution, numbers, `true`,
+ * `false`, `null`. Anything else — a call, an identifier reference, a spread, a
+ * template substitution, an operator — is a syntax error rather than something that
+ * runs. Comments are skipped.
+ *
+ * Deliberately hand-written rather than delegated to `eval`/`Function`/`vm`: the point
+ * is that no code path here can execute the input.
+ */
+export function parseLiteral(src) {
+  let i = 0
+
+  const fail = (msg) => {
+    throw new Error(`${msg} at offset ${i}`)
+  }
+  const skip = () => {
+    for (;;) {
+      while (i < src.length && /\s/.test(src[i])) i++
+      if (src[i] === '/' && src[i + 1] === '/') {
+        while (i < src.length && src[i] !== '\n') i++
+      } else if (src[i] === '/' && src[i + 1] === '*') {
+        i += 2
+        while (i < src.length && !(src[i] === '*' && src[i + 1] === '/')) i++
+        if (i >= src.length) fail('unterminated block comment')
+        i += 2
+      } else {
+        return
+      }
+    }
+  }
+
+  const readString = () => {
+    const quote = src[i++]
+    let out = ''
+    while (i < src.length) {
+      const c = src[i]
+      if (c === '\\') {
+        const esc = src[i + 1]
+        const simple = { n: '\n', t: '\t', r: '\r', b: '\b', f: '\f', v: '\v', 0: '\0' }
+        if (esc === 'u') {
+          const hex = src.slice(i + 2, i + 6)
+          if (!/^[0-9a-fA-F]{4}$/.test(hex)) fail('bad unicode escape')
+          out += String.fromCharCode(parseInt(hex, 16))
+          i += 6
+        } else if (esc === 'x') {
+          const hex = src.slice(i + 2, i + 4)
+          if (!/^[0-9a-fA-F]{2}$/.test(hex)) fail('bad hex escape')
+          out += String.fromCharCode(parseInt(hex, 16))
+          i += 4
+        } else if (esc === '\n') {
+          i += 2 // line continuation
+        } else if (esc in simple) {
+          out += simple[esc]
+          i += 2
+        } else {
+          out += esc
+          i += 2
+        }
+        continue
+      }
+      if (c === quote) {
+        i++
+        return out
+      }
+      // A template substitution would require evaluation to resolve, which is exactly
+      // what this parser exists to avoid.
+      if (quote === '`' && c === '$' && src[i + 1] === '{') fail('template substitution is not a literal')
+      if (quote !== '`' && c === '\n') fail('unterminated string')
+      out += c
+      i++
+    }
+    return fail('unterminated string')
+  }
+
+  const readValue = () => {
+    skip()
+    const c = src[i]
+    if (c === '{') return readObject()
+    if (c === '[') return readArray()
+    if (c === '"' || c === "'" || c === '`') return readString()
+    if (src.startsWith('true', i)) { i += 4; return true }
+    if (src.startsWith('false', i)) { i += 5; return false }
+    if (src.startsWith('null', i)) { i += 4; return null }
+    const num = /^-?\d+(\.\d+)?([eE][+-]?\d+)?/.exec(src.slice(i))
+    if (num) { i += num[0].length; return Number(num[0]) }
+    return fail(`unexpected token ${JSON.stringify(src.slice(i, i + 24))}`)
+  }
+
+  const readObject = () => {
+    i++ // {
+    const obj = {}
+    skip()
+    if (src[i] === '}') { i++; return obj }
+    for (;;) {
+      skip()
+      if (src[i] === '.' ) fail('spread is not a literal')
+      let key
+      if (src[i] === '"' || src[i] === "'" || src[i] === '`') {
+        key = readString()
+      } else {
+        const id = /^[A-Za-z_$][A-Za-z0-9_$]*/.exec(src.slice(i))
+        if (!id) fail('expected property name')
+        key = id[0]
+        i += id[0].length
+      }
+      skip()
+      if (src[i] !== ':') fail(`expected ':' after key ${JSON.stringify(key)}`)
+      i++
+      obj[key] = readValue()
+      skip()
+      if (src[i] === ',') { i++; skip(); if (src[i] === '}') { i++; return obj } continue }
+      if (src[i] === '}') { i++; return obj }
+      return fail("expected ',' or '}'")
+    }
+  }
+
+  const readArray = () => {
+    i++ // [
+    const arr = []
+    skip()
+    if (src[i] === ']') { i++; return arr }
+    for (;;) {
+      skip()
+      if (src[i] === '.') fail('spread is not a literal')
+      arr.push(readValue())
+      skip()
+      if (src[i] === ',') { i++; skip(); if (src[i] === ']') { i++; return arr } continue }
+      if (src[i] === ']') { i++; return arr }
+      return fail("expected ',' or ']'")
+    }
+  }
+
+  const value = readValue()
+  skip()
+  if (i !== src.length) fail('trailing content after literal')
+  return value
+}
+
 function readWorkflow(file) {
   const abs = join(WORKFLOW_DIR, file)
   const src = readFileSync(abs, 'utf8')
@@ -80,9 +224,15 @@ function readWorkflow(file) {
   }
   let meta
   try {
-    // Safe: the workflow contract requires meta to be a pure literal, and the literal
-    // is evaluated alone — the script body, which needs the workflow runtime, is not.
-    meta = new Function(`return (${literal})`)()
+    // PARSED, never evaluated. An earlier version ran `new Function(...)` on this
+    // literal, which meant `npm run validate` executed code out of any workflow file a
+    // contributor added — `description: (() => { …anything… })()` would have run with
+    // the validator's privileges. In a repository whose subject is supply-chain
+    // integrity that is not an acceptable way to read metadata, and it also let
+    // nondeterministic values into a generated catalog. parseLiteral accepts only
+    // JSON-shaped data and rejects everything else, which additionally makes the
+    // "meta must be a pure literal" contract actually enforced rather than assumed.
+    meta = parseLiteral(literal)
   } catch (err) {
     throw new Error(`${file}: meta is not a pure literal (${err.message})`)
   }
@@ -126,20 +276,28 @@ function build() {
   }
 }
 
-const catalog = build()
-const serialized = JSON.stringify(catalog, null, 2) + '\n'
+function main() {
+  const catalog = build()
+  const serialized = JSON.stringify(catalog, null, 2) + '\n'
 
-if (process.argv.includes('--check')) {
-  const current = existsSync(OUT) ? readFileSync(OUT, 'utf8') : ''
-  if (current !== serialized) {
-    console.error(
-      'FAIL: catalog/workflows.json is out of sync with .claude/workflows/.\n' +
-      '      Run: npm run workflow-catalog:write',
-    )
-    process.exit(1)
+  if (process.argv.includes('--check')) {
+    const current = existsSync(OUT) ? readFileSync(OUT, 'utf8') : ''
+    if (current !== serialized) {
+      console.error(
+        'FAIL: catalog/workflows.json is out of sync with .claude/workflows/.\n' +
+        '      Run: npm run workflow-catalog:write',
+      )
+      process.exit(1)
+    }
+    console.log(`OK: workflow catalog in sync (${catalog.workflows.length} workflow(s))`)
+  } else {
+    writeFileSync(OUT, serialized)
+    console.log(`OK: wrote catalog/workflows.json (${catalog.workflows.length} workflow(s))`)
   }
-  console.log(`OK: workflow catalog in sync (${catalog.workflows.length} workflow(s))`)
-} else {
-  writeFileSync(OUT, serialized)
-  console.log(`OK: wrote catalog/workflows.json (${catalog.workflows.length} workflow(s))`)
+}
+
+// Only run when invoked directly. `parseLiteral` is exported so it can be tested and
+// reused, and importing a module must never write a file as a side effect.
+if (process.argv[1] && realpathSync(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  main()
 }

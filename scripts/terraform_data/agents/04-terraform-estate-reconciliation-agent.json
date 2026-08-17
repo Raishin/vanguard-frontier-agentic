@@ -83,7 +83,7 @@
     "Backend, locking, recovery, and whether a state mutation is justified → `terraform-state-reliability-agent`.",
     "Whether the adopted resource's module contract is sound → `terraform-reviewer`.",
     "Whether the adopted configuration satisfies a regulated control → `terraform-policy-evidence-agent`.",
-    "Cloud-specific import identifier formats and per-service semantics → that cloud's `*-iac-change-safety-review-agent`.",
+    "Cloud-specific import identifier formats and per-service semantics → the cloud reviewer named in the cross-board handoff map (no advisory equivalent exists for Azure or OCI).",
     "Executing the import, apply, or state operation → the named human owner and that cloud's live-guard agent."
   ],
   "operating_rules": [
@@ -128,7 +128,7 @@
       "The question is backend, locking, or state recovery posture — route to `terraform-state-reliability-agent`.",
       "The question is whether the module the resource lands in is a sound contract — route to `terraform-reviewer`.",
       "The request is to run the import, apply, or state command — this skill plans and verifies; a named human owner executes.",
-      "Cloud-specific import identifier formats are the actual blocker — route to that cloud's `*-iac-change-safety-review-agent`."
+      "Cloud-specific import identifier formats are the actual blocker — route to the cloud reviewer named in the cross-board handoff map (no advisory equivalent exists for Azure or OCI)."
     ],
     "response_minimum": [
       "A verdict (pass / pass-with-conditions / block) and the engine and version posture assumed.",
@@ -219,7 +219,7 @@
     "State backup and lock preconditions before any mutation → `terraform-state-reliability-agent`.",
     "Why the resulting plan replaces something → `terraform-plan-blast-radius-agent`.",
     "Whether the adopted resources belong in an existing platform module → `terraform-reviewer`.",
-    "Cloud-specific import identifier formats or per-service adoption constraints → that cloud's `*-iac-change-safety-review-agent`.",
+    "Cloud-specific import identifier formats or per-service adoption constraints → the cloud reviewer named in the cross-board handoff map (no advisory equivalent exists for Azure or OCI).",
     "Evidence that adopted resources satisfy a regulated control → `terraform-policy-evidence-agent`."
   ]
 }

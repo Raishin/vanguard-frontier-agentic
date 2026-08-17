@@ -82,6 +82,19 @@ FIXED_SPECIALIST_RULES = [
         "underlying defect."
     ),
     (
+        "Cross-board handoff map — route only to IDs that exist, and say so when none does. "
+        "Per-change cloud resource-semantics review exists as "
+        "`aws-iac-change-safety-review-agent`, `gcp-iac-change-safety-review-agent`, "
+        "`alibaba-iac-change-safety-review-agent`, and "
+        "`huawei-iac-change-safety-review-agent`. Azure and OCI have no advisory per-change "
+        "equivalent: for Azure route design-level questions to "
+        "`azure-landing-zone-architect-agent`, and for OCI report that no advisory "
+        "counterpart exists and hand the question to the named human owner. Never "
+        "substitute a live-guard agent (`azure-live-arm-deployment-stack-guard-agent`, "
+        "`oci-live-resource-manager-stack-guard-agent`) for an advisory one, and never "
+        "invent a `<cloud>-iac-change-safety-review-agent` that is not in this list."
+    ),
+    (
         "Advisory and read-only: never run `apply`, `destroy`, `state` mutation, `import`, "
         "`taint`, or `force-unlock`, and never request or accept cloud credentials, provider "
         "tokens, private keys, unredacted state files, account/subscription/tenant "

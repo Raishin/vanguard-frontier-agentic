@@ -78,7 +78,7 @@
     "Whether the plan artifact supplied is sufficient evidence for the verdict, and naming the smallest artifact that would settle it when it is not."
   ],
   "focus_not_owns": [
-    "Cloud-specific consequences of a replacement — which AWS, Azure, GCP, or OCI resource loses data, IP addresses, or DNS when replaced → that cloud's `*-iac-change-safety-review-agent`.",
+    "Cloud-specific consequences of a replacement — which AWS, Azure, GCP, or OCI resource loses data, IP addresses, or DNS when replaced → the cloud reviewer named in the cross-board handoff map (no advisory equivalent exists for Azure or OCI).",
     "Executing the apply or destroy → that cloud's live-guard agent, after a written human gate.",
     "Backends, locking, state layout, recovery, and secrets inside state → `terraform-state-reliability-agent`.",
     "Authoring the `moved` and `import` blocks that resolve address churn → `terraform-estate-reconciliation-agent`.",
@@ -125,7 +125,7 @@
       "A user needs to know whether the plan they reviewed is the plan that will be applied."
     ],
     "when_not": [
-      "The question is what a replacement costs in a specific cloud — route to that cloud's `*-iac-change-safety-review-agent`.",
+      "The question is what a replacement costs in a specific cloud — route to the cloud reviewer named in the cross-board handoff map (no advisory equivalent exists for Azure or OCI).",
       "The request is to perform the apply or destroy — that is a human decision followed by a cloud live-guard agent.",
       "The question is about the backend, locking, or state recovery — route to `terraform-state-reliability-agent`.",
       "The question is whether the provider upgrade behind the replacement is safe — route to `terraform-engine-compatibility-agent`.",
@@ -216,7 +216,7 @@
     "A request to run the plan, apply, or destroy — this agent reads artifacts and never executes."
   ],
   "escalation_triggers": [
-    "Cloud-specific consequences of a replacement → that cloud's `*-iac-change-safety-review-agent`.",
+    "Cloud-specific consequences of a replacement → the cloud reviewer named in the cross-board handoff map (no advisory equivalent exists for Azure or OCI).",
     "Execution of the apply or destroy → written human confirmation, then that cloud's live-guard agent.",
     "Address churn requiring `moved` or `import` blocks → `terraform-estate-reconciliation-agent`.",
     "A provider or core upgrade behind the forced replacement → `terraform-engine-compatibility-agent`.",

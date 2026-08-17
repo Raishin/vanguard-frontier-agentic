@@ -110,7 +110,7 @@
     "Bringing unmanaged infrastructure into state, and authoring `import` and `moved` blocks → `terraform-estate-reconciliation-agent`.",
     "The identity the pipeline uses to reach the backend, and how plan artifacts move between plan and apply → `terraform-execution-governance-agent`.",
     "Whether the backend's cloud resources satisfy a regulated control and what evidence proves it → `terraform-policy-evidence-agent`.",
-    "Cloud-specific durability semantics of the storage service behind the backend → that cloud's `*-iac-change-safety-review-agent`.",
+    "Cloud-specific durability semantics of the storage service behind the backend → the cloud reviewer named in the cross-board handoff map (no advisory equivalent exists for Azure or OCI).",
     "Executing any state operation → the named human owner and that cloud's live-guard agent, never this agent."
   ],
   "operating_rules": [
@@ -249,6 +249,6 @@
     "Why the plan that motivated the surgery replaces a resource → `terraform-plan-blast-radius-agent`.",
     "The pipeline identity that reaches the backend → `terraform-execution-governance-agent`.",
     "Regulated evidence that state is encrypted and access-controlled → `terraform-policy-evidence-agent`.",
-    "Cloud-specific durability or replication semantics of the storage behind the backend → that cloud's `*-iac-change-safety-review-agent`."
+    "Cloud-specific durability or replication semantics of the storage behind the backend → the cloud reviewer named in the cross-board handoff map (no advisory equivalent exists for Azure or OCI)."
   ]
 }

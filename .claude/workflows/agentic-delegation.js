@@ -6,8 +6,9 @@ export const meta = {
     { title: 'Resolve sources', detail: 'Resolve Context7 library IDs once, centrally', model: 'haiku' },
     { title: 'Recon', detail: 'Parallel Haiku sweeps, one narrow question each, citations required', model: 'haiku' },
     { title: 'Spec', detail: 'Orchestrator-tier file-scoped specs — architecture stays here' },
-    { title: 'Implement', detail: 'Sonnet writes against an exact spec' },
-    { title: 'Verify', detail: 'Adversarial Context7-grounded check of every factual claim written' },
+    { title: 'Implement', detail: 'Sonnet writes against an exact spec', model: 'sonnet' },
+    { title: 'Regenerate', detail: 'Settle generated output before verification, when generators are declared', model: 'haiku' },
+    { title: 'Verify', detail: 'Adversarial Context7-grounded check of every factual claim written', model: 'sonnet' },
     { title: 'Gate', detail: 'Repo gate suite in documented order, asset-integrity last', model: 'haiku' },
   ],
 }
@@ -15,7 +16,7 @@ export const meta = {
 // ---------------------------------------------------------------- inputs
 //
 // args accepts either a bare string (the task) or an object:
-//   { task, questions[], libraries[], files[], gates[] }
+//   { task, questions[], libraries[], files[], gates[], generators[] }
 //
 // Everything except `task` has a defensible default so the workflow is usable
 // with `args: "the thing I want done"` and still follows the doctrine.
@@ -23,17 +24,54 @@ export const meta = {
 const input = typeof args === 'string' ? { task: args } : (args || {})
 const TASK = input.task || 'No task supplied — report this and stop.'
 const QUESTIONS = Array.isArray(input.questions) ? input.questions : []
-const LIBRARIES = Array.isArray(input.libraries) && input.libraries.length
-  ? input.libraries
-  : ['Terraform', 'OpenTofu']
+// No default library list. Defaulting to any specific technology tells every delegate
+// to ground unrelated work in an irrelevant library, and a successful resolution makes
+// that instruction look authoritative. When none is supplied the resolve phase infers
+// candidates from the task itself, and grounds nothing if it cannot.
+const LIBRARIES = Array.isArray(input.libraries) ? input.libraries : []
 const FILE_SCOPE = Array.isArray(input.files) ? input.files : []
-const GATES = Array.isArray(input.gates) && input.gates.length
+// Commands that turn generator inputs into shipped output. When a delegate edits a
+// generator input, the files everyone actually reads are still the old ones, so
+// verifying before regenerating verifies stale artifacts and can report readiness for
+// output that was never produced. Declared here, run in their own phase between
+// implementation and verification.
+const GENERATORS = Array.isArray(input.generators) ? input.generators : []
+// The integrity manifest must be refreshed BEFORE validation, not after it. `npm run
+// validate` includes `validate:asset-integrity`, so any delegated change to a hashed
+// path (agents/, plugins/, package.json, a root file) leaves a stale manifest that
+// fails validate — and gating the refresh on validate passing first makes that
+// unrecoverable. CLAUDE.md's canonical order is generators, then integrity, then
+// validate; this is that order.
+const INTEGRITY_REFRESH = 'npm run asset-integrity:write'
+
+const BASE_GATES = Array.isArray(input.gates) && input.gates.length
   ? input.gates
   : [
       'npm run validate',
       'npm run lint:spell',
       'npx --yes markdownlint-cli2 "**/*.md" "#node_modules"',
     ]
+
+// CI's `Gate` job is path-filtered to tools/vfa-tui/**, so a change that touches the
+// TUI needs these three locally or nothing checks it. Requiring the caller to remember
+// a custom gate list is exactly the failure this workflow exists to prevent, so they
+// are derived rather than requested.
+const CARGO_GATES = [
+  'cd tools/vfa-tui && cargo fmt --check',
+  'cd tools/vfa-tui && cargo clippy --all-targets -- -D warnings',
+  'cd tools/vfa-tui && cargo test',
+]
+const RUST_TOUCHED =
+  FILE_SCOPE.some((f) => String(f).includes('tools/vfa-tui')) ||
+  /vfa-tui|\bcargo\b|\brust\b/i.test(TASK)
+
+// The full ordered sequence readiness is computed against. Integrity first, then the
+// verification gates, then cargo when the TUI is in scope.
+const GATE_SEQUENCE = [
+  INTEGRITY_REFRESH,
+  ...BASE_GATES,
+  ...(RUST_TOUCHED ? CARGO_GATES : []),
+]
 
 // The do-NOT list every delegate carries. Doctrine section (d): delegates write
 // files; only the orchestrator commits. Stated once, appended everywhere, so a
@@ -331,9 +369,13 @@ if (!specs.length) {
 phase('Implement')
 phase('Verify')
 
-const results = await pipeline(
-  specs,
-  (spec) => agent(
+// When generators are declared, implementation and verification CANNOT be pipelined:
+// generated output depends on every input, so regeneration is a genuine barrier and
+// verification must read the settled tree. Without generators the pipeline is correct
+// and each spec verifies as soon as it is written. Both shapes below run the same two
+// stage functions, so the stages stay identical either way.
+const implementStage = (spec) =>
+  agent(
     `Implement this spec exactly. Write the files; do not commit them.
 
 SPEC ID: ${spec.id}
@@ -354,8 +396,10 @@ ${DELEGATE_CONSTRAINTS}
 Report what you wrote, path by path, and name anything in the spec you could NOT
 satisfy rather than silently narrowing it.`,
     { label: `impl:${spec.id}`, phase: 'Implement', model: 'sonnet', effort: 'high' },
-  ),
-  (implReport, spec) => agent(
+  )
+
+const verifyStage = (implReport, spec) =>
+  agent(
     `Adversarially verify an implementation. Assume it is wrong until shown otherwise.
 You did NOT write this and you gain nothing by approving it.
 
@@ -399,17 +443,72 @@ and says something false, the verdict is reject.
 Set verdict=reject if any acceptance criterion fails or any claim is CONTRADICTED.
 ${DELEGATE_CONSTRAINTS}`,
     { label: `verify:${spec.id}`, phase: 'Verify', model: 'sonnet', effort: 'high', schema: VERDICT_SCHEMA },
-  ),
-)
+  )
 
+let results
+if (GENERATORS.length) {
+  // Barrier shape. Implement everything, regenerate, then verify against real output.
+  const implReports = await parallel(specs.map((s2) => () => implementStage(s2)))
+  phase('Regenerate')
+  log(`Running ${GENERATORS.length} generator(s) before verification`)
+  await agent(
+    `Run these generator commands IN THIS ORDER and report what each one changed:
+${GENERATORS.map((g, i) => `  ${i + 1}. ${g}`).join('\n')}
+
+Delegates edited generator INPUTS. Until these run, the shipped output files still hold
+the previous content, so anything that reads them is reading stale artifacts.
+
+Report each command's exit status and, from 'git status --porcelain', which files it
+changed. If a command fails, report the RAW error and stop rather than continuing.
+
+HARD CONSTRAINTS:
+- Run ONLY the commands listed above.
+- Do NOT hand-edit any generated file; if output looks wrong, report it.
+- Do NOT run the gate suite and do NOT commit anything.`,
+    { label: 'regenerate', phase: 'Regenerate', model: 'haiku', effort: 'low' },
+  )
+  results = await parallel(
+    specs.map((s2, idx) => () => verifyStage(implReports[idx], s2)),
+  )
+} else {
+  results = await pipeline(specs, implementStage, verifyStage)
+}
+
+// A pipeline item whose stage threw becomes null, so `verdicts` can be shorter than
+// `specs`. Counting only the verdicts that came back would report readiness for a spec
+// that was never judged at all — the failure is invisible precisely because it removed
+// its own evidence. Readiness therefore checks coverage against the spec list, not
+// against the surviving results.
 const verdicts = results.filter(Boolean)
-const contradicted = verdicts.flatMap(v =>
-  (v.claimVerdicts || []).filter(c => c.status === 'CONTRADICTED').map(c => ({ specId: v.specId, ...c })),
-)
-const rejected = verdicts.filter(v => v.verdict === 'reject')
-const scopeBreaches = verdicts.flatMap(v => (v.outOfScopeEdits || []).map(f => ({ specId: v.specId, file: f })))
+const unjudgedSpecs = specs
+  .filter((s) => !verdicts.some((v) => v && v.specId === s.id))
+  .map((s) => s.id)
 
-log(`Verify: ${verdicts.length} spec(s) judged, ${rejected.length} rejected, ${contradicted.length} contradicted claim(s), ${scopeBreaches.length} scope breach(es)`)
+const claimsWith = (status) =>
+  verdicts.flatMap((v) =>
+    (v.claimVerdicts || [])
+      .filter((c) => c.status === status)
+      .map((c) => ({ specId: v.specId, ...c })),
+  )
+const contradicted = claimsWith('CONTRADICTED')
+// An UNVERIFIABLE claim is the fail-closed case this workflow exists to enforce: a
+// statement nobody could ground. Shipping it is the same defect as shipping a
+// contradicted one, so it blocks too.
+const unverifiable = claimsWith('UNVERIFIABLE')
+// Readiness requires an affirmative `accept`. `accept-with-fixes` is a request for more
+// work wearing an approving label, and treating "not reject" as success is exactly how
+// half-finished work ships.
+const notAccepted = verdicts.filter((v) => v.verdict !== 'accept')
+const scopeBreaches = verdicts.flatMap((v) =>
+  (v.outOfScopeEdits || []).map((f) => ({ specId: v.specId, file: f })),
+)
+
+log(
+  `Verify: ${verdicts.length}/${specs.length} spec(s) judged, ` +
+  `${notAccepted.length} not accepted, ${contradicted.length} contradicted, ` +
+  `${unverifiable.length} unverifiable, ${scopeBreaches.length} scope breach(es)` +
+  (unjudgedSpecs.length ? `, ${unjudgedSpecs.length} NEVER JUDGED` : ''),
+)
 
 // ---------------------------------------------------------------- 6. gate
 //
@@ -422,20 +521,29 @@ phase('Gate')
 const gateResult = await agent(
   `Run this repository's gate suite and report results. This is a verify pass.
 
-Run these in order, and report each one's pass/fail:
-${GATES.map((g, i) => `  ${i + 1}. ${g}`).join('\n')}
+Run these IN THIS EXACT ORDER, and report one entry per command, using the command
+string exactly as written here so the orchestrator can match your report against the
+requested list:
+${GATE_SEQUENCE.map((g, i) => `  ${i + 1}. ${g}`).join('\n')}
 
-Then, ONLY IF every command above passed, run:
-  npm run asset-integrity:write
+The ordering is mandatory and is the repository's canonical one: generators, then the
+integrity refresh, then validation. \`npm run validate\` includes an asset-integrity
+check, so refreshing the manifest FIRST is what allows validate to pass on a tree that
+delegates just modified. Do not reorder, and do not skip a command because an earlier
+one failed — run them all so the orchestrator sees the complete picture.
 
-That ordering is mandatory: the integrity manifest hashes the settled tree, so
-running it before the other gates are green stales the manifest.
+Additionally: run \`git status --porcelain tools/vfa-tui\`. If it reports ANY changed
+file and the cargo commands are not in the list above, add an entry with
+command "cargo gates required but not requested", passed=false, and put the git output
+in rawFailure. A TUI change that skipped the cargo gates must never be reported green,
+because CI's Gate job is path-filtered and a local skip is the only thing standing
+between that change and an unverified merge.
 
 For any failure, include the RAW output verbatim in rawFailure — not a paraphrase.
-"Some checks failed" is useless; the orchestrator needs the actual error text to
-decide what to do next.
+"Some checks failed" is useless; the orchestrator needs the actual error text.
 
-Set allGreen=true only if every gate passed.
+Report allGreen honestly, but be aware the orchestrator recomputes readiness from your
+per-command entries and does not rely on that boolean.
 
 HARD CONSTRAINTS:
 - The ONLY file you may write is catalog/asset-integrity.json, via the command above.
@@ -449,6 +557,42 @@ HARD CONSTRAINTS:
 // The orchestrator reads this and decides. Nothing here is committed: doctrine (c)
 // keeps the commit with the orchestrator, so the workflow deliberately stops one
 // step short of done.
+//
+// Every readiness input below is computed from per-item results. A delegate's own
+// summary boolean is reported for context but never decides anything — the same rule
+// the verify phase applies to implementers has to apply to the gate runner, or the
+// workflow trusts exactly the kind of self-report it was built to distrust.
+
+const norm = (s) => String(s || '').trim().replace(/\s+/g, ' ')
+const gateEntries = gateResult?.gates || []
+const reportedCommands = new Set(gateEntries.map((g) => norm(g.command)))
+// A command absent from the report was not run. Silence is not a pass.
+const missingGates = GATE_SEQUENCE.filter((cmd) => !reportedCommands.has(norm(cmd)))
+const failedGates = gateEntries.filter((g) => !g.passed)
+const gatesGreen =
+  missingGates.length === 0 && failedGates.length === 0 && gateEntries.length > 0
+
+const blockers = {
+  unjudgedSpecs,
+  specsNotAccepted: notAccepted.map((v) => ({ specId: v.specId, verdict: v.verdict })),
+  contradictedClaims: contradicted,
+  unverifiableClaims: unverifiable,
+  outOfScopeEdits: scopeBreaches,
+  gatesGreen,
+  failedGates,
+  missingGates,
+  // Reported, deliberately not trusted — a mismatch against `gatesGreen` is itself a
+  // signal worth seeing.
+  gateRunnerReportedAllGreen: gateResult?.allGreen === true,
+}
+
+const blocked =
+  unjudgedSpecs.length > 0 ||
+  notAccepted.length > 0 ||
+  contradicted.length > 0 ||
+  unverifiable.length > 0 ||
+  scopeBreaches.length > 0 ||
+  !gatesGreen
 
 return {
   task: TASK,
@@ -456,22 +600,11 @@ return {
   reconQuestions: questions,
   recon,
   orchestratorRetains: plan?.orchestratorRetains || [],
-  specs: specs.map(s => ({ id: s.id, files: s.files })),
+  specs: specs.map((s) => ({ id: s.id, files: s.files })),
   verdicts,
-  blockers: {
-    rejectedSpecs: rejected.map(v => v.specId),
-    contradictedClaims: contradicted,
-    outOfScopeEdits: scopeBreaches,
-    gatesGreen: gateResult?.allGreen === true,
-    failedGates: (gateResult?.gates || []).filter(g => !g.passed),
-  },
-  readyToCommit:
-    rejected.length === 0 &&
-    contradicted.length === 0 &&
-    scopeBreaches.length === 0 &&
-    gateResult?.allGreen === true,
-  nextAction:
-    rejected.length || contradicted.length || scopeBreaches.length || gateResult?.allGreen !== true
-      ? 'Orchestrator: resolve blockers above, then re-run. Do not commit.'
-      : 'Orchestrator: read the diff yourself, then commit. The workflow deliberately does not commit.',
+  blockers,
+  readyToCommit: !blocked,
+  nextAction: blocked
+    ? 'Orchestrator: resolve blockers above, then re-run. Do not commit.'
+    : 'Orchestrator: read the diff yourself, then commit. The workflow deliberately does not commit.',
 }

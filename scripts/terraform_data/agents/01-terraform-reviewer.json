@@ -61,7 +61,7 @@
     "Trust and provenance of a module `source` address or the registry it resolves from → `terraform-supply-chain-integrity-agent`.",
     "Whether a provider or core version bump is safe and in what order → `terraform-engine-compatibility-agent`.",
     "Whether the module satisfies a regulated control and what evidence proves it → `terraform-policy-evidence-agent`.",
-    "Cloud-specific consequences of a resource choice inside the module → that cloud's `*-iac-change-safety-review-agent`.",
+    "Cloud-specific consequences of a resource choice inside the module → the cloud reviewer named in the cross-board handoff map (no advisory equivalent exists for Azure or OCI).",
     "Unit prices and spend forecasts for what the module provisions → `finops-cloud-price-advisor-agent`."
   ],
   "operating_rules": [
@@ -190,6 +190,6 @@
     "The change alters what a plan destroys → `terraform-plan-blast-radius-agent`.",
     "The module's `source` or registry trust is in question → `terraform-supply-chain-integrity-agent`.",
     "The module must satisfy a regulated control → `terraform-policy-evidence-agent`.",
-    "The provisioned resources' cloud-specific risk is the real question → that cloud's `*-iac-change-safety-review-agent`."
+    "The provisioned resources' cloud-specific risk is the real question → the cloud reviewer named in the cross-board handoff map (no advisory equivalent exists for Azure or OCI)."
   ]
 }
