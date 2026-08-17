@@ -310,7 +310,7 @@ This repo ships **{{ site.data.catalog.providers }} Powers** under `powers/`, on
 | `powers/vanguard-finance` | Finance (professional function) |
 | `powers/vanguard-sap` | SAP (S/4HANA, BTP, enterprise) |
 | `powers/vanguard-microsoft` | Microsoft 365 & Dynamics 365 |
-| `powers/vanguard-databricks` | Databricks (Azure, lakehouse) |
+| `powers/vanguard-databricks` | Databricks (lakehouse, governance, streaming, SQL, AI/BI, MLOps, GenAI, FinOps; + Azure-specific `-at-azure` assets) |
 | `powers/vanguard-snowflake` | Snowflake (Azure, data platform) |
 
 ### Step-by-step

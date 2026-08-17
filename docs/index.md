@@ -36,6 +36,8 @@ Supported harnesses: Claude Code, Codex, GitHub Copilot, Cursor, Gemini CLI, Kir
 | Page | Description |
 |------|-------------|
 | [Architecture](architecture/) | Three-layer system, Mermaid diagrams, design rationale |
+| [Language and Stack Boards](language-stack-boards/) | Topical boards, role bundles, execution-tier contract |
+| [The Databricks Board](databricks-board/) | Cloud-neutral lakehouse and AI board, routing, roles, safety posture |
 | [Governance](governance/) | ADR process, maintainer responsibilities, quality gates |
 | [ADR-0001: Initial Architecture](adr/0001-initial-architecture/) | Three-layer Maestro decision record |
 | [ADR-0002: Jekyll + GitHub Pages](adr/0002-documentation-site-with-jekyll-github-pages/) | Documentation platform choice |

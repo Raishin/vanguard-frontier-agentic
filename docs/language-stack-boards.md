@@ -684,7 +684,16 @@ set for a given function.
 | `python-live-audit-and-compliance-reviewer` | `python` (live) | 5 | 5 |
 | `sap-transformation-operations` | `sap` | 40 | 46 |
 | `microsoft-365-d365-platform-advisor` | `microsoft` | 40 | 40 |
-| `azure-databricks-platform-engineer` | `databricks` | 3 | 3 |
+| `azure-databricks-platform-engineer` | `databricks` (Azure) | 3 | 3 |
+| `databricks-platform-engineer` | `databricks` | 6 | 6 |
+| `databricks-solution-architect` | `databricks` | 6 | 6 |
+| `databricks-data-engineer` | `databricks` | 5 | 5 |
+| `databricks-analytics-engineer` | `databricks` | 5 | 5 |
+| `databricks-governance-security-engineer` | `databricks` | 5 | 5 |
+| `databricks-ml-engineer` | `databricks` | 5 | 5 |
+| `databricks-genai-engineer` | `databricks` | 5 | 5 |
+| `databricks-sre` | `databricks` | 5 | 5 |
+| `databricks-finops-engineer` | `databricks` | 5 | 5 |
 | `azure-snowflake-platform-engineer` | `snowflake` | 3 | 3 |
 
 Install a role with the export CLI:
@@ -885,11 +894,16 @@ read-only tier. This is a design constraint, not a default.
 | `python` (live control plane) | `read-only-runtime` / `mutating-runtime` | The `python-live-*` agents. Read-only agents perform allowlisted diagnostics and observation; mutating operators are live-guard gated — never auto-dispatched, requiring an independent approval bound to the target, target-scoped JIT credentials, a pre-approved rollback, and an immutable audit event (fail-closed for R3+). The repo ships definitions, contracts, and evals — not a running control plane — and no agent declares compliance. |
 | `sap` | `static-review` | Reads sanitized SAP configuration and ABAP/BTP artifacts; never contacts SAP systems, triggers transports, or mutates landscape data |
 | `microsoft` | `static-review` | Reads sanitized Microsoft 365 and Dynamics 365 configuration; never mutates tenant state, sends messages, or contacts Graph API |
-| `databricks` | `static-review` | Reads sanitized notebooks, job configs, and lakehouse metadata; never runs jobs, mutates clusters, or contacts Databricks REST APIs |
+| `databricks` (cloud-neutral board) | `static-review` | Reads sanitized notebooks, SQL, `databricks.yml`, job/pipeline and cluster-policy JSON, query profiles, and system-table output; never executes DDL/DML, `GRANT`/`REVOKE`, job or pipeline runs, warehouse or cluster changes, or model deployments, and never contacts Databricks REST APIs |
+| `databricks` (Azure live guard) | `mutating-runtime` | The single `databricks-live-unity-catalog-grant-guard-at-azure-agent`. Executes exactly one `GRANT`/`REVOKE` on one securable for one principal, gated by a written approval token, dry-run preflight, prior-state capture, and a named `REVOKE`/`GRANT` rollback; never auto-dispatched |
 | `snowflake` | `static-review` | Reads sanitized DDL, query plans, and data-sharing configs; never executes queries, mutates warehouses, or contacts Snowflake APIs |
 
-Static review is the required **default** for language/stack boards. The one
-governed exception is the `python` **live control plane** (`python-live-*`), which
+Static review is the required **default** for language/stack boards. Every
+exception is governed, never ad hoc: a board may ship live agents only behind the
+live-guard contract, and the boards that do — `sap`, `microsoft`, and the Azure
+`databricks` grant guard — each expose a small, named set of single-operation
+guards rather than general mutation authority. The largest and most structured of
+these is the `python` **live control plane** (`python-live-*`), which
 carries `read-only-runtime`/`mutating-runtime` tiers under the controlled-execution
 and audit-evidence contracts in [docs/compliance/](compliance/) and
 [evidence-output-spec.md](evidence-output-spec.md); its mutating operators are

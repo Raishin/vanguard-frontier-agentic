@@ -251,10 +251,10 @@ const PROVIDERS = {
     ],
   },
   databricks: {
-    displayName: "Vanguard Frontier — Databricks (Azure)",
+    displayName: "Vanguard Frontier — Databricks",
     description:
-      "Curated Azure Databricks agents for Unity Catalog governance and lakehouse engineering — static review only, no workspace or production mutations. Covers Unity Catalog securables and schema-scoped least-privilege grants, identity federation and account groups, account/workspace/metastore admin separation, run-production-as-service-principal, Entra ID managed identities, Access Connector + ADLS Gen2 external locations, cluster policies, and audit logs. Databricks and Azure surfaces are drift-prone; agents always verify against current Databricks and Microsoft Learn documentation before rendering findings.",
-    keywords: ["databricks", "azure", "unity-catalog", "lakehouse", "least-privilege", "data-engineering", "static-review"],
+      "Curated Databricks agents spanning a cloud-neutral lakehouse and AI board plus Azure-specific assets — static review only, no workspace or production mutations. Covers account and workspace topology, Unity Catalog governance (three-level namespace, GRANT model, workspace-catalog binding, governed tags), identity/network security (SCIM, service principals, OAuth vs personal access tokens, IP access lists, serverless egress, secret scopes), data protection and privacy (row filters, column masks, ABAC, classification, erasure via REORG/VACUUM, Delta Sharing egress, residency), Lakeflow pipelines and Delta table layout, Structured Streaming recovery, data quality and Lakehouse Monitoring, SQL warehouse performance, AI/BI Genie and metric views, MLflow and Model Serving, GenAI agent engineering and evaluation, Declarative Automation Bundles and CI/CD, operational evidence from system tables, FinOps cost attribution, and value realization. Databricks surfaces are drift-prone and differ by cloud, tier, and compute type; agents verify against current Databricks documentation, and pin version-sensitive client APIs against library documentation, before rendering findings.",
+    keywords: ["databricks", "unity-catalog", "lakehouse", "lakeflow", "mlflow", "genai", "finops", "least-privilege", "data-engineering", "static-review"],
     invariants: [
       "Static review only — agents never request workspace tokens, service-principal secrets, storage keys, or customer data, and never mutate a Databricks workspace, Unity Catalog, or Azure resource.",
       "Enforce least privilege: schema-scoped grants (CREATE TABLE/VOLUME/FUNCTION at schema level), no broad ALL PRIVILEGES, assign access to account groups not individuals, separate account/workspace/metastore admin roles.",
