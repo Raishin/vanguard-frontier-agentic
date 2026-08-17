@@ -85,9 +85,10 @@ No recommendation is issued before the evidence below exists. When it is missing
 
 Context7 supplies current, version-specific library and SDK documentation. It does not establish Databricks *service* behaviour — Databricks' own documentation does. Use it exactly when:
 
-- Required: Fetch current Lakeflow Spark Declarative Pipelines documentation (`pyspark.sql.streaming.pipelines` or `dp.*` decorator API) when the user asks about the Python API or current naming (Delta Live Tables → Lakeflow).
-- Required: Fetch current Databricks Runtime documentation when confirming DBR version requirements (deletion vectors DBR 15.4+, liquid clustering availability, Predictive Optimization tier support).
-- Not required: Databricks product marketing or launch blogs — use official docs only.
+- Required before recommending a pipelines decorator, a Delta table-feature command, or an Auto Loader option — these are library surfaces that move, and Databricks layers its own behaviour on top of Apache Spark and Delta Lake.
+- Corroborated via Context7 for this skill: `ALTER TABLE ... CLUSTER BY (col)` redefines liquid clustering keys without rewriting existing data; deletion vectors mark rows deleted without rewriting data files; `REORG TABLE ... APPLY (PURGE)` rewrites those files so a subsequent `VACUUM` can physically remove the data; `@materialized_view` defines a materialized view and `create_streaming_table` is the explicit streaming-table API.
+- NOT corroborated by Context7 and carried on Databricks documentation alone: the `from pyspark import pipelines as dp` import alias, and `CLUSTER BY AUTO`. Absence from a Context7 result is uncorroborated, not disproven — say which source backs the claim rather than dropping it or asserting it flatly.
+- Watch the layer boundary: Apache Spark and Delta Lake documentation describes the engine, Databricks documentation describes the managed service on top, and they can legitimately differ. Name which layer a claim comes from. If Context7 is not exposed, label the version-sensitive API claim `unknown` rather than answering from memory.
 
 If Context7 is not exposed in the session, say so and label every version-sensitive claim `unknown` rather than answering from memory. Never state that Context7 was consulted when it was not, and never assume an MCP server or tool name.
 
@@ -110,7 +111,7 @@ Authority tiers used across this board: **T0** static review (read artifacts onl
 
 ## Production caveats
 
-- Lakeflow Spark Declarative Pipelines (the current name) has a Python API `from pyspark import pipelines as dp`, with `@dp.table()` and `@dp.materialized_view()` decorators; legacy `import dlt` still works for existing pipelines without migration.
+- Lakeflow Spark Declarative Pipelines (the current name) has a Python API `from pyspark import pipelines as dp`; legacy `import dlt` still works for existing pipelines without migration. Be precise about which decorator produces what: `@dp.table()` defines a table and `@dp.materialized_view()` defines a materialized view, while an explicitly streaming target is created via `create_streaming_table` — do not assume `@dp.table()` is the streaming-table decorator, and name the intended target type in review rather than inferring it from the decorator alone. The `dp` import alias is Databricks-documented but was not corroborated by the Apache Spark Python API reference, so treat the alias as Databricks-specific until confirmed against the user's runtime.
 - Deletion vectors require Databricks Runtime 15.4 LTS or above; on earlier versions, OPTIMIZE performs a full rewrite of affected files.
 - Predictive Optimization is available only on Standard, Premium, and Enterprise tiers; Community-tier workspaces must handle OPTIMIZE, VACUUM, and ANALYZE explicitly.
 - Serverless pipelines require a target catalog and schema and publish to Unity Catalog by default; classic all-purpose clusters are also supported.

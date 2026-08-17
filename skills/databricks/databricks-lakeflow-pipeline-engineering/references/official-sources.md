@@ -14,6 +14,10 @@ Primary sources, verified 2026-08-17 against current official Databricks documen
 - https://docs.databricks.com/aws/en/ingestion/cloud-object-storage/auto-loader/
 - https://docs.databricks.com/aws/en/lakehouse/medallion
 
+## Source notes
+
+- Pipelines and Delta table-feature surfaces were cross-checked against the Context7 MCP (`/websites/spark_apache_api_python`, `/delta-io/delta`). Where the Apache Spark or Delta Lake library documentation and the Databricks service documentation describe different layers, this skill names the layer instead of merging them.
+
 ## Authority ranking
 
 1. `FIRST_PARTY` — Databricks documentation, Databricks API/SDK reference, and the provider's own deprecation pages. Every claim in this skill that constrains a decision must trace to one of these.
