@@ -1,0 +1,28 @@
+{
+  "id": "snowflake-live-pipeline-streaming-change-guard",
+  "name": "snowflake-live-pipeline-streaming-change-guard",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "snowflake",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Approval-gated execution boundary for exactly one production pipeline or ingestion change: one task, stream, dynamic table, or pipe operation. Requires current freshness, the last successful processing state, offset or checkpoint position, consumer impact, and a replay-duplication analysis before execution, and a post-change reconciliation afterwards — because a green deployment is not evidence that the data is correct. Never auto-dispatched.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.snowflake.com/en/sql-reference/sql/alter-task",
+    "https://docs.snowflake.com/en/user-guide/streams-intro",
+    "https://docs.snowflake.com/en/user-guide/dynamic-tables/manage",
+    "https://docs.snowflake.com/en/sql-reference/sql/alter-pipe",
+    "https://docs.snowflake.com/en/sql-reference/functions/system_pipe_status"
+  ],
+  "security_notes": "Mutating-runtime and never auto-dispatched. Executes exactly one pipeline or ingestion object change after explicit written human approval naming account, environment, object, the exact change, the consumer impact, and the accepted blast radius. Runs as a narrowly scoped custom role holding only the privileges needed on the single target object; ACCOUNTADMIN is forbidden without exception. Any operation that can re-deliver or skip data — a stream recreation, an offset reset, a pipe refresh, a backfill — requires an explicit duplication-or-loss analysis before approval, because these operations are the ones whose damage is silent. Reconciliation after the change is mandatory: this guard does not close on a successful execution.",
+  "last_verified": "2026-08-17",
+  "path": "skills/snowflake/snowflake-live-pipeline-streaming-change-guard",
+  "author": "github: VincentChuWaiChow"
+}

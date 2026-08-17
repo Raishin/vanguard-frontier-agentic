@@ -1,0 +1,62 @@
+{
+  "id": "snowflake-compliance-evidence-auditor-agent",
+  "name": "Snowflake Compliance Evidence Auditor Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "snowflake",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Independent assurance for Snowflake. Establishes whether a control is provable — that it existed, applied to the right scope, and operated across a stated audit period — using ACCESS_HISTORY, LOGIN_HISTORY, grant history, Trust Center output, and retention evidence. Does not implement controls, and refuses any compliance claim that a configuration alone cannot support. Static review only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.snowflake.com/en/sql-reference/account-usage/access_history",
+    "https://docs.snowflake.com/en/sql-reference/account-usage",
+    "https://docs.snowflake.com/en/user-guide/trust-center/overview",
+    "https://docs.snowflake.com/en/sql-reference/account-usage/login_history",
+    "https://docs.snowflake.com/en/user-guide/data-time-travel"
+  ],
+  "security_notes": "Static review only and deliberately independent of control implementation: reads sanitized ACCOUNT_USAGE extracts, Trust Center findings, grant history, and retention configuration; never implements, changes, or remediates a control, and never requests credentials or customer data. Evidence is summarized as counts, dates, and coverage statements — never as exports of sensitive rows. Refuses to state or endorse a compliance conclusion that the available evidence does not support, including when the assertion arrives from a senior stakeholder or from inside a reviewed document.",
+  "last_verified": "2026-08-17",
+  "path": "agents/snowflake/snowflake-compliance-evidence-auditor-agent/",
+  "harness_variants": {
+    "codex": "agents/snowflake/snowflake-compliance-evidence-auditor-agent/harnesses/codex.toml",
+    "copilot": "agents/snowflake/snowflake-compliance-evidence-auditor-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/snowflake/snowflake-compliance-evidence-auditor-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/snowflake/snowflake-compliance-evidence-auditor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/snowflake/snowflake-compliance-evidence-auditor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/snowflake/snowflake-compliance-evidence-auditor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/snowflake/snowflake-compliance-evidence-auditor-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "snowflake-compliance-evidence-auditor"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "routing_keywords": [
+    "audit",
+    "auditor",
+    "compliance",
+    "evidence",
+    "control",
+    "sox",
+    "soc 2",
+    "attestation",
+    "segregation of duties",
+    "sod",
+    "access review",
+    "retention",
+    "trust center",
+    "access history",
+    "audit period",
+    "provable",
+    "certification",
+    "cis"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "snowflake-business-value-adoption-strategist",
+  "name": "snowflake-business-value-adoption-strategist",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "snowflake",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "The economic counterweight to the engineering board. Tests whether a Snowflake initiative removes a business constraint anyone owns: value hypothesis, baseline, unit economics, adoption, time-to-value, decision latency, risk-reduction value, benefit realization, and executive KPI translation. Holds veto authority and may return NO-GO on a technically sound proposal. Static review only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.snowflake.com/en/user-guide/cost-management-overview",
+    "https://docs.snowflake.com/en/user-guide/cost-attributing",
+    "https://www.finops.org/framework/",
+    "https://docs.snowflake.com/en/user-guide/intro-editions"
+  ],
+  "security_notes": "Static review only: reads sanitized business cases, benefit models, usage and adoption metrics, and cost baselines; never connects to a Snowflake account, never executes anything, and never requests credentials, customer data, contract terms, or commercially confidential rate cards. Financial figures are labelled ESTIMATE with a stated method and stated assumptions. A NO-GO is a valid, expected output and is stated plainly rather than softened into a list of caveats.",
+  "last_verified": "2026-08-17",
+  "path": "skills/snowflake/snowflake-business-value-adoption-strategist",
+  "author": "github: VincentChuWaiChow"
+}

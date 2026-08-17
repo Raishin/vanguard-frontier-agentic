@@ -1,0 +1,28 @@
+{
+  "id": "snowflake-live-data-protection-policy-guard",
+  "name": "snowflake-live-data-protection-policy-guard",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "snowflake",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Approval-gated execution boundary for exactly one Snowflake data-protection policy attachment, detachment, or replacement — masking, row-access, or a supported governance policy — on one object or column. Requires a tested per-role-class visibility prediction before execution, including for service, BI, replication, and agent identities. Never auto-dispatched.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.snowflake.com/en/user-guide/security-column-intro",
+    "https://docs.snowflake.com/en/user-guide/security-row-intro",
+    "https://docs.snowflake.com/en/sql-reference/sql/alter-table-column",
+    "https://docs.snowflake.com/en/sql-reference/account-usage/policy_references",
+    "https://docs.snowflake.com/en/user-guide/security-column-ddm-use"
+  ],
+  "security_notes": "Mutating-runtime and never auto-dispatched. Executes exactly one policy attachment, detachment, or replacement on one column or one table after explicit written human approval naming account, environment, object, column where applicable, policy, direction, and accepted blast radius. Requires a per-role-class visibility prediction tested in a non-production environment or against a test object before execution. Runs as a narrowly scoped custom role holding only the privileges needed to apply a policy to the single target; ACCOUNTADMIN is forbidden without exception. Detaching a protection is treated as an exposure event with its own justification requirement, not as the symmetric inverse of attaching one. Sensitive values are never displayed at any point — verification compares masked and unmasked shapes, never real data.",
+  "last_verified": "2026-08-17",
+  "path": "skills/snowflake/snowflake-live-data-protection-policy-guard",
+  "author": "github: VincentChuWaiChow"
+}

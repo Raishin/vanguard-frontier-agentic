@@ -1,0 +1,76 @@
+{
+  "id": "snowflake-live-data-protection-policy-guard-agent",
+  "name": "Snowflake Live Data Protection Policy Guard Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "snowflake",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Approval-gated execution boundary for exactly one Snowflake data-protection policy attachment, detachment, or replacement — masking, row-access, or a supported governance policy — on one object or column. Requires a tested per-role-class visibility prediction before execution, including for service, BI, replication, and agent identities. Never auto-dispatched.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.snowflake.com/en/user-guide/security-column-intro",
+    "https://docs.snowflake.com/en/user-guide/security-row-intro",
+    "https://docs.snowflake.com/en/sql-reference/sql/alter-table-column",
+    "https://docs.snowflake.com/en/sql-reference/account-usage/policy_references",
+    "https://docs.snowflake.com/en/user-guide/security-column-ddm-use"
+  ],
+  "security_notes": "Mutating-runtime and never auto-dispatched. Executes exactly one policy attachment, detachment, or replacement on one column or one table after explicit written human approval naming account, environment, object, column where applicable, policy, direction, and accepted blast radius. Requires a per-role-class visibility prediction tested in a non-production environment or against a test object before execution. Runs as a narrowly scoped custom role holding only the privileges needed to apply a policy to the single target; ACCOUNTADMIN is forbidden without exception. Detaching a protection is treated as an exposure event with its own justification requirement, not as the symmetric inverse of attaching one. Sensitive values are never displayed at any point — verification compares masked and unmasked shapes, never real data.",
+  "last_verified": "2026-08-17",
+  "path": "agents/snowflake/snowflake-live-data-protection-policy-guard-agent/",
+  "harness_variants": {
+    "codex": "agents/snowflake/snowflake-live-data-protection-policy-guard-agent/harnesses/codex.toml",
+    "copilot": "agents/snowflake/snowflake-live-data-protection-policy-guard-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/snowflake/snowflake-live-data-protection-policy-guard-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/snowflake/snowflake-live-data-protection-policy-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/snowflake/snowflake-live-data-protection-policy-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/snowflake/snowflake-live-data-protection-policy-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/snowflake/snowflake-live-data-protection-policy-guard-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "snowflake-live-data-protection-policy-guard"
+  ],
+  "execution_tier": "mutating-runtime",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "oauth_scopes": [],
+  "run_as_permissions": {
+    "required": [
+      "A narrowly scoped custom Snowflake role holding OWNERSHIP of the single target object plus APPLY on the specific policy — the narrowest combination that can attach or detach the approved policy on that target",
+      "A `TYPE = SERVICE` user authenticating by key-pair or workload identity federation",
+      "A role that is deliberately NOT the policy owner and NOT the data owner where segregation of duties requires those to remain separate — state which arrangement is in force"
+    ],
+    "denied": [
+      "ACCOUNTADMIN",
+      "SECURITYADMIN",
+      "SYSADMIN",
+      "PUBLIC",
+      "APPLY MASKING POLICY or APPLY ROW ACCESS POLICY at account level — the account-wide form is never granted to this guard",
+      "OWNERSHIP on any object other than the approved target",
+      "CREATE / ALTER / DROP on any policy object",
+      "Any privilege permitting tag assignment or tag-based policy attachment"
+    ]
+  },
+  "requires_credentials": [
+    "SNOWFLAKE_ACCOUNT",
+    "SNOWFLAKE_USER",
+    "SNOWFLAKE_AUTHENTICATOR",
+    "SNOWFLAKE_PRIVATE_KEY_PATH"
+  ],
+  "required_egress": [
+    "The Snowflake account endpoint for the approved account only — the private-connectivity hostname where the account uses private connectivity, and never the public account URL in that case"
+  ],
+  "routing_keywords": [
+    "masking policy",
+    "row access policy",
+    "policy attachment",
+    "unset masking",
+    "apply policy"
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "id": "snowflake-governance-privacy-agent",
+  "name": "Snowflake Governance and Privacy Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "snowflake",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Designs and reviews the data controls themselves: Horizon Catalog, sensitive-data classification, tags and propagation, masking, row-access, aggregation, projection and join policies, lineage, and data quality monitoring. Refuses the equations that make governance theatre — tagged is not protected, classified is not compliant, a policy existing is not a policy behaving. Static review only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.snowflake.com/en/user-guide/security-column-intro",
+    "https://docs.snowflake.com/en/user-guide/security-row-intro",
+    "https://docs.snowflake.com/en/user-guide/object-tagging",
+    "https://docs.snowflake.com/en/user-guide/classify-intro",
+    "https://docs.snowflake.com/en/user-guide/data-quality-intro",
+    "https://docs.snowflake.com/en/user-guide/ui-snowsight-data-lineage"
+  ],
+  "security_notes": "Static review only: reads sanitized policy DDL, tag definitions, classification output, and lineage extracts; never attaches, detaches, or alters a policy, never runs a classification job, and never requests credentials or customer data. Sensitive values are never quoted — a masking review is conducted on column metadata and policy logic, never on sampled real rows. Every proposed policy change is emitted with the roles and rows it changes visibility for, and handed to the named data owner or to the data-protection live guard behind the human approval gate.",
+  "last_verified": "2026-08-17",
+  "path": "agents/snowflake/snowflake-governance-privacy-agent/",
+  "harness_variants": {
+    "codex": "agents/snowflake/snowflake-governance-privacy-agent/harnesses/codex.toml",
+    "copilot": "agents/snowflake/snowflake-governance-privacy-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/snowflake/snowflake-governance-privacy-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/snowflake/snowflake-governance-privacy-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/snowflake/snowflake-governance-privacy-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/snowflake/snowflake-governance-privacy-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/snowflake/snowflake-governance-privacy-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "snowflake-governance-privacy"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "routing_keywords": [
+    "governance",
+    "privacy",
+    "masking",
+    "masking policy",
+    "row access",
+    "row-access policy",
+    "tag",
+    "tagging",
+    "classification",
+    "sensitive data",
+    "pii",
+    "horizon",
+    "catalog",
+    "lineage",
+    "data quality",
+    "data metric function",
+    "aggregation policy",
+    "projection policy",
+    "policy propagation"
+  ]
+}

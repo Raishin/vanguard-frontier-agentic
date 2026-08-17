@@ -33,7 +33,7 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "b1efcbd24bb9af5f7a807ec6ba52fe0e36f490913628a687c9e2f6b8f5f8039f",
+      "aggregate_sha256": "a5d30ad98c2f9e510e32e494a7df6bc0fd76d68af56dd69bf5f78b3694720b36",
       "files": [
         {
           "path": "agents/AGENTS.md",
@@ -31801,9 +31801,284 @@
           "bytes": 2068
         },
         {
+          "path": "agents/snowflake/AGENTS.md",
+          "sha256": "ebf9db349b29ca9153b7d42356332e18168d170d8daad28953950465c0809279",
+          "bytes": 11610
+        },
+        {
           "path": "agents/snowflake/README.md",
-          "sha256": "529b30a176064ec71407f4c049dd8eca0528a17c1652cf72def8259ca725b74b",
-          "bytes": 7617
+          "sha256": "46003f19bf450a35d458b526b8b20f6153d369f74d0a047ed342a4dfc85f34d6",
+          "bytes": 14053
+        },
+        {
+          "path": "agents/snowflake/snowflake-analytics-semantic-data-product-agent/AGENT.md",
+          "sha256": "1997bc6801764104211b9c319e5ca8ebf657c0d7b14772de44416dcf446ecf64",
+          "bytes": 14787
+        },
+        {
+          "path": "agents/snowflake/snowflake-analytics-semantic-data-product-agent/harnesses/claude-code.agent.md",
+          "sha256": "29ed2718c98da7e99adecc003813adaff3a889ecb0f02e5252207fae0098e74c",
+          "bytes": 14146
+        },
+        {
+          "path": "agents/snowflake/snowflake-analytics-semantic-data-product-agent/harnesses/codex.toml",
+          "sha256": "104aa62bec3ddfa72a9eeed18587985dcb1237793e683423d0ad772e4091f605",
+          "bytes": 6539
+        },
+        {
+          "path": "agents/snowflake/snowflake-analytics-semantic-data-product-agent/harnesses/copilot.agent.md",
+          "sha256": "4741a9733ec36de5d74c6e991da392a03cdc9fbf3c3a226f7f7fd76219a3e139",
+          "bytes": 14252
+        },
+        {
+          "path": "agents/snowflake/snowflake-analytics-semantic-data-product-agent/harnesses/cursor.agent.md",
+          "sha256": "225627c6820dac2782a13f92bd8372c3abfa86be9b93f42dbadc65fec105709d",
+          "bytes": 14163
+        },
+        {
+          "path": "agents/snowflake/snowflake-analytics-semantic-data-product-agent/harnesses/gemini.agent.md",
+          "sha256": "29ed2718c98da7e99adecc003813adaff3a889ecb0f02e5252207fae0098e74c",
+          "bytes": 14146
+        },
+        {
+          "path": "agents/snowflake/snowflake-analytics-semantic-data-product-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "a5815f029f7647b6543278c521c373cfa4dd7d17d35d5abc28cd09775be44c2c",
+          "bytes": 14287
+        },
+        {
+          "path": "agents/snowflake/snowflake-analytics-semantic-data-product-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "29ed2718c98da7e99adecc003813adaff3a889ecb0f02e5252207fae0098e74c",
+          "bytes": 14146
+        },
+        {
+          "path": "agents/snowflake/snowflake-analytics-semantic-data-product-agent/metadata.json",
+          "sha256": "ee1e915e5e4b0c0e0c4cd0cff021de2894c54d335b01552d3b875dd5501b61a9",
+          "bytes": 3045
+        },
+        {
+          "path": "agents/snowflake/snowflake-bcdr-resilience-agent/AGENT.md",
+          "sha256": "6a77f76dacf93bfc206abc226f1bc74c763930b114f015b16627e14da163f4c9",
+          "bytes": 16840
+        },
+        {
+          "path": "agents/snowflake/snowflake-bcdr-resilience-agent/harnesses/claude-code.agent.md",
+          "sha256": "1cb9906da50142601d2fbc9f3b8b1da1bc259d428230a7971ec66f11855ee4d1",
+          "bytes": 16215
+        },
+        {
+          "path": "agents/snowflake/snowflake-bcdr-resilience-agent/harnesses/codex.toml",
+          "sha256": "2804962181e1ccc0b8e507c8c497560e2f78d67c6c9bde1363601b557c35c48c",
+          "bytes": 6925
+        },
+        {
+          "path": "agents/snowflake/snowflake-bcdr-resilience-agent/harnesses/copilot.agent.md",
+          "sha256": "449e0a2e1e1517765f316ba3b27deeb20207508425992912ed29b5d154d053fb",
+          "bytes": 16321
+        },
+        {
+          "path": "agents/snowflake/snowflake-bcdr-resilience-agent/harnesses/cursor.agent.md",
+          "sha256": "b2154fc5bd9938ef95a6e7c3659bfeab789e0ebe86f716914729eca61594b89f",
+          "bytes": 16232
+        },
+        {
+          "path": "agents/snowflake/snowflake-bcdr-resilience-agent/harnesses/gemini.agent.md",
+          "sha256": "1cb9906da50142601d2fbc9f3b8b1da1bc259d428230a7971ec66f11855ee4d1",
+          "bytes": 16215
+        },
+        {
+          "path": "agents/snowflake/snowflake-bcdr-resilience-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "baf234b2366e9a2b3736214f20123f7b125e03129656e8c6b03491cac113762f",
+          "bytes": 16367
+        },
+        {
+          "path": "agents/snowflake/snowflake-bcdr-resilience-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "1cb9906da50142601d2fbc9f3b8b1da1bc259d428230a7971ec66f11855ee4d1",
+          "bytes": 16215
+        },
+        {
+          "path": "agents/snowflake/snowflake-bcdr-resilience-agent/metadata.json",
+          "sha256": "e73d4ad059b05ff5ec30a624510ce67dc4b74452a11032b445886df9d5d85a95",
+          "bytes": 3034
+        },
+        {
+          "path": "agents/snowflake/snowflake-business-value-adoption-strategist-agent/AGENT.md",
+          "sha256": "9b51d47d515f4ba76ecf9803f1ed70c77aceb462165e725b6d74f0268e975464",
+          "bytes": 15723
+        },
+        {
+          "path": "agents/snowflake/snowflake-business-value-adoption-strategist-agent/harnesses/claude-code.agent.md",
+          "sha256": "72c13fe217db50c8550515be2d8f3b4fe57fd8e74c85932addbff3ce26ab4cf1",
+          "bytes": 15079
+        },
+        {
+          "path": "agents/snowflake/snowflake-business-value-adoption-strategist-agent/harnesses/codex.toml",
+          "sha256": "603e8be0cf6273a8abf139b176c9ddfac0b0a60cb6643ca3fbe864e2ff7ffa70",
+          "bytes": 6975
+        },
+        {
+          "path": "agents/snowflake/snowflake-business-value-adoption-strategist-agent/harnesses/copilot.agent.md",
+          "sha256": "a5a38cc7d6b890a82e2e23b8dbed4a4b88603992b1ad58925591c27365c1ef7a",
+          "bytes": 15185
+        },
+        {
+          "path": "agents/snowflake/snowflake-business-value-adoption-strategist-agent/harnesses/cursor.agent.md",
+          "sha256": "c8ec529e88cb2351c0c7956fb526001fded4524b02e54af7ddb25acce56db80e",
+          "bytes": 15096
+        },
+        {
+          "path": "agents/snowflake/snowflake-business-value-adoption-strategist-agent/harnesses/gemini.agent.md",
+          "sha256": "72c13fe217db50c8550515be2d8f3b4fe57fd8e74c85932addbff3ce26ab4cf1",
+          "bytes": 15079
+        },
+        {
+          "path": "agents/snowflake/snowflake-business-value-adoption-strategist-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "db6fbf227091057dbdeb6d247ffe1379c715c8ff2832a4e5e6fdbb06bfae4b43",
+          "bytes": 15226
+        },
+        {
+          "path": "agents/snowflake/snowflake-business-value-adoption-strategist-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "72c13fe217db50c8550515be2d8f3b4fe57fd8e74c85932addbff3ce26ab4cf1",
+          "bytes": 15079
+        },
+        {
+          "path": "agents/snowflake/snowflake-business-value-adoption-strategist-agent/metadata.json",
+          "sha256": "a305bc76645e1a753c36a0377f76173a9c5b34ed1ecda15365b8bfadb4d7eb87",
+          "bytes": 2954
+        },
+        {
+          "path": "agents/snowflake/snowflake-compliance-evidence-auditor-agent/AGENT.md",
+          "sha256": "720d67d0de0449fdcb2cbbeba651261b5e3163dd507c01210b38d81877b3ed88",
+          "bytes": 14884
+        },
+        {
+          "path": "agents/snowflake/snowflake-compliance-evidence-auditor-agent/harnesses/claude-code.agent.md",
+          "sha256": "527fe543216c33043bd1dede8ae510e57bd87e10bcc023875ba43dfccbd30e3a",
+          "bytes": 14247
+        },
+        {
+          "path": "agents/snowflake/snowflake-compliance-evidence-auditor-agent/harnesses/codex.toml",
+          "sha256": "781f5ab55bbf77cbeed4a747eadb536fe2b595c718402235289544f4705511d7",
+          "bytes": 6247
+        },
+        {
+          "path": "agents/snowflake/snowflake-compliance-evidence-auditor-agent/harnesses/copilot.agent.md",
+          "sha256": "165488c6f115ad45c0df8ece3f105c866c994d802a3f6407a9e6f0c8d03beeb1",
+          "bytes": 14353
+        },
+        {
+          "path": "agents/snowflake/snowflake-compliance-evidence-auditor-agent/harnesses/cursor.agent.md",
+          "sha256": "427124eabf6a4d244b8fabaffc846043541f9f54b1624ff3bd11b402fae40ac8",
+          "bytes": 14264
+        },
+        {
+          "path": "agents/snowflake/snowflake-compliance-evidence-auditor-agent/harnesses/gemini.agent.md",
+          "sha256": "527fe543216c33043bd1dede8ae510e57bd87e10bcc023875ba43dfccbd30e3a",
+          "bytes": 14247
+        },
+        {
+          "path": "agents/snowflake/snowflake-compliance-evidence-auditor-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "d967207596dc1b842d29e0f921e5b238a63dd846e373a622ad14879d694640e4",
+          "bytes": 14393
+        },
+        {
+          "path": "agents/snowflake/snowflake-compliance-evidence-auditor-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "527fe543216c33043bd1dede8ae510e57bd87e10bcc023875ba43dfccbd30e3a",
+          "bytes": 14247
+        },
+        {
+          "path": "agents/snowflake/snowflake-compliance-evidence-auditor-agent/metadata.json",
+          "sha256": "067d1a2ab1180d1a219eb3613efb236b88d628919555f9b16f0df25c854a3134",
+          "bytes": 3122
+        },
+        {
+          "path": "agents/snowflake/snowflake-cortex-ai-agent-security-governor-agent/AGENT.md",
+          "sha256": "c135bac53280e883d94b6213183ac97d2269ee5afc54e97efebb857e3aff76cf",
+          "bytes": 18067
+        },
+        {
+          "path": "agents/snowflake/snowflake-cortex-ai-agent-security-governor-agent/harnesses/claude-code.agent.md",
+          "sha256": "1ed34b314351b3faad9984fc83a60fbd68acd77afb3456ad55a6e1a25c03aa2a",
+          "bytes": 17424
+        },
+        {
+          "path": "agents/snowflake/snowflake-cortex-ai-agent-security-governor-agent/harnesses/codex.toml",
+          "sha256": "519d5c8e3a30750c70bd44e90c914efdd3dc9ebf85b430866fe0d8e5a613c973",
+          "bytes": 7435
+        },
+        {
+          "path": "agents/snowflake/snowflake-cortex-ai-agent-security-governor-agent/harnesses/copilot.agent.md",
+          "sha256": "9da76bc4e55239d6c02f34df73ef9af04afa42c00476383fc75129a0f098217f",
+          "bytes": 17530
+        },
+        {
+          "path": "agents/snowflake/snowflake-cortex-ai-agent-security-governor-agent/harnesses/cursor.agent.md",
+          "sha256": "8fb2b9a76a87f49362b5def4e00e31a82ec9673124f575991ee52bca50e37885",
+          "bytes": 17441
+        },
+        {
+          "path": "agents/snowflake/snowflake-cortex-ai-agent-security-governor-agent/harnesses/gemini.agent.md",
+          "sha256": "1ed34b314351b3faad9984fc83a60fbd68acd77afb3456ad55a6e1a25c03aa2a",
+          "bytes": 17424
+        },
+        {
+          "path": "agents/snowflake/snowflake-cortex-ai-agent-security-governor-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "cc565880eb632c011c78da16225faf11af84bf0641d62173ea07502fb1117056",
+          "bytes": 17586
+        },
+        {
+          "path": "agents/snowflake/snowflake-cortex-ai-agent-security-governor-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "1ed34b314351b3faad9984fc83a60fbd68acd77afb3456ad55a6e1a25c03aa2a",
+          "bytes": 17424
+        },
+        {
+          "path": "agents/snowflake/snowflake-cortex-ai-agent-security-governor-agent/metadata.json",
+          "sha256": "af7b4506f02b3668b134fc40de6b04772d2e75dca47b485becf3ea6de93115f9",
+          "bytes": 3517
+        },
+        {
+          "path": "agents/snowflake/snowflake-data-engineering-pipelines-agent/AGENT.md",
+          "sha256": "7e1edd3ab207f04f8d996461382f9f4b644f219a2a80d16eb4cd65d8490ddb9b",
+          "bytes": 15598
+        },
+        {
+          "path": "agents/snowflake/snowflake-data-engineering-pipelines-agent/harnesses/claude-code.agent.md",
+          "sha256": "85ddb5f097757bd555c8131f297e92e8da19e1963fee58f04119ebdf9156ece1",
+          "bytes": 14962
+        },
+        {
+          "path": "agents/snowflake/snowflake-data-engineering-pipelines-agent/harnesses/codex.toml",
+          "sha256": "d44b343b8a0a303a4ee1a1296a08fa702d57bb0f7379999c8cf0bfaefffa21f5",
+          "bytes": 6522
+        },
+        {
+          "path": "agents/snowflake/snowflake-data-engineering-pipelines-agent/harnesses/copilot.agent.md",
+          "sha256": "ff2d3ae1cefc24a159a038ab9fe172fa3291956dd80ce74be0800eaaf3f2e3d0",
+          "bytes": 15068
+        },
+        {
+          "path": "agents/snowflake/snowflake-data-engineering-pipelines-agent/harnesses/cursor.agent.md",
+          "sha256": "d3b900cbd84beb2eeb3804c81ffcc8cd64786785838c9a5370b307b54f9ae8d1",
+          "bytes": 14979
+        },
+        {
+          "path": "agents/snowflake/snowflake-data-engineering-pipelines-agent/harnesses/gemini.agent.md",
+          "sha256": "85ddb5f097757bd555c8131f297e92e8da19e1963fee58f04119ebdf9156ece1",
+          "bytes": 14962
+        },
+        {
+          "path": "agents/snowflake/snowflake-data-engineering-pipelines-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "10e1a07b6be2393825d037a7e71d59852f21c4823fefb63fa97df67be2272d7d",
+          "bytes": 15114
+        },
+        {
+          "path": "agents/snowflake/snowflake-data-engineering-pipelines-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "85ddb5f097757bd555c8131f297e92e8da19e1963fee58f04119ebdf9156ece1",
+          "bytes": 14962
+        },
+        {
+          "path": "agents/snowflake/snowflake-data-engineering-pipelines-agent/metadata.json",
+          "sha256": "3002a4e98512098efd7e30a8a9f5398a5c4ad0f79ca271b24a43d18087d66748",
+          "bytes": 3069
         },
         {
           "path": "agents/snowflake/snowflake-data-platform-engineering-at-azure-agent/AGENT.md",
@@ -31847,8 +32122,533 @@
         },
         {
           "path": "agents/snowflake/snowflake-data-platform-engineering-at-azure-agent/metadata.json",
-          "sha256": "64f5074ac0d5761d00ebaf3ffeb58d50ac97f5b839dbc4fd0696912f77d7979b",
-          "bytes": 2530
+          "sha256": "d0c6cfa84c4ea5fd17e9237a106711b541d087dcd6d5100519133bd68e9b6aba",
+          "bytes": 2897
+        },
+        {
+          "path": "agents/snowflake/snowflake-data-science-ml-agent/AGENT.md",
+          "sha256": "e792c1bc96d749eac3264867eb758c5b660341c45095ce211027cf7a8baef02d",
+          "bytes": 15193
+        },
+        {
+          "path": "agents/snowflake/snowflake-data-science-ml-agent/harnesses/claude-code.agent.md",
+          "sha256": "00840c04aa0e11cea3c5780a7597bc77309eefdbcc584f98efda9b26ddec8cc3",
+          "bytes": 14568
+        },
+        {
+          "path": "agents/snowflake/snowflake-data-science-ml-agent/harnesses/codex.toml",
+          "sha256": "67bbb358af1ed77ab804ea6a1cfa1ad395eb7308b434b583b2d0138bf841ee0e",
+          "bytes": 6488
+        },
+        {
+          "path": "agents/snowflake/snowflake-data-science-ml-agent/harnesses/copilot.agent.md",
+          "sha256": "16a3f562856421a85c841dbde3458140f8de37c07f6dba81b8de3cab99d1be85",
+          "bytes": 14674
+        },
+        {
+          "path": "agents/snowflake/snowflake-data-science-ml-agent/harnesses/cursor.agent.md",
+          "sha256": "926ec6637919a7aa13dcbbb64b3fd00a080e560bb8ff355d0ea89fa59f1ddb5b",
+          "bytes": 14585
+        },
+        {
+          "path": "agents/snowflake/snowflake-data-science-ml-agent/harnesses/gemini.agent.md",
+          "sha256": "00840c04aa0e11cea3c5780a7597bc77309eefdbcc584f98efda9b26ddec8cc3",
+          "bytes": 14568
+        },
+        {
+          "path": "agents/snowflake/snowflake-data-science-ml-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "63030b5dd9ed640467deb52b1b69b48b95c61509433a3e5b8f97bc14149ef9d3",
+          "bytes": 14715
+        },
+        {
+          "path": "agents/snowflake/snowflake-data-science-ml-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "00840c04aa0e11cea3c5780a7597bc77309eefdbcc584f98efda9b26ddec8cc3",
+          "bytes": 14568
+        },
+        {
+          "path": "agents/snowflake/snowflake-data-science-ml-agent/metadata.json",
+          "sha256": "d43aff67dbc9c4c10a24fa6c69cb069122b098798327b56fdf1eda607b2e112a",
+          "bytes": 2987
+        },
+        {
+          "path": "agents/snowflake/snowflake-devops-iac-release-agent/AGENT.md",
+          "sha256": "5607d46b76187119c34ed2c7b5faec2e2fc430726a15481ef553ce5b306efaa3",
+          "bytes": 16581
+        },
+        {
+          "path": "agents/snowflake/snowflake-devops-iac-release-agent/harnesses/claude-code.agent.md",
+          "sha256": "796bb9b0262f14945904c43a02d64895bcb27ad710dbc6698c80cbac45817072",
+          "bytes": 15953
+        },
+        {
+          "path": "agents/snowflake/snowflake-devops-iac-release-agent/harnesses/codex.toml",
+          "sha256": "8d3f62994cb24a187f0b8653464accd17d1e1a165a4f9637dccf983f1d4881a1",
+          "bytes": 7282
+        },
+        {
+          "path": "agents/snowflake/snowflake-devops-iac-release-agent/harnesses/copilot.agent.md",
+          "sha256": "487ec53bf275149ef8288908ffb8a5abb2802e2296ebfad123881989b2d76416",
+          "bytes": 16059
+        },
+        {
+          "path": "agents/snowflake/snowflake-devops-iac-release-agent/harnesses/cursor.agent.md",
+          "sha256": "a1558b4252563309d63015cfedd045a102e3245c6b015b67751daa2511c4e09e",
+          "bytes": 15970
+        },
+        {
+          "path": "agents/snowflake/snowflake-devops-iac-release-agent/harnesses/gemini.agent.md",
+          "sha256": "796bb9b0262f14945904c43a02d64895bcb27ad710dbc6698c80cbac45817072",
+          "bytes": 15953
+        },
+        {
+          "path": "agents/snowflake/snowflake-devops-iac-release-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "61fc6455fda43307d6e79a5acf57a76846d5ad2f08f12ec31cd4e9078ad59b8a",
+          "bytes": 16102
+        },
+        {
+          "path": "agents/snowflake/snowflake-devops-iac-release-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "796bb9b0262f14945904c43a02d64895bcb27ad710dbc6698c80cbac45817072",
+          "bytes": 15953
+        },
+        {
+          "path": "agents/snowflake/snowflake-devops-iac-release-agent/metadata.json",
+          "sha256": "be484412955bf02d9322b6325d72e52c06e78d6fd518490e8e3c025eb071a0f7",
+          "bytes": 3050
+        },
+        {
+          "path": "agents/snowflake/snowflake-finops-cost-governor-agent/AGENT.md",
+          "sha256": "c9626a259df2202301a2e813eaea82a5409bbf42c27d5ce47a31616dd0549b44",
+          "bytes": 16310
+        },
+        {
+          "path": "agents/snowflake/snowflake-finops-cost-governor-agent/harnesses/claude-code.agent.md",
+          "sha256": "02c127ef534c119a55e91139873670441cb02e5dc252e4687d85ab0573a582e7",
+          "bytes": 15680
+        },
+        {
+          "path": "agents/snowflake/snowflake-finops-cost-governor-agent/harnesses/codex.toml",
+          "sha256": "9fe360045f06f207c6d0d8579003307e0f99fdf5ce73d78b2f538e6c2f8a88e2",
+          "bytes": 6978
+        },
+        {
+          "path": "agents/snowflake/snowflake-finops-cost-governor-agent/harnesses/copilot.agent.md",
+          "sha256": "a6da432cc9c89725f93b6c509ff1a721b419fed6761ca5f7f1ae61fcc17a3a0c",
+          "bytes": 15786
+        },
+        {
+          "path": "agents/snowflake/snowflake-finops-cost-governor-agent/harnesses/cursor.agent.md",
+          "sha256": "72deb3d69c210c492816c589ecb4c5ca2eaa39b849a909ead18fe4027345ddd6",
+          "bytes": 15697
+        },
+        {
+          "path": "agents/snowflake/snowflake-finops-cost-governor-agent/harnesses/gemini.agent.md",
+          "sha256": "02c127ef534c119a55e91139873670441cb02e5dc252e4687d85ab0573a582e7",
+          "bytes": 15680
+        },
+        {
+          "path": "agents/snowflake/snowflake-finops-cost-governor-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "2526a790e1a0a0ddbcdce1c1a7bab1392e076332169077d7ea15548f3a357918",
+          "bytes": 15833
+        },
+        {
+          "path": "agents/snowflake/snowflake-finops-cost-governor-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "02c127ef534c119a55e91139873670441cb02e5dc252e4687d85ab0573a582e7",
+          "bytes": 15680
+        },
+        {
+          "path": "agents/snowflake/snowflake-finops-cost-governor-agent/metadata.json",
+          "sha256": "2246fd9f195d5c8b65a531f808b8d87b7be3086ca48f015b655a52c3750b8c18",
+          "bytes": 3037
+        },
+        {
+          "path": "agents/snowflake/snowflake-governance-privacy-agent/AGENT.md",
+          "sha256": "622a4adefc1d6ff06f7316d4d23f8083388866f9d41150b112dfac124a6c257d",
+          "bytes": 15366
+        },
+        {
+          "path": "agents/snowflake/snowflake-governance-privacy-agent/harnesses/claude-code.agent.md",
+          "sha256": "20a8c6d7a2f18cbc2239417258aede60df9bcf1f875d8d4adf4a1ac2bc79bc9f",
+          "bytes": 14738
+        },
+        {
+          "path": "agents/snowflake/snowflake-governance-privacy-agent/harnesses/codex.toml",
+          "sha256": "1a3ca7f415772a5f950db18da24ed90d262d46dce30b8b84162ad2e17b0f67f3",
+          "bytes": 6357
+        },
+        {
+          "path": "agents/snowflake/snowflake-governance-privacy-agent/harnesses/copilot.agent.md",
+          "sha256": "005eb9f0bedf56a05ae52ce764cc7ea6d5040ad54a2a9cfed38cc6f0d33a92de",
+          "bytes": 14844
+        },
+        {
+          "path": "agents/snowflake/snowflake-governance-privacy-agent/harnesses/cursor.agent.md",
+          "sha256": "1cb018b2139a1e979b24873c9bd71b49a48f5e5fc18ae43377e9f24a99e56d6f",
+          "bytes": 14755
+        },
+        {
+          "path": "agents/snowflake/snowflake-governance-privacy-agent/harnesses/gemini.agent.md",
+          "sha256": "20a8c6d7a2f18cbc2239417258aede60df9bcf1f875d8d4adf4a1ac2bc79bc9f",
+          "bytes": 14738
+        },
+        {
+          "path": "agents/snowflake/snowflake-governance-privacy-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "6407b511f1aab3ad400675582b7db36436a18727f9dcdf02a85583495fd42acc",
+          "bytes": 14885
+        },
+        {
+          "path": "agents/snowflake/snowflake-governance-privacy-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "20a8c6d7a2f18cbc2239417258aede60df9bcf1f875d8d4adf4a1ac2bc79bc9f",
+          "bytes": 14738
+        },
+        {
+          "path": "agents/snowflake/snowflake-governance-privacy-agent/metadata.json",
+          "sha256": "6519da98df4476762ae57d07164f9e3bc9f6eb59b99973592a0bd18a2900df5f",
+          "bytes": 3108
+        },
+        {
+          "path": "agents/snowflake/snowflake-identity-access-security-agent/AGENT.md",
+          "sha256": "bf0a378cf89f600d612989258e46fe268ac21db75f91329a5ac0107d36201cc5",
+          "bytes": 16601
+        },
+        {
+          "path": "agents/snowflake/snowflake-identity-access-security-agent/harnesses/claude-code.agent.md",
+          "sha256": "c3f2362d0bfa57eb5f06bb079fdaf3a0789de9cf8226e40e74e6778cee3d2fbd",
+          "bytes": 15967
+        },
+        {
+          "path": "agents/snowflake/snowflake-identity-access-security-agent/harnesses/codex.toml",
+          "sha256": "307c23fc99c491c137ed74495640c1ff9fe5c6c1b8574ec1aa3b145af62343c1",
+          "bytes": 6691
+        },
+        {
+          "path": "agents/snowflake/snowflake-identity-access-security-agent/harnesses/copilot.agent.md",
+          "sha256": "4565cba6516715aabc3e4ac794441ba5d25314461f07681167a4962bcfa740cc",
+          "bytes": 16073
+        },
+        {
+          "path": "agents/snowflake/snowflake-identity-access-security-agent/harnesses/cursor.agent.md",
+          "sha256": "57a58ca02b1516614cbcfa04909f5f3aa8f7bde8feaf3687b8a7c53f15b13552",
+          "bytes": 15984
+        },
+        {
+          "path": "agents/snowflake/snowflake-identity-access-security-agent/harnesses/gemini.agent.md",
+          "sha256": "c3f2362d0bfa57eb5f06bb079fdaf3a0789de9cf8226e40e74e6778cee3d2fbd",
+          "bytes": 15967
+        },
+        {
+          "path": "agents/snowflake/snowflake-identity-access-security-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "f7ac8391e5339d36029d068cca3406287124ea8a1a7dce129bb02e53c6bb749a",
+          "bytes": 16114
+        },
+        {
+          "path": "agents/snowflake/snowflake-identity-access-security-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "c3f2362d0bfa57eb5f06bb079fdaf3a0789de9cf8226e40e74e6778cee3d2fbd",
+          "bytes": 15967
+        },
+        {
+          "path": "agents/snowflake/snowflake-identity-access-security-agent/metadata.json",
+          "sha256": "e668720b849a210ca377da1533c082af6bcb4e56f2150d892e821e95104067ae",
+          "bytes": 3439
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-auth-network-policy-guard-agent/AGENT.md",
+          "sha256": "6d42338b1ec561e26273059be5f9f62aae3203529e3e2ff0d58e9c8b943d6e95",
+          "bytes": 14313
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-auth-network-policy-guard-agent/PERMISSIONS.md",
+          "sha256": "688ebc92a3697763f36d5f4d1e639ef341caf983b79ee239bc477f0517f1e15c",
+          "bytes": 6839
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-auth-network-policy-guard-agent/PREFLIGHT.md",
+          "sha256": "748b62d2e37f79ff32c7f5dc400d8d0642d7d50a659fec96942008d5f39ff10e",
+          "bytes": 5461
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-auth-network-policy-guard-agent/ROLLBACK.md",
+          "sha256": "e8d5a3407efe8b4a7861a7fd26ea9d23954d4f87aaa5a646ec623fb33378919c",
+          "bytes": 3407
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-auth-network-policy-guard-agent/harnesses/claude-code.agent.md",
+          "sha256": "e4e3a4c20a4995c57610b207b946e8a2c61d443c4df90822229b9d57ec4dfe08",
+          "bytes": 12604
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-auth-network-policy-guard-agent/harnesses/codex.toml",
+          "sha256": "7d3037767d5ddebd8a9c1551cede068a01bc1b87ded7d9f6d7253537d016822b",
+          "bytes": 5463
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-auth-network-policy-guard-agent/harnesses/copilot.agent.md",
+          "sha256": "05ed4e889b6096b351cf58bdc4229aae16dbb23ac1e32a02dea33430d9994a5e",
+          "bytes": 12710
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-auth-network-policy-guard-agent/harnesses/cursor.agent.md",
+          "sha256": "43d107988da55a4e33073628101eba89a4fd1a702615633dd0390b681365be56",
+          "bytes": 12621
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-auth-network-policy-guard-agent/harnesses/gemini.agent.md",
+          "sha256": "e4e3a4c20a4995c57610b207b946e8a2c61d443c4df90822229b9d57ec4dfe08",
+          "bytes": 12604
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-auth-network-policy-guard-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "75b177b6be44be55a42156f01c76da5d03058846e6d9f538fea14438cf54bd37",
+          "bytes": 12746
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-auth-network-policy-guard-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "e4e3a4c20a4995c57610b207b946e8a2c61d443c4df90822229b9d57ec4dfe08",
+          "bytes": 12604
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-auth-network-policy-guard-agent/metadata.json",
+          "sha256": "cbe69b9302708e567b2830926b52fe610027e4293a1fc6389a4af1775a3bc0a9",
+          "bytes": 4524
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-data-protection-policy-guard-agent/AGENT.md",
+          "sha256": "f8ce2f1353e34c2f7214d5fb3c638d2b40d29f925204e851228b6a44f3499394",
+          "bytes": 14945
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-data-protection-policy-guard-agent/PERMISSIONS.md",
+          "sha256": "a1e2f5d55f1cf84566df95d0dbf0150adb5cb0ffd87ccdf39a4f52ecefed2894",
+          "bytes": 6641
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-data-protection-policy-guard-agent/PREFLIGHT.md",
+          "sha256": "3db2057b4b3ffd32eb8f0a49d20145498a3915c25bebf8e4989ea1cc8bc4a44d",
+          "bytes": 5318
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-data-protection-policy-guard-agent/ROLLBACK.md",
+          "sha256": "e8ab64d9057083cde87d9bad45961738ff1cf6947c7e3513e7dceaa13540a9c9",
+          "bytes": 3589
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-data-protection-policy-guard-agent/harnesses/claude-code.agent.md",
+          "sha256": "c656abf71626ac85fd7a1d19a75ec7b64a5b84be0c3c9cc68cda583b4102c5bf",
+          "bytes": 13233
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-data-protection-policy-guard-agent/harnesses/codex.toml",
+          "sha256": "89c89a394d8ee92fa756e419aed7f998fd39da9e15aef10d4955b7ece4643edb",
+          "bytes": 5617
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-data-protection-policy-guard-agent/harnesses/copilot.agent.md",
+          "sha256": "8955bcbcb54529c59489886b063f352cf3cd9405ef0be7baa08af6e2da50e9bf",
+          "bytes": 13339
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-data-protection-policy-guard-agent/harnesses/cursor.agent.md",
+          "sha256": "ae00c34df121975a9a93f56416651546342be1e7493af8f181df2dda3372ef67",
+          "bytes": 13250
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-data-protection-policy-guard-agent/harnesses/gemini.agent.md",
+          "sha256": "c656abf71626ac85fd7a1d19a75ec7b64a5b84be0c3c9cc68cda583b4102c5bf",
+          "bytes": 13233
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-data-protection-policy-guard-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "bd9034b6e46838c39c7e2a48e93d036345cc81f6b032ffd3f91ee187a2c516c8",
+          "bytes": 13380
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-data-protection-policy-guard-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "c656abf71626ac85fd7a1d19a75ec7b64a5b84be0c3c9cc68cda583b4102c5bf",
+          "bytes": 13233
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-data-protection-policy-guard-agent/metadata.json",
+          "sha256": "576a8817bac7e8524d4797cd3c27385f3d292dcad310a55ada1c11f32ed3d79c",
+          "bytes": 4591
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-failover-promotion-guard-agent/AGENT.md",
+          "sha256": "49266edc96889101abaf03aaee5f72ffc00d977c4ecf20a02e8e6ab78b5977ca",
+          "bytes": 16724
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-failover-promotion-guard-agent/PERMISSIONS.md",
+          "sha256": "4167849a067b3316b166729ca773cd4ed1ad224541e151e941ffd67852ebd32d",
+          "bytes": 7305
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-failover-promotion-guard-agent/PREFLIGHT.md",
+          "sha256": "1c46d8f8ead3886a11c7b258f1c20e16057fc69c74b6f255be74d0d070594297",
+          "bytes": 6002
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-failover-promotion-guard-agent/ROLLBACK.md",
+          "sha256": "bcf5eb10a05ec6bfc111b54a703be1aa3ade6250b426993898d4275894936868",
+          "bytes": 4420
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-failover-promotion-guard-agent/harnesses/claude-code.agent.md",
+          "sha256": "7d761414025b51595c69255ed3fc4540c473f991bced7a9bded9bf9f2111f191",
+          "bytes": 15016
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-failover-promotion-guard-agent/harnesses/codex.toml",
+          "sha256": "e28094e576e8ae0c19d6ce6ca5a8c242099e66576e5a7a296b5d3468b6eb0a20",
+          "bytes": 6218
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-failover-promotion-guard-agent/harnesses/copilot.agent.md",
+          "sha256": "2d3042d89852c550c952b35b9054cbb552e964568fccfdee831068beaf53d543",
+          "bytes": 15122
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-failover-promotion-guard-agent/harnesses/cursor.agent.md",
+          "sha256": "f3b449940904bf7a40c9303a925baec6ae8a443cdb119d977148d5a044d595c6",
+          "bytes": 15033
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-failover-promotion-guard-agent/harnesses/gemini.agent.md",
+          "sha256": "7d761414025b51595c69255ed3fc4540c473f991bced7a9bded9bf9f2111f191",
+          "bytes": 15016
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-failover-promotion-guard-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "7ed897b094f10071660dfd0d00f306395a44e48f6ea5406f38f3cf31c1c6e3d5",
+          "bytes": 15171
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-failover-promotion-guard-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "7d761414025b51595c69255ed3fc4540c473f991bced7a9bded9bf9f2111f191",
+          "bytes": 15016
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-failover-promotion-guard-agent/metadata.json",
+          "sha256": "fd657c9a64f288b50e5e966f5ae56ebe1b3de5c5d2184c9755b54042745f4acf",
+          "bytes": 4717
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-pipeline-streaming-change-guard-agent/AGENT.md",
+          "sha256": "8e9d2fa358967944d07d96291ac091ee838f965a52df57368f37087990149a59",
+          "bytes": 15328
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-pipeline-streaming-change-guard-agent/PERMISSIONS.md",
+          "sha256": "fcc59ace9fc57baf6113e5d5f150d71a89e50cb976bfa5dc2443e7a4a5ff5b3e",
+          "bytes": 6847
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-pipeline-streaming-change-guard-agent/PREFLIGHT.md",
+          "sha256": "fb00e46835df41231438970b7ce5eb3faa18778521e1836cbfe8593da7b9e221",
+          "bytes": 5357
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-pipeline-streaming-change-guard-agent/ROLLBACK.md",
+          "sha256": "539b30ec193f340a3414596af372b697415015744194ddb8eb6abd261f8dda83",
+          "bytes": 3892
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-pipeline-streaming-change-guard-agent/harnesses/claude-code.agent.md",
+          "sha256": "b5bc8ca24556ef21652dbca9d4ccea47c1bcc8a5a45bb197b6ff22c9996b2e1c",
+          "bytes": 13613
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-pipeline-streaming-change-guard-agent/harnesses/codex.toml",
+          "sha256": "6383f3bde55e1654af3f5756e87cdd5ab2f4f381422577c191a9bff63259f38e",
+          "bytes": 5674
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-pipeline-streaming-change-guard-agent/harnesses/copilot.agent.md",
+          "sha256": "22628eb9b0378ece1932c07a75b93346998084f73f989967406490596c7c86ae",
+          "bytes": 13719
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-pipeline-streaming-change-guard-agent/harnesses/cursor.agent.md",
+          "sha256": "cfebd703bb0636753df348ee1cc2dde02f06e7e6a8b05494c0c8dbb9e2438373",
+          "bytes": 13630
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-pipeline-streaming-change-guard-agent/harnesses/gemini.agent.md",
+          "sha256": "b5bc8ca24556ef21652dbca9d4ccea47c1bcc8a5a45bb197b6ff22c9996b2e1c",
+          "bytes": 13613
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-pipeline-streaming-change-guard-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "9f49a0b86758cfe9fefb0ea78506e673555af2c63545c2153dff1891ef8e88f8",
+          "bytes": 13757
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-pipeline-streaming-change-guard-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "b5bc8ca24556ef21652dbca9d4ccea47c1bcc8a5a45bb197b6ff22c9996b2e1c",
+          "bytes": 13613
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-pipeline-streaming-change-guard-agent/metadata.json",
+          "sha256": "12646cce33e69bfb64121218caec08f8a0269204fa61496746b6714bccceae84",
+          "bytes": 4600
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-rbac-grant-guard-agent/AGENT.md",
+          "sha256": "90a89bd38f3b6d1950932c79221a38f1a90aff278c9c37085df7605f4b4a6d46",
+          "bytes": 13423
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-rbac-grant-guard-agent/PERMISSIONS.md",
+          "sha256": "83c0d84a704ecd0dec89941f32a8fd40da51e5be81eaacd2a38531952a5d671c",
+          "bytes": 6402
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-rbac-grant-guard-agent/PREFLIGHT.md",
+          "sha256": "0857cb5d7d13dc80e9fd4ec36c55dcfa5e1f826ff75873d230914fb69e9549fe",
+          "bytes": 5045
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-rbac-grant-guard-agent/ROLLBACK.md",
+          "sha256": "3b355038c30a47f27ead3fce1aca5ff6d69f70b35ea4e94ad3ede1bb67250d44",
+          "bytes": 3347
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-rbac-grant-guard-agent/harnesses/claude-code.agent.md",
+          "sha256": "74d72e7228f3d3920450eb84076317fce168a9d39f49416f5142b478fbf2079f",
+          "bytes": 11723
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-rbac-grant-guard-agent/harnesses/codex.toml",
+          "sha256": "e65c310bb9388297de5757176640db21fdd403e41fa8a1d8e1fb8f289346cff6",
+          "bytes": 5223
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-rbac-grant-guard-agent/harnesses/copilot.agent.md",
+          "sha256": "c512bf00d4b7af41b08a75f674258472f0090977d1bf96efaa1089a3cf9766ff",
+          "bytes": 11829
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-rbac-grant-guard-agent/harnesses/cursor.agent.md",
+          "sha256": "780bcaad4111f4d5f9567ad40dfca122235d30225c2d8b30a23644e0b7f7e8ae",
+          "bytes": 11740
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-rbac-grant-guard-agent/harnesses/gemini.agent.md",
+          "sha256": "74d72e7228f3d3920450eb84076317fce168a9d39f49416f5142b478fbf2079f",
+          "bytes": 11723
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-rbac-grant-guard-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "c261864bfff4567d4dda7243fe24184ce258860c6c57cf12cb92a20f4f7dd2cf",
+          "bytes": 11866
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-rbac-grant-guard-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "74d72e7228f3d3920450eb84076317fce168a9d39f49416f5142b478fbf2079f",
+          "bytes": 11723
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-rbac-grant-guard-agent/metadata.json",
+          "sha256": "e3ac4c381d601e8c156fd0b23ddeb93d571a708b793c038fc91fcaf8340f5c8a",
+          "bytes": 4433
         },
         {
           "path": "agents/snowflake/snowflake-live-rbac-grant-guard-at-azure-agent/AGENT.md",
@@ -31907,8 +32707,343 @@
         },
         {
           "path": "agents/snowflake/snowflake-live-rbac-grant-guard-at-azure-agent/metadata.json",
-          "sha256": "2e803f9104727dbb27ac7747110f303d81ee8760b8c455f1671a4295930dd8f7",
-          "bytes": 4029
+          "sha256": "4ffed02f3d5d24ea35fcdb0603412a62f3bae49edd81dae0ce00cc094dd412dc",
+          "bytes": 4329
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-warehouse-cost-change-guard-agent/AGENT.md",
+          "sha256": "3261e1a7e9fb9e62bcfb1cb10eb04a66f63972910982d925611d200c27827d7c",
+          "bytes": 14636
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-warehouse-cost-change-guard-agent/PERMISSIONS.md",
+          "sha256": "de5fed5f94fc36aaa1973db1170d42f4c77d303903295a26284cb491fe6e5671",
+          "bytes": 6665
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-warehouse-cost-change-guard-agent/PREFLIGHT.md",
+          "sha256": "a6fb8d18d52565e914ed48984d43df12ced17b9f8fb51a64b70817859c1af69b",
+          "bytes": 5653
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-warehouse-cost-change-guard-agent/ROLLBACK.md",
+          "sha256": "aa0e3dfb25088c1d735742406a3a05e5cd128a6e44a1af7794bd108469077cb1",
+          "bytes": 3437
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-warehouse-cost-change-guard-agent/harnesses/claude-code.agent.md",
+          "sha256": "56df19b514f1b56cd71bb52904eb19699725f95ff2c5e8a92891c74238bd04a1",
+          "bytes": 12925
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-warehouse-cost-change-guard-agent/harnesses/codex.toml",
+          "sha256": "7bb453864f1ad7d57e5ab90998eb0db867bc0342ded58f2f2c0cb107b81e122c",
+          "bytes": 5637
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-warehouse-cost-change-guard-agent/harnesses/copilot.agent.md",
+          "sha256": "be3b89722faba80e770c3bb9276c5c31d544e0c6b2c2029ac39cb8c079eb49ad",
+          "bytes": 13031
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-warehouse-cost-change-guard-agent/harnesses/cursor.agent.md",
+          "sha256": "f8951eca24c2793a0176691e6646d9740a22415b9be9aa0b260c60c644a029c2",
+          "bytes": 12942
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-warehouse-cost-change-guard-agent/harnesses/gemini.agent.md",
+          "sha256": "56df19b514f1b56cd71bb52904eb19699725f95ff2c5e8a92891c74238bd04a1",
+          "bytes": 12925
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-warehouse-cost-change-guard-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "4cde2797e8c39d7b882ecebc56d499c07e25c9d731d2e6a9c2243886a77c53e8",
+          "bytes": 13067
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-warehouse-cost-change-guard-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "56df19b514f1b56cd71bb52904eb19699725f95ff2c5e8a92891c74238bd04a1",
+          "bytes": 12925
+        },
+        {
+          "path": "agents/snowflake/snowflake-live-warehouse-cost-change-guard-agent/metadata.json",
+          "sha256": "fe5ea20451c40d5f8e6ab015cb8b8f7a9f37786b238e49abcdf361dbaf191286",
+          "bytes": 4371
+        },
+        {
+          "path": "agents/snowflake/snowflake-maestro-agent/AGENT.md",
+          "sha256": "4dda9ca0c251be70dca80d0bf167490e615fc69f1a8a190f0b3ecaf430d15213",
+          "bytes": 8387
+        },
+        {
+          "path": "agents/snowflake/snowflake-maestro-agent/README.md",
+          "sha256": "9188e49155f40c9e28f2912777f9621d260d72b582f9de69d075388c36cb9d2f",
+          "bytes": 6127
+        },
+        {
+          "path": "agents/snowflake/snowflake-maestro-agent/harnesses/claude-code.agent.md",
+          "sha256": "1d13d08cec971bef1392277eaf47a226f6ba0688753f47fa02f98f6f4ed95d41",
+          "bytes": 7770
+        },
+        {
+          "path": "agents/snowflake/snowflake-maestro-agent/harnesses/codex.toml",
+          "sha256": "b8ae1b55a6d9c31dac9a763d4540dc1696fdc5c0b61ae68b09168d9e09dcf469",
+          "bytes": 5498
+        },
+        {
+          "path": "agents/snowflake/snowflake-maestro-agent/harnesses/copilot.agent.md",
+          "sha256": "1eb86e0cb8982b3839d182af5aab0f2d04336d893a868e9630b5e39d3af56121",
+          "bytes": 7876
+        },
+        {
+          "path": "agents/snowflake/snowflake-maestro-agent/harnesses/cursor.agent.md",
+          "sha256": "cf3750019253926260abc5b899011e91398727ccf0ae550d7063da5986cff31c",
+          "bytes": 7787
+        },
+        {
+          "path": "agents/snowflake/snowflake-maestro-agent/harnesses/gemini.agent.md",
+          "sha256": "1d13d08cec971bef1392277eaf47a226f6ba0688753f47fa02f98f6f4ed95d41",
+          "bytes": 7770
+        },
+        {
+          "path": "agents/snowflake/snowflake-maestro-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "45e0e56885f0c09f63857e2710f07ceecb593170a50960c1d7314842f4c746bf",
+          "bytes": 7850
+        },
+        {
+          "path": "agents/snowflake/snowflake-maestro-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "1d13d08cec971bef1392277eaf47a226f6ba0688753f47fa02f98f6f4ed95d41",
+          "bytes": 7770
+        },
+        {
+          "path": "agents/snowflake/snowflake-maestro-agent/metadata.json",
+          "sha256": "a8f413607af60c64d7c895701b6e3ca83b4fe472e68f24b02da120aae5f0f180",
+          "bytes": 2425
+        },
+        {
+          "path": "agents/snowflake/snowflake-migration-modernization-agent/AGENT.md",
+          "sha256": "cf05bcaa3fb02e3f67b0413885e44b0cf184c328eb7eab51f6d5313c80ac2d2d",
+          "bytes": 15941
+        },
+        {
+          "path": "agents/snowflake/snowflake-migration-modernization-agent/harnesses/claude-code.agent.md",
+          "sha256": "990cc063dd2c863ecff74e3bf411b4412d7bfb0579da5cec01130fc65e8a89a9",
+          "bytes": 15308
+        },
+        {
+          "path": "agents/snowflake/snowflake-migration-modernization-agent/harnesses/codex.toml",
+          "sha256": "8e36aee2fbd94bde958a16e804247157f1f0f3dd2f8183bea7e1b7fe4bc921a6",
+          "bytes": 6777
+        },
+        {
+          "path": "agents/snowflake/snowflake-migration-modernization-agent/harnesses/copilot.agent.md",
+          "sha256": "303928a508d5a2b366a1e12386b781460a248f2a0087ffc8eb103390d869a33f",
+          "bytes": 15414
+        },
+        {
+          "path": "agents/snowflake/snowflake-migration-modernization-agent/harnesses/cursor.agent.md",
+          "sha256": "400f712d916c3f6a7d8397c677392166b10d8bfc8c91c026664d54e949671ee0",
+          "bytes": 15325
+        },
+        {
+          "path": "agents/snowflake/snowflake-migration-modernization-agent/harnesses/gemini.agent.md",
+          "sha256": "990cc063dd2c863ecff74e3bf411b4412d7bfb0579da5cec01130fc65e8a89a9",
+          "bytes": 15308
+        },
+        {
+          "path": "agents/snowflake/snowflake-migration-modernization-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "e389f86763c048206ff016e2d9559de7157eafefd80d4ca6bb3ecedd215de0cd",
+          "bytes": 15460
+        },
+        {
+          "path": "agents/snowflake/snowflake-migration-modernization-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "990cc063dd2c863ecff74e3bf411b4412d7bfb0579da5cec01130fc65e8a89a9",
+          "bytes": 15308
+        },
+        {
+          "path": "agents/snowflake/snowflake-migration-modernization-agent/metadata.json",
+          "sha256": "fb1c5b634544707fd4fbeb679e6905de676c7efc449add5a3d97692fef412a0e",
+          "bytes": 2995
+        },
+        {
+          "path": "agents/snowflake/snowflake-native-app-marketplace-product-agent/AGENT.md",
+          "sha256": "4bd0bd65476354e085df4fccb3f2447f58ca72c46edbfaa01a33d040b56a94d4",
+          "bytes": 15594
+        },
+        {
+          "path": "agents/snowflake/snowflake-native-app-marketplace-product-agent/harnesses/claude-code.agent.md",
+          "sha256": "28d44e3c302a958795490e100c0095fe6a39b1d02adf4f0a63556122d64dff80",
+          "bytes": 14954
+        },
+        {
+          "path": "agents/snowflake/snowflake-native-app-marketplace-product-agent/harnesses/codex.toml",
+          "sha256": "cbfae1b6ced2fa6045bb26a4cad731fbb4e16cc084d0f19ece774f0a64d98b8e",
+          "bytes": 6528
+        },
+        {
+          "path": "agents/snowflake/snowflake-native-app-marketplace-product-agent/harnesses/copilot.agent.md",
+          "sha256": "06d53626a65c62796e42fc2e9835f5addcc89f90bd7dfe9a82d4598ea8a3b518",
+          "bytes": 15060
+        },
+        {
+          "path": "agents/snowflake/snowflake-native-app-marketplace-product-agent/harnesses/cursor.agent.md",
+          "sha256": "4f24f2352cdb063f71a763230542a43ad269009740f9799798f259a70b146db4",
+          "bytes": 14971
+        },
+        {
+          "path": "agents/snowflake/snowflake-native-app-marketplace-product-agent/harnesses/gemini.agent.md",
+          "sha256": "28d44e3c302a958795490e100c0095fe6a39b1d02adf4f0a63556122d64dff80",
+          "bytes": 14954
+        },
+        {
+          "path": "agents/snowflake/snowflake-native-app-marketplace-product-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "140103611e71a2f9efa89ba58b694a8eb0f3d08641b42505e454dac4b0154092",
+          "bytes": 15103
+        },
+        {
+          "path": "agents/snowflake/snowflake-native-app-marketplace-product-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "28d44e3c302a958795490e100c0095fe6a39b1d02adf4f0a63556122d64dff80",
+          "bytes": 14954
+        },
+        {
+          "path": "agents/snowflake/snowflake-native-app-marketplace-product-agent/metadata.json",
+          "sha256": "7c9cb7ad55893e5941d925160ca3bd7962da48f19ce94a116a4205d9708e9db2",
+          "bytes": 3206
+        },
+        {
+          "path": "agents/snowflake/snowflake-network-private-connectivity-agent/AGENT.md",
+          "sha256": "4a4c83ed79b8a0f5a6f24496698057e50e08921302852cdbe340dfde32872432",
+          "bytes": 14771
+        },
+        {
+          "path": "agents/snowflake/snowflake-network-private-connectivity-agent/harnesses/claude-code.agent.md",
+          "sha256": "7e27c102e17e7403b9aca2c2b2c48e0d176806017be4cd864d636b20748661a9",
+          "bytes": 14133
+        },
+        {
+          "path": "agents/snowflake/snowflake-network-private-connectivity-agent/harnesses/codex.toml",
+          "sha256": "91baef6686db1254714a393fbb6b238e8c222f045bf50a2e376390b593f47cfb",
+          "bytes": 6360
+        },
+        {
+          "path": "agents/snowflake/snowflake-network-private-connectivity-agent/harnesses/copilot.agent.md",
+          "sha256": "f7a6694d5de06e12c8be54c81c8f32202353300b23c67158716192347893306a",
+          "bytes": 14239
+        },
+        {
+          "path": "agents/snowflake/snowflake-network-private-connectivity-agent/harnesses/cursor.agent.md",
+          "sha256": "4a5a1ca3e86facb8fdcb1766ab985870872c732602ccac607741e69717ae12ec",
+          "bytes": 14150
+        },
+        {
+          "path": "agents/snowflake/snowflake-network-private-connectivity-agent/harnesses/gemini.agent.md",
+          "sha256": "7e27c102e17e7403b9aca2c2b2c48e0d176806017be4cd864d636b20748661a9",
+          "bytes": 14133
+        },
+        {
+          "path": "agents/snowflake/snowflake-network-private-connectivity-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "b8a481ccb50856491c7f0b54df84b33a5fb3cb471f9dcf75ce690f757e4e213a",
+          "bytes": 14274
+        },
+        {
+          "path": "agents/snowflake/snowflake-network-private-connectivity-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "7e27c102e17e7403b9aca2c2b2c48e0d176806017be4cd864d636b20748661a9",
+          "bytes": 14133
+        },
+        {
+          "path": "agents/snowflake/snowflake-network-private-connectivity-agent/metadata.json",
+          "sha256": "50c7f1552ae0ea0941dc8e3344526b4969417d57502a2bb5679cb96914fe7511",
+          "bytes": 3198
+        },
+        {
+          "path": "agents/snowflake/snowflake-platform-administrator-agent/AGENT.md",
+          "sha256": "5ee44ecb7a6d060a771ef105f153e75f83bfd928f75851144f4820f1116ea2e9",
+          "bytes": 13808
+        },
+        {
+          "path": "agents/snowflake/snowflake-platform-administrator-agent/harnesses/claude-code.agent.md",
+          "sha256": "27cefd4a29de49deff0e0c1a8d9b99efbed7278179e74b32e3c18cac7552eb95",
+          "bytes": 13176
+        },
+        {
+          "path": "agents/snowflake/snowflake-platform-administrator-agent/harnesses/codex.toml",
+          "sha256": "5b0c70dbaded6f2788c69732ff75097e1ce14251a58f4014a6b05a25fc72b7b0",
+          "bytes": 5761
+        },
+        {
+          "path": "agents/snowflake/snowflake-platform-administrator-agent/harnesses/copilot.agent.md",
+          "sha256": "6a9f46e4ffa49d0d2eaffd404472f848dfbb6a704e68b8c7194f1d437d887833",
+          "bytes": 13282
+        },
+        {
+          "path": "agents/snowflake/snowflake-platform-administrator-agent/harnesses/cursor.agent.md",
+          "sha256": "ff9b6a3b85614ff0189ac013d4171673db40734c4f860a10278be55664113265",
+          "bytes": 13193
+        },
+        {
+          "path": "agents/snowflake/snowflake-platform-administrator-agent/harnesses/gemini.agent.md",
+          "sha256": "27cefd4a29de49deff0e0c1a8d9b99efbed7278179e74b32e3c18cac7552eb95",
+          "bytes": 13176
+        },
+        {
+          "path": "agents/snowflake/snowflake-platform-administrator-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "e47a0bc0b97aafec818c113da5dd35977c7a3572f65ea740e8f46b6e963cc806",
+          "bytes": 13318
+        },
+        {
+          "path": "agents/snowflake/snowflake-platform-administrator-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "27cefd4a29de49deff0e0c1a8d9b99efbed7278179e74b32e3c18cac7552eb95",
+          "bytes": 13176
+        },
+        {
+          "path": "agents/snowflake/snowflake-platform-administrator-agent/metadata.json",
+          "sha256": "b483ea5abba88dbbccd6964b0eb32364d8c50b2a29ec128f6bdbc43275729d4b",
+          "bytes": 2905
+        },
+        {
+          "path": "agents/snowflake/snowflake-query-performance-engineer-agent/AGENT.md",
+          "sha256": "ec9572db097b913a1c0519462e6306b8575a017d05b98cfa9a18f9201008bf5a",
+          "bytes": 15485
+        },
+        {
+          "path": "agents/snowflake/snowflake-query-performance-engineer-agent/harnesses/claude-code.agent.md",
+          "sha256": "ff37efa77455d4b1c753c29fb6dd5dd06d27ffc4bb54fd31cc3570233070548e",
+          "bytes": 14849
+        },
+        {
+          "path": "agents/snowflake/snowflake-query-performance-engineer-agent/harnesses/codex.toml",
+          "sha256": "10824b11b8e180f662262f9d4c1baa54e0dfa00ae924a9a1d476d0d59382f144",
+          "bytes": 6786
+        },
+        {
+          "path": "agents/snowflake/snowflake-query-performance-engineer-agent/harnesses/copilot.agent.md",
+          "sha256": "56c85568f324b9919bc64f86e713cc4c80e8b013435a749f941c997ec57e8c46",
+          "bytes": 14955
+        },
+        {
+          "path": "agents/snowflake/snowflake-query-performance-engineer-agent/harnesses/cursor.agent.md",
+          "sha256": "4106e7fb9b564cba0e118523f59d53b4345ac23e6642af842c59ec2495eec131",
+          "bytes": 14866
+        },
+        {
+          "path": "agents/snowflake/snowflake-query-performance-engineer-agent/harnesses/gemini.agent.md",
+          "sha256": "ff37efa77455d4b1c753c29fb6dd5dd06d27ffc4bb54fd31cc3570233070548e",
+          "bytes": 14849
+        },
+        {
+          "path": "agents/snowflake/snowflake-query-performance-engineer-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "72e02cb8372d8e22f15b87e98d385f83cf3d8804a0c29802cdc748ffb09b3b85",
+          "bytes": 14998
+        },
+        {
+          "path": "agents/snowflake/snowflake-query-performance-engineer-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "ff37efa77455d4b1c753c29fb6dd5dd06d27ffc4bb54fd31cc3570233070548e",
+          "bytes": 14849
+        },
+        {
+          "path": "agents/snowflake/snowflake-query-performance-engineer-agent/metadata.json",
+          "sha256": "2943c3f782c89c6aeaa48dfb2a061369e9ab5499c164d979813ac24edbc54ad1",
+          "bytes": 3241
         },
         {
           "path": "agents/snowflake/snowflake-rbac-access-governance-at-azure-agent/AGENT.md",
@@ -31952,8 +33087,98 @@
         },
         {
           "path": "agents/snowflake/snowflake-rbac-access-governance-at-azure-agent/metadata.json",
-          "sha256": "1aed96ccfd92893115ccf22555858829a47a2b0bd0e08400c880fd1831c9fc20",
-          "bytes": 2388
+          "sha256": "99eb7635123e66a5cfd0d2d24d5bd58a2b0a0feea3f4819b2a2225e37c75b933",
+          "bytes": 2722
+        },
+        {
+          "path": "agents/snowflake/snowflake-solution-architect-agent/AGENT.md",
+          "sha256": "0e0150621a1d2dbbd308fd728a5ee536ef318fdc3678dbb402b3a25b1cf06f56",
+          "bytes": 14001
+        },
+        {
+          "path": "agents/snowflake/snowflake-solution-architect-agent/harnesses/claude-code.agent.md",
+          "sha256": "0e72409124d1d84fb1b7eaea20237868468705619b041c0cab8b1b954f5fc35e",
+          "bytes": 13373
+        },
+        {
+          "path": "agents/snowflake/snowflake-solution-architect-agent/harnesses/codex.toml",
+          "sha256": "46584ec36dec416ecf4bd94a049f610dac7897da85551a81ee9f6e3f470bcb2f",
+          "bytes": 6010
+        },
+        {
+          "path": "agents/snowflake/snowflake-solution-architect-agent/harnesses/copilot.agent.md",
+          "sha256": "68f473fc34e28b80099a4278b4a502aab02bf618bd2cbb2d099b26e00e15a63d",
+          "bytes": 13479
+        },
+        {
+          "path": "agents/snowflake/snowflake-solution-architect-agent/harnesses/cursor.agent.md",
+          "sha256": "fa3dc35cdeb3f2f234d457541c93776e6e38e048028ba537c861e71071d7bc64",
+          "bytes": 13390
+        },
+        {
+          "path": "agents/snowflake/snowflake-solution-architect-agent/harnesses/gemini.agent.md",
+          "sha256": "0e72409124d1d84fb1b7eaea20237868468705619b041c0cab8b1b954f5fc35e",
+          "bytes": 13373
+        },
+        {
+          "path": "agents/snowflake/snowflake-solution-architect-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "d3bfb04b2adfc7a4f683c826899db55902168f5cbe43fa641ccd3bf9b0bd3518",
+          "bytes": 13513
+        },
+        {
+          "path": "agents/snowflake/snowflake-solution-architect-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "0e72409124d1d84fb1b7eaea20237868468705619b041c0cab8b1b954f5fc35e",
+          "bytes": 13373
+        },
+        {
+          "path": "agents/snowflake/snowflake-solution-architect-agent/metadata.json",
+          "sha256": "2c95c5af3da5c34e43a7bf89c2f86a114cb281a715d6158c478e0898f5925115",
+          "bytes": 2837
+        },
+        {
+          "path": "agents/snowflake/snowflake-streaming-ingestion-reliability-agent/AGENT.md",
+          "sha256": "7a05425138556d985a528da78a102f57cee08188dfb95f64e824e01e16625559",
+          "bytes": 16647
+        },
+        {
+          "path": "agents/snowflake/snowflake-streaming-ingestion-reliability-agent/harnesses/claude-code.agent.md",
+          "sha256": "e8e10d7ee5af2b0444c6f75c0050ad8e80d647f69e688dec783eb28c4d140984",
+          "bytes": 16006
+        },
+        {
+          "path": "agents/snowflake/snowflake-streaming-ingestion-reliability-agent/harnesses/codex.toml",
+          "sha256": "e209705c970e328e7fd8a88ef606396025146da06c5ca2a19bc5f4566975a197",
+          "bytes": 7250
+        },
+        {
+          "path": "agents/snowflake/snowflake-streaming-ingestion-reliability-agent/harnesses/copilot.agent.md",
+          "sha256": "2b7bae3c019370864f3d566f5a7f63c3887f65739766fef9d585a161321beb9a",
+          "bytes": 16112
+        },
+        {
+          "path": "agents/snowflake/snowflake-streaming-ingestion-reliability-agent/harnesses/cursor.agent.md",
+          "sha256": "db7fe22a5538197f74a3c46b9b57588106633e3d58b3122bed6ac3dad3de757c",
+          "bytes": 16023
+        },
+        {
+          "path": "agents/snowflake/snowflake-streaming-ingestion-reliability-agent/harnesses/gemini.agent.md",
+          "sha256": "e8e10d7ee5af2b0444c6f75c0050ad8e80d647f69e688dec783eb28c4d140984",
+          "bytes": 16006
+        },
+        {
+          "path": "agents/snowflake/snowflake-streaming-ingestion-reliability-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "b015ee598bf5b5cb3ca08595559381c22b7b894608fb4163610257c01b9c3030",
+          "bytes": 16160
+        },
+        {
+          "path": "agents/snowflake/snowflake-streaming-ingestion-reliability-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "e8e10d7ee5af2b0444c6f75c0050ad8e80d647f69e688dec783eb28c4d140984",
+          "bytes": 16006
+        },
+        {
+          "path": "agents/snowflake/snowflake-streaming-ingestion-reliability-agent/metadata.json",
+          "sha256": "ff41caa7e545e3ebd1e3a9991ec4c2986a3ef0c288fea6f62925f264e036d865",
+          "bytes": 3257
         },
         {
           "path": "agents/terraform/README.md",
@@ -32837,7 +34062,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "9f5526c2d70bb7eabfb02e08c9bdf34841ad6a625c4933117f3ec6e41253dae4",
+      "aggregate_sha256": "eaa6ae471f6fd508dd2a88890746dc2c0552d4f8bb2a3593f84e90ae76c64733",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -32846,8 +34071,8 @@
         },
         {
           "path": "catalog/agents.json",
-          "sha256": "e8b48ac610dff94a529bd1be628684eeeabca102510b47566a26bbb81e4db9db",
-          "bytes": 1127496
+          "sha256": "3828247cd96ccfddfff7c19869f57d127ef376628cb234e5c98a15159debd590",
+          "bytes": 1179857
         },
         {
           "path": "catalog/index.json",
@@ -32856,8 +34081,8 @@
         },
         {
           "path": "catalog/install-roles.json",
-          "sha256": "a24710cbe7159f8ac161d8abd28b7cc7c19b1d0f4dacda95c0270e8b99a0f03a",
-          "bytes": 109537
+          "sha256": "872f366f0b24a4c1141c49d5195c11bcfc70ea24d7bd0e34702c4505a60ffb05",
+          "bytes": 117433
         },
         {
           "path": "catalog/mcp-references.json",
@@ -32866,8 +34091,8 @@
         },
         {
           "path": "catalog/model-assignments.json",
-          "sha256": "1e19a1079b20e61b38c5c0aa4de1203bbc9b8193bf5cf46e3f91a8e3b48c634d",
-          "bytes": 648311
+          "sha256": "25ab515c9671a0caf74669ac4a5a7de09b94a96b81d9cef0d2ff07c6e0d2179e",
+          "bytes": 672717
         },
         {
           "path": "catalog/model-policy.json",
@@ -32886,19 +34111,19 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "1c17a7db495e4847235df0fb4673fe4cc7aa6692d126bbe97c621df5382cbd6d",
-          "bytes": 988818
+          "sha256": "8bd3da34d3bd626e143a0e7db5b19bde2b9527aff2d06fb60d72312fbc1d90fc",
+          "bytes": 1018508
         },
         {
           "path": "catalog/skills.json",
-          "sha256": "4f647c6bbcd4fd081d6794b134093a944ce4c8e92c2c0e866eb8175472e05cb7",
-          "bytes": 1112440
+          "sha256": "4d14c63a84a574d223f1976dae6b007af06b3f6b1c429a160642dd771576fce4",
+          "bytes": 1161272
         }
       ]
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "6942413b06835fa3d63a6d7cb8fbbaf2018f5e9d7e919005bd758748ed802829",
+      "aggregate_sha256": "84b42dd9bc8454fa81ec82bb81efc65b17ea42dd42c6d8d0e36dffbf80d2b448",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -32956,6 +34181,11 @@
           "bytes": 15026
         },
         {
+          "path": "scripts/gen_snowflake_agents.py",
+          "sha256": "368157b17e229cb1de5adf206bfd4fddf008f18ea37c798c7e1d3628b021111c",
+          "bytes": 45870
+        },
+        {
           "path": "scripts/gen_typescript_agents.py",
           "sha256": "2d9ab1a6201e5951a61dd6181020c3e5469bf3722b98bf3bb700a7b5d84d8491",
           "bytes": 22007
@@ -32977,8 +34207,8 @@
         },
         {
           "path": "scripts/generate-kiro-powers.mjs",
-          "sha256": "98a046b43345bf15402b608cef46067c1e2913b9dc8985838a36ff91cd60a442",
-          "bytes": 50153
+          "sha256": "5c4626cd8cc73eedd04cb8753d8debd318105609d548c643a3a7eb65bb079acc",
+          "bytes": 50617
         },
         {
           "path": "scripts/generate-plugin-manifest.mjs",
@@ -33386,6 +34616,131 @@
           "bytes": 10574
         },
         {
+          "path": "scripts/snowflake_data/agents/00-snowflake-maestro-agent.json",
+          "sha256": "bc89d9b995c15b27d240a52b96a93ee6b35257f5e32ad05f5e992efd35e9345d",
+          "bytes": 26256
+        },
+        {
+          "path": "scripts/snowflake_data/agents/01-snowflake-solution-architect-agent.json",
+          "sha256": "e5634d55fddf8747100255d88236db552db068b35eedb0295f331e8b3fd3094d",
+          "bytes": 32293
+        },
+        {
+          "path": "scripts/snowflake_data/agents/02-snowflake-platform-administrator-agent.json",
+          "sha256": "070bcd458d5f9a48a27f8150e91a6e680da4712f6f3bcdf1d8601ebf5ebc56cf",
+          "bytes": 25340
+        },
+        {
+          "path": "scripts/snowflake_data/agents/03-snowflake-identity-access-security-agent.json",
+          "sha256": "3d15397a229cfbf819b797b1e7ca575bdb6199ea835c84b4788c5a950d0fec47",
+          "bytes": 39494
+        },
+        {
+          "path": "scripts/snowflake_data/agents/04-snowflake-network-private-connectivity-agent.json",
+          "sha256": "b4e690d5410b004bc8b380db8a674c7a92bcd7e028de07e58373f2890d5679ae",
+          "bytes": 27160
+        },
+        {
+          "path": "scripts/snowflake_data/agents/05-snowflake-governance-privacy-agent.json",
+          "sha256": "a04282f112bafa0aa93dd06a65de09b82f64ecd51407112caf3acd1f6d8ee42d",
+          "bytes": 28823
+        },
+        {
+          "path": "scripts/snowflake_data/agents/06-snowflake-compliance-evidence-auditor-agent.json",
+          "sha256": "dbdafa1f2de5be36e6caafc39a5bd888c7fc898aa1db851fb355cc47db385f2e",
+          "bytes": 27652
+        },
+        {
+          "path": "scripts/snowflake_data/agents/07-snowflake-finops-cost-governor-agent.json",
+          "sha256": "80c8295ddfe32ec2b0530b1e1b3aa551e171933218aecac4ee3f8f12e5b2f0e7",
+          "bytes": 33791
+        },
+        {
+          "path": "scripts/snowflake_data/agents/08-snowflake-query-performance-engineer-agent.json",
+          "sha256": "01d8f9b560b336866e523ce96a1daba817bf64fcd4b7b905a7976cae686adc05",
+          "bytes": 30277
+        },
+        {
+          "path": "scripts/snowflake_data/agents/09-snowflake-data-engineering-pipelines-agent.json",
+          "sha256": "a351f4e058ebc53a7eca383740489e61da792ea98bdac85480b38f25b2695c33",
+          "bytes": 29974
+        },
+        {
+          "path": "scripts/snowflake_data/agents/10-snowflake-streaming-ingestion-reliability-agent.json",
+          "sha256": "0278ba6eb7eca6f896852ec3e5164f1cf43a777af715ec9310bd61d9122e50a8",
+          "bytes": 32975
+        },
+        {
+          "path": "scripts/snowflake_data/agents/11-snowflake-analytics-semantic-data-product-agent.json",
+          "sha256": "13968afba398171b2a724dcba02b5dd43bf0fd641449da36b805938b3c02c9e6",
+          "bytes": 27237
+        },
+        {
+          "path": "scripts/snowflake_data/agents/12-snowflake-data-science-ml-agent.json",
+          "sha256": "dc68506e5dd211cec2d6f2c32ca34805b462c7721c645cd77d87ce92841c7cfb",
+          "bytes": 27115
+        },
+        {
+          "path": "scripts/snowflake_data/agents/13-snowflake-cortex-ai-agent-security-governor-agent.json",
+          "sha256": "cb5c2cadd3ef78a939be664acfcf9588e0f5ab1a52b11d85056de8c786452165",
+          "bytes": 37751
+        },
+        {
+          "path": "scripts/snowflake_data/agents/14-snowflake-native-app-marketplace-product-agent.json",
+          "sha256": "311a25a7ce099e948af6073f47153e261cee68e277662de9103cf3cefd1cc0f0",
+          "bytes": 28204
+        },
+        {
+          "path": "scripts/snowflake_data/agents/15-snowflake-bcdr-resilience-agent.json",
+          "sha256": "bbebb9495fac5daf7d66fc9cf6f7914d3a8febd9b03a1cde368500f0feaa03c0",
+          "bytes": 32065
+        },
+        {
+          "path": "scripts/snowflake_data/agents/16-snowflake-devops-iac-release-agent.json",
+          "sha256": "621572b158a8c8580e3f2a24e49895f6878dfac113dc3c06770b1b23949430bc",
+          "bytes": 31030
+        },
+        {
+          "path": "scripts/snowflake_data/agents/17-snowflake-migration-modernization-agent.json",
+          "sha256": "5dd81eabe0d7af179988eb1886eecd47206cd97cabb10bc4485f98a069c121ab",
+          "bytes": 26375
+        },
+        {
+          "path": "scripts/snowflake_data/agents/18-snowflake-business-value-adoption-strategist-agent.json",
+          "sha256": "9bcb7baa9561609d5cc4ede8d9c84f7a35de7f774ba09a52b40f9b2ae23d3b44",
+          "bytes": 27230
+        },
+        {
+          "path": "scripts/snowflake_data/agents/19-snowflake-live-rbac-grant-guard-agent.json",
+          "sha256": "eb277c79505922bf88034848ecc868ca87a4237706708efc7da44aeceabf9849",
+          "bytes": 30238
+        },
+        {
+          "path": "scripts/snowflake_data/agents/20-snowflake-live-auth-network-policy-guard-agent.json",
+          "sha256": "2d35d67bf588858ef60f7725d99d3664a1694d4973ba0b034bde7a8dae099227",
+          "bytes": 31243
+        },
+        {
+          "path": "scripts/snowflake_data/agents/21-snowflake-live-warehouse-cost-change-guard-agent.json",
+          "sha256": "846df16eb8b712219e8d04ab271b964bbf4e6d8f766d43653721316e662941dd",
+          "bytes": 32929
+        },
+        {
+          "path": "scripts/snowflake_data/agents/22-snowflake-live-data-protection-policy-guard-agent.json",
+          "sha256": "e538ff35d441549746e79f665e0711118209f70ea8f6109a38c2d695ba8070fa",
+          "bytes": 33174
+        },
+        {
+          "path": "scripts/snowflake_data/agents/23-snowflake-live-pipeline-streaming-change-guard-agent.json",
+          "sha256": "082d9cb6600eff45488c7bccaa29d39cab0c126f94d076acbd71ac33e232ae15",
+          "bytes": 33776
+        },
+        {
+          "path": "scripts/snowflake_data/agents/24-snowflake-live-failover-promotion-guard-agent.json",
+          "sha256": "e7304f906c4a362c33981910105c366873270dbb48751c02626f7be7f6e54bfb",
+          "bytes": 38151
+        },
+        {
           "path": "scripts/typescript_data/agents/00-typescript-maestro-agent.json",
           "sha256": "065127ef638d0661425e13302e87a422c9189413e972f3cdd7bc6819d5a342ec",
           "bytes": 16357
@@ -33464,7 +34819,7 @@
     },
     {
       "tree": "powers",
-      "aggregate_sha256": "afbb2ae70e3fbc549bf6beb776e9efb1197ae6242442f46d00e818c69f1e55b5",
+      "aggregate_sha256": "cebe8db9346bac3bd1a6aca11411a4fd3e2211c56ca3b72adb62a6ae619ae2ad",
       "files": [
         {
           "path": "powers/README.md",
@@ -33683,8 +35038,8 @@
         },
         {
           "path": "powers/vanguard-snowflake/POWER.md",
-          "sha256": "d8364eb4d6bfd55188736760f4166d7f62efebeb4996c2f755f96c0da60a337d",
-          "bytes": 3707
+          "sha256": "03addd9187f1befc40e8275400dcea5d18a55e6976cad241328dda859a0a44bf",
+          "bytes": 5043
         },
         {
           "path": "powers/vanguard-terraform/POWER.md",
@@ -33731,7 +35086,7 @@
     },
     {
       "tree": ".claude-plugin",
-      "aggregate_sha256": "abd288231a251660716e04f3f038584d5962de03766c06c893409f39ad13b286",
+      "aggregate_sha256": "6451f125011699f982d2b6741913112dc0346736b9ccc720355ad61d983c2170",
       "files": [
         {
           "path": ".claude-plugin/README.md",
@@ -33740,19 +35095,19 @@
         },
         {
           "path": ".claude-plugin/marketplace.json",
-          "sha256": "7c697009d0fe63e9dc1f043aa6fe7bbd512a5809ab276adbcbc2242418d6b8bf",
+          "sha256": "79d047b97a5a6b6aba17d5b30a5a0d6dc358469fc0366ff11605e4db7d9ce014",
           "bytes": 854
         },
         {
           "path": ".claude-plugin/plugin.json",
-          "sha256": "95117663ae3e64a5b75ad1a1a5201fa473a213dddde69ebe1988586f6446ccee",
-          "bytes": 62647
+          "sha256": "6879f1cec04ff05d0757d49c193695774dd58a86513efc3fc2fa0f639d13be26",
+          "bytes": 65124
         }
       ]
     },
     {
       "tree": ".cursor-plugin",
-      "aggregate_sha256": "6aa7e3bd7de4df8642623486da8c77480f9ee73140a52c799354ee68e8fe95d6",
+      "aggregate_sha256": "a7db1108728d4752bc2adb764480f31165c37666be5a6a2bb78383f93d3ea626",
       "files": [
         {
           "path": ".cursor-plugin/README.md",
@@ -33761,8 +35116,8 @@
         },
         {
           "path": ".cursor-plugin/plugin.json",
-          "sha256": "cc365b3083bf674579aacb3b8395bd3140d35afad69dac7780176a082acd72d5",
-          "bytes": 59223
+          "sha256": "a051a7ddd1b3773e05b2a606f6d923a4d0f8e944c7de80718faf420ab778a6aa",
+          "bytes": 61575
         }
       ]
     },
@@ -33800,7 +35155,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "2f1b72e25cc8dd9fd0ec1b867a330e53f31720d8cd9506822864a14146521148",
+      "aggregate_sha256": "9e5634ba6c7f4353c66046be9d5dc7a7a0887e27403148a2a9adbe2d31997973",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -42333,6 +43688,281 @@
           "bytes": 1445
         },
         {
+          "path": "tests/fixtures/snowflake-maestro-routing/expected/01-redteam-accountadmin-shortcut.json",
+          "sha256": "78fb8eb22c254ef2b45821ffeba51daddbde953a07aadab463838b3886f0792e",
+          "bytes": 88
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/expected/02-redteam-slow-query-resize-reflex.json",
+          "sha256": "a1ec1010069d6438c01f95b200b1b302d5126cba5ca2d40c067ebe70c736f803",
+          "bytes": 140
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/expected/03-redteam-cost-spike.json",
+          "sha256": "2de76b2f475385a273ad54833d04bd05a05aa90f436140b6cd52912e8ae95485",
+          "bytes": 84
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/expected/04-redteam-cortex-agent-production.json",
+          "sha256": "fd9a698b730d541dee59fab0c892996b753855d053041364e022848da866d2de",
+          "bytes": 151
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/expected/05-redteam-snowpipe-classic-new-build.json",
+          "sha256": "2ac3e40e0e4709cadeb139c130ecfe622ab078cd57ca188d5a8565691077942b",
+          "bytes": 95
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/expected/06-redteam-human-password-login.json",
+          "sha256": "78fb8eb22c254ef2b45821ffeba51daddbde953a07aadab463838b3886f0792e",
+          "bytes": 88
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/expected/07-redteam-service-bot-password.json",
+          "sha256": "78fb8eb22c254ef2b45821ffeba51daddbde953a07aadab463838b3886f0792e",
+          "bytes": 88
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/expected/08-redteam-masking-policy-deployment.json",
+          "sha256": "90dd1501890cc63879bb24924e51340b92c62a7eecf00ad4f83f7bf6f29c8335",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/expected/09-redteam-network-block-public.json",
+          "sha256": "56dba6087f340ef02f782035d0fcb4d30dab52e4dcb92e55145ed9c5eeb0c67a",
+          "bytes": 92
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/expected/10-redteam-dr-failover-urgent.json",
+          "sha256": "3ee29ced225bcd53c4246e8afb6b8af65fd8236de51c0cb6e7c043e238c672d9",
+          "bytes": 102
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/expected/11-redteam-native-app-publication.json",
+          "sha256": "50521116b049c6e52cfa37f101aed33ef71c612b3d7e24a8c705f76d11dc7fb4",
+          "bytes": 94
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/expected/12-redteam-we-are-compliant.json",
+          "sha256": "444b8215d7259b98d56d8af87b5357b0028d17f6ae1c27a00019fffe583aa968",
+          "bytes": 91
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/expected/13-redteam-terraform-upgrade.json",
+          "sha256": "f2073828693f6ccaad1e84e50258627c0381b52e1ebc42b09c0ce78617e4b215",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/expected/14-redteam-migration-hype.json",
+          "sha256": "5ed0d85a5419c0f2af5c33f783ffeb37322d7f38e906e1769dc7c7ab5c807c7a",
+          "bytes": 151
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/expected/15-redteam-ai-cost-explosion.json",
+          "sha256": "52fc4adf73cd55c790e66ca360df6a22685a83a17382803fa9e2b056a22a3972",
+          "bytes": 147
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/expected/16-redteam-feature-is-not-a-business-case.json",
+          "sha256": "c889ca2a91bb80ce736cedf0d478df6ed0791f680ecbf5a791db26995dc8548d",
+          "bytes": 98
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/expected/20-negative-pure-performance-no-bcdr.json",
+          "sha256": "e91923c10f28d12c489147eca53f8915b3d2f75dd24ff02d18d21512d302ae9d",
+          "bytes": 90
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/expected/21-negative-role-audit-no-data-science.json",
+          "sha256": "78fb8eb22c254ef2b45821ffeba51daddbde953a07aadab463838b3886f0792e",
+          "bytes": 88
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/expected/22-negative-cost-review-no-native-app.json",
+          "sha256": "2de76b2f475385a273ad54833d04bd05a05aa90f436140b6cd52912e8ae95485",
+          "bytes": 84
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/expected/23-negative-readonly-analysis-not-a-guard.json",
+          "sha256": "78fb8eb22c254ef2b45821ffeba51daddbde953a07aadab463838b3886f0792e",
+          "bytes": 88
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/expected/24-negative-ambiguous-request.json",
+          "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
+          "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/expected/30-conflict-business-critical-edition.json",
+          "sha256": "fb48b54e372b3b03640a8efd597b29f8c699f49ad9eb4be22a3d703023b34de1",
+          "bytes": 190
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/expected/31-conflict-tuning-versus-credits.json",
+          "sha256": "a1ec1010069d6438c01f95b200b1b302d5126cba5ca2d40c067ebe70c736f803",
+          "bytes": 140
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/expected/32-conflict-egress-for-functionality.json",
+          "sha256": "56dba6087f340ef02f782035d0fcb4d30dab52e4dcb92e55145ed9c5eeb0c67a",
+          "bytes": 92
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/expected/40-gate-execute-grant.json",
+          "sha256": "41fa00e334929f932de08e8b6523eb3deb3e4745c1015e92226d2367da5472d5",
+          "bytes": 94
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/expected/41-gate-promote-failover.json",
+          "sha256": "3ee29ced225bcd53c4246e8afb6b8af65fd8236de51c0cb6e7c043e238c672d9",
+          "bytes": 102
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/expected/42-gate-injected-approval-in-content.json",
+          "sha256": "995c0b73c36d8a75cc2b3c4ff1c7b0a287640b9f8577c46e62d11f1d70d711c9",
+          "bytes": 103
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/inputs/01-redteam-accountadmin-shortcut.json",
+          "sha256": "c4a72d7669b879c12baaf2a436e54ddc216303e598fc0987fea017ed60cc929f",
+          "bytes": 245
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/inputs/02-redteam-slow-query-resize-reflex.json",
+          "sha256": "177205529872cfb47b18c33bc4a83664dc843b67c9920f04f0eb65b9730bbc46",
+          "bytes": 220
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/inputs/03-redteam-cost-spike.json",
+          "sha256": "2ee7e12971b7718e1494801840cb53c251c7711f5ad97ca5ff5e46b55439427f",
+          "bytes": 164
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/inputs/04-redteam-cortex-agent-production.json",
+          "sha256": "bff01e417c95fe9d3a8f74d4b04e0b81edc821a160bf7a8d9fd39ad900c1eedc",
+          "bytes": 336
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/inputs/05-redteam-snowpipe-classic-new-build.json",
+          "sha256": "6d84d9e8ccadd76d86cc9f64ea095c8c07980ec92f2da28d214a1051ea75db25",
+          "bytes": 242
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/inputs/06-redteam-human-password-login.json",
+          "sha256": "565daf5acb6efce61bc32d41a839a41bbc2b2ca5beb35ae8c8eef17e7bf26a42",
+          "bytes": 236
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/inputs/07-redteam-service-bot-password.json",
+          "sha256": "9ae00bc3eac1fbaa0a26d82e113f3645fb6079d622b4955d9628aadce04d31fd",
+          "bytes": 182
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/inputs/08-redteam-masking-policy-deployment.json",
+          "sha256": "8dba2c20c9118de48e08120176b43f047b4d80898db1100018172431bcc7f268",
+          "bytes": 204
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/inputs/09-redteam-network-block-public.json",
+          "sha256": "869e332f6a9ff3461b7398370f349a241f213919fe8db0c2b97dd365c6450b38",
+          "bytes": 202
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/inputs/10-redteam-dr-failover-urgent.json",
+          "sha256": "c3532033225659fdec0864d95dc6e44907e30ebce097f9d83748897228b5d0f6",
+          "bytes": 218
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/inputs/11-redteam-native-app-publication.json",
+          "sha256": "f798ad9f997b93d63b9d02373a987e2fcdfcf283c7947b6d5c3a59eeae7a8c4d",
+          "bytes": 220
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/inputs/12-redteam-we-are-compliant.json",
+          "sha256": "b40a229680b4cb53dc01d9faa23ec82adfe7f1298167f742633586cfe6d09ad1",
+          "bytes": 203
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/inputs/13-redteam-terraform-upgrade.json",
+          "sha256": "9da64b85c0fcdd7534cfcd7cd98189890445cd43be5428264ae5f4eb5bda2fce",
+          "bytes": 214
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/inputs/14-redteam-migration-hype.json",
+          "sha256": "3ed7b51d62d79695d3911839dcbf736d345479997ddb9be35890e473a1bcfa7b",
+          "bytes": 200
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/inputs/15-redteam-ai-cost-explosion.json",
+          "sha256": "f3655e4fb25553cd9b80e6e3e8e93420f34f9aea17ad77a383cc17f15b84c5c6",
+          "bytes": 243
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/inputs/16-redteam-feature-is-not-a-business-case.json",
+          "sha256": "04b3b48db56c7e17e58b5493df1b5df1c0f4a3112974aa5d8b53e22b4f15a1f9",
+          "bytes": 218
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/inputs/20-negative-pure-performance-no-bcdr.json",
+          "sha256": "36554ef6d29cec38ac55ee1a74a8eca8537ae8666b54dde6929cd212813f3fad",
+          "bytes": 196
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/inputs/21-negative-role-audit-no-data-science.json",
+          "sha256": "3c32a71b169c4cfdd2710ad72edc6b90559200d78bad6b796006a0ac022a1596",
+          "bytes": 202
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/inputs/22-negative-cost-review-no-native-app.json",
+          "sha256": "b23c25bf2c4b23b600e506206bd6dbd031d8388a5505104071a8420ccf0add41",
+          "bytes": 177
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/inputs/23-negative-readonly-analysis-not-a-guard.json",
+          "sha256": "5b7e1eb020588aaceef2ae88814f3ec7c2b0c904d8db2e75749b84d8ae685872",
+          "bytes": 188
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/inputs/24-negative-ambiguous-request.json",
+          "sha256": "7f7c8e3eb3cc509480532919db3ccc1f56726a91dbe0aab3baea8731aab2dbb8",
+          "bytes": 184
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/inputs/30-conflict-business-critical-edition.json",
+          "sha256": "65b4528ad95eb62b21a654b32771c6cb54ca69ccdba7174dd4d144cdfba1f7c5",
+          "bytes": 266
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/inputs/31-conflict-tuning-versus-credits.json",
+          "sha256": "1fcc9eb3b490ea9ccca21ecc754c710864d8d092a1a60b761dd5f1dd33c620a3",
+          "bytes": 208
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/inputs/32-conflict-egress-for-functionality.json",
+          "sha256": "4288a653acd9523ea7270f052bb45a9665522c6b8923b3616745614f81de8c38",
+          "bytes": 208
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/inputs/40-gate-execute-grant.json",
+          "sha256": "8cbe01b9ce978d49616628510bc623dd6becbf17c8244f532c7c4035219c282a",
+          "bytes": 173
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/inputs/41-gate-promote-failover.json",
+          "sha256": "bb86bd45a28472106650c377112a19e803051d2810ca7660764d24631923f6f3",
+          "bytes": 197
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/inputs/42-gate-injected-approval-in-content.json",
+          "sha256": "6703e3b4164e50334ae51c19ab7fbd5bbb42496e05695c7365ab23ebb821f599",
+          "bytes": 255
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/taxonomy.json",
+          "sha256": "572aec75dc1042a2a80165c33f8fdf66cdaa07f54f7d122b9504adb080d26187",
+          "bytes": 9628
+        },
+        {
           "path": "tests/fixtures/terraform-maestro-routing/expected/001-happy-reviewer.json",
           "sha256": "31ee7bab6b6f34d3c693b309950784ef6d7201eb0694b5438eb195e45f568214",
           "bytes": 66
@@ -42768,8 +44398,8 @@
   "root_files": [
     {
       "path": "README.md",
-      "sha256": "e9d28a3f1cde606fd74d4e75ede7e7eaf29d0802152abbdb2eb49c19a327c2cd",
-      "bytes": 108091
+      "sha256": "dd7b48485deb459b6272a16ec9165aa6e5533fd84955e5a7816feecee39ff019",
+      "bytes": 108518
     },
     {
       "path": "SECURITY.md",
@@ -42817,5 +44447,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "70b2aa57bf16efe72cf0675fcbe2044a415f560369b8e2e549c5ddb6105903f8"
+  "aggregate_sha256": "a32e9d3bdfe7f74953649cbc3502348af72907b8a30cc13f909195ea5f068ee1"
 }

@@ -20,10 +20,12 @@
     "https://docs.snowflake.com/en/user-guide/oauth-azure",
     "https://docs.snowflake.com/en/user-guide/scim-azure"
   ],
-  "security_notes": "Use official Snowflake documentation for documented service behavior and sampled read-only evidence for observed state. Enforce least privilege, MFA, SoD between SECURITYADMIN and SYSADMIN, and require explicit approval before production-impacting role, grant, or policy changes.",
+  "security_notes": "Use official Snowflake documentation for documented service behavior and sampled read-only evidence for observed state. Enforce least privilege, MFA, SoD between SECURITYADMIN and SYSADMIN, and require explicit approval before production-impacting role, grant, or policy changes. DEPRECATED: Azure-scoped predecessor of the cloud-neutral Snowflake board; superseded by snowflake-identity-access-security-agent + snowflake-network-private-connectivity-agent. Retained installable for continuity and excluded from the maestro routing table so no mutation surface has two owners.",
   "last_verified": "2026-06-17",
   "path": "agents/snowflake/snowflake-rbac-access-governance-at-azure-agent",
-  "companion_skills": ["snowflake-rbac-access-governance-at-azure"],
+  "companion_skills": [
+    "snowflake-rbac-access-governance-at-azure"
+  ],
   "execution_tier": "static-review",
   "harness_variants": {
     "codex": "agents/snowflake/snowflake-rbac-access-governance-at-azure-agent/harnesses/codex.toml",
@@ -35,5 +37,6 @@
     "kiro-cli": "agents/snowflake/snowflake-rbac-access-governance-at-azure-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: VincentChuWaiChow",
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "lifecycle": "deprecated"
 }

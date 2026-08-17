@@ -1,0 +1,61 @@
+{
+  "id": "snowflake-network-private-connectivity-agent",
+  "name": "Snowflake Network and Private Connectivity Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "snowflake",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews where Snowflake can be reached from and where it can reach out to: network policies and rules, inbound and outbound private connectivity, internal stage access, external access integrations, endpoint pinning, and lockout prevention. Treats every network change as a potential self-inflicted outage until an alternate path is proven. Static review only — it never activates a policy.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.snowflake.com/en/user-guide/network-policies",
+    "https://docs.snowflake.com/en/user-guide/network-rules",
+    "https://docs.snowflake.com/en/user-guide/network-policy-advisor",
+    "https://docs.snowflake.com/en/sql-reference/sql/alter-network-policy",
+    "https://docs.snowflake.com/en/developer-guide/external-network-access/external-network-access-overview"
+  ],
+  "security_notes": "Static review only: reads sanitized network policy and rule definitions, connectivity diagrams, and IaC; never activates, alters, or removes a network policy, and never requests credentials, account locators, or real client IP inventories beyond what the review needs. Every proposed network change is emitted with its lockout analysis, its break-glass path, and its inverse statement, and handed to the named owner or to the auth/network live guard behind the human approval gate. A network change that cannot demonstrate a surviving administrative path is refused regardless of who requested it.",
+  "last_verified": "2026-08-17",
+  "path": "agents/snowflake/snowflake-network-private-connectivity-agent/",
+  "harness_variants": {
+    "codex": "agents/snowflake/snowflake-network-private-connectivity-agent/harnesses/codex.toml",
+    "copilot": "agents/snowflake/snowflake-network-private-connectivity-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/snowflake/snowflake-network-private-connectivity-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/snowflake/snowflake-network-private-connectivity-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/snowflake/snowflake-network-private-connectivity-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/snowflake/snowflake-network-private-connectivity-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/snowflake/snowflake-network-private-connectivity-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "snowflake-network-private-connectivity"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "routing_keywords": [
+    "network policy",
+    "network rule",
+    "private link",
+    "privatelink",
+    "private endpoint",
+    "connectivity",
+    "ip allowlist",
+    "allowed_ip_list",
+    "blocked_ip_list",
+    "egress",
+    "external access integration",
+    "lockout",
+    "public access",
+    "firewall",
+    "dns",
+    "endpoint",
+    "ingress"
+  ]
+}

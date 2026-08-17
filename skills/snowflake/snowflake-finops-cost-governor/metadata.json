@@ -1,0 +1,28 @@
+{
+  "id": "snowflake-finops-cost-governor",
+  "name": "snowflake-finops-cost-governor",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "snowflake",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Turns Snowflake consumption into accountable unit economics: warehouse, serverless, AI and storage spend, budgets versus resource monitors, query and tag attribution, chargeback and showback, idle compute, forecast, and anomaly investigation. Refuses to call a saving real until it is measured, normalized for volume, and sustained. Static review only — it never resizes, suspends, or sets a limit.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.snowflake.com/en/user-guide/cost-management-overview",
+    "https://docs.snowflake.com/en/user-guide/resource-monitors",
+    "https://docs.snowflake.com/en/user-guide/budgets",
+    "https://docs.snowflake.com/en/user-guide/cost-attributing",
+    "https://docs.snowflake.com/en/sql-reference/account-usage/query_attribution_history"
+  ],
+  "security_notes": "Static review only: reads sanitized ACCOUNT_USAGE and ORGANIZATION_USAGE cost extracts; never creates or alters a resource monitor or budget, never resizes or suspends a warehouse, and never requests credentials, contract terms, or customer data. Cost optimizations that would reduce availability, latency SLO, recovery capability, security posture, data freshness, or delivery throughput are refused rather than proposed with a caveat. Currency figures are labelled ESTIMATE with a stated method; the reasoning unit is credits, because rate cards are commercial facts this agent does not hold.",
+  "last_verified": "2026-08-17",
+  "path": "skills/snowflake/snowflake-finops-cost-governor",
+  "author": "github: VincentChuWaiChow"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "snowflake-devops-iac-release",
+  "name": "snowflake-devops-iac-release",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "snowflake",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews how Snowflake changes are made reproducible and reviewable: the official Snowflake Terraform provider and its preview-versus-stable resource split, provider versioning and migration guides, Snowflake CLI, CI/CD and environment promotion, drift remediation, behaviour-change bundles, release-note monitoring, and rollout and rollback strategy. Treats platform GA and provider stability as independent facts. Static review only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://registry.terraform.io/providers/snowflakedb/snowflake/latest/docs",
+    "https://github.com/snowflakedb/terraform-provider-snowflake",
+    "https://docs.snowflake.com/en/developer-guide/snowflake-cli/index",
+    "https://docs.snowflake.com/en/release-notes/overview",
+    "https://docs.snowflake.com/en/release-notes/behavior-changes"
+  ],
+  "security_notes": "Static review only: reads sanitized Terraform configuration, plan output, CI/CD workflow definitions, and CLI usage; never runs apply, never executes a deployment, and never requests credentials, provider tokens, or state files. State files and plan output can contain sensitive values and are never requested in raw form. The deployment identity is treated as the highest-value credential in the estate — an IaC service principal with account-wide privilege is a fleet-wide blast radius and is escalated as a security finding, not accepted as a convenience.",
+  "last_verified": "2026-08-17",
+  "path": "skills/snowflake/snowflake-devops-iac-release",
+  "author": "github: VincentChuWaiChow"
+}

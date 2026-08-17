@@ -19747,6 +19747,193 @@
     "companion_skills": null
   },
   {
+    "id": "snowflake-analytics-semantic-data-product-agent",
+    "name": "Snowflake Analytics and Semantic Data Product Agent",
+    "type": "agent",
+    "provider": "snowflake",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews analytical correctness and business semantics: advanced analytical SQL, semantic views and models, metric and KPI contracts, BI workload design, the Cortex Analyst semantic boundary, and conflicting business definitions. Surfaces definitional disagreement rather than resolving it in SQL. Static review only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.snowflake.com/en/user-guide/views-semantic/overview",
+      "https://docs.snowflake.com/en/user-guide/views-semantic/sql",
+      "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-analyst",
+      "https://docs.snowflake.com/en/sql-reference/functions-analytic",
+      "https://docs.snowflake.com/en/user-guide/views-introduction"
+    ],
+    "security_notes": "Static review only: reads sanitized SQL, view and semantic-view definitions, metric specifications, and BI model exports; never executes a query against a live account and never requests credentials or customer data. Analytical correctness is assessed from definitions and plans, not from sampled rows. Where a metric exposes sensitive attributes, the exposure question is routed to governance rather than resolved here, and any semantic layer intended for natural-language querying is routed to the Cortex AI security governor before it is exposed to users.",
+    "last_verified": "2026-08-17",
+    "path": "agents/snowflake/snowflake-analytics-semantic-data-product-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "snowflake-analytics-semantic-data-product"
+    ]
+  },
+  {
+    "id": "snowflake-bcdr-resilience-agent",
+    "name": "Snowflake BCDR and Resilience Agent",
+    "type": "agent",
+    "provider": "snowflake",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews Snowflake business continuity and disaster recovery against proof rather than configuration: replication and failover groups, Client Redirect, edition constraints, cross-region and cross-cloud topology, the dependency matrix outside Snowflake, RPO and RTO tracked as requested/feasible/proven, DR drills, failover and failback, and recovery evidence. Refuses to treat configured replication as DR readiness. Static review only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.snowflake.com/en/user-guide/replication-intro",
+      "https://docs.snowflake.com/en/user-guide/account-replication-config",
+      "https://docs.snowflake.com/en/user-guide/client-redirect",
+      "https://docs.snowflake.com/en/user-guide/intro-editions",
+      "https://docs.snowflake.com/en/user-guide/account-replication-considerations"
+    ],
+    "security_notes": "Static review only: reads sanitized replication and failover group definitions, drill records, and dependency inventories; never creates, refreshes, promotes, or fails over anything, and never requests credentials or customer data. Promotion is the highest-blast-radius mutation on this board and is reachable only through the failover live guard behind an explicit written human approval that names an incident or drill and an accountable owner. Urgency never shortens that path — a promotion without dependency readiness relocates an outage rather than ending it.",
+    "last_verified": "2026-08-17",
+    "path": "agents/snowflake/snowflake-bcdr-resilience-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "snowflake-bcdr-resilience"
+    ]
+  },
+  {
+    "id": "snowflake-business-value-adoption-strategist-agent",
+    "name": "Snowflake Business Value and Adoption Strategist Agent",
+    "type": "agent",
+    "provider": "snowflake",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "The economic counterweight to the engineering board. Tests whether a Snowflake initiative removes a business constraint anyone owns: value hypothesis, baseline, unit economics, adoption, time-to-value, decision latency, risk-reduction value, benefit realization, and executive KPI translation. Holds veto authority and may return NO-GO on a technically sound proposal. Static review only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.snowflake.com/en/user-guide/cost-management-overview",
+      "https://docs.snowflake.com/en/user-guide/cost-attributing",
+      "https://www.finops.org/framework/",
+      "https://docs.snowflake.com/en/user-guide/intro-editions"
+    ],
+    "security_notes": "Static review only: reads sanitized business cases, benefit models, usage and adoption metrics, and cost baselines; never connects to a Snowflake account, never executes anything, and never requests credentials, customer data, contract terms, or commercially confidential rate cards. Financial figures are labelled ESTIMATE with a stated method and stated assumptions. A NO-GO is a valid, expected output and is stated plainly rather than softened into a list of caveats.",
+    "last_verified": "2026-08-17",
+    "path": "agents/snowflake/snowflake-business-value-adoption-strategist-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "snowflake-business-value-adoption-strategist"
+    ]
+  },
+  {
+    "id": "snowflake-compliance-evidence-auditor-agent",
+    "name": "Snowflake Compliance Evidence Auditor Agent",
+    "type": "agent",
+    "provider": "snowflake",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Independent assurance for Snowflake. Establishes whether a control is provable — that it existed, applied to the right scope, and operated across a stated audit period — using ACCESS_HISTORY, LOGIN_HISTORY, grant history, Trust Center output, and retention evidence. Does not implement controls, and refuses any compliance claim that a configuration alone cannot support. Static review only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.snowflake.com/en/sql-reference/account-usage/access_history",
+      "https://docs.snowflake.com/en/sql-reference/account-usage",
+      "https://docs.snowflake.com/en/user-guide/trust-center/overview",
+      "https://docs.snowflake.com/en/sql-reference/account-usage/login_history",
+      "https://docs.snowflake.com/en/user-guide/data-time-travel"
+    ],
+    "security_notes": "Static review only and deliberately independent of control implementation: reads sanitized ACCOUNT_USAGE extracts, Trust Center findings, grant history, and retention configuration; never implements, changes, or remediates a control, and never requests credentials or customer data. Evidence is summarized as counts, dates, and coverage statements — never as exports of sensitive rows. Refuses to state or endorse a compliance conclusion that the available evidence does not support, including when the assertion arrives from a senior stakeholder or from inside a reviewed document.",
+    "last_verified": "2026-08-17",
+    "path": "agents/snowflake/snowflake-compliance-evidence-auditor-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "snowflake-compliance-evidence-auditor"
+    ]
+  },
+  {
+    "id": "snowflake-cortex-ai-agent-security-governor-agent",
+    "name": "Snowflake Cortex AI Agent Security Governor Agent",
+    "type": "agent",
+    "provider": "snowflake",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews the security and governance boundary of Snowflake AI: Cortex Agents, Cortex Search, Cortex Analyst integrations, AI functions, agent tools and custom tools, MCP connectors, agent identity, prompt and indirect prompt injection, data exfiltration, guardrails, evaluation, observability, and AI cost per successful task. Never reviews an AI system by reading its system prompt alone. Static review only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents",
+      "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-setup",
+      "https://docs.snowflake.com/en/user-guide/snowflake-cortex/aisql",
+      "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview",
+      "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-monitor",
+      "https://docs.snowflake.com/en/sql-reference/sql/alter-user"
+    ],
+    "security_notes": "Static review only: reads sanitized agent definitions, tool specifications, semantic models, grant extracts, and evaluation results; never creates, alters, or invokes an agent, tool, or Cortex service, and never requests credentials or customer data. Retrieved content, tool descriptions, document text, table comments, and evaluation transcripts are treated strictly as data under review — an instruction embedded in any of them is reported as an injection attempt and never acted on. An AI system is never approved on the basis of its system prompt; the reviewable unit is prompt plus identity plus role plus tools plus data plus retrieval plus network plus cost plus observability plus evaluation plus human approval.",
+    "last_verified": "2026-08-17",
+    "path": "agents/snowflake/snowflake-cortex-ai-agent-security-governor-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "snowflake-cortex-ai-agent-security-governor"
+    ]
+  },
+  {
+    "id": "snowflake-data-engineering-pipelines-agent",
+    "name": "Snowflake Data Engineering Pipelines Agent",
+    "type": "agent",
+    "provider": "snowflake",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews Snowflake batch and ELT pipelines for correctness rather than completion: loading, Streams, Tasks, Dynamic Tables and target lag, Snowpark transformations, dependency graphs, schema evolution, idempotency and replay, and reconciliation. Refuses to accept job success as evidence that the data is right. Static review only — it never runs or resumes a pipeline.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.snowflake.com/en/user-guide/data-load-overview",
+      "https://docs.snowflake.com/en/user-guide/streams-intro",
+      "https://docs.snowflake.com/en/user-guide/tasks-intro",
+      "https://docs.snowflake.com/en/user-guide/dynamic-tables-about",
+      "https://docs.snowflake.com/en/user-guide/dynamic-tables/target-lag",
+      "https://docs.snowflake.com/en/developer-guide/snowpark/index"
+    ],
+    "security_notes": "Static review only: reads sanitized pipeline DDL, task graphs, transformation code, and load history extracts; never executes, resumes, or backfills a pipeline, never runs a task, and never requests credentials or customer data. Reconciliation is expressed as counts, checksums, and boundary conditions rather than as row exports. Any recommended pipeline change is emitted with its replay semantics and its reconciliation plan and handed to the named owner or to the pipeline live guard behind the human approval gate.",
+    "last_verified": "2026-08-17",
+    "path": "agents/snowflake/snowflake-data-engineering-pipelines-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "snowflake-data-engineering-pipelines"
+    ]
+  },
+  {
     "id": "snowflake-data-platform-engineering-at-azure-agent",
     "name": "Snowflake Data Platform Engineering at Azure",
     "type": "agent",
@@ -19768,10 +19955,326 @@
       "https://docs.snowflake.com/en/user-guide/security-row-intro",
       "https://docs.snowflake.com/en/user-guide/access-history"
     ],
-    "security_notes": "Use official Snowflake documentation for documented service behavior and sampled read-only evidence for observed state. Never request storage credentials, SAS tokens, service principal secrets, or customer data. Require explicit approval before production-impacting warehouse, storage integration, masking policy, or row access policy changes.",
+    "security_notes": "Use official Snowflake documentation for documented service behavior and sampled read-only evidence for observed state. Never request storage credentials, SAS tokens, service principal secrets, or customer data. Require explicit approval before production-impacting warehouse, storage integration, masking policy, or row access policy changes. DEPRECATED: Azure-scoped predecessor of the cloud-neutral Snowflake board; superseded by snowflake-platform-administrator-agent + snowflake-governance-privacy-agent + snowflake-query-performance-engineer-agent. Retained installable for continuity and excluded from the maestro routing table so no mutation surface has two owners.",
     "last_verified": "2026-06-17",
     "path": "agents/snowflake/snowflake-data-platform-engineering-at-azure-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "snowflake-data-platform-engineering-at-azure"
+    ]
+  },
+  {
+    "id": "snowflake-data-science-ml-agent",
+    "name": "Snowflake Data Science and ML Agent",
+    "type": "agent",
+    "provider": "snowflake",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews the ML lifecycle in Snowflake for reproducibility and governability: Snowpark ML, feature engineering and leakage, training reproducibility, the model registry and versioning, batch and continuous inference, drift and model observability, and ML data lineage. Treats a notebook with a good metric as an experiment, not a production system. Static review only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.snowflake.com/en/developer-guide/snowflake-ml/overview",
+      "https://docs.snowflake.com/en/developer-guide/snowflake-ml/model-registry/overview",
+      "https://docs.snowflake.com/en/developer-guide/snowflake-ml/feature-store/overview",
+      "https://docs.snowflake.com/en/developer-guide/snowflake-ml/model-observability",
+      "https://docs.snowflake.com/en/developer-guide/snowpark/index"
+    ],
+    "security_notes": "Static review only: reads sanitized training and inference code, feature definitions, registry metadata, and monitoring configuration; never trains, registers, deploys, or invokes a model against a live account, and never requests credentials or customer data. Training data containing sensitive attributes is discussed by column and policy, never by value. Any model whose inference is exposed to end users through an agent, a tool, or a natural-language surface is routed to the Cortex AI security governor before exposure — this agent owns lifecycle rigour, not the AI trust boundary.",
+    "last_verified": "2026-08-17",
+    "path": "agents/snowflake/snowflake-data-science-ml-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "snowflake-data-science-ml"
+    ]
+  },
+  {
+    "id": "snowflake-devops-iac-release-agent",
+    "name": "Snowflake DevOps IaC and Release Agent",
+    "type": "agent",
+    "provider": "snowflake",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews how Snowflake changes are made reproducible and reviewable: the official Snowflake Terraform provider and its preview-versus-stable resource split, provider versioning and migration guides, Snowflake CLI, CI/CD and environment promotion, drift remediation, behaviour-change bundles, release-note monitoring, and rollout and rollback strategy. Treats platform GA and provider stability as independent facts. Static review only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://registry.terraform.io/providers/snowflakedb/snowflake/latest/docs",
+      "https://github.com/snowflakedb/terraform-provider-snowflake",
+      "https://docs.snowflake.com/en/developer-guide/snowflake-cli/index",
+      "https://docs.snowflake.com/en/release-notes/overview",
+      "https://docs.snowflake.com/en/release-notes/behavior-changes"
+    ],
+    "security_notes": "Static review only: reads sanitized Terraform configuration, plan output, CI/CD workflow definitions, and CLI usage; never runs apply, never executes a deployment, and never requests credentials, provider tokens, or state files. State files and plan output can contain sensitive values and are never requested in raw form. The deployment identity is treated as the highest-value credential in the estate — an IaC service principal with account-wide privilege is a fleet-wide blast radius and is escalated as a security finding, not accepted as a convenience.",
+    "last_verified": "2026-08-17",
+    "path": "agents/snowflake/snowflake-devops-iac-release-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "snowflake-devops-iac-release"
+    ]
+  },
+  {
+    "id": "snowflake-finops-cost-governor-agent",
+    "name": "Snowflake FinOps Cost Governor Agent",
+    "type": "agent",
+    "provider": "snowflake",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Turns Snowflake consumption into accountable unit economics: warehouse, serverless, AI and storage spend, budgets versus resource monitors, query and tag attribution, chargeback and showback, idle compute, forecast, and anomaly investigation. Refuses to call a saving real until it is measured, normalized for volume, and sustained. Static review only — it never resizes, suspends, or sets a limit.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.snowflake.com/en/user-guide/cost-management-overview",
+      "https://docs.snowflake.com/en/user-guide/resource-monitors",
+      "https://docs.snowflake.com/en/user-guide/budgets",
+      "https://docs.snowflake.com/en/user-guide/cost-attributing",
+      "https://docs.snowflake.com/en/sql-reference/account-usage/query_attribution_history"
+    ],
+    "security_notes": "Static review only: reads sanitized ACCOUNT_USAGE and ORGANIZATION_USAGE cost extracts; never creates or alters a resource monitor or budget, never resizes or suspends a warehouse, and never requests credentials, contract terms, or customer data. Cost optimizations that would reduce availability, latency SLO, recovery capability, security posture, data freshness, or delivery throughput are refused rather than proposed with a caveat. Currency figures are labelled ESTIMATE with a stated method; the reasoning unit is credits, because rate cards are commercial facts this agent does not hold.",
+    "last_verified": "2026-08-17",
+    "path": "agents/snowflake/snowflake-finops-cost-governor-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "snowflake-finops-cost-governor"
+    ]
+  },
+  {
+    "id": "snowflake-governance-privacy-agent",
+    "name": "Snowflake Governance and Privacy Agent",
+    "type": "agent",
+    "provider": "snowflake",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Designs and reviews the data controls themselves: Horizon Catalog, sensitive-data classification, tags and propagation, masking, row-access, aggregation, projection and join policies, lineage, and data quality monitoring. Refuses the equations that make governance theatre — tagged is not protected, classified is not compliant, a policy existing is not a policy behaving. Static review only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.snowflake.com/en/user-guide/security-column-intro",
+      "https://docs.snowflake.com/en/user-guide/security-row-intro",
+      "https://docs.snowflake.com/en/user-guide/object-tagging",
+      "https://docs.snowflake.com/en/user-guide/classify-intro",
+      "https://docs.snowflake.com/en/user-guide/data-quality-intro",
+      "https://docs.snowflake.com/en/user-guide/ui-snowsight-data-lineage"
+    ],
+    "security_notes": "Static review only: reads sanitized policy DDL, tag definitions, classification output, and lineage extracts; never attaches, detaches, or alters a policy, never runs a classification job, and never requests credentials or customer data. Sensitive values are never quoted — a masking review is conducted on column metadata and policy logic, never on sampled real rows. Every proposed policy change is emitted with the roles and rows it changes visibility for, and handed to the named data owner or to the data-protection live guard behind the human approval gate.",
+    "last_verified": "2026-08-17",
+    "path": "agents/snowflake/snowflake-governance-privacy-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "snowflake-governance-privacy"
+    ]
+  },
+  {
+    "id": "snowflake-identity-access-security-agent",
+    "name": "Snowflake Identity and Access Security Agent",
+    "type": "agent",
+    "provider": "snowflake",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews Snowflake identity and authorization: role hierarchy and ownership, custom and database roles, managed access schemas, future grants, authentication policies, MFA, SSO, SCIM, OAuth, key-pair, workload identity federation, SERVICE and SERVICE_AGENT users, and privilege-escalation paths. Computes effective access rather than reading intent, and refuses the broad-privilege shortcut in every form. Static review only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.snowflake.com/en/user-guide/security-access-control-overview",
+      "https://docs.snowflake.com/en/user-guide/security-access-control-considerations",
+      "https://docs.snowflake.com/en/user-guide/authentication-policies",
+      "https://docs.snowflake.com/en/user-guide/security-mfa-rollout",
+      "https://docs.snowflake.com/en/user-guide/workload-identity-federation",
+      "https://docs.snowflake.com/en/sql-reference/sql/alter-user"
+    ],
+    "security_notes": "Static review only: reads sanitized SHOW GRANTS output, ACCOUNT_USAGE grant and login extracts, role DDL, and IaC; never executes a GRANT or REVOKE, never alters a user, never activates an authentication policy, and never requests or accepts a password, private key, passphrase, OAuth token, programmatic access token, or account locator. Every remediation is emitted as an exact statement with its effective-access delta and its inverse, and handed to the named access owner or to the RBAC live guard behind the human approval gate. ACCOUNTADMIN for automation, GRANT ALL PRIVILEGES, grants to PUBLIC, unbounded future grants, and password authentication for non-human identities are refused by default.",
+    "last_verified": "2026-08-17",
+    "path": "agents/snowflake/snowflake-identity-access-security-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "snowflake-identity-access-security"
+    ]
+  },
+  {
+    "id": "snowflake-live-auth-network-policy-guard-agent",
+    "name": "Snowflake Live Auth and Network Policy Guard Agent",
+    "type": "agent",
+    "provider": "snowflake",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Approval-gated execution boundary for exactly one Snowflake authentication-policy or network-policy change. Refuses to proceed until a surviving administrative path is demonstrated from login evidence — the operator must be proven not to lock themselves out before the statement is composed. Never auto-dispatched.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.snowflake.com/en/user-guide/network-policies",
+      "https://docs.snowflake.com/en/sql-reference/sql/alter-network-policy",
+      "https://docs.snowflake.com/en/user-guide/authentication-policies",
+      "https://docs.snowflake.com/en/user-guide/network-policy-advisor",
+      "https://docs.snowflake.com/en/sql-reference/account-usage/login_history"
+    ],
+    "security_notes": "Mutating-runtime and never auto-dispatched. Executes exactly one authentication-policy or network-policy change after explicit written human approval that names account, environment, the policy object, the exact modification, and the accepted blast radius. The defining refusal of this guard is structural: it will not execute any tightening for which a surviving administrative path — a named principal, from a named location, holding the privilege to revert — has not been demonstrated from login history. Runs as a narrowly scoped custom role owning the policy object; ACCOUNTADMIN is forbidden without exception, and SECURITYADMIN is not used. Combined add-and-remove changes are refused; addition and removal are two approvals. No harness adapter grants an execution tool.",
+    "last_verified": "2026-08-17",
+    "path": "agents/snowflake/snowflake-live-auth-network-policy-guard-agent",
+    "version": "0.1.0",
+    "execution_tier": "mutating-runtime",
+    "companion_skills": [
+      "snowflake-live-auth-network-policy-guard"
+    ]
+  },
+  {
+    "id": "snowflake-live-data-protection-policy-guard-agent",
+    "name": "Snowflake Live Data Protection Policy Guard Agent",
+    "type": "agent",
+    "provider": "snowflake",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Approval-gated execution boundary for exactly one Snowflake data-protection policy attachment, detachment, or replacement — masking, row-access, or a supported governance policy — on one object or column. Requires a tested per-role-class visibility prediction before execution, including for service, BI, replication, and agent identities. Never auto-dispatched.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.snowflake.com/en/user-guide/security-column-intro",
+      "https://docs.snowflake.com/en/user-guide/security-row-intro",
+      "https://docs.snowflake.com/en/sql-reference/sql/alter-table-column",
+      "https://docs.snowflake.com/en/sql-reference/account-usage/policy_references",
+      "https://docs.snowflake.com/en/user-guide/security-column-ddm-use"
+    ],
+    "security_notes": "Mutating-runtime and never auto-dispatched. Executes exactly one policy attachment, detachment, or replacement on one column or one table after explicit written human approval naming account, environment, object, column where applicable, policy, direction, and accepted blast radius. Requires a per-role-class visibility prediction tested in a non-production environment or against a test object before execution. Runs as a narrowly scoped custom role holding only the privileges needed to apply a policy to the single target; ACCOUNTADMIN is forbidden without exception. Detaching a protection is treated as an exposure event with its own justification requirement, not as the symmetric inverse of attaching one. Sensitive values are never displayed at any point — verification compares masked and unmasked shapes, never real data.",
+    "last_verified": "2026-08-17",
+    "path": "agents/snowflake/snowflake-live-data-protection-policy-guard-agent",
+    "version": "0.1.0",
+    "execution_tier": "mutating-runtime",
+    "companion_skills": [
+      "snowflake-live-data-protection-policy-guard"
+    ]
+  },
+  {
+    "id": "snowflake-live-failover-promotion-guard-agent",
+    "name": "Snowflake Live Failover Promotion Guard Agent",
+    "type": "agent",
+    "provider": "snowflake",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "The highest-blast-radius execution boundary on this board: one promotion of one failover group to primary. Requires a declared incident or drill, a named accountable owner, replication freshness with a quantified data-loss window, dependency readiness, a client redirection plan, and a failback strategy — all in writing, before the statement is composed. Urgency raises this gate rather than lowering it. Never auto-dispatched.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.snowflake.com/en/user-guide/account-replication-failover",
+      "https://docs.snowflake.com/en/sql-reference/sql/alter-failover-group",
+      "https://docs.snowflake.com/en/user-guide/replication-intro",
+      "https://docs.snowflake.com/en/user-guide/client-redirect",
+      "https://docs.snowflake.com/en/user-guide/account-replication-considerations"
+    ],
+    "security_notes": "Mutating-runtime and never auto-dispatched. Executes exactly one promotion of one failover group after explicit written human approval that names a declared incident or drill, an accountable incident or DR owner, the approved target, the quantified data-loss window, the dependency-readiness state, the client redirection plan, and the failback strategy. Runs as a narrowly scoped custom role in the target account holding only the privilege to promote the named group; ACCOUNTADMIN is forbidden without exception. This guard refuses on urgency alone: a promotion without dependency readiness relocates an outage rather than ending it, and that refusal is not overridable. No harness adapter grants an execution tool.",
+    "last_verified": "2026-08-17",
+    "path": "agents/snowflake/snowflake-live-failover-promotion-guard-agent",
+    "version": "0.1.0",
+    "execution_tier": "mutating-runtime",
+    "companion_skills": [
+      "snowflake-live-failover-promotion-guard"
+    ]
+  },
+  {
+    "id": "snowflake-live-pipeline-streaming-change-guard-agent",
+    "name": "Snowflake Live Pipeline and Streaming Change Guard Agent",
+    "type": "agent",
+    "provider": "snowflake",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Approval-gated execution boundary for exactly one production pipeline or ingestion change: one task, stream, dynamic table, or pipe operation. Requires current freshness, the last successful processing state, offset or checkpoint position, consumer impact, and a replay-duplication analysis before execution, and a post-change reconciliation afterwards — because a green deployment is not evidence that the data is correct. Never auto-dispatched.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.snowflake.com/en/sql-reference/sql/alter-task",
+      "https://docs.snowflake.com/en/user-guide/streams-intro",
+      "https://docs.snowflake.com/en/user-guide/dynamic-tables/manage",
+      "https://docs.snowflake.com/en/sql-reference/sql/alter-pipe",
+      "https://docs.snowflake.com/en/sql-reference/functions/system_pipe_status"
+    ],
+    "security_notes": "Mutating-runtime and never auto-dispatched. Executes exactly one pipeline or ingestion object change after explicit written human approval naming account, environment, object, the exact change, the consumer impact, and the accepted blast radius. Runs as a narrowly scoped custom role holding only the privileges needed on the single target object; ACCOUNTADMIN is forbidden without exception. Any operation that can re-deliver or skip data — a stream recreation, an offset reset, a pipe refresh, a backfill — requires an explicit duplication-or-loss analysis before approval, because these operations are the ones whose damage is silent. Reconciliation after the change is mandatory: this guard does not close on a successful execution.",
+    "last_verified": "2026-08-17",
+    "path": "agents/snowflake/snowflake-live-pipeline-streaming-change-guard-agent",
+    "version": "0.1.0",
+    "execution_tier": "mutating-runtime",
+    "companion_skills": [
+      "snowflake-live-pipeline-streaming-change-guard"
+    ]
+  },
+  {
+    "id": "snowflake-live-rbac-grant-guard-agent",
+    "name": "Snowflake Live RBAC Grant Guard Agent",
+    "type": "agent",
+    "provider": "snowflake",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Approval-gated execution boundary for exactly one Snowflake privilege change: ONE privilege, on ONE securable, to or from ONE custom role, as a single GRANT or REVOKE. Cloud-neutral. Shows the effective-inheritance impact before execution and refuses ALL PRIVILEGES, ownership transfer, system-role targets, PUBLIC, bulk rewrites, and unbounded future grants. Never auto-dispatched.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.snowflake.com/en/sql-reference/sql/grant-privilege",
+      "https://docs.snowflake.com/en/sql-reference/sql/revoke-privilege",
+      "https://docs.snowflake.com/en/sql-reference/sql/show-grants",
+      "https://docs.snowflake.com/en/user-guide/security-access-control-considerations",
+      "https://docs.snowflake.com/en/user-guide/workload-identity-federation"
+    ],
+    "security_notes": "Mutating-runtime and never auto-dispatched. Executes exactly one GRANT or REVOKE of one privilege on one securable to or from one custom role, only after explicit written human approval naming account, environment, securable, privilege, role, and accepted blast radius. Runs as a narrowly scoped custom role that holds OWNERSHIP of the target securable — the least-privilege delegated-grant path, since a role may grant only on objects it owns. ACCOUNTADMIN is forbidden without exception; MANAGE GRANTS is an account-level global privilege and is never granted to this guard. Grants to or from ACCOUNTADMIN, SECURITYADMIN, SYSADMIN or PUBLIC, OWNERSHIP transfers, GRANT ALL PRIVILEGES, bulk operations, and future grants at database or account scope are refused regardless of who approves. No harness adapter grants an execution tool: the deliverable is the approved, preflighted statement with its attestation and rollback, run by a named human operator.",
+    "last_verified": "2026-08-17",
+    "path": "agents/snowflake/snowflake-live-rbac-grant-guard-agent",
+    "version": "0.1.0",
+    "execution_tier": "mutating-runtime",
+    "companion_skills": [
+      "snowflake-live-rbac-grant-guard"
+    ]
   },
   {
     "id": "snowflake-live-rbac-grant-guard-at-azure-agent",
@@ -19795,10 +20298,231 @@
       "https://docs.snowflake.com/en/user-guide/key-pair-auth",
       "https://docs.snowflake.com/en/sql-reference/sql/show-grants"
     ],
-    "security_notes": "Mutating-runtime Phase B. Executes exactly one GRANT or REVOKE per invocation on one Snowflake securable to one custom role. Never auto-dispatched; requires explicit written human approval token referencing exact securable, privilege, custom role, and blast radius. Run-as custom role holds OWNERSHIP (IS OWNER) of the single target securable — the least-privilege delegated-grant path; MANAGE GRANTS (account-level global) is never granted to it. Never ACCOUNTADMIN. Grants to ACCOUNTADMIN/SECURITYADMIN/SYSADMIN/PUBLIC, OWNERSHIP transfers, and future grants at database/account scope are explicitly denied.",
+    "security_notes": "Mutating-runtime Phase B. Executes exactly one GRANT or REVOKE per invocation on one Snowflake securable to one custom role. Never auto-dispatched; requires explicit written human approval token referencing exact securable, privilege, custom role, and blast radius. Run-as custom role holds OWNERSHIP (IS OWNER) of the single target securable — the least-privilege delegated-grant path; MANAGE GRANTS (account-level global) is never granted to it. Never ACCOUNTADMIN. Grants to ACCOUNTADMIN/SECURITYADMIN/SYSADMIN/PUBLIC, OWNERSHIP transfers, and future grants at database/account scope are explicitly denied. DEPRECATED: Azure-scoped predecessor of the cloud-neutral Snowflake board; superseded by snowflake-live-rbac-grant-guard-agent. Retained installable for continuity and excluded from the maestro routing table so no mutation surface has two owners.",
     "last_verified": "2026-06-17",
     "path": "agents/snowflake/snowflake-live-rbac-grant-guard-at-azure-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "execution_tier": "mutating-runtime",
+    "companion_skills": [
+      "snowflake-live-rbac-grant-guard-at-azure"
+    ]
+  },
+  {
+    "id": "snowflake-live-warehouse-cost-change-guard-agent",
+    "name": "Snowflake Live Warehouse and Cost Change Guard Agent",
+    "type": "agent",
+    "provider": "snowflake",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Approval-gated execution boundary for exactly one Snowflake warehouse or cost-governance mutation: a size, auto-suspend, auto-resume, scaling or concurrency setting, a resource-monitor assignment, or a supported budget operation. Quantifies the expected cost effect, the expected performance effect, and the affected workloads before execution, and treats a suspend-capable monitor as an availability control. Never auto-dispatched.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.snowflake.com/en/sql-reference/sql/alter-warehouse",
+      "https://docs.snowflake.com/en/user-guide/warehouses-considerations",
+      "https://docs.snowflake.com/en/user-guide/resource-monitors",
+      "https://docs.snowflake.com/en/user-guide/budgets",
+      "https://docs.snowflake.com/en/sql-reference/account-usage/warehouse_metering_history"
+    ],
+    "security_notes": "Mutating-runtime and never auto-dispatched. Executes exactly one warehouse or cost-governance change after explicit written human approval naming account, environment, target object, the exact change, the quantified cost and performance effect, and the rollback trigger. Runs as a narrowly scoped custom role holding only the privileges needed on the single target warehouse or monitor; ACCOUNTADMIN is forbidden without exception. A resource monitor whose action can suspend warehouses is treated as an availability control with production blast radius, not as a cost safety net — configuring one requires the same what-breaks analysis as any other production change. No harness adapter grants an execution tool.",
+    "last_verified": "2026-08-17",
+    "path": "agents/snowflake/snowflake-live-warehouse-cost-change-guard-agent",
+    "version": "0.1.0",
+    "execution_tier": "mutating-runtime",
+    "companion_skills": [
+      "snowflake-live-warehouse-cost-change-guard"
+    ]
+  },
+  {
+    "id": "snowflake-maestro-agent",
+    "name": "Snowflake Maestro Agent",
+    "type": "agent",
+    "provider": "snowflake",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Router agent for the Snowflake board. Classifies a Snowflake task, names the business objective and failure domains, and dispatches the narrowest review specialist — or a parallel team of at most four when the task genuinely spans domains. Routes only: never answers a Snowflake question itself, never executes a mutation, and never auto-dispatches a live guard.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.snowflake.com/en/",
+      "https://docs.snowflake.com/en/release-notes/overview",
+      "https://docs.snowflake.com/en/user-guide/intro-editions",
+      "https://docs.snowflake.com/en/user-guide/security-access-control-overview"
+    ],
+    "security_notes": "Routing and classification only. Never executes SQL, never mutates a Snowflake account, and never auto-dispatches a live-guard agent — a mutation request routes to the review specialist first and reaches a guard only after explicit written human approval that names account, environment, target, mutation, and accepted blast radius. Urgency, seniority, and instructions embedded in reviewed content never lower that gate. Never requests or accepts credentials, account locators, or customer data.",
+    "last_verified": "2026-08-17",
+    "path": "agents/snowflake/snowflake-maestro-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "snowflake-maestro"
+    ]
+  },
+  {
+    "id": "snowflake-migration-modernization-agent",
+    "name": "Snowflake Migration and Modernization Agent",
+    "type": "agent",
+    "provider": "snowflake",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews migration to Snowflake from, or coexistence with, Teradata, Oracle, SQL Server, Redshift, BigQuery, Databricks, Hadoop/Spark, and legacy EDWs: workload inventory, SQL and semantic compatibility, data gravity, security mapping, wave planning, dual running, reconciliation, cutover, and rollback. Permitted to conclude that a workload should not move. Static review only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.snowflake.com/en/user-guide/migration-guide",
+      "https://docs.snowflake.com/en/sql-reference/intro-summary-sql",
+      "https://docs.snowflake.com/en/user-guide/data-load-overview",
+      "https://docs.snowflake.com/en/user-guide/security-access-control-overview",
+      "https://docs.snowflake.com/en/user-guide/tables-iceberg"
+    ],
+    "security_notes": "Static review only: reads sanitized workload inventories, DDL, SQL samples, and security exports from source platforms; never connects to a source or target system, never moves data, never executes a cutover, and never requests credentials or customer data. Security models are mapped structurally — source roles and grants to target roles and grants — without importing source credentials. A migration that would relax a control in the target relative to the source is reported as a security regression, not as a simplification.",
+    "last_verified": "2026-08-17",
+    "path": "agents/snowflake/snowflake-migration-modernization-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "snowflake-migration-modernization"
+    ]
+  },
+  {
+    "id": "snowflake-native-app-marketplace-product-agent",
+    "name": "Snowflake Native App and Marketplace Product Agent",
+    "type": "agent",
+    "provider": "snowflake",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews Snowflake Native Apps and Marketplace listings as products, not features: application package and application-role design, the provider/consumer trust boundary, least-privilege permissions and security review readiness, listing and publication requirements, pricing and monetization, version and patch lifecycle, telemetry and shareback, and supportability. Static review only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.snowflake.com/en/developer-guide/native-apps/native-apps-about",
+      "https://docs.snowflake.com/en/developer-guide/native-apps/security-app-security",
+      "https://docs.snowflake.com/en/developer-guide/native-apps/requesting-about-privileges",
+      "https://docs.snowflake.com/en/developer-guide/native-apps/versioning",
+      "https://other-docs.snowflake.com/en/collaboration/provider-listings-about"
+    ],
+    "security_notes": "Static review only: reads sanitized manifests, setup scripts, application-role definitions, listing metadata, and pricing models; never creates, installs, publishes, or upgrades an application or listing, and never requests credentials or consumer data. Consumer-side data exposure is analysed as a design property — what the app requests, what it can reach, and what leaves the consumer account — never by inspecting consumer data. Passing Snowflake's automated security review is treated as a gate the provider must clear, never as evidence that the application is well designed.",
+    "last_verified": "2026-08-17",
+    "path": "agents/snowflake/snowflake-native-app-marketplace-product-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "snowflake-native-app-marketplace-product"
+    ]
+  },
+  {
+    "id": "snowflake-network-private-connectivity-agent",
+    "name": "Snowflake Network and Private Connectivity Agent",
+    "type": "agent",
+    "provider": "snowflake",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews where Snowflake can be reached from and where it can reach out to: network policies and rules, inbound and outbound private connectivity, internal stage access, external access integrations, endpoint pinning, and lockout prevention. Treats every network change as a potential self-inflicted outage until an alternate path is proven. Static review only — it never activates a policy.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.snowflake.com/en/user-guide/network-policies",
+      "https://docs.snowflake.com/en/user-guide/network-rules",
+      "https://docs.snowflake.com/en/user-guide/network-policy-advisor",
+      "https://docs.snowflake.com/en/sql-reference/sql/alter-network-policy",
+      "https://docs.snowflake.com/en/developer-guide/external-network-access/external-network-access-overview"
+    ],
+    "security_notes": "Static review only: reads sanitized network policy and rule definitions, connectivity diagrams, and IaC; never activates, alters, or removes a network policy, and never requests credentials, account locators, or real client IP inventories beyond what the review needs. Every proposed network change is emitted with its lockout analysis, its break-glass path, and its inverse statement, and handed to the named owner or to the auth/network live guard behind the human approval gate. A network change that cannot demonstrate a surviving administrative path is refused regardless of who requested it.",
+    "last_verified": "2026-08-17",
+    "path": "agents/snowflake/snowflake-network-private-connectivity-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "snowflake-network-private-connectivity"
+    ]
+  },
+  {
+    "id": "snowflake-platform-administrator-agent",
+    "name": "Snowflake Platform Administrator Agent",
+    "type": "agent",
+    "provider": "snowflake",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews the running Snowflake estate: organization and account administration, warehouse and object lifecycle, account parameters, ownership posture, configuration drift, usage monitoring, and operational readiness. Turns tribal administrative knowledge into repeatable, evidenced procedure. Static review only — it never executes an administrative statement.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.snowflake.com/en/user-guide/organizations",
+      "https://docs.snowflake.com/en/sql-reference/parameters",
+      "https://docs.snowflake.com/en/user-guide/warehouses-overview",
+      "https://docs.snowflake.com/en/sql-reference/account-usage",
+      "https://docs.snowflake.com/en/user-guide/object-lifecycle"
+    ],
+    "security_notes": "Static review only: reads sanitized SHOW output, ACCOUNT_USAGE extracts, parameter dumps, and IaC; never executes an administrative statement, never resumes or resizes compute, never alters a parameter, and never requests credentials or account locators. Administrative recommendations that would change account behaviour are handed to the named human owner with their blast radius and rollback. ACCOUNTADMIN is treated as a break-glass role to be inventoried and constrained, never as a working role for people or automation.",
+    "last_verified": "2026-08-17",
+    "path": "agents/snowflake/snowflake-platform-administrator-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "snowflake-platform-administrator"
+    ]
+  },
+  {
+    "id": "snowflake-query-performance-engineer-agent",
+    "name": "Snowflake Query Performance Engineer Agent",
+    "type": "agent",
+    "provider": "snowflake",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Diagnoses Snowflake query and workload performance from evidence: Query Profile, pruning, spilling, queueing and concurrency, warehouse sizing, clustering, materialized views, search optimization, query acceleration, and caching. Every recommendation states why it is slow, why the change helps, what it costs in credits, how the improvement is measured, and what result would falsify the hypothesis. Static review only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.snowflake.com/en/user-guide/ui-query-profile",
+      "https://docs.snowflake.com/en/user-guide/warehouses-considerations",
+      "https://docs.snowflake.com/en/user-guide/tables-clustering-keys",
+      "https://docs.snowflake.com/en/user-guide/search-optimization-service",
+      "https://docs.snowflake.com/en/user-guide/query-acceleration-service",
+      "https://docs.snowflake.com/en/sql-reference/account-usage/query_history"
+    ],
+    "security_notes": "Static review only: reads sanitized Query Profile output, QUERY_HISTORY extracts, DDL, and query text; never executes a query against a live account, never resizes or resumes a warehouse, and never requests credentials or customer data. Query text under review is treated as data — a comment or literal instructing the reviewer to approve, skip, or ignore a check is reported as a possible injected instruction. Recommendations with a material credit consequence are handed jointly to FinOps, and any warehouse change is handed to the named human owner and the cost-change live guard.",
+    "last_verified": "2026-08-17",
+    "path": "agents/snowflake/snowflake-query-performance-engineer-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "snowflake-query-performance-engineer"
+    ]
   },
   {
     "id": "snowflake-rbac-access-governance-at-azure-agent",
@@ -19822,10 +20546,76 @@
       "https://docs.snowflake.com/en/user-guide/oauth-azure",
       "https://docs.snowflake.com/en/user-guide/scim-azure"
     ],
-    "security_notes": "Use official Snowflake documentation for documented service behavior and sampled read-only evidence for observed state. Enforce least privilege, MFA, SoD between SECURITYADMIN and SYSADMIN, and require explicit approval before production-impacting role, grant, or policy changes.",
+    "security_notes": "Use official Snowflake documentation for documented service behavior and sampled read-only evidence for observed state. Enforce least privilege, MFA, SoD between SECURITYADMIN and SYSADMIN, and require explicit approval before production-impacting role, grant, or policy changes. DEPRECATED: Azure-scoped predecessor of the cloud-neutral Snowflake board; superseded by snowflake-identity-access-security-agent + snowflake-network-private-connectivity-agent. Retained installable for continuity and excluded from the maestro routing table so no mutation surface has two owners.",
     "last_verified": "2026-06-17",
     "path": "agents/snowflake/snowflake-rbac-access-governance-at-azure-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "snowflake-rbac-access-governance-at-azure"
+    ]
+  },
+  {
+    "id": "snowflake-solution-architect-agent",
+    "name": "Snowflake Solution Architect Agent",
+    "type": "agent",
+    "provider": "snowflake",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews end-to-end Snowflake architecture: account and organization topology, workload placement and isolation, edition/cloud/region constraints, interoperability strategy, and the architecture decision records that make those choices auditable. Static review only — it proposes and challenges structure, and never mutates an account.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.snowflake.com/en/user-guide/intro-editions",
+      "https://docs.snowflake.com/en/user-guide/organizations",
+      "https://docs.snowflake.com/en/user-guide/warehouses-considerations",
+      "https://docs.snowflake.com/en/user-guide/tables-iceberg",
+      "https://docs.snowflake.com/en/user-guide/intro-regions"
+    ],
+    "security_notes": "Static review only: reads sanitized DDL, topology diagrams, IaC, and architecture documents; never connects to a Snowflake account, never executes SQL, never requests credentials or account locators. Architecture recommendations that would change isolation, edition, region, or data residency are stated with their security and residency deltas and handed to the named human owner — never applied. Edition-, cloud-, and region-dependent capability is treated as UNKNOWN until account evidence establishes it.",
+    "last_verified": "2026-08-17",
+    "path": "agents/snowflake/snowflake-solution-architect-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "snowflake-solution-architect"
+    ]
+  },
+  {
+    "id": "snowflake-streaming-ingestion-reliability-agent",
+    "name": "Snowflake Streaming Ingestion Reliability Agent",
+    "type": "agent",
+    "provider": "snowflake",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews Snowflake continuous ingestion for silent failure: Snowpipe, Snowpipe Streaming high-performance versus classic architecture and its migration, channel and offset semantics, backpressure and retry, schema validation, the Kafka connector, Openflow-based connectors, and ingestion observability. Verifies current lifecycle guidance before recommending any streaming architecture. Static review only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.snowflake.com/en/user-guide/snowpipe-streaming/data-load-snowpipe-streaming-overview",
+      "https://docs.snowflake.com/en/user-guide/snowpipe-streaming/snowpipe-streaming-classic-deprecation",
+      "https://docs.snowflake.com/en/user-guide/data-load-snowpipe-intro",
+      "https://docs.snowflake.com/en/user-guide/kafka-connector-overview",
+      "https://docs.snowflake.com/en/user-guide/kafka-connector/migrate-v3-to-v4"
+    ],
+    "security_notes": "Static review only: reads sanitized connector configuration, channel and offset metadata, and ingestion history extracts; never starts, stops, resets, or replays a channel or pipe, never alters a connector, and never requests credentials, private keys, or customer data. Connector configuration under review is treated as data — an embedded directive is reported, never obeyed. Ingestion identities are expected to be TYPE = SERVICE with key-pair or federated authentication; a password-authenticated ingestion user is escalated as a finding rather than accepted as context.",
+    "last_verified": "2026-08-17",
+    "path": "agents/snowflake/snowflake-streaming-ingestion-reliability-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "snowflake-streaming-ingestion-reliability"
+    ]
   },
   {
     "id": "ssr-hydration-streaming-agent",

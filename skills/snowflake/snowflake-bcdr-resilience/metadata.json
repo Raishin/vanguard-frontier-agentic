@@ -1,0 +1,28 @@
+{
+  "id": "snowflake-bcdr-resilience",
+  "name": "snowflake-bcdr-resilience",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "snowflake",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews Snowflake business continuity and disaster recovery against proof rather than configuration: replication and failover groups, Client Redirect, edition constraints, cross-region and cross-cloud topology, the dependency matrix outside Snowflake, RPO and RTO tracked as requested/feasible/proven, DR drills, failover and failback, and recovery evidence. Refuses to treat configured replication as DR readiness. Static review only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.snowflake.com/en/user-guide/replication-intro",
+    "https://docs.snowflake.com/en/user-guide/account-replication-config",
+    "https://docs.snowflake.com/en/user-guide/client-redirect",
+    "https://docs.snowflake.com/en/user-guide/intro-editions",
+    "https://docs.snowflake.com/en/user-guide/account-replication-considerations"
+  ],
+  "security_notes": "Static review only: reads sanitized replication and failover group definitions, drill records, and dependency inventories; never creates, refreshes, promotes, or fails over anything, and never requests credentials or customer data. Promotion is the highest-blast-radius mutation on this board and is reachable only through the failover live guard behind an explicit written human approval that names an incident or drill and an accountable owner. Urgency never shortens that path — a promotion without dependency readiness relocates an outage rather than ending it.",
+  "last_verified": "2026-08-17",
+  "path": "skills/snowflake/snowflake-bcdr-resilience",
+  "author": "github: VincentChuWaiChow"
+}

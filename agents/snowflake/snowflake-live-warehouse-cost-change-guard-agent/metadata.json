@@ -1,0 +1,76 @@
+{
+  "id": "snowflake-live-warehouse-cost-change-guard-agent",
+  "name": "Snowflake Live Warehouse and Cost Change Guard Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "snowflake",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Approval-gated execution boundary for exactly one Snowflake warehouse or cost-governance mutation: a size, auto-suspend, auto-resume, scaling or concurrency setting, a resource-monitor assignment, or a supported budget operation. Quantifies the expected cost effect, the expected performance effect, and the affected workloads before execution, and treats a suspend-capable monitor as an availability control. Never auto-dispatched.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.snowflake.com/en/sql-reference/sql/alter-warehouse",
+    "https://docs.snowflake.com/en/user-guide/warehouses-considerations",
+    "https://docs.snowflake.com/en/user-guide/resource-monitors",
+    "https://docs.snowflake.com/en/user-guide/budgets",
+    "https://docs.snowflake.com/en/sql-reference/account-usage/warehouse_metering_history"
+  ],
+  "security_notes": "Mutating-runtime and never auto-dispatched. Executes exactly one warehouse or cost-governance change after explicit written human approval naming account, environment, target object, the exact change, the quantified cost and performance effect, and the rollback trigger. Runs as a narrowly scoped custom role holding only the privileges needed on the single target warehouse or monitor; ACCOUNTADMIN is forbidden without exception. A resource monitor whose action can suspend warehouses is treated as an availability control with production blast radius, not as a cost safety net — configuring one requires the same what-breaks analysis as any other production change. No harness adapter grants an execution tool.",
+  "last_verified": "2026-08-17",
+  "path": "agents/snowflake/snowflake-live-warehouse-cost-change-guard-agent/",
+  "harness_variants": {
+    "codex": "agents/snowflake/snowflake-live-warehouse-cost-change-guard-agent/harnesses/codex.toml",
+    "copilot": "agents/snowflake/snowflake-live-warehouse-cost-change-guard-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/snowflake/snowflake-live-warehouse-cost-change-guard-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/snowflake/snowflake-live-warehouse-cost-change-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/snowflake/snowflake-live-warehouse-cost-change-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/snowflake/snowflake-live-warehouse-cost-change-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/snowflake/snowflake-live-warehouse-cost-change-guard-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "snowflake-live-warehouse-cost-change-guard"
+  ],
+  "execution_tier": "mutating-runtime",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "oauth_scopes": [],
+  "run_as_permissions": {
+    "required": [
+      "A narrowly scoped custom Snowflake role holding MODIFY (and OPERATE where the change requires it) on the single target warehouse — and nothing on any other warehouse",
+      "For a monitor or budget change: the narrowest privilege that permits modifying that one object, held for that object only",
+      "A `TYPE = SERVICE` user authenticating by key-pair or workload identity federation"
+    ],
+    "denied": [
+      "ACCOUNTADMIN",
+      "SECURITYADMIN",
+      "SYSADMIN",
+      "PUBLIC",
+      "CREATE WAREHOUSE or any warehouse lifecycle privilege",
+      "MODIFY or OPERATE on any warehouse other than the approved target",
+      "Any privilege permitting account-level parameter changes",
+      "Any privilege permitting grant management on the target"
+    ]
+  },
+  "requires_credentials": [
+    "SNOWFLAKE_ACCOUNT",
+    "SNOWFLAKE_USER",
+    "SNOWFLAKE_AUTHENTICATOR",
+    "SNOWFLAKE_PRIVATE_KEY_PATH"
+  ],
+  "required_egress": [
+    "The Snowflake account endpoint for the approved account only — the private-connectivity hostname where the account uses private connectivity, and never the public account URL in that case"
+  ],
+  "routing_keywords": [
+    "alter warehouse",
+    "warehouse size",
+    "auto-suspend",
+    "resource monitor",
+    "budget threshold"
+  ]
+}

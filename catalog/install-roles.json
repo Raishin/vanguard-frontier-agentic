@@ -2163,6 +2163,138 @@
         "typescript-runtime-boundary-contract",
         "typescript-business-critical-automation-governance"
       ]
+    },
+    "snowflake-platform-architect": {
+      "label": "Snowflake Platform Architect",
+      "description": "End-to-end Snowflake architecture and operability: account and organization topology, workload placement and isolation, edition/cloud/region constraints, interoperability and catalog choice, the running estate's parameters, ownership and drift, and migration or coexistence with an existing data platform. Static review only — proposes structure and operating procedure, never applies a change to an account.",
+      "agents": [
+        "snowflake-maestro-agent",
+        "snowflake-solution-architect-agent",
+        "snowflake-platform-administrator-agent",
+        "snowflake-migration-modernization-agent",
+        "snowflake-business-value-adoption-strategist-agent"
+      ],
+      "skills": [
+        "snowflake-maestro",
+        "snowflake-solution-architect",
+        "snowflake-platform-administrator",
+        "snowflake-migration-modernization",
+        "snowflake-business-value-adoption-strategist"
+      ]
+    },
+    "snowflake-security-governance-engineer": {
+      "label": "Snowflake Security and Governance Engineer",
+      "description": "Snowflake identity, reachability, data protection, and audit evidence: effective access across role hierarchy, ownership and future grants; authentication policies, MFA, federation, SERVICE and SERVICE_AGENT identities; network policies and private connectivity with lockout prevention; masking, row-access, classification and lineage; and independent evidence that a control operated across an audit period. Static review plus two approval-gated live guards for a single grant change and a single auth or network policy change.",
+      "agents": [
+        "snowflake-maestro-agent",
+        "snowflake-identity-access-security-agent",
+        "snowflake-network-private-connectivity-agent",
+        "snowflake-governance-privacy-agent",
+        "snowflake-compliance-evidence-auditor-agent",
+        "snowflake-live-rbac-grant-guard-agent",
+        "snowflake-live-auth-network-policy-guard-agent",
+        "snowflake-live-data-protection-policy-guard-agent"
+      ],
+      "skills": [
+        "snowflake-maestro",
+        "snowflake-identity-access-security",
+        "snowflake-network-private-connectivity",
+        "snowflake-governance-privacy",
+        "snowflake-compliance-evidence-auditor",
+        "snowflake-live-rbac-grant-guard",
+        "snowflake-live-auth-network-policy-guard",
+        "snowflake-live-data-protection-policy-guard"
+      ]
+    },
+    "snowflake-finops-performance-engineer": {
+      "label": "Snowflake FinOps and Performance Engineer",
+      "description": "Snowflake unit economics and query performance as one accountable pair: warehouse, serverless, AI and storage spend, budgets versus resource monitors, query and tag attribution, idle compute and anomaly investigation, alongside Query Profile diagnosis, pruning, spilling, queueing, clustering and acceleration economics. Static review plus one approval-gated live guard for a single warehouse or cost-governance change.",
+      "agents": [
+        "snowflake-maestro-agent",
+        "snowflake-finops-cost-governor-agent",
+        "snowflake-query-performance-engineer-agent",
+        "snowflake-business-value-adoption-strategist-agent",
+        "snowflake-live-warehouse-cost-change-guard-agent"
+      ],
+      "skills": [
+        "snowflake-maestro",
+        "snowflake-finops-cost-governor",
+        "snowflake-query-performance-engineer",
+        "snowflake-business-value-adoption-strategist",
+        "snowflake-live-warehouse-cost-change-guard"
+      ]
+    },
+    "snowflake-data-engineer": {
+      "label": "Snowflake Data Engineer",
+      "description": "Snowflake pipeline and ingestion correctness rather than job completion: batch and ELT loading, Streams, Tasks, Dynamic Tables and achieved target lag, Snowpark transformations, idempotency and reconciliation, plus Snowpipe and Snowpipe Streaming architecture, channel and offset semantics, connector migration, and silent-loss detection. Static review plus one approval-gated live guard for a single pipeline or ingestion change.",
+      "agents": [
+        "snowflake-maestro-agent",
+        "snowflake-data-engineering-pipelines-agent",
+        "snowflake-streaming-ingestion-reliability-agent",
+        "snowflake-analytics-semantic-data-product-agent",
+        "snowflake-live-pipeline-streaming-change-guard-agent"
+      ],
+      "skills": [
+        "snowflake-maestro",
+        "snowflake-data-engineering-pipelines",
+        "snowflake-streaming-ingestion-reliability",
+        "snowflake-analytics-semantic-data-product",
+        "snowflake-live-pipeline-streaming-change-guard"
+      ]
+    },
+    "snowflake-ai-analytics-engineer": {
+      "label": "Snowflake AI and Analytics Engineer",
+      "description": "Snowflake analytical semantics, ML lifecycle governance, and the AI trust boundary: metric and KPI contracts, semantic views and the Cortex Analyst boundary, Snowpark ML reproducibility and drift, and the security review of Cortex Agents, tools, MCP connectors, retrieval corpora, prompt injection, exfiltration paths and AI cost per successful task. Static review only.",
+      "agents": [
+        "snowflake-maestro-agent",
+        "snowflake-analytics-semantic-data-product-agent",
+        "snowflake-data-science-ml-agent",
+        "snowflake-cortex-ai-agent-security-governor-agent",
+        "snowflake-governance-privacy-agent"
+      ],
+      "skills": [
+        "snowflake-maestro",
+        "snowflake-analytics-semantic-data-product",
+        "snowflake-data-science-ml",
+        "snowflake-cortex-ai-agent-security-governor",
+        "snowflake-governance-privacy"
+      ]
+    },
+    "snowflake-delivery-resilience-engineer": {
+      "label": "Snowflake Delivery and Resilience Engineer",
+      "description": "How Snowflake changes ship and how the estate recovers: the official Terraform provider and its stable-versus-preview split, provider upgrades, plan review, CI/CD and environment promotion, drift and behaviour-change bundles, alongside replication and failover groups, Client Redirect, RPO/RTO tracked as requested/feasible/proven, dependency readiness and failback. Static review plus the approval-gated failover promotion guard, which is never auto-dispatched.",
+      "agents": [
+        "snowflake-maestro-agent",
+        "snowflake-devops-iac-release-agent",
+        "snowflake-bcdr-resilience-agent",
+        "snowflake-platform-administrator-agent",
+        "snowflake-live-failover-promotion-guard-agent"
+      ],
+      "skills": [
+        "snowflake-maestro",
+        "snowflake-devops-iac-release",
+        "snowflake-bcdr-resilience",
+        "snowflake-platform-administrator",
+        "snowflake-live-failover-promotion-guard"
+      ]
+    },
+    "snowflake-data-product-manager": {
+      "label": "Snowflake Data Product Manager",
+      "description": "Snowflake engineering as a sellable, supportable product: Native App architecture, application roles and requested privileges, the provider/consumer trust boundary, security-review readiness, listing and publication requirements, pricing and monetization architecture, version and patch lifecycle, supportability economics, and whether the initiative removes a business constraint anyone owns. Static review only.",
+      "agents": [
+        "snowflake-maestro-agent",
+        "snowflake-native-app-marketplace-product-agent",
+        "snowflake-business-value-adoption-strategist-agent",
+        "snowflake-analytics-semantic-data-product-agent",
+        "snowflake-governance-privacy-agent"
+      ],
+      "skills": [
+        "snowflake-maestro",
+        "snowflake-native-app-marketplace-product",
+        "snowflake-business-value-adoption-strategist",
+        "snowflake-analytics-semantic-data-product",
+        "snowflake-governance-privacy"
+      ]
     }
   }
 }
