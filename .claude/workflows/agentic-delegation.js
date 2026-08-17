@@ -371,13 +371,30 @@ Do this:
 1. READ the files yourself. The implementer's summary is not evidence that the file
    says what it claims.
 2. Check every acceptance criterion against the actual file contents.
-3. For EVERY external factual claim written into those files, verify it against a
-   primary source and return CONFIRMED / CONTRADICTED / UNVERIFIABLE with a citation.
-   Ground verification in Context7:
+3. Verify EVERY factual claim written into those files. There are two kinds and you
+   are responsible for BOTH — checking only the first is the most common way this
+   phase reports green over a wrong file:
+
+   (a) EXTERNAL facts — behaviour of a tool, library, API, or vendor product. Verify
+       against a primary source and cite it. Ground verification in Context7:
 ${LIB_BLOCK}
-   For CONTRADICTED, give the exact corrected wording. A claim that is true in spirit
-   but wrong in detail is CONTRADICTED, not CONFIRMED.
+
+   (b) INTERNAL FIDELITY — any statement the file makes about THIS repository: what a
+       script does, which phase runs on which model, what a command runs, what a
+       config declares, who owns a decision. Verify each against the actual file it
+       describes by opening that file. A document describing a script is verified
+       against the script, never against whether the description sounds plausible.
+       Misattributed quotes, a phase described doing something it does not do, and an
+       invented rationale all live here — and all of them lint clean.
+
+   Return CONFIRMED / CONTRADICTED / UNVERIFIABLE per claim with a citation
+   (file:line for internal, URL or libraryId for external). For CONTRADICTED, give the
+   exact corrected wording. A claim that is true in spirit but wrong in detail is
+   CONTRADICTED, not CONFIRMED — that is where most real defects live.
 4. Report outOfScopeEdits[]: any file changed that was not in the spec's file list.
+
+Passing linters and schemas is NOT evidence a claim is true. If a file is well-formed
+and says something false, the verdict is reject.
 
 Set verdict=reject if any acceptance criterion fails or any claim is CONTRADICTED.
 ${DELEGATE_CONSTRAINTS}`,
