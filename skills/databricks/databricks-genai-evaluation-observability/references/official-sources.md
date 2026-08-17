@@ -13,6 +13,10 @@ Primary sources, verified 2026-08-17 against current official Databricks documen
 - https://docs.databricks.com/aws/en/ai-gateway/cost-observability
 - https://docs.databricks.com/aws/en/admin/system-tables/
 
+## Source notes
+
+- MLflow client API surfaces in this skill were cross-checked against the Context7 MCP (`/websites/mlflow_genai` and `/mlflow/mlflow`, which carries a v3.1.4 entry) in addition to Databricks documentation. Where the two could differ, Context7 library documentation is authoritative for the client API signature and Databricks documentation is authoritative for service behaviour.
+
 ## Authority ranking
 
 1. `FIRST_PARTY` — Databricks documentation, Databricks API/SDK reference, and the provider's own deprecation pages. Every claim in this skill that constrains a decision must trace to one of these.

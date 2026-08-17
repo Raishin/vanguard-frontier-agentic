@@ -122,8 +122,10 @@
       "For inference-table designs: the inference-table schema and any downstream analytics or cost pipelines that consume the logs."
     ],
     "context7_policy": [
-      "Recommended before review. Fetch current MLflow 3 and Unity Catalog documentation to confirm defaults for new accounts, model-URI format, and the current status of legacy Workspace Model Registry.",
-      "Verify the current Model Serving API signatures for traffic-split configuration and the exact endpoint-query paths."
+      "Required before recommending any `mlflow` or `databricks.feature_engineering` call. MLflow 3 changed both the default registry URI and the model-URI form, so an API claim carried over from MLflow 2 is wrong in a way that fails at runtime rather than at review time.",
+      "Corroborated via Context7 for this skill: `from databricks.feature_engineering import FeatureEngineeringClient`; `create_table(name=, primary_keys=, df=, ...)`, `write_table(..., mode='merge')`, `read_table(name=)`, `set_feature_table_tag(name=, key=, value=)`, and the `timeseries_columns` argument for point-in-time lookups. `from databricks.sdk import WorkspaceClient` is the SDK entry point, with OAuth M2M via `client_id`/`client_secret` and `.databrickscfg` profiles.",
+      "Context7 returns retrieved snippets rather than a complete API inventory, so a method absent from a result is UNCORROBORATED, not disproven — `get_table()` is documented by Databricks but was not surfaced by Context7, and should be labelled accordingly if a user's call fails.",
+      "Databricks service behaviour — serving endpoint semantics, inference-table delivery guarantees, Unity Catalog model governance — is never a Context7 question. If Context7 is not exposed, say so and label the version-sensitive API claim `unknown` rather than answering from memory."
     ],
     "security_boundaries": [
       "No model inference execution — the skill reads metadata and configuration only.",
@@ -217,7 +219,10 @@
       {
         "file": "official-sources.md",
         "title": "Official Sources",
-        "purpose": "Primary MLflow 3, Unity Catalog model registry, and Model Serving documentation."
+        "purpose": "Primary MLflow 3, Unity Catalog model registry, and Model Serving documentation.",
+        "claims": [
+          "Feature engineering and SDK client surfaces were cross-checked against the Context7 MCP (`/websites/databricks`, `/databricks/databricks-sdk-py`) in addition to Databricks documentation."
+        ]
       },
       {
         "file": "workflow-and-output.md",

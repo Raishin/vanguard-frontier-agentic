@@ -32,7 +32,7 @@
   "focus_owns": [
     "MLflow Tracing APIs: `mlflow.start_span()`, `@mlflow.trace` decorator, `mlflow.get_current_active_span()`, `mlflow.get_trace(trace_id)`, `mlflow.search_traces()`, `mlflow.set_trace_tag(key, value)`; auto-instrumentation via `mlflow.<library>.autolog()` for 20+ frameworks.",
     "Trace storage: experiment-based (legacy MLflow 2 path, queryable via MLflow API) versus Unity Catalog OpenTelemetry Delta tables under `system.traces.*` (GA, SQL-queryable, no storage cap, full governance). Implications for long-term retention, regulatory access, and cost.",
-    "`mlflow.genai.evaluate(eval_data, scorers, prediction_fn)` as the canonical evaluation harness; output is an evaluation run containing traces with Feedback assessments.",
+    "`mlflow.genai.evaluate(data=..., predict_fn=..., scorers=[...])` — the keyword names are `data`, `predict_fn` and `scorers`, verified against current MLflow library documentation; `eval_data`/`prediction_fn` are not the parameter names and fail with an unexpected-keyword error as the canonical evaluation harness; output is an evaluation run containing traces with Feedback assessments.",
     "The judge-versus-scorer distinction: judges are LLM-based evaluators (the 17 built-in ones produce Feedback with value and rationale); scorers are the broader category (code-based, vector-based, or LLM-based); custom scorers use `mlflow.genai.Scorer` class or `mlflow.genai.scorer()` decorator.",
     "The exact ten single-turn judges: RelevanceToQuery, RetrievalRelevance, Safety, RetrievalGroundedness, Correctness, RetrievalSufficiency, Guidelines, ExpectationsGuidelines, ToolCallCorrectness, ToolCallEfficiency.",
     "The exact seven multi-turn judges: ConversationCompleteness, UserFrustration, KnowledgeRetention, ConversationalGuidelines, ConversationalRoleAdherence, ConversationalSafety, ConversationalToolCallEfficiency.",
@@ -52,11 +52,12 @@
     "CRITICAL — the Correctness judge requires either `expected_facts` (a list) or `expected_response` in the evaluation dataset's expectations dict. A Correctness evaluation without one of these is not evaluatable, and a comparison between two runs where one has expectations and one does not is not valid. Flag missing or inconsistent expectations in the evaluation dataset.",
     "HIGH — MLflow Tracing storage defaults differ: experiment-based storage (legacy) is retained by MLflow and queryable via the MLflow API; Unity Catalog storage (`system.traces.*` OpenTelemetry Delta tables) is retained indefinitely, SQL-queryable, and governed by Unity Catalog access control. A production observability design must name which storage is used, since the choice affects retention, governance, and query performance.",
     "HIGH — the external model spend table `system.ai_gateway.external_model_spend` is BETA (not GA) and aggregates HOURLY, not real-time. A production cost-attribution system that requires sub-hourly precision or real-time alerts cannot rely on this table; use trace-based cost tracking (token counts in spans) until this table stabilizes.",
-    "HIGH — the Correctness judge signature is `mlflow.genai.judges.Correctness(expected_facts=None, expected_response=None, model=\"<provider>:/<model-name>\")`. The `model` parameter (optional) selects the judge LLM; if not specified, a platform default is used. Two evaluation runs using different judge models (e.g., Correctness with provider A versus provider B) measure different things and are not comparable; confirm judge configuration is held constant across regression-detection runs.",
+    "HIGH — built-in judges are imported from `mlflow.genai.scorers` (`from mlflow.genai.scorers import Correctness`), NOT from `mlflow.genai.judges`; that namespace holds custom-judge construction via `make_judge`. `Correctness` takes an optional `model` in `<provider>:/<model-name>` form (for example `openai:/gpt-4o-mini`); when it is omitted a platform default is used. Two runs using different judge models measure different things and are not comparable, so confirm judge configuration is held constant across regression-detection runs.",
     "MEDIUM — custom scorers use `mlflow.genai.Scorer` class or `mlflow.genai.scorer()` decorator. A custom scorer may be code-based (deterministic) or LLM-based (carrying instrument error like built-in judges). Flag any custom LLM-based scorer that is not validated against human labels as carrying the same uncertainty as judges.",
     "MEDIUM — regression detection between releases must hold constant: the evaluation dataset, the judge and scorer selection, the judge configuration (LLM model, hyperparameters), and expectation definitions. A comparison where any of these change is confounded and is not a valid regression detection.",
     "MEDIUM — human feedback integration into evaluation datasets improves judge calibration over time, but feedback collected on production traces must be validated for annotator agreement (inter-rater reliability) and bias before being encoded into expectations. Flag any feedback loop that skips validation as at risk for calibrating judges to biased human labels.",
-    "LOW — trace tags set via `mlflow.set_trace_tag(key, value)` provide rich context for later analysis (e.g., user segment, model variant, feature flag state) and enable filtering in regression detection. Require at least minimal tagging (model version, release date) for production traces so regression analysis can be scoped to specific releases."
+    "LOW — trace tags set via `mlflow.set_trace_tag(key, value)` provide rich context for later analysis (e.g., user segment, model variant, feature flag state) and enable filtering in regression detection. Require at least minimal tagging (model version, release date) for production traces so regression analysis can be scoped to specific releases.",
+    "LOW — a built-in judge is directly callable outside a harness run — `Correctness()(inputs=..., outputs=..., expectations=...)` returns a `Feedback` — so sanity-check a judge on a handful of hand-graded cases before trusting it across a full run; a judge that misgrades a hand-checked case is unfit for regression detection until reconfigured."
   ],
   "response_shape": [
     "Verdict (sound / cautions / block)",
@@ -128,8 +129,10 @@
       "For cost/latency: data sources (trace spans with token counts, `system.ai_gateway.external_model_spend` hourly aggregates, `system.billing.usage`) and measurement methods."
     ],
     "context7_policy": [
-      "Recommended before review. Fetch current MLflow 3 GenAI Tracing and Evaluation documentation to confirm judge names, API signatures, and the current status of trace-storage variants (experiment versus Delta table).",
-      "Verify the current built-in judge count and names; this list is definitive and not to be guessed from memory."
+      "Required before encoding or recommending any `mlflow` API surface — evaluation, scorer, judge, or tracing. These names move across MLflow versions, and a wrong keyword argument is a silently broken evaluation harness rather than a style nit.",
+      "Verified via Context7 for this skill: `mlflow.genai.evaluate(data=, predict_fn=, scorers=)`; built-in judges imported from `mlflow.genai.scorers`; `mlflow.genai.judges.make_judge` for custom judges; `@mlflow.trace` and `mlflow.start_span` for manual instrumentation; `mlflow.<library>.autolog()` for automatic tracing.",
+      "Re-resolve rather than trusting that list when the user is on a different MLflow version, or when a call fails with an unexpected-keyword error — that error is the signature having moved, not the user misreading it.",
+      "Databricks service behaviour (trace storage, system tables, model serving) is never a Context7 question — that is Databricks documentation. If Context7 is not exposed in the session, say so and label the version-sensitive API claim `unknown` rather than answering from memory."
     ],
     "security_boundaries": [
       "No live evaluation execution — the skill reads dataset and judge configuration only.",
@@ -192,7 +195,10 @@
       {
         "file": "official-sources.md",
         "title": "Official Sources",
-        "purpose": "Primary MLflow Tracing, Evaluation, Judge, and observability documentation."
+        "purpose": "Primary MLflow Tracing, Evaluation, Judge, and observability documentation.",
+        "claims": [
+          "MLflow client API surfaces in this skill were cross-checked against the Context7 MCP (`/websites/mlflow_genai` and `/mlflow/mlflow`, which carries a v3.1.4 entry) in addition to Databricks documentation. Where the two could differ, Context7 library documentation is authoritative for the client API signature and Databricks documentation is authoritative for service behaviour."
+        ]
       },
       {
         "file": "workflow-and-output.md",

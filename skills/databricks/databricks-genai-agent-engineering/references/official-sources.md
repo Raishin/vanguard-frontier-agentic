@@ -13,6 +13,10 @@ Primary sources, verified 2026-08-17 against current official Databricks documen
 - https://docs.databricks.com/aws/en/machine-learning/foundation-models/external-models
 - https://docs.databricks.com/aws/en/ai-gateway/
 
+## Source notes
+
+- The retrieval client surface was cross-checked against the Context7 MCP (`/websites/databricks`). Where Context7 surfaced a parameter only in the SQL form and not the Python client, this skill says so rather than presenting the Python signature as corroborated.
+
 ## Authority ranking
 
 1. `FIRST_PARTY` — Databricks documentation, Databricks API/SDK reference, and the provider's own deprecation pages. Every claim in this skill that constrains a decision must trace to one of these.

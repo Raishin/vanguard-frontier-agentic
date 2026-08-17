@@ -13,6 +13,10 @@ Primary sources, verified 2026-08-17 against current official Databricks documen
 - https://docs.databricks.com/aws/en/dev-tools/cli/authentication
 - https://docs.databricks.com/aws/en/dev-tools/terraform/
 
+## Source notes
+
+- The bundle CLI and Terraform provider surfaces were cross-checked against the Context7 MCP (`/databricks/cli`, `/databricks/terraform-provider-databricks`). Context7's CLI documentation uses 'Declarative Automation Bundles' and the 'DAB' acronym predominantly, with 'Databricks Asset Bundles' appearing as secondary repository-description language — which is why this skill leads with the former. No Terraform provider version is pinned here: the Context7 copy and the public registry reported different current versions, so the version is left to be resolved at recommendation time.
+
 ## Authority ranking
 
 1. `FIRST_PARTY` — Databricks documentation, Databricks API/SDK reference, and the provider's own deprecation pages. Every claim in this skill that constrains a decision must trace to one of these.

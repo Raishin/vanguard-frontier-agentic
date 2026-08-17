@@ -12,6 +12,10 @@ Primary sources, verified 2026-08-17 against current official Databricks documen
 - https://docs.databricks.com/aws/en/machine-learning/feature-store/uc/feature-tables-uc
 - https://docs.databricks.com/aws/en/machine-learning/automl/
 
+## Source notes
+
+- Feature engineering and SDK client surfaces were cross-checked against the Context7 MCP (`/websites/databricks`, `/databricks/databricks-sdk-py`) in addition to Databricks documentation.
+
 ## Authority ranking
 
 1. `FIRST_PARTY` — Databricks documentation, Databricks API/SDK reference, and the provider's own deprecation pages. Every claim in this skill that constrains a decision must trace to one of these.

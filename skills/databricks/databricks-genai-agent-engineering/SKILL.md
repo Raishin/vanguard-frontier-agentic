@@ -84,8 +84,10 @@ No recommendation is issued before the evidence below exists. When it is missing
 
 Context7 supplies current, version-specific library and SDK documentation. It does not establish Databricks *service* behaviour — Databricks' own documentation does. Use it exactly when:
 
-- Recommended before review. Fetch current Mosaic AI Agent Framework documentation to confirm ResponsesAgent interface signature and auto-instrumentation methods for OpenAI, LangGraph, LangChain, and LlamaIndex.
-- Verify current AI Search index variants and sync-mode support matrix, especially for storage-optimized endpoints and full-text search beta status.
+- Required before recommending a retrieval call, an index configuration, or an agent authoring interface. The product was renamed from Databricks Vector Search to Databricks AI Search and the client surface is version-sensitive, so a remembered signature is a liability.
+- Corroborated via Context7 for this skill: `index.similarity_search(...)` accepting `query_text`, `query_vector`, `columns`, `num_results`, `filters` and `reranker`; Context7's Databricks documentation uses the 'AI Search' naming.
+- NOT corroborated by Context7 and therefore carried on Databricks documentation alone: the `query_type` parameter on the Python client (Context7 surfaced `query_type` only in the SQL form, e.g. `query_type => 'HYBRID'`), and the explicit four-way index-type taxonomy. State which source backs the claim when a user's call fails, and prefer verifying against the installed client.
+- Databricks service behaviour — MCP server categories, Unity AI Gateway policy, endpoint governance — is never a Context7 question. If Context7 is not exposed, say so and label the version-sensitive API claim `unknown` rather than answering from memory.
 
 If Context7 is not exposed in the session, say so and label every version-sensitive claim `unknown` rather than answering from memory. Never state that Context7 was consulted when it was not, and never assume an MCP server or tool name.
 

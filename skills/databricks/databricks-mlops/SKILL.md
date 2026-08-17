@@ -80,8 +80,10 @@ No recommendation is issued before the evidence below exists. When it is missing
 
 Context7 supplies current, version-specific library and SDK documentation. It does not establish Databricks *service* behaviour — Databricks' own documentation does. Use it exactly when:
 
-- Recommended before review. Fetch current MLflow 3 and Unity Catalog documentation to confirm defaults for new accounts, model-URI format, and the current status of legacy Workspace Model Registry.
-- Verify the current Model Serving API signatures for traffic-split configuration and the exact endpoint-query paths.
+- Required before recommending any `mlflow` or `databricks.feature_engineering` call. MLflow 3 changed both the default registry URI and the model-URI form, so an API claim carried over from MLflow 2 is wrong in a way that fails at runtime rather than at review time.
+- Corroborated via Context7 for this skill: `from databricks.feature_engineering import FeatureEngineeringClient`; `create_table(name=, primary_keys=, df=, ...)`, `write_table(..., mode='merge')`, `read_table(name=)`, `set_feature_table_tag(name=, key=, value=)`, and the `timeseries_columns` argument for point-in-time lookups. `from databricks.sdk import WorkspaceClient` is the SDK entry point, with OAuth M2M via `client_id`/`client_secret` and `.databrickscfg` profiles.
+- Context7 returns retrieved snippets rather than a complete API inventory, so a method absent from a result is UNCORROBORATED, not disproven — `get_table()` is documented by Databricks but was not surfaced by Context7, and should be labelled accordingly if a user's call fails.
+- Databricks service behaviour — serving endpoint semantics, inference-table delivery guarantees, Unity Catalog model governance — is never a Context7 question. If Context7 is not exposed, say so and label the version-sensitive API claim `unknown` rather than answering from memory.
 
 If Context7 is not exposed in the session, say so and label every version-sensitive claim `unknown` rather than answering from memory. Never state that Context7 was consulted when it was not, and never assume an MCP server or tool name.
 
