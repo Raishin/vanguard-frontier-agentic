@@ -139,6 +139,10 @@ Builder flow:
 
 Every value entered here is validated against the verified model registry (`catalog/model-registry.json`) before any file changes — an unknown model name or a reasoning effort the resolved model doesn't support is rejected up front, not discovered later as a provider-side failure. For `codex`, the builder accepts local Ollama models (`name:tag`) and OpenRouter models (`author/model`) in addition to OpenAI slugs, projecting the matching `model_provider` line automatically. See [`docs/model-policy-matrix.md`](../../docs/model-policy-matrix.md) for the full per-harness matrix.
 
+## Workflows
+
+The TUI discovers executable workflows under `.claude/workflows/` and surfaces their name, description, and execution phases for read-only browsing. Each workflow's metadata is extracted from the `export const meta = { ... }` block at the top of its JavaScript file. Discovery is read-only by design — the TUI parses and displays workflow information but never executes them. Running a workflow is the harness's job and remains separate from the TUI's catalog browsing functions, consistent with the read-first principle in the Architecture section.
+
 ## Supported Platforms
 
 | Target | Architecture | Notes |

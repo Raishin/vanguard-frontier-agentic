@@ -652,6 +652,68 @@ originate one. The design record, including the candidates that were rejected an
 
 ---
 
+### Snowflake
+
+The `snowflake` board is the one topical board that is **not** static-review throughout. It
+pairs a router and 18 review specialists with six approval-gated live guards, because the
+Snowflake decisions that matter most — a grant, a network policy, a masking policy, a
+warehouse limit, a pipeline replay, a failover promotion — are mutations whose blast radius
+is only knowable before they run. The board's organising idea is that documentation proves
+supported *platform* behaviour and never proves configured *account* behaviour, so an
+account-specific claim is `UNKNOWN` until account evidence establishes it.
+
+| Property | Value |
+|----------|-------|
+| `provider` | `snowflake` |
+| ID prefix | `snowflake-*` |
+| Agent directory | `agents/snowflake/` |
+| Skill directory | `skills/snowflake/` |
+| Agents | 28 (1 router + 18 review specialists + 6 live guards + 3 deprecated Azure-scoped predecessors) |
+| Skills | 28 (1:1 companion skill per agent) |
+| Install roles | `snowflake-platform-architect`, `snowflake-security-governance-engineer`, `snowflake-finops-performance-engineer`, `snowflake-data-engineer`, `snowflake-ai-analytics-engineer`, `snowflake-delivery-resilience-engineer`, `snowflake-data-product-manager` |
+| Execution tier | `static-review` (router + specialists) / `mutating-runtime` (the six `snowflake-live-*` guards) |
+
+**Example agents**
+
+| Agent | Scope |
+|-------|-------|
+| `snowflake-maestro-agent` | Router; classifies the task, names the failure domains, decides whether account evidence is required at all, and dispatches the narrowest specialist or at most four in parallel. Never answers a Snowflake question and never dispatches a live guard |
+| `snowflake-identity-access-security-agent` | Effective access computed transitively across role grants, ownership edges, database roles, and future grants — expressed as paths, not counts. Owns authentication policy, MFA, federation, and the `SERVICE` / `SERVICE_AGENT` identity types |
+| `snowflake-governance-privacy-agent` | Designs and reviews the data controls, and refuses the four equations that make governance theatre: tagged is not protected, classified is not compliant, lineage existing is not lineage complete, a policy existing is not a policy behaving |
+| `snowflake-compliance-evidence-auditor-agent` | Independent assurance, deliberately holding no implementation mandate: whether a control is *provable* over an audit period, bounded by each evidence view's latency and retention |
+| `snowflake-cortex-ai-agent-security-governor-agent` | The AI trust boundary — agent identity and effective data reach, tools and MCP connectors as privilege grants, retrieval corpora as an indirect-injection surface. Never reviews an AI system from its prompt alone |
+| `snowflake-bcdr-resilience-agent` | Tracks RPO and RTO in three separate columns — requested, feasible, and **proven** — and owns the dependency matrix outside Snowflake that decides whether a promotion is a recovery or a relocation |
+| `snowflake-business-value-adoption-strategist-agent` | The economic counterweight. Holds veto authority and may return `NO-GO: technically valid, economically unjustified` |
+
+**Live guards**
+
+Each guard owns exactly one mutation, and no two guards own the same one — ambiguous write
+ownership is the failure a live-guard board exists to prevent.
+
+| Live guard | Allowed mutation | Maximum scope |
+|-------|-------|-------|
+| `snowflake-live-rbac-grant-guard-agent` | one GRANT or REVOKE | one privilege · one securable · one custom role |
+| `snowflake-live-auth-network-policy-guard-agent` | one network- or authentication-policy change | one policy object · one modification · one activation scope |
+| `snowflake-live-warehouse-cost-change-guard-agent` | one warehouse or cost-governance setting | one warehouse, monitor, or budget · one setting |
+| `snowflake-live-data-protection-policy-guard-agent` | one policy attach, detach, or replace | one object · one column · one policy |
+| `snowflake-live-pipeline-streaming-change-guard-agent` | one task, stream, dynamic-table, or pipe operation | one object · one operation · one bounded data window |
+| `snowflake-live-failover-promotion-guard-agent` | one failover group promotion | one group · one target account |
+
+`ACCOUNTADMIN` is forbidden for every guard without exception; each runs as a custom role
+scoped to the single target named in the approval. Two guards carry a refusal that no
+approval can override: the auth/network guard will not tighten reachability until a
+*surviving administrative path* is demonstrated from login history, and the failover guard
+will not promote without a declared incident or drill, a data-loss window computed from
+replication refresh history, and dependency readiness confirmed by each owning team.
+
+Routing, the live-guard gate, negative routing, and cross-agent conflict are covered by 27
+scenarios in `tests/fixtures/snowflake-maestro-routing/`. Three Azure-scoped predecessors
+(`*-at-azure`) are marked `lifecycle: deprecated` and excluded from routing so that no
+mutation surface has two owners; they remain installable via the legacy
+`azure-snowflake-platform-engineer` role.
+
+---
+
 ## How to use language/stack boards
 
 ### Discovery via install roles
@@ -685,7 +747,14 @@ set for a given function.
 | `sap-transformation-operations` | `sap` | 40 | 46 |
 | `microsoft-365-d365-platform-advisor` | `microsoft` | 40 | 40 |
 | `azure-databricks-platform-engineer` | `databricks` | 3 | 3 |
-| `azure-snowflake-platform-engineer` | `snowflake` | 3 | 3 |
+| `snowflake-platform-architect` | `snowflake` | 5 | 5 |
+| `snowflake-security-governance-engineer` | `snowflake` | 8 | 8 |
+| `snowflake-finops-performance-engineer` | `snowflake` | 5 | 5 |
+| `snowflake-data-engineer` | `snowflake` | 5 | 5 |
+| `snowflake-ai-analytics-engineer` | `snowflake` | 5 | 5 |
+| `snowflake-delivery-resilience-engineer` | `snowflake` | 5 | 5 |
+| `snowflake-data-product-manager` | `snowflake` | 5 | 5 |
+| `azure-snowflake-platform-engineer` (deprecated) | `snowflake` | 3 | 3 |
 
 Install a role with the export CLI:
 
@@ -886,7 +955,8 @@ read-only tier. This is a design constraint, not a default.
 | `sap` | `static-review` | Reads sanitized SAP configuration and ABAP/BTP artifacts; never contacts SAP systems, triggers transports, or mutates landscape data |
 | `microsoft` | `static-review` | Reads sanitized Microsoft 365 and Dynamics 365 configuration; never mutates tenant state, sends messages, or contacts Graph API |
 | `databricks` | `static-review` | Reads sanitized notebooks, job configs, and lakehouse metadata; never runs jobs, mutates clusters, or contacts Databricks REST APIs |
-| `snowflake` | `static-review` | Reads sanitized DDL, query plans, and data-sharing configs; never executes queries, mutates warehouses, or contacts Snowflake APIs |
+| `snowflake` (review board) | `static-review` | The maestro and 18 review specialists. Read sanitized DDL, query plans, grants, policy definitions, and account-evidence extracts; never execute a statement, resize compute, attach a policy, or promote a replication target |
+| `snowflake` (live guards) | `mutating-runtime` | The six `snowflake-live-*` guards. Each executes exactly one approved mutation behind an explicit written human gate with prior-state capture, preflight, verification, and a rollback path — never auto-dispatched. No harness adapter grants them an execution tool: the deliverable is the approved statement, which a named human operator runs |
 
 Static review is the required **default** for language/stack boards. The one
 governed exception is the `python` **live control plane** (`python-live-*`), which

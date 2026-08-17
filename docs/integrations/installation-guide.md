@@ -311,7 +311,7 @@ This repo ships **{{ site.data.catalog.providers }} Powers** under `powers/`, on
 | `powers/vanguard-sap` | SAP (S/4HANA, BTP, enterprise) |
 | `powers/vanguard-microsoft` | Microsoft 365 & Dynamics 365 |
 | `powers/vanguard-databricks` | Databricks (Azure, lakehouse) |
-| `powers/vanguard-snowflake` | Snowflake (Azure, data platform) |
+| `powers/vanguard-snowflake` | Snowflake (cloud-neutral data platform; review board + gated live guards) |
 
 ### Step-by-step
 

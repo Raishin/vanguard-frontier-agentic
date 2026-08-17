@@ -1022,6 +1022,41 @@ See the `/eval-harness` skill for the full EDD framework and `docs/CODEMAPS/` fo
 
 ---
 
+## 🧭 Agentic delegation
+
+Building a board here means a lot of cheap parallel work and a little judgment. This repo
+routes those differently, and writes the split down so it is reviewable rather than habitual.
+
+| Work | Model | Why |
+| --- | --- | --- |
+| Read-only reconnaissance — locate files, map call sites, summarize structure | Haiku | Mechanical and parallel; findings are checkable because `file:line` citations are mandatory |
+| Bulk writing against an exact file-scoped spec | Sonnet | The shape is already decided; what remains is faithful execution |
+| Verifying an external claim against primary documentation | Sonnet + Context7 | Needs judgment about whether a retrieved snippet actually supports the claim |
+| Running the gate suite | Haiku | Deterministic commands; the value is raw output, not interpretation |
+
+Haiku never orchestrates. **Architecture decisions, security-sensitive edits, surgical changes
+to load-bearing logic, final verification, and the commit are never delegated.** And a
+delegate's self-report is never accepted as verification — the orchestrator reads the diff and
+runs the gates itself.
+
+Two artifacts implement this:
+
+- 📜 [`.claude/skills/agentic-delegation/SKILL.md`](.claude/skills/agentic-delegation/SKILL.md) — the doctrine, followed by hand.
+- ⚙️ [`.claude/workflows/agentic-delegation.js`](.claude/workflows/agentic-delegation.js) — the same rules as a runnable four-phase workflow: parallel Haiku recon → Context7 verification with an **adversarial refuter** → Sonnet spec-driven writing with a diff reviewer → a Haiku gate run that returns raw failure output verbatim.
+
+The workflow is deterministic (no wall clock, no randomness), caps itself at 14 subagents, and
+logs every truncation — a work-list that was cut says so, because silent truncation reads as
+"covered everything" when it did not.
+
+The refuter is the part that earns its keep. During the Snowflake board's verification pass it
+found that an encoded claim — that no Snowpipe Streaming retirement date is published — was
+accurate but omitted a documented sunset window, which changes whether a migration can be
+scoped at all. That is the class of defect a confirmation-seeking review misses.
+
+Full description: [`docs/agentic-delegation.md`](docs/agentic-delegation.md).
+
+---
+
 ## 🧭 Quick map
 
 | Folder                     | What lives here                                                               | Easy memory hook                      |
@@ -1035,6 +1070,8 @@ See the `/eval-harness` skill for the full EDD framework and `docs/CODEMAPS/` fo
 | [`templates/`](templates/) | Starter templates for new assets                                              | 🧱 "How do I add one?"                 |
 | [`docs/`](docs/)           | Quality rules, taxonomy, compliance evidence spec, CI/CD enforcement patterns | 📚 "How should this repo work?"        |
 | [`.claude/evals/`](.claude/evals/)  | Eval-driven development (EDD) definitions and test reports                 | ✅ "How are features validated?"       |
+| [`.claude/skills/`](.claude/skills/) | Project skills that codify how to work in this repo                       | 🧭 "How do we do things here?"        |
+| [`.claude/workflows/`](.claude/workflows/) | Executable multi-agent workflows                                    | ⚙️ "Can this be run, not just read?" |
 | [`assets/`](assets/)       | Logos and visual assets                                                       | 🎨 "What images can docs use?"         |
 
 ---

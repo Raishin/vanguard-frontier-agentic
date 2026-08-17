@@ -124,9 +124,24 @@
     "The cost envelope is unreachable without a topology change → `snowflake-solution-architect-agent`."
   ],
   "routing_keywords": [
-    "cost", "credits", "spend", "bill", "finops", "budget", "resource monitor",
-    "chargeback", "showback", "attribution", "query tag", "idle", "forecast",
-    "anomaly", "expensive", "overspend", "unit economics", "storage cost"
+    "cost",
+    "credits",
+    "spend",
+    "bill",
+    "finops",
+    "budget",
+    "resource monitor",
+    "chargeback",
+    "showback",
+    "attribution",
+    "query tag",
+    "idle",
+    "forecast",
+    "anomaly",
+    "expensive",
+    "overspend",
+    "unit economics",
+    "storage cost"
   ],
   "companion_skill": {
     "id": "snowflake-finops-cost-governor",
@@ -255,9 +270,10 @@
             "claims": [
               "`QUERY_ATTRIBUTION_HISTORY` reports credits attributed to query execution and excludes warehouse idle time. It is the right basis for asking which workload is expensive.",
               "`WAREHOUSE_METERING_HISTORY` reports what the warehouse actually consumed, idle included. It is the right basis for the invoice.",
-              "The difference between them is idle. Idle is a configuration finding — auto-suspend, scheduling, workload consolidation — not a query-tuning finding, and sending it to the query team wastes their time.",
+              "Idle is the LARGEST part of the difference between them on a warehouse-centric workload, but it is not the whole difference. Documented behaviour is that the attribution calculation excludes warehouse idle time, data transfer, storage, cloud services, serverless features, and AI service tokens — six categories. Naming only idle makes the reconciliation look closeable when it is not, and it hides exactly the surfaces (serverless and AI) that a resource-monitor-only control design also misses.",
+              "The practical consequence for a chargeback model: query attribution allocates **warehouse compute for query execution** and nothing else. Storage, transfer, serverless, and AI must be attributed by a separate mechanism or declared explicitly as unallocated. A model that silently omits them charges teams for a shrinking share of the bill while the unallocated remainder grows.",
               "Where the total cost of a query is needed, query acceleration credits are a separate component and must be added to attributed compute rather than assumed included.",
-              "Attribution excludes idle by design, so an attribution breakdown never sums to the bill. Say so before presenting one, or the first question in the room will be why the numbers do not match."
+              "Attribution therefore never sums to the bill, and it under-sums by more than idle. State the full exclusion list before presenting a breakdown, or the first question in the room is why the numbers do not match — and the honest answer will be longer than anyone expects."
             ]
           },
           {
@@ -288,6 +304,15 @@
           {
             "url": "https://docs.snowflake.com/en/user-guide/cost-attributing",
             "proves": "The documented approaches to attributing cost by query tag, including the proportional distribution of idle time across tags"
+          }
+        ],
+        "volatile": [
+          {
+            "claim": "The QUERY_ATTRIBUTION_HISTORY credit calculation excludes warehouse idle time, data transfer, storage, cloud services, serverless features, and AI service tokens; it covers warehouse usage for query execution, accounting for resizing and autoscaling by a weighted average, with concurrent queries attributed by relative resource consumption.",
+            "status": "Current documented behaviour — re-verify before building a chargeback model on it",
+            "verified": "2026-08-17 via Context7 `/websites/snowflake_en` (cost-attributing, account-usage/query_attribution_history usage notes)",
+            "proves": "That query attribution covers warehouse compute only, so the gap to the invoice is six categories wide rather than one",
+            "not_proves": "How large each excluded category is in this account — that requires the metering and storage views, and it is the number that decides whether the omission matters"
           }
         ]
       },
