@@ -326,28 +326,30 @@ fn asset_display_name(asset_id: &str) -> String {
 /// Infer a [`Provider`] from the asset ID.
 ///
 /// Checks the second path component (e.g. `agents/aws/...` → `Provider::Aws`).
+///
+/// The directory component is resolved through `Provider`'s own kebab-case serde
+/// representation rather than a hand-written match. A hand-written match silently
+/// rots: it previously omitted roughly thirty shipped providers (databricks,
+/// snowflake, sap, microsoft, nvidia, the CNCF boards, the European clouds, and
+/// the business-function boards), and because the fallback arm is
+/// `Provider::Generic` the misattribution was invisible — those assets were
+/// quietly bucketed as Generic in the coverage matrix instead of failing loudly.
+/// Deriving from the enum means adding a `Provider` variant is sufficient, and no
+/// second list can drift out of sync with the first.
 fn infer_provider(asset_id: &str) -> Provider {
     let parts: Vec<&str> = asset_id.split('/').collect();
-    if parts.len() >= 2 {
-        match parts[1].to_ascii_lowercase().as_str() {
-            "aws" => Provider::Aws,
-            "azure" => Provider::Azure,
-            "gcp" => Provider::Gcp,
-            "oracle" | "oci" => Provider::Oracle,
-            "kubernetes" | "k8s" => Provider::Kubernetes,
-            "terraform" => Provider::Terraform,
-            "generic" => Provider::Generic,
-            "frontend" => Provider::Frontend,
-            "java" => Provider::Java,
-            "kotlin" => Provider::Kotlin,
-            "php" => Provider::Php,
-            "python" => Provider::Python,
-            "typescript" => Provider::Typescript,
-            _ => Provider::Generic,
-        }
-    } else {
-        Provider::Generic
+    if parts.len() < 2 {
+        return Provider::Generic;
     }
+    let component = parts[1].to_ascii_lowercase();
+    // Directory aliases that are not the provider's serde name. `k8s` is a
+    // filesystem shorthand, not a catalog provider value.
+    let key = match component.as_str() {
+        "k8s" => "kubernetes",
+        other => other,
+    };
+    serde_json::from_value::<Provider>(serde_json::Value::String(key.to_string()))
+        .unwrap_or(Provider::Generic)
 }
 
 // ---------------------------------------------------------------------------
@@ -673,6 +675,67 @@ mod tests {
             infer_provider("agents/not-a-real-provider/foo"),
             Provider::Generic
         );
+    }
+
+    #[test]
+    fn infer_provider_maps_databricks_board() {
+        assert_eq!(
+            infer_provider("agents/databricks/databricks-maestro-agent"),
+            Provider::Databricks
+        );
+        assert_eq!(
+            infer_provider("skills/databricks/databricks-unity-catalog-governance"),
+            Provider::Databricks
+        );
+    }
+
+    #[test]
+    fn infer_provider_keeps_k8s_directory_alias() {
+        // `k8s` is a filesystem shorthand, not a catalog provider value.
+        assert_eq!(infer_provider("agents/k8s/foo"), Provider::Kubernetes);
+        assert_eq!(
+            infer_provider("agents/kubernetes/foo"),
+            Provider::Kubernetes
+        );
+    }
+
+    /// Every provider the catalog actually ships must be inferable from its
+    /// asset path. This reads `catalog/agents.json` rather than a second
+    /// hand-written list precisely so it cannot drift: adding a provider to the
+    /// catalog without a matching `Provider` variant fails here instead of
+    /// silently bucketing that board's assets as `Generic`.
+    ///
+    /// Skips when the catalog is not reachable (e.g. the crate built outside the
+    /// monorepo), so packaging and downstream builds are unaffected.
+    #[test]
+    fn infer_provider_covers_every_catalog_provider() {
+        let catalog =
+            std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../catalog/agents.json");
+        let Ok(raw) = std::fs::read_to_string(&catalog) else {
+            eprintln!("skipping: {} not reachable", catalog.display());
+            return;
+        };
+        let agents: Vec<serde_json::Value> =
+            serde_json::from_str(&raw).expect("catalog/agents.json parses");
+        let mut providers: Vec<String> = agents
+            .iter()
+            .filter_map(|a| a.get("provider")?.as_str().map(str::to_string))
+            .collect();
+        providers.sort();
+        providers.dedup();
+        assert!(
+            !providers.is_empty(),
+            "catalog yielded no providers — the assertion below would be vacuous"
+        );
+        for provider in providers {
+            let inferred = infer_provider(&format!("agents/{provider}/some-agent"));
+            assert_eq!(
+                inferred.to_string(),
+                provider,
+                "provider {provider:?} in catalog/agents.json is not inferable from its \
+                 asset path — add the matching variant to models::provider::Provider"
+            );
+        }
     }
 
     // -----------------------------------------------------------------------
