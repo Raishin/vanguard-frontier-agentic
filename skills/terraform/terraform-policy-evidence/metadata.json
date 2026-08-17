@@ -1,0 +1,28 @@
+{
+  "id": "terraform-policy-evidence",
+  "name": "terraform-policy-evidence",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "terraform",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Turn a Terraform or OpenTofu change into an auditable control decision: which control the change touches, whether the policy that enforces it evaluates the plan or only the source, whether an exception is scoped and expiring, and what evidence artifact an auditor could actually read. Reads plans, policy code, and control mappings only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.hashicorp.com/terraform/cloud-docs/policy-enforcement",
+    "https://developer.hashicorp.com/terraform/cloud-docs/policy-enforcement/opa",
+    "https://developer.hashicorp.com/terraform/cloud-docs/policy-enforcement/sentinel",
+    "https://developer.hashicorp.com/terraform/language/checks",
+    "https://developer.hashicorp.com/terraform/cli/commands/plan"
+  ],
+  "security_notes": "Advisory and read-only — reads plan output (preferably redacted `-json`), policy source, control mappings, and exception records; never runs policy engines, `plan`, or `apply`, never grants or records an exception itself, and never contacts a live system. Never requests or accepts credentials, tokens, unredacted state, audit-system write access, account/subscription/tenant identifiers, or customer data. Produces evidence for a human control owner to sign; it never signs, approves, or attests on their behalf, and a compliance conclusion not supported by a supplied artifact is labelled assumption, never confirmed.",
+  "last_verified": "2026-08-17",
+  "path": "skills/terraform/terraform-policy-evidence",
+  "author": "github: VincentChuWaiChow"
+}

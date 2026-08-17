@@ -77,6 +77,28 @@ GATE_INTENT = {
     # specialist that holds no execution tool and refuses by contract — one
     # extra hop to the right answer. Precision wins on this board.
     "typescript": None,
+    # Terraform narrows the gate instead of dropping it. The default regex fires
+    # on the bare words `destroy` and `delete`, which are this board's own subject
+    # matter: `terraform-plan-blast-radius-agent` exists precisely to review the
+    # plans that destroy things, and under the default regex every such review
+    # request returns an empty route (validate-maestro-routing.py:100) — the one
+    # specialist most worth reaching becomes unreachable. Dropping the gate
+    # entirely (the TypeScript choice) is wrong here for the opposite reason: an
+    # IaC board is exactly where an unattended `apply` or `destroy` does the
+    # damage, and the board registers no live-guard of its own because execution
+    # always leaves for a cloud live-guard agent after a human gate.
+    #
+    # So the discriminator is execution intent, not destructive vocabulary: an
+    # engine command invocation, an imperative to run one, or a promotion to
+    # production gates; describing, reviewing, or explaining a destructive plan
+    # routes to the specialist that owns it.
+    "terraform": r"((terraform|tofu)\s+(apply|destroy|import|taint|force-unlock|"
+                 r"state\s+(rm|mv|push|replace-provider))|"
+                 r"run\s+(the\s+)?(apply|destroy)\b|"
+                 r"(apply|destroy)\s+(this|these|it|that|the)\b|"
+                 r"live\s+(apply|push|deploy)|force[- ]unlock|auto[-\s]?approve|"
+                 r"promote.*to\s+(?:prod|production)|rollout to prod(uction)?|"
+                 r"approve.*production)",
 }
 
 # Per-provider gate mode override (nvidia uses runtime-evidence-gate).

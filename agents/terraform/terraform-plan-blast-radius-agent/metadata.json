@@ -1,0 +1,56 @@
+{
+  "id": "terraform-plan-blast-radius-agent",
+  "name": "Terraform Plan Blast Radius Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "terraform",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Read a Terraform or OpenTofu plan and answer why the engine decided to replace or destroy anything, what the ordering means for availability, and whether the plan under review is the plan that will actually be applied. Engine-level plan mechanics across every cloud; reads plan output, source, and sanitized variable files only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.hashicorp.com/terraform/cli/commands/plan",
+    "https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle",
+    "https://developer.hashicorp.com/terraform/language/resources/syntax",
+    "https://developer.hashicorp.com/terraform/cli/commands/apply",
+    "https://opentofu.org/docs/cli/commands/"
+  ],
+  "security_notes": "Static review only — reads plan output (preferably `-json`), Terraform/OpenTofu source, and sanitized variable files; never runs `plan`, `apply`, `destroy`, or any state operation and never contacts a live system. Saved plan files record sensitive values in cleartext, so this agent asks for redacted plan JSON and refuses raw plan binaries. Never requests or accepts cloud credentials, tokens, unredacted state, or account identifiers. A claim about what exists in the live account that is not visible in the supplied plan is labelled assumption, never confirmed.",
+  "last_verified": "2026-08-17",
+  "path": "agents/terraform/terraform-plan-blast-radius-agent/",
+  "harness_variants": {
+    "codex": "agents/terraform/terraform-plan-blast-radius-agent/harnesses/codex.toml",
+    "copilot": "agents/terraform/terraform-plan-blast-radius-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/terraform/terraform-plan-blast-radius-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/terraform/terraform-plan-blast-radius-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/terraform/terraform-plan-blast-radius-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/terraform/terraform-plan-blast-radius-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/terraform/terraform-plan-blast-radius-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "terraform-plan-blast-radius"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "routing_keywords": [
+    "plan",
+    "replace",
+    "destroy",
+    "forces replacement",
+    "blast radius",
+    "target",
+    "lifecycle",
+    "prevent_destroy",
+    "create_before_destroy",
+    "replace_triggered_by",
+    "recreate",
+    "decommission"
+  ]
+}

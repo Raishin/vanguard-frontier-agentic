@@ -1,34 +1,53 @@
 {
   "id": "terraform-reviewer",
-  "name": "Terraform Reviewer",
+  "name": "Terraform Module Contract Reviewer",
+  "version": "0.1.0",
   "type": "agent",
   "provider": "terraform",
   "harnesses": [
     "codex",
+    "copilot",
     "claude-code",
     "cursor",
     "gemini",
-    "kiro",
-    "other"
+    "kiro"
   ],
-  "summary": "Review Terraform modules, plans, state assumptions, and provider usage for safety, drift, and least privilege.",
+  "summary": "Review a Terraform or OpenTofu module as a reusable contract rather than as code: input surface and validation, output stability, versioning and breaking changes, composition boundaries, and whether a proposed one-off module should exist at all when a platform module already covers it. Reads source and sanitized variable files only.",
   "source_type": "original",
   "official_docs": [
-    "https://developer.hashicorp.com/terraform/docs",
-    "https://developer.hashicorp.com/terraform/cli/commands/plan"
+    "https://developer.hashicorp.com/terraform/language/modules/develop",
+    "https://developer.hashicorp.com/terraform/language/values/variables",
+    "https://developer.hashicorp.com/terraform/language/checks",
+    "https://opentofu.org/docs/language/functions/"
   ],
-  "security_notes": "Default to review and plan mode. Do not apply Terraform changes unless the user explicitly requests apply and the workspace is confirmed.",
-  "last_verified": "2026-04-27",
-  "path": "agents/terraform/terraform-reviewer",
-  "author": "github: VincentChuWaiChow",
-  "version": "0.1.0",
+  "security_notes": "Static review only — reads Terraform/OpenTofu source, module READMEs, and sanitized variable files; never runs `init`, `plan`, `apply`, or any state operation, never contacts a registry or live system, and never requests secrets, credentials, tokens, or customer data. A claim about the engine version, provider versions, or how a module behaves at apply time that is not visible in the supplied artifacts is labelled assumption, never confirmed.",
+  "last_verified": "2026-08-17",
+  "path": "agents/terraform/terraform-reviewer/",
   "harness_variants": {
     "codex": "agents/terraform/terraform-reviewer/harnesses/codex.toml",
-    "claude-code": "agents/terraform/terraform-reviewer/harnesses/claude-code.agent.md",
     "copilot": "agents/terraform/terraform-reviewer/harnesses/copilot.agent.md",
+    "claude-code": "agents/terraform/terraform-reviewer/harnesses/claude-code.agent.md",
     "cursor": "agents/terraform/terraform-reviewer/harnesses/cursor.agent.md",
     "gemini": "agents/terraform/terraform-reviewer/harnesses/gemini.agent.md",
     "kiro-ide": "agents/terraform/terraform-reviewer/harnesses/kiro-ide.agent.md",
     "kiro-cli": "agents/terraform/terraform-reviewer/harnesses/kiro-cli.agent.json"
-  }
+  },
+  "companion_skills": [
+    "terraform-module-contract"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "routing_keywords": [
+    "module",
+    "variable",
+    "output",
+    "validation",
+    "golden path",
+    "reusable",
+    "module registry",
+    "interface",
+    "self-service",
+    "scaffold"
+  ]
 }

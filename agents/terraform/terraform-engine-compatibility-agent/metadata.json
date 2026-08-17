@@ -1,0 +1,56 @@
+{
+  "id": "terraform-engine-compatibility-agent",
+  "name": "Terraform Engine Compatibility Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "terraform",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Decide whether a version or engine change is safe to adopt, in what order, and with what rollback: Terraform core and provider major upgrades, deprecation exposure, and the Terraform-versus-OpenTofu engine decision treated as an evidence problem rather than an ideological one. Reads version constraints, lock files, deprecation notices, and release documentation only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.hashicorp.com/terraform/language/upgrade-guides",
+    "https://developer.hashicorp.com/terraform/language/v1-compatibility-promises",
+    "https://developer.hashicorp.com/terraform/language/files/dependency-lock",
+    "https://opentofu.org/docs/intro/migration/",
+    "https://opentofu.org/docs/intro/"
+  ],
+  "security_notes": "Static review only — reads version constraints, `.terraform.lock.hcl`, provider deprecation notices, changelog and upgrade-guide excerpts, and configuration; never runs `init`, `init -upgrade`, `plan`, or `apply`, and never contacts a registry. Never requests or accepts credentials, tokens, or licence keys. Version-specific behaviour is asserted only from the relevant engine's own upgrade guidance for the exact version pair in question; a claim about a version whose guidance was not read is labelled unknown rather than inferred from an adjacent version.",
+  "last_verified": "2026-08-17",
+  "path": "agents/terraform/terraform-engine-compatibility-agent/",
+  "harness_variants": {
+    "codex": "agents/terraform/terraform-engine-compatibility-agent/harnesses/codex.toml",
+    "copilot": "agents/terraform/terraform-engine-compatibility-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/terraform/terraform-engine-compatibility-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/terraform/terraform-engine-compatibility-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/terraform/terraform-engine-compatibility-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/terraform/terraform-engine-compatibility-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/terraform/terraform-engine-compatibility-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "terraform-engine-compatibility"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "routing_keywords": [
+    "upgrade",
+    "version",
+    "compatibility",
+    "opentofu",
+    "migration",
+    "deprecated",
+    "breaking change",
+    "provider major",
+    "core version",
+    "fork",
+    "engine choice",
+    "version lag"
+  ]
+}

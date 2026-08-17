@@ -19454,8 +19454,8 @@
     "version": "0.1.0"
   },
   {
-    "id": "terraform-maestro",
-    "name": "Terraform Maestro",
+    "id": "terraform-engine-compatibility",
+    "name": "terraform-engine-compatibility",
     "type": "skill",
     "provider": "terraform",
     "harnesses": [
@@ -19466,22 +19466,271 @@
       "kiro",
       "other"
     ],
-    "summary": "Route Terraform and IaC tasks to the right specialist from the cross-cloud IaC catalog. Classifies by domain (review, aws-iac, azure-iac, oci-iac, live-guard), dispatches single or parallel (max 4), and enforces live-guard gate for live apply, destroy, or stack mutations.",
-    "source_type": "adapted",
+    "summary": "Decide whether a version or engine change is safe to adopt, in what order, and with what rollback: Terraform core and provider major upgrades, deprecation exposure, and the Terraform-versus-OpenTofu engine decision treated as an evidence problem rather than an ideological one. Reads version constraints, lock files, deprecation notices, and release documentation only.",
+    "source_type": "original",
     "official_docs": [
-      "https://developer.hashicorp.com/terraform/docs",
-      "https://developer.hashicorp.com/terraform/language",
-      "https://developer.hashicorp.com/terraform/cli/commands/plan",
-      "https://developer.hashicorp.com/terraform/cli/commands/apply",
-      "https://registry.terraform.io/providers/hashicorp/aws/latest/docs",
-      "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs",
-      "https://registry.terraform.io/providers/oracle/oci/latest/docs"
+      "https://developer.hashicorp.com/terraform/language/upgrade-guides",
+      "https://developer.hashicorp.com/terraform/language/v1-compatibility-promises",
+      "https://developer.hashicorp.com/terraform/language/files/dependency-lock",
+      "https://opentofu.org/docs/intro/migration/",
+      "https://opentofu.org/docs/intro/"
     ],
-    "security_notes": "Live-guard gate is non-negotiable: never auto-dispatch live apply, destroy, or stack mutation agents without explicit human confirmation, blast-radius assessment, and rollback path. Terraform destroy is irreversible without state backup.",
-    "last_verified": "2026-04-30",
+    "security_notes": "Static review only — reads version constraints, `.terraform.lock.hcl`, provider deprecation notices, changelog and upgrade-guide excerpts, and configuration; never runs `init`, `init -upgrade`, `plan`, or `apply`, and never contacts a registry. Never requests or accepts credentials, tokens, or licence keys. Version-specific behaviour is asserted only from the relevant engine's own upgrade guidance for the exact version pair in question; a claim about a version whose guidance was not read is labelled unknown rather than inferred from an adjacent version.",
+    "last_verified": "2026-08-17",
+    "path": "skills/terraform/terraform-engine-compatibility",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "terraform-estate-reconciliation",
+    "name": "terraform-estate-reconciliation",
+    "type": "skill",
+    "provider": "terraform",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Make the record match reality without destroying anything: classify drift and decide whether to adopt, revert, or accept it; bring unmanaged brownfield infrastructure under management via import blocks; and carry resource address changes with `moved` and `removed` blocks so a refactor is not read as a destroy. Reads plans, source, and sanitized inventories only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.hashicorp.com/terraform/language/import",
+      "https://developer.hashicorp.com/terraform/language/moved",
+      "https://developer.hashicorp.com/terraform/cli/commands/plan",
+      "https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle",
+      "https://opentofu.org/docs/language/import/"
+    ],
+    "security_notes": "Advisory and read-only — reads plans (preferably `-refresh-only` and `-json`), Terraform/OpenTofu source, import blocks, and sanitized resource inventories; never runs `import`, `plan`, `apply`, `state mv`, or `state rm`, and never contacts a cloud API to enumerate resources. Never requests or accepts cloud credentials, tokens, unredacted state, account/subscription/tenant identifiers, or customer data. Resource inventories must arrive with identifiers redacted where they encode account or tenant structure. A claim about what exists in the live estate that is not visible in the supplied artifacts is labelled assumption, never confirmed.",
+    "last_verified": "2026-08-17",
+    "path": "skills/terraform/terraform-estate-reconciliation",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "terraform-execution-governance",
+    "name": "terraform-execution-governance",
+    "type": "skill",
+    "provider": "terraform",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Decide whether the path that executes a Terraform or OpenTofu change is trustworthy: which identity the runner assumes and how widely it is scoped, whether the reviewed plan is the plan that applies, how plan artifacts move between stages, and whether approval is a real gate or a formality. Reads pipeline definitions and runner configuration only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.hashicorp.com/terraform/cli/commands/apply",
+      "https://developer.hashicorp.com/terraform/cli/commands/plan",
+      "https://developer.hashicorp.com/terraform/cloud-docs/workspaces/dynamic-provider-credentials",
+      "https://developer.hashicorp.com/terraform/cloud-docs/run/remote-operations",
+      "https://developer.hashicorp.com/terraform/cli/config/config-file"
+    ],
+    "security_notes": "Static review only — reads pipeline definitions, runner and workspace configuration, and sanitized role or trust-policy documents; never triggers a pipeline, runs `plan` or `apply`, or contacts a CI system, and never modifies a workflow. Never requests or accepts credentials, provider tokens, OIDC client secrets, private keys, unredacted state, saved plan binaries, or account/subscription/tenant identifiers — trust policies and role documents must arrive with identifiers redacted. A claim about what a runner is actually permitted to do that is not visible in the supplied configuration is labelled assumption, never confirmed.",
+    "last_verified": "2026-08-17",
+    "path": "skills/terraform/terraform-execution-governance",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "terraform-maestro",
+    "name": "terraform-maestro",
+    "type": "skill",
+    "provider": "terraform",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Classify a Terraform or OpenTofu task and route it to the narrowest advisory specialist on the IaC board, dispatching up to four in parallel only when the change genuinely spans that many domains. Never answers an IaC question itself, never executes a live operation, and never auto-dispatches a live-guard agent.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.hashicorp.com/terraform/cli/commands/plan",
+      "https://opentofu.org/docs/cli/commands/"
+    ],
+    "security_notes": "Routing only. Never requests or relays cloud credentials, provider tokens, private keys, unredacted state, or account/subscription/tenant identifiers. Never executes apply, destroy, import, state mutation, or force-unlock, and never auto-dispatches a live-guard agent — every live path stops for written human confirmation with blast radius and rollback stated first.",
+    "last_verified": "2026-08-17",
     "path": "skills/terraform/terraform-maestro",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.0"
+  },
+  {
+    "id": "terraform-module-contract",
+    "name": "terraform-module-contract",
+    "type": "skill",
+    "provider": "terraform",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review a Terraform or OpenTofu module as a reusable contract rather than as code: input surface and validation, output stability, versioning and breaking changes, composition boundaries, and whether a proposed one-off module should exist at all when a platform module already covers it. Reads source and sanitized variable files only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.hashicorp.com/terraform/language/modules/develop",
+      "https://developer.hashicorp.com/terraform/language/values/variables",
+      "https://developer.hashicorp.com/terraform/language/checks",
+      "https://opentofu.org/docs/language/functions/"
+    ],
+    "security_notes": "Static review only — reads Terraform/OpenTofu source, module READMEs, and sanitized variable files; never runs `init`, `plan`, `apply`, or any state operation, never contacts a registry or live system, and never requests secrets, credentials, tokens, or customer data. A claim about the engine version, provider versions, or how a module behaves at apply time that is not visible in the supplied artifacts is labelled assumption, never confirmed.",
+    "last_verified": "2026-08-17",
+    "path": "skills/terraform/terraform-module-contract",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "terraform-plan-blast-radius",
+    "name": "terraform-plan-blast-radius",
+    "type": "skill",
+    "provider": "terraform",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Read a Terraform or OpenTofu plan and answer why the engine decided to replace or destroy anything, what the ordering means for availability, and whether the plan under review is the plan that will actually be applied. Engine-level plan mechanics across every cloud; reads plan output, source, and sanitized variable files only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.hashicorp.com/terraform/cli/commands/plan",
+      "https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle",
+      "https://developer.hashicorp.com/terraform/language/resources/syntax",
+      "https://developer.hashicorp.com/terraform/cli/commands/apply",
+      "https://opentofu.org/docs/cli/commands/"
+    ],
+    "security_notes": "Static review only — reads plan output (preferably `-json`), Terraform/OpenTofu source, and sanitized variable files; never runs `plan`, `apply`, `destroy`, or any state operation and never contacts a live system. Saved plan files record sensitive values in cleartext, so this agent asks for redacted plan JSON and refuses raw plan binaries. Never requests or accepts cloud credentials, tokens, unredacted state, or account identifiers. A claim about what exists in the live account that is not visible in the supplied plan is labelled assumption, never confirmed.",
+    "last_verified": "2026-08-17",
+    "path": "skills/terraform/terraform-plan-blast-radius",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "terraform-policy-evidence",
+    "name": "terraform-policy-evidence",
+    "type": "skill",
+    "provider": "terraform",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Turn a Terraform or OpenTofu change into an auditable control decision: which control the change touches, whether the policy that enforces it evaluates the plan or only the source, whether an exception is scoped and expiring, and what evidence artifact an auditor could actually read. Reads plans, policy code, and control mappings only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.hashicorp.com/terraform/cloud-docs/policy-enforcement",
+      "https://developer.hashicorp.com/terraform/cloud-docs/policy-enforcement/opa",
+      "https://developer.hashicorp.com/terraform/cloud-docs/policy-enforcement/sentinel",
+      "https://developer.hashicorp.com/terraform/language/checks",
+      "https://developer.hashicorp.com/terraform/cli/commands/plan"
+    ],
+    "security_notes": "Advisory and read-only — reads plan output (preferably redacted `-json`), policy source, control mappings, and exception records; never runs policy engines, `plan`, or `apply`, never grants or records an exception itself, and never contacts a live system. Never requests or accepts credentials, tokens, unredacted state, audit-system write access, account/subscription/tenant identifiers, or customer data. Produces evidence for a human control owner to sign; it never signs, approves, or attests on their behalf, and a compliance conclusion not supported by a supplied artifact is labelled assumption, never confirmed.",
+    "last_verified": "2026-08-17",
+    "path": "skills/terraform/terraform-policy-evidence",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "terraform-state-reliability",
+    "name": "terraform-state-reliability",
+    "type": "skill",
+    "provider": "terraform",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Own the state file as a production asset: backend and locking configuration, backup and recovery posture, whether a proposed state surgery is justified and reversible, engine-specific state encryption, and the secrets that state records in the clear. Reads backend blocks, state metadata, and sanitized artifacts only — never mutates state.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.hashicorp.com/terraform/language/state",
+      "https://developer.hashicorp.com/terraform/language/state/locking",
+      "https://developer.hashicorp.com/terraform/language/backend/s3",
+      "https://developer.hashicorp.com/terraform/cli/commands/state",
+      "https://developer.hashicorp.com/terraform/cli/commands/force-unlock",
+      "https://developer.hashicorp.com/terraform/language/state/sensitive-data",
+      "https://opentofu.org/docs/language/state/encryption/",
+      "https://developer.hashicorp.com/terraform/language/state/remote-state-data"
+    ],
+    "security_notes": "Advisory and read-only — reads `backend` and `cloud` blocks, state metadata, lock configuration, and sanitized artifacts; never runs `state mv`, `state rm`, `state push`, `import`, `taint`, or `force-unlock`, and never contacts a live backend. State records values in the clear even when the configuration marks them sensitive, so this agent never requests a raw state file: it asks for the backend block and `terraform state list` output instead. Never requests or accepts cloud credentials, tokens, encryption keys or passphrases, account identifiers, or customer data. A claim about the live backend, lock table, or bucket configuration not visible in the supplied artifacts is labelled assumption, never confirmed.",
+    "last_verified": "2026-08-17",
+    "path": "skills/terraform/terraform-state-reliability",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "terraform-supply-chain-integrity",
+    "name": "terraform-supply-chain-integrity",
+    "type": "skill",
+    "provider": "terraform",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Decide whether a Terraform or OpenTofu dependency may be trusted and whether the trust is actually enforced: provider source addresses and registry namespaces, `.terraform.lock.hcl` hash coverage across platforms, mirrors and network-restricted installation, and module source provenance. Reads dependency declarations, lock files, and CLI configuration only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.hashicorp.com/terraform/language/files/dependency-lock",
+      "https://developer.hashicorp.com/terraform/cli/commands/providers/lock",
+      "https://developer.hashicorp.com/terraform/language/providers/requirements",
+      "https://developer.hashicorp.com/terraform/cli/config/config-file",
+      "https://developer.hashicorp.com/terraform/internals/provider-registry-protocol",
+      "https://opentofu.org/docs/language/providers/requirements/"
+    ],
+    "security_notes": "Static review only — reads `required_providers` blocks, module `source` addresses, `.terraform.lock.hcl`, and CLI configuration files; never runs `init`, `providers lock`, or any command that contacts a registry or mirror, and never downloads a provider. Never requests or accepts registry tokens, signing keys, credentials, or private registry URLs containing embedded secrets. A claim about what a registry currently serves, or about a checksum not present in the supplied lock file, is labelled assumption, never confirmed.",
+    "last_verified": "2026-08-17",
+    "path": "skills/terraform/terraform-supply-chain-integrity",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "terraform-verification-strategy",
+    "name": "terraform-verification-strategy",
+    "type": "skill",
+    "provider": "terraform",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Choose and sequence verification for a Terraform or OpenTofu change: what `validate`, a plan, `terraform test` with `command = plan`, mock providers, and a real-infrastructure test run each actually prove, and which of them is proportionate to the change's blast radius. Reusable procedure with no independent decision right — the owning agent issues the verdict.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.hashicorp.com/terraform/language/tests",
+      "https://developer.hashicorp.com/terraform/cli/commands/plan",
+      "https://developer.hashicorp.com/terraform/language/checks",
+      "https://opentofu.org/docs/cli/commands/"
+    ],
+    "security_notes": "Procedure only — reads test files, module source, and plan output; never runs `validate`, `plan`, `test`, or `apply`, and never provisions infrastructure. Apply-mode tests create real infrastructure and are therefore recommended only against an isolated non-production account with its own credentials, never against an account holding production resources. Never requests or accepts credentials, tokens, unredacted state, or customer data.",
+    "last_verified": "2026-08-17",
+    "path": "skills/terraform/terraform-verification-strategy",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
   },
   {
     "id": "test-coverage-quality-review",

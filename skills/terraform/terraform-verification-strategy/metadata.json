@@ -1,0 +1,27 @@
+{
+  "id": "terraform-verification-strategy",
+  "name": "terraform-verification-strategy",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "terraform",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Choose and sequence verification for a Terraform or OpenTofu change: what `validate`, a plan, `terraform test` with `command = plan`, mock providers, and a real-infrastructure test run each actually prove, and which of them is proportionate to the change's blast radius. Reusable procedure with no independent decision right — the owning agent issues the verdict.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.hashicorp.com/terraform/language/tests",
+    "https://developer.hashicorp.com/terraform/cli/commands/plan",
+    "https://developer.hashicorp.com/terraform/language/checks",
+    "https://opentofu.org/docs/cli/commands/"
+  ],
+  "security_notes": "Procedure only — reads test files, module source, and plan output; never runs `validate`, `plan`, `test`, or `apply`, and never provisions infrastructure. Apply-mode tests create real infrastructure and are therefore recommended only against an isolated non-production account with its own credentials, never against an account holding production resources. Never requests or accepts credentials, tokens, unredacted state, or customer data.",
+  "last_verified": "2026-08-17",
+  "path": "skills/terraform/terraform-verification-strategy",
+  "author": "github: VincentChuWaiChow"
+}
