@@ -7,6 +7,7 @@ skills: 712
 providers: 45
 mcp_references: 3
 rules: 1
+workflows: 1
 install_roles: 60
 validation_gates: 24
 agent_directories: 49
@@ -180,6 +181,11 @@ provider_taxonomy:
         agents: 3
       - name: "snowflake"
         agents: 3
+
+# Workflow list (delegation workflows in .claude/workflows/)
+workflow_list:
+  - name: "agentic-delegation"
+    phases: 7
 
 # Role list
 role_list:

@@ -441,7 +441,7 @@ vfa-tui                                      # installed via cargo or prebuilt b
 | 🕸️ Istio            |     1 | Ambient mesh, ztunnel L4 vs waypoint L7, PeerAuthentication, mTLS posture                        |
 | 🐝 Cilium           |     1 | CiliumNetworkPolicy, ClusterMesh trust, 169.254.169.254 egress, WireGuard encryption              |
 | 📡 OpenTelemetry    |     1 | Collector pipeline, memory_limiter, receiver exposure, exporter cardinality, credential handling  |
-| 🟩 Terraform        |     1 | IaC review and plan safety                                                                        |
+| 🟩 Terraform        |    10 | Engine-shared Terraform/OpenTofu board: maestro routing, plan blast radius, state reliability, estate reconciliation, supply-chain integrity, engine compatibility, policy evidence, execution governance, module contract, verification strategy |
 | 📣 Marketing        |    14 | Consent, pixel-leakage, martech access, GPC, email auth, ads.txt, targeting fairness, EU AI Act, audience uploads, list retention, influencer, dark patterns, analytics, maestro |
 | ☁️ Salesforce       |    25 | Org assessment, metadata review, permissions audit, Flow automation, Apex/LWC code review, release readiness, integration, marketing consent, Agentforce risk review, zero-trust maturity, DevSecOps pipeline, SOQL generation, Apex generation and test generation, operational T1/T2 runtime skills |
 | Ⓜ️ Microsoft 365 / D365 |    38 | Maestro routing (microsoft/m365/d365/Power Platform/Copilot), Entra Zero Trust & Conditional Access, Microsoft 365 Copilot readiness, Purview data security & compliance, Defender XDR SecOps, Intune endpoints, Teams collaboration, Exchange/SharePoint information governance, tenant governance, backup/BCDR & data resilience, licensing/EA optimization, Dataverse/DLP security, Power Platform ALM, Power Automate risk review, Copilot Studio governance, Fabric/Power BI governance, Fabric data engineering, Fabric analytics engineering, D365 Success by Design, SoD, data migration/cutover, finance close-to-report, supply chain, field service, customer service, sales ops, Customer Insights – Journeys, F&O developer/extensions, dual-write integration, Project Operations, Commerce, value realization, live-guard identity posture + Dataverse security role (read-only-runtime, Phase A), live-guard Dataverse record field update + sensitivity label apply (mutating-runtime, Phase B) |
@@ -552,7 +552,7 @@ Rule of thumb: if the asset teaches **how to do a repeatable task**, it is a ski
 | 🔁 Flux CD          |     1 | GitOps Kustomization/HelmRelease review                                             |
 | 📊 Prometheus       |     1 | alerting and cardinality review                                                     |
 | 🔏 Sigstore         |     1 | supply-chain security review                                                        |
-| 🟩 Terraform        |     2 | IaC review, maestro                                                                 |
+| 🟩 Terraform        |     9 | Engine-shared Terraform/OpenTofu board — one decision right each: plan blast radius, state reliability, estate reconciliation, supply-chain integrity, engine compatibility, policy evidence, execution governance, module contract, maestro |
 | 💸 FinOps           |     4 | cross-cloud price advisor + experimental cost/economics agents                      |
 | 🐘 PHP              |     5 | maestro + 4 static-review specialists: application security (session fixation, deserialization, file-upload), runtime EOL/OPcache/FPM hardening, Composer supply-chain audit, WordPress REST API/block-editor security — static-review only |
 | 🟣 .NET             |    10 | C#/runtime, ASP.NET Core API & identity, EF Core data access, testing, NuGet supply chain, performance/AOT, OpenTelemetry, Aspire — static-review specialists + maestro router |
@@ -677,12 +677,13 @@ agents/
 ├── scaleway/         (6 agents — advisory, live Kapsule rollout guard, maestro)
 ├── snowflake/        (3 agents — Snowflake on Azure: RBAC governance + data-platform engineering — static review, -at-azure; + RBAC grant guard — mutating-runtime live-guard, Phase B)
 ├── sigstore/         (1 agent — supply-chain security review)
-└── terraform/        (2 agents — IaC review, maestro)
+└── terraform/        (9 agents — engine-shared Terraform/OpenTofu board: plan blast radius, state reliability, estate reconciliation, supply-chain integrity, engine compatibility, policy evidence, execution governance, module contract, maestro)
 ```
 
 Example:
 
-- 🧱 [`agents/terraform/terraform-reviewer`](agents/terraform/terraform-reviewer/) — Review Terraform modules, plans, provider usage, and state assumptions.
+- 🧱 [`agents/terraform/terraform-plan-blast-radius-agent`](agents/terraform/terraform-plan-blast-radius-agent/) — Explain why a plan replaces or destroys anything, what the ordering means for availability, and whether the reviewed plan binds the apply.
+- 🧱 [`agents/terraform/terraform-reviewer`](agents/terraform/terraform-reviewer/) — Review a module as a reusable contract: input validation, output stability, breaking-change classification, and whether the module should exist at all.
 
 Use an agent when you need a **role with judgment**, not just a checklist.
 
@@ -748,12 +749,12 @@ A role installs the curated set of agents a practitioner in that job function ne
 
 | `--role` value                               | 👤 Who it is for                                                         | 🔢 Agents | ☁️ What it covers                                                                                                                                                     |
 | -------------------------------------------- | ------------------------------------------------------------------------ | -------: | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `cloud-security-engineer`                    | 🔐 Security engineers, compliance teams, IAM owners                       |       51 | IAM/RBAC review, secrets lifecycle, identity governance, live guards for access and key mutations — AWS · Azure · OCI · GCP · Alibaba · Huawei · OVHcloud · Scaleway · Contabo · K8s |
-| `cloud-platform-engineer`                    | 🏗️ Infrastructure/SRE, IaC owners, Kubernetes platform teams              |       58 | IaC safety review, container platform operators, networking, landing zones, live deployment guards — AWS · Azure · OCI · GCP · Alibaba · Huawei · EU providers · Terraform |
+| `cloud-security-engineer`                    | 🔐 Security engineers, compliance teams, IAM owners                       |       74 | IAM/RBAC review, secrets lifecycle, identity governance, live guards for access and key mutations — AWS · Azure · OCI · GCP · Alibaba · Huawei · OVHcloud · Scaleway · Contabo · K8s |
+| `cloud-platform-engineer`                    | 🏗️ Infrastructure/SRE, IaC owners, Kubernetes platform teams              |       76 | IaC safety review, container platform operators, networking, landing zones, live deployment guards — AWS · Azure · OCI · GCP · Alibaba · Huawei · EU providers · Terraform |
 | `cloud-dba`                                  | 🗄️ Database administrators, data platform engineers                       |       20 | RDS/Aurora, DynamoDB, CosmosDB, OCI Autonomous/Exadata/MySQL HeatWave, IONOS DBaaS, replication, live DB lifecycle guards                                             |
 | `cloud-finops-analyst`                       | 💰 FinOps leads, cost governance teams                                    |       25 | Cost optimization governors, anomaly watch, budget runaway guards, capacity planning — AWS · Azure · OCI · GCP · Alibaba · Huawei · EU providers                      |
-| `cloud-solutions-architect`                  | 🏛️ Cloud architects, migration leads, AI/generative engineers             |       38 | Solution architecture, migration cutover, resilience/BCDR, event-driven design, multi-cloud, AI/generative — AWS · Azure · OCI · GCP · Alibaba · Huawei               |
-| `cloud-devops-engineer`                      | 🚀 CI/CD engineers, release managers, SRE ops                             |       49 | CI/CD, pipeline approval gates, live rollout guards, deployment hotfix operators, serverless readiness, observability — AWS · Azure · OCI · GCP · Alibaba · Huawei    |
+| `cloud-solutions-architect`                  | 🏛️ Cloud architects, migration leads, AI/generative engineers             |       48 | Solution architecture, migration cutover, resilience/BCDR, event-driven design, multi-cloud, AI/generative — AWS · Azure · OCI · GCP · Alibaba · Huawei               |
+| `cloud-devops-engineer`                      | 🚀 CI/CD engineers, release managers, SRE ops                             |       65 | CI/CD, pipeline approval gates, live rollout guards, deployment hotfix operators, serverless readiness, observability — AWS · Azure · OCI · GCP · Alibaba · Huawei    |
 | `kubernetes-admission-security-engineer`     | 🛡️ Platform security, policy engineers, admission control owners          |        6 | Kyverno policy review, K8s workload identity, PSA profiles, live admission-policy guard, live RBAC guard                                  |
 | `kubernetes-network-engineer`                | 🐝 Network engineers, platform SREs, zero-trust mesh owners               |        5 | Cilium/NetworkPolicy review, Istio ambient mesh review, live network-policy and mesh-policy guards                                        |
 | `kubernetes-application-platform-engineer`   | 🔄 Platform engineers, GitOps owners, ArgoCD operators                    |        3 | Argo CD GitOps review, live ArgoCD sync guard, kubernetes-maestro router                                                                  |
