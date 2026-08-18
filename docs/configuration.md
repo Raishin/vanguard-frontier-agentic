@@ -16,7 +16,7 @@ The `package.json` defines all build, validation, and generation commands.
 
 ### Validation Gates (run via `npm run validate`)
 
-These 17 gates run sequentially in CI and must all pass:
+These gates run sequentially in CI and must all pass — {{ site.data.catalog.validation_gates }} `validate:*` scripts plus `manifest:check`, in the order `npm run validate` invokes them:
 
 | # | Script | Command | Purpose |
 |---|--------|---------|---------|
@@ -24,22 +24,26 @@ These 17 gates run sequentially in CI and must all pass:
 | 2 | `validate:aws` | `python3 tests/validate-aws-skill-quality.py && python3 tests/validate-aws-progressive-disclosure.py` | AWS skill quality + progressive disclosure |
 | 3 | `manifest:check` | `python3 tests/validate-skill-manifest.py` | Skill manifest is current |
 | 4 | `validate:allowed-tools` | `python3 tests/validate-skill-allowed-tools.py` | Skills only reference allowed tools |
-| 5 | `validate:skill-schema` | `python3 tests/validate-skill-frontmatter-schema.py` | Skill frontmatter matches schema |
-| 6 | `validate:agent-schema` | `python3 tests/validate-agent-frontmatter-schema.py` | Agent metadata matches schema |
-| 7 | `validate:links` | `python3 tests/validate-links.py --offline` | Internal links resolve |
-| 8 | `validate:asset-integrity` | `python3 tests/validate-asset-integrity.py` | SHA-256 hashes match |
-| 9 | `validate:mcp-trust-matrix` | `python3 tests/validate-mcp-trust-matrix.py` | MCP references are trusted |
-| 10 | `validate:no-lifecycle-scripts` | `python3 tests/validate-no-lifecycle-scripts.py` | No install/postinstall scripts |
-| 11 | `validate:promotion-gatekeeper` | `python3 tests/validate-nvidia-promotion-gatekeeper.py` | NVIDIA promotion rules |
-| 12 | `validate:install-coverage` | `node tests/test-vfa-export-coverage.test.mjs` | Export CLI covers all roles |
-| 13 | `validate:maestro-routing` | `python3 tests/validate-maestro-routing.py` | 357 routing scenarios pass |
-| 14 | `validate:plugin-manifest` | `python3 tests/validate-plugin-manifest.py` | Plugin manifests current |
-| 15 | `validate:kiro-powers` | `python3 tests/validate-kiro-powers.py` | Kiro Powers valid |
-| 16 | `validate:multi-harness-marketplace` | `python3 tests/validate-multi-harness-marketplace.py` | Cross-harness consistency |
-| 17 | `validate:codex-marketplace` | `python3 tests/validate-codex-marketplace.py` | Codex marketplace valid |
-| 18 | `validate:finops-fixtures` | `python3 tests/validate-finops-price-fixtures.py` | FinOps price fixtures |
-| 19 | `validate:readme-counts` | `node tests/validate-readme-counts.mjs` | README stats accurate |
-| 20 | `validate:qa-cluster` | `node tests/eval-qa-cluster.mjs` | QA cluster evaluation |
+| 5 | `validate:skill-coherence` | `python3 tests/validate-skill-coherence.py` | Shell examples in a SKILL.md are covered by its declared `allowed-tools` |
+| 6 | `validate:skill-schema` | `python3 tests/validate-skill-frontmatter-schema.py` | Skill frontmatter matches schema |
+| 7 | `validate:agent-schema` | `python3 tests/validate-agent-frontmatter-schema.py` | Agent metadata matches schema |
+| 8 | `validate:model-policy` | `node scripts/model-policy.mjs check` | Model/effort assignments resolve against `catalog/model-registry.json` |
+| 9 | `validate:links` | `python3 tests/validate-links.py --offline` | Internal links resolve |
+| 10 | `validate:asset-integrity` | `python3 tests/validate-asset-integrity.py` | SHA-256 hashes match |
+| 11 | `validate:mcp-trust-matrix` | `python3 tests/validate-mcp-trust-matrix.py` | MCP references are trusted |
+| 12 | `validate:no-lifecycle-scripts` | `python3 tests/validate-no-lifecycle-scripts.py` | No install/postinstall scripts |
+| 13 | `validate:promotion-gatekeeper` | `python3 tests/validate-nvidia-promotion-gatekeeper.py` | NVIDIA promotion rules |
+| 14 | `validate:install-coverage` | `node tests/test-vfa-export-coverage.test.mjs` | Export CLI covers all roles |
+| 15 | `validate:maestro-routing` | `python3 tests/validate-maestro-routing.py` | {{ site.data.catalog.maestro_scenarios }} routing scenarios pass |
+| 16 | `validate:plugin-manifest` | `python3 tests/validate-plugin-manifest.py` | Plugin manifests current |
+| 17 | `validate:kiro-powers` | `python3 tests/validate-kiro-powers.py` | Kiro Powers valid |
+| 18 | `validate:multi-harness-marketplace` | `python3 tests/validate-multi-harness-marketplace.py` | Cross-harness consistency |
+| 19 | `validate:codex-marketplace` | `python3 tests/validate-codex-marketplace.py` | Codex marketplace valid |
+| 20 | `validate:finops-fixtures` | `python3 tests/validate-finops-price-fixtures.py` | FinOps price fixtures |
+| 21 | `validate:readme-counts` | `node tests/validate-readme-counts.mjs && node scripts/generate-readme-counts.mjs --check` | README stats accurate |
+| 22 | `validate:qa-cluster` | `node tests/eval-qa-cluster.mjs` | QA cluster evaluation |
+| 23 | `validate:frontend-security-detection` | `python3 tests/validate-frontend-security-detection.py` | Frontend security skills still document their sink keywords and detect the fixture corpus |
+| 24 | `validate:agent-tool-tiers` | `python3 tests/validate-agent-tool-tiers.py` | Copilot tool grants match each agent's declared `execution_tier` |
 
 ### Generation Scripts
 
