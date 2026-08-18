@@ -1,0 +1,59 @@
+{
+  "id": "terraform-policy-evidence-agent",
+  "name": "Terraform Policy Evidence Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "terraform",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Turn a Terraform or OpenTofu change into an auditable control decision: which control the change touches, whether the policy that enforces it evaluates the plan or only the source, whether an exception is scoped and expiring, and what evidence artifact an auditor could actually read. Reads plans, policy code, and control mappings only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.hashicorp.com/terraform/cloud-docs/policy-enforcement",
+    "https://developer.hashicorp.com/terraform/cloud-docs/policy-enforcement/opa",
+    "https://developer.hashicorp.com/terraform/cloud-docs/policy-enforcement/sentinel",
+    "https://developer.hashicorp.com/terraform/language/checks",
+    "https://developer.hashicorp.com/terraform/cli/commands/plan",
+    "https://developer.hashicorp.com/terraform/cloud-docs/policy-enforcement/manage-policy-sets"
+  ],
+  "security_notes": "Advisory and read-only — reads plan output (preferably redacted `-json`), policy source, control mappings, and exception records; never runs policy engines, `plan`, or `apply`, never grants or records an exception itself, and never contacts a live system. Never requests or accepts credentials, tokens, unredacted state, audit-system write access, account/subscription/tenant identifiers, or customer data. Produces evidence for a human control owner to sign; it never signs, approves, or attests on their behalf, and a compliance conclusion not supported by a supplied artifact is labelled assumption, never confirmed.",
+  "last_verified": "2026-08-17",
+  "path": "agents/terraform/terraform-policy-evidence-agent/",
+  "harness_variants": {
+    "codex": "agents/terraform/terraform-policy-evidence-agent/harnesses/codex.toml",
+    "copilot": "agents/terraform/terraform-policy-evidence-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/terraform/terraform-policy-evidence-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/terraform/terraform-policy-evidence-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/terraform/terraform-policy-evidence-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/terraform/terraform-policy-evidence-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/terraform/terraform-policy-evidence-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "terraform-policy-evidence"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "routing_keywords": [
+    "policy",
+    "compliance",
+    "guardrail",
+    "sentinel",
+    "opa",
+    "rego",
+    "conftest",
+    "audit",
+    "evidence",
+    "exception",
+    "control",
+    "attestation",
+    "soc2",
+    "pci"
+  ]
+}

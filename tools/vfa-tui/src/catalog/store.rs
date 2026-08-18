@@ -4,7 +4,9 @@ use std::path::{Path, PathBuf};
 use sha2::{Digest, Sha256};
 
 use crate::error::TuiError;
-use crate::models::{Agent, AssetIntegrity, McpReference, ModelAssignments, Role, Rule, Skill};
+use crate::models::{
+    Agent, AssetIntegrity, McpReference, ModelAssignments, Role, Rule, Skill, WorkflowCatalog,
+};
 
 use super::loader;
 
@@ -57,6 +59,9 @@ pub struct CatalogStore {
     /// Resolved per-agent/per-harness model + reasoning assignments
     /// (catalog/model-assignments.json); absent on older checkouts.
     pub model_assignments: Option<ModelAssignments>,
+    /// Workflows declared in `.claude/workflows/`, generated into
+    /// `catalog/workflows.json`; absent on checkouts without any workflow.
+    pub workflows: Option<WorkflowCatalog>,
     pub load_errors: Vec<TuiError>,
     /// SHA-256 hex digest of each catalog JSON file's raw bytes, keyed by absolute path.
     pub content_hashes: HashMap<PathBuf, String>,
@@ -109,6 +114,9 @@ impl CatalogStore {
         let (model_assignments, errs) = loader::load_model_assignments(workspace_root);
         load_errors.extend(errs);
 
+        let (workflows, errs) = loader::load_workflows(workspace_root);
+        load_errors.extend(errs);
+
         // Sort by ID, case-insensitive
         agents.sort_by_key(|a| a.id.to_lowercase());
         skills.sort_by_key(|a| a.id.to_lowercase());
@@ -131,6 +139,7 @@ impl CatalogStore {
             "install-roles.json",
             "asset-integrity.json",
             "model-assignments.json",
+            "workflows.json",
         ] {
             let path = catalog_dir.join(filename);
             if let Some(hash) = hash_file(&path) {
@@ -148,6 +157,7 @@ impl CatalogStore {
             rules,
             integrity,
             model_assignments,
+            workflows,
             load_errors,
             content_hashes,
             catalog_root: workspace_root.to_path_buf(),
@@ -626,6 +636,7 @@ impl CatalogStore {
             rules,
             integrity: None,
             model_assignments: None,
+            workflows: None,
             load_errors: Vec::new(),
             content_hashes: HashMap::new(),
             catalog_root: PathBuf::from("/tmp"),

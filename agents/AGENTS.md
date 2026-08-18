@@ -312,12 +312,25 @@ Live-guard agents refuse to proceed without: target confirmation (cluster/accoun
 
 ---
 
-## 🟩 Terraform — 2 agents → [`agents/terraform/README.md`](terraform/README.md)
+## 🟩 Terraform / OpenTofu — 9 agents → [`agents/terraform/README.md`](terraform/README.md)
+
+Engine-shared board: one provider covers Terraform and OpenTofu, and every specialist
+names the engine behind any version-sensitive claim. See
+[`docs/terraform-opentofu-boundary.md`](../docs/terraform-opentofu-boundary.md).
+Every agent here is `static-review`; execution always leaves for a cloud live-guard
+agent after a human gate.
 
 | Agent | Tier | Load when |
 |---|---|---|
-| [`terraform-maestro-agent`](terraform/terraform-maestro-agent/AGENT.md) | router | Any IaC task; routes to review or plan-safety sub-flow |
-| [`terraform-reviewer`](terraform/terraform-reviewer/AGENT.md) | review | Module safety, provider pinning, plan diff assessment, state assumptions |
+| [`terraform-maestro-agent`](terraform/terraform-maestro-agent/AGENT.md) | router | Any IaC task; classifies and routes, applying documented thresholds before adding a second specialist |
+| [`terraform-plan-blast-radius-agent`](terraform/terraform-plan-blast-radius-agent/AGENT.md) | review | A plan replaces or destroys something; lifecycle ordering, address churn, `-target`, whether the reviewed plan binds the apply |
+| [`terraform-state-reliability-agent`](terraform/terraform-state-reliability-agent/AGENT.md) | review | Backend or locking config, recovery posture, a proposed `state mv`/`state rm`/`force-unlock`, secrets in state, OpenTofu state encryption |
+| [`terraform-estate-reconciliation-agent`](terraform/terraform-estate-reconciliation-agent/AGENT.md) | review | Drift disposition, brownfield `import`, and `moved`/`removed` refactors — making the record match reality without destroying anything |
+| [`terraform-supply-chain-integrity-agent`](terraform/terraform-supply-chain-integrity-agent/AGENT.md) | review | Provider/module source addresses, `.terraform.lock.hcl` platform coverage, mirrors, `dev_overrides`, registry provenance |
+| [`terraform-engine-compatibility-agent`](terraform/terraform-engine-compatibility-agent/AGENT.md) | review | Core or provider-major upgrades, deprecation exposure, and the Terraform-versus-OpenTofu decision as a divergence register |
+| [`terraform-policy-evidence-agent`](terraform/terraform-policy-evidence-agent/AGENT.md) | review | Control mapping, enforcement level (advisory / soft-mandatory / hard-mandatory), exception scope and expiry, audit evidence artifacts |
+| [`terraform-execution-governance-agent`](terraform/terraform-execution-governance-agent/AGENT.md) | review | Runner identity and credential lifetime, plan-to-apply binding, plan-artifact handling, approval integrity, trigger surface |
+| [`terraform-reviewer`](terraform/terraform-reviewer/AGENT.md) | review | Module *contract* review only — input validation, output stability, breaking-change classification, golden paths. Plan, state, policy, and upgrade work belong to the specialists above |
 
 ---
 

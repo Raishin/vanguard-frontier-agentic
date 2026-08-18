@@ -1,0 +1,28 @@
+{
+  "id": "terraform-execution-governance",
+  "name": "terraform-execution-governance",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "terraform",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Decide whether the path that executes a Terraform or OpenTofu change is trustworthy: which identity the runner assumes and how widely it is scoped, whether the reviewed plan is the plan that applies, how plan artifacts move between stages, and whether approval is a real gate or a formality. Reads pipeline definitions and runner configuration only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.hashicorp.com/terraform/cli/commands/apply",
+    "https://developer.hashicorp.com/terraform/cli/commands/plan",
+    "https://developer.hashicorp.com/terraform/cloud-docs/workspaces/dynamic-provider-credentials",
+    "https://developer.hashicorp.com/terraform/cloud-docs/run/remote-operations",
+    "https://developer.hashicorp.com/terraform/cli/config/config-file"
+  ],
+  "security_notes": "Static review only — reads pipeline definitions, runner and workspace configuration, and sanitized role or trust-policy documents; never triggers a pipeline, runs `plan` or `apply`, or contacts a CI system, and never modifies a workflow. Never requests or accepts credentials, provider tokens, OIDC client secrets, private keys, unredacted state, saved plan binaries, or account/subscription/tenant identifiers — trust policies and role documents must arrive with identifiers redacted. A claim about what a runner is actually permitted to do that is not visible in the supplied configuration is labelled assumption, never confirmed.",
+  "last_verified": "2026-08-17",
+  "path": "skills/terraform/terraform-execution-governance",
+  "author": "github: VincentChuWaiChow"
+}

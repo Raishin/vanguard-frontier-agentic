@@ -1,0 +1,60 @@
+{
+  "id": "terraform-state-reliability-agent",
+  "name": "Terraform State Reliability Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "terraform",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Own the state file as a production asset: backend and locking configuration, backup and recovery posture, whether a proposed state surgery is justified and reversible, engine-specific state encryption, and the secrets that state records in the clear. Reads backend blocks, state metadata, and sanitized artifacts only — never mutates state.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.hashicorp.com/terraform/language/state",
+    "https://developer.hashicorp.com/terraform/language/state/locking",
+    "https://developer.hashicorp.com/terraform/language/backend/s3",
+    "https://developer.hashicorp.com/terraform/cli/commands/state",
+    "https://developer.hashicorp.com/terraform/cli/commands/force-unlock",
+    "https://developer.hashicorp.com/terraform/language/state/sensitive-data",
+    "https://opentofu.org/docs/language/state/encryption/",
+    "https://developer.hashicorp.com/terraform/language/state/remote-state-data"
+  ],
+  "security_notes": "Advisory and read-only — reads `backend` and `cloud` blocks, state metadata, lock configuration, and sanitized artifacts; never runs `state mv`, `state rm`, `state push`, `import`, `taint`, or `force-unlock`, and never contacts a live backend. State records values in the clear even when the configuration marks them sensitive, so this agent never requests a raw state file: it asks for the backend block and `terraform state list` output instead. Never requests or accepts cloud credentials, tokens, encryption keys or passphrases, account identifiers, or customer data. A claim about the live backend, lock table, or bucket configuration not visible in the supplied artifacts is labelled assumption, never confirmed.",
+  "last_verified": "2026-08-17",
+  "path": "agents/terraform/terraform-state-reliability-agent/",
+  "harness_variants": {
+    "codex": "agents/terraform/terraform-state-reliability-agent/harnesses/codex.toml",
+    "copilot": "agents/terraform/terraform-state-reliability-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/terraform/terraform-state-reliability-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/terraform/terraform-state-reliability-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/terraform/terraform-state-reliability-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/terraform/terraform-state-reliability-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/terraform/terraform-state-reliability-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "terraform-state-reliability"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "routing_keywords": [
+    "state",
+    "tfstate",
+    "backend",
+    "remote state",
+    "locking",
+    "force-unlock",
+    "state rm",
+    "state mv",
+    "recovery",
+    "backup",
+    "encryption",
+    "workspace",
+    "state surgery"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "version": "0.1.0",
+  "description": "Workflow definitions discovered in .claude/workflows/. Generated from each script's meta block by scripts/generate-workflow-catalog.mjs — never hand-edited.",
+  "workflows": [
+    {
+      "id": "agentic-delegation",
+      "name": "agentic-delegation",
+      "path": ".claude/workflows/agentic-delegation.js",
+      "description": "Context7-grounded delegation: Haiku recon, orchestrator-tier spec, Sonnet implementation, adversarial claim verification, then the repo gate suite.",
+      "when_to_use": "Multi-step work in this repo that decomposes into cheap parallel recon plus a small amount of genuine judgment — especially anything that encodes external technical facts (model names, API behaviour, version-specific semantics) that must be grounded in primary sources before they ship.",
+      "phases": [
+        {
+          "title": "Resolve sources",
+          "detail": "Resolve Context7 library IDs once, centrally",
+          "model": "haiku"
+        },
+        {
+          "title": "Recon",
+          "detail": "Parallel Haiku sweeps, one narrow question each, citations required",
+          "model": "haiku"
+        },
+        {
+          "title": "Spec",
+          "detail": "Orchestrator-tier file-scoped specs — architecture stays here",
+          "model": ""
+        },
+        {
+          "title": "Implement",
+          "detail": "Sonnet writes against an exact spec",
+          "model": "sonnet"
+        },
+        {
+          "title": "Regenerate",
+          "detail": "Settle generated output before verification, when generators are declared",
+          "model": "haiku"
+        },
+        {
+          "title": "Verify",
+          "detail": "Adversarial Context7-grounded check of every factual claim written",
+          "model": "sonnet"
+        },
+        {
+          "title": "Gate",
+          "detail": "Repo gate suite in documented order, asset-integrity last",
+          "model": "haiku"
+        }
+      ]
+    }
+  ]
+}

@@ -91,6 +91,7 @@ pub fn catalog_store_fixture() -> CatalogStore {
         rules: vec![],
         integrity: None,
         model_assignments: None,
+        workflows: None,
         load_errors: vec![],
         content_hashes: HashMap::new(),
         catalog_root: PathBuf::from("/tmp/test-catalog"),

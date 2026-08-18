@@ -1,0 +1,31 @@
+{
+  "id": "terraform-state-reliability",
+  "name": "terraform-state-reliability",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "terraform",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Own the state file as a production asset: backend and locking configuration, backup and recovery posture, whether a proposed state surgery is justified and reversible, engine-specific state encryption, and the secrets that state records in the clear. Reads backend blocks, state metadata, and sanitized artifacts only — never mutates state.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.hashicorp.com/terraform/language/state",
+    "https://developer.hashicorp.com/terraform/language/state/locking",
+    "https://developer.hashicorp.com/terraform/language/backend/s3",
+    "https://developer.hashicorp.com/terraform/cli/commands/state",
+    "https://developer.hashicorp.com/terraform/cli/commands/force-unlock",
+    "https://developer.hashicorp.com/terraform/language/state/sensitive-data",
+    "https://opentofu.org/docs/language/state/encryption/",
+    "https://developer.hashicorp.com/terraform/language/state/remote-state-data"
+  ],
+  "security_notes": "Advisory and read-only — reads `backend` and `cloud` blocks, state metadata, lock configuration, and sanitized artifacts; never runs `state mv`, `state rm`, `state push`, `import`, `taint`, or `force-unlock`, and never contacts a live backend. State records values in the clear even when the configuration marks them sensitive, so this agent never requests a raw state file: it asks for the backend block and `terraform state list` output instead. Never requests or accepts cloud credentials, tokens, encryption keys or passphrases, account identifiers, or customer data. A claim about the live backend, lock table, or bucket configuration not visible in the supplied artifacts is labelled assumption, never confirmed.",
+  "last_verified": "2026-08-17",
+  "path": "skills/terraform/terraform-state-reliability",
+  "author": "github: VincentChuWaiChow"
+}

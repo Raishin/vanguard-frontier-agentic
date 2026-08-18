@@ -1085,6 +1085,7 @@ impl App {
             | View::SkillDetail(_)
             | View::McpDetail(_)
             | View::RuleDetail(_)
+            | View::WorkflowDetail(_)
             | View::IntegrityDetail(_)
             | View::RoleDetail(_) => {
                 self.nav.detail_scroll = self.nav.detail_scroll.saturating_add(1);
@@ -1102,6 +1103,7 @@ impl App {
             | View::SkillDetail(_)
             | View::McpDetail(_)
             | View::RuleDetail(_)
+            | View::WorkflowDetail(_)
             | View::IntegrityDetail(_)
             | View::RoleDetail(_) => {
                 self.nav.detail_scroll = self.nav.detail_scroll.saturating_sub(1);
@@ -1145,6 +1147,11 @@ impl App {
             View::RuleList => {
                 if let Some(rule) = self.catalog.rules.get(idx) {
                     self.nav.push_view(View::RuleDetail(rule.id.clone()));
+                }
+            }
+            View::WorkflowList => {
+                if let Some(wf) = self.workflows().get(idx) {
+                    self.nav.push_view(View::WorkflowDetail(wf.id.clone()));
                 }
             }
             View::ProviderAgents(ref provider) => {
@@ -1329,6 +1336,7 @@ impl App {
                         | View::SkillList
                         | View::McpList
                         | View::RuleList
+                        | View::WorkflowList
                         | View::RoleList
                         | View::ProviderList
                         | View::IntegrityOverview
@@ -1853,6 +1861,10 @@ impl App {
             View::McpList => self.render_mcp_list(content_area, frame, theme),
             View::McpDetail(ref id) => self.render_mcp_detail_view(id, content_area, frame, theme),
             View::RuleList => self.render_rule_list(content_area, frame, theme),
+            View::WorkflowList => self.render_workflow_list(content_area, frame, theme),
+            View::WorkflowDetail(ref id) => {
+                self.render_workflow_detail_view(id, content_area, frame, theme)
+            }
             View::RuleDetail(ref id) => {
                 self.render_rule_detail_view(id, content_area, frame, theme)
             }
@@ -2148,6 +2160,57 @@ impl App {
             frame,
             theme,
         );
+    }
+
+    /// Workflows from the generated catalog, or an empty slice when the catalog file is
+    /// absent — a checkout without any workflow renders an empty list rather than an
+    /// error, matching how the loader treats a missing file.
+    fn workflows(&self) -> &[crate::models::Workflow] {
+        self.catalog
+            .workflows
+            .as_ref()
+            .map(|c| c.workflows.as_slice())
+            .unwrap_or(&[])
+    }
+
+    fn render_workflow_list(
+        &mut self,
+        area: ratatui::layout::Rect,
+        frame: &mut Frame,
+        theme: &Theme,
+    ) {
+        let items: Vec<String> = self
+            .workflows()
+            .iter()
+            .map(|w| {
+                format!(
+                    "{} [{}] - {}",
+                    w.invocation(),
+                    w.model_tiers().join("/"),
+                    w.description.chars().take(60).collect::<String>()
+                )
+            })
+            .collect();
+        list_view::render_list_view(
+            &items,
+            &mut self.nav.list_state,
+            "Workflows",
+            area,
+            frame,
+            theme,
+        );
+    }
+
+    fn render_workflow_detail_view(
+        &self,
+        id: &str,
+        area: ratatui::layout::Rect,
+        frame: &mut Frame,
+        theme: &Theme,
+    ) {
+        if let Some(wf) = self.workflows().iter().find(|w| w.id == id) {
+            detail::render_workflow_detail(wf, area, frame, self.nav.detail_scroll, theme);
+        }
     }
 
     fn render_rule_detail_view(
@@ -2915,6 +2978,7 @@ impl App {
             View::ProviderList => self.get_provider_list().len(),
             View::McpList => self.catalog.mcp_refs.len(),
             View::RuleList => self.catalog.rules.len(),
+            View::WorkflowList => self.workflows().len(),
             View::ValidationList => self.validation_gates.len() + 1, // +1 for "Run All"
             View::ProviderAgents(p) => self.catalog.agents_by_provider(p).len(),
             View::IntegrityOverview => self
@@ -2936,6 +3000,7 @@ impl App {
             View::SkillList => (self.catalog.skills.len(), self.catalog.skills.len()),
             View::McpList => (self.catalog.mcp_refs.len(), self.catalog.mcp_refs.len()),
             View::RuleList => (self.catalog.rules.len(), self.catalog.rules.len()),
+            View::WorkflowList => (self.workflows().len(), self.workflows().len()),
             _ => (0, 0),
         }
     }
@@ -3209,6 +3274,7 @@ mod tests {
             rules: Vec::new(),
             integrity: None,
             model_assignments: None,
+            workflows: None,
             load_errors: Vec::new(),
             content_hashes: std::collections::HashMap::new(),
             catalog_root: std::path::PathBuf::from("."),

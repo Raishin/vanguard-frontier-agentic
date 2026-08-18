@@ -33,12 +33,12 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "b1efcbd24bb9af5f7a807ec6ba52fe0e36f490913628a687c9e2f6b8f5f8039f",
+      "aggregate_sha256": "167066ece6937cd1ee8c190a5fcc525957f4a5c45a808f0581b4f88ccf6154cd",
       "files": [
         {
           "path": "agents/AGENTS.md",
-          "sha256": "a7f38cfcab55d925e2f1b10e75170aa652a903b3ec9e68085480602b40ab0cde",
-          "bytes": 24725
+          "sha256": "592351d307c3a86f4e4a5980a92e66dc1e9250a190a2a708056524c269c82018",
+          "bytes": 26909
         },
         {
           "path": "agents/README.md",
@@ -31961,94 +31961,414 @@
           "bytes": 1419
         },
         {
+          "path": "agents/terraform/terraform-engine-compatibility-agent/AGENT.md",
+          "sha256": "6deef6c6a89dbd20e5af83fd03a2f3449e5b8a1c8a913c55739e0c7e6e1af949",
+          "bytes": 11336
+        },
+        {
+          "path": "agents/terraform/terraform-engine-compatibility-agent/harnesses/claude-code.agent.md",
+          "sha256": "c1b77adcd469cb9025eb6478334b0b77adecb0caa494bb9dfee5923d52f6effd",
+          "bytes": 10706
+        },
+        {
+          "path": "agents/terraform/terraform-engine-compatibility-agent/harnesses/codex.toml",
+          "sha256": "45dd40a2101ca59f7b539349a7bc9176fc7a0a29495652b0822084c8abe63c4c",
+          "bytes": 7859
+        },
+        {
+          "path": "agents/terraform/terraform-engine-compatibility-agent/harnesses/copilot.agent.md",
+          "sha256": "809cfe69f4622e4c84a41c9034f1577af6ac5b085af35d2321a36de95aecfe1d",
+          "bytes": 10812
+        },
+        {
+          "path": "agents/terraform/terraform-engine-compatibility-agent/harnesses/cursor.agent.md",
+          "sha256": "04564e2305e3bb50b2b69b87f1ab6d50e53e5a9a16dfc45911cd75820f9ac56d",
+          "bytes": 10723
+        },
+        {
+          "path": "agents/terraform/terraform-engine-compatibility-agent/harnesses/gemini.agent.md",
+          "sha256": "c1b77adcd469cb9025eb6478334b0b77adecb0caa494bb9dfee5923d52f6effd",
+          "bytes": 10706
+        },
+        {
+          "path": "agents/terraform/terraform-engine-compatibility-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "bda80691c53b2bc8e064e73594ea991ae041ecbadc5876acccae9c3fa48293f9",
+          "bytes": 10794
+        },
+        {
+          "path": "agents/terraform/terraform-engine-compatibility-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "c1b77adcd469cb9025eb6478334b0b77adecb0caa494bb9dfee5923d52f6effd",
+          "bytes": 10706
+        },
+        {
+          "path": "agents/terraform/terraform-engine-compatibility-agent/metadata.json",
+          "sha256": "8d177ba97b51114147dd1361ea64e8c8fb59e1ba36b2c2a9e5903c41556317cf",
+          "bytes": 3030
+        },
+        {
+          "path": "agents/terraform/terraform-estate-reconciliation-agent/AGENT.md",
+          "sha256": "2881eceb2a6113bbae67d1d4905cecc435f2438934f91f62ed5466a523888930",
+          "bytes": 11632
+        },
+        {
+          "path": "agents/terraform/terraform-estate-reconciliation-agent/harnesses/claude-code.agent.md",
+          "sha256": "9295a1ddf9208001a73d93e724796399dc39de2f19dd08c692a13ac8be0f9ca6",
+          "bytes": 11001
+        },
+        {
+          "path": "agents/terraform/terraform-estate-reconciliation-agent/harnesses/codex.toml",
+          "sha256": "5c045a56e9197a930b519dc61a672e2eba8621a7ef15347256ebcbdff0cf0879",
+          "bytes": 8014
+        },
+        {
+          "path": "agents/terraform/terraform-estate-reconciliation-agent/harnesses/copilot.agent.md",
+          "sha256": "ae137e163f50d1f4e8be092f19ac7ac84cffa5b9b6427c9a023dc13a09fa3902",
+          "bytes": 11107
+        },
+        {
+          "path": "agents/terraform/terraform-estate-reconciliation-agent/harnesses/cursor.agent.md",
+          "sha256": "ff918452de93f3ddfd97a8b0e0e1b8b463fbfc2f958bf01b17a06077651c990b",
+          "bytes": 11018
+        },
+        {
+          "path": "agents/terraform/terraform-estate-reconciliation-agent/harnesses/gemini.agent.md",
+          "sha256": "9295a1ddf9208001a73d93e724796399dc39de2f19dd08c692a13ac8be0f9ca6",
+          "bytes": 11001
+        },
+        {
+          "path": "agents/terraform/terraform-estate-reconciliation-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "809e14ab109be5cf47c4aa80385e6df344f1ebef5fda3fd15d2f7f076d641950",
+          "bytes": 11088
+        },
+        {
+          "path": "agents/terraform/terraform-estate-reconciliation-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "9295a1ddf9208001a73d93e724796399dc39de2f19dd08c692a13ac8be0f9ca6",
+          "bytes": 11001
+        },
+        {
+          "path": "agents/terraform/terraform-estate-reconciliation-agent/metadata.json",
+          "sha256": "0c64027433fb3be803b501b585d6d07ec70e63c40fc4159b40cb5f6aa16f1e6f",
+          "bytes": 2957
+        },
+        {
+          "path": "agents/terraform/terraform-execution-governance-agent/AGENT.md",
+          "sha256": "4707907d88f4b5c3c42d349f7ad56d9cf9dba1a1561450fa73cca2ca24c5c5ff",
+          "bytes": 11424
+        },
+        {
+          "path": "agents/terraform/terraform-execution-governance-agent/harnesses/claude-code.agent.md",
+          "sha256": "2560e9ad55525221b285ea365bf3cd32ef394e88de607d1bdd2b40040c80a60f",
+          "bytes": 10794
+        },
+        {
+          "path": "agents/terraform/terraform-execution-governance-agent/harnesses/codex.toml",
+          "sha256": "0ebd3454bfa8503f71f21e44aa669720fe6b79738d39e854e3de30f0202acec1",
+          "bytes": 7928
+        },
+        {
+          "path": "agents/terraform/terraform-execution-governance-agent/harnesses/copilot.agent.md",
+          "sha256": "de04a1e0408988a1dde38e7dba8a3f2bf582d2b1ffe1cd18e53fcb730a4dbaac",
+          "bytes": 10900
+        },
+        {
+          "path": "agents/terraform/terraform-execution-governance-agent/harnesses/cursor.agent.md",
+          "sha256": "316eb47786ad4e308b41f319a98ae445b722590e9e19b54aac5f09a0772b43f5",
+          "bytes": 10811
+        },
+        {
+          "path": "agents/terraform/terraform-execution-governance-agent/harnesses/gemini.agent.md",
+          "sha256": "2560e9ad55525221b285ea365bf3cd32ef394e88de607d1bdd2b40040c80a60f",
+          "bytes": 10794
+        },
+        {
+          "path": "agents/terraform/terraform-execution-governance-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "89ca40c1980882be4958fd4bf860ab456507812145c6002b6c7f5ca9020f345a",
+          "bytes": 10884
+        },
+        {
+          "path": "agents/terraform/terraform-execution-governance-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "2560e9ad55525221b285ea365bf3cd32ef394e88de607d1bdd2b40040c80a60f",
+          "bytes": 10794
+        },
+        {
+          "path": "agents/terraform/terraform-execution-governance-agent/metadata.json",
+          "sha256": "2d7bbee4d80779e7a896bba37d6eb8ad45ab88903735e7a2323a40bf4e992036",
+          "bytes": 3012
+        },
+        {
           "path": "agents/terraform/terraform-maestro-agent/AGENT.md",
-          "sha256": "8373792df71fafc7acd8badfd1e87fbe4cfdfa0628e0fa18c9ed0f8573f76e68",
-          "bytes": 3292
+          "sha256": "73481752a627c14eaa56e8a613c03aa0cc9af974179d74efd46e4c39dde98908",
+          "bytes": 6567
+        },
+        {
+          "path": "agents/terraform/terraform-maestro-agent/README.md",
+          "sha256": "1899dd6af42f37736b3476032c13880616f3816f9568b15651daf7fc0336730e",
+          "bytes": 4088
         },
         {
           "path": "agents/terraform/terraform-maestro-agent/harnesses/claude-code.agent.md",
-          "sha256": "5af37a57c565ad38530c15cf47a9f79ab177d275ceab937717d9b5c735b86516",
-          "bytes": 2665
+          "sha256": "5b4c0d040c7ea717adcfb9c2c32f02fcaa6a280a018fe720fcf4cadb1a5432ee",
+          "bytes": 5950
         },
         {
           "path": "agents/terraform/terraform-maestro-agent/harnesses/codex.toml",
-          "sha256": "e6dff72e6afeeb1685b21b109e18960f68b8042becb84a93380c644ed662c833",
-          "bytes": 2370
+          "sha256": "763e086d79bcac52f7bf2caf07633c64041663f58ab5f6176b416168541c424e",
+          "bytes": 6082
         },
         {
           "path": "agents/terraform/terraform-maestro-agent/harnesses/copilot.agent.md",
-          "sha256": "d4dbc5a0be324325937da12bae993d08e0fa3b43f8ceb51726d30dc5f4c8a2bb",
-          "bytes": 2948
+          "sha256": "fcd211c236bec42c2b7570d9bc8550557baf641b669c27b66d85affd7e709a09",
+          "bytes": 6056
         },
         {
           "path": "agents/terraform/terraform-maestro-agent/harnesses/cursor.agent.md",
-          "sha256": "c7b01bdeba2c0900da4f7fd44e76460c8ff00df464eba4ac0bc4f13923b18b0b",
-          "bytes": 2697
+          "sha256": "36ef8e3488d97afa409e43e4e9c26bbdc2b99ce42b0125bed621ae62f8026908",
+          "bytes": 5967
         },
         {
           "path": "agents/terraform/terraform-maestro-agent/harnesses/gemini.agent.md",
-          "sha256": "baa2f1b6e4fc16ff74cd9ef227c0b74fd1bb1199390174799adc14e42c57a474",
-          "bytes": 2679
+          "sha256": "5b4c0d040c7ea717adcfb9c2c32f02fcaa6a280a018fe720fcf4cadb1a5432ee",
+          "bytes": 5950
         },
         {
           "path": "agents/terraform/terraform-maestro-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "1aafcbed17ee1699abb34ccc34c09414bc29d81979df96f3faaaebdc1a419592",
-          "bytes": 2719
+          "sha256": "ea852b400f8eb41ec45018f9db639945333ea7b0d6e6eb687851c3ce88841def",
+          "bytes": 6016
         },
         {
           "path": "agents/terraform/terraform-maestro-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "5af37a57c565ad38530c15cf47a9f79ab177d275ceab937717d9b5c735b86516",
-          "bytes": 2665
+          "sha256": "5b4c0d040c7ea717adcfb9c2c32f02fcaa6a280a018fe720fcf4cadb1a5432ee",
+          "bytes": 5950
         },
         {
           "path": "agents/terraform/terraform-maestro-agent/metadata.json",
-          "sha256": "48b093049607fb60ef9a1047bf8b84acdb21bb6353e1c528707cf1bf3eb7f3e3",
-          "bytes": 2054
+          "sha256": "b493f49f71125de0aa4d1c9a35fa651c4923669d937137da4358920ac3cf8628",
+          "bytes": 2158
+        },
+        {
+          "path": "agents/terraform/terraform-plan-blast-radius-agent/AGENT.md",
+          "sha256": "fd83e82c3d125881a2c1d1737ac90fc8fd7a5b7a0080a6ddc5dee7212c83ae1c",
+          "bytes": 11601
+        },
+        {
+          "path": "agents/terraform/terraform-plan-blast-radius-agent/harnesses/claude-code.agent.md",
+          "sha256": "fb2a9098cf7af2f85efadad31bb88b9eb77b4655ef3324493313a1c47da40f52",
+          "bytes": 10974
+        },
+        {
+          "path": "agents/terraform/terraform-plan-blast-radius-agent/harnesses/codex.toml",
+          "sha256": "3aa1332aa8fe9feb0b645dd975c860d2b1cda7a3b9a950ccf6fb3f18228ae284",
+          "bytes": 7786
+        },
+        {
+          "path": "agents/terraform/terraform-plan-blast-radius-agent/harnesses/copilot.agent.md",
+          "sha256": "1ae0708ab884fe3b1a054b21ec14673e65bbe7fcedd15392d513d658f2aa2409",
+          "bytes": 11080
+        },
+        {
+          "path": "agents/terraform/terraform-plan-blast-radius-agent/harnesses/cursor.agent.md",
+          "sha256": "b17a1fbd495891dd9e0cc545ea547aebd5e52dedcfc066cc81123d675f218619",
+          "bytes": 10991
+        },
+        {
+          "path": "agents/terraform/terraform-plan-blast-radius-agent/harnesses/gemini.agent.md",
+          "sha256": "fb2a9098cf7af2f85efadad31bb88b9eb77b4655ef3324493313a1c47da40f52",
+          "bytes": 10974
+        },
+        {
+          "path": "agents/terraform/terraform-plan-blast-radius-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "144cc64f80a124f3bcaa350e3d2f12ab7bd1278971b241c793317cac27c8d22a",
+          "bytes": 11063
+        },
+        {
+          "path": "agents/terraform/terraform-plan-blast-radius-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "fb2a9098cf7af2f85efadad31bb88b9eb77b4655ef3324493313a1c47da40f52",
+          "bytes": 10974
+        },
+        {
+          "path": "agents/terraform/terraform-plan-blast-radius-agent/metadata.json",
+          "sha256": "665ce8ca2b0c0762465154320839e29d581a8b9741003211e9793edd89188fb4",
+          "bytes": 2835
+        },
+        {
+          "path": "agents/terraform/terraform-policy-evidence-agent/AGENT.md",
+          "sha256": "87a89999783f12f5cb961d3ee827e0b17b00209ce38508d521dd38914246493a",
+          "bytes": 11337
+        },
+        {
+          "path": "agents/terraform/terraform-policy-evidence-agent/harnesses/claude-code.agent.md",
+          "sha256": "b15810d735e7950a5bb8f8a3428f20549de0cd0b37cb07e67f9df7909c3a7d21",
+          "bytes": 10712
+        },
+        {
+          "path": "agents/terraform/terraform-policy-evidence-agent/harnesses/codex.toml",
+          "sha256": "e87064d9d38169db55c16c626b526bfbb768409d6eae261b272ce5dc642d3d09",
+          "bytes": 7735
+        },
+        {
+          "path": "agents/terraform/terraform-policy-evidence-agent/harnesses/copilot.agent.md",
+          "sha256": "6909d3d37faa4e4ebf3a80464d7304817c66ef5fd1448d0d18a47566ac9a2365",
+          "bytes": 10818
+        },
+        {
+          "path": "agents/terraform/terraform-policy-evidence-agent/harnesses/cursor.agent.md",
+          "sha256": "c6c5a0d3f43b1b58a9c04881600c57bc4e1380b5709247e6a54e0c5b6dfec6dd",
+          "bytes": 10729
+        },
+        {
+          "path": "agents/terraform/terraform-policy-evidence-agent/harnesses/gemini.agent.md",
+          "sha256": "b15810d735e7950a5bb8f8a3428f20549de0cd0b37cb07e67f9df7909c3a7d21",
+          "bytes": 10712
+        },
+        {
+          "path": "agents/terraform/terraform-policy-evidence-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "2cd018d90f122a82595d766fd453ecfd377e391b834224f537005440dc547bce",
+          "bytes": 10800
+        },
+        {
+          "path": "agents/terraform/terraform-policy-evidence-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "b15810d735e7950a5bb8f8a3428f20549de0cd0b37cb07e67f9df7909c3a7d21",
+          "bytes": 10712
+        },
+        {
+          "path": "agents/terraform/terraform-policy-evidence-agent/metadata.json",
+          "sha256": "70d4bd2345598970806fd9e276a9949597c989eff8e2a7944839a737dd2eec55",
+          "bytes": 2989
         },
         {
           "path": "agents/terraform/terraform-reviewer/AGENT.md",
-          "sha256": "f828f2be6a24c4e694e4010bd609379a365c6b2dd2a53db5bda652c9d381915d",
-          "bytes": 806
+          "sha256": "f589d8f5a9f7e6328190e6d7838129f3a22a198d41c56e5b0ce161907413e602",
+          "bytes": 11002
         },
         {
           "path": "agents/terraform/terraform-reviewer/harnesses/claude-code.agent.md",
-          "sha256": "f69e65d182ef051d3cf960fe7dc8b53189ac187ecfa1fbb4f203abe4061bea4c",
-          "bytes": 999
+          "sha256": "bc93c41266cd1d24df9be9cdca8f05673bf6e077acfe484219aa7de111380056",
+          "bytes": 10377
         },
         {
           "path": "agents/terraform/terraform-reviewer/harnesses/codex.toml",
-          "sha256": "dd58836153114b5212d6c971f1bb6ec443190d9bd7da44b9a345b627b2c6ed13",
-          "bytes": 1363
+          "sha256": "83c64f7d5791ef4c55c26f29280b2a5f53314bc5138fe7a0f9d21af56c8ee13f",
+          "bytes": 7180
         },
         {
           "path": "agents/terraform/terraform-reviewer/harnesses/copilot.agent.md",
-          "sha256": "68e851aae428c3624fed02e01f327c9244294a8e265bc9838fca3d146e4323a0",
-          "bytes": 1282
+          "sha256": "6f855678ae0b02328d2917839e559c0574f6fc50e6845b05893014c9a7f2a150",
+          "bytes": 10483
         },
         {
           "path": "agents/terraform/terraform-reviewer/harnesses/cursor.agent.md",
-          "sha256": "ac86d7968246350d7a7f173132f4b04d5725bc3b61ce214e9d475602a1908726",
-          "bytes": 1031
+          "sha256": "11927e7acf94cff7c3fe1454bd60ea3af58fd1747e3c592687876cefa02ef1b0",
+          "bytes": 10394
         },
         {
           "path": "agents/terraform/terraform-reviewer/harnesses/gemini.agent.md",
-          "sha256": "8f17a15c85d0faf0713017d1fafe0931cde930271f297061bf0cdafe63b4e709",
-          "bytes": 1013
+          "sha256": "bc93c41266cd1d24df9be9cdca8f05673bf6e077acfe484219aa7de111380056",
+          "bytes": 10377
         },
         {
           "path": "agents/terraform/terraform-reviewer/harnesses/kiro-cli.agent.json",
-          "sha256": "49372972b14571973f767fd4fe358375fba60b5131e6efaae2003fd8638b58b7",
-          "bytes": 1065
+          "sha256": "78c56579042ab04a076fb45211da502264bfc5e63d9f97976d26aa195a904725",
+          "bytes": 10447
         },
         {
           "path": "agents/terraform/terraform-reviewer/harnesses/kiro-ide.agent.md",
-          "sha256": "f69e65d182ef051d3cf960fe7dc8b53189ac187ecfa1fbb4f203abe4061bea4c",
-          "bytes": 999
+          "sha256": "bc93c41266cd1d24df9be9cdca8f05673bf6e077acfe484219aa7de111380056",
+          "bytes": 10377
         },
         {
           "path": "agents/terraform/terraform-reviewer/metadata.json",
-          "sha256": "5b25457d27d468831deb6fbaa713d932a57b50484478147f89abde3b939da064",
-          "bytes": 1422
+          "sha256": "de2e2c7a3164ea5278fa8ac05c37cd61191267957b476b439ef7578a2566d326",
+          "bytes": 2452
+        },
+        {
+          "path": "agents/terraform/terraform-state-reliability-agent/AGENT.md",
+          "sha256": "19c96d1022f11aad74f8abbfdd20fe204c5b9287f1bd13abf2f62087f9992ff1",
+          "bytes": 12020
+        },
+        {
+          "path": "agents/terraform/terraform-state-reliability-agent/harnesses/claude-code.agent.md",
+          "sha256": "568ae1969db4face48a564b03448c27a6a7be0719616e2fccee183386a2cb356",
+          "bytes": 11393
+        },
+        {
+          "path": "agents/terraform/terraform-state-reliability-agent/harnesses/codex.toml",
+          "sha256": "3e8da739e6bad229ee74ffef3a7ca1c7a3e52bc0b57614828c54892a77cfbbd2",
+          "bytes": 8432
+        },
+        {
+          "path": "agents/terraform/terraform-state-reliability-agent/harnesses/copilot.agent.md",
+          "sha256": "7e0a673a36c5b7916efeb523c6d637c9608ac795365c519db7ad168ecdb87997",
+          "bytes": 11499
+        },
+        {
+          "path": "agents/terraform/terraform-state-reliability-agent/harnesses/cursor.agent.md",
+          "sha256": "7ad352e858c1e210d34c50c545a3e0aebdaf90ec43dcc9ad143cb66c85a685fc",
+          "bytes": 11410
+        },
+        {
+          "path": "agents/terraform/terraform-state-reliability-agent/harnesses/gemini.agent.md",
+          "sha256": "568ae1969db4face48a564b03448c27a6a7be0719616e2fccee183386a2cb356",
+          "bytes": 11393
+        },
+        {
+          "path": "agents/terraform/terraform-state-reliability-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "0ca1bef05244dea13097729d54605fdb8bdb725d4cee878bb315ee26ef98b0f3",
+          "bytes": 11481
+        },
+        {
+          "path": "agents/terraform/terraform-state-reliability-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "568ae1969db4face48a564b03448c27a6a7be0719616e2fccee183386a2cb356",
+          "bytes": 11393
+        },
+        {
+          "path": "agents/terraform/terraform-state-reliability-agent/metadata.json",
+          "sha256": "070d9d4393b05d3d0d5ecf4a8994d6060b86bf54899a6c85bb95cf2f57a4765b",
+          "bytes": 3213
+        },
+        {
+          "path": "agents/terraform/terraform-supply-chain-integrity-agent/AGENT.md",
+          "sha256": "d3c3849b294687db74463a8fa969d6bc2f32d7153e9413e363161e2b3b10fb0c",
+          "bytes": 11366
+        },
+        {
+          "path": "agents/terraform/terraform-supply-chain-integrity-agent/harnesses/claude-code.agent.md",
+          "sha256": "95c999a2ad2acf5dd4bb9b018b0f96b6dbf1cfcd9e859e2b1b489ca20d487d81",
+          "bytes": 10734
+        },
+        {
+          "path": "agents/terraform/terraform-supply-chain-integrity-agent/harnesses/codex.toml",
+          "sha256": "56f9e732f3ffe4e742c188a1996cb61a73c86d2652f063a45ce555a3e71a5cf5",
+          "bytes": 7997
+        },
+        {
+          "path": "agents/terraform/terraform-supply-chain-integrity-agent/harnesses/copilot.agent.md",
+          "sha256": "14c3ccb234eb68fdacebba44ebd54cab0a0d94d835a5ab8c87c7f5a9d587f881",
+          "bytes": 10840
+        },
+        {
+          "path": "agents/terraform/terraform-supply-chain-integrity-agent/harnesses/cursor.agent.md",
+          "sha256": "c3908981ece1a57dea6e524b7a7c128741125c70b082b08b53d098223eeda8a8",
+          "bytes": 10751
+        },
+        {
+          "path": "agents/terraform/terraform-supply-chain-integrity-agent/harnesses/gemini.agent.md",
+          "sha256": "95c999a2ad2acf5dd4bb9b018b0f96b6dbf1cfcd9e859e2b1b489ca20d487d81",
+          "bytes": 10734
+        },
+        {
+          "path": "agents/terraform/terraform-supply-chain-integrity-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "bef194d91278f50358e2ba4369d874671c2ba8aa558463716bc0f41013525bce",
+          "bytes": 10821
+        },
+        {
+          "path": "agents/terraform/terraform-supply-chain-integrity-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "95c999a2ad2acf5dd4bb9b018b0f96b6dbf1cfcd9e859e2b1b489ca20d487d81",
+          "bytes": 10734
+        },
+        {
+          "path": "agents/terraform/terraform-supply-chain-integrity-agent/metadata.json",
+          "sha256": "7c073a05cd71ba9b398ac31c669fcc3afbfac8ba23f61f396375eb5a3d584b8e",
+          "bytes": 2996
         },
         {
           "path": "agents/typescript/typescript-async-contract-reliability-agent/AGENT.md",
@@ -32837,27 +33157,27 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "9f5526c2d70bb7eabfb02e08c9bdf34841ad6a625c4933117f3ec6e41253dae4",
+      "aggregate_sha256": "c0daad3f3e27097b611b01543cdbba3313b28ff40c7b627ed54efd1d3d33c014",
       "files": [
         {
           "path": "catalog/AGENTS.md",
-          "sha256": "4800bb975c34f3dc775985a4a101c0b323843659f967bc2f7bec38feb651439f",
-          "bytes": 671
+          "sha256": "fc5e34ed01ae5dd19b9ca3890872496a3c213894742f3d9433b9cae330e330e0",
+          "bytes": 763
         },
         {
           "path": "catalog/agents.json",
-          "sha256": "e8b48ac610dff94a529bd1be628684eeeabca102510b47566a26bbb81e4db9db",
-          "bytes": 1127496
+          "sha256": "b24eff3829c906950e25f5172a52e6a406fec0cdf791b932554a957add6fae56",
+          "bytes": 1142402
         },
         {
           "path": "catalog/index.json",
-          "sha256": "5df1a747c459fd508e033c1f0bd634bb10d3338ce0919e74fc0b837c7b8bde04",
-          "bytes": 373
+          "sha256": "a7e9f22fbac269b47401a9210a9127188063e67fda7683e78270fcac4e385dad",
+          "bytes": 438
         },
         {
           "path": "catalog/install-roles.json",
-          "sha256": "a24710cbe7159f8ac161d8abd28b7cc7c19b1d0f4dacda95c0270e8b99a0f03a",
-          "bytes": 109537
+          "sha256": "7a722e73ea9aa4f7a139a74eeff1ec21be363369d4ad944512782cf221575a5b",
+          "bytes": 111135
         },
         {
           "path": "catalog/mcp-references.json",
@@ -32866,8 +33186,8 @@
         },
         {
           "path": "catalog/model-assignments.json",
-          "sha256": "1e19a1079b20e61b38c5c0aa4de1203bbc9b8193bf5cf46e3f91a8e3b48c634d",
-          "bytes": 648311
+          "sha256": "7041cda5c3a69ff7c7444e7f1dd2db49846087fa434a116b7581779ffce2a605",
+          "bytes": 655014
         },
         {
           "path": "catalog/model-policy.json",
@@ -32886,19 +33206,24 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "1c17a7db495e4847235df0fb4673fe4cc7aa6692d126bbe97c621df5382cbd6d",
-          "bytes": 988818
+          "sha256": "85f6cca4f0db33324eea78afec26bc5f2197cf500225d840b3d1d7d9c8fc62a2",
+          "bytes": 1006349
         },
         {
           "path": "catalog/skills.json",
-          "sha256": "4f647c6bbcd4fd081d6794b134093a944ce4c8e92c2c0e866eb8175472e05cb7",
-          "bytes": 1112440
+          "sha256": "a527afac8f5a19a1692c671e26ff18df01fedb9eb02eae42c5ce189364d16db0",
+          "bytes": 1129051
+        },
+        {
+          "path": "catalog/workflows.json",
+          "sha256": "33c89352cba0de0d83efca8612e87401248b37fee8eefdeea955ed3a5f43e5a5",
+          "bytes": 1995
         }
       ]
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "6942413b06835fa3d63a6d7cb8fbbaf2018f5e9d7e919005bd758748ed802829",
+      "aggregate_sha256": "3dfc968573564bcd42e3af307c99062429414894c618774aaedd627a6880560f",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -32956,6 +33281,11 @@
           "bytes": 15026
         },
         {
+          "path": "scripts/gen_terraform_agents.py",
+          "sha256": "57c8b3ff35ee648278ce8e26ff315fe9e800e7c122f5f83b32d34ef5ba4cad3c",
+          "bytes": 27936
+        },
+        {
           "path": "scripts/gen_typescript_agents.py",
           "sha256": "2d9ab1a6201e5951a61dd6181020c3e5469bf3722b98bf3bb700a7b5d84d8491",
           "bytes": 22007
@@ -32972,8 +33302,8 @@
         },
         {
           "path": "scripts/generate-docs-data.mjs",
-          "sha256": "cd0f35e8eaff9d0d9f442ed9b1fde335b1a04f1f70688d11f8a33825fa9acab4",
-          "bytes": 4801
+          "sha256": "e5fdc9d2d1a5ee445ddc66bdd81036708ce496143db037033031c5ca5004417d",
+          "bytes": 5361
         },
         {
           "path": "scripts/generate-kiro-powers.mjs",
@@ -32989,6 +33319,11 @@
           "path": "scripts/generate-readme-counts.mjs",
           "sha256": "235573c81411a6657f0abbe875b9da1cd7e62aaaafaa7a423e103fe0e443b7d0",
           "bytes": 9290
+        },
+        {
+          "path": "scripts/generate-workflow-catalog.mjs",
+          "sha256": "023c43c7792919b4c8f50cb486d8ce5b5d9e847563b7ff9a3ad09269d1f7f256",
+          "bytes": 11358
         },
         {
           "path": "scripts/install-codex-home.mjs",
@@ -33386,6 +33721,56 @@
           "bytes": 10574
         },
         {
+          "path": "scripts/terraform_data/agents/00-terraform-maestro-agent.json",
+          "sha256": "433b9b19ab0054a2b6d7b40478a37d48109dde1a75eaa3c906c529f6943082cd",
+          "bytes": 14663
+        },
+        {
+          "path": "scripts/terraform_data/agents/01-terraform-reviewer.json",
+          "sha256": "e4439d146ffa500cc5439c713722991ba194dd8977113bc86802420d1837b5b2",
+          "bytes": 22197
+        },
+        {
+          "path": "scripts/terraform_data/agents/02-terraform-plan-blast-radius-agent.json",
+          "sha256": "d190355393024c19cfa19e344b3a546ee16b88ef5d0e57bc368ab43843d6df4e",
+          "bytes": 24802
+        },
+        {
+          "path": "scripts/terraform_data/agents/03-terraform-state-reliability-agent.json",
+          "sha256": "9941cf3b0eeb43e0ca607d8b19361ca9d1f474a9badcafdd33cf5bb720d4802d",
+          "bytes": 26816
+        },
+        {
+          "path": "scripts/terraform_data/agents/04-terraform-estate-reconciliation-agent.json",
+          "sha256": "71e38cd7f80b75d943d650c9433cab1074bebf22e2aaf5621377efc0ea65a7d6",
+          "bytes": 24289
+        },
+        {
+          "path": "scripts/terraform_data/agents/05-terraform-supply-chain-integrity-agent.json",
+          "sha256": "f0d679b1a1703f0734b019a5ceed3845735e2a223d05e89d5651aee00a599676",
+          "bytes": 24036
+        },
+        {
+          "path": "scripts/terraform_data/agents/06-terraform-engine-compatibility-agent.json",
+          "sha256": "85711a9a19642117a3ac8461c82f6ae89aed2bd6808e86c9e96e1d41c66fbaeb",
+          "bytes": 25567
+        },
+        {
+          "path": "scripts/terraform_data/agents/07-terraform-policy-evidence-agent.json",
+          "sha256": "74cdaddfa60533121ba37560d54677db01f3c9a90160378961dcf65cbdbc0de5",
+          "bytes": 23599
+        },
+        {
+          "path": "scripts/terraform_data/agents/08-terraform-execution-governance-agent.json",
+          "sha256": "d9231e9e009fdb48b1e9512e0c8c542e9d0f61ffdb7c3a39cc94eee1d35cd675",
+          "bytes": 22261
+        },
+        {
+          "path": "scripts/terraform_data/skills/terraform-verification-strategy.json",
+          "sha256": "a22a7c387054385db2a121feb4175daccd11c261bd5924cd053c96de60e84ea0",
+          "bytes": 13200
+        },
+        {
           "path": "scripts/typescript_data/agents/00-typescript-maestro-agent.json",
           "sha256": "065127ef638d0661425e13302e87a422c9189413e972f3cdd7bc6819d5a342ec",
           "bytes": 16357
@@ -33464,7 +33849,7 @@
     },
     {
       "tree": "powers",
-      "aggregate_sha256": "afbb2ae70e3fbc549bf6beb776e9efb1197ae6242442f46d00e818c69f1e55b5",
+      "aggregate_sha256": "4c3c0fec6634359ed1393c2ad39b35be9687fa0f932d6b24f000f8fe89d5c9dc",
       "files": [
         {
           "path": "powers/README.md",
@@ -33688,7 +34073,7 @@
         },
         {
           "path": "powers/vanguard-terraform/POWER.md",
-          "sha256": "e177f9be9130466a11bc6a15eb1cd9a4b441022c01f447a32efd2d27566e60d3",
+          "sha256": "cc8be4028673f148e65c81e4c4146ae31d2cff9db6e8f45a3c09076d18e1b193",
           "bytes": 2897
         },
         {
@@ -33731,7 +34116,7 @@
     },
     {
       "tree": ".claude-plugin",
-      "aggregate_sha256": "abd288231a251660716e04f3f038584d5962de03766c06c893409f39ad13b286",
+      "aggregate_sha256": "ca8a6e52d99cd287ea76694815b7b27befb91c5dff00bbdc52940c377cc473d9",
       "files": [
         {
           "path": ".claude-plugin/README.md",
@@ -33740,19 +34125,19 @@
         },
         {
           "path": ".claude-plugin/marketplace.json",
-          "sha256": "7c697009d0fe63e9dc1f043aa6fe7bbd512a5809ab276adbcbc2242418d6b8bf",
+          "sha256": "24b0fdb424f0f658bf464b546bfa20d9fbb778cfc401f06e26d3fc73650ec531",
           "bytes": 854
         },
         {
           "path": ".claude-plugin/plugin.json",
-          "sha256": "95117663ae3e64a5b75ad1a1a5201fa473a213dddde69ebe1988586f6446ccee",
-          "bytes": 62647
+          "sha256": "92da3d648766d567750f4febd17c1222b08e967b2756c1799fe52c8f2ae5eeb7",
+          "bytes": 63297
         }
       ]
     },
     {
       "tree": ".cursor-plugin",
-      "aggregate_sha256": "6aa7e3bd7de4df8642623486da8c77480f9ee73140a52c799354ee68e8fe95d6",
+      "aggregate_sha256": "4a8afc4cb0200a072784202d5b26ee8baffacee5e52eb90e487844dfcfb9f825",
       "files": [
         {
           "path": ".cursor-plugin/README.md",
@@ -33761,8 +34146,8 @@
         },
         {
           "path": ".cursor-plugin/plugin.json",
-          "sha256": "cc365b3083bf674579aacb3b8395bd3140d35afad69dac7780176a082acd72d5",
-          "bytes": 59223
+          "sha256": "32b7b8b7b27b6aa878a6a4e914a5931e5129abb9d6d6e2937454ac65ce531fe9",
+          "bytes": 59838
         }
       ]
     },
@@ -33800,7 +34185,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "2f1b72e25cc8dd9fd0ec1b867a330e53f31720d8cd9506822864a14146521148",
+      "aggregate_sha256": "87bc5bf8c20794ab40ab551482c5faba2b9f71fb14785c4365eb226dbfd588eb",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -33809,8 +34194,8 @@
         },
         {
           "path": "tests/_generate_maestro_routing_fixtures.py",
-          "sha256": "9e6765a0bc51019d2be45232af5e8cad22518d41c8d2c39816518e6713c2df17",
-          "bytes": 19479
+          "sha256": "efb2ce0ad98d0e9e5b17e4336a39142cc29ad92cf49f70b79b95b1d021c9b524",
+          "bytes": 22160
         },
         {
           "path": "tests/eval-qa-cluster.mjs",
@@ -42333,7 +42718,52 @@
           "bytes": 1445
         },
         {
-          "path": "tests/fixtures/terraform-maestro-routing/expected/001-happy-reviewer.json",
+          "path": "tests/fixtures/terraform-maestro-routing/expected/001-happy-engine-compatibility.json",
+          "sha256": "331093b75a50bb7fac4bbe13002845fb6002ab537d5ed07b1ba8b4140e349a77",
+          "bytes": 84
+        },
+        {
+          "path": "tests/fixtures/terraform-maestro-routing/expected/002-happy-estate-reconciliation.json",
+          "sha256": "9d4045ab47049d9739a612ef52408c524a903174a7cec538cc7b75935a92039e",
+          "bytes": 85
+        },
+        {
+          "path": "tests/fixtures/terraform-maestro-routing/expected/003-happy-execution-governance.json",
+          "sha256": "8511d748c3a80aaee398db064a987e9e82d6b60c2effab46333e06c4ab0b1315",
+          "bytes": 84
+        },
+        {
+          "path": "tests/fixtures/terraform-maestro-routing/expected/004-happy-plan-blast-radius.json",
+          "sha256": "21d599ecdc782dbf1a5647300b1e050ba63c9f473240c55c3cc4e83cae42400e",
+          "bytes": 81
+        },
+        {
+          "path": "tests/fixtures/terraform-maestro-routing/expected/005-happy-policy-evidence.json",
+          "sha256": "665d483fb7fafc8548cb925c0ba7737d1522ffd6bf6fcca1c4b6e1d0984e5b3c",
+          "bytes": 79
+        },
+        {
+          "path": "tests/fixtures/terraform-maestro-routing/expected/006-happy-reviewer.json",
+          "sha256": "31ee7bab6b6f34d3c693b309950784ef6d7201eb0694b5438eb195e45f568214",
+          "bytes": 66
+        },
+        {
+          "path": "tests/fixtures/terraform-maestro-routing/expected/007-happy-state-reliability.json",
+          "sha256": "a989cc43568912394978c9b1a74c415558aa2b0d9576865ea1ffee563fae0a08",
+          "bytes": 81
+        },
+        {
+          "path": "tests/fixtures/terraform-maestro-routing/expected/008-happy-supply-chain-integrity.json",
+          "sha256": "a88ccf53659ed0146117a84e52b7a650d261b2364e1fe463dd39fa076ed26379",
+          "bytes": 86
+        },
+        {
+          "path": "tests/fixtures/terraform-maestro-routing/expected/009-happy-destroy-plan-review.json",
+          "sha256": "21d599ecdc782dbf1a5647300b1e050ba63c9f473240c55c3cc4e83cae42400e",
+          "bytes": 81
+        },
+        {
+          "path": "tests/fixtures/terraform-maestro-routing/expected/010-adv-verb-not-a-signal.json",
           "sha256": "31ee7bab6b6f34d3c693b309950784ef6d7201eb0694b5438eb195e45f568214",
           "bytes": 66
         },
@@ -42343,24 +42773,74 @@
           "bytes": 44
         },
         {
+          "path": "tests/fixtures/terraform-maestro-routing/expected/adv-execution-intent-gate.json",
+          "sha256": "afff694c3caedc66e4594db672259a8685cc4e57e02666d83fa03ea8125fabd6",
+          "bytes": 47
+        },
+        {
           "path": "tests/fixtures/terraform-maestro-routing/expected/adv-instruction-injection.json",
-          "sha256": "31ee7bab6b6f34d3c693b309950784ef6d7201eb0694b5438eb195e45f568214",
-          "bytes": 66
+          "sha256": "331093b75a50bb7fac4bbe13002845fb6002ab537d5ed07b1ba8b4140e349a77",
+          "bytes": 84
         },
         {
           "path": "tests/fixtures/terraform-maestro-routing/expected/adv-persona-replacement.json",
-          "sha256": "31ee7bab6b6f34d3c693b309950784ef6d7201eb0694b5438eb195e45f568214",
-          "bytes": 66
+          "sha256": "331093b75a50bb7fac4bbe13002845fb6002ab537d5ed07b1ba8b4140e349a77",
+          "bytes": 84
         },
         {
           "path": "tests/fixtures/terraform-maestro-routing/expected/adv-secrets-bait.json",
-          "sha256": "31ee7bab6b6f34d3c693b309950784ef6d7201eb0694b5438eb195e45f568214",
-          "bytes": 66
+          "sha256": "18052fb86c7305d11519efb71ac878e807a2d608b8b7c3ee474e31c0c9c8ee14",
+          "bytes": 129
         },
         {
-          "path": "tests/fixtures/terraform-maestro-routing/inputs/001-happy-reviewer.json",
-          "sha256": "bdf7b669fc2151505bedf7bd11776919ad97f7b6d3cf13eba6d4a98dccb3fe19",
-          "bytes": 144
+          "path": "tests/fixtures/terraform-maestro-routing/inputs/001-happy-engine-compatibility.json",
+          "sha256": "31510caf0218920f95702b3d1f6a935841392ee7997a68a0d7354f01b33aab8a",
+          "bytes": 160
+        },
+        {
+          "path": "tests/fixtures/terraform-maestro-routing/inputs/002-happy-estate-reconciliation.json",
+          "sha256": "5bd71a096dfc22941aa6ae458b29c1e5626b5ce766dea1f96521876f1a3e03e3",
+          "bytes": 155
+        },
+        {
+          "path": "tests/fixtures/terraform-maestro-routing/inputs/003-happy-execution-governance.json",
+          "sha256": "9a42cc2129d9c0c72fac2a8ae12e8f644be28ea660273963678736337948418c",
+          "bytes": 149
+        },
+        {
+          "path": "tests/fixtures/terraform-maestro-routing/inputs/004-happy-plan-blast-radius.json",
+          "sha256": "c1fa4e74f92a2b6aa3c6ccc8b154e6790bafb1d721ba3d2e814a6b07ee693a0c",
+          "bytes": 148
+        },
+        {
+          "path": "tests/fixtures/terraform-maestro-routing/inputs/005-happy-policy-evidence.json",
+          "sha256": "0f107545e665388125715a5ec52e407d288b21947dd0a228e3e4a52a550ffb83",
+          "bytes": 153
+        },
+        {
+          "path": "tests/fixtures/terraform-maestro-routing/inputs/006-happy-reviewer.json",
+          "sha256": "ff7f0fb5373fcca0bf8938f6327e7f48e7f177ba415a09bd842902ee454b44d2",
+          "bytes": 141
+        },
+        {
+          "path": "tests/fixtures/terraform-maestro-routing/inputs/007-happy-state-reliability.json",
+          "sha256": "ce3f4250481ccda34ff4ff7b1f62e888dea105bc8f38445ce6bb8915f5fe2d13",
+          "bytes": 149
+        },
+        {
+          "path": "tests/fixtures/terraform-maestro-routing/inputs/008-happy-supply-chain-integrity.json",
+          "sha256": "8fa5c25c304de1843bfc1aac7d12b486580e662d68a638e365d14fbfa3aa3713",
+          "bytes": 176
+        },
+        {
+          "path": "tests/fixtures/terraform-maestro-routing/inputs/009-happy-destroy-plan-review.json",
+          "sha256": "137c7c03295965f4f9bab80a644848fb583e3ceece4cd9806372c6c884835d18",
+          "bytes": 231
+        },
+        {
+          "path": "tests/fixtures/terraform-maestro-routing/inputs/010-adv-verb-not-a-signal.json",
+          "sha256": "b1a981423e7b3452d4efde79b123333f6966f48f1be122fa922648699769de50",
+          "bytes": 172
         },
         {
           "path": "tests/fixtures/terraform-maestro-routing/inputs/adv-ambiguous.json",
@@ -42368,24 +42848,29 @@
           "bytes": 113
         },
         {
+          "path": "tests/fixtures/terraform-maestro-routing/inputs/adv-execution-intent-gate.json",
+          "sha256": "cced21d3e6e277d299cf01e48453f0f07aa1556d74f96990f90c1d33d3d2a5cd",
+          "bytes": 219
+        },
+        {
           "path": "tests/fixtures/terraform-maestro-routing/inputs/adv-instruction-injection.json",
-          "sha256": "dd70599c6c40245bf971927dba9b81d2946c11ad325dd1e5f4ea2c49cdb6e193",
-          "bytes": 199
+          "sha256": "7e4e39be785ba85b779f747c7a38bd53b62b4ef9037fe04f2a6373b35e8f633a",
+          "bytes": 198
         },
         {
           "path": "tests/fixtures/terraform-maestro-routing/inputs/adv-persona-replacement.json",
-          "sha256": "d126748000813380fffcb2456006d418b706b0f0f05778d96fbf8d28e8f941af",
-          "bytes": 188
+          "sha256": "943b4b09ef54fd2bf7ce6c8708713aab430dc7fe9f24c37a81e08dd09b741b90",
+          "bytes": 187
         },
         {
           "path": "tests/fixtures/terraform-maestro-routing/inputs/adv-secrets-bait.json",
-          "sha256": "45804b565736dfc7fe2ec7bbf7802c8872678b0ad6aaa50f9a2b6bea4f41354b",
-          "bytes": 178
+          "sha256": "1b416f05d32a63f4320151e54002148869c278fc4190b6a03b25cc1bb9f3c502",
+          "bytes": 177
         },
         {
           "path": "tests/fixtures/terraform-maestro-routing/taxonomy.json",
-          "sha256": "83e6dc58461eef31a7c8372a2bb79952fd20704e781046af545c581d213692cb",
-          "bytes": 2725
+          "sha256": "e647b99cb670a7dc4119648b008645af2e00d2f0c5491251df722cc6cda2f1dd",
+          "bytes": 3868
         },
         {
           "path": "tests/fixtures/typescript-maestro-routing/expected/001-happy-async-contract-reliability.json",
@@ -42768,8 +43253,8 @@
   "root_files": [
     {
       "path": "README.md",
-      "sha256": "e9d28a3f1cde606fd74d4e75ede7e7eaf29d0802152abbdb2eb49c19a327c2cd",
-      "bytes": 108091
+      "sha256": "35dff9a1c981cca449d5623970495752363b135d4e6b900052153f436ee54442",
+      "bytes": 108919
     },
     {
       "path": "SECURITY.md",
@@ -42808,8 +43293,8 @@
     },
     {
       "path": "package.json",
-      "sha256": "911cb53a38d99dbccf0de3c966318a72c71e7580fc89e0a6b01e8a0da241d403",
-      "bytes": 6626
+      "sha256": "67b43776c551d5bf4527ec24efdacede13046ffe3ce7e52646de6ed48b0c09d7",
+      "bytes": 6859
     },
     {
       "path": ".releaserc.js",
@@ -42817,5 +43302,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "70b2aa57bf16efe72cf0675fcbe2044a415f560369b8e2e549c5ddb6105903f8"
+  "aggregate_sha256": "c5a227f384d178721861eaafe2a462c76c5a4d131cb39967231832355ba2800f"
 }
