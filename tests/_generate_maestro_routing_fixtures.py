@@ -45,6 +45,14 @@ STOPWORDS = {
     "designer", "mapper", "skill", "agentic", "ai", "cloud", "service",
     "platform", "operations", "task", "workload", "general", "hardening",
     "and", "never",
+    # Sentence-opening verbs. summary_tokens() mines the first word of a summary, so a
+    # summary written as a sentence ("Make the record match reality…", "Read a plan…",
+    # "Turn a change into…", "Own the state file…") donates its opening verb to that
+    # domain as a routing keyword. The grader case-folds, so "Make this variable
+    # optional" then scores the drift domain and returns parallel (2) against a task
+    # with no drift signal at all. These words are never a routing signal on any board.
+    "make", "read", "turn", "own", "decide", "choose", "build", "write", "check",
+    "ensure", "keep", "help", "handle", "provide", "support", "use", "run",
 }
 
 # Live-guard pattern: any *-live-* in id, or *-guard-agent, or *-destruction-*
@@ -109,6 +117,34 @@ GATE_INTENT = {
         + r"|\balter\s+(?:[\w.`]+\s+){1,3}owner\s+to\b"
         + r"|\bmake\s+\S+\s+(?:a\s+)?(?:metastore|account|workspace)\s+admin\b)"
     ),
+    # Terraform narrows the gate instead of dropping it. The default regex fires
+    # on the bare words `destroy` and `delete`, which are this board's own subject
+    # matter: `terraform-plan-blast-radius-agent` exists precisely to review the
+    # plans that destroy things, and under the default regex every such review
+    # request returns an empty route (validate-maestro-routing.py:100) — the one
+    # specialist most worth reaching becomes unreachable. Dropping the gate
+    # entirely (the TypeScript choice) is wrong here for the opposite reason: an
+    # IaC board is exactly where an unattended `apply` or `destroy` does the
+    # damage, and the board registers no live-guard of its own because execution
+    # always leaves for a cloud live-guard agent after a human gate.
+    #
+    # So the discriminator is execution intent, not destructive vocabulary: an
+    # engine command invocation, an imperative to run one, or a promotion to
+    # production gates; describing, reviewing, or explaining a destructive plan
+    # routes to the specialist that owns it.
+    "terraform": r"((terraform|tofu)\s+(apply|destroy|import|taint|force-unlock|"
+                 r"state\s+(rm|mv|push|replace-provider))|"
+                 r"run\s+(the\s+)?(apply|destroy)\b|"
+                 r"(apply|destroy)\s+(this|these|it|that|the)\b|"
+                 r"live\s+(apply|push|deploy)|auto[-\s]?approve|"
+                 # `force-unlock` needs execution context for the same reason
+                 # `destroy` does: "review whether force-unlock is justified" is a
+                 # question `terraform-state-reliability-agent` owns, and gating it
+                 # returns an empty route because this board registers no live guard.
+                 r"(run|execute|just|please|now)\s+(a\s+|the\s+)?force[- ]unlock|"
+                 r"force[- ]unlock\s+(it|this|that|the)\b|"
+                 r"promote.*to\s+(?:prod|production)|rollout to prod(uction)?|"
+                 r"approve.*production)",
 }
 
 # Per-provider gate mode override (nvidia uses runtime-evidence-gate).

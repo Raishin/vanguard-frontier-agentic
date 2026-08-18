@@ -1,0 +1,27 @@
+{
+  "id": "terraform-module-contract",
+  "name": "terraform-module-contract",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "terraform",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review a Terraform or OpenTofu module as a reusable contract rather than as code: input surface and validation, output stability, versioning and breaking changes, composition boundaries, and whether a proposed one-off module should exist at all when a platform module already covers it. Reads source and sanitized variable files only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.hashicorp.com/terraform/language/modules/develop",
+    "https://developer.hashicorp.com/terraform/language/values/variables",
+    "https://developer.hashicorp.com/terraform/language/checks",
+    "https://opentofu.org/docs/language/functions/"
+  ],
+  "security_notes": "Static review only — reads Terraform/OpenTofu source, module READMEs, and sanitized variable files; never runs `init`, `plan`, `apply`, or any state operation, never contacts a registry or live system, and never requests secrets, credentials, tokens, or customer data. A claim about the engine version, provider versions, or how a module behaves at apply time that is not visible in the supplied artifacts is labelled assumption, never confirmed.",
+  "last_verified": "2026-08-17",
+  "path": "skills/terraform/terraform-module-contract",
+  "author": "github: VincentChuWaiChow"
+}

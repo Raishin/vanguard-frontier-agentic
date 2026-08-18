@@ -44,6 +44,7 @@ These gates run sequentially in CI and must all pass — {{ site.data.catalog.va
 | 22 | `validate:qa-cluster` | `node tests/eval-qa-cluster.mjs` | QA cluster evaluation |
 | 23 | `validate:frontend-security-detection` | `python3 tests/validate-frontend-security-detection.py` | Frontend security skills still document their sink keywords and detect the fixture corpus |
 | 24 | `validate:agent-tool-tiers` | `python3 tests/validate-agent-tool-tiers.py` | Copilot tool grants match each agent's declared `execution_tier` |
+| 25 | `validate:workflow-catalog` | `node scripts/generate-workflow-catalog.mjs --check` | `catalog/workflows.json` matches the `meta` literal in each `.claude/workflows/*.js` |
 
 ### Generation Scripts
 

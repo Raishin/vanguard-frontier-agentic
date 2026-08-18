@@ -1,107 +1,165 @@
 {
   "provider": "terraform",
   "domains": {
+    "engine-compatibility": {
+      "keywords": [
+        "upgrade",
+        "version",
+        "compatibility",
+        "migration",
+        "deprecated",
+        "breaking change",
+        "provider major",
+        "core version",
+        "fork",
+        "engine choice",
+        "version lag",
+        "engine",
+        "versus-OpenTofu"
+      ],
+      "agent": "terraform-engine-compatibility-agent"
+    },
+    "estate-reconciliation": {
+      "keywords": [
+        "drift",
+        "import",
+        "brownfield",
+        "moved",
+        "removed",
+        "refresh",
+        "adopt",
+        "unmanaged",
+        "generate-config-out",
+        "refactor",
+        "rename",
+        "reconcile",
+        "clickops",
+        "estate",
+        "reconciliation"
+      ],
+      "agent": "terraform-estate-reconciliation-agent"
+    },
+    "execution-governance": {
+      "keywords": [
+        "pipeline",
+        "ci",
+        "runner",
+        "oidc",
+        "credentials",
+        "approval",
+        "remote execution",
+        "atlantis",
+        "workspace agent",
+        "plan artifact",
+        "apply gate",
+        "unattended apply",
+        "self-hosted runner",
+        "execution",
+        "governance"
+      ],
+      "agent": "terraform-execution-governance-agent"
+    },
+    "plan-blast-radius": {
+      "keywords": [
+        "plan",
+        "replace",
+        "destroy",
+        "forces replacement",
+        "blast radius",
+        "target",
+        "lifecycle",
+        "prevent_destroy",
+        "create_before_destroy",
+        "replace_triggered_by",
+        "recreate",
+        "decommission",
+        "blast",
+        "radius",
+        "Engine"
+      ],
+      "agent": "terraform-plan-blast-radius-agent"
+    },
+    "policy-evidence": {
+      "keywords": [
+        "policy",
+        "compliance",
+        "guardrail",
+        "sentinel",
+        "opa",
+        "rego",
+        "conftest",
+        "audit",
+        "evidence",
+        "exception",
+        "control",
+        "attestation",
+        "soc2",
+        "pci"
+      ],
+      "agent": "terraform-policy-evidence-agent"
+    },
     "reviewer": {
       "keywords": [
+        "module",
+        "variable",
+        "output",
+        "validation",
+        "golden path",
+        "reusable",
+        "module registry",
+        "interface",
+        "self-service",
+        "scaffold",
         "reviewer",
-        "Review Terraform",
-        "hcl",
-        "hashicorp",
-        "tf file",
-        "main.tf",
-        "tfvars",
-        ".tf",
-        "terraform validate",
-        "terraform init",
-        "provider config",
-        "workspace",
-        "terraform workspace",
-        "backend config",
-        "data source",
-        "locals",
-        "output terraform",
-        "variable terraform"
+        "one-off"
       ],
       "agent": "terraform-reviewer"
     },
-    "module-authoring": {
+    "state-reliability": {
       "keywords": [
-        "terraform module",
-        "write module",
-        "module composition",
-        "terraform registry",
-        "local module",
-        "module source",
-        "module input",
-        "module output",
-        "reusable module",
-        "child module"
-      ],
-      "agent": "terraform-reviewer"
-    },
-    "state-management": {
-      "keywords": [
-        "terraform state",
-        "state file",
+        "state",
         "tfstate",
+        "backend",
         "remote state",
-        "state backend",
-        "state locking",
-        "state drift",
-        "terraform import",
-        "state move",
-        "s3 backend"
+        "locking",
+        "force-unlock",
+        "state rm",
+        "state mv",
+        "recovery",
+        "backup",
+        "encryption",
+        "workspace",
+        "state surgery",
+        "reliability",
+        "engine-specific"
       ],
-      "agent": "terraform-reviewer"
+      "agent": "terraform-state-reliability-agent"
     },
-    "plan-safety-review": {
+    "supply-chain-integrity": {
       "keywords": [
-        "terraform plan",
-        "plan review",
-        "destroy safety",
-        "terraform destroy",
-        "plan diff",
-        "blast radius",
-        "plan output",
-        "resource replacement",
-        "force replace",
-        "plan analysis"
+        "provider source",
+        "required_providers",
+        "registry",
+        "lock file",
+        "terraform.lock.hcl",
+        "checksum",
+        "mirror",
+        "provenance",
+        "module source",
+        "typosquat",
+        "signing",
+        "namespace",
+        "supply",
+        "chain",
+        "integrity",
+        "network-restricted",
+        "CLI"
       ],
-      "agent": "terraform-reviewer"
-    },
-    "security-compliance": {
-      "keywords": [
-        "tfsec",
-        "checkov",
-        "terrascan",
-        "terraform security",
-        "iam policy terraform",
-        "least privilege",
-        "security scan",
-        "compliance terraform",
-        "policy validation",
-        "terraform audit"
-      ],
-      "agent": "terraform-reviewer"
-    },
-    "cost-estimation": {
-      "keywords": [
-        "infracost",
-        "terraform cost",
-        "cost estimation",
-        "terraform spend",
-        "resource cost",
-        "monthly estimate",
-        "cost forecast",
-        "pricing terraform",
-        "budget terraform",
-        "cost analysis"
-      ],
-      "agent": "terraform-reviewer"
+      "agent": "terraform-supply-chain-integrity-agent"
     }
   },
   "live_guards": [],
   "gate_mode": "live-guard-gate",
-  "live_guard_intent": "(destroy|delete|terminate|rollout to prod|rollout to production|approve.*production|promote.*to (?:prod|production)|key destruction|policy change in prod|mutate (?:rbac|iam|policy)|change-set.*apply|live (?:apply|push|deploy)|force[- ]push.*main|drop\\s+(?:table|database)|swap\\s+production\\s+slot)",
+  "live_guard_intent": "((terraform|tofu)\\s+(apply|destroy|import|taint|force-unlock|state\\s+(rm|mv|push|replace-provider))|run\\s+(the\\s+)?(apply|destroy)\\b|(apply|destroy)\\s+(this|these|it|that|the)\\b|live\\s+(apply|push|deploy)|force[- ]unlock|auto[-\\s]?approve|promote.*to\\s+(?:prod|production)|rollout to prod(uction)?|approve.*production)",
   "parallel_threshold": 0.8
 }

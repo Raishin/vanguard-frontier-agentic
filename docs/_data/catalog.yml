@@ -2,17 +2,18 @@
 # Do NOT edit manually — run: node scripts/generate-docs-data.mjs
 # This file is the single source of truth for all catalog counts in Jekyll docs.
 
-agents: 697
-skills: 720
+agents: 704
+skills: 729
 providers: 45
 mcp_references: 3
 rules: 1
+workflows: 1
 install_roles: 69
-validation_gates: 23
+validation_gates: 24
 agent_directories: 49
 skill_directories: 49
 maestro_scenarios: 357
-version: "3.8.0"
+version: "3.9.0"
 
 # Provider list (flat)
 provider_list:
@@ -121,7 +122,7 @@ provider_taxonomy:
   - category: "Infrastructure as Code"
     providers:
       - name: "terraform"
-        agents: 2
+        agents: 9
   - category: "AI & Compute"
     providers:
       - name: "nvidia"
@@ -180,6 +181,11 @@ provider_taxonomy:
         agents: 20
       - name: "snowflake"
         agents: 3
+
+# Workflow list (delegation workflows in .claude/workflows/)
+workflow_list:
+  - name: "agentic-delegation"
+    phases: 7
 
 # Role list
 role_list:
