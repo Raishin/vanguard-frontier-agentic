@@ -2,7 +2,8 @@ use std::path::Path;
 
 use crate::error::TuiError;
 use crate::models::{
-    Agent, AssetIntegrity, McpReference, ModelAssignments, RoleCatalog, Rule, Skill, WorkflowDef,
+    Agent, AssetIntegrity, McpReference, ModelAssignments, RoleCatalog, Rule, Skill,
+    WorkflowCatalog,
 };
 use crate::security::sanitize::has_control_bytes;
 
@@ -243,47 +244,6 @@ pub fn load_roles(workspace_root: &Path) -> (Option<RoleCatalog>, Vec<TuiError>)
     }
 }
 
-/// Load executable workflows from `.claude/workflows/`.
-/// Scans the directory for `.js` files, parses metadata, and returns sorted by name.
-/// A missing `.claude/workflows/` directory is not an error — returns an empty vec with no errors.
-/// Files that fail to parse are skipped silently.
-pub fn load_workflows(workspace_root: &Path) -> (Vec<WorkflowDef>, Vec<TuiError>) {
-    let workflows_dir = workspace_root.join(".claude").join("workflows");
-    let mut workflows = Vec::new();
-    let errors = Vec::new();
-
-    // Missing directory is not an error for read-only discovery.
-    if !workflows_dir.exists() {
-        return (workflows, errors);
-    }
-
-    // Scan for .js files
-    let entries = match std::fs::read_dir(&workflows_dir) {
-        Ok(e) => e,
-        Err(_) => {
-            return (Vec::new(), errors);
-        }
-    };
-
-    for entry in entries.flatten() {
-        let path = entry.path();
-        if path.extension().is_some_and(|ext| ext == "js") {
-            if let Ok(source) = std::fs::read_to_string(&path) {
-                if let Some(workflow) =
-                    WorkflowDef::parse_meta(&source, path.to_string_lossy().as_ref())
-                {
-                    workflows.push(workflow);
-                }
-            }
-        }
-    }
-
-    // Sort by name for determinism
-    workflows.sort_by(|a, b| a.name.cmp(&b.name));
-
-    (workflows, errors)
-}
-
 /// Load asset integrity from catalog/asset-integrity.json.
 pub fn load_integrity(workspace_root: &Path) -> (Option<AssetIntegrity>, Vec<TuiError>) {
     let file_path = workspace_root.join("catalog").join("asset-integrity.json");
@@ -369,7 +329,60 @@ pub fn load_model_assignments(workspace_root: &Path) -> (Option<ModelAssignments
     }
 }
 
+/// Load the workflow catalog from catalog/workflows.json.
+///
+/// A missing file is not an error — the workflow catalog is additive and a checkout
+/// without it simply renders no workflows. The file is generated from the `meta` block
+/// of each script in `.claude/workflows/` by
+/// `scripts/generate-workflow-catalog.mjs`; the TUI never parses the scripts itself.
+pub fn load_workflows(workspace_root: &Path) -> (Option<WorkflowCatalog>, Vec<TuiError>) {
+    let file_path = workspace_root.join("catalog").join("workflows.json");
+    let path = file_path.display().to_string();
+    let mut errors = Vec::new();
+
+    if !file_path.exists() {
+        return (None, errors);
+    }
+
+    let data = match read_catalog_file(&file_path) {
+        Ok(d) => d,
+        Err(e) => {
+            errors.push(e);
+            return (None, errors);
+        }
+    };
+
+    match serde_json::from_str::<WorkflowCatalog>(&data) {
+        Ok(catalog) => {
+            if check_workflows_tainted(&catalog) {
+                errors.push(TuiError::TaintedEntry {
+                    path,
+                    offset: 0,
+                    field: "control bytes detected".to_string(),
+                });
+                (None, errors)
+            } else {
+                (Some(catalog), errors)
+            }
+        }
+        Err(e) => {
+            errors.push(TuiError::CatalogParse {
+                path,
+                offset: e.column(),
+                detail: e.to_string(),
+            });
+            (None, errors)
+        }
+    }
+}
+
 // Taint checks for each model type.
+
+pub(crate) fn check_workflows_tainted(catalog: &WorkflowCatalog) -> bool {
+    serde_json::to_value(catalog)
+        .map(|value| value_has_control_bytes(&value))
+        .unwrap_or(true)
+}
 
 pub(crate) fn check_model_assignments_tainted(assignments: &ModelAssignments) -> bool {
     serde_json::to_value(assignments)
@@ -449,6 +462,41 @@ mod tests {
         let (skills, errors) = load_skills(workspace_root());
         assert!(errors.is_empty(), "errors: {errors:?}");
         assert!(!skills.is_empty());
+    }
+
+    #[test]
+    fn load_workflows_parses_the_real_catalog() {
+        // Loads the committed catalog/workflows.json, so a generator change that emits a
+        // key this struct does not declare fails here rather than silently vanishing
+        // from the display. `deny_unknown_fields` only bites if something exercises it
+        // against real data.
+        let (catalog, errors) = load_workflows(workspace_root());
+        assert!(errors.is_empty(), "errors: {errors:?}");
+        let catalog = catalog.expect("catalog/workflows.json should be present");
+        assert!(
+            !catalog.workflows.is_empty(),
+            "expected at least one workflow in the catalog",
+        );
+        for wf in &catalog.workflows {
+            assert!(!wf.id.is_empty(), "workflow id must not be empty");
+            assert_eq!(wf.id, wf.name, "id and name are the same identifier");
+            assert!(
+                wf.path.starts_with(".claude/workflows/"),
+                "workflow path should be repo-relative: {}",
+                wf.path,
+            );
+        }
+    }
+
+    #[test]
+    fn load_workflows_tolerates_a_missing_file() {
+        // Additive feature: a checkout without any workflow renders none rather than
+        // reporting a load error.
+        let tmp = tempfile::tempdir().unwrap();
+        std::fs::create_dir_all(tmp.path().join("catalog")).unwrap();
+        let (catalog, errors) = load_workflows(tmp.path());
+        assert!(catalog.is_none());
+        assert!(errors.is_empty(), "missing file must not be an error");
     }
 
     #[test]
@@ -589,123 +637,5 @@ mod tests {
         let missing = tmp.path().join("missing.json");
         let result = read_catalog_file(&missing);
         assert!(result.is_err());
-    }
-
-    #[test]
-    fn load_workflows_missing_directory() {
-        let tmp = tempfile::TempDir::new().unwrap();
-        let (workflows, errors) = load_workflows(tmp.path());
-        assert!(workflows.is_empty());
-        assert!(errors.is_empty());
-    }
-
-    #[test]
-    fn load_workflows_parses_valid() {
-        let tmp = tempfile::TempDir::new().unwrap();
-        let workflows_dir = tmp.path().join(".claude").join("workflows");
-        std::fs::create_dir_all(&workflows_dir).unwrap();
-
-        let workflow_src = r#"
-export const meta = {
-  name: "test-workflow",
-  description: "A test workflow",
-  phases: [
-    { title: "Phase 1" },
-    { title: "Phase 2", detail: "Optional detail" }
-  ]
-};
-"#;
-        std::fs::write(workflows_dir.join("test.js"), workflow_src).unwrap();
-
-        let (workflows, errors) = load_workflows(tmp.path());
-        assert!(errors.is_empty(), "errors: {errors:?}");
-        assert_eq!(workflows.len(), 1);
-        assert_eq!(workflows[0].name, "test-workflow");
-        assert_eq!(workflows[0].description, "A test workflow");
-        assert_eq!(workflows[0].phases.len(), 2);
-    }
-
-    #[test]
-    fn load_workflows_skips_invalid_meta() {
-        let tmp = tempfile::TempDir::new().unwrap();
-        let workflows_dir = tmp.path().join(".claude").join("workflows");
-        std::fs::create_dir_all(&workflows_dir).unwrap();
-
-        // Valid workflow
-        let valid = r#"
-export const meta = {
-  name: "valid",
-  description: "Valid workflow",
-  phases: [{ title: "Step" }]
-};
-"#;
-        std::fs::write(workflows_dir.join("valid.js"), valid).unwrap();
-
-        // Invalid workflow (missing description)
-        let invalid = r#"
-export const meta = {
-  name: "invalid",
-  phases: [{ title: "Step" }]
-};
-"#;
-        std::fs::write(workflows_dir.join("invalid.js"), invalid).unwrap();
-
-        let (workflows, errors) = load_workflows(tmp.path());
-        assert!(errors.is_empty());
-        assert_eq!(workflows.len(), 1);
-        assert_eq!(workflows[0].name, "valid");
-    }
-
-    #[test]
-    fn load_workflows_sorted_by_name() {
-        let tmp = tempfile::TempDir::new().unwrap();
-        let workflows_dir = tmp.path().join(".claude").join("workflows");
-        std::fs::create_dir_all(&workflows_dir).unwrap();
-
-        for name in &["zebra", "apple", "banana"] {
-            let src = format!(
-                r#"
-export const meta = {{
-  name: "{}",
-  description: "desc",
-  phases: [{{ title: "Step" }}]
-}};
-"#,
-                name
-            );
-            std::fs::write(workflows_dir.join(format!("{}.js", name)), src).unwrap();
-        }
-
-        let (workflows, errors) = load_workflows(tmp.path());
-        assert!(errors.is_empty());
-        assert_eq!(workflows.len(), 3);
-        assert_eq!(workflows[0].name, "apple");
-        assert_eq!(workflows[1].name, "banana");
-        assert_eq!(workflows[2].name, "zebra");
-    }
-
-    #[test]
-    fn load_workflows_ignores_non_js_files() {
-        let tmp = tempfile::TempDir::new().unwrap();
-        let workflows_dir = tmp.path().join(".claude").join("workflows");
-        std::fs::create_dir_all(&workflows_dir).unwrap();
-
-        let workflow_src = r#"
-export const meta = {
-  name: "valid",
-  description: "Valid",
-  phases: [{ title: "Step" }]
-};
-"#;
-        std::fs::write(workflows_dir.join("workflow.js"), workflow_src).unwrap();
-
-        // Non-.js files should be ignored
-        std::fs::write(workflows_dir.join("readme.txt"), "ignored").unwrap();
-        std::fs::write(workflows_dir.join("config.json"), "{}").unwrap();
-
-        let (workflows, errors) = load_workflows(tmp.path());
-        assert!(errors.is_empty());
-        assert_eq!(workflows.len(), 1);
-        assert_eq!(workflows[0].name, "valid");
     }
 }

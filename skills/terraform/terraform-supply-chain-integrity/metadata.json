@@ -1,0 +1,29 @@
+{
+  "id": "terraform-supply-chain-integrity",
+  "name": "terraform-supply-chain-integrity",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "terraform",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Decide whether a Terraform or OpenTofu dependency may be trusted and whether the trust is actually enforced: provider source addresses and registry namespaces, `.terraform.lock.hcl` hash coverage across platforms, mirrors and network-restricted installation, and module source provenance. Reads dependency declarations, lock files, and CLI configuration only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.hashicorp.com/terraform/language/files/dependency-lock",
+    "https://developer.hashicorp.com/terraform/cli/commands/providers/lock",
+    "https://developer.hashicorp.com/terraform/language/providers/requirements",
+    "https://developer.hashicorp.com/terraform/cli/config/config-file",
+    "https://developer.hashicorp.com/terraform/internals/provider-registry-protocol",
+    "https://opentofu.org/docs/language/providers/requirements/"
+  ],
+  "security_notes": "Static review only — reads `required_providers` blocks, module `source` addresses, `.terraform.lock.hcl`, and CLI configuration files; never runs `init`, `providers lock`, or any command that contacts a registry or mirror, and never downloads a provider. Never requests or accepts registry tokens, signing keys, credentials, or private registry URLs containing embedded secrets. A claim about what a registry currently serves, or about a checksum not present in the supplied lock file, is labelled assumption, never confirmed.",
+  "last_verified": "2026-08-17",
+  "path": "skills/terraform/terraform-supply-chain-integrity",
+  "author": "github: VincentChuWaiChow"
+}

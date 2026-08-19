@@ -1,0 +1,28 @@
+{
+  "id": "terraform-estate-reconciliation",
+  "name": "terraform-estate-reconciliation",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "terraform",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Make the record match reality without destroying anything: classify drift and decide whether to adopt, revert, or accept it; bring unmanaged brownfield infrastructure under management via import blocks; and carry resource address changes with `moved` and `removed` blocks so a refactor is not read as a destroy. Reads plans, source, and sanitized inventories only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.hashicorp.com/terraform/language/import",
+    "https://developer.hashicorp.com/terraform/language/moved",
+    "https://developer.hashicorp.com/terraform/cli/commands/plan",
+    "https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle",
+    "https://opentofu.org/docs/language/import/"
+  ],
+  "security_notes": "Advisory and read-only — reads plans (preferably `-refresh-only` and `-json`), Terraform/OpenTofu source, import blocks, and sanitized resource inventories; never runs `import`, `plan`, `apply`, `state mv`, or `state rm`, and never contacts a cloud API to enumerate resources. Never requests or accepts cloud credentials, tokens, unredacted state, account/subscription/tenant identifiers, or customer data. Resource inventories must arrive with identifiers redacted where they encode account or tenant structure. A claim about what exists in the live estate that is not visible in the supplied artifacts is labelled assumption, never confirmed.",
+  "last_verified": "2026-08-17",
+  "path": "skills/terraform/terraform-estate-reconciliation",
+  "author": "github: VincentChuWaiChow"
+}

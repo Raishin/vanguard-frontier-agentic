@@ -1,7 +1,7 @@
 [
   {
     "id": "accounting-maestro",
-    "name": "Accounting Maestro",
+    "name": "Accounting Maestro Routing Skill",
     "type": "skill",
     "provider": "accounting",
     "harnesses": [
@@ -33,7 +33,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "accounting-maestro-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "add-educational-comments",
@@ -51,11 +52,13 @@
       "https://peps.python.org/pep-0263/",
       "https://en.wikipedia.org/wiki/Comment_(programming)"
     ],
-    "security_notes": "Read-only skill. Only reads and annotates files with educational comments. Does not execute code, modify system state, or access sensitive data.",
+    "security_notes": "Read-only skill. Only reads and annotates files with educational comments. Does not execute code, modify system state, or access sensitive data. All modifications are educational in nature and maintain original code semantics.",
     "last_verified": "2026-05-11",
     "path": "skills/claude/add-educational-comments",
     "author": "github: Claude",
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "execution_tier": "local",
+    "lifecycle": "stable"
   },
   {
     "id": "ai-advertising-targeting-fairness-review",
@@ -1282,6 +1285,7 @@
     "summary": "Reviews Angular component/service architecture for correct Signals usage, computed/effect semantics, and change-detection strategy, using Angular's own Signals, change-detection, and dependency-injection guidance loaded progressively and grounded via Context7 against the repo's confirmed Angular version.",
     "source_type": "original",
     "official_docs": [
+      "https://github.com/angular/skills/tree/main/angular-developer",
       "https://angular.dev/guide/signals",
       "https://angular.dev/guide/signals/linked-signal",
       "https://angular.dev/guide/components/change-detection",
@@ -1309,6 +1313,7 @@
     "summary": "Reviews Angular SSR bootstrap configuration and component templates for hydration-mismatch risk (NG0500-class errors), unjustified ngSkipHydration usage, and direct-DOM-manipulation patterns that bypass Angular's template-owned DOM model, using Angular's own hydration guide and error catalog loaded progressively and grounded via Context7 against the repo's confirmed Angular version.",
     "source_type": "original",
     "official_docs": [
+      "https://github.com/angular/skills/tree/main/angular-developer",
       "https://angular.dev/guide/hydration",
       "https://angular.dev/errors/NG0500",
       "https://angular.dev/api/platform-browser/provideClientHydration",
@@ -1533,10 +1538,15 @@
       "https://docs.aws.amazon.com/apigateway/latest/developerguide/security-best-practices.html",
       "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-request-throttling.html",
       "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html",
-      "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-awswaf.html"
+      "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/add-origin-custom-headers.html",
+      "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-https-cloudfront-to-s3-origin.html",
+      "https://docs.aws.amazon.com/waf/latest/developerguide/how-aws-waf-works.html",
+      "https://docs.aws.amazon.com/waf/latest/developerguide/aws-managed-rule-groups.html",
+      "https://docs.aws.amazon.com/waf/latest/developerguide/waf-anti-ddos-best-practices.html",
+      "https://docs.aws.amazon.com/waf/latest/developerguide/ddos-overview.html"
     ],
     "security_notes": "Do not approve public API or edge changes without auth, throttling, TLS, logging, WAF/origin protection where appropriate, sensitive-log controls, and rollback path.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-api-edge-delivery-review",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.4"
@@ -1563,7 +1573,7 @@
       "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-how.html"
     ],
     "security_notes": "Do not grant broad tool or data access to Bedrock agents. Require least privilege, prompt-injection tests, guardrail coverage, PII controls, observability, and kill-switch/rollback design.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-bedrock-agent-security-governor",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.4"
@@ -1590,7 +1600,7 @@
       "https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/design_principles.html"
     ],
     "security_notes": "This role is advisory only. Do not approve execution from weak evidence. Require explicit rollback, dependency, owner, and communication clarity before treating a change as low-risk.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-change-impact-advisor",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.2"
@@ -1617,7 +1627,7 @@
       "https://docs.aws.amazon.com/codepipeline/latest/userguide/welcome.html"
     ],
     "security_notes": "Do not approve production pipelines without artifact integrity, least-privilege deploy roles, quality/security gates, deployment telemetry, rollback criteria, and post-deploy validation.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-ci-cd-release-engineer",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.4"
@@ -1644,7 +1654,7 @@
       "https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-fsbp-controls.html"
     ],
     "security_notes": "Do not claim compliance from tool output alone. Label evidence freshness, scope, inconclusive evidence, missing Config/Security Hub coverage, and need for legal/compliance review.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-compliance-evidence-mapper",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.4"
@@ -1665,13 +1675,13 @@
     "summary": "Review AWS cost anomalies, budget drift, usage spikes, and savings opportunities with non-destructive recommendations and business-facing escalation guidance.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.aws.amazon.com/cost-management/latest/userguide/management-limits.html",
+      "https://docs.aws.amazon.com/cost-management/latest/userguide/ce-access.html",
+      "https://docs.aws.amazon.com/cost-management/latest/userguide/ce-enable.html",
       "https://docs.aws.amazon.com/cost-management/latest/userguide/getting-started-ad.html",
-      "https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html",
-      "https://docs.aws.amazon.com/cost-management/latest/userguide/ce-what-is.html"
+      "https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html"
     ],
     "security_notes": "Keep the role advisory and non-destructive. Do not stop workloads or alter purchasing commitments from this role. Focus on evidence, hypotheses, safe next checks, and escalation.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-cost-anomaly-watch-coordinator",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.2"
@@ -1692,13 +1702,13 @@
     "summary": "Review AWS cost posture across Cost Explorer, Budgets, Cost Optimization Hub, Compute Optimizer, commitments, tagging, showback, idle waste, and rightsizing.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.aws.amazon.com/cost-management/latest/userguide/cost-optimization-hub.html",
-      "https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-best-practices.html",
-      "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/ce-api-best-practices.html/",
+      "https://docs.aws.amazon.com/compute-optimizer/latest/ug/what-is.html",
+      "https://docs.aws.amazon.com/compute-optimizer/latest/ug/savings-estimation-mode.html",
+      "https://docs.aws.amazon.com/cost-management/latest/userguide/understanding-rr-calc.html",
       "https://docs.aws.amazon.com/wellarchitected/latest/cost-optimization-pillar/welcome.html"
     ],
     "security_notes": "Do not recommend cost cuts that remove backups, logging, security controls, redundancy, or tested capacity without explicit risk acceptance and rollback evidence.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-cost-optimization-governor",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.4"
@@ -1719,13 +1729,13 @@
     "summary": "Prepare non-destructive AWS daily operations briefings across health signals, incidents, deployments, cost drift, open risks, and action backlog for business and engineering stakeholders.",
     "source_type": "original",
     "official_docs": [
+      "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html",
       "https://docs.aws.amazon.com/health/latest/ug/what-is-aws-health.html",
-      "https://docs.aws.amazon.com/prescriptive-guidance/latest/implementing-logging-monitoring-cloudwatch/introduction.html",
-      "https://docs.aws.amazon.com/cost-management/latest/userguide/ce-what-is.html",
-      "https://docs.aws.amazon.com/awssupport/latest/user/trusted-advisor.html"
+      "https://docs.aws.amazon.com/awssupport/latest/user/trusted-advisor.html",
+      "https://docs.aws.amazon.com/cost-management/latest/userguide/ce-what-is.html"
     ],
     "security_notes": "Do not treat dashboards as proof. Keep reporting read-only, evidence-based, and explicit about unknowns. Never recommend mutation or production changes without separate approval and deeper technical review.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-daily-operations-briefing-coordinator",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.2"
@@ -1747,12 +1757,12 @@
     "source_type": "original",
     "official_docs": [
       "https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html",
+      "https://docs.aws.amazon.com/aws-backup/latest/devguide/logicallyairgappedvault.html",
       "https://docs.aws.amazon.com/aws-backup/latest/devguide/vault-lock.html",
-      "https://docs.aws.amazon.com/aws-backup/latest/devguide/cross-account-backup.html",
-      "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/plan-for-disaster-recovery-dr.html"
+      "https://docs.aws.amazon.com/aws-backup/latest/devguide/cross-account-backup.html"
     ],
     "security_notes": "Do not treat snapshots as sufficient data protection. Check restore permissions, KMS access, vault policy, immutability, cross-account isolation, and tested recovery evidence.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-data-protection-backup-steward",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.4"
@@ -1773,11 +1783,13 @@
     "summary": "Patch AWS deployment manifests, environment config, release toggles, and rollout settings quickly in-repo with explicit rollback notes and no live-cloud mutation by default.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.aws.amazon.com/prescriptive-guidance/latest/choosing-git-branch-approach/plan-your-change-management-strategy.html",
-      "https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/design_principles.html"
+      "https://docs.aws.amazon.com/config/latest/developerguide/codedeploy-deployment-group-auto-rollback-enabled.html",
+      "https://docs.aws.amazon.com/codedeploy/latest/userguide/deployments-rollback-and-redeploy.html",
+      "https://docs.aws.amazon.com/codepipeline/latest/userguide/welcome.html",
+      "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/troubleshooting.html"
     ],
     "security_notes": "Repo write access only. Do not deploy, apply, destroy, or mutate live AWS resources from this role by default. Require explicit human approval for any step beyond repo patching and validation.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-deployment-hotfix-operator",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.2"
@@ -1798,13 +1810,13 @@
     "summary": "Design AWS DevOps Agent-compatible skills, investigation workflows, learned skills, tool-use best practices, agent targeting, frontmatter triggers, and operational output contracts.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.aws.amazon.com/devopsagent/latest/userguide/about-aws-devops-agent-devops-agent-skills.html",
-      "https://docs.aws.amazon.com/devopsagent/latest/userguide/about-aws-devops-agent-learned-skills.html",
+      "https://docs.aws.amazon.com/devopsagent/latest/userguide/working-with-devops-agent-proactive-incident-prevention.html",
+      "https://docs.aws.amazon.com/devops-guru/latest/userguide/monitoring-cloudwatch.html",
       "https://docs.aws.amazon.com/devopsagent/latest/userguide/about-aws-devops-agent.html",
-      "https://docs.aws.amazon.com/devopsagent/latest/userguide/aws-devops-agent-security.html"
+      "https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/welcome.html"
     ],
     "security_notes": "Do not create AWS DevOps Agent skills with vague descriptions, broad agent targeting, secret-handling instructions, unsupported executable assumptions, or missing success criteria.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-devops-agent-skill-designer",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.4"
@@ -1825,13 +1837,13 @@
     "summary": "Review DynamoDB table design, partition keys, sort keys, GSIs/LSIs, hot partitions, query/scan patterns, capacity, global tables, TTL, DAX, and cost/performance tradeoffs.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/best-practices.html",
-      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-partition-key-design.html",
-      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-indexes.html",
-      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.html"
+      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/data-modeling.html",
+      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-table-design.html",
+      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.html",
+      "https://docs.aws.amazon.com/prescriptive-guidance/latest/dynamodb-data-modeling/best-practices.html"
     ],
     "security_notes": "Do not recommend DynamoDB schemas without explicit access patterns, partition cardinality, index tradeoffs, capacity/cost implications, and migration or backfill safety.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-dynamodb-data-modeling-performance-review",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.4"
@@ -1852,13 +1864,13 @@
     "summary": "Review EC2, Auto Scaling, Launch Templates, AMIs, Systems Manager, Patch Manager, EBS, snapshots, health checks, instance refresh, lifecycle hooks, and fleet operations.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-best-practices.html",
-      "https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager.html",
-      "https://docs.aws.amazon.com/autoscaling/ec2/userguide/instance-refresh-overview.html",
-      "https://docs.aws.amazon.com/ebs/latest/userguide/ebs-snapshots.html"
+      "https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html",
+      "https://docs.aws.amazon.com/autoscaling/ec2/userguide/ts-as-instancelaunchfailure.html",
+      "https://docs.aws.amazon.com/systems-manager/latest/userguide/what-is-systems-manager.html",
+      "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html"
     ],
     "security_notes": "Do not approve EC2 fleet operations without patch compliance, managed access, health checks, rollback, backup/snapshot posture, IAM instance-profile review, and launch-template evidence.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-ec2-compute-operations-steward",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.4"
@@ -1879,13 +1891,13 @@
     "summary": "Review Amazon ECS and Fargate services across task roles, execution roles, deployment circuit breakers, blue/green, load balancing, autoscaling, logging, networking, and rollback.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-failure-detection.html",
-      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-circuit-breaker.html",
-      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-blue-green.html",
-      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/security-iam-roles.html"
+      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html",
+      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_execution_IAM_role.html",
+      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-deployment.html",
+      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/troubleshooting.html"
     ],
     "security_notes": "Do not approve ECS/Fargate production changes without task-role separation, deployment rollback behavior, health check evidence, logs, secrets posture, and load balancer/target group validation.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-ecs-fargate-platform-operator",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.4"
@@ -1906,12 +1918,13 @@
     "summary": "Correct ECS/Fargate service definitions, task settings, deployment parameters, and environment configuration in-repo with bounded write access and no live service mutation by default.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service_definition_parameters.html",
-      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html",
-      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-ecs.html"
+      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/troubleshooting.html",
+      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-deployment.html",
+      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_execution_IAM_role.html",
+      "https://docs.aws.amazon.com/codedeploy/latest/userguide/deployments-rollback-and-redeploy.html"
     ],
     "security_notes": "Repo write access only. Do not force new deployments, scale services, or alter live task state from this role by default. Surface rollout and rollback implications explicitly.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-ecs-service-remediation-operator",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.2"
@@ -1932,13 +1945,13 @@
     "summary": "Review Amazon EKS platform operations across cluster identity, access entries, node strategy, networking, autoscaling, upgrades, reliability, security, observability, and cost.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.aws.amazon.com/eks/latest/best-practices/introduction.html",
-      "https://docs.aws.amazon.com/eks/latest/best-practices/security.html",
-      "https://docs.aws.amazon.com/eks/latest/best-practices/reliability.html",
+      "https://docs.aws.amazon.com/eks/latest/userguide/creating-access-entries.html",
+      "https://docs.aws.amazon.com/eks/latest/best-practices/cluster-upgrades.html",
+      "https://docs.aws.amazon.com/eks/latest/userguide/eks-add-ons.html",
       "https://docs.aws.amazon.com/eks/latest/userguide/security-iam.html"
     ],
     "security_notes": "Do not call an EKS cluster production-ready without explicit identity, network isolation, upgrade, node disruption, image/runtime security, and observability evidence.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-eks-platform-operator",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.4"
@@ -1959,13 +1972,13 @@
     "summary": "Review AWS EventBridge, SQS, SNS, Step Functions, Pipes, event schemas, retries, DLQs, idempotency, cross-account routing, monitoring, and event-loop risk.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is.html",
-      "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-patterns-best-practices.html",
-      "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-rules-best-practices.html",
-      "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-monitoring-events-best-practices.html"
+      "https://docs.aws.amazon.com/decision-guides/latest/sns-or-sqs-or-eventbridge/sns-or-sqs-or-eventbridge.html",
+      "https://docs.aws.amazon.com/lambda/latest/dg/concepts-event-driven-architectures.html",
+      "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-rules.html",
+      "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html"
     ],
     "security_notes": "Do not accept event-driven designs without precise patterns, DLQs/retry semantics, idempotent consumers, monitoring, cross-account policy review, and loop/cost controls.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-event-driven-architecture-review",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.4"
@@ -1987,16 +2000,12 @@
     "source_type": "original",
     "official_docs": [
       "https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html",
-      "https://docs.aws.amazon.com/bedrock/latest/userguide/security-overview.html",
-      "https://docs.aws.amazon.com/bedrock/latest/userguide/security-best-practice-agents.html",
-      "https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-injection.html",
-      "https://docs.aws.amazon.com/bedrock/latest/userguide/bedrock-example-cross-serverless-prompt-chaining-section.html",
-      "https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html",
-      "https://docs.aws.amazon.com/lambda/latest/dg/with-step-functions.html",
-      "https://docs.aws.amazon.com/apigateway/latest/developerguide/security-best-practices.html"
+      "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html",
+      "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html",
+      "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/GenAI-observability.html"
     ],
     "security_notes": "Prefer serverless managed services for this role unless a concrete blocker is provided. Do not approve broad model access, unsafe prompt/tool flows, weak auth, uncontrolled retention, or missing observability and cost controls.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-generative-ai-developer",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.4"
@@ -2017,13 +2026,13 @@
     "summary": "Review AWS CDK, CloudFormation, SAM, Terraform, and mixed IaC changes for replacement, deletion, drift, IAM, network, data-loss, rollback, and deployment safety risks.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.aws.amazon.com/cdk/v2/guide/best-practices.html",
-      "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/best-practices.html",
       "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/drift-aware-change-sets.html",
-      "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-drift.html"
+      "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/event-detail-stack-drift-detection-change.html",
+      "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/best-practices.html",
+      "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-policy.html"
     ],
     "security_notes": "Never approve an AWS IaC deployment from source diff alone when production state, generated artifacts, change sets, drift, replacements, destructive changes, or rollback are unresolved.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-iac-change-safety-review",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.4"
@@ -2045,11 +2054,12 @@
     "source_type": "original",
     "official_docs": [
       "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/best-practices.html",
-      "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-best-practices.html",
-      "https://docs.aws.amazon.com/cdk/v2/guide/best-practices.html"
+      "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-changesets-samples.html",
+      "https://docs.aws.amazon.com/cdk/v2/guide/home.html",
+      "https://docs.aws.amazon.com/prescriptive-guidance/latest/choose-iac-tool/cloudformation.html"
     ],
     "security_notes": "Can edit IaC files, not execute live infra changes. Never hide replacements, blast-radius risks, or IAM broadening. Always surface validation gaps and rollback concerns.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-iac-patch-executor",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.2"
@@ -2071,12 +2081,12 @@
     "source_type": "adapted",
     "official_docs": [
       "https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html",
-      "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-policy-validation.html",
       "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html",
-      "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html"
+      "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-custom-policy-checks.html",
+      "https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started-reduce-permissions.html"
     ],
     "security_notes": "Prefer read-only inspection and minimum permission changes. Do not broaden IAM access, invent ARNs, or approve production trust changes without Access Analyzer validation where available.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-iam-least-privilege-review",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.4"
@@ -2097,13 +2107,13 @@
     "summary": "Review AWS KMS keys, key policies, grants, rotation, multi-Region keys, Secrets Manager, secret rotation, replication, caching, endpoint conditions, and break-glass access.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.aws.amazon.com/kms/latest/developerguide/grant-best-practices.html",
-      "https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html",
-      "https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html",
-      "https://docs.aws.amazon.com/secretsmanager/latest/userguide/best-practices.html"
+      "https://docs.aws.amazon.com/kms/latest/developerguide/overview.html",
+      "https://docs.aws.amazon.com/kms/latest/developerguide/rotating-keys.html",
+      "https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html",
+      "https://docs.aws.amazon.com/secretsmanager/latest/userguide/mes-security.html"
     ],
     "security_notes": "Do not change key policies, grants, key deletion, secret rotation, or multi-Region encryption without impact analysis for access, recovery, auditability, and rollback.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-kms-secrets-lifecycle-steward",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.4"
@@ -2124,13 +2134,13 @@
     "summary": "Review AWS multi-account landing zones, Control Tower posture, Organizations structure, OUs, guardrails, logging, audit accounts, and account vending decisions.",
     "source_type": "original",
     "official_docs": [
+      "https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html",
       "https://docs.aws.amazon.com/controltower/latest/userguide/aws-multi-account-landing-zone.html",
-      "https://docs.aws.amazon.com/controltower/latest/userguide/lz-update-best-practices.html",
-      "https://docs.aws.amazon.com/prescriptive-guidance/latest/migration-aws-environment/understanding-landing-zones.html",
-      "https://docs.aws.amazon.com/prescriptive-guidance/latest/designing-control-tower-landing-zone/introduction.html"
+      "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_introduction.html",
+      "https://docs.aws.amazon.com/controltower/latest/controlreference/control-reference.html"
     ],
     "security_notes": "Do not collapse environments into one account for convenience. Treat weak OU design, missing centralized logging, unmanaged SCPs, and unclear account ownership as governance risks.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-landing-zone-governor",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.4"
@@ -2151,13 +2161,13 @@
     "summary": "Operate guarded live AWS deployment changes only after explicit target confirmation, approval checkpoints, dry-run or preview evidence, rollback readiness, and post-change verification.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.aws.amazon.com/cli/v1/reference/sts/get-caller-identity.html",
+      "https://docs.aws.amazon.com/codedeploy/latest/userguide/welcome.html",
+      "https://docs.aws.amazon.com/config/latest/developerguide/codedeploy-deployment-group-auto-rollback-enabled.html",
       "https://docs.aws.amazon.com/codepipeline/latest/userguide/approvals.html",
-      "https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-change-calendar.html",
-      "https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/welcome.html"
+      "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/drift-aware-change-sets.html"
     ],
     "security_notes": "This role may work in repos connected to live AWS credentials. Never run live deployment mutations without explicit target confirmation, preview evidence, approval, rollback readiness, and post-change verification.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-live-deployment-guarded-operator",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.3"
@@ -2178,13 +2188,13 @@
     "summary": "Guard live Amazon ECS and Fargate rollout actions with service targeting, deployment circuit breaker or alarm checks, rollback posture, and explicit approval before mutation.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-circuit-breaker.html",
-      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-alarm-failure.html",
-      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-failure-detection.html",
-      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_service_deployment_events.html"
+      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-deployment.html",
+      "https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-steps-ecs.html",
+      "https://docs.aws.amazon.com/whitepapers/latest/overview-deployment-options/bluegreen-deployments.html",
+      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/troubleshooting.html"
     ],
     "security_notes": "Live ECS rollout actions require exact service targeting, health evidence, rollback posture, and explicit approval. Never treat force-new-deployment as a harmless default.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-live-ecs-rollout-guard",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.3"
@@ -2205,14 +2215,13 @@
     "summary": "Guard live CloudFormation, SAM, CDK, and Terraform-backed AWS infrastructure changes with change sets or plans, rollback triggers, stack policies, drift checks, and explicit approval.",
     "source_type": "original",
     "official_docs": [
+      "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/drift-aware-change-sets.html",
       "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/best-practices.html",
-      "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-changesets.html",
-      "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-rollback-triggers.html",
-      "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html",
-      "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/detect-drift-stack.html"
+      "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-policy.html",
+      "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-rollback-triggers.html"
     ],
     "security_notes": "Live IaC execution only with explicit preview evidence, confirmed targets, rollback triggers or equivalent safeguards, and human approval before execute. Never treat repo write access as enough authority for live infrastructure mutation.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-live-iac-change-guard",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.3"
@@ -2234,12 +2243,12 @@
     "source_type": "original",
     "official_docs": [
       "https://docs.aws.amazon.com/codepipeline/latest/userguide/approvals.html",
-      "https://docs.aws.amazon.com/codepipeline/latest/userguide/approvals-action-add.html",
-      "https://docs.aws.amazon.com/codepipeline/latest/userguide/approvals-iam-permissions.html",
-      "https://docs.aws.amazon.com/codepipeline/latest/userguide/actions.html"
+      "https://docs.aws.amazon.com/codepipeline/latest/userguide/actions-invoke-lambda-function.html",
+      "https://docs.aws.amazon.com/codepipeline/latest/userguide/tutorials-four-stage-pipeline.html",
+      "https://docs.aws.amazon.com/codedeploy/latest/userguide/deployments-rollback-and-redeploy.html"
     ],
     "security_notes": "This role may interact with real pipeline approvals. Never approve, reject, or resume the wrong execution. Require exact targeting, approver authority, evidence review, and post-action verification.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-live-pipeline-approval-operator",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.3"
@@ -2260,13 +2269,13 @@
     "summary": "Guard live Lambda and serverless release actions with alias targeting, canary or linear rollout discipline, alarms, rollback hooks, and explicit production approval.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html",
-      "https://docs.aws.amazon.com/lambda/latest/dg/configuring-alias-routing.html",
       "https://docs.aws.amazon.com/codedeploy/latest/userguide/welcome.html",
-      "https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-configurations.html"
+      "https://docs.aws.amazon.com/codedeploy/latest/userguide/tutorial-lambda-sam-template.html",
+      "https://docs.aws.amazon.com/lambda/latest/dg/configuration-versions.html",
+      "https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html"
     ],
     "security_notes": "Live serverless rollout actions require exact alias or deployment targeting, explicit approval, alarms, rollback posture, and post-change observation. Never shift traffic casually in a live environment.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-live-serverless-release-guard",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.3"
@@ -2287,14 +2296,13 @@
     "summary": "Route AWS tasks to the narrowest specialist or team of specialists from the 42-agent catalog. Classifies by domain, dispatches single or parallel (max 4), and enforces live-guard gate for production-change agents.",
     "source_type": "adapted",
     "official_docs": [
-      "https://docs.aws.amazon.com/",
-      "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html",
-      "https://docs.aws.amazon.com/bedrock/latest/userguide/agents.html",
-      "https://docs.aws.amazon.com/bedrock/latest/userguide/agentcore.html",
-      "https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html"
+      "https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/welcome.html",
+      "https://docs.aws.amazon.com/wellarchitected/latest/framework/ops_model_ops_model.html",
+      "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html",
+      "https://docs.aws.amazon.com/awssupport/latest/user/trusted-advisor.html"
     ],
-    "security_notes": "Live-guard gate is non-negotiable: never auto-dispatch live-guard agents without explicit human confirmation, blast-radius assessment, and rollback path.",
-    "last_verified": "2026-04-30",
+    "security_notes": "Live-guard gate is non-negotiable: never auto-dispatch aws-live-deployment-guarded-operator-agent, aws-live-ecs-rollout-guard-agent, aws-live-iac-change-guard-agent, aws-live-pipeline-approval-operator-agent, or aws-live-serverless-release-guard-agent without explicit human confirmation, blast-radius assessment, and rollback path. Do not ask for secrets, account IDs, or environment-specific values.",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-maestro",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.4"
@@ -2315,13 +2323,13 @@
     "summary": "Plan and review AWS migrations and cutovers across discovery, wave planning, Application Migration Service, Migration Hub, testing, rollback, downtime, and acceptance evidence.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.aws.amazon.com/mgn/latest/ug/best_practices_mgn.html",
-      "https://docs.aws.amazon.com/prescriptive-guidance/latest/migration-database-rehost-tools/mgn.html",
-      "https://docs.aws.amazon.com/decision-guides/latest/migration-on-aws-how-to-choose/migration-on-aws-how-to-choose.html",
-      "https://docs.aws.amazon.com/whitepapers/latest/aws-overview/migration-services.html"
+      "https://docs.aws.amazon.com/mgn/latest/ug/what-is-application-migration-service.html",
+      "https://docs.aws.amazon.com/mgn/latest/ug/getting-started.html",
+      "https://docs.aws.amazon.com/prescriptive-guidance/latest/migration-cutover-runbook/welcome.html",
+      "https://docs.aws.amazon.com/prescriptive-guidance/latest/cutover-traffic/welcome.html"
     ],
     "security_notes": "Do not approve migration cutover without dependency evidence, tested launch, acceptance checks, rollback, security baseline, observability, and clear business owner signoff.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-migration-cutover-architect",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.4"
@@ -2342,15 +2350,13 @@
     "summary": "Design and review AWS VPC, Transit Gateway, Direct Connect, VPN, Cloud WAN, Route 53 Resolver, private DNS, routing, private endpoints, segmentation, ingress, egress, inspection, and hybrid/multi-cloud connectivity patterns.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html",
-      "https://docs.aws.amazon.com/vpc/latest/tgw/tgw-best-design-practices.html",
-      "https://docs.aws.amazon.com/aws-technical-content/latest/aws-vpc-connectivity-options/network-to-amazon-vpc-connectivity-options.html",
-      "https://docs.aws.amazon.com/whitepapers/latest/building-scalable-secure-multi-vpc-network-infrastructure/transit-gateway.html",
-      "https://docs.aws.amazon.com/directconnect/latest/UserGuide/Welcome.html",
-      "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver.html"
+      "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-best-practices.html",
+      "https://docs.aws.amazon.com/vpc/latest/tgw/what-is-transit-gateway.html",
+      "https://docs.aws.amazon.com/vpc/latest/tgw/tgw-vpc-attachments.html",
+      "https://docs.aws.amazon.com/vpc/latest/privatelink/what-is-privatelink.html"
     ],
     "security_notes": "Do not recommend public exposure, broad routes, overlapping CIDRs, route propagation, hybrid connectivity, DNS forwarding, or centralized inspection changes without traffic-flow evidence, rollback, and blast-radius analysis.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-network-architect",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.4"
@@ -2371,13 +2377,13 @@
     "summary": "Design AWS-native, non-destructive automation for reporting, notification, evidence gathering, approvals, and workflow coordination using serverless and event-driven services.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is.html",
-      "https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html",
+      "https://docs.aws.amazon.com/systems-manager/latest/userguide/automation-troubleshooting.html",
       "https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-automation.html",
-      "https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html"
+      "https://docs.aws.amazon.com/systems-manager/latest/userguide/change-manager.html",
+      "https://docs.aws.amazon.com/systems-manager-automation-runbooks/latest/userguide/automation-runbook-reference.html"
     ],
     "security_notes": "This role must stay non-destructive. Prefer notification, approval, reporting, and evidence-collection flows. Escalate if the request drifts into mutation, remediation, or destructive operational automation.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-non-destructive-task-automation-advisor",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.2"
@@ -2399,12 +2405,12 @@
     "source_type": "original",
     "official_docs": [
       "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html",
-      "https://docs.aws.amazon.com/IDR/latest/userguide/observe-idr.html",
-      "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Investigations-IncidentReports-terms.html",
-      "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/incident-report-5whys.html"
+      "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html",
+      "https://docs.aws.amazon.com/xray/latest/devguide/aws-xray.html",
+      "https://docs.aws.amazon.com/health/latest/ug/what-is-aws-health.html"
     ],
     "security_notes": "Do not claim root cause without evidence. Separate live telemetry, service health, deployment changes, AI-derived insights, and human inference; require rollback or containment for active incidents.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-observability-incident-responder",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.4"
@@ -2425,12 +2431,13 @@
     "summary": "Repair AWS-oriented CI/CD pipeline definitions, buildspecs, deployment workflow config, and release wiring in-repo without triggering live execution.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html",
-      "https://docs.aws.amazon.com/codepipeline/latest/userguide/welcome.html",
-      "https://docs.aws.amazon.com/codedeploy/latest/userguide/welcome.html"
+      "https://docs.aws.amazon.com/codepipeline/latest/userguide/troubleshooting.html",
+      "https://docs.aws.amazon.com/codebuild/latest/userguide/troubleshooting.html",
+      "https://docs.aws.amazon.com/codedeploy/latest/userguide/troubleshooting-deployments.html",
+      "https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-codepipeline-pipeline.html"
     ],
     "security_notes": "Repo write access only. Do not manually trigger pipelines, rotate secrets, or bypass approval gates from this role. Keep fixes explicit, reviewable, and reversible.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-pipeline-fix-operator",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.2"
@@ -2451,14 +2458,13 @@
     "summary": "Review AWS ACM Private Certificate Authority issuer configurations for cert-manager, covering CA hierarchy safety, certificate template ARN scope, IRSA permissions minimization, validity period alignment, CRL reachability, and cross-account PCA usage patterns.",
     "source_type": "original",
     "official_docs": [
+      "https://docs.aws.amazon.com/privateca/latest/userguide/ca-best-practices.html",
+      "https://docs.aws.amazon.com/privateca/latest/userguide/PCACertInstall.html",
       "https://docs.aws.amazon.com/privateca/latest/userguide/PcaWelcome.html",
-      "https://github.com/cert-manager/aws-privateca-issuer",
-      "https://docs.aws.amazon.com/privateca/latest/userguide/UsingTemplates.html",
-      "https://docs.aws.amazon.com/privateca/latest/userguide/crl-planning.html",
-      "https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html"
+      "https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html"
     ],
     "security_notes": "Using a Root CA ARN in AWSPCAIssuer exposes the root of trust directly to cert-manager. A SubordinateCACertificate template allows cert-manager to issue intermediate CAs, enabling an attacker with cert-manager IRSA access to create a shadow CA trusted by the entire corporate PKI. IRSA role must exclude acm-pca:DeleteCertificateAuthority and acm-pca:CreateCertificateAuthority.",
-    "last_verified": "2026-05-02",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-private-ca-issuer-review",
     "version": "0.1.4",
     "author": "github: VincentChuWaiChow"
@@ -2479,13 +2485,13 @@
     "summary": "Investigate Amazon RDS and Aurora latency, connection exhaustion, slow queries, lock waits, replica lag, storage pressure, failover, Performance Insights, and database capacity risk.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.aws.amazon.com/devopsagent/latest/userguide/about-aws-devops-agent-devops-agent-skills.html",
-      "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_BestPractices.html",
-      "https://docs.aws.amazon.com/prescriptive-guidance/latest/amazon-rds-monitoring-alerting/performance-insights-tools.html",
+      "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.LoggingAndMonitoring.html",
+      "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PerfInsights.html",
+      "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/limitless-monitoring.pi.html",
       "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html"
     ],
     "security_notes": "Do not recommend resizing, failover, parameter changes, or index changes without evidence separating CPU, I/O, lock, query-plan, storage, connection, and application-driver causes.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-rds-aurora-performance-investigator",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.4"
@@ -2506,13 +2512,13 @@
     "summary": "Review AWS resilience and business continuity across RTO/RPO, backup, multi-AZ, multi-Region, failover, game days, runbooks, drift, and recovery validation.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/plan-for-disaster-recovery-dr.html",
-      "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/welcome.html",
-      "https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_testing_resiliency_failure_injection_resiliency.html",
-      "https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html"
+      "https://docs.aws.amazon.com/wellarchitected/2023-10-03/framework/rel_planning_for_recovery_disaster_recovery.html",
+      "https://docs.aws.amazon.com/resilience-hub/latest/userguide/resilience-checks.html",
+      "https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html",
+      "https://docs.aws.amazon.com/route53/latest/developerguide/dns-failover.html"
     ],
     "security_notes": "Do not accept backup configuration as recovery proof. Require restore tests, RTO/RPO evidence, drift controls, owner/runbook clarity, and blast-radius analysis.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-resilience-bcdr-review",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.4"
@@ -2533,13 +2539,13 @@
     "summary": "Review Amazon S3 data perimeter, Block Public Access, Object Ownership, ACL removal, bucket/access point policies, TLS-only access, encryption, replication, lifecycle, and exposure risk.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.aws.amazon.com/AmazonS3/latest/userguide/security-best-practices.html",
       "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html",
-      "https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html",
-      "https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-with-s3-policy-actions.html"
+      "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points.html",
+      "https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-bucket-policies.html",
+      "https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html"
     ],
     "security_notes": "Do not broaden S3 public or cross-account access. Prefer Block Public Access, disabled ACLs, scoped policies, TLS-only conditions, encryption, logging, and Access Analyzer validation.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-s3-data-perimeter-governor",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.4"
@@ -2560,13 +2566,13 @@
     "summary": "Harden AWS security posture across Security Hub CSPM, GuardDuty, Inspector, Macie, Config, IAM, logging, encryption, public exposure, and remediation workflow.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-v2-recommendations.html",
-      "https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-controls-reference.html",
-      "https://docs.aws.amazon.com/securityhub/latest/userguide/enable-standards.html",
-      "https://docs.aws.amazon.com/securityhub/latest/userguide/guardduty-controls.html"
+      "https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub-v2.html",
+      "https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html",
+      "https://docs.aws.amazon.com/inspector/latest/user/what-is-inspector.html",
+      "https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html"
     ],
     "security_notes": "Do not treat a green dashboard as proof of security. Verify service coverage, Regions, delegated admin, Config recording, suppressions, public exposure, and remediation evidence.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-security-posture-hardening",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.4"
@@ -2587,13 +2593,13 @@
     "summary": "Review AWS Lambda and serverless workloads for IAM, concurrency, event sources, retries, DLQs, observability, secrets, performance, cost, and rollback readiness.",
     "source_type": "original",
     "official_docs": [
+      "https://docs.aws.amazon.com/lambda/latest/dg/durable-execution-sdk-retries.html",
+      "https://docs.aws.amazon.com/lambda/latest/dg/governance-observability.html",
       "https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html",
-      "https://docs.aws.amazon.com/lambda/latest/dg/lambda-concurrency.html",
-      "https://docs.aws.amazon.com/lambda/latest/operatorguide/monitoring-observability.html",
-      "https://docs.aws.amazon.com/lambda/latest/dg/monitoring-metrics.html"
+      "https://docs.aws.amazon.com/serverless/latest/devguide/serverless-samples.html"
     ],
     "security_notes": "Do not approve serverless workloads that lack least-privilege execution roles, retry/DLQ semantics, concurrency controls, observability, idempotency, and rollback evidence.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-serverless-production-readiness",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.4"
@@ -2614,12 +2620,13 @@
     "summary": "Patch serverless deployment definitions, Lambda rollout settings, event wiring, and alias/version configuration in-repo while keeping live rollout actions out of scope by default.",
     "source_type": "original",
     "official_docs": [
+      "https://docs.aws.amazon.com/codedeploy/latest/userguide/welcome.html",
+      "https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file-example.html",
       "https://docs.aws.amazon.com/lambda/latest/dg/configuration-versions.html",
-      "https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html",
-      "https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html"
+      "https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html"
     ],
     "security_notes": "Can edit serverless rollout definitions in repo files only. Must not invoke live deploys, traffic shifts, or destructive remediation without separate explicit approval.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-serverless-rollout-corrector",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.2"
@@ -2640,14 +2647,13 @@
     "summary": "Design and stress-test AWS solution architectures across identity, networking, compute, data, security, resilience, operations, and cost with Well-Architected evidence discipline.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html",
       "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html",
-      "https://docs.aws.amazon.com/wellarchitected/latest/framework/operational-excellence.html",
       "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/welcome.html",
-      "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/welcome.html"
+      "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/welcome.html",
+      "https://docs.aws.amazon.com/wellarchitected/latest/cost-optimization-pillar/welcome.html"
     ],
     "security_notes": "Do not approve an AWS architecture without account-boundary, IAM, network exposure, data protection, observability, recovery, and cost evidence. Label unknowns instead of pretending the diagram is proof.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-solution-architect",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.4"
@@ -2668,13 +2674,13 @@
     "summary": "Triage AWS operational tickets, alerts, and requests into priority, owner, evidence needs, and safe escalation paths without taking destructive actions.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter-working-with-OpsItems.html",
+      "https://docs.aws.amazon.com/awssupport/latest/user/trusted-advisor.html",
+      "https://docs.aws.amazon.com/organizations/latest/userguide/services-that-can-integrate-ta.html",
       "https://docs.aws.amazon.com/health/latest/ug/what-is-aws-health.html",
-      "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html",
-      "https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/prepare.html"
+      "https://docs.aws.amazon.com/systems-manager-incidents/latest/userguide/what-is-incident-manager.html"
     ],
     "security_notes": "Do not mutate infrastructure, suppress alerts, or close issues without evidence and approval. This role classifies, routes, and escalates; it does not perform destructive remediation.",
-    "last_verified": "2026-04-29",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-ticket-triage-escalation-coordinator",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.2"
@@ -2696,10 +2702,12 @@
     "source_type": "original",
     "official_docs": [
       "https://docs.aws.amazon.com/wellarchitected/latest/cost-optimization-pillar/welcome.html",
-      "https://aws.amazon.com/aws-cost-management/"
+      "https://docs.aws.amazon.com/wellarchitected/latest/framework/cost-optimization.html",
+      "https://docs.aws.amazon.com/wellarchitected/latest/framework/cost_cloud_financial_management.html",
+      "https://docs.aws.amazon.com/wellarchitected/latest/framework/cost_manage_demand_resources.html"
     ],
     "security_notes": "Read-only advisory. Do not cancel Reserved Instances, Savings Plans, or delete resources without explicit approval and resource inventory confirmation.",
-    "last_verified": "2026-05-09",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-waf-cost-optimization-review",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.4"
@@ -2721,10 +2729,12 @@
     "source_type": "original",
     "official_docs": [
       "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/welcome.html",
-      "https://aws.amazon.com/architecture/well-architected/"
+      "https://docs.aws.amazon.com/wellarchitected/latest/framework/reliability.html",
+      "https://docs.aws.amazon.com/wellarchitected/2023-10-03/framework/rel_planning_for_recovery_disaster_recovery.html",
+      "https://docs.aws.amazon.com/resilience-hub/latest/userguide/resilience-checks.html"
     ],
     "security_notes": "Read-only advisory. Do not modify Auto Scaling policies, backup schedules, or DR configurations without explicit approval.",
-    "last_verified": "2026-05-09",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-waf-reliability-review",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.4"
@@ -2746,10 +2756,12 @@
     "source_type": "original",
     "official_docs": [
       "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/welcome.html",
-      "https://aws.amazon.com/security/security-resources/"
+      "https://docs.aws.amazon.com/wellarchitected/latest/framework/security.html",
+      "https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html",
+      "https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub-v2.html"
     ],
     "security_notes": "Read-only advisory. Do not modify IAM policies, SCPs, GuardDuty configurations, or KMS keys without explicit approval. Work from AWS Config exports, Security Hub findings, or sanitized descriptions.",
-    "last_verified": "2026-05-09",
+    "last_verified": "2026-06-02",
     "path": "skills/aws/aws-waf-security-review",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.4"
@@ -2779,10 +2791,10 @@
       "https://learn.microsoft.com/en-us/azure/foundry/how-to/quota",
       "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/quotas-limits",
       "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/monitor-models",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
       "https://learn.microsoft.com/azure/foundry/mcp/security-best-practices",
-      "https://learn.microsoft.com/azure/foundry/mcp/available-tools",
-      "https://learn.microsoft.com/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline"
+      "https://learn.microsoft.com/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline",
+      "https://learn.microsoft.com/en-us/azure/security/fundamentals/ai-security-best-practices",
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ai/platform/networking"
     ],
     "security_notes": "Keep Foundry resource governance separate from project developer isolation, prefer Entra ID over key-based auth, verify quota and diagnostics before rollout, and treat tool-backed mutations as higher risk than read-only discovery, especially because hosted Foundry MCP capability security guidance documents preview and public-endpoint limitations.",
     "last_verified": "2026-06-05",
@@ -2806,15 +2818,14 @@
     "summary": "Review AKS platform design and operations with a production operator lens across node pools, identity, network policy, scaling, upgrades, rollback safety, and observability readiness.",
     "source_type": "original",
     "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-kubernetes",
       "https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/baseline-aks",
       "https://learn.microsoft.com/en-us/azure/aks/upgrade-options",
       "https://learn.microsoft.com/en-us/azure/aks/upgrade-conceptual",
       "https://learn.microsoft.com/en-us/azure/aks/workload-identity-overview",
       "https://learn.microsoft.com/en-us/azure/aks/network-policy-best-practices",
       "https://learn.microsoft.com/en-us/azure/aks/best-practices-app-cluster-reliability",
-      "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/azure-kubernetes-service"
+      "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/azure-kubernetes-service",
+      "https://learn.microsoft.com/en-us/azure/architecture/operator-guides/aks/aks-upgrade-practices"
     ],
     "security_notes": "Do not wave through AKS as production ready without explicit upgrade, rollback, workload identity, traffic-control, subnet-capacity, and observability evidence. Treat flat pod networking, static secrets, and untested drain behavior as high-risk.",
     "last_verified": "2026-06-05",
@@ -2852,8 +2863,6 @@
       "https://learn.microsoft.com/en-us/azure/app-service/manage-backup",
       "https://learn.microsoft.com/en-us/azure/app-service/configure-zone-redundancy",
       "https://learn.microsoft.com/en-us/azure/reliability/reliability-app-service",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-app-service",
       "https://learn.microsoft.com/en-us/azure/architecture/web-apps/app-service/architectures/baseline-zone-redundant"
     ],
     "security_notes": "Do not confuse plan SKU with readiness, public access restrictions with true private ingress, or backup configuration with recovery readiness. Prefer managed identity and Key Vault references over embedded secrets, treat app settings as sensitive, and do not invent unsupported configured Azure evidence namespaces or operations.",
@@ -2879,9 +2888,6 @@
     "summary": "Guide Azure Cosmos DB application development across NoSQL data modeling, partition-aware access patterns, point reads, query shape, SDK usage, transactional batch scope, and consistency-aware application behavior with explicit evidence-versus-inference handling.",
     "source_type": "original",
     "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
       "https://learn.microsoft.com/en-us/azure/cosmos-db/partitioning",
       "https://learn.microsoft.com/en-us/azure/cosmos-db/modeling-data",
       "https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels",
@@ -2891,7 +2897,8 @@
       "https://learn.microsoft.com/en-us/azure/cosmos-db/transactional-batch",
       "https://learn.microsoft.com/en-us/azure/cosmos-db/find-request-unit-charge",
       "https://learn.microsoft.com/en-us/azure/cosmos-db/optimize-cost-reads-writes",
-      "https://learn.microsoft.com/en-us/azure/cosmos-db/request-units"
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/request-units",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/understand-request-unit-consumption"
     ],
     "security_notes": "Do not recommend data models, query patterns, transactional assumptions, or SDK usage that ignore partition scope, RU cost, consistency semantics, or least-privilege access boundaries.",
     "last_verified": "2026-06-05",
@@ -2915,9 +2922,6 @@
     "summary": "Investigate Azure Cosmos DB query latency, RU inefficiency, throttling, hot partitions, indexing gaps, and workload-level performance pathologies using explicit evidence, metrics, and step-by-step profiling discipline.",
     "source_type": "original",
     "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
       "https://learn.microsoft.com/en-us/azure/cosmos-db/troubleshoot-query-performance",
       "https://learn.microsoft.com/en-us/azure/cosmos-db/query-metrics",
       "https://learn.microsoft.com/en-us/azure/cosmos-db/index-metrics",
@@ -2926,7 +2930,8 @@
       "https://learn.microsoft.com/en-us/azure/cosmos-db/performance-tips-dotnet-sdk-v3",
       "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/cosmos-db",
       "https://learn.microsoft.com/en-us/azure/cosmos-db/monitor-normalized-request-units",
-      "https://learn.microsoft.com/en-us/azure/cosmos-db/autoscale-faq"
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/autoscale-faq",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/understand-request-unit-consumption"
     ],
     "security_notes": "Do not recommend throughput increases, repartitioning, indexing changes, or SDK tuning before separating RU cost, latency, partition skew, and query-shape evidence. Avoid speculative fixes that hide workload design defects.",
     "last_verified": "2026-06-05",
@@ -2950,9 +2955,6 @@
     "summary": "Review and operate Azure Cosmos DB platform posture across accounts, databases, containers, partitioning, throughput, consistency, indexing, throttling, multi-region tradeoffs, and operational guardrails with explicit evidence-versus-inference handling.",
     "source_type": "original",
     "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
       "https://learn.microsoft.com/en-us/azure/cosmos-db/partitioning",
       "https://learn.microsoft.com/en-us/azure/cosmos-db/modeling-data",
       "https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels",
@@ -2990,10 +2992,10 @@
       "https://learn.microsoft.com/en-us/azure/cost-management-billing/",
       "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/governance",
       "https://learn.microsoft.com/en-us/azure/cost-management-billing/savings-plan/manage-savings-plan",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-pricing",
       "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/overview-cost-management",
-      "https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/cost-management-automation-scenarios"
+      "https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/cost-management-automation-scenarios",
+      "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/cost-mgt-best-practices",
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/plan/estimate-total-cost-of-ownership"
     ],
     "security_notes": "Do not present calculator output as invoice truth, do not hide missing sizing assumptions, and do not imply unsupported configured Azure evidence pricing or billing capabilities. Treat negotiated pricing, discount posture, and future utilization as explicit uncertainty unless verified.",
     "last_verified": "2026-06-05",
@@ -3023,13 +3025,12 @@
       "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/reporting-get-started",
       "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-improved-exports",
       "https://learn.microsoft.com/en-us/azure/advisor/advisor-reference-cost-recommendations",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-pricing",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-advisor",
       "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/overview-cost-management",
       "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/cost-mgt-best-practices",
       "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-opt-recommendations",
-      "https://learn.microsoft.com/en-us/azure/advisor/advisor-workbook-cost-optimization"
+      "https://learn.microsoft.com/en-us/azure/advisor/advisor-workbook-cost-optimization",
+      "https://learn.microsoft.com/en-us/azure/cost-management-billing/savings-plan/decide-between-savings-plan-reservation",
+      "https://learn.microsoft.com/en-us/azure/cost-management-billing/savings-plan/purchase-recommendations"
     ],
     "security_notes": "Do not promise savings without utilization evidence, treat budgets as alerts rather than enforcement, keep billing and export data sanitized, and require named ownership for alerts, tags, exports, and optimization follow-up before calling the FinOps posture credible.",
     "last_verified": "2026-06-05",
@@ -3054,9 +3055,6 @@
     "summary": "Review and guide Microsoft Entra ID tenant posture across conditional access, authentication methods, MFA and SSPR registration, identity protection, workload identities, app registrations, external identities, governance boundaries, and least-privilege identity operations with explicit evidence-versus-inference handling.",
     "source_type": "original",
     "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
       "https://learn.microsoft.com/en-us/entra/fundamentals/what-is-entra",
       "https://learn.microsoft.com/en-us/entra/id-governance/identity-governance-overview",
       "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure",
@@ -3066,7 +3064,10 @@
       "https://learn.microsoft.com/en-us/entra/id-protection/concept-workload-identity-risk",
       "https://learn.microsoft.com/en-us/entra/agent-id/security-for-ai-overview",
       "https://learn.microsoft.com/en-us/entra/agent-id/what-is-microsoft-entra-agent-id",
-      "https://learn.microsoft.com/en-us/entra/id-governance/agent-id-governance-overview"
+      "https://learn.microsoft.com/en-us/entra/id-governance/agent-id-governance-overview",
+      "https://learn.microsoft.com/en-us/entra/fundamentals/security-defaults",
+      "https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/best-practices",
+      "https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/security-emergency-access"
     ],
     "security_notes": "Do not recommend broad exclusions, unsafe break-glass patterns, blanket MFA bypasses, overprivileged app registrations, or risky Conditional Access changes without scoping blast radius, role ownership, and recovery paths.",
     "last_verified": "2026-06-05",
@@ -3097,10 +3098,10 @@
       "https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources",
       "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/exemption-structure",
       "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/migrate-azure-landing-zone-policies",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-policy",
       "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-basics",
-      "https://learn.microsoft.com/en-us/azure/governance/policy/how-to/policy-safe-deployment-practices"
+      "https://learn.microsoft.com/en-us/azure/governance/policy/how-to/policy-safe-deployment-practices",
+      "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-deploy-if-not-exists",
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/enterprise-scale/dine-guidance"
     ],
     "security_notes": "Do not recommend broad-scope deny or remediation-first rollout without blast-radius review, inheritance analysis, exception handling, and rollback notes.",
     "last_verified": "2026-06-05",
@@ -3720,8 +3721,7 @@
       "https://learn.microsoft.com/azure/role-based-access-control/role-definitions",
       "https://learn.microsoft.com/azure/role-based-access-control/custom-roles",
       "https://learn.microsoft.com/azure/role-based-access-control/role-assignments-steps",
-      "https://learn.microsoft.com/azure/role-based-access-control/scope-overview",
-      "https://learn.microsoft.com/azure/role-based-access-control/rbac-and-directory-admin-roles"
+      "https://learn.microsoft.com/azure/role-based-access-control/scope-overview"
     ],
     "security_notes": "Prefer built-in job-function roles before custom roles, minimize assignment scope, separate control-plane and data-plane permissions, and do not default to Owner, Contributor, or wildcard custom roles for routine access requests.",
     "last_verified": "2026-06-05",
@@ -3751,10 +3751,7 @@
       "https://learn.microsoft.com/azure/defender-for-cloud/recommendations-reference-identity-access",
       "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/security",
       "https://learn.microsoft.com/azure/governance/policy/overview",
-      "https://learn.microsoft.com/azure/role-based-access-control/best-practices",
-      "https://learn.microsoft.com/azure/defender-for-cloud/secure-score-security-controls",
-      "https://learn.microsoft.com/azure/defender-for-cloud/concept-cloud-security-posture-management",
-      "https://learn.microsoft.com/azure/defender-for-cloud/review-security-recommendations"
+      "https://learn.microsoft.com/azure/role-based-access-control/best-practices"
     ],
     "security_notes": "Do not recommend broad admin roles, stored secrets, legacy Key Vault access policies, or public exposure by default. Prefer managed identities, scoped RBAC, policy-enforced controls, private access where justified, soft delete/purge protection, and verified logging coverage.",
     "last_verified": "2026-06-05",
@@ -3784,10 +3781,7 @@
       "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-setup-guide/organize-resources",
       "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/management-application-environments",
       "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/governance",
-      "https://learn.microsoft.com/training/modules/design-governance/",
-      "https://learn.microsoft.com/azure/governance/management-groups/overview",
-      "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/resource-tagging",
-      "https://learn.microsoft.com/azure/azure-resource-manager/management/tag-policies"
+      "https://learn.microsoft.com/training/modules/design-governance/"
     ],
     "security_notes": "Do not recommend flat hierarchies, fake isolation via resource groups, or subscription moves without proving governance, ownership, policy inheritance, RBAC, cost, quota, and operational blast-radius implications.",
     "last_verified": "2026-06-05",
@@ -3811,14 +3805,13 @@
     "summary": "Review Azure workload cost posture against the Well-Architected Framework Cost Optimization pillar: cost model, budgets, cost drivers, usage optimization, rate optimization, Advisor recommendations, reservations, savings plans, hybrid benefit, and idle resource elimination.",
     "source_type": "original",
     "official_docs": [
+      "https://learn.microsoft.com/azure/well-architected/cost-optimization/",
       "https://learn.microsoft.com/azure/well-architected/cost-optimization/principles",
       "https://learn.microsoft.com/azure/well-architected/cost-optimization/cost-model",
       "https://learn.microsoft.com/azure/well-architected/cost-optimization/get-best-rates",
       "https://learn.microsoft.com/azure/cost-management-billing/costs/overview-cost-management",
       "https://learn.microsoft.com/azure/advisor/advisor-workbook-cost-optimization",
-      "https://learn.microsoft.com/azure/advisor/advisor-how-to-calculate-total-cost-savings",
-      "https://learn.microsoft.com/azure/well-architected/cost-optimization/checklist",
-      "https://learn.microsoft.com/azure/cost-management-billing/costs/tutorial-acm-opt-recommendations"
+      "https://learn.microsoft.com/azure/advisor/advisor-how-to-calculate-total-cost-savings"
     ],
     "security_notes": "Read-only advisory by default. Do not delete resources, cancel commitments, modify billing configuration, buy reservations or savings plans, or alter budgets without explicit approval, owner confirmation, and current inventory evidence.",
     "last_verified": "2026-06-05",
@@ -3842,13 +3835,13 @@
     "summary": "Review Azure workload reliability against the Well-Architected Framework Reliability pillar: business requirements, critical flows, resilience, recovery, observability, operations, simplicity, availability zones/regions, health modeling, and reliability testing.",
     "source_type": "original",
     "official_docs": [
+      "https://learn.microsoft.com/azure/well-architected/reliability/",
       "https://learn.microsoft.com/azure/well-architected/reliability/principles",
       "https://learn.microsoft.com/azure/well-architected/reliability/reliability-test",
       "https://learn.microsoft.com/azure/well-architected/reliability/disaster-recovery",
       "https://learn.microsoft.com/azure/well-architected/design-guides/regions-availability-zones",
       "https://learn.microsoft.com/azure/reliability/concept-business-continuity-high-availability-disaster-recovery",
-      "https://learn.microsoft.com/azure/reliability/overview-reliability-guidance",
-      "https://learn.microsoft.com/azure/well-architected/reliability/checklist"
+      "https://learn.microsoft.com/azure/reliability/overview-reliability-guidance"
     ],
     "security_notes": "Read-only advisory by default. Do not modify autoscaling, backup, failover, traffic routing, deployment, or recovery settings without explicit approval, current-state evidence, blast-radius review, and rollback or failback plan.",
     "last_verified": "2026-06-05",
@@ -4022,13 +4015,15 @@
     "official_docs": [
       "https://asc.fasb.org/805",
       "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs3.html",
-      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias27.html"
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias27.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias28.html"
     ],
     "security_notes": "Advisory only — never posts acquisition journal entries or PPA entries to any GL or ERP. Never accepts deal-specific confidential terms, actual purchase prices, counterparty identities, or any MNPI. Does not constitute a formal purchase price allocation report, fairness opinion, or valuation conclusion for any regulatory or transactional purpose. All conclusions require verification with qualified external auditors, valuation specialists, and legal advisors.",
     "last_verified": "2026-06-02",
     "path": "skills/accounting/business-combinations-advisor",
     "author": "github: VincentChuWaiChow",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "lifecycle": "experimental"
   },
   {
     "id": "capital-allocation-advisor",
@@ -4056,13 +4051,21 @@
     "official_docs": [
       "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/wacc.html",
       "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/betas.html",
-      "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html"
+      "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html",
+      "https://www.investor.gov/introduction-investing/investing-basics/glossary/net-present-value",
+      "https://www.ifrs.org/issued-standards/list-of-standards/ias-36-impairment-of-assets/",
+      "https://asc.fasb.org/350",
+      "https://www.oecd.org/tax/tax-policy/",
+      "https://www.oecd.org/tax/beps/beps-actions/action4/",
+      "https://www.irs.gov/businesses/corporations/interest-expense-limitation-under-section-163j",
+      "https://www.sec.gov/cgi-bin/browse-edgar?action=getcurrent"
     ],
     "security_notes": "Advisory educational framework only — never executes, simulates, or proposes financial transactions, capital allocations, or investment decisions on behalf of users. Never accepts MNPI (material non-public information), counterparty identities under confidentiality, specific confidential deal terms, live market or FX rates for transactions, bank account numbers, or payment instructions. Does not constitute investment advice, a fairness opinion, or a formal valuation conclusion for any regulatory or transactional purpose. Tax rates and regulatory requirements change frequently — always recommend verification with qualified financial advisors, tax counsel, and legal advisors.",
     "last_verified": "2026-06-01",
     "path": "skills/finance/capital-allocation-advisor",
     "author": "github: VincentChuWaiChow",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "lifecycle": "experimental"
   },
   {
     "id": "carbon-cost-pair",
@@ -4247,7 +4250,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Multi-jurisdiction financial close cycle reference framework. Filing deadlines (SEC, EU TD, FCA DTR, CSRC, SEBI, ASX, HKEX), R2R process steps, GAAP variant comparison (ASC 842 vs IFRS 16, CECL vs ECL), intercompany elimination (ASC 810/IFRS 10), FX translation (ASC 830/IAS 21), deferred tax (ASC 740/IAS 12). Advisory only.",
+    "summary": "Multi-jurisdiction reference framework for month-end, quarter-end, and year-end financial close workflows. Covers filing deadlines (SEC, EU TD, FCA DTR, TSE/FSA, CSRC, SEBI LODR, ASX, HKEX), R2R process steps (hard/soft/flash close), GAAP variant differences (ASC 842 vs IFRS 16, ASC 606 vs IFRS 15, CECL vs ECL), intercompany elimination (ASC 810 / IFRS 10), FX translation errors (ASC 830 / IAS 21), and deferred tax (ASC 740 vs IAS 12).",
     "source_type": "original",
     "category": "accounting",
     "execution_tier": "read-only-runtime",
@@ -4259,14 +4262,20 @@
     },
     "official_docs": [
       "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2025/issued/ias34.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs10.html",
       "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias21.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias12.html",
+      "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32004L0109",
+      "https://handbook.fca.org.uk/handbook/DTR/4/?view=chapter",
+      "https://www.frc.org.uk/library/standards-codes-policy/accounting-and-reporting/uk-accounting-standards/frs-102/",
       "https://asc.fasb.org/"
     ],
-    "security_notes": "Advisory only — never posts journal entries or writes to any system of record. Never accepts raw trial balances, GL exports, or employee/customer-identifying information.",
+    "security_notes": "Advisory only — never posts journal entries or writes to any system of record. Accepts only descriptive scenario inputs; never accepts raw trial balances, GL exports, chart-of-account data, or employee/customer-identifying information. Local statutory conclusions require verification with local qualified auditors.",
     "last_verified": "2026-06-01",
     "path": "skills/accounting/close-cycle-advisor",
     "author": "github: VincentChuWaiChow",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "lifecycle": "experimental"
   },
   {
     "id": "close-to-report-protocol",
@@ -4347,13 +4356,18 @@
     "official_docs": [
       "https://asc.fasb.org/810",
       "https://asc.fasb.org/323",
-      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs10.html"
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs10.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs3.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias28.html",
+      "https://www.gesetze-im-internet.de/hgb/",
+      "https://www.asb.or.jp/en/accounting_standards/accounting_standards/"
     ],
     "security_notes": "Advisory only — never posts consolidation journal entries or elimination entries to any GL or ERP. Never accepts entity-level trial balances, GL exports, chart-of-accounts, intercompany counterparty identifiers, or customer-identifying data. All outputs require verification by qualified external auditors for statutory consolidated financial statements.",
     "last_verified": "2026-06-02",
     "path": "skills/accounting/consolidation-intercompany-advisor",
     "author": "github: VincentChuWaiChow",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "lifecycle": "experimental"
   },
   {
     "id": "contabo-capacity-planner",
@@ -4451,7 +4465,7 @@
       "https://api.contabo.com/",
       "https://docs.contabo.com/"
     ],
-    "security_notes": "OAuth2 password grant tokens expire in ~5 minutes — refresh handling must not log token values. Credentials must remain in environment variables. Contabo Object Storage is S3-compatible — S3 access key and secret key must be stored as environment variables, never hardcoded. x-request-id (UUIDv4) is mandatory for Contabo REST API calls. Hard-stop on any bucket deletion without verified backup evidence. Contabo has no official Terraform provider or SDK; recommend cntb CLI or REST API with curl + jq.",
+    "security_notes": "OAuth2 password grant tokens expire in ~5 minutes — refresh handling must not log token values. Credentials must remain in environment variables. Contabo Object Storage is S3-compatible — S3 access key and secret key must be stored as environment variables, never hardcoded. x-request-id (UUIDv4) is mandatory for Contabo REST API calls. Hard-stop on any bucket deletion without verified backup evidence. Contabo has no official Terraform provider or SDK; recommend cntb CLI or REST API with curl + jq and S3-compatible tools for Object Storage.",
     "last_verified": "2026-05-10",
     "path": "skills/contabo/contabo-live-storage-operations-guard",
     "author": "github: VincentChuWaiChow",
@@ -4501,7 +4515,7 @@
       "https://api.contabo.com/",
       "https://docs.contabo.com/"
     ],
-    "security_notes": "OAuth2 password grant tokens expire in ~5 minutes — short TTL reduces exposure window but refresh logic must not log tokens. Credentials must never be hardcoded. SSH keys are referenced via secret IDs — raw private key material must never appear in API payloads, scripts, or recommendations. The x-request-id UUIDv4 header is mandatory for audit traceability.",
+    "security_notes": "OAuth2 password grant tokens expire in ~5 minutes — short TTL reduces exposure window but refresh logic must not log tokens. Credentials (CONTABO_CLIENT_ID, CONTABO_CLIENT_SECRET, CONTABO_API_USER, CONTABO_API_PASSWORD) must never be hardcoded. Contabo has no official Terraform provider or SDK; recommend cntb CLI or REST API. SSH keys are referenced via secret IDs — raw private key material must never appear in API payloads, scripts, or recommendations. The x-request-id UUIDv4 header is mandatory for audit traceability.",
     "last_verified": "2026-05-10",
     "path": "skills/contabo/contabo-security-hardening",
     "author": "github: VincentChuWaiChow",
@@ -5265,7 +5279,7 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Multi-jurisdiction reference framework for debt and capital structure advisory: optimal capital structure theory (M&M, trade-off, pecking order), leverage and credit metrics, debt instruments (RCF, TLA/TLB, HY bonds, convertibles, mezzanine), covenant analysis (maintenance vs. incurrence, DSCR, restricted payments), refinancing and maturity wall management, WACC optimization, Basel III/IV capital requirements, liability management, rating agency methodologies (S&P/Moody's/Fitch), and ESG-linked financing (SLBs/SLLs, green bonds ICMA GBP). Advisory only.",
+    "summary": "Multi-jurisdiction reference framework for debt and capital structure advisory — optimal capital structure theory (M&M, trade-off, pecking order), leverage and credit metrics, debt instruments (RCF, TLA/TLB, HY bonds, convertibles, mezzanine), covenant analysis (maintenance vs. incurrence, DSCR, restricted payments), refinancing and maturity wall management, WACC optimization, Basel III/IV capital requirements, liability management (tender offers, exchange offers), rating agency methodologies (S&P, Moody's, Fitch), and ESG-linked financing (SLBs, SLLs, green bonds ICMA GBP).",
     "source_type": "original",
     "category": "finance",
     "execution_tier": "read-only-runtime",
@@ -5280,13 +5294,17 @@
       "https://www.bis.org/bcbs/publ/d424.htm",
       "https://www.icmagroup.org/sustainable-finance/the-principles-guidelines-and-handbooks/green-bond-principles-gbp/",
       "https://www.icmagroup.org/sustainable-finance/the-principles-guidelines-and-handbooks/sustainability-linked-bond-principles-slbp/",
-      "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023R2631"
+      "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023R2631",
+      "https://www.ifrs.org/issued-standards/list-of-standards/ifrs-9-financial-instruments/",
+      "https://www.ifrs.org/issued-standards/list-of-standards/ifrs-16-leases/",
+      "https://www.fsb.org/wp-content/uploads/TLAC-Principles-and-Term-Sheet-for-publication-final.pdf"
     ],
-    "security_notes": "Advisory only — never executes transactions, accesses banking systems, or writes to any system of record. Never accepts MNPI, live deal terms, live market pricing for execution, or bank credentials. Not investment advice or a fairness opinion.",
+    "security_notes": "Advisory only — never executes, simulates, or proposes financial transactions, credit decisions, or securities trading. Never accepts MNPI, live market data for execution, bank credentials, actual deal terms from live transactions, or credit ratings for execution purposes. All conclusions are advisory and educational. Financing decisions require qualified legal counsel and investment banking professionals. Does not form a financial-advisor or investment-advisor relationship.",
     "last_verified": "2026-06-03",
     "path": "skills/finance/debt-capital-structure-advisor",
     "author": "github: VincentChuWaiChow",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "lifecycle": "experimental"
   },
   {
     "id": "design-token-governance-review",
@@ -5754,13 +5772,15 @@
     "official_docs": [
       "https://asc.fasb.org/718",
       "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs2.html",
-      "https://www.sec.gov/interps/account/sab14.htm"
+      "https://www.sec.gov/interps/account/sab14.htm",
+      "https://www.irs.gov/taxtopics/tc427"
     ],
     "security_notes": "Advisory only — never posts stock compensation journal entries or processes equity award transactions. Never accepts employee grant details with names/IDs, cap table data, actual grant prices, insider trading windows, or any MNPI relating to stock plans. Does not constitute legal, tax, or securities advice on equity compensation design.",
     "last_verified": "2026-06-02",
     "path": "skills/accounting/equity-compensation-advisor",
     "author": "github: VincentChuWaiChow",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "lifecycle": "experimental"
   },
   {
     "id": "erp-crm-cutover-protocol",
@@ -6018,7 +6038,7 @@
   },
   {
     "id": "finance-maestro",
-    "name": "Finance Maestro",
+    "name": "Finance Maestro Routing Skill",
     "type": "skill",
     "provider": "finance",
     "harnesses": [
@@ -6050,7 +6070,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "finance-maestro-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "finops-cloud-price-advisor",
@@ -6136,13 +6157,18 @@
     "official_docs": [
       "https://asc.fasb.org/360",
       "https://asc.fasb.org/350",
-      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias16.html"
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias16.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias36.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias38.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs3.html",
+      "https://www.gesetze-im-internet.de/hgb/__253.html"
     ],
     "security_notes": "Advisory only — never posts depreciation or impairment journal entries to any FA module or GL. Never accepts actual asset registers with asset-identifying codes, acquisition costs, or location data that could expose operational details. Impairment conclusions are advisory; formal impairment analyses require qualified valuers and external auditors.",
     "last_verified": "2026-06-02",
     "path": "skills/accounting/fixed-assets-advisor",
     "author": "github: VincentChuWaiChow",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "lifecycle": "experimental"
   },
   {
     "id": "fluxcd-kustomization-helmrelease-review",
@@ -6206,7 +6232,7 @@
     "category": "finance",
     "execution_tier": "read-only-runtime",
     "lifecycle": "experimental",
-    "summary": "Driver-based budgeting, rolling forecasts, ZBB, LRP, xP&A, variance analysis, MD&A support. US GAAP/IFRS/FRS 102.",
+    "summary": "Reference framework for financial planning and analysis (FP&A) covering driver-based budgeting, rolling forecasts, zero-based budgeting (ZBB), scenario and sensitivity analysis, budget-versus-actual variance analysis, long-range planning (LRP), integrated P&L/balance sheet/cash flow modeling, xP&A, FP&A technology platforms (Anaplan, Adaptive Insights/Workday Adaptive Planning, OneStream, Vena, IBM TM1/Planning Analytics, Oracle EPM), and MD&A narrative support. Applicable across US GAAP, IFRS, and UK FRS 102 reporting contexts.",
     "path": "skills/finance/fpa-forecasting-advisor",
     "type": "skill",
     "source_type": "original",
@@ -6222,10 +6248,16 @@
     ],
     "official_docs": [
       "https://asc.fasb.org/",
-      "https://www.ifrs.org/",
-      "https://www.cgma.org/"
+      "https://www.ifrs.org/issued-standards/list-of-standards/ifrs-15-revenue-from-contracts-with-customers/",
+      "https://www.ifrs.org/issued-standards/list-of-standards/ifrs-16-leases/",
+      "https://www.ifrs.org/issued-standards/list-of-standards/ias-7-statement-of-cash-flows/",
+      "https://www.ecfr.gov/current/title-17/chapter-II/part-229/subpart-229.300/section-229.303",
+      "https://www.frc.org.uk/library/standards-codes-policy/accounting/uk-and-ireland-accounting-standards/standards-in-issue/frs-102-the-financial-reporting-standard-applicable-in-the-uk-and-republic-of-ireland/",
+      "https://www.cgma.org/resources/tools/essential-tools/budgeting-forecasting.html",
+      "https://www.afponline.org/ideas-inspiration/resources/articles/Details/planning-budgeting-forecasting"
     ],
-    "security_notes": "Advisory only. Never accepts MNPI or confidential budget figures."
+    "security_notes": "Advisory only — never writes to any planning system, ERP, or GL. Accepts only descriptive scenario inputs; never accepts confidential forecast figures, MNPI, internal budget data, or budget spreadsheets with company-identifying financial data. All conclusions are advisory. Does not constitute investment advice, financial advice, or an accountant-client relationship.",
+    "author": "github: VincentChuWaiChow"
   },
   {
     "id": "framework-upgrade-risk-review",
@@ -6577,13 +6609,18 @@
     "official_docs": [
       "https://asc.fasb.org/830",
       "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias21.html",
-      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias29.html"
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias29.html",
+      "https://www.gesetze-im-internet.de/hgb/",
+      "https://www.asb.or.jp/en/accounting_standards/accounting_standards/",
+      "https://www.icai.org/post/indian-accounting-standards",
+      "https://www.safe.gov.cn/en/"
     ],
     "security_notes": "Advisory only — never posts FX translation or remeasurement journal entries to any GL or ERP. Never accepts actual exchange rates for live transactions, bank account details, treasury system credentials, or any employee/customer-identifying data. FX rates used in illustrations are hypothetical. Capital control analysis is informational only — always verify with qualified legal and treasury advisors.",
     "last_verified": "2026-06-02",
     "path": "skills/accounting/fx-translation-advisor",
     "author": "github: VincentChuWaiChow",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "lifecycle": "experimental"
   },
   {
     "id": "gcp-alloydb-ai-developer",
@@ -8022,13 +8059,17 @@
     "official_docs": [
       "https://asc.fasb.org/815",
       "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs9.html",
-      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias39.html"
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias39.html",
+      "https://www.gesetze-im-internet.de/hgb/",
+      "https://www.asb.or.jp/en/accounting_standards/accounting_standards/",
+      "https://www.icai.org/post/indian-accounting-standards"
     ],
     "security_notes": "Advisory only — never posts hedge journal entries or OCI entries to any GL or ERP. Never accepts actual derivative contract terms with counterparty details, live market rates for hedging decisions, bank/broker credentials, ISDA master agreement data, or employee/customer-identifying information.",
     "last_verified": "2026-06-02",
     "path": "skills/accounting/hedge-accounting-advisor",
     "author": "github: VincentChuWaiChow",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "lifecycle": "experimental"
   },
   {
     "id": "helm-chart-quality-review",
@@ -9499,13 +9540,18 @@
     "official_docs": [
       "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32006L0112",
       "https://www.agenziaentrate.gov.it/portale/web/english/nse/businesses/vat-in-italy",
-      "https://einvoice1.gst.gov.in/"
+      "https://einvoice1.gst.gov.in/",
+      "https://www.sat.gob.mx/consultas/98850/comprobantes-fiscales-digitales-por-internet",
+      "https://www.gov.uk/government/collections/making-tax-digital-for-vat",
+      "https://www.gov.uk/guidance/using-making-tax-digital-for-income-tax",
+      "https://www.ato.gov.au/business/gst/"
     ],
     "security_notes": "Advisory only — never submits tax returns, e-invoices, or SPED files to any tax authority or clearance platform. Never accepts taxpayer identification numbers (CNPJ, GSTIN, RFC, USt-IdNr), actual invoice data with counterparty details, or credentials for any PAC, IRP, SAT portal, or government e-invoicing system. All compliance conclusions are advisory; formal filings require qualified local tax advisors and certified software providers.",
     "last_verified": "2026-06-02",
     "path": "skills/accounting/indirect-tax-einvoicing-advisor",
     "author": "github: VincentChuWaiChow",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "lifecycle": "experimental"
   },
   {
     "id": "influencer-disclosure-compliance-review",
@@ -10659,7 +10705,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Guard live kubectl apply/patch/create operations on networking architecture surface (Service spec, CoreDNS Corefile, NodeLocal DNSCache, Gateway API resources, ClusterMesh peer Secrets). HARD REFUSE one-way doors. Pre-flight kubectl auth can-i matrix before any write.",
+    "summary": "Guard live kubectl apply/patch/create operations on networking architecture surface — Service spec (internalTrafficPolicy, externalTrafficPolicy, topology-mode, trafficDistribution), CoreDNS Corefile, NodeLocal DNSCache install, Gateway API resources, and ClusterMesh peer Secrets. HARD REFUSE one-way doors (CNI replacement, kube-proxy mode swap, MTU change, Pod / Service CIDR resize, namespace deletion). Pre-flight kubectl auth can-i matrix against a least-privilege ServiceAccount before any write.",
     "source_type": "original",
     "official_docs": [
       "https://kubernetes.io/docs/concepts/security/rbac-good-practices/",
@@ -10673,7 +10719,7 @@
       "https://coredns.io/plugins/reload/",
       "https://docs.cilium.io/en/stable/network/clustermesh/clustermesh/"
     ],
-    "security_notes": "Pre-flight kubectl auth can-i matrix runs before any mutation against a least-privilege ServiceAccount. Refuses if binding is over-scoped or operator is cluster-admin / system:masters. HARD REFUSE: CNI replacement, kube-proxy mode swap, MTU change, Pod / Service CIDR resize, namespace deletion, kube-system DaemonSet writes, CRD operations, broad Secret access. CoreDNS Corefile changes require backup and reload verification within 2 minutes.",
+    "security_notes": "This skill is bound to a ServiceAccount with deliberately omitted verbs: no `delete` cluster-wide, no operations on `namespaces` / `customresourcedefinitions` / `kube-system` DaemonSets and Deployments / broad `secrets`. Pre-flight `kubectl auth can-i` matrix MUST run before any mutation; refuses if any must-not check returns `yes` (binding over-scoped) or if operator is in `system:masters` (RBAC bypass). HARD REFUSE list covers one-way doors that are out-of-scope for any agent: CNI replacement, kube-proxy mode swap, MTU change, Pod / Service CIDR resize. CoreDNS Corefile changes require backup capture and post-mutation reload verification within 2 minutes. Gateway resources require GatewayClass controller liveness check before creation. ClusterMesh peer Secret data fields must never be printed or logged.",
     "last_verified": "2026-05-08",
     "path": "skills/kubernetes/kubernetes-live-network-architecture-mutation-guard",
     "author": "github: VincentChuWaiChow",
@@ -10700,7 +10746,7 @@
       "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_auth/",
       "https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/"
     ],
-    "security_notes": "Capture current RBAC state before every mutation — no built-in rollback. Block escalate, bind, and impersonate verbs without platform-team approval. Never approve wildcard grants. Cached tokens remain valid after binding deletion until expiry.",
+    "security_notes": "Capture current RBAC object state before every mutation — there is no built-in rollback. Block escalate, bind, and impersonate verbs without explicit platform-team approval. Never approve wildcard verb or resource grants. Deleting a ClusterRoleBinding does not immediately revoke cached service account tokens.",
     "last_verified": "2026-05-01",
     "path": "skills/kubernetes/kubernetes-live-rbac-mutation-guard",
     "author": "github: VincentChuWaiChow",
@@ -10728,11 +10774,14 @@
       "https://kyverno.io/docs/",
       "https://istio.io/latest/docs/ambient/",
       "https://docs.cilium.io/en/stable/",
-      "https://argo-cd.readthedocs.io/en/stable/"
+      "https://argo-cd.readthedocs.io/en/stable/",
+      "https://opentelemetry.io/docs/kubernetes/",
+      "https://kubernetes.io/docs/concepts/workloads/pods/service-accounts/"
     ],
-    "security_notes": "Live-guard gate is non-negotiable: kubernetes-live-rbac-mutation-guard-agent, kubernetes-live-admission-policy-guard-agent, kubernetes-live-mesh-policy-guard-agent, kubernetes-live-argocd-sync-guard-agent, and kubernetes-live-network-policy-guard-agent must never be auto-dispatched.",
+    "security_notes": "Live-guard gate is non-negotiable: kubernetes-live-rbac-mutation-guard-agent, kubernetes-live-admission-policy-guard-agent, kubernetes-live-mesh-policy-guard-agent, kubernetes-live-argocd-sync-guard-agent, and kubernetes-live-network-policy-guard-agent must never be auto-dispatched. Always surface blast-radius and rollback path and require explicit written human confirmation before routing to any live-guard agent.",
     "source_type": "original",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
   },
   {
     "id": "kubernetes-manifest-quality-review",
@@ -10868,7 +10917,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Review Kubernetes Roles, ClusterRoles, RoleBindings, ClusterRoleBindings, and ServiceAccounts for least-privilege, namespace-scope minimization, and workload identity safety.",
+    "summary": "Review Kubernetes Roles, ClusterRoles, RoleBindings, ClusterRoleBindings, and ServiceAccounts for least-privilege, namespace-scope, and workload identity safety.",
     "source_type": "original",
     "official_docs": [
       "https://kubernetes.io/docs/reference/access-authn-authz/rbac/",
@@ -10993,13 +11042,17 @@
     "official_docs": [
       "https://asc.fasb.org/842",
       "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs16.html",
-      "https://www.frc.org.uk/library/standards-codes-policy/accounting/uk-and-ireland-accounting-standards/standards-in-issue/frs-102-the-financial-reporting-standard-applicable-in-the-uk-and-republic-of-ireland/"
+      "https://www.frc.org.uk/library/standards-codes-policy/accounting/uk-and-ireland-accounting-standards/standards-in-issue/frs-102-the-financial-reporting-standard-applicable-in-the-uk-and-republic-of-ireland/",
+      "https://www.gesetze-im-internet.de/hgb/",
+      "https://www.asb.or.jp/en/accounting_standards/accounting_standards/",
+      "https://www.icai.org/post/indian-accounting-standards"
     ],
     "security_notes": "Advisory only — never posts journal entries or writes to any system of record. Accepts only descriptive scenario inputs; never accepts raw lease contracts containing counterparty PII, actual dollar payment schedules, tenant/landlord identifying information, GL exports, trial balances, or any employee/customer-identifying data. Local statutory lease accounting conclusions require verification with qualified local auditors.",
     "last_verified": "2026-06-01",
     "path": "skills/accounting/lease-accounting-advisor",
     "author": "github: VincentChuWaiChow",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "lifecycle": "experimental"
   },
   {
     "id": "legacy-jquery-to-modern-framework-review",
@@ -11722,7 +11775,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Route marketing-governance review tasks to the narrowest specialist across all 13 domains: consent and data-collection, advertising-pixel data-leakage, martech access-governance, GPC signal-honoring, email sender authentication, programmatic supply-chain integrity, AI ad-targeting fairness, EU AI Act marketing-system classification, lookalike audience upload compliance, email list retention, influencer disclosure, conversion-flow dark patterns, and analytics data minimization. Dispatches single or parallel teams (max 4); requires human gate for any mutation intent.",
+    "summary": "Route marketing-governance review tasks to the narrowest specialist across 13 domains — consent, pixel leakage, martech access, GPC honoring, email authentication, programmatic supply chain, ad-targeting fairness, EU AI Act, audience uploads, list retention, influencer disclosure, conversion dark patterns, and analytics minimization. Dispatches single or parallel teams (max 4); no live-guard agents in v1.",
     "source_type": "original",
     "official_docs": [
       "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
@@ -11932,7 +11985,8 @@
     "last_verified": "2026-06-09",
     "path": "skills/netsuite/netsuite-administrator-skill",
     "version": "0.1.0",
-    "author": "github: VincentChuWaiChow"
+    "author": "github: VincentChuWaiChow",
+    "execution_tier": "static-review"
   },
   {
     "id": "netsuite-ai-connector-mcp-skill",
@@ -11960,7 +12014,8 @@
     "last_verified": "2026-06-09",
     "path": "skills/netsuite/netsuite-ai-connector-mcp-skill",
     "version": "0.1.0",
-    "author": "github: VincentChuWaiChow"
+    "author": "github: VincentChuWaiChow",
+    "execution_tier": "static-review"
   },
   {
     "id": "netsuite-ai-foundations-skill",
@@ -11989,7 +12044,8 @@
     "last_verified": "2026-06-09",
     "path": "skills/netsuite/netsuite-ai-foundations-skill",
     "version": "0.1.0",
-    "author": "github: VincentChuWaiChow"
+    "author": "github: VincentChuWaiChow",
+    "execution_tier": "static-review"
   },
   {
     "id": "netsuite-application-developer-skill",
@@ -12016,7 +12072,8 @@
     "last_verified": "2026-06-09",
     "path": "skills/netsuite/netsuite-application-developer-skill",
     "version": "0.1.0",
-    "author": "github: VincentChuWaiChow"
+    "author": "github: VincentChuWaiChow",
+    "execution_tier": "static-review"
   },
   {
     "id": "netsuite-audit-controls-sox-skill",
@@ -12045,7 +12102,8 @@
     "last_verified": "2026-06-09",
     "path": "skills/netsuite/netsuite-audit-controls-sox-skill",
     "version": "0.1.0",
-    "author": "github: VincentChuWaiChow"
+    "author": "github: VincentChuWaiChow",
+    "execution_tier": "static-review"
   },
   {
     "id": "netsuite-bi-reporting-skill",
@@ -12073,7 +12131,8 @@
     "last_verified": "2026-06-09",
     "path": "skills/netsuite/netsuite-bi-reporting-skill",
     "version": "0.1.0",
-    "author": "github: VincentChuWaiChow"
+    "author": "github: VincentChuWaiChow",
+    "execution_tier": "static-review"
   },
   {
     "id": "netsuite-data-governance-privacy-skill",
@@ -12100,7 +12159,8 @@
     "last_verified": "2026-06-09",
     "path": "skills/netsuite/netsuite-data-governance-privacy-skill",
     "version": "0.1.0",
-    "author": "github: VincentChuWaiChow"
+    "author": "github: VincentChuWaiChow",
+    "execution_tier": "static-review"
   },
   {
     "id": "netsuite-enterprise-architecture-skill",
@@ -12132,7 +12192,8 @@
     "last_verified": "2026-06-09",
     "path": "skills/netsuite/netsuite-enterprise-architecture-skill",
     "version": "0.1.0",
-    "author": "github: VincentChuWaiChow"
+    "author": "github: VincentChuWaiChow",
+    "execution_tier": "static-review"
   },
   {
     "id": "netsuite-erp-consultant-skill",
@@ -12160,7 +12221,8 @@
     "last_verified": "2026-06-09",
     "path": "skills/netsuite/netsuite-erp-consultant-skill",
     "version": "0.1.0",
-    "author": "github: VincentChuWaiChow"
+    "author": "github: VincentChuWaiChow",
+    "execution_tier": "static-review"
   },
   {
     "id": "netsuite-evidence-release-drift-skill",
@@ -12189,7 +12251,8 @@
     "last_verified": "2026-06-09",
     "path": "skills/netsuite/netsuite-evidence-release-drift-skill",
     "version": "0.1.0",
-    "author": "github: VincentChuWaiChow"
+    "author": "github: VincentChuWaiChow",
+    "execution_tier": "static-review"
   },
   {
     "id": "netsuite-financial-foundations-skill",
@@ -12218,7 +12281,8 @@
     "last_verified": "2026-06-09",
     "path": "skills/netsuite/netsuite-financial-foundations-skill",
     "version": "0.1.0",
-    "author": "github: VincentChuWaiChow"
+    "author": "github: VincentChuWaiChow",
+    "execution_tier": "static-review"
   },
   {
     "id": "netsuite-identity-access-role-permission-skill",
@@ -12246,7 +12310,8 @@
     "last_verified": "2026-06-09",
     "path": "skills/netsuite/netsuite-identity-access-role-permission-skill",
     "version": "0.1.0",
-    "author": "github: VincentChuWaiChow"
+    "author": "github: VincentChuWaiChow",
+    "execution_tier": "static-review"
   },
   {
     "id": "netsuite-integration-migration-skill",
@@ -12275,7 +12340,8 @@
     "last_verified": "2026-06-09",
     "path": "skills/netsuite/netsuite-integration-migration-skill",
     "version": "0.1.0",
-    "author": "github: VincentChuWaiChow"
+    "author": "github: VincentChuWaiChow",
+    "execution_tier": "static-review"
   },
   {
     "id": "netsuite-live-operation-safety-skill",
@@ -12306,7 +12372,8 @@
     "last_verified": "2026-06-09",
     "path": "skills/netsuite/netsuite-live-operation-safety-skill",
     "version": "0.1.0",
-    "author": "github: VincentChuWaiChow"
+    "author": "github: VincentChuWaiChow",
+    "execution_tier": "static-review"
   },
   {
     "id": "netsuite-oneworld-multisubsidiary-skill",
@@ -12332,7 +12399,8 @@
     "last_verified": "2026-06-09",
     "path": "skills/netsuite/netsuite-oneworld-multisubsidiary-skill",
     "version": "0.1.0",
-    "author": "github: VincentChuWaiChow"
+    "author": "github: VincentChuWaiChow",
+    "execution_tier": "static-review"
   },
   {
     "id": "netsuite-routing-protocol",
@@ -12387,7 +12455,8 @@
     "last_verified": "2026-06-09",
     "path": "skills/netsuite/netsuite-sandbox-nonproduction-governance-skill",
     "version": "0.1.0",
-    "author": "github: VincentChuWaiChow"
+    "author": "github: VincentChuWaiChow",
+    "execution_tier": "static-review"
   },
   {
     "id": "netsuite-saved-searches-workbook-skill",
@@ -12414,7 +12483,8 @@
     "last_verified": "2026-06-09",
     "path": "skills/netsuite/netsuite-saved-searches-workbook-skill",
     "version": "0.1.0",
-    "author": "github: VincentChuWaiChow"
+    "author": "github: VincentChuWaiChow",
+    "execution_tier": "static-review"
   },
   {
     "id": "netsuite-sdf-devops-release-skill",
@@ -12441,7 +12511,8 @@
     "last_verified": "2026-06-09",
     "path": "skills/netsuite/netsuite-sdf-devops-release-skill",
     "version": "0.1.0",
-    "author": "github: VincentChuWaiChow"
+    "author": "github: VincentChuWaiChow",
+    "execution_tier": "static-review"
   },
   {
     "id": "netsuite-sso-oauth-tba-skill",
@@ -12475,7 +12546,8 @@
     "last_verified": "2026-06-09",
     "path": "skills/netsuite/netsuite-sso-oauth-tba-skill",
     "version": "0.1.0",
-    "author": "github: VincentChuWaiChow"
+    "author": "github: VincentChuWaiChow",
+    "execution_tier": "static-review"
   },
   {
     "id": "netsuite-suitecloud-developer-skill",
@@ -12504,7 +12576,8 @@
     "last_verified": "2026-06-09",
     "path": "skills/netsuite/netsuite-suitecloud-developer-skill",
     "version": "0.1.0",
-    "author": "github: VincentChuWaiChow"
+    "author": "github: VincentChuWaiChow",
+    "execution_tier": "static-review"
   },
   {
     "id": "netsuite-suiteflow-automation-skill",
@@ -12533,7 +12606,8 @@
     "last_verified": "2026-06-09",
     "path": "skills/netsuite/netsuite-suiteflow-automation-skill",
     "version": "0.1.0",
-    "author": "github: VincentChuWaiChow"
+    "author": "github: VincentChuWaiChow",
+    "execution_tier": "static-review"
   },
   {
     "id": "netsuite-suitefoundation-skill",
@@ -12561,7 +12635,8 @@
     "last_verified": "2026-06-09",
     "path": "skills/netsuite/netsuite-suitefoundation-skill",
     "version": "0.1.0",
-    "author": "github: VincentChuWaiChow"
+    "author": "github: VincentChuWaiChow",
+    "execution_tier": "static-review"
   },
   {
     "id": "netsuite-suitescript-secure-code-review-skill",
@@ -12590,7 +12665,8 @@
     "last_verified": "2026-06-09",
     "path": "skills/netsuite/netsuite-suitescript-secure-code-review-skill",
     "version": "0.1.0",
-    "author": "github: VincentChuWaiChow"
+    "author": "github: VincentChuWaiChow",
+    "execution_tier": "static-review"
   },
   {
     "id": "netsuite-web-services-integration-skill",
@@ -12621,7 +12697,8 @@
     "last_verified": "2026-06-09",
     "path": "skills/netsuite/netsuite-web-services-integration-skill",
     "version": "0.1.0",
-    "author": "github: VincentChuWaiChow"
+    "author": "github: VincentChuWaiChow",
+    "execution_tier": "static-review"
   },
   {
     "id": "nextjs-app-router-data-fetching-review",
@@ -12786,13 +12863,10 @@
     "official_docs": [
       "https://www.nvidia.com/en-us/learn/certification/",
       "https://docs.nvidia.com/ai-enterprise/",
-      "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/",
-      "https://docs.nvidia.com/nim/",
-      "https://docs.nvidia.com/dcgm/",
-      "https://docs.nvidia.com/networking/",
-      "https://docs.nvidia.com/nemo-framework/"
+      "https://docs.nvidia.com/datacenter/tesla/",
+      "https://docs.nvidia.com/dgx/"
     ],
-    "security_notes": "BMC reachable from tenant networks is total compromise of GPU hosts. Drivers outside the AI Enterprise support matrix produce silent ABI breakage. ECC disabled silently corrupts weights and gradients on training workloads.",
+    "security_notes": "BMC/iDRAC/iLO reachable from tenant networks is total compromise of GPU hosts. Drivers outside the AI Enterprise support matrix produce silent ABI breakage. ECC disabled silently corrupts weights and gradients on training workloads.",
     "last_verified": "2026-05-10",
     "path": "skills/nvidia/nvidia-ai-infrastructure-operations",
     "author": "github: VincentChuWaiChow",
@@ -12882,7 +12956,7 @@
     ],
     "security_notes": "Static review only — the skill never executes nvcc, nsight-compute, or nsight-systems. It outputs the recommended invocation as text for the user to run on their own GPU host. Treat CUDA samples that disable bounds checking, copy host pointers across context boundaries, or use `cudaMallocManaged` without prefetch hints as findings rather than as patterns to imitate.",
     "last_verified": "2026-05-10",
-    "path": "skills/nvidia/nvidia-cuda-kernel-performance-review/",
+    "path": "skills/nvidia/nvidia-cuda-kernel-performance-review",
     "category": "platform",
     "certifications": [],
     "author": "github: VincentChuWaiChow",
@@ -12996,9 +13070,9 @@
       "https://oras.land/docs/category/oras-commands",
       "https://github.com/anchore/grype"
     ],
-    "security_notes": "Live-execution skill. Allowlist locks every Bash invocation to nvcr.io/* targets and to a fixed argv shape (no shell metacharacters). Egress restricted to nvcr.io and Sigstore endpoints (rekor, fulcio, tuf). Reads $NGC_API_KEY from environment but never echoes it. Default mode is static (no egress); runtime mode is per-session opt-in. Rekor unreachable degrades to manual-review rather than auto-pass to prevent quiet bypass in air-gapped environments. Read-only — no docker pull, no kubectl, no registry write.",
+    "security_notes": "Live-execution skill. Allowlist locks every Bash invocation to nvcr.io/* targets and to a fixed argv shape (no shell metacharacters). Egress restricted to nvcr.io and Sigstore endpoints (rekor, fulcio, tuf). Reads $NGC_API_KEY from environment but never echoes it; attestation provenance scrubs --password/--token/--auth flag values. Default mode is static (no egress); runtime mode is per-session opt-in. Rekor unreachable degrades to manual-review rather than auto-pass to prevent quiet bypass in air-gapped environments. Skill is read-only — no docker pull, no kubectl, no registry write.",
     "last_verified": "2026-05-11",
-    "path": "skills/nvidia/nvidia-model-promotion-gatekeeper/",
+    "path": "skills/nvidia/nvidia-model-promotion-gatekeeper",
     "category": "security",
     "lifecycle": "experimental",
     "execution_tier": "read-only-runtime",
@@ -13060,7 +13134,7 @@
     ],
     "security_notes": "TensorRT custom plugins load arbitrary native code into the inference process; any plugin pulled from a non-vetted source is an RCE primitive. Serialized TensorRT engines (`.engine`, `.plan`) are not signed by default — silent substitution of an engine yields silent model substitution. INT8 calibration data is unredacted production traffic by definition and is a confidentiality risk if it leaks. The skill never executes `trtexec`, `polygraphy`, or `tensorrt_llm/build.py` — it outputs the recommended invocation as text.",
     "last_verified": "2026-05-10",
-    "path": "skills/nvidia/nvidia-tensorrt-llm-deployment-review/",
+    "path": "skills/nvidia/nvidia-tensorrt-llm-deployment-review",
     "category": "platform",
     "certifications": [],
     "author": "github: VincentChuWaiChow",
@@ -13090,7 +13164,7 @@
     ],
     "security_notes": "Triton custom Python and C++ backends execute arbitrary code in the server process — any backend pulled from a non-vetted source is an RCE primitive. Default gRPC and HTTP endpoints are anonymous; auth is the operator's responsibility via reverse-proxy or `--grpc-restricted-protocol`. Model files in `model_repository/` are unsigned at rest. The response cache, when enabled, can be poisoned across tenants if requests are not partitioned. The skill never starts `tritonserver` or sends inference requests — it outputs `tritonserver` and `perf_analyzer` invocations as text.",
     "last_verified": "2026-05-10",
-    "path": "skills/nvidia/nvidia-triton-inference-serving-review/",
+    "path": "skills/nvidia/nvidia-triton-inference-serving-review",
     "category": "platform",
     "certifications": [],
     "author": "github: VincentChuWaiChow",
@@ -14433,13 +14507,18 @@
     "official_docs": [
       "https://asc.fasb.org/710",
       "https://asc.fasb.org/715",
-      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias19.html"
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias19.html",
+      "https://www.irs.gov/businesses/small-businesses-self-employed/understanding-employment-taxes",
+      "https://www.dol.gov/agencies/ebsa/laws-and-regulations/laws/erisa",
+      "https://www.gov.uk/paye-for-employers",
+      "https://www.epfindia.gov.in/"
     ],
     "security_notes": "Advisory only — never processes payroll, never posts payroll journal entries to any GL or HRIS. Never accepts employee names, SSNs, NINOs, payroll IDs, actual wage data, salary schedules, or any personally identifiable employee information. Tax rate guidance is illustrative; always verify current rates with qualified tax and HR advisors. Does not constitute employment law or benefits advice.",
     "last_verified": "2026-06-02",
     "path": "skills/accounting/payroll-advisor",
     "author": "github: VincentChuWaiChow",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "lifecycle": "experimental"
   },
   {
     "id": "pci-payment-ui-security-review",
@@ -14773,13 +14852,17 @@
     "official_docs": [
       "https://asc.fasb.org/210",
       "https://asc.fasb.org/440",
-      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias37.html"
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias37.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs9.html",
+      "https://www.ifrs.org/news-and-events/updates/ifric/2020/ifric-update-november-2020/",
+      "https://www.gesetze-im-internet.de/hgb/__249.html"
     ],
     "security_notes": "Advisory only — never posts AP journal entries or processes payments. Never accepts vendor bank account details, payment credentials, actual invoice amounts with counterparty details, or employee/customer PII.",
     "last_verified": "2026-06-02",
     "path": "skills/accounting/procure-to-pay-advisor",
     "author": "github: VincentChuWaiChow",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "lifecycle": "experimental"
   },
   {
     "id": "procure-to-pay-protocol",
@@ -15966,7 +16049,7 @@
   },
   {
     "id": "revenue-recognition-advisor",
-    "name": "Revenue Recognition Advisor",
+    "name": "Revenue Recognition Advisor Skill",
     "type": "skill",
     "provider": "accounting",
     "harnesses": [
@@ -15999,7 +16082,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "accounting-revenue-recognition-advisor-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "rightsize-recommendation",
@@ -16965,11 +17049,12 @@
       "https://help.salesforce.com/s/articleView?id=sf.connected_app_overview.htm",
       "https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_calls_query.htm"
     ],
-    "security_notes": "T1 read-only operational scope only. No DML permitted. OAuth scopes restricted to api + refresh_token. Run As service account has no ModifyAllData, ViewAllData, ViewEncryptedData, ModifyMetadata, AuthorApex, or ManageConnectedApps permissions. Org allowlist enforced by Connected App. Every execution emits a structured audit envelope. All Salesforce IDs, user IDs, and PII fields are redacted before output. Refresh token rotation immediately revokes access.",
+    "security_notes": "T1 read-only operational scope only. No DML permitted. OAuth scopes restricted to api + refresh_token. Run As service account has no ModifyAllData, ViewAllData, ViewEncryptedData, ModifyMetadata, AuthorApex, or ManageConnectedApps permissions. Org allowlist enforced by Connected App. Every execution emits a structured audit envelope. All Salesforce IDs, user IDs, and PII fields are redacted before output. Refresh token rotation immediately revokes access. Regulated-vertical orgs (Health Cloud, Financial Services Cloud) trigger mandatory compliance escalation.",
     "last_verified": "2026-05-21",
     "path": "skills/salesforce/salesforce-soql-explorer-skill",
     "author": "github: VincentChuWaiChow",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "execution_tier": "read-only-runtime"
   },
   {
     "id": "salesforce-soql-generator-skill",
@@ -17105,7 +17190,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-abap-cloud-rap-reviewer-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-ai-core-generative-ai-hub-governance",
@@ -17148,7 +17234,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-ai-core-genai-hub-governance-reviewer-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-ai-governance-security-architecture-protocol",
@@ -17190,7 +17277,8 @@
     "path": "skills/sap/sap-ai-governance-security-architecture-protocol",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.0",
-    "companion_agents": []
+    "companion_agents": [],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-analytics-cloud-planning-governance",
@@ -17232,7 +17320,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-analytics-cloud-planning-governance-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-audit-evidence-packaging",
@@ -17274,7 +17363,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-audit-evidence-packager-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-btp-governance-review",
@@ -17317,7 +17407,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-btp-account-entitlement-governance-reviewer-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-cap-architecture-review",
@@ -17360,7 +17451,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-cap-architecture-reviewer-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-clean-core-debt-review",
@@ -17402,7 +17494,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-clean-core-debt-reviewer-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-cloud-alm-sre-incident-review",
@@ -17444,7 +17537,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-cloud-alm-sre-incident-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-custom-code-remediation-review",
@@ -17486,7 +17580,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-custom-code-remediation-reviewer-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-data-migration-cutover-readiness",
@@ -17527,7 +17622,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-data-migration-cutover-readiness-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-data-privacy-analytics-ai-protocol",
@@ -17568,7 +17664,8 @@
     "path": "skills/sap/sap-data-privacy-analytics-ai-protocol",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.0",
-    "companion_agents": []
+    "companion_agents": [],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-datasphere-data-product-architecture",
@@ -17610,7 +17707,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-datasphere-data-product-architect-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-ewm-tm-logistics-execution-review",
@@ -17651,7 +17749,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-ewm-tm-logistics-execution-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-finance-fico-controls-review",
@@ -17693,7 +17792,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-finance-fico-controls-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-fiori-ui5-ux-review",
@@ -17735,7 +17835,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-fiori-ui5-ux-reviewer-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-guarded-btp-entitlement-change",
@@ -17776,7 +17877,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-btp-entitlement-guarded-operator-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-guarded-integration-flow-change",
@@ -17817,7 +17919,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-integration-flow-guarded-operator-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-guarded-role-assignment",
@@ -17858,7 +17961,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-role-assignment-guarded-operator-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-guarded-transport-import",
@@ -17900,7 +18004,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-guarded-transport-import-operator-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-hana-cloud-performance-cost",
@@ -17942,7 +18047,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-hana-cloud-performance-cost-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-hypercare-incident-commander-review",
@@ -17982,7 +18088,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-hypercare-incident-commander-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-integration-platform-businessops-protocol",
@@ -18024,7 +18131,8 @@
     "path": "skills/sap/sap-integration-platform-businessops-protocol",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.0",
-    "companion_agents": []
+    "companion_agents": [],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-integration-suite-review",
@@ -18066,7 +18174,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-integration-suite-reviewer-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-joule-governance-adoption-review",
@@ -18108,7 +18217,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-joule-governance-adoption-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-license-btp-consumption-finops-review",
@@ -18149,7 +18259,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-license-btp-consumption-finops-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-live-readonly-identity-trust-discovery",
@@ -18191,7 +18302,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-live-readonly-identity-trust-discovery-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-live-readonly-landscape-discovery",
@@ -18233,7 +18345,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-live-readonly-landscape-discovery-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-maestro",
@@ -18274,7 +18387,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-maestro-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-manufacturing-execution-risk-review",
@@ -18315,7 +18429,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-manufacturing-execution-risk-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-mdg-master-data-quality-review",
@@ -18357,7 +18472,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-mdg-master-data-quality-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-order-to-cash-review",
@@ -18398,7 +18514,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-order-to-cash-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-procurement-ariba-value-leakage-review",
@@ -18439,7 +18556,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-procurement-ariba-value-leakage-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-procurement-license-finops-vendor-protocol",
@@ -18481,7 +18599,8 @@
     "path": "skills/sap/sap-procurement-license-finops-vendor-protocol",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.0",
-    "companion_agents": []
+    "companion_agents": [],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-release-change-collision-review",
@@ -18521,7 +18640,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-release-change-collision-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-release-cutover-finance-controls-protocol",
@@ -18561,7 +18681,8 @@
     "path": "skills/sap/sap-release-cutover-finance-controls-protocol",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.0",
-    "companion_agents": []
+    "companion_agents": [],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-rise-sla-vendor-risk-review",
@@ -18602,7 +18723,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-rise-sla-vendor-risk-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-s4hana-transformation-architecture-review",
@@ -18643,7 +18765,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-s4hana-transformation-architect-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-security-hr-legal-protocol",
@@ -18684,7 +18807,8 @@
     "path": "skills/sap/sap-security-hr-legal-protocol",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.0",
-    "companion_agents": []
+    "companion_agents": [],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-security-iam-grc-sod-review",
@@ -18726,7 +18850,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-security-iam-grc-sod-reviewer-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-signavio-process-mining-value",
@@ -18768,7 +18893,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-signavio-process-mining-value-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-successfactors-hr-process-risk-review",
@@ -18810,7 +18936,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-successfactors-hr-process-risk-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-supply-chain-ibp-resilience-review",
@@ -18851,7 +18978,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-supply-chain-ibp-resilience-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-testing-quality-gate-review",
@@ -18891,7 +19019,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-testing-quality-gate-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-transformation-portfolio-triage-review",
@@ -18932,7 +19061,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-transformation-portfolio-triage-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "sap-treasury-cash-risk-review",
@@ -18973,7 +19103,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-treasury-cash-risk-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "scaleway-cost-optimizer",
@@ -18996,7 +19127,7 @@
       "https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/instance_server",
       "https://www.scaleway.com/en/docs/observability/cockpit/"
     ],
-    "security_notes": "Do not recommend cost cuts that remove Cockpit observability, RDB automated backups, snapshot retention, or multi-zone placement group coverage without explicit risk acceptance. Reserved instance commitments are non-refundable.",
+    "security_notes": "Do not recommend cost cuts that remove Cockpit observability, RDB automated backups, snapshot retention, or multi-zone placement group coverage without explicit risk acceptance. Reserved instance commitments are non-refundable; verify utilization before recommending.",
     "last_verified": "2026-05-10",
     "path": "skills/scaleway/scaleway-cost-optimizer",
     "author": "github: VincentChuWaiChow",
@@ -19023,7 +19154,7 @@
       "https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/iam_policy",
       "https://www.scaleway.com/en/developers/api/iam/"
     ],
-    "security_notes": "Scaleway API keys with organization-level scope grant access to all projects; always prefer project-scoped keys with expiry. IAM key sprawl — long-lived keys with broad scopes — is the top Scaleway access control risk.",
+    "security_notes": "Scaleway API keys with organization-level scope grant access to all projects; always prefer project-scoped keys with expiry. IAM key sprawl — long-lived keys with broad scopes — is the top Scaleway access control risk. Service accounts assigned to resource types must be audited for implicit cross-project privilege escalation.",
     "last_verified": "2026-05-10",
     "path": "skills/scaleway/scaleway-iam-policy-review",
     "author": "github: VincentChuWaiChow",
@@ -19050,7 +19181,7 @@
       "https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/k8s_cluster",
       "https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/k8s_pool"
     ],
-    "security_notes": "Kapsule control-plane upgrades are irreversible — no downgrade path exists. CNI choice is immutable after cluster creation. Placement group enforced policy may block instance scheduling under capacity pressure.",
+    "security_notes": "Kapsule control-plane upgrades are irreversible — no downgrade path exists. CNI choice is immutable after cluster creation. Placement group 'enforced' policy may block instance scheduling under capacity pressure. Multi-zone node pools require verified Private Network attachment for cross-zone pod communication.",
     "last_verified": "2026-05-10",
     "path": "skills/scaleway/scaleway-kapsule-platform-operator",
     "author": "github: VincentChuWaiChow",
@@ -19078,7 +19209,7 @@
       "https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/k8s_pool",
       "https://kubernetes.io/docs/concepts/workloads/pods/disruptions/"
     ],
-    "security_notes": "Kapsule control-plane version upgrades are irreversible — no downgrade path exists. CNI type is immutable after cluster creation. Node pool deletion evicts all workloads immediately. Hard-stop mandatory when target, approval, or rollback plan is absent or ambiguous.",
+    "security_notes": "Kapsule control-plane version upgrades are irreversible — no downgrade path exists. CNI type is immutable after cluster creation. Node pool deletion evicts all workloads immediately. Hard-stop is mandatory when target cluster ID, region/zone, approval token, or rollback plan is absent or ambiguous.",
     "last_verified": "2026-05-10",
     "path": "skills/scaleway/scaleway-live-kapsule-rollout-guard",
     "author": "github: VincentChuWaiChow",
@@ -19131,7 +19262,7 @@
       "https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/vpc",
       "https://www.scaleway.com/en/docs/network/load-balancer/"
     ],
-    "security_notes": "Placement group enforced policy may block instance scheduling under zone capacity pressure — prefer max_availability for production HA. Security groups are zone-scoped; cross-zone traffic must be reviewed for unintended public exposure via flexible IPs.",
+    "security_notes": "Placement group 'enforced' policy may block instance scheduling under zone capacity pressure — prefer 'max_availability' for production HA. Security groups are zone-scoped; cross-zone traffic must be reviewed for unintended public exposure via flexible IPs. VPC routes are regional, but Private Network interfaces are zone-bound; verify routing consistency across all target zones.",
     "last_verified": "2026-05-10",
     "path": "skills/scaleway/scaleway-network-architect",
     "author": "github: VincentChuWaiChow",
@@ -19390,7 +19521,8 @@
     "last_verified": "2026-06-17",
     "path": "skills/snowflake/snowflake-data-platform-engineering-at-azure",
     "version": "0.1.0",
-    "author": "github: VincentChuWaiChow"
+    "author": "github: VincentChuWaiChow",
+    "lifecycle": "deprecated"
   },
   {
     "id": "snowflake-data-science-ml",
@@ -19700,7 +19832,8 @@
     "last_verified": "2026-06-17",
     "path": "skills/snowflake/snowflake-live-rbac-grant-guard-at-azure",
     "version": "0.1.0",
-    "author": "github: VincentChuWaiChow"
+    "author": "github: VincentChuWaiChow",
+    "lifecycle": "deprecated"
   },
   {
     "id": "snowflake-live-warehouse-cost-change-guard",
@@ -19924,7 +20057,8 @@
     "last_verified": "2026-06-17",
     "path": "skills/snowflake/snowflake-rbac-access-governance-at-azure",
     "version": "0.1.0",
-    "author": "github: VincentChuWaiChow"
+    "author": "github: VincentChuWaiChow",
+    "lifecycle": "deprecated"
   },
   {
     "id": "snowflake-solution-architect",
@@ -20148,17 +20282,23 @@
     "official_docs": [
       "https://asc.fasb.org/740",
       "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias12.html",
-      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifric23.html"
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifric23.html",
+      "https://www.oecd.org/tax/beps/global-anti-base-erosion-model-rules-pillar-two.htm",
+      "https://www.oecd.org/en/topics/pillar-two.html",
+      "https://www.gesetze-im-internet.de/hgb/__274.html",
+      "https://www.asb.or.jp/en/accounting_standards/accounting_standards/",
+      "https://www.icai.org/post/indian-accounting-standards"
     ],
     "security_notes": "Advisory only — never posts journal entries or writes to any system of record. Accepts only descriptive scenario inputs; never accepts raw tax returns, trial balances, GL exports, taxpayer-identifying numbers (EIN, TIN, CRN), employee wage data, or customer-identifying information. Local statutory conclusions require verification with qualified local tax advisors and external auditors.",
     "last_verified": "2026-06-01",
     "path": "skills/accounting/tax-provision-advisor",
     "author": "github: VincentChuWaiChow",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "lifecycle": "experimental"
   },
   {
-    "id": "terraform-maestro",
-    "name": "Terraform Maestro",
+    "id": "terraform-engine-compatibility",
+    "name": "terraform-engine-compatibility",
     "type": "skill",
     "provider": "terraform",
     "harnesses": [
@@ -20169,22 +20309,274 @@
       "kiro",
       "other"
     ],
-    "summary": "Route Terraform and IaC tasks to the right specialist from the cross-cloud IaC catalog. Classifies by domain (review, aws-iac, azure-iac, oci-iac, live-guard), dispatches single or parallel (max 4), and enforces live-guard gate for live apply, destroy, or stack mutations.",
-    "source_type": "adapted",
+    "summary": "Decide whether a version or engine change is safe to adopt, in what order, and with what rollback: Terraform core and provider major upgrades, deprecation exposure, and the Terraform-versus-OpenTofu engine decision treated as an evidence problem rather than an ideological one. Reads version constraints, lock files, deprecation notices, and release documentation only.",
+    "source_type": "original",
     "official_docs": [
-      "https://developer.hashicorp.com/terraform/docs",
-      "https://developer.hashicorp.com/terraform/language",
-      "https://developer.hashicorp.com/terraform/cli/commands/plan",
-      "https://developer.hashicorp.com/terraform/cli/commands/apply",
-      "https://registry.terraform.io/providers/hashicorp/aws/latest/docs",
-      "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs",
-      "https://registry.terraform.io/providers/oracle/oci/latest/docs"
+      "https://developer.hashicorp.com/terraform/language/upgrade-guides",
+      "https://developer.hashicorp.com/terraform/language/v1-compatibility-promises",
+      "https://developer.hashicorp.com/terraform/language/files/dependency-lock",
+      "https://opentofu.org/docs/intro/migration/",
+      "https://opentofu.org/docs/intro/",
+      "https://opentofu.org/docs/intro/migration/multiple-configurations",
+      "https://developer.hashicorp.com/terraform/plugin/terraform-plugin-protocol"
     ],
-    "security_notes": "Live-guard gate is non-negotiable: never auto-dispatch live apply, destroy, or stack mutation agents without explicit human confirmation, blast-radius assessment, and rollback path. Terraform destroy is irreversible without state backup.",
-    "last_verified": "2026-04-30",
+    "security_notes": "Static review only — reads version constraints, `.terraform.lock.hcl`, provider deprecation notices, changelog and upgrade-guide excerpts, and configuration; never runs `init`, `init -upgrade`, `plan`, or `apply`, and never contacts a registry. Never requests or accepts credentials, tokens, or licence keys. Version-specific behaviour is asserted only from the relevant engine's own upgrade guidance for the exact version pair in question; a claim about a version whose guidance was not read is labelled unknown rather than inferred from an adjacent version.",
+    "last_verified": "2026-08-17",
+    "path": "skills/terraform/terraform-engine-compatibility",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "terraform-estate-reconciliation",
+    "name": "terraform-estate-reconciliation",
+    "type": "skill",
+    "provider": "terraform",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Make the record match reality without destroying anything: classify drift and decide whether to adopt, revert, or accept it; bring unmanaged brownfield infrastructure under management via import blocks; and carry resource address changes with `moved` and `removed` blocks so a refactor is not read as a destroy. Reads plans, source, and sanitized inventories only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.hashicorp.com/terraform/language/import",
+      "https://developer.hashicorp.com/terraform/language/moved",
+      "https://developer.hashicorp.com/terraform/cli/commands/plan",
+      "https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle",
+      "https://opentofu.org/docs/language/import/"
+    ],
+    "security_notes": "Advisory and read-only — reads plans (preferably `-refresh-only` and `-json`), Terraform/OpenTofu source, import blocks, and sanitized resource inventories; never runs `import`, `plan`, `apply`, `state mv`, or `state rm`, and never contacts a cloud API to enumerate resources. Never requests or accepts cloud credentials, tokens, unredacted state, account/subscription/tenant identifiers, or customer data. Resource inventories must arrive with identifiers redacted where they encode account or tenant structure. A claim about what exists in the live estate that is not visible in the supplied artifacts is labelled assumption, never confirmed.",
+    "last_verified": "2026-08-17",
+    "path": "skills/terraform/terraform-estate-reconciliation",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "terraform-execution-governance",
+    "name": "terraform-execution-governance",
+    "type": "skill",
+    "provider": "terraform",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Decide whether the path that executes a Terraform or OpenTofu change is trustworthy: which identity the runner assumes and how widely it is scoped, whether the reviewed plan is the plan that applies, how plan artifacts move between stages, and whether approval is a real gate or a formality. Reads pipeline definitions and runner configuration only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.hashicorp.com/terraform/cli/commands/apply",
+      "https://developer.hashicorp.com/terraform/cli/commands/plan",
+      "https://developer.hashicorp.com/terraform/cloud-docs/workspaces/dynamic-provider-credentials",
+      "https://developer.hashicorp.com/terraform/cloud-docs/run/remote-operations",
+      "https://developer.hashicorp.com/terraform/cli/config/config-file"
+    ],
+    "security_notes": "Static review only — reads pipeline definitions, runner and workspace configuration, and sanitized role or trust-policy documents; never triggers a pipeline, runs `plan` or `apply`, or contacts a CI system, and never modifies a workflow. Never requests or accepts credentials, provider tokens, OIDC client secrets, private keys, unredacted state, saved plan binaries, or account/subscription/tenant identifiers — trust policies and role documents must arrive with identifiers redacted. A claim about what a runner is actually permitted to do that is not visible in the supplied configuration is labelled assumption, never confirmed.",
+    "last_verified": "2026-08-17",
+    "path": "skills/terraform/terraform-execution-governance",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "terraform-maestro",
+    "name": "terraform-maestro",
+    "type": "skill",
+    "provider": "terraform",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Classify a Terraform or OpenTofu task and route it to the narrowest advisory specialist on the IaC board, dispatching up to four in parallel only when the change genuinely spans that many domains. Never answers an IaC question itself, never executes a live operation, and never auto-dispatches a live-guard agent.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.hashicorp.com/terraform/cli/commands/plan",
+      "https://opentofu.org/docs/cli/commands/"
+    ],
+    "security_notes": "Routing only. Never requests or relays cloud credentials, provider tokens, private keys, unredacted state, or account/subscription/tenant identifiers. Never executes apply, destroy, import, state mutation, or force-unlock, and never auto-dispatches a live-guard agent — every live path stops for written human confirmation with blast radius and rollback stated first.",
+    "last_verified": "2026-08-17",
     "path": "skills/terraform/terraform-maestro",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.0"
+  },
+  {
+    "id": "terraform-module-contract",
+    "name": "terraform-module-contract",
+    "type": "skill",
+    "provider": "terraform",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review a Terraform or OpenTofu module as a reusable contract rather than as code: input surface and validation, output stability, versioning and breaking changes, composition boundaries, and whether a proposed one-off module should exist at all when a platform module already covers it. Reads source and sanitized variable files only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.hashicorp.com/terraform/language/modules/develop",
+      "https://developer.hashicorp.com/terraform/language/values/variables",
+      "https://developer.hashicorp.com/terraform/language/checks",
+      "https://opentofu.org/docs/language/functions/"
+    ],
+    "security_notes": "Static review only — reads Terraform/OpenTofu source, module READMEs, and sanitized variable files; never runs `init`, `plan`, `apply`, or any state operation, never contacts a registry or live system, and never requests secrets, credentials, tokens, or customer data. A claim about the engine version, provider versions, or how a module behaves at apply time that is not visible in the supplied artifacts is labelled assumption, never confirmed.",
+    "last_verified": "2026-08-17",
+    "path": "skills/terraform/terraform-module-contract",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "terraform-plan-blast-radius",
+    "name": "terraform-plan-blast-radius",
+    "type": "skill",
+    "provider": "terraform",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Read a Terraform or OpenTofu plan and answer why the engine decided to replace or destroy anything, what the ordering means for availability, and whether the plan under review is the plan that will actually be applied. Engine-level plan mechanics across every cloud; reads plan output, source, and sanitized variable files only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.hashicorp.com/terraform/cli/commands/plan",
+      "https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle",
+      "https://developer.hashicorp.com/terraform/language/resources/syntax",
+      "https://developer.hashicorp.com/terraform/cli/commands/apply",
+      "https://opentofu.org/docs/cli/commands/"
+    ],
+    "security_notes": "Static review only — reads plan output (preferably `-json`), Terraform/OpenTofu source, and sanitized variable files; never runs `plan`, `apply`, `destroy`, or any state operation and never contacts a live system. Saved plan files record sensitive values in cleartext, so this agent asks for redacted plan JSON and refuses raw plan binaries. Never requests or accepts cloud credentials, tokens, unredacted state, or account identifiers. A claim about what exists in the live account that is not visible in the supplied plan is labelled assumption, never confirmed.",
+    "last_verified": "2026-08-17",
+    "path": "skills/terraform/terraform-plan-blast-radius",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "terraform-policy-evidence",
+    "name": "terraform-policy-evidence",
+    "type": "skill",
+    "provider": "terraform",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Turn a Terraform or OpenTofu change into an auditable control decision: which control the change touches, whether the policy that enforces it evaluates the plan or only the source, whether an exception is scoped and expiring, and what evidence artifact an auditor could actually read. Reads plans, policy code, and control mappings only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.hashicorp.com/terraform/cloud-docs/policy-enforcement",
+      "https://developer.hashicorp.com/terraform/cloud-docs/policy-enforcement/opa",
+      "https://developer.hashicorp.com/terraform/cloud-docs/policy-enforcement/sentinel",
+      "https://developer.hashicorp.com/terraform/language/checks",
+      "https://developer.hashicorp.com/terraform/cli/commands/plan",
+      "https://developer.hashicorp.com/terraform/cloud-docs/policy-enforcement/manage-policy-sets"
+    ],
+    "security_notes": "Advisory and read-only — reads plan output (preferably redacted `-json`), policy source, control mappings, and exception records; never runs policy engines, `plan`, or `apply`, never grants or records an exception itself, and never contacts a live system. Never requests or accepts credentials, tokens, unredacted state, audit-system write access, account/subscription/tenant identifiers, or customer data. Produces evidence for a human control owner to sign; it never signs, approves, or attests on their behalf, and a compliance conclusion not supported by a supplied artifact is labelled assumption, never confirmed.",
+    "last_verified": "2026-08-17",
+    "path": "skills/terraform/terraform-policy-evidence",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "terraform-state-reliability",
+    "name": "terraform-state-reliability",
+    "type": "skill",
+    "provider": "terraform",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Own the state file as a production asset: backend and locking configuration, backup and recovery posture, whether a proposed state surgery is justified and reversible, engine-specific state encryption, and the secrets that state records in the clear. Reads backend blocks, state metadata, and sanitized artifacts only — never mutates state.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.hashicorp.com/terraform/language/state",
+      "https://developer.hashicorp.com/terraform/language/state/locking",
+      "https://developer.hashicorp.com/terraform/language/backend/s3",
+      "https://developer.hashicorp.com/terraform/cli/commands/state",
+      "https://developer.hashicorp.com/terraform/cli/commands/force-unlock",
+      "https://developer.hashicorp.com/terraform/language/state/sensitive-data",
+      "https://opentofu.org/docs/language/state/encryption/",
+      "https://developer.hashicorp.com/terraform/language/state/remote-state-data"
+    ],
+    "security_notes": "Advisory and read-only — reads `backend` and `cloud` blocks, state metadata, lock configuration, and sanitized artifacts; never runs `state mv`, `state rm`, `state push`, `import`, `taint`, or `force-unlock`, and never contacts a live backend. State records values in the clear even when the configuration marks them sensitive, so this agent never requests a raw state file: it asks for the backend block and `terraform state list` output instead. Never requests or accepts cloud credentials, tokens, encryption keys or passphrases, account identifiers, or customer data. A claim about the live backend, lock table, or bucket configuration not visible in the supplied artifacts is labelled assumption, never confirmed.",
+    "last_verified": "2026-08-17",
+    "path": "skills/terraform/terraform-state-reliability",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "terraform-supply-chain-integrity",
+    "name": "terraform-supply-chain-integrity",
+    "type": "skill",
+    "provider": "terraform",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Decide whether a Terraform or OpenTofu dependency may be trusted and whether the trust is actually enforced: provider source addresses and registry namespaces, `.terraform.lock.hcl` hash coverage across platforms, mirrors and network-restricted installation, and module source provenance. Reads dependency declarations, lock files, and CLI configuration only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.hashicorp.com/terraform/language/files/dependency-lock",
+      "https://developer.hashicorp.com/terraform/cli/commands/providers/lock",
+      "https://developer.hashicorp.com/terraform/language/providers/requirements",
+      "https://developer.hashicorp.com/terraform/cli/config/config-file",
+      "https://developer.hashicorp.com/terraform/internals/provider-registry-protocol",
+      "https://opentofu.org/docs/language/providers/requirements/"
+    ],
+    "security_notes": "Static review only — reads `required_providers` blocks, module `source` addresses, `.terraform.lock.hcl`, and CLI configuration files; never runs `init`, `providers lock`, or any command that contacts a registry or mirror, and never downloads a provider. Never requests or accepts registry tokens, signing keys, credentials, or private registry URLs containing embedded secrets. A claim about what a registry currently serves, or about a checksum not present in the supplied lock file, is labelled assumption, never confirmed.",
+    "last_verified": "2026-08-17",
+    "path": "skills/terraform/terraform-supply-chain-integrity",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "terraform-verification-strategy",
+    "name": "terraform-verification-strategy",
+    "type": "skill",
+    "provider": "terraform",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Choose and sequence verification for a Terraform or OpenTofu change: what `validate`, a plan, `terraform test` with `command = plan`, mock providers, and a real-infrastructure test run each actually prove, and which of them is proportionate to the change's blast radius. Reusable procedure with no independent decision right — the owning agent issues the verdict.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.hashicorp.com/terraform/language/tests",
+      "https://developer.hashicorp.com/terraform/cli/commands/plan",
+      "https://developer.hashicorp.com/terraform/language/checks",
+      "https://opentofu.org/docs/cli/commands/"
+    ],
+    "security_notes": "Procedure only — reads test files, module source, and plan output; never runs `validate`, `plan`, `test`, or `apply`, and never provisions infrastructure. Apply-mode tests create real infrastructure and are therefore recommended only against an isolated non-production account with its own credentials, never against an account holding production resources. Never requests or accepts credentials, tokens, unredacted state, or customer data.",
+    "last_verified": "2026-08-17",
+    "path": "skills/terraform/terraform-verification-strategy",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
   },
   {
     "id": "test-coverage-quality-review",
@@ -20268,13 +20660,20 @@
     "official_docs": [
       "https://www.oecd.org/en/topics/sub-issues/transfer-pricing.html",
       "https://www.oecd.org/tax/beps/beps-actions/action13/",
-      "https://www.oecd.org/tax/beps/global-anti-base-erosion-model-rules-pillar-two.htm"
+      "https://www.oecd.org/tax/beps/global-anti-base-erosion-model-rules-pillar-two.htm",
+      "https://www.oecd.org/en/topics/pillar-two.html",
+      "https://www.irs.gov/businesses/international-businesses/transfer-pricing",
+      "https://www.irs.gov/businesses/corporations/gilti-and-fdii",
+      "https://www.hmrc.gov.uk/manuals/intm/intm440000.htm",
+      "https://www.bundesfinanzministerium.de/en/",
+      "https://www.icai.org/post/indian-accounting-standards"
     ],
     "security_notes": "Advisory framework only — not tax advice and not a formal transfer pricing study. Never accepts entity-specific transaction data, actual TP documentation (master file/local file), CbCR data, deal-specific confidential terms, customer/counterparty identifiers, or any MNPI. All conclusions require verification with qualified international tax counsel and external advisors. Does not constitute a formal APA submission or competent authority position.",
     "last_verified": "2026-06-02",
     "path": "skills/finance/transfer-pricing-pillar-two-advisor",
     "author": "github: VincentChuWaiChow",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "lifecycle": "experimental"
   },
   {
     "id": "treasury-liquidity-advisor",
@@ -20289,7 +20688,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Multi-jurisdiction corporate treasury reference framework: cash pooling structures and country restrictions (China SAFE, India FEMA, Brazil IOF, Argentina BCRA), Basel III LCR/NSFR, hedge accounting qualification (ASC 815/IFRS 9), FX translation (ASC 830/IAS 21), cash repatriation, Dodd-Frank/EMIR derivatives reporting. Advisory only.",
+    "summary": "Multi-jurisdiction reference framework for corporate treasury operations, cash and liquidity management, FX and currency risk, hedge accounting qualification (ASC 815 / IFRS 9), FX translation (ASC 830 / IAS 21), Basel III LCR/NSFR, Dodd-Frank and EMIR derivatives reporting, and country-specific cash repatriation and capital control regimes (China SAFE, India FEMA, Brazil IOF, Argentina BCRA).",
     "source_type": "original",
     "category": "finance",
     "execution_tier": "read-only-runtime",
@@ -20303,14 +20702,18 @@
       "https://www.bis.org/publ/bcbs238.pdf",
       "https://www.bis.org/bcbs/publ/d295.htm",
       "https://www.ifrs.org/issued-standards/list-of-standards/ifrs-9-financial-instruments/",
+      "https://www.ifrs.org/issued-standards/list-of-standards/ias-21-the-effects-of-changes-in-foreign-exchange-rates/",
+      "https://www.ifrs.org/issued-standards/list-of-standards/ias-39-financial-instruments-recognition-and-measurement/",
       "https://www.cftc.gov/LawRegulation/DoddFrankAct/index.htm",
-      "https://www.esma.europa.eu/data-reporting/emir-reporting"
+      "https://www.esma.europa.eu/data-reporting/emir-reporting",
+      "https://storage.fasb.org/ASU%202017-12.pdf"
     ],
-    "security_notes": "Advisory only — never executes financial transactions or writes to any system of record. Never accepts bank account numbers, SWIFT credentials, or payment instructions.",
+    "security_notes": "Advisory only — never executes, simulates, or proposes financial transactions, hedges, or payment instructions. Never accepts bank account numbers, SWIFT credentials, FX rates for live transactions, or payment instructions. Capital control and regulatory requirements change frequently — always recommend verification with local legal counsel.",
     "last_verified": "2026-06-01",
     "path": "skills/finance/treasury-liquidity-advisor",
     "author": "github: VincentChuWaiChow",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "lifecycle": "experimental"
   },
   {
     "id": "tree-shaking-dead-code-review",
@@ -20738,7 +21141,7 @@
   },
   {
     "id": "variance-analysis-advisor",
-    "name": "Variance Analysis Advisor",
+    "name": "Variance Analysis Advisor Skill",
     "type": "skill",
     "provider": "finance",
     "harnesses": [
@@ -20770,7 +21173,8 @@
     "version": "0.1.0",
     "companion_agents": [
       "finance-variance-analysis-advisor-agent"
-    ]
+    ],
+    "lifecycle": "experimental"
   },
   {
     "id": "velero-backup-restore-guard",
@@ -20997,12 +21401,12 @@
   },
   {
     "id": "working-capital-advisor",
-    "name": "Finance Working Capital Advisor",
+    "name": "Working Capital Advisor",
     "provider": "finance",
     "category": "finance",
     "execution_tier": "read-only-runtime",
     "lifecycle": "experimental",
-    "summary": "CCC, DSO/DPO/DIO, AR/AP, inventory, 13-week cash forecasting, SCF, ABL, ASC 860/IFRS 9. US GAAP/IFRS/APAC.",
+    "summary": "Multi-jurisdiction reference framework for working capital management — cash conversion cycle (CCC) optimization, accounts receivable management (collections, credit policy, aging analysis framework, factoring, invoice discounting, AR securitization, ASC 860 / IFRS 9 SPPI derecognition), accounts payable optimization (payment term extension, dynamic discounting, supply chain finance / reverse factoring, IAS 7.44A / ASU 2022-04 classification), inventory management (EOQ, JIT, safety stock, ABC analysis, IAS 2 vs. ASC 330), 13-week rolling cash forecasting (IAS 7 / ASC 230), and working capital financing (ABL, receivables financing, SCF platforms, trade finance). Covers US GAAP, IFRS, and APAC jurisdictions.",
     "path": "skills/finance/working-capital-advisor",
     "type": "skill",
     "source_type": "original",
@@ -21017,9 +21421,19 @@
       "kiro"
     ],
     "official_docs": [
-      "https://asc.fasb.org/",
-      "https://www.ifrs.org/"
+      "https://www.ifrs.org/issued-standards/list-of-standards/ias-7-statement-of-cash-flows/",
+      "https://www.ifrs.org/issued-standards/list-of-standards/ifrs-9-financial-instruments/",
+      "https://www.ifrs.org/issued-standards/list-of-standards/ias-2-inventories/",
+      "https://www.ifrs.org/issued-standards/list-of-standards/ifrs-10-consolidated-financial-statements/",
+      "https://www.iasb.org/news-and-events/news/2023/january/iasb-amends-ias-7-and-ifrs-7-supplier-finance-arrangements/",
+      "https://asc.fasb.org/860",
+      "https://asc.fasb.org/330",
+      "https://asc.fasb.org/230",
+      "https://asc.fasb.org/326",
+      "https://storage.fasb.org/ASU%202022-04.pdf",
+      "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32011L0007"
     ],
-    "security_notes": "Advisory only. Never accepts customer-identifying AR data or payment instructions."
+    "security_notes": "Advisory only — never writes to ERP, AR, AP, or any system of record. Never accepts customer-identifying AR aging details (invoice-level or debtor-identifying), supplier payment terms with confidential figures, actual bank account numbers or treasury system credentials, or ERP transaction exports. Working capital financing and receivables derecognition eligibility involve fact-specific legal and accounting judgments — verify with qualified external auditors and legal counsel. Does not form a financial-advisor, investment-advisor, or lender relationship.",
+    "author": "github: VincentChuWaiChow"
   }
 ]

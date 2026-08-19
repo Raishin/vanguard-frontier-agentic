@@ -61,6 +61,6 @@ pub use rule::{Rule, RuleType};
 #[allow(unused_imports)]
 pub use skill::{Skill, SkillType};
 #[allow(unused_imports)]
-pub use workflow::{WorkflowDef, WorkflowPhase};
+pub use workflow::{Workflow, WorkflowCatalog, WorkflowPhase};
 #[allow(unused_imports)]
 pub use workspace::{ResolvedWorkspace, WorkspaceEntry, WorkspaceStatus};

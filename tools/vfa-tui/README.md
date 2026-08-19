@@ -141,7 +141,11 @@ Every value entered here is validated against the verified model registry (`cata
 
 ## Workflows
 
-The TUI discovers executable workflows under `.claude/workflows/` and surfaces their name, description, and execution phases for read-only browsing. Each workflow's metadata is extracted from the `export const meta = { ... }` block at the top of its JavaScript file. Discovery is read-only by design — the TUI parses and displays workflow information but never executes them. Running a workflow is the harness's job and remains separate from the TUI's catalog browsing functions, consistent with the read-first principle in the Architecture section.
+The **Workflows** entry in the sidebar lists the executable workflows in `.claude/workflows/` — each one's name, invocation, description, when-to-use guidance, and per-phase model tiers — with a detail view per workflow.
+
+The TUI does not parse those JavaScript files. `scripts/generate-workflow-catalog.mjs` extracts each script's `meta` block into `catalog/workflows.json` (`npm run workflow-catalog:write`, checked in CI by `npm run validate:workflow-catalog`), and the TUI deserializes that generated file like every other catalog surface. This is the read-first principle from the Architecture section: parsing and validation live in the Node generator; the TUI displays.
+
+Display is read-only. The TUI never runs a workflow — that remains the harness's job.
 
 ## Supported Platforms
 

@@ -81,12 +81,27 @@ def evaluate(task: str, taxonomy: dict) -> dict:
     if live_guard_intent and re.search(live_guard_intent, task, re.IGNORECASE):
         # Identify which live-guard the task matches by keyword overlap.
         live_guards = taxonomy.get("live_guards", [])
+        # Optional explicit mutation-to-guard signals. Scoring the tokens of an
+        # agent id is a weak proxy: two guards that both own a kind of "policy"
+        # tie on that single shared token, and the tie breaks alphabetically —
+        # which silently hands an approved mutation to a guard that does not own
+        # it. A taxonomy may therefore declare the phrases that identify each
+        # guard's mutation. Absent the key, behaviour is unchanged.
+        guard_keywords = taxonomy.get("live_guard_keywords", {})
         if live_guards:
             scored = []
             for agent_id in live_guards:
+                explicit = guard_keywords.get(agent_id, [])
+                if explicit:
+                    # Explicit signals outrank id tokens: a guard whose declared
+                    # mutation phrase appears in the task wins outright, so the
+                    # shared-token tie never decides ownership.
+                    score = _score_domain(task, explicit) * 10
+                else:
+                    score = 0
                 # Score the agent id tokens against the task.
                 tokens = re.split(r"[-_]", agent_id.replace("agent", "").strip("-"))
-                score = sum(1 for t in tokens if t and re.search(rf"\b{re.escape(t)}\b", task.lower()))
+                score += sum(1 for t in tokens if t and re.search(rf"\b{re.escape(t)}\b", task.lower()))
                 scored.append((agent_id, score))
             scored.sort(key=lambda kv: (-kv[1], kv[0]))
             if scored[0][1] > 0:

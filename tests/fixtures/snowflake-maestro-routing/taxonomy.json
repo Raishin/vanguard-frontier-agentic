@@ -399,9 +399,72 @@
     "snowflake-live-warehouse-cost-change-guard-agent",
     "snowflake-live-data-protection-policy-guard-agent",
     "snowflake-live-pipeline-streaming-change-guard-agent",
-    "snowflake-live-failover-promotion-guard-agent",
-    "snowflake-live-rbac-grant-guard-at-azure-agent"
+    "snowflake-live-failover-promotion-guard-agent"
   ],
   "live_guard_intent": "\\b(execute|apply|run) (the )?(grant|revoke|statement)\\b|\\bpromote (the )?failover\\b|\\bfail over (now|immediately)\\b|\\bapproved[,:]? (now )?(execute|apply|promote|attach|detach)\\b|\\b(attach|detach) the (masking|row access) policy now\\b",
-  "parallel_threshold": 0.6
+  "parallel_threshold": 0.6,
+  "live_guard_keywords": {
+    "snowflake-live-rbac-grant-guard-agent": [
+      "grant",
+      "revoke",
+      "grant the privilege",
+      "revoke the privilege",
+      "privilege to the role",
+      "grant usage",
+      "grant select",
+      "grant ownership"
+    ],
+    "snowflake-live-auth-network-policy-guard-agent": [
+      "network policy",
+      "authentication policy",
+      "auth policy",
+      "network rule",
+      "allowed ip",
+      "blocked ip",
+      "ip allowlist",
+      "mfa enforcement",
+      "password policy"
+    ],
+    "snowflake-live-warehouse-cost-change-guard-agent": [
+      "warehouse",
+      "resource monitor",
+      "budget",
+      "warehouse size",
+      "auto suspend",
+      "auto-suspend",
+      "statement timeout",
+      "credit quota"
+    ],
+    "snowflake-live-data-protection-policy-guard-agent": [
+      "masking policy",
+      "row access policy",
+      "row-access policy",
+      "projection policy",
+      "aggregation policy",
+      "attach the masking",
+      "detach the masking",
+      "unset masking",
+      "set masking policy",
+      "column-level masking"
+    ],
+    "snowflake-live-pipeline-streaming-change-guard-agent": [
+      "task",
+      "stream",
+      "dynamic table",
+      "pipe",
+      "snowpipe",
+      "resume the task",
+      "suspend the task",
+      "alter task",
+      "refresh the dynamic table"
+    ],
+    "snowflake-live-failover-promotion-guard-agent": [
+      "failover",
+      "failover group",
+      "promote",
+      "promotion",
+      "failback",
+      "secondary to primary"
+    ]
+  }
 }

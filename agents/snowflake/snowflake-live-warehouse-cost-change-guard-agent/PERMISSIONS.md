@@ -8,7 +8,7 @@
 
 | Component | Requirement |
 |---|---|
-| Identity type | Narrowly scoped **custom** Snowflake role. `ACCOUNTADMIN` is forbidden without exception. `SECURITYADMIN` and `SYSADMIN` are forbidden unless technically unavoidable, in which case the reason is written into this file before first run. |
+| Identity type | Narrowly scoped **custom** Snowflake role. `ACCOUNTADMIN`, `SECURITYADMIN`, and `SYSADMIN` are hard stops: forbidden without exception, and no written justification, approval token, or incident makes them permissible. If the mutation seems to need one, the target lacks a purpose-built owning role — create and grant that role instead of widening this one. |
 | User type | `TYPE = SERVICE` (or `SERVICE_AGENT` where the executor is an automated agent identity). Never `TYPE = PERSON`, never `LEGACY_SERVICE`. |
 | Authentication | Key-pair, workload identity federation, or OAuth. Password authentication for a non-human identity is forbidden — and is being removed by Snowflake's strong-authentication rollout regardless. |
 | Scope | Bounded to the single target named in the approval token: ONE warehouse, monitor, or budget · ONE setting · ONE statement per invocation. |

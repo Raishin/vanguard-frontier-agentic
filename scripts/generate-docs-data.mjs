@@ -22,6 +22,14 @@ const mcpRefs = JSON.parse(readFileSync(join(root, 'catalog/mcp-references.json'
 const rules = JSON.parse(readFileSync(join(root, 'catalog/rules.json'), 'utf8'));
 const roles = JSON.parse(readFileSync(join(root, 'catalog/install-roles.json'), 'utf8'));
 const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
+// Workflow catalog is additive: a checkout without any workflow reports zero rather
+// than failing the docs build, matching how the TUI loader treats a missing file.
+let workflows = [];
+try {
+  workflows = JSON.parse(readFileSync(join(root, 'catalog/workflows.json'), 'utf8')).workflows || [];
+} catch {
+  workflows = [];
+}
 
 // Compute counts
 const providers = [...new Set(agents.map(a => a.provider))].sort();
@@ -80,6 +88,7 @@ skills: ${skills.length}
 providers: ${providers.length}
 mcp_references: ${mcpRefs.length}
 rules: ${rules.length}
+workflows: ${workflows.length}
 install_roles: ${roleIds.length}
 validation_gates: ${validateScripts.length}
 agent_directories: ${agentDirs.length}
@@ -94,6 +103,10 @@ ${providers.map(p => `  - "${p}"`).join('\n')}
 # Provider taxonomy (grouped by category with agent counts)
 provider_taxonomy:
 ${taxonomyYaml}
+
+# Workflow list (delegation workflows in .claude/workflows/)
+workflow_list:
+${workflows.length ? workflows.map(w => `  - name: "${w.name}"\n    phases: ${(w.phases || []).length}`).join('\n') : '  []'}
 
 # Role list
 role_list:

@@ -104,7 +104,7 @@ evidence.
 Standing permission posture, stated in each guard's `PERMISSIONS.md`:
 
 - `ACCOUNTADMIN` — **forbidden without exception.**
-- `SECURITYADMIN` / `SYSADMIN` — forbidden unless technically unavoidable and justified in writing
+- `SECURITYADMIN` / `SYSADMIN` — hard stops, forbidden without exception. No approval token, written justification, or incident unlocks them; a mutation that appears to need one means the target lacks a purpose-built owning role
   before first run.
 - Executor identity — `TYPE = SERVICE` (or `SERVICE_AGENT`), authenticating by key-pair or workload
   identity federation. Password authentication for a non-human identity is a hard stop.

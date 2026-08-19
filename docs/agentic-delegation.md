@@ -55,90 +55,46 @@ and `cargo test` when `tools/vfa-tui/` changed. A passing gate is *necessary*, n
 
 ## The executable workflow
 
-`.claude/workflows/agentic-delegation.js` runs the model as four phases. Every field of its
-input is optional, so a task supplies only the phases it needs.
+`.claude/workflows/agentic-delegation.js` is the same doctrine as a runnable workflow: the
+skill states the split, the workflow enforces it. It runs seven phases, and each phase names
+the model tier it runs at — the tier is the point, not an implementation detail.
 
-```js
-{
-  objective: 'one line stating what the change is for',
-  recon:  [{ question, where }],                       // Haiku Explore, parallel
-  claims: [{ id, claim, libraryId, encodedAt }],       // Context7 verify, then refute
-  specs:  [{ label, files, spec, conventions, acceptance }],  // Sonnet write, then review
-  runGates: true,                                      // Haiku gate run
-}
-```
+| Phase | Tier | Why that tier |
+|---|---|---|
+| Resolve sources | Haiku | Mechanical Context7 lookup, no judgment |
+| Recon | Haiku | Read-only, one narrow question per agent, citations mandatory |
+| Spec | Session model, no override | Architecture never delegates downward |
+| Implement | Sonnet | Bulk writing against an exact file-scoped spec |
+| Regenerate | Haiku | Settles generated output before anything verifies it |
+| Verify | Sonnet | Adversarial, so it cannot be the cheapest tier |
+| Gate | Haiku | Runs commands and reports raw output verbatim |
 
-### Phase 1 — Recon
+Two design choices carry most of the weight.
 
-Parallel Haiku `Explore` sweeps, one narrow question each. Findings are returned under a
-schema that **requires** a repo-relative path and a line number, so an uncitable finding
-cannot be reported. Each sweep also returns a `gaps` list — what it could not establish —
-because an empty gaps array is a claim that the agent looked, and silence is not.
+**Context7 IDs resolve once, centrally.** Resolution is capped per question, so a fleet of
+delegates each resolving the same library independently spends its budget learning the same
+identifier repeatedly. The first phase resolves once and injects the IDs downstream, turning a
+per-agent cost into a fixed one. A fact that grounds in neither a resolved library nor fetched
+vendor documentation is left out — the workflow fails closed.
 
-This phase uses a barrier: the implementation spec is written against the union of what recon
-found, so nothing downstream should start on a partial map.
+**Verification re-reads the files.** The verify agent is a different agent, told that the
+implementer's report is a claim rather than evidence, and it checks both external facts and
+internal fidelity — a document describing a script is checked against the script. Its verdicts
+are `CONFIRMED` / `CONTRADICTED` / `UNVERIFIABLE`; a claim true in spirit but wrong in detail is
+`CONTRADICTED`, which is where most real defects live.
 
-### Phase 2 — Verify
+Implementation and verification run as a pipeline rather than a barrier, so one spec can be
+under verification while another is still being written. The one real barrier is between recon
+and spec, and it belongs there: the spec phase splits file scope across delegates and cannot do
+that from a partial map.
 
-For each external claim, one Context7 retrieval against a primary source, then an
-**adversarial refuter** on anything that came back clean. The refuter exists because a
-verifier asked "is this right?" agrees far too easily; it is instructed to hunt for adjacent
-documentation the first pass missed — a timeline, an exception, a superseding recommendation,
-an edition or version gate.
+Full phase-by-phase description, including the input contract:
+[`docs/agentic-delegation-workflow.md`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/blob/master/docs/agentic-delegation-workflow.md).
 
-The verdict vocabulary is deliberately four-valued:
-
-| Verdict | Means |
-|---|---|
-| `AGREE` | Documentation supports the claim, and the supporting snippet is quoted |
-| `PARTIAL` | Literally true, but omits documented material that would change a reader's decision |
-| `DISAGREE` | Documentation contradicts the claim as encoded |
-| `UNVERIFIABLE` | Retrieval could not settle it — including an `AGREE` with no quoted evidence, which is downgraded |
-
-`PARTIAL` earns its place: the most expensive documentation defect is usually not a false
-statement but a true one that leaves out the part a reader needed.
-
-This phase is pipelined — each claim refutes as soon as its own retrieval lands, so a slow
-claim never blocks a fast one.
-
-### Phase 3 — Implement
-
-Sonnet writes against a file-scoped spec, then a reviewer reads the result. The reviewer is
-told explicitly that the writer's self-report is not evidence, and checks three things: does
-the content satisfy the spec, did it touch **only** the allowed files (confirmed with
-`git status --short`), and does it mirror the conventions of neighbouring files.
-
-Every writing delegate is hard-constrained on the files it may touch, and no delegate in any
-phase may run a git write command — the orchestrator owns the commit.
-
-### Phase 4 — Gates
-
-One Haiku pass over the repo suite in dependency order, stopping at the first failure and
-returning **raw failing output verbatim** rather than a paraphrase. A stale-manifest or
-model-policy failure is a regeneration decision that belongs to the orchestrator, so the gate
-stage reports it rather than fixing it.
-
-This is the only stage permitted to write a file — `catalog/asset-integrity.json`, via
-`npm run asset-integrity:write`, and only after every other gate is green. Regenerating
-integrity before the other generators settle stales the manifest; see the ordering caveat in
-[`CLAUDE.md`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/blob/master/CLAUDE.md).
-
----
-
-## Design properties
-
-**Deterministic.** The script never reads the wall clock and never uses randomness. Behaviour
-changes only when the committed script or the passed arguments change, so a run is
-reproducible and CI cannot change colour without a commit.
-
-**Capped, and never silently.** An agent budget holds the worst case at 14 subagents, in line
-with this repository's workflow-size guideline. Every truncation is logged — a work-list that
-was cut says so, because silent truncation reads as "covered everything" when it did not.
-
-**Separated output.** The workflow returns a decision surface rather than a narrative:
-everything requiring the orchestrator's attention is separated from everything that merely
-passed, and the return value states in plain terms what the orchestrator still owns. A green
-workflow is not a finished change.
+The TUI lists these workflows too. `catalog/workflows.json` is generated from each script's
+`meta` block by `scripts/generate-workflow-catalog.mjs` and validated by
+`npm run validate:workflow-catalog`; `vfa-tui` reads that generated file, exactly like every
+other catalog surface, and never parses JavaScript itself.
 
 ---
 

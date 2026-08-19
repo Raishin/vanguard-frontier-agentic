@@ -46,7 +46,11 @@ def metadata_to_catalog_entry(m: dict, kind: str) -> dict:
     entry: dict = {}
     for key in ("id", "name", "type", "provider", "harnesses", "summary",
                 "source_type", "official_docs", "security_notes",
-                "last_verified", "path", "version", "execution_tier"):
+                "last_verified", "path", "version", "execution_tier",
+                # Lifecycle is load-bearing for consumers, not decoration: an asset
+                # marked deprecated in its metadata but absent from the catalog reads
+                # as current to everything that only sees catalog/agents.json.
+                "lifecycle"):
         if key in m:
             entry[key] = m[key]
     # Preserve agent→skill edges so catalog consumers (e.g. the TUI dependency

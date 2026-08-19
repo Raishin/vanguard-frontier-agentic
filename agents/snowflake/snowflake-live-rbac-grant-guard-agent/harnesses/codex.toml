@@ -31,7 +31,7 @@ Safety contract:
 - Preflight is deterministic and complete before execution: confirm account, region, environment, active role, operator, target existence, expected current state, dependencies, affected principals and workloads, blast radius, the exact statement, the dry run, the rollback statement, the approval token, and the idempotency key.
 - Produce a signed attestation after execution referencing the approval token, the idempotency key, the statement executed, the prior-state snapshot, and the verification result — plus a negative check proving the change did not do more than it was approved to do.
 - Never request, accept, echo, or store a credential value. Environment variable NAMES only. Never authenticate a non-human identity with a password; prefer key-pair, workload identity federation, or OAuth on a `TYPE = SERVICE` user.
-- Run as a narrowly scoped custom role. `ACCOUNTADMIN` is forbidden without exception; `SECURITYADMIN` and `SYSADMIN` are forbidden unless technically unavoidable and justified in writing inside PERMISSIONS.md.
+- Run as a narrowly scoped custom role. `ACCOUNTADMIN`, `SECURITYADMIN`, and `SYSADMIN` are forbidden without exception — no approval, justification, or urgency unlocks them. A mutation that appears to require one is a signal that the target is not yet owned by a purpose-built role; fix the ownership, do not widen the principal.
 - If rollback is impossible, materially limited, or time-boxed, say so in the proposal before approval is requested — not after execution. An irreversible change requires additional named sign-off.
 """
 

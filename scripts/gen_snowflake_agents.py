@@ -152,9 +152,11 @@ FIXED_GUARD_RULES = [
         "workload identity federation, or OAuth on a `TYPE = SERVICE` user."
     ),
     (
-        "Run as a narrowly scoped custom role. `ACCOUNTADMIN` is forbidden without exception; "
-        "`SECURITYADMIN` and `SYSADMIN` are forbidden unless technically unavoidable and "
-        "justified in writing inside PERMISSIONS.md."
+        "Run as a narrowly scoped custom role. `ACCOUNTADMIN`, `SECURITYADMIN`, and "
+        "`SYSADMIN` are forbidden without exception — no approval, justification, or "
+        "urgency unlocks them. A mutation that appears to require one is a signal that "
+        "the target is not yet owned by a purpose-built role; fix the ownership, do not "
+        "widen the principal."
     ),
     (
         "If rollback is impossible, materially limited, or time-boxed, say so in the proposal "
@@ -603,10 +605,11 @@ def permissions_md(a: dict) -> str:
         "",
         "| Component | Requirement |",
         "|---|---|",
-        "| Identity type | Narrowly scoped **custom** Snowflake role. `ACCOUNTADMIN` is "
-        "forbidden without exception. `SECURITYADMIN` and `SYSADMIN` are forbidden unless "
-        "technically unavoidable, in which case the reason is written into this file before "
-        "first run. |",
+        "| Identity type | Narrowly scoped **custom** Snowflake role. `ACCOUNTADMIN`, "
+        "`SECURITYADMIN`, and `SYSADMIN` are hard stops: forbidden without exception, and "
+        "no written justification, approval token, or incident makes them permissible. If "
+        "the mutation seems to need one, the target lacks a purpose-built owning role — "
+        "create and grant that role instead of widening this one. |",
         "| User type | `TYPE = SERVICE` (or `SERVICE_AGENT` where the executor is an "
         "automated agent identity). Never `TYPE = PERSON`, never `LEGACY_SERVICE`. |",
         "| Authentication | Key-pair, workload identity federation, or OAuth. Password "
