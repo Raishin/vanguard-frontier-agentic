@@ -1,59 +1,14 @@
-# Official Sources — Terraform Maestro
+# Official Sources
 
-Authoritative documentation for routing decisions and verifying IaC agent names.
+Primary sources behind the routing inputs, each tied to the decision it supports.
 
----
+Every row is a primary source verified 2026-08-17 by direct fetch. A URL earns a row only when it supports a decision this agent actually makes; a source that duplicates a claim another row already carries is removed rather than kept for completeness.
 
-## Agent Catalog
+| Source | Publisher | Topic | Decision supported | Version | Why authoritative | Why not redundant |
+|---|---|---|---|---|---|---|
+| <https://developer.hashicorp.com/terraform/cli/commands/plan> | HashiCorp | What a plan is and what it proves | Whether the user has supplied enough evidence to classify a change, or must be asked for a plan first | Terraform v1.15 | Vendor reference for the command every routing decision depends on | Only source defining plan semantics; no other row covers the routing input itself |
+| <https://opentofu.org/docs/cli/commands/> | OpenTofu (Linux Foundation) | OpenTofu CLI surface | Whether a task phrased in `tofu` terms is engine-specific or shared, before routing | OpenTofu 1.12 | Vendor-neutral engine's own command reference | The Terraform CLI page does not enumerate OpenTofu's command set or its divergences |
 
-Verify agent IDs against this list before dispatching. Do not invent IDs not listed here.
+## Grounding rule
 
-| Agent ID | Provider | Domain |
-|----------|----------|--------|
-| `terraform-reviewer` | terraform | review |
-| `aws-iac-change-safety-review-agent` | aws | aws-iac |
-| `aws-iac-patch-executor-agent` | aws | aws-iac |
-| `aws-landing-zone-governor-agent` | aws | aws-iac |
-| `azure-landing-zone-architect-agent` | azure | azure-iac |
-| `aws-live-iac-change-guard-agent` | aws | live-guard |
-| `azure-live-arm-deployment-stack-guard-agent` | azure | live-guard |
-| `oci-live-resource-manager-stack-guard-agent` | oci | live-guard |
-
----
-
-## Terraform Official Docs
-
-- Language reference: `https://developer.hashicorp.com/terraform/language`
-- CLI commands: `https://developer.hashicorp.com/terraform/cli/commands`
-- Plan: `https://developer.hashicorp.com/terraform/cli/commands/plan`
-- Apply: `https://developer.hashicorp.com/terraform/cli/commands/apply`
-- State: `https://developer.hashicorp.com/terraform/language/state`
-- Modules: `https://developer.hashicorp.com/terraform/language/modules`
-- Backends: `https://developer.hashicorp.com/terraform/language/settings/backends`
-- Provider registry: `https://registry.terraform.io`
-
-## AWS Provider
-
-- AWS provider docs: `https://registry.terraform.io/providers/hashicorp/aws/latest/docs`
-- CloudFormation: `https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/`
-- CDK: `https://docs.aws.amazon.com/cdk/v2/guide/`
-- Control Tower: `https://docs.aws.amazon.com/controltower/latest/userguide/`
-
-## Azure Provider
-
-- AzureRM provider: `https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs`
-- ARM templates: `https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/`
-- Bicep: `https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/`
-- Azure Landing Zone: `https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/`
-
-## OCI Provider
-
-- OCI provider: `https://registry.terraform.io/providers/oracle/oci/latest/docs`
-- Resource Manager: `https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Concepts/resourcemanager.htm`
-- OCI Terraform examples: `https://github.com/oracle-devrel/terraform-oci-oracle-cloud-foundation`
-
----
-
-## Grounding Rule
-
-Verify Terraform resource types, provider arguments, and CLI flags against official docs before routing. Do not dispatch to agent IDs not in the catalog table above.
+Documentation describes engine and provider behaviour in general. It does not prove the engine, engine version, provider versions, backend, or workspace the user actually runs. Treat any claim that depends on those as `assumption` until the supplied configuration, lock file, or plan confirms it — and name the engine (Terraform or OpenTofu) on every version-sensitive claim.

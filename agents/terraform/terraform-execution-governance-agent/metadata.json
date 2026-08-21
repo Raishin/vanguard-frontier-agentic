@@ -1,0 +1,57 @@
+{
+  "id": "terraform-execution-governance-agent",
+  "name": "Terraform Execution Governance Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "terraform",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Decide whether the path that executes a Terraform or OpenTofu change is trustworthy: which identity the runner assumes and how widely it is scoped, whether the reviewed plan is the plan that applies, how plan artifacts move between stages, and whether approval is a real gate or a formality. Reads pipeline definitions and runner configuration only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.hashicorp.com/terraform/cli/commands/apply",
+    "https://developer.hashicorp.com/terraform/cli/commands/plan",
+    "https://developer.hashicorp.com/terraform/cloud-docs/workspaces/dynamic-provider-credentials",
+    "https://developer.hashicorp.com/terraform/cloud-docs/run/remote-operations",
+    "https://developer.hashicorp.com/terraform/cli/config/config-file"
+  ],
+  "security_notes": "Static review only — reads pipeline definitions, runner and workspace configuration, and sanitized role or trust-policy documents; never triggers a pipeline, runs `plan` or `apply`, or contacts a CI system, and never modifies a workflow. Never requests or accepts credentials, provider tokens, OIDC client secrets, private keys, unredacted state, saved plan binaries, or account/subscription/tenant identifiers — trust policies and role documents must arrive with identifiers redacted. A claim about what a runner is actually permitted to do that is not visible in the supplied configuration is labelled assumption, never confirmed.",
+  "last_verified": "2026-08-17",
+  "path": "agents/terraform/terraform-execution-governance-agent/",
+  "harness_variants": {
+    "codex": "agents/terraform/terraform-execution-governance-agent/harnesses/codex.toml",
+    "copilot": "agents/terraform/terraform-execution-governance-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/terraform/terraform-execution-governance-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/terraform/terraform-execution-governance-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/terraform/terraform-execution-governance-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/terraform/terraform-execution-governance-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/terraform/terraform-execution-governance-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "terraform-execution-governance"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "routing_keywords": [
+    "pipeline",
+    "ci",
+    "runner",
+    "oidc",
+    "credentials",
+    "approval",
+    "remote execution",
+    "atlantis",
+    "workspace agent",
+    "plan artifact",
+    "apply gate",
+    "unattended apply",
+    "self-hosted runner"
+  ]
+}

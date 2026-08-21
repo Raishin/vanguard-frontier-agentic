@@ -3,6 +3,7 @@ use std::path::Path;
 use crate::error::TuiError;
 use crate::models::{
     Agent, AssetIntegrity, McpReference, ModelAssignments, RoleCatalog, Rule, Skill,
+    WorkflowCatalog,
 };
 use crate::security::sanitize::has_control_bytes;
 
@@ -328,7 +329,60 @@ pub fn load_model_assignments(workspace_root: &Path) -> (Option<ModelAssignments
     }
 }
 
+/// Load the workflow catalog from catalog/workflows.json.
+///
+/// A missing file is not an error — the workflow catalog is additive and a checkout
+/// without it simply renders no workflows. The file is generated from the `meta` block
+/// of each script in `.claude/workflows/` by
+/// `scripts/generate-workflow-catalog.mjs`; the TUI never parses the scripts itself.
+pub fn load_workflows(workspace_root: &Path) -> (Option<WorkflowCatalog>, Vec<TuiError>) {
+    let file_path = workspace_root.join("catalog").join("workflows.json");
+    let path = file_path.display().to_string();
+    let mut errors = Vec::new();
+
+    if !file_path.exists() {
+        return (None, errors);
+    }
+
+    let data = match read_catalog_file(&file_path) {
+        Ok(d) => d,
+        Err(e) => {
+            errors.push(e);
+            return (None, errors);
+        }
+    };
+
+    match serde_json::from_str::<WorkflowCatalog>(&data) {
+        Ok(catalog) => {
+            if check_workflows_tainted(&catalog) {
+                errors.push(TuiError::TaintedEntry {
+                    path,
+                    offset: 0,
+                    field: "control bytes detected".to_string(),
+                });
+                (None, errors)
+            } else {
+                (Some(catalog), errors)
+            }
+        }
+        Err(e) => {
+            errors.push(TuiError::CatalogParse {
+                path,
+                offset: e.column(),
+                detail: e.to_string(),
+            });
+            (None, errors)
+        }
+    }
+}
+
 // Taint checks for each model type.
+
+pub(crate) fn check_workflows_tainted(catalog: &WorkflowCatalog) -> bool {
+    serde_json::to_value(catalog)
+        .map(|value| value_has_control_bytes(&value))
+        .unwrap_or(true)
+}
 
 pub(crate) fn check_model_assignments_tainted(assignments: &ModelAssignments) -> bool {
     serde_json::to_value(assignments)
@@ -408,6 +462,41 @@ mod tests {
         let (skills, errors) = load_skills(workspace_root());
         assert!(errors.is_empty(), "errors: {errors:?}");
         assert!(!skills.is_empty());
+    }
+
+    #[test]
+    fn load_workflows_parses_the_real_catalog() {
+        // Loads the committed catalog/workflows.json, so a generator change that emits a
+        // key this struct does not declare fails here rather than silently vanishing
+        // from the display. `deny_unknown_fields` only bites if something exercises it
+        // against real data.
+        let (catalog, errors) = load_workflows(workspace_root());
+        assert!(errors.is_empty(), "errors: {errors:?}");
+        let catalog = catalog.expect("catalog/workflows.json should be present");
+        assert!(
+            !catalog.workflows.is_empty(),
+            "expected at least one workflow in the catalog",
+        );
+        for wf in &catalog.workflows {
+            assert!(!wf.id.is_empty(), "workflow id must not be empty");
+            assert_eq!(wf.id, wf.name, "id and name are the same identifier");
+            assert!(
+                wf.path.starts_with(".claude/workflows/"),
+                "workflow path should be repo-relative: {}",
+                wf.path,
+            );
+        }
+    }
+
+    #[test]
+    fn load_workflows_tolerates_a_missing_file() {
+        // Additive feature: a checkout without any workflow renders none rather than
+        // reporting a load error.
+        let tmp = tempfile::tempdir().unwrap();
+        std::fs::create_dir_all(tmp.path().join("catalog")).unwrap();
+        let (catalog, errors) = load_workflows(tmp.path());
+        assert!(catalog.is_none());
+        assert!(errors.is_empty(), "missing file must not be an error");
     }
 
     #[test]

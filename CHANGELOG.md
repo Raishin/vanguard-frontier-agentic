@@ -1,3 +1,386 @@
+## 🛡️ v3.9.0 — *Provenance · Policy · Portability*
+_Released 2026-08-18_
+
+> _Curated multi-cloud, zero-trust agent marketplace — `AWS` · `Azure` · `OCI` · `GCP` · `Terraform`._
+> Least privilege, live evidence, safe rollback paths.
+
+**Release type:** New capabilities — review the sections below before upgrading.
+
+* **terraform:** ship the minimum-viable IaC specialist board ([`9e0aaf1`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/9e0aaf17e7bb29bd9195a0f0d9f95bf4ca6ea8fa))
+The terraform board carried one generalist (terraform-reviewer) absorbing
+six distinct routing domains — the routing taxonomy already recognised
+state, plan safety, modules, drift, security, and cost as separate
+domains and pointed all six at the same agent. That is ownership
+ambiguity encoded in a fixture.
+
+Replace it with eight specialists, each holding exactly one decision
+right, plus one skill-only capability:
+
+- terraform-plan-blast-radius-agent  — why the engine replaces/destroys,
+  ordering, address churn, and whether the reviewed plan binds the apply
+- terraform-state-reliability-agent  — backend, locking, recovery,
+  surgery justification, and state confidentiality
+- terraform-estate-reconciliation-agent — drift, brownfield import, and
+  moved/removed refactoring as one "record vs reality" decision
+- terraform-supply-chain-integrity-agent — provider/module provenance,
+  lock-file coverage, mirrors and dev_overrides
+- terraform-engine-compatibility-agent — version moves and the
+  Terraform/OpenTofu decision as a divergence register
+- terraform-policy-evidence-agent    — control mapping, enforcement
+  reality, exception governance, evidence artifacts
+- terraform-execution-governance-agent — runner identity, plan-to-apply
+  binding, artifact handling, approval integrity
+- terraform-reviewer (extended)      — narrowed to module contracts and
+  platform golden paths rather than reviewing everything
+
+terraform-verification-strategy is a skill, not an agent: choosing what
+to verify is procedure, and the adequacy verdict belongs to whichever
+agent owns the change.
+
+Privilege: every agent is static-review, read-only sandbox, read/search
+tool grant only. The board registers no live-guard of its own — execution
+always leaves for a cloud live-guard agent after a human gate.
+
+Engine taxonomy: one shared provider rather than a separate `opentofu`
+one. The engines share nearly all of their surface, so a split would
+duplicate eight specialists to express a divergence set that fits in
+docs/terraform-opentofu-boundary.md. A fixed board-wide rule requires
+every version-sensitive claim to name its engine.
+
+Routing: narrow the terraform live-guard gate to execution intent. The
+shared default regex fires on the bare word `destroy`, which made
+terraform-plan-blast-radius-agent unreachable for the exact work it
+exists to do; the gate now discriminates on engine-command invocation
+and promotion intent, with fixtures covering both directions.
+
+All source URLs verified by direct fetch; each is carried with the
+decision it supports, so a citation cannot exist without its rationale.
+
+Gates: npm run validate (23 gates) green; codespell and markdownlint
+clean; cargo fmt/clippy/test green in tools/vfa-tui (173 tests).
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+* **vfa-tui:** make the workflow catalog reachable, and normalize catalog paths ([`3449ef1`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/3449ef1059e1509036cf65a5a5ea4125525cc768))
+Two remaining Codex findings.
+
+The TUI loaded the workflow catalog into CatalogStore but no production
+code ever read the field, so the feature was invisible: users could not
+list or inspect a workflow. Wired the full read path following the
+existing Rules pattern — View::WorkflowList / WorkflowDetail, a sidebar
+entry, render dispatch, detail-scroll arms, item counts, and a
+render_workflow_detail widget showing the invocation, when-to-use, and
+the phase sequence with the model tier each phase actually runs on.
+
+The sidebar entry is APPENDED rather than grouped with the other catalog
+sections. The app tests address sidebar sections by hardcoded index
+(`set_sidebar_index(7); // Export is index 7`), so inserting mid-list
+silently repoints every one of those numbers at a different section —
+inserting after Rules broke sixteen unrelated tests. Appending keeps
+every existing index stable, and the reason is recorded next to the
+list so the next person does not rediscover it the same way.
+
+Two nav tests legitimately needed updating for the new section (count,
+and the ordered view expectation).
+
+Added tests asserting the view is REACHABLE, not merely defined: a
+sidebar entry labelled Workflows exists, and activating it opens
+View::WorkflowList. A field that deserializes correctly but that nothing
+displays is what the review caught, so the regression test has to be
+about reachability.
+
+Also normalized generated catalog paths to forward slashes. Node's
+`relative()` emits backslashes on Windows, which would make generated
+output platform-dependent: `--check` would fail on one OS against a
+catalog committed from another, and the Rust loader test asserts a
+`.claude/workflows/` prefix. A repo-relative path in a committed
+artifact is a repo path, not a filesystem path.
+
+Gates: cargo fmt/clippy -D warnings clean; cargo test 1064 passed, 0
+failed. npm run validate green; codespell and markdownlint clean.
+
+Note on CI: the two failures on the previous commit were infrastructure,
+not code — codeload.github.com returned 429 then 503 when downloading
+the codeql-action and plugin-scanner action archives, failing after
+three attempts before either job ran anything. This push re-triggers
+them.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+* **vfa-tui:** surface workflows in the TUI via a generated catalog ([`ee44819`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/ee4481948b1f22eda1e0dd1b878c9636982efe39))
+The TUI could not see .claude/workflows/ at all. Adding it follows the
+read-first principle rather than breaking it: a Node generator extracts
+each workflow's meta block into catalog/workflows.json, and the TUI
+deserializes that with a strict struct — the same contract as every
+other catalog file. The TUI parses no JavaScript.
+
+Why a generator rather than reading the scripts directly: a workflow
+script's body calls runtime globals (phase, agent, parallel) that only
+exist inside the workflow engine, so the file cannot be imported to read
+its metadata — evaluating one outside the runtime throws on the first
+phase() call. The workflow contract does require meta to be a PURE
+LITERAL, so the generator brace-matches the literal following
+`export const meta =` and evaluates that alone, with string, template,
+and comment awareness so a brace inside a description is not counted as
+nesting.
+
+The generator also enforces that meta.name matches the filename. A
+workflow is invoked by name, so a mismatch makes it silently
+unreachable — worth failing the build over.
+
+Rust side:
+- models/workflow.rs — Workflow, WorkflowPhase, WorkflowCatalog, all
+  deny_unknown_fields, so a future generator key fails loudly here
+  instead of vanishing from the display.
+- An empty phase model renders as `inherit` rather than blank: for the
+  spec phase that emptiness is deliberate (planning must not be
+  downgraded), and a blank cell would read as missing data.
+- catalog::loader::load_workflows — a missing file is not an error, so
+  checkouts without any workflow render none.
+- CatalogStore gains the field, the content-hash list, and the watcher
+  path. Adding the field required updating four struct literals across
+  app.rs, test_fixtures.rs, and two property tests, exactly as the
+  serde contract note in CLAUDE.md predicts.
+
+Tests: 10 new, including one that loads the real committed catalog
+(deny_unknown_fields only bites when something exercises it against real
+data) and one negative probe asserting an unknown key is rejected.
+
+Wiring: workflow-catalog:write joins manifest:write:all;
+validate:workflow-catalog joins npm run validate and fails when the
+catalog drifts from .claude/workflows/.
+
+Gates: cargo fmt/clippy -D warnings clean; cargo test 1062 passed, 0
+failed. npm run validate green including the new gate; codespell and
+markdownlint clean.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+* **workflows:** add the Context7-grounded agentic-delegation workflow ([`3b5ec45`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/3b5ec45e3e0b5180d2a945c035520cba4750e756))
+Adds .claude/workflows/agentic-delegation.js — the delegation doctrine in
+.claude/skills/agentic-delegation/SKILL.md expressed as an executable
+workflow, and applies the same pass to the IaC board that just shipped.
+
+The workflow encodes the doctrine rather than restating it:
+
+- Context7 library IDs resolve ONCE centrally, not per delegate. Six
+  delegates each calling resolve-library-id burn six lookups to learn the
+  same identifier, and resolution is capped per question — a fleet that
+  resolves independently can exhaust its budget before asking anything.
+- Haiku does recon and gates; Sonnet does bulk writing; the spec phase
+  runs at the session's own model with no override, because a weak plan
+  wastes every delegate below it.
+- implement -> verify is a pipeline, not a barrier, so each spec verifies
+  as soon as it is written rather than waiting on the slowest sibling.
+- The verifier is a separate agent told to disbelieve the implementer and
+  read the files itself: a delegate's self-report is never the acceptance
+  signal.
+- Every external fact a delegate writes is listed in the spec up front so
+  the verify phase can return CONFIRMED / CONTRADICTED / UNVERIFIABLE per
+  claim, with the corrected wording for a contradiction.
+- The gate phase writes only catalog/asset-integrity.json, and only after
+  every other gate is green, per the ordering caveat in CLAUDE.md.
+- The workflow deliberately stops one step short of done: it returns
+  readyToCommit and blockers, and never commits. That stays orchestrator
+  work.
+
+Running that pass against the board found three real errors:
+
+1. Policy enforcement levels were paraphrased as "block, warn, or report".
+   The vendor's actual levels are advisory / soft-mandatory /
+   hard-mandatory (Sentinel) and advisory / mandatory (OPA). The
+   paraphrase loses the override question, which is usually the one an
+   auditor is actually asking — soft-mandatory blocks by default and
+   still carries a documented override path.
+2. `terraform test` cleanup was stated as a guarantee. The engine
+   *attempts* to destroy what a test file created; cleanup can fail on
+   dependencies, leaving billable resources behind.
+3. The OPA-portable / Sentinel-licence-gated claim was not supported by
+   the policy documentation. Restated as the documented
+   platform-integration difference.
+
+It also found four material divergences the register was missing, all
+verified against both projects' primary sources:
+
+- State readability is DIRECTIONAL: OpenTofu reads Terraform state, but
+  Terraform may not reliably read OpenTofu state. An engine migration is
+  much closer to a one-way door than "reversible" suggests, and it is why
+  coupled configurations must migrate bottom-up.
+- Provider plugin protocol: OpenTofu commits to protocol 5 across v1.x
+  while provider teams may drop older protocols — an exposure no version
+  constraint or lock file reveals.
+- Terraform Stacks has no OpenTofu equivalent.
+- Remote test execution is Terraform-only.
+
+Gates: npm run validate (23 gates) green; codespell and markdownlint
+clean. Corrections were made in scripts/terraform_data/ and regenerated,
+never hand-patched into generated output.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+* address Codex review — readiness holes, code execution in a generator, stale inventories ([`5c17401`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/5c174016ff9b5afb26db26451a5210a827120f5e))
+Eleven findings from the automated review, all verified against the code
+before acting and all reproduced before fixing.
+
+SECURITY (P1). scripts/generate-workflow-catalog.mjs evaluated each
+workflow's extracted `meta` through `new Function`, so `npm run validate`
+executed code out of any workflow file a contributor added — a
+`description: (() => { ...anything... })()` would have run with the
+validator's privileges. In a repository whose subject is supply-chain
+integrity that is not an acceptable way to read metadata. Replaced with a
+hand-written literal parser that accepts only JSON-shaped data and
+rejects calls, identifier references, spreads, template substitutions,
+and trailing code. Six attack payloads now fail closed with no code
+executed; the pure-literal contract is enforced rather than assumed. The
+module also no longer writes a file merely because it was imported.
+
+READINESS (P1 x3). The workflow could report readyToCommit while work
+was unverified:
+- Only the literal `reject` verdict blocked, so `accept-with-fixes` — a
+  request for more work wearing an approving label — passed. An
+  UNVERIFIABLE claim passed too, which is the fail-closed case the
+  workflow exists to enforce. A pipeline item that threw became null and
+  vanished without being compared against the spec count.
+- Gate readiness trusted the delegate's own `allGreen` boolean, so
+  `{allGreen: true, gates: []}` reported green. It is now computed from
+  per-command results, a command missing from the report counts as not
+  run, and the delegate's boolean is reported but never decides anything
+  — the rule the verify phase applies to implementers has to apply to
+  the gate runner too.
+- `npm run validate` includes validate:asset-integrity, and the gate
+  phase ran asset-integrity:write only AFTER everything passed, so any
+  change to a hashed path deadlocked. Corrected to CLAUDE.md's canonical
+  order: generators, integrity, then validate.
+- No phase ran generators, so a change to scripts/terraform_data/*.json
+  left shipped output stale and verification read the old files. Added a
+  Regenerate barrier between implement and verify, used only when
+  generators are declared; the pipeline shape is kept otherwise.
+
+CORRECTNESS (P2 x4).
+- The board told agents to hand off to `<cloud>-iac-change-safety-review-agent`
+  for Azure and OCI, which do not have one — contradicting the board's own
+  "never invent an agent ID" rule. Replaced with an explicit map naming
+  only real IDs and stating plainly that Azure and OCI have no advisory
+  per-change counterpart.
+- The routing taxonomy mined sentence-opening verbs, so "Make this
+  Terraform variable optional" scored the drift domain and returned
+  parallel (2). Those verbs are now stopwords; the case routes single to
+  the module reviewer, with a regression fixture.
+- `force[- ]unlock` gated on the bare term, so "review whether
+  force-unlock is justified" black-holed the very question
+  terraform-state-reliability-agent owns. Narrowed to execution intent,
+  the same fix already applied to `destroy`.
+- meta.phases published no model for Implement and Verify while the code
+  passes model: 'sonnet', so the catalog advertised a cost profile
+  contradicting the workflow. Now declared.
+
+DEFAULTS AND DOCS (P2 x3).
+- The library list defaulted to Terraform/OpenTofu, telling every
+  delegate to ground unrelated work in irrelevant sources. Defaults to
+  none; the resolve phase infers candidates from the task.
+- Cargo gates were absent from the default suite, so a TUI change run
+  with bare-string args verified nothing — the exact gap CI's
+  path-filtered Gate job leaves. Derived from file scope and task text,
+  with the gate delegate additionally required to fail if git reports
+  TUI changes and cargo was not requested.
+- catalog/index.json and catalog/AGENTS.md did not list workflows.json,
+  and agents/AGENTS.md still said "Terraform — 2 agents" with the
+  reviewer's obsolete broad charter. Both updated.
+
+Gates: npm run validate green; codespell and markdownlint clean; cargo
+test 786 lib tests pass; terraform routing 15 scenarios pass.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+* refresh hand-written counts and surface workflows in the Jekyll docs data ([`24d7ebe`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/24d7ebe6c0a284feea99b378493f69402bd5699d))
+The marker-driven counts were already correct — `validate:readme-counts`
+passed throughout, because `readme-counts:write` owns only the
+`count:agents`, `count:skills`, and `count:providers` markers. Everything
+else in the README is hand-maintained and had drifted against the
+terraform board growing from 2 agents to 9:
+
+- Skills table: Terraform 1 -> 10
+- Agents table: Terraform 2 -> 9, description replaced with the
+  one-decision-right board rather than "IaC review, maestro"
+- Repository tree: terraform/ 2 agents -> 9
+- Example agent: terraform-reviewer still advertised its pre-narrowing
+  charter ("modules, plans, provider usage, state assumptions"), which is
+  now split across specialists; replaced with the blast-radius agent plus
+  the reviewer's actual module-contract charter
+- Role table: the four roles that gained terraform specialists were
+  stale — security 51->74, platform 58->76, architect 38->48,
+  devops 49->65
+
+Each number was verified against catalog/install-roles.json and
+catalog/agents.json rather than counted by hand; the generated
+provider-reference table at README.md:816 already read 9, which confirms
+the generated path was correct and only the hand-written tables drifted.
+
+Jekyll docs could not see workflows at all. generate-docs-data.mjs now
+emits `workflows: N` and a `workflow_list` with each workflow's phase
+count, so a docs page can render them via site.data.catalog rather than
+hardcoding — the same DRY rule every other count follows. A missing
+catalog/workflows.json degrades to zero instead of failing the docs
+build, matching the TUI loader's posture. validation_gates also moved
+23 -> 24 on its own, picking up validate:workflow-catalog.
+
+No Rust touched, so the cargo gates are not implicated.
+
+Gates: npm run validate green; codespell and markdownlint clean;
+validate:readme-counts confirms the marker counts still match.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+* **workflows:** document the agentic-delegation workflow and harden its verify stage ([`bcd5a5f`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/bcd5a5ff13001994f52c729fb24ace854e854f1d))
+Ran the agentic-delegation workflow against itself to document it. The run
+executed end-to-end (10 agents, 0 errors) and its verify phase correctly
+rejected the result despite every gate passing green — the implementer had
+attributed a doctrine quote to CLAUDE.md when it lives in
+.claude/skills/agentic-delegation/SKILL.md.
+
+Reading the diff as orchestrator found six further defects the verifier
+missed, all of which lint clean:
+
+- Phase 1 described as scanning the repository tree; it resolves Context7
+  library IDs.
+- Context7 credited with centralising resolution; the workflow does that,
+  by resolving once and injecting the IDs downstream.
+- Verify described as running the repo gates, which it is explicitly
+  forbidden from doing.
+- Pipeline explained as "both agents run in sequence" rather than as
+  different specs progressing independently.
+- An invented rationale for stopping before commit.
+- cargo listed in the default gate set, where it is not.
+
+Every one of those is a claim about this repository's own files rather
+than an external fact, and the verify prompt only asked for external
+claims to be checked against primary sources. So the prompt now demands
+two classes of verification and names the second explicitly: internal
+fidelity, verified by opening the file being described rather than by
+judging whether the description sounds plausible. It also states that
+passing linters is not evidence a claim is true, and that a well-formed
+file saying something false is a reject.
+
+docs/agentic-delegation-workflow.md is rewritten from the script itself.
+
+Gates: npm run validate green; codespell and markdownlint clean; workflow
+script re-parsed after the prompt change.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+
+---
+
+### 📥 Install
+```bash
+npm install @raishin/vanguard-frontier-agentic@3.9.0
+```
+
+### 🔐 Supply-chain provenance
+Every release ships a build attestation (SLSA provenance) and an SBOM. Verify the tag with `gh attestation verify` before installing.
+
+**Full changelog:** https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/compare/v3.8.0...v3.9.0
+
 ## 🛡️ v3.8.0 — *Provenance · Policy · Portability*
 _Released 2026-08-15_
 
@@ -9277,7 +9660,7 @@ Collateral: regenerate asset-integrity.json, plugin manifests
 
 ## 🔴 v2.0.0 — *Zero-Trust Scope Enforcement* &mdash; 2026-05-16
 
-> _Provider-scoped exports are now strict and auditable. 680 agents · 703 skills · 45 providers · 60 roles_
+> _Provider-scoped exports are now strict and auditable. 687 agents · 712 skills · 45 providers · 60 roles_
 >
 > This release closes a class of privilege-escalation bugs in the export CLI and hardens the
 > entire provider-scope boundary from user input through to CI attestation.

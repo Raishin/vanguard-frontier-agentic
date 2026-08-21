@@ -1,0 +1,20 @@
+# Official Sources
+
+Primary sources for state semantics, locking, surgery, and engine encryption, each tied to a decision.
+
+Every row is a primary source verified 2026-08-17 by direct fetch. A URL earns a row only when it supports a decision this agent actually makes; a source that duplicates a claim another row already carries is removed rather than kept for completeness.
+
+| Source | Publisher | Topic | Decision supported | Version | Why authoritative | Why not redundant |
+|---|---|---|---|---|---|---|
+| <https://developer.hashicorp.com/terraform/language/state> | HashiCorp | What state is, why it exists, and what it records | Whether a proposed state operation is a record change or an infrastructure change | Terraform v1.15 | Vendor definition of the artifact this agent owns | Foundational semantics that the backend and CLI pages assume rather than state |
+| <https://developer.hashicorp.com/terraform/language/state/locking> | HashiCorp | State locking behaviour and `force-unlock` | Whether a stuck lock may be broken, and what breaking it risks | Terraform v1.15 | Vendor reference for the only mechanism preventing concurrent state corruption | The backend pages configure locking; only this one defines its semantics and failure modes |
+| <https://developer.hashicorp.com/terraform/language/backend/s3> | HashiCorp | `use_lockfile` native S3 locking, DynamoDB locking deprecation, and state encryption options | Whether an S3-backed configuration uses the currently supported locking mechanism | Terraform v1.15 | Vendor reference carrying the explicit DynamoDB deprecation notice | The only source stating that DynamoDB-based locking is deprecated and slated for removal |
+| <https://developer.hashicorp.com/terraform/cli/commands/state> | HashiCorp | The `state` subcommand family and its backup behaviour | Which state surgery command fits an operation, and what it does and does not back up | Terraform v1.15 | Vendor reference for every mutating state operation | Command-level semantics that the language-side state page does not cover |
+| <https://developer.hashicorp.com/terraform/cli/commands/force-unlock> | HashiCorp | Breaking a held state lock | Whether `force-unlock` is ever the right answer for the situation described | Terraform v1.15 | Vendor reference carrying the command's own warnings | The locking page explains locks; only this page documents the consequences of breaking one |
+| <https://developer.hashicorp.com/terraform/language/state/sensitive-data> | HashiCorp | Sensitive values recorded in state | Whether a value the configuration marks sensitive is actually protected at rest | Terraform v1.15 | Vendor statement of what state stores in the clear | The only source establishing that `sensitive` is a display control rather than an at-rest protection |
+| <https://opentofu.org/docs/language/state/encryption/> | OpenTofu (Linux Foundation) | OpenTofu state and plan encryption: key providers, methods, fallback, and key loss | Whether an OpenTofu estate can encrypt state at rest natively, and what key loss costs | OpenTofu 1.12 | The engine's own reference for a capability that exists on one engine only | This is the single largest state-layer divergence between the engines and has no HashiCorp equivalent |
+| <https://developer.hashicorp.com/terraform/language/state/remote-state-data> | HashiCorp | The `terraform_remote_state` data source and cross-configuration coupling | Whether a state layout creates a read dependency that widens the blast radius of a state change | Terraform v1.15 | Vendor reference for the mechanism that couples separate states | State layout risk is invisible from the backend configuration alone |
+
+## Grounding rule
+
+Documentation describes engine and provider behaviour in general. It does not prove the engine, engine version, provider versions, backend, or workspace the user actually runs. Treat any claim that depends on those as `assumption` until the supplied configuration, lock file, or plan confirms it — and name the engine (Terraform or OpenTofu) on every version-sensitive claim.

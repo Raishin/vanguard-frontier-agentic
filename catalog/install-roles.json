@@ -229,7 +229,11 @@
         "oci-observability-incident-responder-agent",
         "oci-registry-artifact-governor-agent",
         "oci-support-incident-coordinator-agent",
-        "oci-waf-reliability-review-agent"
+        "oci-waf-reliability-review-agent",
+        "terraform-engine-compatibility-agent",
+        "terraform-estate-reconciliation-agent",
+        "terraform-execution-governance-agent",
+        "terraform-plan-blast-radius-agent"
       ],
       "skills": [
         "alibaba-daily-operations-briefing-coordinator",
@@ -294,7 +298,12 @@
         "oci-registry-artifact-governor",
         "oci-support-incident-coordinator",
         "oci-waf-reliability-review",
-        "opentelemetry-collector-config-review"
+        "opentelemetry-collector-config-review",
+        "terraform-engine-compatibility",
+        "terraform-estate-reconciliation",
+        "terraform-execution-governance",
+        "terraform-plan-blast-radius",
+        "terraform-verification-strategy"
       ]
     },
     "cloud-finops-analyst": {
@@ -449,8 +458,15 @@
         "scaleway-kapsule-platform-operator-agent",
         "scaleway-live-kapsule-rollout-guard-agent",
         "scaleway-network-architect-agent",
+        "terraform-engine-compatibility-agent",
+        "terraform-estate-reconciliation-agent",
+        "terraform-execution-governance-agent",
         "terraform-maestro-agent",
-        "terraform-reviewer"
+        "terraform-plan-blast-radius-agent",
+        "terraform-policy-evidence-agent",
+        "terraform-reviewer",
+        "terraform-state-reliability-agent",
+        "terraform-supply-chain-integrity-agent"
       ],
       "skills": [
         "alibaba-ack-container-platform-operator",
@@ -526,7 +542,16 @@
         "scaleway-kapsule-platform-operator",
         "scaleway-live-kapsule-rollout-guard",
         "scaleway-network-architect",
-        "terraform-maestro"
+        "terraform-engine-compatibility",
+        "terraform-estate-reconciliation",
+        "terraform-execution-governance",
+        "terraform-maestro",
+        "terraform-module-contract",
+        "terraform-plan-blast-radius",
+        "terraform-policy-evidence",
+        "terraform-state-reliability",
+        "terraform-supply-chain-integrity",
+        "terraform-verification-strategy"
       ]
     },
     "cloud-security-engineer": {
@@ -602,7 +627,11 @@
         "oci-waf-security-review-agent",
         "ovhcloud-iam-policy-review-agent",
         "ovhcloud-live-kms-key-destruction-guard-agent",
-        "scaleway-iam-policy-review-agent"
+        "scaleway-iam-policy-review-agent",
+        "terraform-execution-governance-agent",
+        "terraform-policy-evidence-agent",
+        "terraform-state-reliability-agent",
+        "terraform-supply-chain-integrity-agent"
       ],
       "skills": [
         "alibaba-actiontrail-audit-analyst",
@@ -674,7 +703,11 @@
         "oci-waf-security-review",
         "ovhcloud-iam-policy-review",
         "ovhcloud-live-kms-key-destruction-guard",
-        "scaleway-iam-policy-review"
+        "scaleway-iam-policy-review",
+        "terraform-execution-governance",
+        "terraform-policy-evidence",
+        "terraform-state-reliability",
+        "terraform-supply-chain-integrity"
       ]
     },
     "cloud-solutions-architect": {
@@ -726,7 +759,9 @@
         "oci-resource-search-inventory-analyst-agent",
         "oci-solution-architect-agent",
         "ovhcloud-maestro-agent",
-        "scaleway-maestro-agent"
+        "scaleway-maestro-agent",
+        "terraform-engine-compatibility-agent",
+        "terraform-reviewer"
       ],
       "skills": [
         "alibaba-change-impact-advisor",
@@ -774,7 +809,9 @@
         "oci-resource-search-inventory-analyst",
         "oci-solution-architect",
         "ovhcloud-maestro",
-        "scaleway-maestro"
+        "scaleway-maestro",
+        "terraform-engine-compatibility",
+        "terraform-module-contract"
       ]
     },
     "dotnet-application-review-engineer": {

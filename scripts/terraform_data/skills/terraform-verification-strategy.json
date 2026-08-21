@@ -1,0 +1,117 @@
+{
+  "id": "terraform-verification-strategy",
+  "category": "delivery",
+  "allowed_tools": "Read Grep Glob",
+  "owner_note": "`terraform-reviewer` (module-contract adequacy) and `terraform-plan-blast-radius-agent` (change-safety adequacy) — both issue the verdict; the skill supplies the plan",
+  "summary": "Choose and sequence verification for a Terraform or OpenTofu change: what `validate`, a plan, `terraform test` with `command = plan`, mock providers, and a real-infrastructure test run each actually prove, and which of them is proportionate to the change's blast radius. Reusable procedure with no independent decision right — the owning agent issues the verdict.",
+  "description": "Use this skill to decide what verification a Terraform or OpenTofu change actually needs and what each option proves: `validate` versus a plan, `terraform test` run blocks with `command = plan` versus `command = apply`, mock providers, and assertions on the properties that would cause an outage. Procedure only — it produces a verification plan, not a pass/fail verdict; the owning agent (`terraform-reviewer` for module contracts, `terraform-plan-blast-radius-agent` for change safety) issues the verdict.",
+  "purpose": "This skill exists because deciding what to verify is a repeatable procedure, not an act of judgment that needs its own owner. Most IaC verification gaps come from a confusion about what each tool proves: `validate` proves the configuration parses, a plan proves what the engine intends given current state, a plan-mode test proves logic without touching infrastructure, and only an apply-mode test proves the resources can actually be created. Choosing between them is a lookup; deciding whether the result is good enough belongs to the agent that owns the change.",
+  "source_records": [
+    {
+      "url": "https://developer.hashicorp.com/terraform/language/tests",
+      "publisher": "HashiCorp",
+      "topic": "`.tftest.hcl` files, `run` blocks, `command = plan` versus `apply`, `assert` blocks, and mock providers",
+      "decision": "Which test mode proves the property in question, and whether it creates real infrastructure",
+      "version": "Terraform v1.15",
+      "why_authoritative": "Vendor reference for the built-in test framework",
+      "why_not_redundant": "The only source defining test run modes and what each one actually executes"
+    },
+    {
+      "url": "https://developer.hashicorp.com/terraform/cli/commands/plan",
+      "publisher": "HashiCorp",
+      "topic": "What a plan evaluates and what it leaves unresolved",
+      "decision": "Whether a plan is sufficient verification for the property being checked",
+      "version": "Terraform v1.15",
+      "why_authoritative": "Vendor reference for the most common verification artifact",
+      "why_not_redundant": "Cited here for verification adequacy rather than for blast-radius semantics"
+    },
+    {
+      "url": "https://developer.hashicorp.com/terraform/language/checks",
+      "publisher": "HashiCorp",
+      "topic": "`check` blocks as continuous post-apply assertions",
+      "decision": "Whether a property is better verified continuously than at change time",
+      "version": "Terraform v1.15",
+      "why_authoritative": "Vendor reference for the continuous-assertion construct",
+      "why_not_redundant": "Covers the verification that happens after the change, which no test mode addresses"
+    },
+    {
+      "url": "https://opentofu.org/docs/cli/commands/",
+      "publisher": "OpenTofu (Linux Foundation)",
+      "topic": "OpenTofu's test and validate command surface",
+      "decision": "Whether a verification strategy written for Terraform runs on an OpenTofu estate",
+      "version": "OpenTofu 1.12",
+      "why_authoritative": "The engine's own command reference",
+      "why_not_redundant": "Test framework surface must be confirmed per engine rather than assumed shared"
+    }
+  ],
+  "security_notes": "Procedure only — reads test files, module source, and plan output; never runs `validate`, `plan`, `test`, or `apply`, and never provisions infrastructure. Apply-mode tests create real infrastructure and are therefore recommended only against an isolated non-production account with its own credentials, never against an account holding production resources. Never requests or accepts credentials, tokens, unredacted state, or customer data.",
+  "when": [
+    "A module or configuration change needs a verification plan proportionate to its blast radius.",
+    "A user is deciding between `terraform test` with `command = plan` and `command = apply`, or whether mock providers fit the case.",
+    "A user needs to know what `validate`, a plan, or an existing test suite actually proves about a change.",
+    "An existing test suite passes but did not catch a failure, and the gap needs naming.",
+    "A property would be better asserted continuously after apply than once at change time."
+  ],
+  "when_not": [
+    "A verdict is needed on whether the change is adequately verified — that belongs to `terraform-reviewer` for module contracts or `terraform-plan-blast-radius-agent` for change safety; this skill supplies the plan, not the judgment.",
+    "The question is why a plan replaces or destroys a resource — that is blast-radius analysis, not verification design.",
+    "The question is whether a control is satisfied and what evidence records it — route to `terraform-policy-evidence-agent`.",
+    "The task requires executing tests to observe real behaviour — this skill designs verification and never runs it."
+  ],
+  "operating_rules": [
+    "State what each artifact proves before recommending it: `validate` proves the configuration parses and is internally consistent, a plan proves what the engine intends given current state and provider versions, a plan-mode test proves module logic without touching infrastructure, and only an apply-mode test proves the resources can actually be created.",
+    "Match verification to blast radius rather than to module size: a small module provisioning a stateful or internet-facing resource needs assertions on the properties that would cause the outage, while a large module composing already-verified pieces may need far less.",
+    "Assert on the property that would cause the failure, not on the property that is easiest to assert. A test confirming a resource's name is well-formed proves nothing about whether it is publicly reachable.",
+    "`command = apply` in a `run` block creates real infrastructure, so it belongs against an isolated non-production account with its own credentials — never against an account that also holds production resources, whatever the workspace is called.",
+    "Mock providers make plan-mode tests possible for modules whose providers would otherwise require credentials, but a mocked provider proves the module's logic given assumed provider behaviour; it cannot prove the provider will actually accept the configuration.",
+    "A test suite that only asserts on plan success is a parse check with extra steps; require at least one assertion per test that would fail if the resource were misconfigured in the way the module exists to prevent.",
+    "Prefer a `validation` block at the module boundary over a test for any invariant about input: the validation rejects the bad value in every caller's plan, while the test only proves the module rejects it in the one case the test covers.",
+    "Some properties are better asserted continuously than at change time; a `check` block observes an invariant after every apply without blocking, which suits properties that can drift after a correct change.",
+    "Verify the test framework surface per engine rather than assuming it is shared, and name the engine in any recommendation that depends on a specific test feature.",
+    "Never recommend deleting, skipping, or weakening a failing test to reach a passing state — a failing test is the control working, and the fix is the defect it found."
+  ],
+  "response_minimum": [
+    "A verification plan naming each step, what it proves, and what it does not.",
+    "The blast-radius rationale for the level of verification proposed.",
+    "For any apply-mode test: the isolation requirement stated explicitly.",
+    "Any invariant better placed in a `validation` block or a `check` block than in a test.",
+    "The owning agent that must issue the adequacy verdict, since this skill does not."
+  ],
+  "references": [
+    {
+      "file": "what-each-check-proves.md",
+      "title": "What Each Check Actually Proves",
+      "purpose": "A lookup from verification artifact to the claim it supports, so a suite is not mistaken for coverage.",
+      "claims": [
+        "`validate` checks that a configuration is syntactically valid and internally consistent without contacting any provider or reading state; it proves the configuration parses and nothing about whether it would create correct infrastructure.",
+        "A plan evaluates the configuration against current state and the installed provider versions, so it proves what the engine intends right now — and a plan produced under different provider versions is evidence about a different plan.",
+        "A `run` block with `command = plan` executes the planning stage only, which makes it a unit test for module logic: it proves the module resolves to the intended resource arguments without creating anything.",
+        "A `run` block with `command = apply` creates real infrastructure and runs assertions against it, which is the only mode that proves the provider actually accepts the configuration. At the end of a test file the engine *attempts* to destroy every resource it created — an attempt, not a guarantee: cleanup can fail when a resource has dependencies or other constraints preventing destruction, so the run output must be checked for undeleted resources and cleaned up by hand when it reports any.",
+        "Mock providers supply the data a provider would return so a plan-mode test can run without credentials; they prove the module's logic under assumed provider behaviour and cannot prove the real provider agrees.",
+        "An `assert` block's value comes entirely from what it checks: an assertion on a name, a tag, or a count passes for a resource that is also publicly readable, so coverage counted in assertions is not coverage of risk.",
+        "A `validation` block on a variable rejects an invalid input in every caller's plan, which is strictly broader than a test proving the module rejects it in one covered case.",
+        "A `check` block asserts continuously after apply without blocking, which suits a property that can become false through drift after a change that was correct when it was made.",
+        "The test framework's surface must be confirmed against the engine actually in use, since a feature verified on one engine is not thereby available on the other."
+      ]
+    },
+    {
+      "file": "proportionate-verification.md",
+      "title": "Proportionate Verification",
+      "purpose": "How to size verification to blast radius, and the isolation requirement that apply-mode testing imposes.",
+      "claims": [
+        "Verification should be sized to what the change can break, not to how much code it contains: a three-line module provisioning a database deserves more verification than a large module composing already-verified components.",
+        "The properties worth asserting are the ones that would cause the incident — reachability, encryption, retention, identity scope — rather than the ones that are convenient to express.",
+        "Apply-mode tests create real infrastructure with real credentials, so they require an isolated account whose blast radius is bounded by construction; a workspace named non-production inside an account that also holds production resources provides naming, not isolation.",
+        "Test cleanup is an attempt rather than a guarantee: the engine tries to destroy what the test file created, but a failed destroy, an interrupted run, or a dependency that blocks destruction leaves resources behind and billing. The isolation requirement covers that failure case, not only the success case, and the run output must be read for undeleted resources rather than assumed clean.",
+        "A suite that asserts only that the plan succeeded will pass for every misconfiguration that is syntactically valid, which is nearly all of them; at least one assertion per test must fail when the module is misconfigured in the way it exists to prevent.",
+        "When an existing suite passed but a failure still occurred, the gap is almost always an assertion that checked a property adjacent to the one that mattered — naming that adjacency is more useful than adding more tests.",
+        "A failing test is the control working. Deleting, skipping, or weakening it to reach green removes the only signal that the defect exists, and the fix is always the defect rather than the test."
+      ]
+    },
+    {
+      "file": "official-sources.md",
+      "title": "Official Sources",
+      "purpose": "Primary sources for the test framework, plan semantics, and continuous assertions, each tied to a decision."
+    }
+  ]
+}

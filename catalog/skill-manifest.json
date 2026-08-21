@@ -22123,34 +22123,432 @@
       ]
     },
     {
+      "id": "terraform-engine-compatibility",
+      "path": "skills/terraform/terraform-engine-compatibility",
+      "aggregate_sha256": "1775f0a85d80f4f07c5b7b8c714678f1afe6a182bd550bb24a946011d5df0ae9",
+      "files": [
+        {
+          "path": "skills/terraform/terraform-engine-compatibility/SKILL.md",
+          "sha256": "9df4d51d257700e77bd8c3c0989925ca81386f56044e9c13218c9bcfb57f69b8",
+          "bytes": 9542
+        },
+        {
+          "path": "skills/terraform/terraform-engine-compatibility/metadata.json",
+          "sha256": "c6fcac9a789cd484948259ecbacf5687a022ad3cfa5fa658e890a2128e036283",
+          "bytes": 1905
+        },
+        {
+          "path": "skills/terraform/terraform-engine-compatibility/references/engine-divergence-register.md",
+          "sha256": "2a869a5be620a07848519c64c3281f0b89f01c160f3cfee1ad8c2c7237d56397",
+          "bytes": 3931
+        },
+        {
+          "path": "skills/terraform/terraform-engine-compatibility/references/official-sources.md",
+          "sha256": "3f54cac1193b1d76c1ba19db4861887a3a6856222ffc02305ed4085e90606c89",
+          "bytes": 3890
+        },
+        {
+          "path": "skills/terraform/terraform-engine-compatibility/references/safety-checklist.md",
+          "sha256": "8a21b94f17e81419a326f5d330a20f376fde9452b8f41c514eea9680a7d0ef58",
+          "bytes": 3965
+        },
+        {
+          "path": "skills/terraform/terraform-engine-compatibility/references/upgrade-risk-and-ordering.md",
+          "sha256": "37824239e248a5db263fdaa7dfa53bc140db3ed00f1cfe4c5a1a940057ea57a2",
+          "bytes": 2153
+        },
+        {
+          "path": "skills/terraform/terraform-engine-compatibility/references/workflow-and-output.md",
+          "sha256": "12ffa34af6b412eddeea403ee34c91974fc6cc79fed29b9f7525309d7b552614",
+          "bytes": 1865
+        }
+      ]
+    },
+    {
+      "id": "terraform-estate-reconciliation",
+      "path": "skills/terraform/terraform-estate-reconciliation",
+      "aggregate_sha256": "c9be7bf1c12e36f0ad451364e8dd4eaf3ce1831446826b9715d992d7ad9ed4bb",
+      "files": [
+        {
+          "path": "skills/terraform/terraform-estate-reconciliation/SKILL.md",
+          "sha256": "6f80b03343fa76f0a7011d44bd94e3910fcff1339dc6f607fa8eedae61c219b7",
+          "bytes": 9751
+        },
+        {
+          "path": "skills/terraform/terraform-estate-reconciliation/metadata.json",
+          "sha256": "a977ccfd96f8b70b727c0adc9135d814561ce785a824bc878ab810f4a7fd618e",
+          "bytes": 1835
+        },
+        {
+          "path": "skills/terraform/terraform-estate-reconciliation/references/brownfield-import.md",
+          "sha256": "b9f6db1b766836a5b74e1662497a7d0a1f023797d258537491cac97358187fb8",
+          "bytes": 1859
+        },
+        {
+          "path": "skills/terraform/terraform-estate-reconciliation/references/drift-classification.md",
+          "sha256": "8a30edcaf43fefcd3497a3152f8f6a7a75e1304d7c90d62001cd71513a690730",
+          "bytes": 1844
+        },
+        {
+          "path": "skills/terraform/terraform-estate-reconciliation/references/official-sources.md",
+          "sha256": "4d546134cf57b371b2399174b463fefba8a631dd6a4208047db0396d75b7069f",
+          "bytes": 2895
+        },
+        {
+          "path": "skills/terraform/terraform-estate-reconciliation/references/refactor-and-release.md",
+          "sha256": "788dd7805827012c0b78c17411b202adeb795b1d9094639eb8801722ebaea31d",
+          "bytes": 1777
+        },
+        {
+          "path": "skills/terraform/terraform-estate-reconciliation/references/safety-checklist.md",
+          "sha256": "a4a3ceb749757cc8bf44ff4d46637357df3ea87e99f5b45550a9b1d7959fb4a0",
+          "bytes": 4013
+        },
+        {
+          "path": "skills/terraform/terraform-estate-reconciliation/references/workflow-and-output.md",
+          "sha256": "c711e8722818ce6a9e93728c6b4c9ccbff476adc3bf17a9f53adec1b14d0f3ea",
+          "bytes": 1969
+        }
+      ]
+    },
+    {
+      "id": "terraform-execution-governance",
+      "path": "skills/terraform/terraform-execution-governance",
+      "aggregate_sha256": "f3bafff88f03bed2dc260a0fda03244dccdec1c230c9ccc6d87bc08374d85daf",
+      "files": [
+        {
+          "path": "skills/terraform/terraform-execution-governance/SKILL.md",
+          "sha256": "31532be75c941e47a04837ad923fe3357dfe9fc8b404e44fad5a1a2de2923135",
+          "bytes": 9560
+        },
+        {
+          "path": "skills/terraform/terraform-execution-governance/metadata.json",
+          "sha256": "4260bc08dcc1ff38d4c582d3125b1d5d79d37cfc674337f4c7ec223d515fdd43",
+          "bytes": 1867
+        },
+        {
+          "path": "skills/terraform/terraform-execution-governance/references/official-sources.md",
+          "sha256": "cacac785118da7e2dea8a5e303cae2ac1fb6899e9e528d1d7124855e5b61a38c",
+          "bytes": 3078
+        },
+        {
+          "path": "skills/terraform/terraform-execution-governance/references/plan-artifact-and-approval.md",
+          "sha256": "06b1f149690ffa86e562c56c1c30a2c75af8a40ce768cf29ad1d72f518cb145c",
+          "bytes": 1968
+        },
+        {
+          "path": "skills/terraform/terraform-execution-governance/references/runner-identity-and-privilege.md",
+          "sha256": "1588657d4ed0530617365721c4e27c87acbf7edacdedbe4ef5237b970220da1b",
+          "bytes": 1882
+        },
+        {
+          "path": "skills/terraform/terraform-execution-governance/references/safety-checklist.md",
+          "sha256": "e5a5798c46cb1daf0bd171108ce10269e035a0335b52508370cd96922308f74f",
+          "bytes": 3906
+        },
+        {
+          "path": "skills/terraform/terraform-execution-governance/references/workflow-and-output.md",
+          "sha256": "bb14ecc5535b1db109e822604faf1706f8c345de591f565d6a641eb77f0ee231",
+          "bytes": 1930
+        }
+      ]
+    },
+    {
       "id": "terraform-maestro",
       "path": "skills/terraform/terraform-maestro",
-      "aggregate_sha256": "b71db6e8570c07441c7835e1d54e3aeefa6ecc240459f4312e1a8eb81c4f137b",
+      "aggregate_sha256": "0cc801a9c3709109fec28ea30b93dde37e4defaf71a4197f5be26239e9188695",
       "files": [
         {
           "path": "skills/terraform/terraform-maestro/SKILL.md",
-          "sha256": "3a5392ab19410cbe6f7ad07bc91501e441729fc194098c0bdd74811dcc5845d0",
-          "bytes": 7098
+          "sha256": "7c14a923eff9e1115af1ac6e237215d076697fc880909466a55c62c0d4b3bc37",
+          "bytes": 7366
         },
         {
           "path": "skills/terraform/terraform-maestro/metadata.json",
-          "sha256": "ffb46c43c6ae879eb091af5ced5fc047d08241da0b9064913c585d9684bd83bb",
-          "bytes": 1429
+          "sha256": "fb73a9b6284fa9388069971e4e2db4a3bd62f4fba51b0b5e73e74b7c63081adb",
+          "bytes": 1250
         },
         {
           "path": "skills/terraform/terraform-maestro/references/official-sources.md",
-          "sha256": "c0e87c6d2f087fcaa58cd1e1760d2a7b332fd584c49695480bf999fe7a955a10",
-          "bytes": 2584
+          "sha256": "f9d4392e3d9b4d526e228e605646b3553f1dfe262208ddd17c95249e46827127",
+          "bytes": 1610
+        },
+        {
+          "path": "skills/terraform/terraform-maestro/references/routing-thresholds.md",
+          "sha256": "5c20bc9c93b12536a3a72adb362af43822e709cef6f6c6af2730640042857ddf",
+          "bytes": 2344
         },
         {
           "path": "skills/terraform/terraform-maestro/references/safety-checklist.md",
-          "sha256": "3deb8ad83f229758220453561eb64740c1b8873e88bea54c5187aea7befe7d8a",
-          "bytes": 2929
+          "sha256": "5f03ca6b0015cc0eff4d0027cc9d74070b3c246e518c687e313bdafd0f5f2d1f",
+          "bytes": 3511
         },
         {
           "path": "skills/terraform/terraform-maestro/references/workflow-and-output.md",
-          "sha256": "a5d450eb1902999ffe283dd69adeed90c048f88cdf976aab18f7138877c9ec84",
-          "bytes": 3935
+          "sha256": "bf254dba521591388bf557d42498c8e5f24107c8cdfef8f4d8e54d2ffc46d167",
+          "bytes": 1377
+        }
+      ]
+    },
+    {
+      "id": "terraform-module-contract",
+      "path": "skills/terraform/terraform-module-contract",
+      "aggregate_sha256": "139e8981e0dc3640ee2bdf70f49547d3cf2058fe52c1528e7538043d1cda1354",
+      "files": [
+        {
+          "path": "skills/terraform/terraform-module-contract/SKILL.md",
+          "sha256": "8a97da9abb9c3aa574b2aecab406fb01dc60520524bd32ebdc66b1ed78008c99",
+          "bytes": 8979
+        },
+        {
+          "path": "skills/terraform/terraform-module-contract/metadata.json",
+          "sha256": "192c53354ef5518a9eea41e02d809212583d9a8df2a1763fca15de17fb6258f9",
+          "bytes": 1527
+        },
+        {
+          "path": "skills/terraform/terraform-module-contract/references/breaking-change-classification.md",
+          "sha256": "53555c21ce4a1f1a59714a5a0869b9e14bfef4baa9fc1831a8a0de919d08fa8f",
+          "bytes": 1530
+        },
+        {
+          "path": "skills/terraform/terraform-module-contract/references/input-and-output-contracts.md",
+          "sha256": "a24075246cadbab2f8778bc07096ad73d5b084ef545ed1b37872d8ca25bc9a4b",
+          "bytes": 2000
+        },
+        {
+          "path": "skills/terraform/terraform-module-contract/references/official-sources.md",
+          "sha256": "59b1550e86b8460ba56bed71af75913dfcc58b9cc100dfebd543e6ffbde534e3",
+          "bytes": 2669
+        },
+        {
+          "path": "skills/terraform/terraform-module-contract/references/platform-fragmentation.md",
+          "sha256": "1312987287ab5d739af51a46007f8333058649dd0f5e795281ec1aa9acca000f",
+          "bytes": 1629
+        },
+        {
+          "path": "skills/terraform/terraform-module-contract/references/safety-checklist.md",
+          "sha256": "dc0db23a1c65d072c97f63be482107b600ce309a127c772ed0656cb64312b091",
+          "bytes": 3764
+        },
+        {
+          "path": "skills/terraform/terraform-module-contract/references/workflow-and-output.md",
+          "sha256": "af4f1b9b093044d493dfdd6ace69f47390076c666ddd00cdbe23ac94a95f1e76",
+          "bytes": 1654
+        }
+      ]
+    },
+    {
+      "id": "terraform-plan-blast-radius",
+      "path": "skills/terraform/terraform-plan-blast-radius",
+      "aggregate_sha256": "d20f6ed25f4281b07013ad5b50870cdd2e186814e954c743210da461aeb20e12",
+      "files": [
+        {
+          "path": "skills/terraform/terraform-plan-blast-radius/SKILL.md",
+          "sha256": "5ea885ca0162a8eba34bacc76f1af62b7bab73f9600af5c20ba4f004f92f718e",
+          "bytes": 9559
+        },
+        {
+          "path": "skills/terraform/terraform-plan-blast-radius/metadata.json",
+          "sha256": "86c6de8920f4b543d72696d093168d215893bf616e71b5b2daab2045dabc5d2e",
+          "bytes": 1718
+        },
+        {
+          "path": "skills/terraform/terraform-plan-blast-radius/references/official-sources.md",
+          "sha256": "dbdf75a3efd97a5f10a9c0bef3376b30b288a8f165bfa0121efd3744ed36516f",
+          "bytes": 3100
+        },
+        {
+          "path": "skills/terraform/terraform-plan-blast-radius/references/ordering-and-destroy-guards.md",
+          "sha256": "b18c7842949d3984ee9d2c1257254a8a10611a6feaeb50d35056796703ce857a",
+          "bytes": 1968
+        },
+        {
+          "path": "skills/terraform/terraform-plan-blast-radius/references/plan-to-apply-integrity.md",
+          "sha256": "5769f9b331b2dc713602373cc6a3bdd1bc467370cbec54bcf29acee487d85a5a",
+          "bytes": 1803
+        },
+        {
+          "path": "skills/terraform/terraform-plan-blast-radius/references/replacement-attribution.md",
+          "sha256": "4e503354d3b2d2dfd0ece8bd2c237a82051318cbe759565f5fa48ea7e68522d6",
+          "bytes": 2032
+        },
+        {
+          "path": "skills/terraform/terraform-plan-blast-radius/references/safety-checklist.md",
+          "sha256": "953c78b0381a1298061fa0d7dcb743d8aa916082e10e75aa789a9e961db92d4a",
+          "bytes": 3929
+        },
+        {
+          "path": "skills/terraform/terraform-plan-blast-radius/references/workflow-and-output.md",
+          "sha256": "a2b6b23c364ae5f98086b27d57d195b05b24290836c181cca54b424f5ee2f374",
+          "bytes": 2126
+        }
+      ]
+    },
+    {
+      "id": "terraform-policy-evidence",
+      "path": "skills/terraform/terraform-policy-evidence",
+      "aggregate_sha256": "a59e1dfc3e44d0203ccc932d5b23b0379518de10ddf5947185bb8c0f7a183163",
+      "files": [
+        {
+          "path": "skills/terraform/terraform-policy-evidence/SKILL.md",
+          "sha256": "1e8b3510da2ae8f3b9cf4bb1460614a9d7ecca6545ffe28880304cc3331e55f9",
+          "bytes": 9256
+        },
+        {
+          "path": "skills/terraform/terraform-policy-evidence/metadata.json",
+          "sha256": "25d2a26ea93baae6b985b0b46b5971fd11a80de45fd01ccbd2abfd52cfe478b3",
+          "bytes": 1916
+        },
+        {
+          "path": "skills/terraform/terraform-policy-evidence/references/control-mapping-and-enforcement.md",
+          "sha256": "b95cc96705f3b6c24b8b09654b04b232c8506ac62be4293c7bff26be6be3729f",
+          "bytes": 3069
+        },
+        {
+          "path": "skills/terraform/terraform-policy-evidence/references/exceptions-and-evidence.md",
+          "sha256": "78b1e154ac6678b0f0e94ab33c409e6511453ac8d642de47f13c73b1ba84b4fc",
+          "bytes": 1830
+        },
+        {
+          "path": "skills/terraform/terraform-policy-evidence/references/official-sources.md",
+          "sha256": "5682cc221874501a0e29494c58a2fd89f8f3b1f74f4685389d02349cebf01952",
+          "bytes": 3660
+        },
+        {
+          "path": "skills/terraform/terraform-policy-evidence/references/safety-checklist.md",
+          "sha256": "10bae91fe15c204fd45e879085b84eed9477c1ecb6377b8caa519f22069d31ba",
+          "bytes": 3814
+        },
+        {
+          "path": "skills/terraform/terraform-policy-evidence/references/workflow-and-output.md",
+          "sha256": "a8147f3d919092c1e9f8f2e741335897cb65b3a99f0c4b6bcffa46ed802c791c",
+          "bytes": 1774
+        }
+      ]
+    },
+    {
+      "id": "terraform-state-reliability",
+      "path": "skills/terraform/terraform-state-reliability",
+      "aggregate_sha256": "265641e6dce38ab7867c1482cf46a832c290f7b86bc01e362ba7519f35b1d94c",
+      "files": [
+        {
+          "path": "skills/terraform/terraform-state-reliability/SKILL.md",
+          "sha256": "f6a8c8860c9e1dd782385ff7e603ab63699ce907437374c330f23f7b771c8b08",
+          "bytes": 10106
+        },
+        {
+          "path": "skills/terraform/terraform-state-reliability/metadata.json",
+          "sha256": "bf1b381b9ba3b13e74c1471794b4cba9ba3550bdbe66b201073fac18cc698d98",
+          "bytes": 2115
+        },
+        {
+          "path": "skills/terraform/terraform-state-reliability/references/backend-and-locking.md",
+          "sha256": "2f84c2ec26e8229d9febedd17d931592f3003416a46f3cec33ff8bafc69feedb",
+          "bytes": 1830
+        },
+        {
+          "path": "skills/terraform/terraform-state-reliability/references/official-sources.md",
+          "sha256": "75a73ca1fcd0d4c4bb9c14f72123baa766cdb723e3286d1458e7b414f281894d",
+          "bytes": 4084
+        },
+        {
+          "path": "skills/terraform/terraform-state-reliability/references/recovery-and-surgery.md",
+          "sha256": "5dfb0be22c99192a88586329a2d007c0bcf6a19bb4306dcd0e5c619384b01c98",
+          "bytes": 2040
+        },
+        {
+          "path": "skills/terraform/terraform-state-reliability/references/safety-checklist.md",
+          "sha256": "4ad18392fcbdc854f8e5bac6a3373ced1894b7c28be35be51ae7d70aa6aacc84",
+          "bytes": 4063
+        },
+        {
+          "path": "skills/terraform/terraform-state-reliability/references/state-confidentiality.md",
+          "sha256": "fdf3d36cb1dcf85a2b168012fd8b73a9b8d8f0414381fbae126d2fb64f118966",
+          "bytes": 2113
+        },
+        {
+          "path": "skills/terraform/terraform-state-reliability/references/workflow-and-output.md",
+          "sha256": "6ecf954098fcbda52779732d4234216f4c3d8e1e17cf59f46fffd8910eaff9b1",
+          "bytes": 1820
+        }
+      ]
+    },
+    {
+      "id": "terraform-supply-chain-integrity",
+      "path": "skills/terraform/terraform-supply-chain-integrity",
+      "aggregate_sha256": "f008a51f932836fec94e8c066de6da4eada51cd13db3641670fc8398cd032b69",
+      "files": [
+        {
+          "path": "skills/terraform/terraform-supply-chain-integrity/SKILL.md",
+          "sha256": "131da5eb6751c23d58ef88e2cceb682a8aa350d78f298fa2c9c36754fc276cac",
+          "bytes": 9739
+        },
+        {
+          "path": "skills/terraform/terraform-supply-chain-integrity/metadata.json",
+          "sha256": "437c28ee359522cf4821b26b0b6b265ded920de8805190856f01bdb7ec416b39",
+          "bytes": 1848
+        },
+        {
+          "path": "skills/terraform/terraform-supply-chain-integrity/references/installation-paths-and-overrides.md",
+          "sha256": "1af016932a31143607a340246b78a677032450125a5b042892b7315f2c2bb03a",
+          "bytes": 1767
+        },
+        {
+          "path": "skills/terraform/terraform-supply-chain-integrity/references/lock-file-and-verification.md",
+          "sha256": "f6f70fd681c5a127211946796a7099fa54e4d19a56ab3277d3fba25e6be793e8",
+          "bytes": 1735
+        },
+        {
+          "path": "skills/terraform/terraform-supply-chain-integrity/references/official-sources.md",
+          "sha256": "e91a64106226518bdb0605c43342891e564a51ceec8b8e2214750eef376e8713",
+          "bytes": 3424
+        },
+        {
+          "path": "skills/terraform/terraform-supply-chain-integrity/references/safety-checklist.md",
+          "sha256": "def772dfe6d5c58f55cef6d560f8a2c9923ae60d727695e9fe467f9ce0cb5e8a",
+          "bytes": 3853
+        },
+        {
+          "path": "skills/terraform/terraform-supply-chain-integrity/references/source-addresses-and-registries.md",
+          "sha256": "1b50caae96cc16ba7506aea2305747611dd12efcbc124713ac5b88f48ac4afa9",
+          "bytes": 1809
+        },
+        {
+          "path": "skills/terraform/terraform-supply-chain-integrity/references/workflow-and-output.md",
+          "sha256": "89d949cd4026237df58d9142d361a4e1272604bec27dd09586ecc573efabcc39",
+          "bytes": 1856
+        }
+      ]
+    },
+    {
+      "id": "terraform-verification-strategy",
+      "path": "skills/terraform/terraform-verification-strategy",
+      "aggregate_sha256": "99103087bc1b671c86966d3a2bc20f2cb77a8246cae1b8cc4ed99229932b7e3d",
+      "files": [
+        {
+          "path": "skills/terraform/terraform-verification-strategy/SKILL.md",
+          "sha256": "7f66fbd43dd37a900f76800db7ab1ab0c5291fd7e03c9a9250a3fefa92b742da",
+          "bytes": 5535
+        },
+        {
+          "path": "skills/terraform/terraform-verification-strategy/metadata.json",
+          "sha256": "18b0c6f3396ffab62da00b79ac707431049515aef283335f9db8d26f4e8bc00c",
+          "bytes": 1546
+        },
+        {
+          "path": "skills/terraform/terraform-verification-strategy/references/official-sources.md",
+          "sha256": "b65a557801c8e5bcb99cebb9045d4668495b367c0c080789cb62ba76ac1a4c49",
+          "bytes": 2402
+        },
+        {
+          "path": "skills/terraform/terraform-verification-strategy/references/proportionate-verification.md",
+          "sha256": "e2ca6343333c449f8869b8871f231d785b719fec872ac813921db85aacf95c56",
+          "bytes": 1886
+        },
+        {
+          "path": "skills/terraform/terraform-verification-strategy/references/what-each-check-proves.md",
+          "sha256": "c189bef28319e73f67be31fd8f523dd6bd6d0319e5d6eb8d1e1484efc52c1bba",
+          "bytes": 2271
         }
       ]
     },
