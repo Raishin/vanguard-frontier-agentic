@@ -127,10 +127,25 @@
     "A cost proposal would reduce recovery capability → `snowflake-finops-cost-governor-agent` and the risk owner."
   ],
   "routing_keywords": [
-    "disaster recovery", "dr", "bcdr", "failover", "failback", "replication",
-    "failover group", "replication group", "client redirect", "rpo", "rto",
-    "cross-region", "cross-cloud", "business continuity", "outage", "drill",
-    "secondary", "promote", "resilience"
+    "disaster recovery",
+    "dr",
+    "bcdr",
+    "failover",
+    "failback",
+    "replication",
+    "failover group",
+    "replication group",
+    "client redirect",
+    "rpo",
+    "rto",
+    "cross-region",
+    "cross-cloud",
+    "business continuity",
+    "outage",
+    "drill",
+    "secondary",
+    "promote",
+    "resilience"
   ],
   "companion_skill": {
     "id": "snowflake-bcdr-resilience",
@@ -220,11 +235,11 @@
         ],
         "volatile": [
           {
-            "claim": "Database and share replication is available to all accounts; replication of other account objects, failover/failback, and Client Redirect require Business Critical edition or higher.",
+            "claim": "Database and share replication is available to all accounts; replication of other account objects, failover/failback, and Client Redirect require Business Critical edition or higher — Enterprise is NOT sufficient, and the edition matrix lists these business-continuity capabilities as Business Critical and VPS only.",
             "status": "Edition-gated — confirm the account's edition",
             "verified": "2026-08-17 via Context7 `/websites/snowflake_en` (replication-intro)",
             "proves": "That 'we replicate' and 'we can fail over' have different prerequisites",
-            "not_proves": "This account's edition, or that any configured group has ever been exercised"
+            "not_proves": "This account's edition, or that any configured group has ever been exercised Also does not prove the account is not Enterprise: an Enterprise account can replicate but cannot fail over, which is the single most common edition misreading in a DR design."
           },
           {
             "claim": "Failover groups require Business Critical edition or higher; replication groups require Standard edition or higher and provide read-only replication without failover support.",

@@ -401,7 +401,7 @@
     "snowflake-live-pipeline-streaming-change-guard-agent",
     "snowflake-live-failover-promotion-guard-agent"
   ],
-  "live_guard_intent": "\\b(execute|apply|run) (the )?(grant|revoke|statement)\\b|\\bpromote (the )?failover\\b|\\bfail over (now|immediately)\\b|\\bapproved[,:]? (now )?(execute|apply|promote|attach|detach)\\b|\\b(attach|detach) the (masking|row access) policy now\\b",
+  "live_guard_intent": "\\b(execute|apply|run) (the )?(grant|revoke|statement)\\b|\\bpromote (the )?failover\\b|\\bfail over (now|immediately)\\b|\\bapproved[,:]? (now )?(execute|apply|promote|attach|detach)\\b|\\b(attach|detach) the (masking|row access) policy now\\b|\\b(execute|apply|run|perform) (the )?(approved )?(network|authentication|auth|masking|row.access|projection|aggregation) policy\\b|\\b(execute|apply|run|perform) the approved (warehouse|resource monitor|budget|task|stream|dynamic table|pipe|failover|promotion|change)\\b|\\bapproved[,:]?( now)?,? (resume|suspend|resize|promote|revoke|grant|run|execute|apply)\\b|\\b(resume|suspend|resize) (the )?\\w+ now\\b|\\b(promotion|promote) .{0,20}(failover )?group now\\b|\\b(execute|apply|run|perform) (the )?[\\w-]+( [\\w-]+)? change now\\b",
   "parallel_threshold": 0.6,
   "live_guard_keywords": {
     "snowflake-live-rbac-grant-guard-agent": [

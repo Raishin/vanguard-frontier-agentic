@@ -109,9 +109,21 @@
     "The proposal implies a live change → hand the exact proposed change to the owning review specialist and the named live guard behind the approval gate."
   ],
   "routing_keywords": [
-    "architecture", "topology", "account structure", "workload placement", "isolation",
-    "edition", "region", "multi-account", "design", "blueprint", "landing zone",
-    "iceberg", "interoperability", "residency", "architecture decision"
+    "architecture",
+    "topology",
+    "account structure",
+    "workload placement",
+    "isolation",
+    "edition",
+    "region",
+    "multi-account",
+    "design",
+    "blueprint",
+    "landing zone",
+    "iceberg",
+    "interoperability",
+    "residency",
+    "architecture decision"
   ],
   "companion_skill": {
     "id": "snowflake-solution-architect",
@@ -240,11 +252,11 @@
         ],
         "volatile": [
           {
-            "claim": "Database and share replication is available to all accounts; replication of other account objects, failover/failback, and Client Redirect require Business Critical edition or higher.",
+            "claim": "Database and share replication is available to all accounts; replication of other account objects, failover/failback, and Client Redirect require Business Critical edition or higher — Enterprise is NOT sufficient, and the edition matrix lists these business-continuity capabilities as Business Critical and VPS only.",
             "status": "Edition-gated — verify the account's actual edition",
             "verified": "2026-08-17 via Context7 `/websites/snowflake_en`",
             "proves": "That a multi-region design claiming automatic failover has an edition prerequisite",
-            "not_proves": "That this account holds that edition, or that the capability is available in its region"
+            "not_proves": "That this account holds that edition, or that the capability is available in its region Also does not prove the account is not Enterprise: an Enterprise account can replicate but cannot fail over, which is the single most common edition misreading in a DR design."
           },
           {
             "claim": "Failover groups require Business Critical or higher; replication groups (read-only, no failover) require Standard or higher.",

@@ -1529,7 +1529,7 @@
     },
     "azure-snowflake-platform-engineer": {
       "label": "Azure Snowflake Platform Engineer",
-      "description": "Static-review governance and engineering for Snowflake on Azure: RBAC least privilege (ACCOUNTADMIN restriction, SECURITYADMIN/SYSADMIN separation of duties, network policies, Entra OAuth/SSO/SCIM) and data-platform engineering (warehouses, Azure Private Link/storage integration, masking/row-access/tagging governance). Advisory only; production role/grant/policy/warehouse changes are live-guard gated and require explicit human approval.",
+      "description": "Static-review governance and engineering for Snowflake on Azure: RBAC least privilege (ACCOUNTADMIN restriction, SECURITYADMIN/SYSADMIN separation of duties, network policies, Entra OAuth/SSO/SCIM) and data-platform engineering (warehouses, Azure Private Link/storage integration, masking/row-access/tagging governance). Advisory only, with one approval-gated live guard covering exactly one mutation: a single GRANT or REVOKE. Policy, warehouse, data-protection, pipeline, and failover changes are NOT gated by this role — it installs no guard that owns them. Superseded by the cloud-neutral snowflake roles, whose guards cover those mutations; these Azure-scoped assets are `lifecycle: deprecated` and retained for continuity.",
       "agents": [
         "snowflake-rbac-access-governance-at-azure-agent",
         "snowflake-data-platform-engineering-at-azure-agent",

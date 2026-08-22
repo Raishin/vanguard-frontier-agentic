@@ -34382,7 +34382,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "2a647f12d557ebcf958cc9d988cc1a6f9c8fb543c7bf72336f8e9fd41a8d48aa",
+      "aggregate_sha256": "de2dfc360fdcc873ac5f917a5be042a2a575eb1761459b98e12df6bfe1bbe484",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -34401,8 +34401,8 @@
         },
         {
           "path": "catalog/install-roles.json",
-          "sha256": "e29e840ce2cd9435e8f89f9d742ea1a5776fa99c16a7ccd4f7a58d7101d552e8",
-          "bytes": 119134
+          "sha256": "1e36e3e05b030cc06e2f10e38ebd019543b6611f14d93d71efcb10963634bba7",
+          "bytes": 119424
         },
         {
           "path": "catalog/mcp-references.json",
@@ -34431,7 +34431,7 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "b65f977178be00744b7472f2c2a7670506a4e8d25297db28df093ee77e60a8e0",
+          "sha256": "e657b124dc1da71f12785cafdbe8294f5576f3bdf5bf44eebc91d43ca283dae6",
           "bytes": 1036035
         },
         {
@@ -34448,7 +34448,7 @@
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "4c8104c6106004fbe67fdf46754e32b706b2f5a7289d3b29e0747865c95837ed",
+      "aggregate_sha256": "ea5f32e501083563464a37c86dca20f83f05dc90c2fc38134b8543d0689b776d",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -34519,6 +34519,11 @@
           "path": "scripts/gen_typescript_agents.py",
           "sha256": "2d9ab1a6201e5951a61dd6181020c3e5469bf3722b98bf3bb700a7b5d84d8491",
           "bytes": 22007
+        },
+        {
+          "path": "scripts/generate-board-counts.mjs",
+          "sha256": "7c33ae55bedee96fd867e258da0a742c950c2fd60a78ba258b1a3f45029d9443",
+          "bytes": 6712
         },
         {
           "path": "scripts/generate-changelog-counts.mjs",
@@ -34957,8 +34962,8 @@
         },
         {
           "path": "scripts/snowflake_data/agents/01-snowflake-solution-architect-agent.json",
-          "sha256": "e5634d55fddf8747100255d88236db552db068b35eedb0295f331e8b3fd3094d",
-          "bytes": 32293
+          "sha256": "2de5a88240c0919a7234f471ddcff77de38fca87e5dca1f9136fd0b8e6d30b29",
+          "bytes": 32653
         },
         {
           "path": "scripts/snowflake_data/agents/02-snowflake-platform-administrator-agent.json",
@@ -35027,8 +35032,8 @@
         },
         {
           "path": "scripts/snowflake_data/agents/15-snowflake-bcdr-resilience-agent.json",
-          "sha256": "bbebb9495fac5daf7d66fc9cf6f7914d3a8febd9b03a1cde368500f0feaa03c0",
-          "bytes": 32065
+          "sha256": "0be26dfa7d41babb0e1da857b3fedf18b4b0b4a588d5e8d5210b0f7e66e373e4",
+          "bytes": 32437
         },
         {
           "path": "scripts/snowflake_data/agents/16-snowflake-devops-iac-release-agent.json",
@@ -35540,7 +35545,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "dfb6448a45851de31d3836fccad0f37254a6486b047661e3df6a1bf2ab9f7afa",
+      "aggregate_sha256": "2a07f7698b21abf8138e2fa5f06717e019df3c0c5413f68559b827cfae771927",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -44223,6 +44228,31 @@
           "bytes": 94
         },
         {
+          "path": "tests/fixtures/snowflake-maestro-routing/expected/46-gate-network-policy-execution.json",
+          "sha256": "995c0b73c36d8a75cc2b3c4ff1c7b0a287640b9f8577c46e62d11f1d70d711c9",
+          "bytes": 103
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/expected/47-gate-warehouse-change-execution.json",
+          "sha256": "7e99238283abefd3ba0189162d131d75f065d7fd9b44e643cd460829ae09c9e6",
+          "bytes": 105
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/expected/48-gate-pipeline-task-resume.json",
+          "sha256": "303addd0b67615a27a69d0fc45a99c2998f5d668cfe737c8d8a82d35ebf6a05f",
+          "bytes": 109
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/expected/49-negative-warehouse-review-not-gated.json",
+          "sha256": "e91923c10f28d12c489147eca53f8915b3d2f75dd24ff02d18d21512d302ae9d",
+          "bytes": 90
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/expected/50-negative-dr-readiness-not-gated.json",
+          "sha256": "4e61c8881d2b191e84144226c44c3674ae6804a7e6355021ec4d7c918bf54fd7",
+          "bytes": 79
+        },
+        {
           "path": "tests/fixtures/snowflake-maestro-routing/inputs/01-redteam-accountadmin-shortcut.json",
           "sha256": "c4a72d7669b879c12baaf2a436e54ddc216303e598fc0987fea017ed60cc929f",
           "bytes": 245
@@ -44373,9 +44403,34 @@
           "bytes": 212
         },
         {
+          "path": "tests/fixtures/snowflake-maestro-routing/inputs/46-gate-network-policy-execution.json",
+          "sha256": "96af8357aee99a6b19a6e3e7ebffc7a00f2c0bf079470fbfd337811860012011",
+          "bytes": 186
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/inputs/47-gate-warehouse-change-execution.json",
+          "sha256": "8ee2906335e3b42b57a6724752b827508e7d83a23b6e056196682830f67a3fe6",
+          "bytes": 212
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/inputs/48-gate-pipeline-task-resume.json",
+          "sha256": "78f1a7ff87d6a7f8ff8f92329ce3f441f1bd8a83b05f88564728123775958d70",
+          "bytes": 174
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/inputs/49-negative-warehouse-review-not-gated.json",
+          "sha256": "71df15975e4a658e946fef08d36503b87f2ca11df30cd48c992cca74dc4a4b9c",
+          "bytes": 196
+        },
+        {
+          "path": "tests/fixtures/snowflake-maestro-routing/inputs/50-negative-dr-readiness-not-gated.json",
+          "sha256": "6a0149aa06196558763c331f113568c446057ea436d470c706de37a128b4e7e1",
+          "bytes": 196
+        },
+        {
           "path": "tests/fixtures/snowflake-maestro-routing/taxonomy.json",
-          "sha256": "c1a13ba46472767c05a987ef92c8df84f51e39753d63c41438676274fa3af6f8",
-          "bytes": 11142
+          "sha256": "563f6f9ebf0b2123c7bf5ea07a0652e56e27ea0e081835382b4669be1ad46997",
+          "bytes": 11678
         },
         {
           "path": "tests/fixtures/terraform-maestro-routing/expected/001-happy-engine-compatibility.json",
@@ -44938,8 +44993,8 @@
     },
     {
       "path": "CLAUDE.md",
-      "sha256": "a46c8af0e8395b8b7bf87a5dad9960ae191f97e17f8340b4fce88d097164c7fb",
-      "bytes": 20337
+      "sha256": "6afe9707808a24a0b4ce019eea6ac94e5e0c3c5f6b94ec9342e8bcd2dd64f298",
+      "bytes": 21022
     },
     {
       "path": "AGENTS.md",
@@ -44953,8 +45008,8 @@
     },
     {
       "path": "package.json",
-      "sha256": "f7a72cc65c4699d2e0bf8166bb1b3c63632c705743a945a3ffd4e34b408fc8e4",
-      "bytes": 6859
+      "sha256": "4e0ecf478f5cd071a501b1f30bc10e873667aa7caffb95ccdd083a925edd6826",
+      "bytes": 7068
     },
     {
       "path": ".releaserc.js",
@@ -44962,5 +45017,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "11360283a006167aabe898639a577040e9e8deab959a8f3dc3903bbc1bc916b0"
+  "aggregate_sha256": "1b7ed425539f98a78423d5683d80c9645e936ca672c5b597fa9cf51540422efc"
 }
