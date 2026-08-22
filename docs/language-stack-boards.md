@@ -385,7 +385,7 @@ influencer disclosure, and dark-pattern conversion flow review.
 | Agents | <!-- count:board:marketing:agents -->14<!-- /count --> |
 | Skills | <!-- count:board:marketing:skills -->14<!-- /count --> (1:1 companion skill per agent) |
 | Install role | `marketing-governance-reviewer` |
-| Execution tier | `static-review` (13 agents); `read-only-runtime` (maestro) |
+| Execution tier | `read-only-runtime` (maestro); the remaining <!-- count:board:marketing:specialists -->13<!-- /count --> agents declare no `execution_tier` |
 
 **Agent directory layout**
 
@@ -515,7 +515,7 @@ scripts/notebooks, segregation of duties, reconciliation, key-person risk).
 
 > [!IMPORTANT]
 > **`python` is a deliberate, governed exception to the "language/stack boards are
-> static-review only" posture.** It hosts a **live control plane** (15 agents under
+> static-review only" posture.** It hosts a **live control plane** (<!-- count:board:python:live -->15<!-- /count --> agents under
 > `python-live-*`) that interacts with live systems under controlled execution with
 > provable accountability, routed by `python-live-governance-maestro-agent` — separate
 > from the 20 static-review board agents routed by `python-maestro-agent`. Mutating
@@ -725,7 +725,7 @@ set for a given function.
 | Role | Boards covered | Agents | Skills |
 |------|---------------|--------|--------|
 | `dotnet-application-review-engineer` | `.NET` | 10 | 10 |
-| `legal-hr-risk-reviewer` | `legal` + `hr` | 28 | 5 (2 board-specific + 3 cross-functional) |
+| `legal-hr-risk-reviewer` | `legal` + `hr` | <!-- count:board:legal+hr:agents -->28<!-- /count --> | 5 (2 board-specific + 3 cross-functional) |
 | `marketing-governance-reviewer` | `marketing` | 14 | 14 |
 | `php-platform-engineer` | `php` | 5 | 5 |
 | `python-application-review-engineer` | `python` | 20 | 20 |
