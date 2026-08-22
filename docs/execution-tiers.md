@@ -184,8 +184,12 @@ secret values**. Each guard ships `PERMISSIONS.md`, `PREFLIGHT.md`, and
   on one driveItem (Graph); re-apply-prior-label rollback.
 - `databricks-live-unity-catalog-grant-guard-at-azure-agent` — one
   schema-scoped Unity Catalog `GRANT`; `REVOKE` rollback.
-- `snowflake-live-rbac-grant-guard-at-azure-agent` — one RBAC `GRANT`
-  to a custom role; `REVOKE` rollback.
+- `snowflake-live-rbac-grant-guard-agent` — one RBAC `GRANT` or `REVOKE`
+  of one privilege on one securable to one custom role; exact-inverse
+  rollback. Five sibling guards cover auth/network policy, warehouse and
+  cost settings, data-protection policy attachment, pipeline and streaming
+  operations, and failover promotion — each owning a disjoint mutation.
+  (The `-at-azure` predecessor is deprecated in favour of this one.)
 
 > Phase A (`read-only-runtime`) live-guards discover and propose;
 > Phase B (`mutating-runtime`) live-guards execute one approved,

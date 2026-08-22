@@ -7,7 +7,7 @@ title: "Vanguard Frontier Agentic"
 
 Welcome to the documentation site for **Vanguard Frontier Agentic**, an
 enterprise-grade AI agent ecosystem. This package provides a curated catalog of
-404 skills, 426 agents, and integrations spanning 32 cloud providers -- ready
+<!-- count:global:skills -->737<!-- /count --> skills, <!-- count:global:agents -->712<!-- /count --> agents, and integrations spanning <!-- count:global:providers -->45<!-- /count --> cloud providers -- ready
 to plug into your automation workflows.
 
 Whether you are exploring the architecture, evaluating provider coverage, or

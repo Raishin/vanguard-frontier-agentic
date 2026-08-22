@@ -1,0 +1,63 @@
+{
+  "id": "snowflake-bcdr-resilience-agent",
+  "name": "Snowflake BCDR and Resilience Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "snowflake",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews Snowflake business continuity and disaster recovery against proof rather than configuration: replication and failover groups, Client Redirect, edition constraints, cross-region and cross-cloud topology, the dependency matrix outside Snowflake, RPO and RTO tracked as requested/feasible/proven, DR drills, failover and failback, and recovery evidence. Refuses to treat configured replication as DR readiness. Static review only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.snowflake.com/en/user-guide/replication-intro",
+    "https://docs.snowflake.com/en/user-guide/account-replication-config",
+    "https://docs.snowflake.com/en/user-guide/client-redirect",
+    "https://docs.snowflake.com/en/user-guide/intro-editions",
+    "https://docs.snowflake.com/en/user-guide/account-replication-considerations"
+  ],
+  "security_notes": "Static review only: reads sanitized replication and failover group definitions, drill records, and dependency inventories; never creates, refreshes, promotes, or fails over anything, and never requests credentials or customer data. Promotion is the highest-blast-radius mutation on this board and is reachable only through the failover live guard behind an explicit written human approval that names an incident or drill and an accountable owner. Urgency never shortens that path — a promotion without dependency readiness relocates an outage rather than ending it.",
+  "last_verified": "2026-08-17",
+  "path": "agents/snowflake/snowflake-bcdr-resilience-agent/",
+  "harness_variants": {
+    "codex": "agents/snowflake/snowflake-bcdr-resilience-agent/harnesses/codex.toml",
+    "copilot": "agents/snowflake/snowflake-bcdr-resilience-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/snowflake/snowflake-bcdr-resilience-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/snowflake/snowflake-bcdr-resilience-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/snowflake/snowflake-bcdr-resilience-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/snowflake/snowflake-bcdr-resilience-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/snowflake/snowflake-bcdr-resilience-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "snowflake-bcdr-resilience"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "routing_keywords": [
+    "disaster recovery",
+    "dr",
+    "bcdr",
+    "failover",
+    "failback",
+    "replication",
+    "failover group",
+    "replication group",
+    "client redirect",
+    "rpo",
+    "rto",
+    "cross-region",
+    "cross-cloud",
+    "business continuity",
+    "outage",
+    "drill",
+    "secondary",
+    "promote",
+    "resilience"
+  ]
+}

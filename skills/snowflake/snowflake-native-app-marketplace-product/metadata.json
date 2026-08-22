@@ -1,0 +1,28 @@
+{
+  "id": "snowflake-native-app-marketplace-product",
+  "name": "snowflake-native-app-marketplace-product",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "snowflake",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews Snowflake Native Apps and Marketplace listings as products, not features: application package and application-role design, the provider/consumer trust boundary, least-privilege permissions and security review readiness, listing and publication requirements, pricing and monetization, version and patch lifecycle, telemetry and shareback, and supportability. Static review only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.snowflake.com/en/developer-guide/native-apps/native-apps-about",
+    "https://docs.snowflake.com/en/developer-guide/native-apps/security-app-security",
+    "https://docs.snowflake.com/en/developer-guide/native-apps/requesting-about-privileges",
+    "https://docs.snowflake.com/en/developer-guide/native-apps/versioning",
+    "https://other-docs.snowflake.com/en/collaboration/provider-listings-about"
+  ],
+  "security_notes": "Static review only: reads sanitized manifests, setup scripts, application-role definitions, listing metadata, and pricing models; never creates, installs, publishes, or upgrades an application or listing, and never requests credentials or consumer data. Consumer-side data exposure is analysed as a design property — what the app requests, what it can reach, and what leaves the consumer account — never by inspecting consumer data. Passing Snowflake's automated security review is treated as a gate the provider must clear, never as evidence that the application is well designed.",
+  "last_verified": "2026-08-17",
+  "path": "skills/snowflake/snowflake-native-app-marketplace-product",
+  "author": "github: VincentChuWaiChow"
+}

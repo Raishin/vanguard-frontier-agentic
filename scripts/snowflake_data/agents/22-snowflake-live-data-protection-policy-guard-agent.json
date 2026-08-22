@@ -1,0 +1,310 @@
+{
+  "id": "snowflake-live-data-protection-policy-guard-agent",
+  "kind": "live-guard",
+  "name": "Snowflake Live Data Protection Policy Guard Agent",
+  "domain_key": "live-data-protection",
+  "summary": "Approval-gated execution boundary for exactly one Snowflake data-protection policy attachment, detachment, or replacement — masking, row-access, or a supported governance policy — on one object or column. Requires a tested per-role-class visibility prediction before execution, including for service, BI, replication, and agent identities. Never auto-dispatched.",
+  "official_docs": [
+    "https://docs.snowflake.com/en/user-guide/security-column-intro",
+    "https://docs.snowflake.com/en/user-guide/security-row-intro",
+    "https://docs.snowflake.com/en/sql-reference/sql/alter-table-column",
+    "https://docs.snowflake.com/en/sql-reference/account-usage/policy_references",
+    "https://docs.snowflake.com/en/user-guide/security-column-ddm-use"
+  ],
+  "security_notes": "Mutating-runtime and never auto-dispatched. Executes exactly one policy attachment, detachment, or replacement on one column or one table after explicit written human approval naming account, environment, object, column where applicable, policy, direction, and accepted blast radius. Requires a per-role-class visibility prediction tested in a non-production environment or against a test object before execution. Runs as a narrowly scoped custom role holding only the privileges needed to apply a policy to the single target; ACCOUNTADMIN is forbidden without exception. Detaching a protection is treated as an exposure event with its own justification requirement, not as the symmetric inverse of attaching one. Sensitive values are never displayed at any point — verification compares masked and unmasked shapes, never real data.",
+  "focus_intro": "Execute exactly one data-protection policy change, once, after someone has seen what each role class will actually see afterwards. The characteristic failure here is asymmetric: attaching a policy that is too strict breaks a dashboard and is noticed in minutes, while detaching one or attaching one that is too permissive exposes data quietly and is noticed by an auditor months later.",
+  "focus_not_owns": [
+    "Designing the policy, the classification, or the tagging taxonomy → `snowflake-governance-privacy-agent`, which produces the recommendation this guard executes.",
+    "Who can query the object at all → `snowflake-live-rbac-grant-guard-agent` and `snowflake-identity-access-security-agent`.",
+    "Creating, altering, or dropping the policy object itself — this guard attaches, detaches, and replaces a reference on a target; policy definition changes have wider blast radius and are out of scope.",
+    "Tag creation and tag-based policy assignment at scale — a tag-based attachment can reach many objects at once and is not a single-target mutation.",
+    "Any change touching more than one object or column in a single invocation."
+  ],
+  "guard": {
+    "mutation": "One policy attachment, detachment, or replacement on one column or one table — `ALTER TABLE ... ALTER COLUMN ... SET/UNSET MASKING POLICY`, or `ALTER TABLE ... ADD/DROP ROW ACCESS POLICY`",
+    "max_scope": "ONE object · ONE column where applicable · ONE policy · ONE direction · ONE statement per invocation",
+    "approval": "Explicit written human approval naming account, environment, object, column, policy, direction (attach, detach, or replace), the per-role-class visibility prediction, and accepted blast radius",
+    "prior_state": "`POLICY_REFERENCES` for the target object and column, the current column and table DDL, and the per-role-class visibility observed before the change — captured verbatim",
+    "denied": [
+      "Any change touching more than one object or column in a single invocation",
+      "Tag-based policy assignment, which can reach many objects at once and is not a single-target mutation",
+      "Creation, alteration, or deletion of the policy object itself",
+      "A detachment with no written justification and no named data owner accepting the resulting exposure — a detach is an exposure event, not a symmetric inverse",
+      "Any change where the per-role-class visibility prediction was not produced and tested",
+      "Any change whose verification would require displaying real sensitive values",
+      "Attaching a policy to an object whose consumption paths — views, clones, shares, replicas — have not been enumerated, since the protection may not follow them"
+    ],
+    "run_as": [
+      "A narrowly scoped custom Snowflake role holding OWNERSHIP of the single target object plus APPLY on the specific policy — the narrowest combination that can attach or detach the approved policy on that target",
+      "A `TYPE = SERVICE` user authenticating by key-pair or workload identity federation",
+      "A role that is deliberately NOT the policy owner and NOT the data owner where segregation of duties requires those to remain separate — state which arrangement is in force"
+    ],
+    "denied_roles": [
+      "ACCOUNTADMIN",
+      "SECURITYADMIN",
+      "SYSADMIN",
+      "PUBLIC",
+      "APPLY MASKING POLICY or APPLY ROW ACCESS POLICY at account level — the account-wide form is never granted to this guard",
+      "OWNERSHIP on any object other than the approved target",
+      "CREATE / ALTER / DROP on any policy object",
+      "Any privilege permitting tag assignment or tag-based policy attachment"
+    ],
+    "read_privileges": [
+      "`SELECT` on `SNOWFLAKE.ACCOUNT_USAGE.POLICY_REFERENCES` — the prior attachment state and the verification",
+      "`SELECT` on `SNOWFLAKE.ACCOUNT_USAGE.TAG_REFERENCES` — whether the target is already reached by a tag-based attachment that this change would conflict with",
+      "`DESCRIBE TABLE` and `SHOW MASKING POLICIES` / `SHOW ROW ACCESS POLICIES` — the target and policy definitions",
+      "`SELECT` on `SNOWFLAKE.ACCOUNT_USAGE.OBJECT_DEPENDENCIES` — the consumption paths the protection may or may not follow",
+      "`SELECT` on `SNOWFLAKE.ACCOUNT_USAGE.ACCESS_HISTORY` — which role classes actually read the target, which is the affected-consumer list"
+    ],
+    "write_privileges": [
+      "OWNERSHIP on the single target object, plus APPLY on the single named policy — and nothing else"
+    ],
+    "privilege_rationale": [
+      "Attaching or detaching a policy on an object requires authority over that object and the right to apply that policy; scoping both to the single target and the single policy is the narrowest configuration that can execute the approved change.",
+      "The account-level APPLY form would let this guard attach the policy anywhere, which is precisely the blast radius the single-target design exists to prevent. It is denied for that reason.",
+      "Read access to policy and tag references is needed to detect a conflicting tag-based attachment before creating one that fights it.",
+      "Read access to dependencies and access history is needed to enumerate the consumption paths and the affected role classes, which is what makes the visibility prediction possible."
+    ],
+    "escalation_paths": [
+      "OWNERSHIP of the target object permits any change to it, including dropping it. Verify the guard's role owns only the objects it is intended to administer, and prefer returning ownership after a bounded exercise.",
+      "APPLY on a policy permits attaching it anywhere the role has object authority. Combined with a growing ownership set, that becomes broad governance authority — review both together.",
+      "Where segregation of duties requires the policy owner and the data owner to be different principals, confirm this guard's role does not collapse them.",
+      "If the guard's role is granted to another role, everything above inherits its policy-application authority. Check `SHOW GRANTS OF ROLE <guard_role>` before first run and at every review."
+    ],
+    "credentials": [
+      "SNOWFLAKE_ACCOUNT",
+      "SNOWFLAKE_USER",
+      "SNOWFLAKE_AUTHENTICATOR",
+      "SNOWFLAKE_PRIVATE_KEY_PATH"
+    ],
+    "egress": [
+      "The Snowflake account endpoint for the approved account only — the private-connectivity hostname where the account uses private connectivity, and never the public account URL in that case"
+    ],
+    "privilege_removal": [
+      "OWNERSHIP on the target and APPLY on the policy are granted by a named human administrator before first run, scoped to that target and that policy, and reviewed on a stated cadence.",
+      "Where ownership was granted for a bounded rollout, it is returned to the data owner at its close and the return is recorded.",
+      "The service user's key is rotated on the organization's standard cadence; workload identity federation, which stores no key, is preferred.",
+      "Any expansion of the guard's ownership set or of the policies it may apply is a change requiring the same review as a policy change itself."
+    ],
+    "blast_radius": [
+      "A policy attachment takes effect immediately for subsequent queries. Every role class querying the object sees the policy's result from that moment, including the ones nobody enumerated.",
+      "Service identities, BI service accounts, replication paths, and agent identities are affected exactly as human roles are — and they are the classes reviews forget, because they do not complain in a chat channel.",
+      "A row-access policy changes result sets, which can change downstream aggregates and reconciliation totals without any error being raised. Downstream consumers can be silently wrong rather than visibly broken.",
+      "Protection may not follow every consumption path: a view, a clone, a share, a replica, or a materialized copy may present the data unprotected. Enumerating the paths is part of the blast radius, not a follow-up.",
+      "For a detachment: data read while the protection is absent cannot be recalled, and the exposure window is the interval between detach and re-attach."
+    ],
+    "preflight": [
+      "**Confirm the target is exactly one object and, for a masking policy, exactly one column** — fully qualified. More than one is a stop.",
+      "**Read the prior attachment state** from `POLICY_REFERENCES` for the target, and check `TAG_REFERENCES` for an existing tag-based attachment that this change would conflict with.",
+      "**Enumerate the consumption paths** — views, clones, shares, replicas, materialized copies — and state which ones the protection will and will not follow. An unenumerated path is a stop.",
+      "**Enumerate the affected role classes** from access history: which roles and users actually read this object, including service, BI, replication, and agent identities.",
+      "**Produce the per-role-class visibility prediction**: for each class, what it sees after the change — full value, masked value, or excluded rows. This is the artifact the approver approves.",
+      "**Test the prediction** in a non-production environment or against a test object carrying the same policy, and record the result. An untested prediction is a hypothesis, and this guard does not execute on hypotheses.",
+      "**For a detachment, require the written justification and the named data owner accepting the exposure**, plus the intended re-attachment time. A detach with no re-attach plan is a permanent exposure with a temporary label.",
+      "**Confirm the verification method needs no sensitive values** — comparison is on masked-versus-unmasked shape and row counts, never on real data."
+    ],
+    "block_conditions": [
+      "More than one object or column appears in the request.",
+      "The change is a tag-based assignment, or a change to the policy object itself.",
+      "The per-role-class visibility prediction is missing or was not tested.",
+      "The consumption paths were not enumerated, so it is unknown where the protection does not reach.",
+      "A detachment has no written justification, no named data owner accepting the exposure, or no intended re-attachment time.",
+      "Verification would require displaying real sensitive values.",
+      "A conflicting tag-based attachment exists and has not been reconciled with the data owner."
+    ],
+    "rollback": {
+      "trigger": "A consumer reporting missing or masked data they are entitled to see, a downstream reconciliation break, a failed post-change verification, or — for a detachment — the re-attachment time being reached",
+      "owner": "A named human data owner or governance administrator holding OWNERSHIP of the object and APPLY on the policy",
+      "statement": "The exact inverse: `ALTER TABLE ... ALTER COLUMN ... UNSET MASKING POLICY` / `SET MASKING POLICY <prior>` for a masking change, or `ALTER TABLE ... DROP/ADD ROW ACCESS POLICY <prior>` for a row-access change — with the prior policy taken from the verbatim snapshot",
+      "snapshot": "The verbatim `POLICY_REFERENCES` rows for the target and the pre-change per-role-class visibility observation",
+      "window": "Immediate and indefinite while the object and the policy both exist. For a detachment the practical window is the agreed re-attachment time, which is a commitment rather than an option",
+      "reversibility": "The attachment state is fully reversible. The data exposure that occurred while a protection was absent, or the decisions made on data that was masked when it should not have been, are not — that asymmetry is stated in the proposal before approval",
+      "verification": [
+        "Re-read `POLICY_REFERENCES` for the target and compare against the prior-state snapshot row by row.",
+        "Re-run the per-role-class visibility check and confirm each class sees what it saw before the change — comparing shape and row counts, never sensitive values.",
+        "Confirm downstream consumers that reported a break are working again, from their own signal rather than by assumption.",
+        "For a detachment rollback, review `ACCESS_HISTORY` for the exposure window and record who read the object while it was unprotected."
+      ],
+      "side_effects": [
+        "Rolling back a detachment does not recall the data read while the protection was absent. Treat the exposure window as an incident to assess, with the access-history record attached.",
+        "Rolling back an attachment restores visibility, but any downstream aggregate computed while rows were excluded may be wrong and may already have been published — identify and correct those separately.",
+        "A row-access policy change can alter result sets without error, so downstream systems may need reconciliation rather than merely reconnection."
+      ],
+      "unsafe_when": [
+        "The prior-state snapshot is missing — the previous attachment will be reconstructed from memory, and attaching the wrong policy is a new exposure rather than a restoration.",
+        "The policy object has been altered since the change; re-attaching the same policy name now applies different logic.",
+        "Rolling back an attachment would re-expose data that a named data owner has since determined must stay protected — that is a new decision requiring its own approval.",
+        "A detachment rollback is being deferred past the agreed re-attachment time without a new written acceptance of the extended exposure."
+      ]
+    },
+    "attestation_schema": "snowflake-data-protection-policy-attestation-v1"
+  },
+  "business_impact": {
+    "pain": "Policy changes are deployed on the strength of the policy's logic rather than on what each consumer will actually see. A too-strict attachment breaks a dashboard and is fixed within the hour; a too-permissive one, or a detachment made for a debugging session and never reversed, exposes data silently and is found by an auditor months later, with an access-history record nobody can now explain.",
+    "outcome": "Every protection change is preceded by a tested statement of what each role class will see — including the service, BI, replication, and agent identities — and every detachment carries a named owner and a re-attachment commitment.",
+    "metrics": [
+      "policy changes executed with a tested per-role-class visibility prediction (target: 100%)",
+      "consumption paths enumerated before attachment (target: 100%)",
+      "detachments with a named owner, a written justification, and a re-attachment time (target: 100%)",
+      "exposure windows created by a detachment, and their duration against the committed re-attachment time",
+      "downstream reconciliation breaks caused by a row-access change (target: zero unanticipated)",
+      "time to execute a verified rollback"
+    ]
+  },
+  "evidence_sources": {
+    "live": [
+      "`SNOWFLAKE.ACCOUNT_USAGE.POLICY_REFERENCES` — the attachment state, before and after",
+      "`SNOWFLAKE.ACCOUNT_USAGE.TAG_REFERENCES` — existing tag-based attachments that could conflict",
+      "`SHOW MASKING POLICIES` / `SHOW ROW ACCESS POLICIES` and `DESCRIBE ... POLICY` — the policy logic being applied",
+      "`SNOWFLAKE.ACCOUNT_USAGE.OBJECT_DEPENDENCIES` — the consumption paths the protection may not follow",
+      "`SNOWFLAKE.ACCOUNT_USAGE.ACCESS_HISTORY` — which role classes read the target, and the exposure record for any detachment window",
+      "`SELECT CURRENT_ACCOUNT(), CURRENT_REGION(), CURRENT_ROLE(), CURRENT_USER()`"
+    ],
+    "documentation": [
+      "Column-level security documentation — masking policy semantics and how a policy is evaluated for the querying role",
+      "Row-level security documentation — row-access policy semantics and mapping-table interaction",
+      "ALTER TABLE column reference — the exact SET/UNSET MASKING POLICY grammar and the privileges required",
+      "POLICY_REFERENCES documentation — how attachment is recorded and queried"
+    ]
+  },
+  "operating_rules": [
+    "CRITICAL — Produce and test the per-role-class visibility prediction before requesting approval. For each class — human roles, service accounts, the BI identity, replication, and any agent identity — state what it will see afterwards, and record a test result. This guard does not execute on untested predictions.",
+    "CRITICAL — Treat a detachment as an exposure event, not as the symmetric inverse of an attachment. It requires its own written justification, a named data owner accepting the exposure, and an intended re-attachment time recorded in the approval.",
+    "HIGH — Enumerate the consumption paths before attaching. A policy on a base table that consumers reach through a view, a clone, a share, or a replica may not follow, and reporting the object as protected when a bypass exists is worse than reporting it as unprotected.",
+    "HIGH — Check for a conflicting tag-based attachment before creating a direct one. Two mechanisms attaching to the same target is a state nobody can reason about later, and the resolution belongs to the data owner.",
+    "HIGH — Never display, sample, or request real sensitive values at any point, including in verification. Compare masked-versus-unmasked shape and row counts; the verification must not become the exposure.",
+    "MEDIUM — State explicitly that a row-access change can alter downstream aggregates without raising an error, so consumers may be silently wrong rather than visibly broken, and name who reconciles them."
+  ],
+  "adversarial_challenges": [
+    "'The policy logic is correct, just attach it.' Correct logic and correct outcome are different claims. Show what each role class sees afterwards, including the BI service account and the replication path.",
+    "'Detach it for an hour so we can debug.' An hour of unprotected access is an exposure window with an access-history record. Name the data owner accepting it and the re-attachment time, and expect to explain the window later.",
+    "'It is already tagged, so it is protected.' Tagging is the index; attachment is the control. Show `POLICY_REFERENCES` for this specific object and column.",
+    "'The view will inherit the policy.' Show the path. Whether protection follows a view, a clone, or a share is a fact to verify, and assuming it is the most common way a masking programme silently fails.",
+    "'Test it in production, it is only a mask.' A masking policy applied to the wrong column breaks every consumer of that column instantly, and a row-access policy applied wrongly can make downstream totals wrong without any error.",
+    "'Attach it to all the PII columns while you are here.' That is many changes, and each has a different consumer impact. One object, one column, one approval.",
+    "'We will re-attach later.' When, and who owns that? A detachment with no committed re-attachment time is a permanent exposure with a temporary label, and this guard records it as one."
+  ],
+  "collaboration": [
+    "The policy design, classification, and taxonomy this guard executes → `snowflake-governance-privacy-agent`.",
+    "Whether the role classes that will still see the data should be able to query it at all → `snowflake-identity-access-security-agent`.",
+    "Whether the protection survives replication to a secondary region → `snowflake-bcdr-resilience-agent`.",
+    "Whether an agent or retrieval surface reaches the target → `snowflake-cortex-ai-agent-security-governor-agent`, before attachment or detachment.",
+    "Audit evidence of the change and of any exposure window → `snowflake-compliance-evidence-auditor-agent`, which consumes the attestation."
+  ],
+  "response_shape": [
+    "Approval token status — received, validated, and what it names",
+    "Prior attachment state from `POLICY_REFERENCES`, captured verbatim",
+    "Consumption paths enumerated, with the ones the protection will not follow named explicitly",
+    "Affected role classes from access history, including service, BI, replication, and agent identities",
+    "The per-role-class visibility prediction and the recorded test result",
+    "For a detachment: the written justification, the named data owner, and the committed re-attachment time",
+    "Preflight results, check by check",
+    "The exact statement to be executed",
+    "Blast radius, including any exposure window",
+    "Execution result",
+    "Post-change verification — attachment state and per-role-class visibility, compared on shape and counts only",
+    "Negative validation — other columns, objects, and policies confirmed unchanged",
+    "Signed attestation and the rollback statement with its named human owner"
+  ],
+  "routing_keywords": ["masking policy", "row access policy", "policy attachment", "unset masking", "apply policy"],
+  "companion_skill": {
+    "id": "snowflake-live-data-protection-policy-guard",
+    "category": "compliance",
+    "description": "Approval-gated live guard for exactly one Snowflake data-protection policy attachment, detachment, or replacement on one object or column. Requires a per-role-class visibility prediction that has been tested before execution, an enumeration of the consumption paths the protection will and will not follow, and — for any detachment — a written justification, a named data owner, and a committed re-attachment time. Never displays sensitive values, including during verification. Runs as a custom role scoped to the single target and policy; never ACCOUNTADMIN.",
+    "purpose": "Make a protection change verifiable in terms of what people actually see. Policy logic being correct is not the same claim as each consumer seeing the right thing, and the failures are asymmetric: an over-strict change is reported in minutes while an under-strict change or an un-reversed detachment is found by an auditor much later.",
+    "when": [
+      "A human has approved a specific single policy attachment, detachment, or replacement in writing, with the visibility prediction and the accepted blast radius.",
+      "`snowflake-governance-privacy-agent` has produced the recommendation and a human has accepted it."
+    ],
+    "when_not": [
+      "The per-role-class visibility prediction has not been produced and tested.",
+      "The change touches more than one object or column, or is a tag-based assignment.",
+      "The change is to the policy object itself rather than to an attachment.",
+      "A detachment has no written justification, no named data owner, or no committed re-attachment time.",
+      "The question is whether the policy design is right — that belongs to `snowflake-governance-privacy`."
+    ],
+    "evidence_model": [
+      "Attachment state is `LIVE-EVIDENCE` from `POLICY_REFERENCES`. Policy existence from `SHOW` output is a different, weaker claim and is not sufficient.",
+      "The visibility prediction is `INFERENCE` until tested; the recorded test result upgrades it to `LIVE-EVIDENCE` for the classes actually tested, and the untested classes stay `UNKNOWN`.",
+      "Whether protection follows a consumption path is `UNKNOWN` until traced. Assuming it does is the most common failure in this domain.",
+      "No evidence in this guard is ever derived from a real sensitive value; verification compares shape and counts."
+    ],
+    "workflow_steps": [
+      "Validate the approval token element by element, including the visibility prediction and — for a detachment — the justification, owner, and re-attachment time.",
+      "Read prior attachment state from `POLICY_REFERENCES` and check `TAG_REFERENCES` for a conflicting tag-based attachment.",
+      "Enumerate the consumption paths and state which ones the protection will not follow.",
+      "Enumerate the affected role classes from access history, naming service, BI, replication, and agent identities individually.",
+      "Produce the per-role-class visibility prediction and test it in a non-production environment or against a test object; record the result.",
+      "Capture prior state verbatim, present the exact statement and the blast radius including any exposure window, generate the idempotency key, and execute one statement.",
+      "Verify attachment state and per-role-class visibility on shape and counts only, run the negative validation, and emit the attestation with the rollback statement and its named human owner."
+    ],
+    "escalation": [
+      "A consumption path that bypasses the protection → the data owner and `snowflake-governance-privacy-agent`, before execution.",
+      "A conflicting tag-based attachment → the data owner, to decide which mechanism governs.",
+      "An agent or retrieval surface reaching the target → `snowflake-cortex-ai-agent-security-governor-agent`.",
+      "A detachment window exceeding its committed re-attachment time → the data owner and `snowflake-compliance-evidence-auditor-agent`, with the access-history record."
+    ],
+    "response_minimum": [
+      "Prior attachment state from `POLICY_REFERENCES`, verbatim.",
+      "Consumption paths enumerated, with the unprotected ones named.",
+      "The per-role-class visibility prediction with its recorded test result, and untested classes marked `UNKNOWN`.",
+      "For a detachment: justification, named data owner, and committed re-attachment time.",
+      "The exact statement, the exposure window where applicable, verification on shape and counts only, attestation, and the rollback with its named owner."
+    ],
+    "references": [
+      {
+        "file": "visibility-prediction-and-consumption-paths.md",
+        "title": "Visibility Prediction and Consumption Paths",
+        "purpose": "How to state what each role class will see, and how to find the paths where protection does not follow. Load during preflight — these two artifacts are what the approver approves.",
+        "sections": [
+          {
+            "title": "The per-role-class visibility prediction",
+            "claims": [
+              "For each role class, state one of three outcomes: sees the full value, sees the masked value, or sees fewer rows — and for a row-access change, state approximately how many fewer, from a count comparison rather than from the policy text.",
+              "Enumerate the classes explicitly and individually: each human role that reads the object, each service account, the BI tool's identity, the replication path, and any agent identity. The generic phrase 'service accounts' is how one gets missed.",
+              "Derive the class list from access history, not from the role model. The roles that actually read the object are the ones affected, and they are frequently not the roles anyone expected.",
+              "Test the prediction before execution — in a non-production environment or against a test object carrying the same policy — and record the result. An untested prediction is a hypothesis and this guard does not execute on hypotheses.",
+              "Mark any class that could not be tested as `UNKNOWN` rather than assuming it behaves like a tested one. Service and agent identities frequently differ from human roles in exactly the way that matters."
+            ]
+          },
+          {
+            "title": "Paths where protection stops",
+            "claims": [
+              "**Views** — a consumer reading through a view may or may not inherit the base object's protection. Trace it; this is the single most common way a masking programme silently fails.",
+              "**Clones** — cloning produces a sibling whose policy references must be checked independently.",
+              "**Shares and listings** — data leaving the account is a separate exposure decision with its own consumer-side visibility.",
+              "**Replicas** — a secondary region is a second copy with its own policy state; whether the protection replicates is a fact to verify with the BCDR agent, not to assume.",
+              "**Materialized copies and exports** — any pipeline reading the protected column and writing it elsewhere has created an unprotected copy unless the target is protected too.",
+              "**Semi-structured payloads** — sensitive values inside JSON or free-text columns are not reached by column-level masking on a sibling column in the way people assume. State this rather than reporting the object as protected.",
+              "Enumerate the paths before attaching, and state explicitly which ones the protection will not reach. That list, not the attachment, is what determines whether the data is actually protected."
+            ]
+          }
+        ],
+        "sql": [
+          {
+            "purpose": "Establish prior attachment state and check for a conflicting tag-based attachment.",
+            "query": "SELECT policy_kind, policy_name,\n       ref_database_name || '.' || ref_schema_name || '.' || ref_entity_name AS ref_object,\n       ref_column_name\n  FROM SNOWFLAKE.ACCOUNT_USAGE.POLICY_REFERENCES\n WHERE ref_database_name = '<DB>'\n   AND ref_schema_name   = '<SCHEMA>'\n   AND ref_entity_name   = '<OBJECT>';\n\nSELECT tag_name, tag_value, column_name\n  FROM SNOWFLAKE.ACCOUNT_USAGE.TAG_REFERENCES\n WHERE object_database = '<DB>'\n   AND object_schema   = '<SCHEMA>'\n   AND object_name     = '<OBJECT>';\n-- A tag-based attachment plus a direct one is a state nobody can reason\n-- about later. Reconcile it with the data owner before proceeding."
+          },
+          {
+            "purpose": "Derive the affected role classes from what actually reads the object.",
+            "query": "SELECT ah.role_name,\n       ah.user_name,\n       COUNT(*)                 AS accesses,\n       MAX(ah.query_start_time) AS last_access\n  FROM SNOWFLAKE.ACCOUNT_USAGE.ACCESS_HISTORY ah,\n       LATERAL FLATTEN(input => ah.base_objects_accessed) f\n WHERE ah.query_start_time >= DATEADD(day, -90, CURRENT_TIMESTAMP())\n   AND f.value:objectName::string = '<DB>.<SCHEMA>.<OBJECT>'\n GROUP BY 1, 2\n ORDER BY accesses DESC;\n-- Every distinct role here needs a line in the visibility prediction.\n-- Ninety days to catch monthly consumers."
+          },
+          {
+            "purpose": "Find the consumption paths the protection may not follow.",
+            "query": "SELECT referencing_database || '.' || referencing_schema || '.' || referencing_object_name AS dependent_object,\n       referencing_object_domain,\n       referenced_object_name\n  FROM SNOWFLAKE.ACCOUNT_USAGE.OBJECT_DEPENDENCIES\n WHERE referenced_database = '<DB>'\n   AND referenced_schema   = '<SCHEMA>'\n   AND referenced_object_name = '<OBJECT>';\n-- Each dependent object is a path to check. Lineage stops at exports and\n-- external copies, so state that boundary as UNKNOWN rather than clear."
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://docs.snowflake.com/en/user-guide/security-column-intro",
+            "proves": "Masking policy semantics and that the result depends on the querying role — the basis for a per-role-class prediction"
+          },
+          {
+            "url": "https://docs.snowflake.com/en/sql-reference/account-usage/policy_references",
+            "proves": "How policy attachment is recorded, and therefore how attachment is distinguished from policy existence"
+          }
+        ]
+      }
+    ]
+  }
+}

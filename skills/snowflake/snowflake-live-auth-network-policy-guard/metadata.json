@@ -1,0 +1,28 @@
+{
+  "id": "snowflake-live-auth-network-policy-guard",
+  "name": "snowflake-live-auth-network-policy-guard",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "snowflake",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Approval-gated execution boundary for exactly one Snowflake authentication-policy or network-policy change. Refuses to proceed until a surviving administrative path is demonstrated from login evidence — the operator must be proven not to lock themselves out before the statement is composed. Never auto-dispatched.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.snowflake.com/en/user-guide/network-policies",
+    "https://docs.snowflake.com/en/sql-reference/sql/alter-network-policy",
+    "https://docs.snowflake.com/en/user-guide/authentication-policies",
+    "https://docs.snowflake.com/en/user-guide/network-policy-advisor",
+    "https://docs.snowflake.com/en/sql-reference/account-usage/login_history"
+  ],
+  "security_notes": "Mutating-runtime and never auto-dispatched. Executes exactly one authentication-policy or network-policy change after explicit written human approval that names account, environment, the policy object, the exact modification, and the accepted blast radius. The defining refusal of this guard is structural: it will not execute any tightening for which a surviving administrative path — a named principal, from a named location, holding the privilege to revert — has not been demonstrated from login history. Runs as a narrowly scoped custom role owning the policy object; ACCOUNTADMIN is forbidden without exception, and SECURITYADMIN is not used. Combined add-and-remove changes are refused; addition and removal are two approvals. No harness adapter grants an execution tool.",
+  "last_verified": "2026-08-17",
+  "path": "skills/snowflake/snowflake-live-auth-network-policy-guard",
+  "author": "github: VincentChuWaiChow"
+}

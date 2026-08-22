@@ -1,0 +1,470 @@
+{
+  "provider": "snowflake",
+  "domains": {
+    "solution-architecture": {
+      "keywords": [
+        "architecture",
+        "topology",
+        "account structure",
+        "workload placement",
+        "isolation",
+        "edition",
+        "region",
+        "multi-account",
+        "landing zone",
+        "iceberg",
+        "interoperability",
+        "residency",
+        "business critical",
+        "design"
+      ],
+      "agent": "snowflake-solution-architect-agent"
+    },
+    "platform-administration": {
+      "keywords": [
+        "administration",
+        "administrator",
+        "account parameters",
+        "object lifecycle",
+        "ownership",
+        "drift",
+        "runbook",
+        "operational readiness",
+        "orphaned",
+        "housekeeping",
+        "inventory",
+        "organization accounts",
+        "hygiene"
+      ],
+      "agent": "snowflake-platform-administrator-agent"
+    },
+    "identity-access-security": {
+      "keywords": [
+        "rbac",
+        "role",
+        "grant",
+        "privilege",
+        "least privilege",
+        "accountadmin",
+        "securityadmin",
+        "sysadmin",
+        "future grants",
+        "managed access",
+        "authentication",
+        "mfa",
+        "sso",
+        "scim",
+        "oauth",
+        "key-pair",
+        "service user",
+        "service_agent",
+        "workload identity",
+        "escalation",
+        "public role",
+        "password",
+        "automation identity",
+        "privileges",
+        "grants",
+        "roles",
+        "role hierarchy",
+        "effective access"
+      ],
+      "agent": "snowflake-identity-access-security-agent"
+    },
+    "network-connectivity": {
+      "keywords": [
+        "network policy",
+        "network rule",
+        "private link",
+        "privatelink",
+        "private endpoint",
+        "connectivity",
+        "ip allowlist",
+        "egress",
+        "external access integration",
+        "lockout",
+        "public access",
+        "firewall",
+        "ingress"
+      ],
+      "agent": "snowflake-network-private-connectivity-agent"
+    },
+    "governance-privacy": {
+      "keywords": [
+        "governance",
+        "privacy",
+        "masking",
+        "masking policy",
+        "row access",
+        "tag",
+        "tagging",
+        "classification",
+        "sensitive data",
+        "pii",
+        "horizon",
+        "lineage",
+        "data quality",
+        "aggregation policy",
+        "projection policy",
+        "masking policies",
+        "sensitive columns"
+      ],
+      "agent": "snowflake-governance-privacy-agent"
+    },
+    "compliance-evidence": {
+      "keywords": [
+        "auditor",
+        "compliance",
+        "evidence",
+        "control",
+        "attestation",
+        "segregation of duties",
+        "access review",
+        "retention",
+        "trust center",
+        "audit period",
+        "provable",
+        "certification",
+        "audit evidence",
+        "control mapping",
+        "operated for the period"
+      ],
+      "agent": "snowflake-compliance-evidence-auditor-agent"
+    },
+    "finops-cost": {
+      "keywords": [
+        "cost",
+        "credits",
+        "spend",
+        "bill",
+        "finops",
+        "budget",
+        "resource monitor",
+        "chargeback",
+        "showback",
+        "attribution",
+        "query tag",
+        "idle",
+        "forecast",
+        "anomaly",
+        "expensive",
+        "overspend",
+        "unit economics",
+        "doubled",
+        "cost per successful task",
+        "credit"
+      ],
+      "agent": "snowflake-finops-cost-governor-agent"
+    },
+    "query-performance": {
+      "keywords": [
+        "slow",
+        "performance",
+        "query profile",
+        "latency",
+        "spilling",
+        "pruning",
+        "queueing",
+        "concurrency",
+        "warehouse size",
+        "clustering",
+        "materialized view",
+        "search optimization",
+        "query acceleration",
+        "cache",
+        "tuning",
+        "benchmark",
+        "4xl",
+        "resize"
+      ],
+      "agent": "snowflake-query-performance-engineer-agent"
+    },
+    "data-engineering": {
+      "keywords": [
+        "pipeline",
+        "elt",
+        "task",
+        "stream",
+        "dynamic table",
+        "target lag",
+        "snowpark",
+        "transformation",
+        "schema evolution",
+        "idempotency",
+        "backfill",
+        "reconciliation",
+        "freshness",
+        "copy into",
+        "batch load",
+        "duplicate"
+      ],
+      "agent": "snowflake-data-engineering-pipelines-agent"
+    },
+    "streaming-ingestion": {
+      "keywords": [
+        "snowpipe",
+        "streaming",
+        "kafka",
+        "connector",
+        "channel",
+        "offset",
+        "ingestion",
+        "ingest",
+        "backpressure",
+        "replay",
+        "openflow",
+        "high-performance architecture",
+        "classic architecture",
+        "exactly-once"
+      ],
+      "agent": "snowflake-streaming-ingestion-reliability-agent"
+    },
+    "analytics-semantics": {
+      "keywords": [
+        "metric",
+        "kpi",
+        "semantic view",
+        "semantic model",
+        "cortex analyst",
+        "dashboard",
+        "analytical sql",
+        "window function",
+        "join grain",
+        "fan-out",
+        "revenue definition",
+        "reporting",
+        "measure",
+        "executive dashboard"
+      ],
+      "agent": "snowflake-analytics-semantic-data-product-agent"
+    },
+    "data-science-ml": {
+      "keywords": [
+        "machine learning",
+        "snowpark ml",
+        "model",
+        "feature",
+        "feature store",
+        "training",
+        "inference",
+        "model registry",
+        "drift",
+        "reproducibility",
+        "leakage",
+        "scoring",
+        "model version",
+        "retraining",
+        "mlops"
+      ],
+      "agent": "snowflake-data-science-ml-agent"
+    },
+    "cortex-ai-security": {
+      "keywords": [
+        "cortex",
+        "cortex agent",
+        "cortex search",
+        "ai function",
+        "ai sql",
+        "prompt injection",
+        "indirect prompt injection",
+        "mcp",
+        "tool",
+        "guardrail",
+        "exfiltration",
+        "rag",
+        "retrieval",
+        "llm",
+        "cortex_user",
+        "cortex_agent_user",
+        "ai security",
+        "ai cost",
+        "cortex ai",
+        "ai spend",
+        "agent loop",
+        "tool privileges",
+        "agent identity"
+      ],
+      "agent": "snowflake-cortex-ai-agent-security-governor-agent"
+    },
+    "native-app-product": {
+      "keywords": [
+        "native app",
+        "application package",
+        "application role",
+        "marketplace",
+        "listing",
+        "monetization",
+        "pricing",
+        "publish",
+        "security review",
+        "patch",
+        "shareback",
+        "streamlit",
+        "consumer"
+      ],
+      "agent": "snowflake-native-app-marketplace-product-agent"
+    },
+    "bcdr-resilience": {
+      "keywords": [
+        "disaster recovery",
+        "bcdr",
+        "failover",
+        "failback",
+        "replication",
+        "failover group",
+        "replication group",
+        "client redirect",
+        "rpo",
+        "rto",
+        "cross-region",
+        "cross-cloud",
+        "business continuity",
+        "drill",
+        "secondary"
+      ],
+      "agent": "snowflake-bcdr-resilience-agent"
+    },
+    "devops-iac-release": {
+      "keywords": [
+        "terraform",
+        "provider",
+        "iac",
+        "ci/cd",
+        "deployment",
+        "promotion",
+        "environment",
+        "snowflake cli",
+        "behavior change",
+        "behaviour change",
+        "bundle",
+        "release notes",
+        "rollback",
+        "version pin",
+        "preview feature",
+        "plan"
+      ],
+      "agent": "snowflake-devops-iac-release-agent"
+    },
+    "migration-modernization": {
+      "keywords": [
+        "migration",
+        "migrate",
+        "teradata",
+        "oracle",
+        "redshift",
+        "bigquery",
+        "databricks",
+        "hadoop",
+        "spark",
+        "sql server",
+        "legacy",
+        "edw",
+        "cutover",
+        "dual run",
+        "modernization",
+        "coexistence",
+        "replatform",
+        "lift and shift",
+        "wave"
+      ],
+      "agent": "snowflake-migration-modernization-agent"
+    },
+    "business-value": {
+      "keywords": [
+        "business case",
+        "value",
+        "roi",
+        "justification",
+        "benefit",
+        "adoption",
+        "time to value",
+        "baseline",
+        "worth it",
+        "prioritization",
+        "funding",
+        "cost avoidance",
+        "no-go",
+        "business problem",
+        "justified",
+        "justify",
+        "business benefit",
+        "do nothing"
+      ],
+      "agent": "snowflake-business-value-adoption-strategist-agent"
+    }
+  },
+  "live_guards": [
+    "snowflake-live-rbac-grant-guard-agent",
+    "snowflake-live-auth-network-policy-guard-agent",
+    "snowflake-live-warehouse-cost-change-guard-agent",
+    "snowflake-live-data-protection-policy-guard-agent",
+    "snowflake-live-pipeline-streaming-change-guard-agent",
+    "snowflake-live-failover-promotion-guard-agent"
+  ],
+  "live_guard_intent": "\\b(execute|apply|run) (the )?(grant|revoke|statement)\\b|\\bpromote (the )?failover\\b|\\bfail over (now|immediately)\\b|\\bapproved[,:]? (now )?(execute|apply|promote|attach|detach)\\b|\\b(attach|detach) the (masking|row access) policy now\\b|\\b(execute|apply|run|perform) (the )?(approved )?(network|authentication|auth|masking|row.access|projection|aggregation) policy\\b|\\b(execute|apply|run|perform) the approved (warehouse|resource monitor|budget|task|stream|dynamic table|pipe|failover|promotion|change)\\b|\\bapproved[,:]?( now)?,? (resume|suspend|resize|promote|revoke|grant|run|execute|apply)\\b|\\b(resume|suspend|resize) (the )?\\w+ now\\b|\\b(promotion|promote) .{0,20}(failover )?group now\\b|\\b(execute|apply|run|perform) (the )?[\\w-]+( [\\w-]+)? change now\\b",
+  "parallel_threshold": 0.6,
+  "live_guard_keywords": {
+    "snowflake-live-rbac-grant-guard-agent": [
+      "grant",
+      "revoke",
+      "grant the privilege",
+      "revoke the privilege",
+      "privilege to the role",
+      "grant usage",
+      "grant select",
+      "grant ownership"
+    ],
+    "snowflake-live-auth-network-policy-guard-agent": [
+      "network policy",
+      "authentication policy",
+      "auth policy",
+      "network rule",
+      "allowed ip",
+      "blocked ip",
+      "ip allowlist",
+      "mfa enforcement",
+      "password policy"
+    ],
+    "snowflake-live-warehouse-cost-change-guard-agent": [
+      "warehouse",
+      "resource monitor",
+      "budget",
+      "warehouse size",
+      "auto suspend",
+      "auto-suspend",
+      "statement timeout",
+      "credit quota"
+    ],
+    "snowflake-live-data-protection-policy-guard-agent": [
+      "masking policy",
+      "row access policy",
+      "row-access policy",
+      "projection policy",
+      "aggregation policy",
+      "attach the masking",
+      "detach the masking",
+      "unset masking",
+      "set masking policy",
+      "column-level masking"
+    ],
+    "snowflake-live-pipeline-streaming-change-guard-agent": [
+      "task",
+      "stream",
+      "dynamic table",
+      "pipe",
+      "snowpipe",
+      "resume the task",
+      "suspend the task",
+      "alter task",
+      "refresh the dynamic table"
+    ],
+    "snowflake-live-failover-promotion-guard-agent": [
+      "failover",
+      "failover group",
+      "promote",
+      "promotion",
+      "failback",
+      "secondary to primary"
+    ]
+  }
+}

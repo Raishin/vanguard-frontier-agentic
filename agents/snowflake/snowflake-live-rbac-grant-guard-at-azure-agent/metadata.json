@@ -20,7 +20,7 @@
     "https://docs.snowflake.com/en/user-guide/key-pair-auth",
     "https://docs.snowflake.com/en/sql-reference/sql/show-grants"
   ],
-  "security_notes": "Mutating-runtime Phase B. Executes exactly one GRANT or REVOKE per invocation on one Snowflake securable to one custom role. Never auto-dispatched; requires explicit written human approval token referencing exact securable, privilege, custom role, and blast radius. Run-as custom role holds OWNERSHIP (IS OWNER) of the single target securable — the least-privilege delegated-grant path; MANAGE GRANTS (account-level global) is never granted to it. Never ACCOUNTADMIN. Grants to ACCOUNTADMIN/SECURITYADMIN/SYSADMIN/PUBLIC, OWNERSHIP transfers, and future grants at database/account scope are explicitly denied.",
+  "security_notes": "Mutating-runtime Phase B. Executes exactly one GRANT or REVOKE per invocation on one Snowflake securable to one custom role. Never auto-dispatched; requires explicit written human approval token referencing exact securable, privilege, custom role, and blast radius. Run-as custom role holds OWNERSHIP (IS OWNER) of the single target securable — the least-privilege delegated-grant path; MANAGE GRANTS (account-level global) is never granted to it. Never ACCOUNTADMIN. Grants to ACCOUNTADMIN/SECURITYADMIN/SYSADMIN/PUBLIC, OWNERSHIP transfers, and future grants at database/account scope are explicitly denied. DEPRECATED: Azure-scoped predecessor of the cloud-neutral Snowflake board; superseded by snowflake-live-rbac-grant-guard-agent. Retained installable for continuity and excluded from the maestro routing table so no mutation surface has two owners.",
   "last_verified": "2026-06-17",
   "path": "agents/snowflake/snowflake-live-rbac-grant-guard-at-azure-agent",
   "author": "github: VincentChuWaiChow",
@@ -43,11 +43,17 @@
       "Role creation (CREATE ROLE)"
     ]
   },
-  "requires_credentials": ["SNOWFLAKE_ACCOUNT", "SNOWFLAKE_USER", "SNOWFLAKE_PRIVATE_KEY_PATH"],
+  "requires_credentials": [
+    "SNOWFLAKE_ACCOUNT",
+    "SNOWFLAKE_USER",
+    "SNOWFLAKE_PRIVATE_KEY_PATH"
+  ],
   "required_egress": [
     "SNOWFLAKE_ACCOUNT.snowflakecomputing.com (account endpoint; Azure Private Link supported)"
   ],
-  "companion_skills": ["snowflake-live-rbac-grant-guard-at-azure"],
+  "companion_skills": [
+    "snowflake-live-rbac-grant-guard-at-azure"
+  ],
   "harness_variants": {
     "codex": "agents/snowflake/snowflake-live-rbac-grant-guard-at-azure-agent/harnesses/codex.toml",
     "copilot": "agents/snowflake/snowflake-live-rbac-grant-guard-at-azure-agent/harnesses/copilot.agent.md",
@@ -56,5 +62,6 @@
     "gemini": "agents/snowflake/snowflake-live-rbac-grant-guard-at-azure-agent/harnesses/gemini.agent.md",
     "kiro-ide": "agents/snowflake/snowflake-live-rbac-grant-guard-at-azure-agent/harnesses/kiro-ide.agent.md",
     "kiro-cli": "agents/snowflake/snowflake-live-rbac-grant-guard-at-azure-agent/harnesses/kiro-cli.agent.json"
-  }
+  },
+  "lifecycle": "deprecated"
 }

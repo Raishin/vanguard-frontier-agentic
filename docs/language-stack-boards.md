@@ -87,8 +87,8 @@ OpenTelemetry wiring, and .NET Aspire cloud-native posture.
 | ID prefix | `dotnet-*` |
 | Agent directory | `agents/dotnet/` |
 | Skill directory | `skills/dotnet/` |
-| Agents | 10 |
-| Skills | 10 (1:1 companion skill per agent) |
+| Agents | <!-- count:board:dotnet:agents -->10<!-- /count --> |
+| Skills | <!-- count:board:dotnet:skills -->10<!-- /count --> (1:1 companion skill per agent) |
 | Install role | `dotnet-application-review-engineer` |
 | Execution tier | `static-review` (all agents) |
 
@@ -141,8 +141,8 @@ application-server license-exit portfolio decision.
 | ID prefix | `java-*` |
 | Agent directory | `agents/java/` |
 | Skill directory | `skills/java/` |
-| Agents | 15 |
-| Skills | 15 (1:1 companion skill per agent) |
+| Agents | <!-- count:board:java:agents -->15<!-- /count --> |
+| Skills | <!-- count:board:java:skills -->15<!-- /count --> (1:1 companion skill per agent) |
 | Install role | `java-application-review-engineer` |
 | Execution tier | `static-review` (all agents) |
 
@@ -201,8 +201,8 @@ coroutine/Compose/KMP test architecture.
 | ID prefix | `kotlin-*` |
 | Agent directory | `agents/kotlin/` |
 | Skill directory | `skills/kotlin/` |
-| Agents | 16 |
-| Skills | 16 (1:1 companion skill per agent) |
+| Agents | <!-- count:board:kotlin:agents -->16<!-- /count --> |
+| Skills | <!-- count:board:kotlin:skills -->16<!-- /count --> (1:1 companion skill per agent) |
 | Install roles | `kotlin-backend-engineer`, `android-kotlin-engineer`, `kotlin-multiplatform-engineer`, `kotlin-platform-build-engineer`, `kotlin-library-maintainer`, `kotlin-security-engineer`, `kotlin-engineering-leader` |
 | Execution tier | `static-review` (all agents) |
 
@@ -257,8 +257,8 @@ the US, EU, UK, Singapore, and Australia.
 | ID prefix | `legal-*` |
 | Agent directory | `agents/legal/` |
 | Skill directory | `skills/legal/` |
-| Agents | 13 |
-| Skills | 1 board-specific + 3 cross-functional (shared with `hr`) |
+| Agents | <!-- count:board:legal:agents -->13<!-- /count --> |
+| Skills | <!-- count:board:legal:skills -->1<!-- /count --> board-specific + 3 cross-functional (shared with `hr`) |
 | Install role | `legal-hr-risk-reviewer` (shared with the `hr` board) |
 | Execution tier | `static-review` (all agents) |
 
@@ -322,8 +322,8 @@ workforce planning, HR analytics, culture and DEI, and HRIS process controls.
 | ID prefix | `hr-*` |
 | Agent directory | `agents/hr/` |
 | Skill directory | `skills/hr/` |
-| Agents | 15 |
-| Skills | 1 board-specific + 3 cross-functional (shared with `legal`) |
+| Agents | <!-- count:board:hr:agents -->15<!-- /count --> |
+| Skills | <!-- count:board:hr:skills -->1<!-- /count --> board-specific + 3 cross-functional (shared with `legal`) |
 | Install role | `legal-hr-risk-reviewer` (shared with the `legal` board) |
 | Execution tier | `static-review` (all agents) |
 
@@ -382,10 +382,10 @@ influencer disclosure, and dark-pattern conversion flow review.
 | ID prefix | `marketing-*` (most agents); some use domain-specific prefixes |
 | Agent directory | `agents/marketing/` |
 | Skill directory | `skills/marketing/` |
-| Agents | 14 |
-| Skills | 14 (1:1 companion skill per agent) |
+| Agents | <!-- count:board:marketing:agents -->14<!-- /count --> |
+| Skills | <!-- count:board:marketing:skills -->14<!-- /count --> (1:1 companion skill per agent) |
 | Install role | `marketing-governance-reviewer` |
-| Execution tier | `static-review` (13 agents); `read-only-runtime` (maestro) |
+| Execution tier | `read-only-runtime` (maestro); the remaining <!-- count:board:marketing:specialists -->13<!-- /count --> agents declare no `execution_tier` |
 
 **Agent directory layout**
 
@@ -438,8 +438,8 @@ and WordPress plugin/theme/REST API/block-editor security.
 | ID prefix | `php-*` (plus `composer-*`, `wordpress-*` for ecosystem-specific agents) |
 | Agent directory | `agents/php/` |
 | Skill directory | `skills/php/` |
-| Agents | 5 |
-| Skills | 5 (1:1 companion skill per agent) |
+| Agents | <!-- count:board:php:agents -->5<!-- /count --> |
+| Skills | <!-- count:board:php:skills -->5<!-- /count --> (1:1 companion skill per agent) |
 | Install role | `php-platform-engineer` |
 | Execution tier | `static-review` (all agents) |
 
@@ -508,14 +508,14 @@ scripts/notebooks, segregation of duties, reconciliation, key-person risk).
 | ID prefix | `python-*` |
 | Agent directory | `agents/python/` |
 | Skill directory | `skills/python/` |
-| Agents | 35 (20 static-review board + 15 live control plane) |
-| Skills | 35 (1:1 companion skill per agent) |
+| Agents | <!-- count:board:python:agents -->35<!-- /count --> (<!-- count:board:python:static -->20<!-- /count --> static-review board + <!-- count:board:python:live -->15<!-- /count --> live control plane) |
+| Skills | <!-- count:board:python:skills -->35<!-- /count --> (1:1 companion skill per agent) |
 | Install roles | 16 bundles: 10 static-review (`python-application-review-engineer` umbrella, `python-application-engineer`, `python-platform-reliability-engineer`, `python-data-engineer`, `python-ml-engineer`, `python-security-engineer`, `python-library-maintainer`, `python-automation-governance-lead`, `python-engineering-leader`, `python-reliability-data-engineer`) + 6 live-plane (`python-live-platform-operator`, `python-live-security-operator`, `python-live-data-operator`, `python-live-ml-governance-operator`, `python-live-automation-control-owner`, `python-live-audit-and-compliance-reviewer`) |
-| Execution tier | `static-review` (20 board agents) **plus** `read-only-runtime` and `mutating-runtime` (15 live control-plane agents) — see the live control plane note below |
+| Execution tier | `static-review` (<!-- count:board:python:static -->20<!-- /count --> board agents) **plus** `read-only-runtime` and `mutating-runtime` (<!-- count:board:python:live -->15<!-- /count --> live control-plane agents) — see the live control plane note below |
 
 > [!IMPORTANT]
 > **`python` is a deliberate, governed exception to the "language/stack boards are
-> static-review only" posture.** It hosts a **live control plane** (15 agents under
+> static-review only" posture.** It hosts a **live control plane** (<!-- count:board:python:live -->15<!-- /count --> agents under
 > `python-live-*`) that interacts with live systems under controlled execution with
 > provable accountability, routed by `python-live-governance-maestro-agent` — separate
 > from the 20 static-review board agents routed by `python-maestro-agent`. Mutating
@@ -607,8 +607,8 @@ written into both boards' refusal lists rather than left to convention.
 | ID prefix | `typescript-*` |
 | Agent directory | `agents/typescript/` |
 | Skill directory | `skills/typescript/` |
-| Agents | 14 |
-| Skills | 14 (1:1 companion skill per agent) |
+| Agents | <!-- count:board:typescript:agents -->14<!-- /count --> |
+| Skills | <!-- count:board:typescript:skills -->14<!-- /count --> (1:1 companion skill per agent) |
 | Install roles | `typescript-application-review-engineer`, `typescript-library-maintainer`, `typescript-platform-build-engineer`, `typescript-agentic-contract-engineer` |
 | Execution tier | `static-review` (all agents) |
 
@@ -652,6 +652,68 @@ originate one. The design record, including the candidates that were rejected an
 
 ---
 
+### Snowflake
+
+The `snowflake` board is the one topical board that is **not** static-review throughout. It
+pairs a router and 18 review specialists with six approval-gated live guards, because the
+Snowflake decisions that matter most — a grant, a network policy, a masking policy, a
+warehouse limit, a pipeline replay, a failover promotion — are mutations whose blast radius
+is only knowable before they run. The board's organising idea is that documentation proves
+supported *platform* behaviour and never proves configured *account* behaviour, so an
+account-specific claim is `UNKNOWN` until account evidence establishes it.
+
+| Property | Value |
+|----------|-------|
+| `provider` | `snowflake` |
+| ID prefix | `snowflake-*` |
+| Agent directory | `agents/snowflake/` |
+| Skill directory | `skills/snowflake/` |
+| Agents | <!-- count:board:snowflake:agents -->28<!-- /count --> (<!-- count:board:snowflake:router -->1<!-- /count --> router + <!-- count:board:snowflake:review -->18<!-- /count --> review specialists + <!-- count:board:snowflake:guards -->6<!-- /count --> live guards + <!-- count:board:snowflake:deprecated -->3<!-- /count --> deprecated Azure-scoped predecessors) |
+| Skills | <!-- count:board:snowflake:skills -->28<!-- /count --> (1:1 companion skill per agent) |
+| Install roles | `snowflake-platform-architect`, `snowflake-security-governance-engineer`, `snowflake-finops-performance-engineer`, `snowflake-data-engineer`, `snowflake-ai-analytics-engineer`, `snowflake-delivery-resilience-engineer`, `snowflake-data-product-manager` |
+| Execution tier | `static-review` (router + specialists) / `mutating-runtime` (the <!-- count:board:snowflake:guards -->6<!-- /count --> `snowflake-live-*` guards) |
+
+**Example agents**
+
+| Agent | Scope |
+|-------|-------|
+| `snowflake-maestro-agent` | Router; classifies the task, names the failure domains, decides whether account evidence is required at all, and dispatches the narrowest specialist or at most four in parallel. Never answers a Snowflake question and never dispatches a live guard |
+| `snowflake-identity-access-security-agent` | Effective access computed transitively across role grants, ownership edges, database roles, and future grants — expressed as paths, not counts. Owns authentication policy, MFA, federation, and the `SERVICE` / `SERVICE_AGENT` identity types |
+| `snowflake-governance-privacy-agent` | Designs and reviews the data controls, and refuses the four equations that make governance theatre: tagged is not protected, classified is not compliant, lineage existing is not lineage complete, a policy existing is not a policy behaving |
+| `snowflake-compliance-evidence-auditor-agent` | Independent assurance, deliberately holding no implementation mandate: whether a control is *provable* over an audit period, bounded by each evidence view's latency and retention |
+| `snowflake-cortex-ai-agent-security-governor-agent` | The AI trust boundary — agent identity and effective data reach, tools and MCP connectors as privilege grants, retrieval corpora as an indirect-injection surface. Never reviews an AI system from its prompt alone |
+| `snowflake-bcdr-resilience-agent` | Tracks RPO and RTO in three separate columns — requested, feasible, and **proven** — and owns the dependency matrix outside Snowflake that decides whether a promotion is a recovery or a relocation |
+| `snowflake-business-value-adoption-strategist-agent` | The economic counterweight. Holds veto authority and may return `NO-GO: technically valid, economically unjustified` |
+
+**Live guards**
+
+Each guard owns exactly one mutation, and no two guards own the same one — ambiguous write
+ownership is the failure a live-guard board exists to prevent.
+
+| Live guard | Allowed mutation | Maximum scope |
+|-------|-------|-------|
+| `snowflake-live-rbac-grant-guard-agent` | one GRANT or REVOKE | one privilege · one securable · one custom role |
+| `snowflake-live-auth-network-policy-guard-agent` | one network- or authentication-policy change | one policy object · one modification · one activation scope |
+| `snowflake-live-warehouse-cost-change-guard-agent` | one warehouse or cost-governance setting | one warehouse, monitor, or budget · one setting |
+| `snowflake-live-data-protection-policy-guard-agent` | one policy attach, detach, or replace | one object · one column · one policy |
+| `snowflake-live-pipeline-streaming-change-guard-agent` | one task, stream, dynamic-table, or pipe operation, or one bounded backfill | one object · one operation · one bounded data window |
+| `snowflake-live-failover-promotion-guard-agent` | one failover group promotion | one group · one target account |
+
+`ACCOUNTADMIN` is forbidden for every guard without exception; each runs as a custom role
+scoped to the single target named in the approval. Two guards carry a refusal that no
+approval can override: the auth/network guard will not tighten reachability until a
+*surviving administrative path* is demonstrated from login history, and the failover guard
+will not promote without a declared incident or drill, a data-loss window computed from
+replication refresh history, and dependency readiness confirmed by each owning team.
+
+Routing, the live-guard gate, negative routing, and cross-agent conflict are covered by 27
+scenarios in `tests/fixtures/snowflake-maestro-routing/`. Three Azure-scoped predecessors
+(`*-at-azure`) are marked `lifecycle: deprecated` and excluded from routing so that no
+mutation surface has two owners; they remain installable via the legacy
+`azure-snowflake-platform-engineer` role.
+
+---
+
 ## How to use language/stack boards
 
 ### Discovery via install roles
@@ -663,7 +725,7 @@ set for a given function.
 | Role | Boards covered | Agents | Skills |
 |------|---------------|--------|--------|
 | `dotnet-application-review-engineer` | `.NET` | 10 | 10 |
-| `legal-hr-risk-reviewer` | `legal` + `hr` | 28 | 5 (2 board-specific + 3 cross-functional) |
+| `legal-hr-risk-reviewer` | `legal` + `hr` | <!-- count:board:legal+hr:agents -->28<!-- /count --> | 5 (2 board-specific + 3 cross-functional) |
 | `marketing-governance-reviewer` | `marketing` | 14 | 14 |
 | `php-platform-engineer` | `php` | 5 | 5 |
 | `python-application-review-engineer` | `python` | 20 | 20 |
@@ -685,7 +747,14 @@ set for a given function.
 | `sap-transformation-operations` | `sap` | 40 | 46 |
 | `microsoft-365-d365-platform-advisor` | `microsoft` | 40 | 40 |
 | `azure-databricks-platform-engineer` | `databricks` | 3 | 3 |
-| `azure-snowflake-platform-engineer` | `snowflake` | 3 | 3 |
+| `snowflake-platform-architect` | `snowflake` | 5 | 5 |
+| `snowflake-security-governance-engineer` | `snowflake` | 8 | 8 |
+| `snowflake-finops-performance-engineer` | `snowflake` | 5 | 5 |
+| `snowflake-data-engineer` | `snowflake` | 5 | 5 |
+| `snowflake-ai-analytics-engineer` | `snowflake` | 5 | 5 |
+| `snowflake-delivery-resilience-engineer` | `snowflake` | 5 | 5 |
+| `snowflake-data-product-manager` | `snowflake` | 5 | 5 |
+| `azure-snowflake-platform-engineer` (deprecated) | `snowflake` | 3 | 3 |
 
 Install a role with the export CLI:
 
@@ -886,7 +955,8 @@ read-only tier. This is a design constraint, not a default.
 | `sap` | `static-review` | Reads sanitized SAP configuration and ABAP/BTP artifacts; never contacts SAP systems, triggers transports, or mutates landscape data |
 | `microsoft` | `static-review` | Reads sanitized Microsoft 365 and Dynamics 365 configuration; never mutates tenant state, sends messages, or contacts Graph API |
 | `databricks` | `static-review` | Reads sanitized notebooks, job configs, and lakehouse metadata; never runs jobs, mutates clusters, or contacts Databricks REST APIs |
-| `snowflake` | `static-review` | Reads sanitized DDL, query plans, and data-sharing configs; never executes queries, mutates warehouses, or contacts Snowflake APIs |
+| `snowflake` (review board) | `static-review` | The maestro and 18 review specialists. Read sanitized DDL, query plans, grants, policy definitions, and account-evidence extracts; never execute a statement, resize compute, attach a policy, or promote a replication target |
+| `snowflake` (live guards) | `mutating-runtime` | The six `snowflake-live-*` guards. Each executes exactly one approved mutation behind an explicit written human gate with prior-state capture, preflight, verification, and a rollback path — never auto-dispatched. No harness adapter grants them an execution tool: the deliverable is the approved statement, which a named human operator runs |
 
 Static review is the required **default** for language/stack boards. The one
 governed exception is the `python` **live control plane** (`python-live-*`), which

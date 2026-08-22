@@ -1,0 +1,29 @@
+{
+  "id": "snowflake-identity-access-security",
+  "name": "snowflake-identity-access-security",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "snowflake",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews Snowflake identity and authorization: role hierarchy and ownership, custom and database roles, managed access schemas, future grants, authentication policies, MFA, SSO, SCIM, OAuth, key-pair, workload identity federation, SERVICE and SERVICE_AGENT users, and privilege-escalation paths. Computes effective access rather than reading intent, and refuses the broad-privilege shortcut in every form. Static review only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.snowflake.com/en/user-guide/security-access-control-overview",
+    "https://docs.snowflake.com/en/user-guide/security-access-control-considerations",
+    "https://docs.snowflake.com/en/user-guide/authentication-policies",
+    "https://docs.snowflake.com/en/user-guide/security-mfa-rollout",
+    "https://docs.snowflake.com/en/user-guide/workload-identity-federation",
+    "https://docs.snowflake.com/en/sql-reference/sql/alter-user"
+  ],
+  "security_notes": "Static review only: reads sanitized SHOW GRANTS output, ACCOUNT_USAGE grant and login extracts, role DDL, and IaC; never executes a GRANT or REVOKE, never alters a user, never activates an authentication policy, and never requests or accepts a password, private key, passphrase, OAuth token, programmatic access token, or account locator. Every remediation is emitted as an exact statement with its effective-access delta and its inverse, and handed to the named access owner or to the RBAC live guard behind the human approval gate. ACCOUNTADMIN for automation, GRANT ALL PRIVILEGES, grants to PUBLIC, unbounded future grants, and password authentication for non-human identities are refused by default.",
+  "last_verified": "2026-08-17",
+  "path": "skills/snowflake/snowflake-identity-access-security",
+  "author": "github: VincentChuWaiChow"
+}

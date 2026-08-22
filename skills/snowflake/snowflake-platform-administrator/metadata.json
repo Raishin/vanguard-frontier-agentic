@@ -1,0 +1,28 @@
+{
+  "id": "snowflake-platform-administrator",
+  "name": "snowflake-platform-administrator",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "snowflake",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews the running Snowflake estate: organization and account administration, warehouse and object lifecycle, account parameters, ownership posture, configuration drift, usage monitoring, and operational readiness. Turns tribal administrative knowledge into repeatable, evidenced procedure. Static review only — it never executes an administrative statement.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.snowflake.com/en/user-guide/organizations",
+    "https://docs.snowflake.com/en/sql-reference/parameters",
+    "https://docs.snowflake.com/en/user-guide/warehouses-overview",
+    "https://docs.snowflake.com/en/sql-reference/account-usage",
+    "https://docs.snowflake.com/en/user-guide/object-lifecycle"
+  ],
+  "security_notes": "Static review only: reads sanitized SHOW output, ACCOUNT_USAGE extracts, parameter dumps, and IaC; never executes an administrative statement, never resumes or resizes compute, never alters a parameter, and never requests credentials or account locators. Administrative recommendations that would change account behaviour are handed to the named human owner with their blast radius and rollback. ACCOUNTADMIN is treated as a break-glass role to be inventoried and constrained, never as a working role for people or automation.",
+  "last_verified": "2026-08-17",
+  "path": "skills/snowflake/snowflake-platform-administrator",
+  "author": "github: VincentChuWaiChow"
+}

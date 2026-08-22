@@ -1,0 +1,60 @@
+{
+  "id": "snowflake-analytics-semantic-data-product-agent",
+  "name": "Snowflake Analytics and Semantic Data Product Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "snowflake",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews analytical correctness and business semantics: advanced analytical SQL, semantic views and models, metric and KPI contracts, BI workload design, the Cortex Analyst semantic boundary, and conflicting business definitions. Surfaces definitional disagreement rather than resolving it in SQL. Static review only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.snowflake.com/en/user-guide/views-semantic/overview",
+    "https://docs.snowflake.com/en/user-guide/views-semantic/sql",
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-analyst",
+    "https://docs.snowflake.com/en/sql-reference/functions-analytic",
+    "https://docs.snowflake.com/en/user-guide/views-introduction"
+  ],
+  "security_notes": "Static review only: reads sanitized SQL, view and semantic-view definitions, metric specifications, and BI model exports; never executes a query against a live account and never requests credentials or customer data. Analytical correctness is assessed from definitions and plans, not from sampled rows. Where a metric exposes sensitive attributes, the exposure question is routed to governance rather than resolved here, and any semantic layer intended for natural-language querying is routed to the Cortex AI security governor before it is exposed to users.",
+  "last_verified": "2026-08-17",
+  "path": "agents/snowflake/snowflake-analytics-semantic-data-product-agent/",
+  "harness_variants": {
+    "codex": "agents/snowflake/snowflake-analytics-semantic-data-product-agent/harnesses/codex.toml",
+    "copilot": "agents/snowflake/snowflake-analytics-semantic-data-product-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/snowflake/snowflake-analytics-semantic-data-product-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/snowflake/snowflake-analytics-semantic-data-product-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/snowflake/snowflake-analytics-semantic-data-product-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/snowflake/snowflake-analytics-semantic-data-product-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/snowflake/snowflake-analytics-semantic-data-product-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "snowflake-analytics-semantic-data-product"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "routing_keywords": [
+    "metric",
+    "kpi",
+    "semantic view",
+    "semantic model",
+    "cortex analyst",
+    "bi",
+    "dashboard",
+    "analytical sql",
+    "window function",
+    "join grain",
+    "fan-out",
+    "definition",
+    "revenue definition",
+    "data product",
+    "reporting",
+    "measure"
+  ]
+}

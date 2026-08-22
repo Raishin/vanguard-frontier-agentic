@@ -1,0 +1,76 @@
+{
+  "id": "snowflake-live-failover-promotion-guard-agent",
+  "name": "Snowflake Live Failover Promotion Guard Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "snowflake",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "The highest-blast-radius execution boundary on this board: one promotion of one failover group to primary. Requires a declared incident or drill, a named accountable owner, replication freshness with a quantified data-loss window, dependency readiness, a client redirection plan, and a failback strategy — all in writing, before the statement is composed. Urgency raises this gate rather than lowering it. Never auto-dispatched.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.snowflake.com/en/user-guide/account-replication-failover",
+    "https://docs.snowflake.com/en/sql-reference/sql/alter-failover-group",
+    "https://docs.snowflake.com/en/user-guide/replication-intro",
+    "https://docs.snowflake.com/en/user-guide/client-redirect",
+    "https://docs.snowflake.com/en/user-guide/account-replication-considerations"
+  ],
+  "security_notes": "Mutating-runtime and never auto-dispatched. Executes exactly one promotion of one failover group after explicit written human approval that names a declared incident or drill, an accountable incident or DR owner, the approved target, the quantified data-loss window, the dependency-readiness state, the client redirection plan, and the failback strategy. Runs as a narrowly scoped custom role in the target account holding only the privilege to promote the named group; ACCOUNTADMIN is forbidden without exception. This guard refuses on urgency alone: a promotion without dependency readiness relocates an outage rather than ending it, and that refusal is not overridable. No harness adapter grants an execution tool.",
+  "last_verified": "2026-08-17",
+  "path": "agents/snowflake/snowflake-live-failover-promotion-guard-agent/",
+  "harness_variants": {
+    "codex": "agents/snowflake/snowflake-live-failover-promotion-guard-agent/harnesses/codex.toml",
+    "copilot": "agents/snowflake/snowflake-live-failover-promotion-guard-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/snowflake/snowflake-live-failover-promotion-guard-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/snowflake/snowflake-live-failover-promotion-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/snowflake/snowflake-live-failover-promotion-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/snowflake/snowflake-live-failover-promotion-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/snowflake/snowflake-live-failover-promotion-guard-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "snowflake-live-failover-promotion-guard"
+  ],
+  "execution_tier": "mutating-runtime",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "oauth_scopes": [],
+  "run_as_permissions": {
+    "required": [
+      "A narrowly scoped custom Snowflake role in the target account holding only the privilege required to promote the single named failover group — never a role able to promote other groups or alter replication configuration",
+      "A `TYPE = SERVICE` user in the target account authenticating by key-pair or workload identity federation, whose credentials are valid in the secondary and have been verified as such before the incident",
+      "An identity whose authentication path does not depend on the failed primary — an identity provider reachable only through the primary region makes this guard unusable at exactly the moment it is needed"
+    ],
+    "denied": [
+      "ACCOUNTADMIN",
+      "SECURITYADMIN",
+      "SYSADMIN",
+      "PUBLIC",
+      "Any privilege to promote a failover group other than the approved one",
+      "Any privilege to alter replication or failover group membership or schedule",
+      "Any privilege to create, drop, or modify accounts or connections",
+      "Any standing privilege in the primary account — this guard operates in the target account only"
+    ]
+  },
+  "requires_credentials": [
+    "SNOWFLAKE_TARGET_ACCOUNT",
+    "SNOWFLAKE_USER",
+    "SNOWFLAKE_AUTHENTICATOR",
+    "SNOWFLAKE_PRIVATE_KEY_PATH"
+  ],
+  "required_egress": [
+    "The target (secondary) account endpoint only — the private-connectivity hostname where that account uses private connectivity. Reachability of this endpoint independent of the primary region is verified during every drill, not assumed"
+  ],
+  "routing_keywords": [
+    "failover",
+    "promote",
+    "failover group",
+    "promotion",
+    "disaster recovery execution"
+  ]
+}

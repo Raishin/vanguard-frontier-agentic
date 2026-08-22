@@ -1,13 +1,13 @@
 ---
 name: "vanguard-cilium"
 displayName: "Vanguard Frontier — Cilium"
-description: "Reviews cilium CiliumNetworkPolicy, CiliumClusterwideNetworkPolicy, standard NetworkPolicy, ClusterMesh cross-cluster policy... Static review only; no live mutations."
+description: "Reviews ciliumNetworkPolicy, CiliumClusterwideNetworkPolicy, NetworkPolicy, ClusterMesh cross-cluster policy semantics, and... Static review only; no live mutations."
 keywords: ["cilium", "network-policy", "ebpf", "cluster-mesh"]
 author: "VincentChuWaiChow"
 ---
 # Vanguard Frontier — Cilium
 
-Reviews cilium CiliumNetworkPolicy, CiliumClusterwideNetworkPolicy, standard NetworkPolicy, ClusterMesh cross-cluster policy... Static review only; no live mutations.
+Reviews ciliumNetworkPolicy, CiliumClusterwideNetworkPolicy, NetworkPolicy, ClusterMesh cross-cluster policy semantics, and... Static review only; no live mutations.
 
 ## When to engage this Power
 

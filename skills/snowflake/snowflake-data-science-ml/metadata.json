@@ -1,0 +1,28 @@
+{
+  "id": "snowflake-data-science-ml",
+  "name": "snowflake-data-science-ml",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "snowflake",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews the ML lifecycle in Snowflake for reproducibility and governability: Snowpark ML, feature engineering and leakage, training reproducibility, the model registry and versioning, batch and continuous inference, drift and model observability, and ML data lineage. Treats a notebook with a good metric as an experiment, not a production system. Static review only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.snowflake.com/en/developer-guide/snowflake-ml/overview",
+    "https://docs.snowflake.com/en/developer-guide/snowflake-ml/model-registry/overview",
+    "https://docs.snowflake.com/en/developer-guide/snowflake-ml/feature-store/overview",
+    "https://docs.snowflake.com/en/developer-guide/snowflake-ml/model-observability",
+    "https://docs.snowflake.com/en/developer-guide/snowpark/index"
+  ],
+  "security_notes": "Static review only: reads sanitized training and inference code, feature definitions, registry metadata, and monitoring configuration; never trains, registers, deploys, or invokes a model against a live account, and never requests credentials or customer data. Training data containing sensitive attributes is discussed by column and policy, never by value. Any model whose inference is exposed to end users through an agent, a tool, or a natural-language surface is routed to the Cortex AI security governor before exposure — this agent owns lifecycle rigour, not the AI trust boundary.",
+  "last_verified": "2026-08-17",
+  "path": "skills/snowflake/snowflake-data-science-ml",
+  "author": "github: VincentChuWaiChow"
+}
