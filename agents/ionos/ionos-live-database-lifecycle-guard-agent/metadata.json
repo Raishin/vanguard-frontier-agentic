@@ -3,7 +3,14 @@
   "name": "IONOS Live Database Lifecycle Guard",
   "type": "agent",
   "provider": "ionos",
-  "harnesses": ["codex", "claude-code"],
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
   "summary": "Approval-gated live-guard agent for IONOS DBaaS lifecycle operations: failover, scaling, backup verification, and recovery for PostgreSQL, MariaDB, and MongoDB managed databases. Requires snapshot confirmation, explicit RPO/RTO targets, and human approval before any mutation.",
   "source_type": "original",
   "official_docs": [
@@ -17,9 +24,16 @@
   "path": "agents/ionos/ionos-live-database-lifecycle-guard-agent",
   "version": "0.1.0",
   "author": "github: VincentChuWaiChow",
-  "companion_skills": ["ionos-live-database-lifecycle-guard"],
+  "companion_skills": [
+    "ionos-live-database-lifecycle-guard"
+  ],
   "harness_variants": {
     "codex": "agents/ionos/ionos-live-database-lifecycle-guard-agent/harnesses/codex.toml",
-    "claude-code": "agents/ionos/ionos-live-database-lifecycle-guard-agent/harnesses/claude-code.agent.md"
+    "copilot": "agents/ionos/ionos-live-database-lifecycle-guard-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/ionos/ionos-live-database-lifecycle-guard-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/ionos/ionos-live-database-lifecycle-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/ionos/ionos-live-database-lifecycle-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/ionos/ionos-live-database-lifecycle-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/ionos/ionos-live-database-lifecycle-guard-agent/harnesses/kiro-cli.agent.json"
   }
 }

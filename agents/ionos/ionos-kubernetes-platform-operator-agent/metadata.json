@@ -3,7 +3,14 @@
   "name": "IONOS Kubernetes Platform Operator",
   "type": "agent",
   "provider": "ionos",
-  "harnesses": ["codex", "claude-code"],
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
   "summary": "Advisory agent for IONOS managed Kubernetes: cluster readiness, node pool configuration, workload placement, autoscaling posture, PodDisruptionBudget coverage, and upgrade safety.",
   "source_type": "original",
   "official_docs": [
@@ -17,9 +24,16 @@
   "path": "agents/ionos/ionos-kubernetes-platform-operator-agent",
   "version": "0.1.0",
   "author": "github: VincentChuWaiChow",
-  "companion_skills": ["ionos-kubernetes-platform-operator"],
+  "companion_skills": [
+    "ionos-kubernetes-platform-operator"
+  ],
   "harness_variants": {
     "codex": "agents/ionos/ionos-kubernetes-platform-operator-agent/harnesses/codex.toml",
-    "claude-code": "agents/ionos/ionos-kubernetes-platform-operator-agent/harnesses/claude-code.agent.md"
+    "copilot": "agents/ionos/ionos-kubernetes-platform-operator-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/ionos/ionos-kubernetes-platform-operator-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/ionos/ionos-kubernetes-platform-operator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/ionos/ionos-kubernetes-platform-operator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/ionos/ionos-kubernetes-platform-operator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/ionos/ionos-kubernetes-platform-operator-agent/harnesses/kiro-cli.agent.json"
   }
 }

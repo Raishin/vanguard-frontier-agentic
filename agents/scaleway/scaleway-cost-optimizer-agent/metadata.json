@@ -3,7 +3,14 @@
   "name": "Scaleway Cost Optimizer",
   "type": "agent",
   "provider": "scaleway",
-  "harnesses": ["codex", "claude-code"],
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
   "summary": "Advisory agent for Scaleway cost analysis: instance type rightsizing, reserved instance utilization, idle Object Storage and SBS volumes, Serverless function cold-start cost, and Cockpit observability spend.",
   "source_type": "original",
   "official_docs": [
@@ -18,9 +25,16 @@
   "path": "agents/scaleway/scaleway-cost-optimizer-agent",
   "version": "0.1.0",
   "author": "github: VincentChuWaiChow",
-  "companion_skills": ["scaleway-cost-optimizer"],
+  "companion_skills": [
+    "scaleway-cost-optimizer"
+  ],
   "harness_variants": {
     "codex": "agents/scaleway/scaleway-cost-optimizer-agent/harnesses/codex.toml",
-    "claude-code": "agents/scaleway/scaleway-cost-optimizer-agent/harnesses/claude-code.agent.md"
+    "copilot": "agents/scaleway/scaleway-cost-optimizer-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/scaleway/scaleway-cost-optimizer-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/scaleway/scaleway-cost-optimizer-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/scaleway/scaleway-cost-optimizer-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/scaleway/scaleway-cost-optimizer-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/scaleway/scaleway-cost-optimizer-agent/harnesses/kiro-cli.agent.json"
   }
 }

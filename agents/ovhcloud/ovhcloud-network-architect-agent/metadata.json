@@ -3,7 +3,14 @@
   "name": "OVHcloud Network Architect",
   "type": "agent",
   "provider": "ovhcloud",
-  "harnesses": ["codex", "claude-code"],
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
   "summary": "Advisory agent for OVHcloud vRack design, network isolation strategy, load balancer configuration, DNS, and private connectivity across Public Cloud and dedicated infrastructure.",
   "source_type": "original",
   "official_docs": [
@@ -16,9 +23,16 @@
   "path": "agents/ovhcloud/ovhcloud-network-architect-agent",
   "version": "0.1.0",
   "author": "github: VincentChuWaiChow",
-  "companion_skills": ["ovhcloud-network-architect"],
+  "companion_skills": [
+    "ovhcloud-network-architect"
+  ],
   "harness_variants": {
     "codex": "agents/ovhcloud/ovhcloud-network-architect-agent/harnesses/codex.toml",
-    "claude-code": "agents/ovhcloud/ovhcloud-network-architect-agent/harnesses/claude-code.agent.md"
+    "copilot": "agents/ovhcloud/ovhcloud-network-architect-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/ovhcloud/ovhcloud-network-architect-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/ovhcloud/ovhcloud-network-architect-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/ovhcloud/ovhcloud-network-architect-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/ovhcloud/ovhcloud-network-architect-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/ovhcloud/ovhcloud-network-architect-agent/harnesses/kiro-cli.agent.json"
   }
 }

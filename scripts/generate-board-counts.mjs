@@ -74,6 +74,8 @@ const TARGETS = [
   "docs/marketplace-model.md",
   "tests/fixtures/README.md",
   "index.md",
+  "agents/README.md",
+  "agents/AGENTS.md",
 ];
 
 // ---------------------------------------------------------------------------

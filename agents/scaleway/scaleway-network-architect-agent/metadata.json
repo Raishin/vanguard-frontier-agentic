@@ -3,7 +3,14 @@
   "name": "Scaleway Network Architect",
   "type": "agent",
   "provider": "scaleway",
-  "harnesses": ["codex", "claude-code"],
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
   "summary": "Advisory agent for Scaleway VPC design, security groups, Private Networks, Load Balancer configuration, placement group HA strategy, and multi-zone resilience patterns.",
   "source_type": "original",
   "official_docs": [
@@ -18,9 +25,16 @@
   "path": "agents/scaleway/scaleway-network-architect-agent",
   "version": "0.1.0",
   "author": "github: VincentChuWaiChow",
-  "companion_skills": ["scaleway-network-architect"],
+  "companion_skills": [
+    "scaleway-network-architect"
+  ],
   "harness_variants": {
     "codex": "agents/scaleway/scaleway-network-architect-agent/harnesses/codex.toml",
-    "claude-code": "agents/scaleway/scaleway-network-architect-agent/harnesses/claude-code.agent.md"
+    "copilot": "agents/scaleway/scaleway-network-architect-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/scaleway/scaleway-network-architect-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/scaleway/scaleway-network-architect-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/scaleway/scaleway-network-architect-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/scaleway/scaleway-network-architect-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/scaleway/scaleway-network-architect-agent/harnesses/kiro-cli.agent.json"
   }
 }

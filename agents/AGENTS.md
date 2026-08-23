@@ -1,6 +1,6 @@
 # AGENTS.md — Navigation Compass
 
-141 agents across 18 providers. This file is the index; load provider files on demand.
+<!-- count:global:agents -->712<!-- /count --> agents across <!-- count:global:providers -->45<!-- /count --> providers. This file is the index; load provider files on demand.
 
 ## File structure
 
@@ -9,7 +9,7 @@ agents/<provider>/<agent-id>/AGENT.md          ← harness-neutral role contract
 agents/<provider>/<agent-id>/harnesses/        ← 7 adapters: codex, copilot, claude-code,
                                                   cursor, gemini, kiro-ide, kiro-cli
 agents/<provider>/<agent-id>/metadata.json     ← catalog mirror
-catalog/agents.json                            ← machine-readable index of all 127 agents
+catalog/agents.json                            ← machine-readable index of every agent
 ```
 
 ## Agent tiers

@@ -342,6 +342,68 @@ def validate_guarded_live_kubernetes_agents() -> None:
             )
 
 
+# Adapter files that prove a harness actually ships, mapped to the `harnesses` value
+# that must then be declared. Kiro has two adapter files but one harness value.
+HARNESS_ADAPTER_FILES = {
+    "codex.toml": "codex",
+    "copilot.agent.md": "copilot",
+    "claude-code.agent.md": "claude-code",
+    "cursor.agent.md": "cursor",
+    "gemini.agent.md": "gemini",
+    "kiro-ide.agent.md": "kiro",
+    "kiro-cli.agent.json": "kiro",
+}
+
+
+def validate_harness_declarations() -> None:
+    """Every agent's declared `harnesses` must match the adapters it actually ships.
+
+    Both directions are errors, for different reasons:
+
+      * UNDER-declared (adapter file on disk, harness absent from `harnesses`) makes a
+        shipped adapter invisible to everything that filters on the catalog. This is not
+        hypothetical: ionos, ovhcloud, and scaleway each shipped all seven adapter files
+        while declaring only codex and claude-code, so `generate-kiro-powers.mjs` — which
+        discovers providers by looking for `kiro` in `harnesses` — silently omitted three
+        real Kiro Powers from the generated index, and the exporter would not have offered
+        those providers for copilot, cursor, gemini, or kiro either.
+
+      * OVER-declared (harness claimed, no adapter file) promises an install path that
+        does not exist, which fails at the user's `vfa-export-agents` invocation rather
+        than here.
+
+    Keyed on the adapter files themselves, so it stays true no matter how the catalog is
+    regenerated.
+    """
+    problems: list[str] = []
+    for metadata_path in sorted(ROOT.glob("agents/*/*/metadata.json")):
+        data = load_json(metadata_path)
+        declared = set(data.get("harnesses") or [])
+        harness_dir = metadata_path.parent / "harnesses"
+        on_disk = {
+            HARNESS_ADAPTER_FILES[entry.name]
+            for entry in harness_dir.iterdir()
+            if entry.is_file() and entry.name in HARNESS_ADAPTER_FILES
+        } if harness_dir.is_dir() else set()
+        # "other" is a catalog-only escape hatch with no adapter file of its own.
+        declared.discard("other")
+        agent_id = data.get("id", metadata_path.parent.name)
+        if on_disk - declared:
+            problems.append(
+                f"{agent_id}: ships adapters for {sorted(on_disk - declared)} "
+                f"but does not declare them in harnesses"
+            )
+        if declared - on_disk:
+            problems.append(
+                f"{agent_id}: declares harnesses {sorted(declared - on_disk)} "
+                f"with no matching adapter file"
+            )
+    assert_true(
+        not problems,
+        "harness declarations disagree with shipped adapters:\n  - " + "\n  - ".join(problems),
+    )
+
+
 def main() -> int:
     errors: list[str] = []
     seen_ids: set[str] = set()
@@ -362,6 +424,10 @@ def main() -> int:
         errors.append(str(exc))
     try:
         validate_codex_harness_adapters()
+    except AssertionError as exc:
+        errors.append(str(exc))
+    try:
+        validate_harness_declarations()
     except AssertionError as exc:
         errors.append(str(exc))
     try:
