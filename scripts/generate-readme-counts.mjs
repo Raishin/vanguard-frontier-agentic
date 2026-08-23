@@ -181,6 +181,30 @@ const providerTableBlock =
 // Transform README content
 // ---------------------------------------------------------------------------
 
+// Agent counts per DIRECTORY under agents/, which is not the same thing as per
+// provider. agents/finops/ holds agents whose provider is kubernetes or multi-cloud,
+// and agents/qa/ holds agents whose provider is generic; conversely `generic` and
+// `multi-cloud` are provider values with no directory of their own. The README tree
+// documents the directory layout, so it must be keyed on directories — keying it on
+// provider would "correct" four currently-accurate lines into being wrong.
+const agentsPerDirectory = new Map();
+for (const entry of fs.readdirSync(path.join(repoRoot, "agents"), { withFileTypes: true })) {
+  if (!entry.isDirectory()) continue;
+  const dir = path.join(repoRoot, "agents", entry.name);
+  let n = 0;
+  for (const sub of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (sub.isDirectory() && fs.existsSync(path.join(dir, sub.name, "metadata.json"))) n++;
+  }
+  // A directory with no agents (agents/velero/ is a README-only leftover) is not part
+  // of the tree, and must not be reported as missing from it.
+  if (n > 0) agentsPerDirectory.set(entry.name, n);
+}
+
+/** Tree slugs naming a directory that holds no agents. */
+const treeUnknownDirs = new Set();
+/** Directories holding agents that the tree never lists. */
+let treeMissingDirs = [];
+
 /** Provider slugs referenced by a count:provider marker but absent from the catalog. */
 const unknownProviders = new Set();
 
@@ -231,6 +255,32 @@ function buildExpectedContent(original) {
     return `<!-- count:provider:${slug} -->${agentsPerProvider.get(slug)}<!-- /count -->`;
   });
 
+  // 4. Repository-tree block: rewrite the agent count on each directory line.
+  //
+  // The tree lives inside a ```text fence, where an HTML comment marker would render
+  // as visible text — so the markers wrap the fence and the counts are rewritten in
+  // place instead. Descriptions are hand-written prose and are preserved verbatim;
+  // only the number and its agent/agents pluralisation are generated.
+  const treeRe = /<!-- agent-tree:start -->[\s\S]*?<!-- agent-tree:end -->/;
+  const treeMatch = content.match(treeRe);
+  if (treeMatch) {
+    const seen = new Set();
+    const rewritten = treeMatch[0].replace(
+      /^([├└]── )([a-z0-9-]+)(\/\s*)\((\d+) (agents?)\b/gm,
+      (match, branch, slug, sep, _n, _word) => {
+        if (!agentsPerDirectory.has(slug)) {
+          treeUnknownDirs.add(slug);
+          return match;
+        }
+        seen.add(slug);
+        const n = agentsPerDirectory.get(slug);
+        return `${branch}${slug}${sep}(${n} ${n === 1 ? "agent" : "agents"}`;
+      },
+    );
+    treeMissingDirs = [...agentsPerDirectory.keys()].filter((d) => !seen.has(d)).sort();
+    content = content.replace(treeRe, rewritten);
+  }
+
   return content;
 }
 
@@ -244,6 +294,24 @@ const expected = buildExpectedContent(original);
 // Fail closed on a count:provider marker naming a provider the catalog does not
 // have. Rewriting it is impossible and leaving it alone would freeze a stale
 // number behind a marker that looks generated — the worst of both worlds.
+if (treeUnknownDirs.size > 0 || treeMissingDirs.length > 0) {
+  const parts = [];
+  if (treeUnknownDirs.size > 0) {
+    parts.push(
+      `tree lists director(y|ies) with no agents: ${[...treeUnknownDirs].sort().join(", ")}`,
+    );
+  }
+  if (treeMissingDirs.length > 0) {
+    parts.push(`agents/ director(y|ies) missing from the tree: ${treeMissingDirs.join(", ")}`);
+  }
+  process.stderr.write(
+    `ERROR: README.md repository tree is out of sync with agents/.\n  - ${parts.join("\n  - ")}\n` +
+      `The counts are generated, but each line's description is hand-written — ` +
+      `add or remove the line by hand, then re-run.\n`,
+  );
+  process.exit(1);
+}
+
 if (unknownProviders.size > 0) {
   process.stderr.write(
     `ERROR: README.md references unknown provider(s) in count:provider markers: ` +
