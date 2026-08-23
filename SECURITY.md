@@ -7,9 +7,9 @@ The table below shows which versions of `@raishin/vanguard-frontier-agentic`
 
 | Version range | Supported          |
 | ------------- | ------------------ |
-| 3.9.x         | Yes — current minor |
-| 3.8.x         | Yes — previous minor |
-| < 3.8.0      | No                 |
+| 3.10.x        | Yes — current minor |
+| 3.9.x         | Yes — previous minor |
+| < 3.9.0      | No                 |
 
 Fixes are back-ported to the previous minor only when the vulnerability is
 rated high or critical. Older versions receive no patches; upgrade to a

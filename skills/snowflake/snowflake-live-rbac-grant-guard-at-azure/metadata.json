@@ -3,7 +3,14 @@
   "name": "Snowflake Live RBAC Grant Guard at Azure",
   "type": "skill",
   "provider": "snowflake",
-  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
   "summary": "Mutating-runtime live guard for Snowflake RBAC privilege management on Azure. Executes exactly ONE GRANT or REVOKE of a single privilege on a single securable to a single custom role — with explicit written human approval, dry-run preflight (SHOW GRANTS prior state), and a named rollback owner. Phase B strictly-scoped controlled mutation; never ACCOUNTADMIN/SECURITYADMIN/SYSADMIN/PUBLIC, never OWNERSHIP, never MANAGE GRANTS at broad scope, never future grants at database or account scope.",
   "source_type": "original",
   "official_docs": [
@@ -18,5 +25,8 @@
   "path": "skills/snowflake/snowflake-live-rbac-grant-guard-at-azure",
   "author": "github: VincentChuWaiChow",
   "version": "0.1.0",
-  "companion_agents": ["snowflake-live-rbac-grant-guard-at-azure-agent"]
+  "companion_agents": [
+    "snowflake-live-rbac-grant-guard-at-azure-agent"
+  ],
+  "lifecycle": "deprecated"
 }

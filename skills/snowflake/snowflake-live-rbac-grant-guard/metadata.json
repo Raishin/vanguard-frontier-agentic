@@ -1,0 +1,28 @@
+{
+  "id": "snowflake-live-rbac-grant-guard",
+  "name": "snowflake-live-rbac-grant-guard",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "snowflake",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Approval-gated execution boundary for exactly one Snowflake privilege change: ONE privilege, on ONE securable, to or from ONE custom role, as a single GRANT or REVOKE. Cloud-neutral. Shows the effective-inheritance impact before execution and refuses ALL PRIVILEGES, ownership transfer, system-role targets, PUBLIC, bulk rewrites, and unbounded future grants. Never auto-dispatched.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.snowflake.com/en/sql-reference/sql/grant-privilege",
+    "https://docs.snowflake.com/en/sql-reference/sql/revoke-privilege",
+    "https://docs.snowflake.com/en/sql-reference/sql/show-grants",
+    "https://docs.snowflake.com/en/user-guide/security-access-control-considerations",
+    "https://docs.snowflake.com/en/user-guide/workload-identity-federation"
+  ],
+  "security_notes": "Mutating-runtime and never auto-dispatched. Executes exactly one GRANT or REVOKE of one privilege on one securable to or from one custom role, only after explicit written human approval naming account, environment, securable, privilege, role, and accepted blast radius. Runs as a narrowly scoped custom role that holds OWNERSHIP of the target securable — the least-privilege delegated-grant path, since a role may grant only on objects it owns. ACCOUNTADMIN is forbidden without exception; MANAGE GRANTS is an account-level global privilege and is never granted to this guard. Grants to or from ACCOUNTADMIN, SECURITYADMIN, SYSADMIN or PUBLIC, OWNERSHIP transfers, GRANT ALL PRIVILEGES, bulk operations, and future grants at database or account scope are refused regardless of who approves. No harness adapter grants an execution tool: the deliverable is the approved, preflighted statement with its attestation and rollback, run by a named human operator.",
+  "last_verified": "2026-08-17",
+  "path": "skills/snowflake/snowflake-live-rbac-grant-guard",
+  "author": "github: VincentChuWaiChow"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "snowflake-live-warehouse-cost-change-guard",
+  "name": "snowflake-live-warehouse-cost-change-guard",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "snowflake",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Approval-gated execution boundary for exactly one Snowflake warehouse or cost-governance mutation: a size, auto-suspend, auto-resume, scaling or concurrency setting, a resource-monitor assignment, or a supported budget operation. Quantifies the expected cost effect, the expected performance effect, and the affected workloads before execution, and treats a suspend-capable monitor as an availability control. Never auto-dispatched.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.snowflake.com/en/sql-reference/sql/alter-warehouse",
+    "https://docs.snowflake.com/en/user-guide/warehouses-considerations",
+    "https://docs.snowflake.com/en/user-guide/resource-monitors",
+    "https://docs.snowflake.com/en/user-guide/budgets",
+    "https://docs.snowflake.com/en/sql-reference/account-usage/warehouse_metering_history"
+  ],
+  "security_notes": "Mutating-runtime and never auto-dispatched. Executes exactly one warehouse or cost-governance change after explicit written human approval naming account, environment, target object, the exact change, the quantified cost and performance effect, and the rollback trigger. Runs as a narrowly scoped custom role holding only the privileges needed on the single target warehouse or monitor; ACCOUNTADMIN is forbidden without exception. A resource monitor whose action can suspend warehouses is treated as an availability control with production blast radius, not as a cost safety net — configuring one requires the same what-breaks analysis as any other production change. No harness adapter grants an execution tool.",
+  "last_verified": "2026-08-17",
+  "path": "skills/snowflake/snowflake-live-warehouse-cost-change-guard",
+  "author": "github: VincentChuWaiChow"
+}

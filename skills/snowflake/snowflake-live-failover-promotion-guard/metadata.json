@@ -1,0 +1,28 @@
+{
+  "id": "snowflake-live-failover-promotion-guard",
+  "name": "snowflake-live-failover-promotion-guard",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "snowflake",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "The highest-blast-radius execution boundary on this board: one promotion of one failover group to primary. Requires a declared incident or drill, a named accountable owner, replication freshness with a quantified data-loss window, dependency readiness, a client redirection plan, and a failback strategy — all in writing, before the statement is composed. Urgency raises this gate rather than lowering it. Never auto-dispatched.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.snowflake.com/en/user-guide/account-replication-failover",
+    "https://docs.snowflake.com/en/sql-reference/sql/alter-failover-group",
+    "https://docs.snowflake.com/en/user-guide/replication-intro",
+    "https://docs.snowflake.com/en/user-guide/client-redirect",
+    "https://docs.snowflake.com/en/user-guide/account-replication-considerations"
+  ],
+  "security_notes": "Mutating-runtime and never auto-dispatched. Executes exactly one promotion of one failover group after explicit written human approval that names a declared incident or drill, an accountable incident or DR owner, the approved target, the quantified data-loss window, the dependency-readiness state, the client redirection plan, and the failback strategy. Runs as a narrowly scoped custom role in the target account holding only the privilege to promote the named group; ACCOUNTADMIN is forbidden without exception. This guard refuses on urgency alone: a promotion without dependency readiness relocates an outage rather than ending it, and that refusal is not overridable. No harness adapter grants an execution tool.",
+  "last_verified": "2026-08-17",
+  "path": "skills/snowflake/snowflake-live-failover-promotion-guard",
+  "author": "github: VincentChuWaiChow"
+}

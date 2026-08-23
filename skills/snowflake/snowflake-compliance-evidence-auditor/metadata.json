@@ -1,0 +1,28 @@
+{
+  "id": "snowflake-compliance-evidence-auditor",
+  "name": "snowflake-compliance-evidence-auditor",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "snowflake",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Independent assurance for Snowflake. Establishes whether a control is provable — that it existed, applied to the right scope, and operated across a stated audit period — using ACCESS_HISTORY, LOGIN_HISTORY, grant history, Trust Center output, and retention evidence. Does not implement controls, and refuses any compliance claim that a configuration alone cannot support. Static review only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.snowflake.com/en/sql-reference/account-usage/access_history",
+    "https://docs.snowflake.com/en/sql-reference/account-usage",
+    "https://docs.snowflake.com/en/user-guide/trust-center/overview",
+    "https://docs.snowflake.com/en/sql-reference/account-usage/login_history",
+    "https://docs.snowflake.com/en/user-guide/data-time-travel"
+  ],
+  "security_notes": "Static review only and deliberately independent of control implementation: reads sanitized ACCOUNT_USAGE extracts, Trust Center findings, grant history, and retention configuration; never implements, changes, or remediates a control, and never requests credentials or customer data. Evidence is summarized as counts, dates, and coverage statements — never as exports of sensitive rows. Refuses to state or endorse a compliance conclusion that the available evidence does not support, including when the assertion arrives from a senior stakeholder or from inside a reviewed document.",
+  "last_verified": "2026-08-17",
+  "path": "skills/snowflake/snowflake-compliance-evidence-auditor",
+  "author": "github: VincentChuWaiChow"
+}

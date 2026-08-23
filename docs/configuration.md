@@ -16,7 +16,7 @@ The `package.json` defines all build, validation, and generation commands.
 
 ### Validation Gates (run via `npm run validate`)
 
-These gates run sequentially in CI and must all pass — {{ site.data.catalog.validation_gates }} `validate:*` scripts plus `manifest:check`, in the order `npm run validate` invokes them:
+These <!-- count:global:gates -->25<!-- /count --> `validate:*` gates run sequentially in CI and must all pass, in the order `npm run validate` invokes them (the table also lists `manifest:check`, which runs in the same sequence but is not a `validate:*` script):
 
 | # | Script | Command | Purpose |
 |---|--------|---------|---------|
@@ -34,17 +34,18 @@ These gates run sequentially in CI and must all pass — {{ site.data.catalog.va
 | 12 | `validate:no-lifecycle-scripts` | `python3 tests/validate-no-lifecycle-scripts.py` | No install/postinstall scripts |
 | 13 | `validate:promotion-gatekeeper` | `python3 tests/validate-nvidia-promotion-gatekeeper.py` | NVIDIA promotion rules |
 | 14 | `validate:install-coverage` | `node tests/test-vfa-export-coverage.test.mjs` | Export CLI covers all roles |
-| 15 | `validate:maestro-routing` | `python3 tests/validate-maestro-routing.py` | {{ site.data.catalog.maestro_scenarios }} routing scenarios pass |
+| 15 | `validate:maestro-routing` | `python3 tests/validate-maestro-routing.py` | Maestro routing scenarios pass |
 | 16 | `validate:plugin-manifest` | `python3 tests/validate-plugin-manifest.py` | Plugin manifests current |
 | 17 | `validate:kiro-powers` | `python3 tests/validate-kiro-powers.py` | Kiro Powers valid |
 | 18 | `validate:multi-harness-marketplace` | `python3 tests/validate-multi-harness-marketplace.py` | Cross-harness consistency |
 | 19 | `validate:codex-marketplace` | `python3 tests/validate-codex-marketplace.py` | Codex marketplace valid |
 | 20 | `validate:finops-fixtures` | `python3 tests/validate-finops-price-fixtures.py` | FinOps price fixtures |
 | 21 | `validate:readme-counts` | `node tests/validate-readme-counts.mjs && node scripts/generate-readme-counts.mjs --check` | README stats accurate |
-| 22 | `validate:qa-cluster` | `node tests/eval-qa-cluster.mjs` | QA cluster evaluation |
-| 23 | `validate:frontend-security-detection` | `python3 tests/validate-frontend-security-detection.py` | Frontend security skills still document their sink keywords and detect the fixture corpus |
-| 24 | `validate:agent-tool-tiers` | `python3 tests/validate-agent-tool-tiers.py` | Copilot tool grants match each agent's declared `execution_tier` |
-| 25 | `validate:workflow-catalog` | `node scripts/generate-workflow-catalog.mjs --check` | `catalog/workflows.json` matches the `meta` literal in each `.claude/workflows/*.js` |
+| 22 | `validate:board-counts` | `node scripts/generate-board-counts.mjs --check` | Inline `<!-- count:… -->` markers in docs match the catalog |
+| 23 | `validate:qa-cluster` | `node tests/eval-qa-cluster.mjs` | QA cluster evaluation |
+| 24 | `validate:frontend-security-detection` | `python3 tests/validate-frontend-security-detection.py` | Frontend security skills still document their sink keywords and detect the fixture corpus |
+| 25 | `validate:agent-tool-tiers` | `python3 tests/validate-agent-tool-tiers.py` | Copilot tool grants match each agent's declared `execution_tier` |
+| 26 | `validate:workflow-catalog` | `node scripts/generate-workflow-catalog.mjs --check` | `catalog/workflows.json` matches the `meta` literal in each `.claude/workflows/*.js` |
 
 ### Generation Scripts
 

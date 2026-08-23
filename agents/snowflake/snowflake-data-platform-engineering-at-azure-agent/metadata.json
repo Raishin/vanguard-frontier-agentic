@@ -20,10 +20,12 @@
     "https://docs.snowflake.com/en/user-guide/security-row-intro",
     "https://docs.snowflake.com/en/user-guide/access-history"
   ],
-  "security_notes": "Use official Snowflake documentation for documented service behavior and sampled read-only evidence for observed state. Never request storage credentials, SAS tokens, service principal secrets, or customer data. Require explicit approval before production-impacting warehouse, storage integration, masking policy, or row access policy changes.",
+  "security_notes": "Use official Snowflake documentation for documented service behavior and sampled read-only evidence for observed state. Never request storage credentials, SAS tokens, service principal secrets, or customer data. Require explicit approval before production-impacting warehouse, storage integration, masking policy, or row access policy changes. DEPRECATED: Azure-scoped predecessor of the cloud-neutral Snowflake board; superseded by snowflake-platform-administrator-agent + snowflake-governance-privacy-agent + snowflake-query-performance-engineer-agent. Retained installable for continuity and excluded from the maestro routing table so no mutation surface has two owners.",
   "last_verified": "2026-06-17",
   "path": "agents/snowflake/snowflake-data-platform-engineering-at-azure-agent",
-  "companion_skills": ["snowflake-data-platform-engineering-at-azure"],
+  "companion_skills": [
+    "snowflake-data-platform-engineering-at-azure"
+  ],
   "execution_tier": "static-review",
   "harness_variants": {
     "codex": "agents/snowflake/snowflake-data-platform-engineering-at-azure-agent/harnesses/codex.toml",
@@ -35,5 +37,6 @@
     "kiro-cli": "agents/snowflake/snowflake-data-platform-engineering-at-azure-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: VincentChuWaiChow",
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "lifecycle": "deprecated"
 }

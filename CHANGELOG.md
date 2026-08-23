@@ -1,3 +1,195 @@
+## 🛡️ v3.10.0 — *Provenance · Policy · Portability*
+_Released 2026-08-22_
+
+> _Curated multi-cloud, zero-trust agent marketplace — `AWS` · `Azure` · `OCI` · `GCP` · `Terraform`._
+> Least privilege, live evidence, safe rollback paths.
+
+**Release type:** New capabilities — review the sections below before upgrading.
+
+* **docs:** derive every board count, and fix defects found by an adversarial audit ([`f74c3a0`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/f74c3a02a7376c79fc04f0e2a0ff1a865298d8e6))
+Counts
+* **docs:** derive every live-facing catalog count, not just the board tables ([`2ba5c87`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/2ba5c87d7b82976c50bc26a6da89feafb27ab5a8))
+Widens the count generator from one document to five, and adds a repo-wide
+marker namespace alongside the per-board one:
+
+    <!-- count:board:snowflake:agents -->28<!-- /count -->     per provider
+    <!-- count:global:gates -->25<!-- /count -->               repo-wide
+
+40 markers across docs/language-stack-boards.md, docs/configuration.md,
+docs/marketplace-model.md, tests/fixtures/README.md, and root index.md. A board
+key may span providers (`count:board:legal+hr:agents`) for a figure that is
+genuinely about a pair of boards.
+
+This caught four numbers that had already gone stale and had nothing watching
+them: index.md advertised 404 skills / 426 agents / 32 providers (actually
+737 / 712 / 45), docs/configuration.md and docs/marketplace-model.md both said
+17 gates (25), marketplace-model claimed 331 agent adapter paths (712), and
+tests/fixtures/README.md said 14 maestros (33).
+
+Two derivation bugs found by probing rather than by reading:
+
+- `review` was computed as `static - router`, which assumes the router is a
+  static-review agent. Across this repo maestros are variously static-review
+  (12), read-only-runtime (7), or untiered (18), so subtracting under-counted
+  specialists on every board whose router is not static-review. It now excludes
+  maestros from the static-review set directly.
+- Marketing's 13 non-router agents declare no `execution_tier` at all, so a
+  `review` marker there rendered "static-review (0 agents)". The doc had been
+  asserting a tier the metadata does not carry. Added a `specialists` key —
+  non-deprecated, non-router agents whatever their tier — and reworded that row
+  to say what is actually true.
+
+Deliberately NOT made dynamic, and why: CHANGELOGs, ADRs, and dated plan and
+research documents record what was true when written. ROADMAP.md's "the existing
+619 skills are audited-clean (2026-07-10)" is the clearest case — regenerating it
+to 737 would assert that every skill added since that audit was covered by it.
+README.md keeps its own `count:<key>` namespace under readme-counts:write.
+
+Unknown providers, unknown keys, and a document that has lost all its markers are
+hard errors, so a typo fails the gate rather than silently freezing a stale
+number. Verified by probe in both directions: a corrupted count fails with the
+expected message and is repaired byte-identically by the writer.
+
+Gates: npm run validate exit 0; codespell clean; markdownlint 0 issues in 8018
+files.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+* **snowflake:** ship the cloud-neutral Snowflake adversarial agent board ([`03508c6`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/03508c64fed4b3674e03dc6812a2d5ff1cb1db35))
+Replaces the three Azure-scoped Snowflake agents as the board's entry point with a
+25-agent, evidence-grounded, permission-aware operating model: one maestro router,
+18 static-review specialists, and six approval-gated live guards.
+
+Board design
+- Maestro routes only — never answers a Snowflake question, never auto-dispatches a
+  live guard, ceiling of four parallel specialists, surfaces disagreement rather than
+  averaging it.
+- Every specialist declares Business Impact (loss prevented, outcome improved,
+  measurable metrics), Evidence Sources split into account versus documentation, and a
+  mandatory Out of Scope section naming the sibling that owns each excluded domain.
+- Seven-label evidence model (LIVE / REPOSITORY / DOCUMENTATION / STANDARD / INFERENCE
+  / ESTIMATE / UNKNOWN) with the load-bearing rule that documentation proves supported
+  platform behaviour and never proves configured account behaviour.
+
+Live guards — each owns exactly one mutation, unambiguously
+- rbac-grant, auth/network-policy, warehouse/cost, data-protection-policy,
+  pipeline/streaming, failover-promotion. Each ships PERMISSIONS/PREFLIGHT/ROLLBACK.
+- ACCOUNTADMIN forbidden without exception; run-as is a custom role scoped to the single
+  target; no harness adapter grants any execution tool.
+- Two carry refusals no approval can override: the auth/network guard will not tighten
+  reachability without a surviving admin path demonstrated from login history, and the
+  failover guard will not promote without a declaration, a computed data-loss window,
+  and confirmed dependency readiness.
+
+Conditional specialists rejected with reasons (iceberg, forensics, clean rooms,
+openflow, org governance, SPCS) and the Native App publish guard rejected because
+consumer-side rollback is not deterministic. Agent proliferation is architecture debt.
+
+Currentness — volatile facts carry verification dates against primary sources
+- Strong-authentication rollout is a phased window, so account state is never inferred
+  from the calendar; SERVICE_AGENT recorded as the AI-agent identity type.
+- Snowpipe Streaming classic is deprecated in favour of the high-performance
+  architecture; no retirement date is invented — unresolved is recorded as unresolved.
+- Resource monitors do not cover serverless or AI spend; budgets do. Horizon Catalog is
+  the current recommendation for new Iceberg interoperability, not Open Catalog.
+- CORTEX_AGENT_USER is distinguished from CORTEX_USER, with an explicit PUBLIC check.
+- Terraform provider preview resources are tracked independently of Snowflake feature GA.
+
+Supersession: the three -at-azure agents and their skills are marked lifecycle
+deprecated and excluded from routing so no mutation surface has two owners. Nothing is
+deleted and they remain installable.
+
+Also: 27-scenario routing eval (red team, negative routing, cross-agent conflict,
+live-guard gate), seven role-scoped install profiles, provider README and AGENTS.md,
+and a data-driven generator so the board is reproducible from committed data.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+* **workflows:** add the agentic-delegation workflow, TUI discovery, and docs ([`ae4a3fb`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/ae4a3fb609adc1d83e3b9aad681a1afab8b9afcc))
+Encodes the agentic-delegation doctrine as an executable multi-agent workflow, gives
+the Rust TUI read-only awareness of it, and documents both in the README and the
+Jekyll site. Also corrects two Snowflake claims the workflow's own verification found.
+
+.claude/workflows/agentic-delegation.js (new — first executable workflow in the repo)
+- Four phases: parallel Haiku recon with mandatory file:line citations; Context7
+  claim verification followed by an adversarial refuter; Sonnet spec-driven writing
+  followed by a diff reviewer; and a Haiku gate run returning raw failure output.
+- Deterministic: no wall clock, no randomness. Caps at 14 subagents and logs every
+  truncation — a work-list that was cut says so.
+- Returns a decision surface, not a narrative: items needing attention are separated
+  from those that passed, and the return value states what the orchestrator still owns.
+
+tools/vfa-tui — read-only workflow discovery
+- New models::workflow with WorkflowDef/WorkflowPhase and a display-only extractor for
+  the meta block; every extracted value is control-byte checked, matching sibling models.
+- catalog::loader::load_workflows scans .claude/workflows/*.js; a missing directory is
+  not an error and an unparseable file is skipped rather than aborting the scan.
+- Discovery only. The TUI never executes a workflow, per the read-first principle.
+
+Fixes a real defect in the delegated implementation: the extractor closed on a double
+quote regardless, so it parsed its own double-quoted test fixtures and returned None for
+every workflow actually shipped, all of which use single quotes. The extractor now takes
+whichever quote opens first, and a regression test parses the committed workflow itself
+so an invented fixture can never diverge from reality again.
+
+Content corrections found by the workflow's Context7 verification phase
+- FinOps: QUERY_ATTRIBUTION_HISTORY excludes six categories, not one — warehouse idle
+  time, data transfer, storage, cloud services, serverless features, and AI service
+  tokens. Naming only idle made the reconciliation to the invoice look closeable and
+  hid the serverless and AI surfaces that a resource-monitor-only design also misses.
+
+Documentation
+- README: agentic-delegation section, plus .claude/skills and .claude/workflows in the
+  folder map.
+- docs/agentic-delegation.md (new Jekyll page) linked from the documentation map.
+- docs/language-stack-boards.md: corrected the Snowflake trust-posture row, which still
+  claimed static-review throughout and "never mutates warehouses" after six
+  mutating-runtime guards landed; added the Snowflake board section and the seven roles.
+- docs/execution-tiers.md and the Kiro Powers table: replaced the deprecated
+  -at-azure guard reference and the "Snowflake (Azure)" power description.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+* **snowflake:** carry Snowpipe classic's documented sunset window, not just "unresolved" ([`ecc11af`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/ecc11afaeed360927c2c72011cbd82e7d0f2fb03))
+An adversarial re-verification pass against the Snowflake deprecation page surfaced a
+section my original research missed: "Expected timeline and migration window". Snowflake
+documents that a formal deprecation announcement — carrying the full transition timeline,
+milestones, migration guides, and the final end-of-life date — was planned for mid-2026,
+and that an 18-month sunset period begins after it.
+
+The streaming agent previously reported only "no retirement date established; Status:
+unresolved". That was accurate and under-informative in a way that changes a decision: a
+planner reading it concludes the migration cannot be scoped, when the correct conclusion
+is that no final date is published yet but an 18-month clock starts on announcement — and
+that the announcement was due by mid-2026, so the page should be re-checked now.
+
+- Operating rule now refuses BOTH failure modes: never invent an EOL date, and never stop
+  at a bare "unknown" that hides a published sunset window.
+- Volatile table gains the expected-timeline row, and the existing row's status and
+  does-not-prove cells are corrected.
+- Adversarial challenge answers with the third option instead of a shrug: no date yet, an
+  18-month clock once announced, and the announcement is due.
+- Reference adds the check that the mid-2026 target had passed while the page still read
+  in future tense — itself the finding a planner needs.
+
+Verified 2026-08-17 via Context7 /websites/snowflake_en
+(snowpipe-streaming-classic-deprecation, "Expected timeline and migration window").
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+
+---
+
+### 📥 Install
+```bash
+npm install @raishin/vanguard-frontier-agentic@3.10.0
+```
+
+### 🔐 Supply-chain provenance
+Every release ships a build attestation (SLSA provenance) and an SBOM. Verify the tag with `gh attestation verify` before installing.
+
+**Full changelog:** https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/compare/v3.9.0...v3.10.0
+
 ## 🛡️ v3.9.0 — *Provenance · Policy · Portability*
 _Released 2026-08-18_
 
@@ -9660,7 +9852,7 @@ Collateral: regenerate asset-integrity.json, plugin manifests
 
 ## 🔴 v2.0.0 — *Zero-Trust Scope Enforcement* &mdash; 2026-05-16
 
-> _Provider-scoped exports are now strict and auditable. 687 agents · 712 skills · 45 providers · 60 roles_
+> _Provider-scoped exports are now strict and auditable. 712 agents · 737 skills · 45 providers · 67 roles_
 >
 > This release closes a class of privilege-escalation bugs in the export CLI and hardens the
 > entire provider-scope boundary from user input through to CI attestation.

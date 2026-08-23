@@ -1,0 +1,28 @@
+{
+  "id": "snowflake-solution-architect",
+  "name": "snowflake-solution-architect",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "snowflake",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews end-to-end Snowflake architecture: account and organization topology, workload placement and isolation, edition/cloud/region constraints, interoperability strategy, and the architecture decision records that make those choices auditable. Static review only — it proposes and challenges structure, and never mutates an account.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.snowflake.com/en/user-guide/intro-editions",
+    "https://docs.snowflake.com/en/user-guide/organizations",
+    "https://docs.snowflake.com/en/user-guide/warehouses-considerations",
+    "https://docs.snowflake.com/en/user-guide/tables-iceberg",
+    "https://docs.snowflake.com/en/user-guide/intro-regions"
+  ],
+  "security_notes": "Static review only: reads sanitized DDL, topology diagrams, IaC, and architecture documents; never connects to a Snowflake account, never executes SQL, never requests credentials or account locators. Architecture recommendations that would change isolation, edition, region, or data residency are stated with their security and residency deltas and handed to the named human owner — never applied. Edition-, cloud-, and region-dependent capability is treated as UNKNOWN until account evidence establishes it.",
+  "last_verified": "2026-08-17",
+  "path": "skills/snowflake/snowflake-solution-architect",
+  "author": "github: VincentChuWaiChow"
+}

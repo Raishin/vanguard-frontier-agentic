@@ -48,6 +48,6 @@ The grader provides three structural guarantees:
 
 ## Numbers (current)
 
-- 14 maestros covered (13 cloud/platform + 1 NVIDIA)
+- <!-- count:global:maestros -->34<!-- /count --> maestros covered, one routing fixture directory each
 - 357 scenarios validated
 - 13th `npm run validate` gate

@@ -1,87 +1,249 @@
-# ❄️ Snowflake (Azure) Agents
+# ❄️ Snowflake Agents
 
 ## Overview
 
-Two **static-review** agents and one **mutating-runtime live-guard** agent for Snowflake workloads deployed on Azure — scoped to RBAC access governance, data-platform engineering, and controlled privilege grants. The static-review agents never connect to live Snowflake accounts; every verdict is an evidence-backed recommendation requiring human approval before any change reaches a production environment. The Phase B live-guard agent executes a single, narrowly scoped RBAC GRANT against a live Snowflake account only after written approval token, PREFLIGHT dry-run, and REVOKE rollback path are confirmed.
+A **28-agent Snowflake board**: one router, 18 review specialists, six approval-gated live guards,
+and three deprecated Azure-scoped predecessors kept installable for continuity. Every review agent
+is read-only. Every mutation passes a human who has seen the blast radius and the rollback.
 
-## 🧱 Agent tiers
+The board is not a set of Snowflake-themed prompts. It is a decision system with an opinion about
+who owns which failure domain, what evidence a decision requires, who may veto an unsafe
+assumption, when a human must approve execution, how a change is verified, how it is reversed, and
+how the work creates measurable business value.
 
-| Tier | Purpose | Default access | Live Snowflake mutation |
-|---|---|---|---|
-| Static-review agents | Review, design, diagnose | read-only | not allowed |
-| Live-guard (mutating-runtime) | Apply one RBAC GRANT (role/privilege) to one grantee; REVOKE rollback | written approval token + PREFLIGHT dry-run required | single scoped GRANT only — ACCOUNTADMIN grants, SECURITYADMIN/SYSADMIN escalation, and bulk operations denied |
+**Entry point:** `snowflake-maestro-agent`. It classifies the task, names the failure domains,
+decides whether account-specific evidence is even required, and dispatches the narrowest specialist
+or at most four in parallel. It never answers a Snowflake question itself.
 
-## 🗂️ Agents in this provider
+Navigation compass: [`AGENTS.md`](AGENTS.md).
 
-| Agent | Tier | Primary use |
+---
+
+## 🧱 Board philosophy
+
+**Four things that share vocabulary are kept separate.** A human persona ("our data engineer
+needs…"), a Snowflake authorization role ("SECURITYADMIN can…"), an agent's responsibility (which
+failure domain it owns), and an agent's runtime privilege (whether it may execute anything) are
+independent. No agent's mandate is inferred from the name of a Snowflake RBAC role. That
+`SECURITYADMIN` *can* manage grants does not mean a security agent should execute them; that
+`ACCOUNTADMIN` *can* perform an operation never justifies assigning it to automation.
+
+**Disagreement is a feature.** Performance wants a bigger warehouse; FinOps refuses unless the SLA
+gain justifies the credits. Product wants outbound connectivity; security refuses unrestricted
+egress. The architect wants Business Critical; the value strategist asks what outage risk that
+premium actually removes. The maestro reports the point of disagreement, each side's evidence, the
+business impact, the risk, the decision owner, and a recommended resolution — it never averages two
+positions into a false consensus.
+
+**An agent that cannot name the business loss it prevents does not belong on the board.** Every
+specialist carries a Business Impact section stating the loss prevented, the outcome improved, and
+the metrics that would show it.
+
+---
+
+## 🗂️ Agent categories
+
+| Category | Agents |
+|---|---|
+| **Router** | `snowflake-maestro-agent` |
+| **Architecture** | `snowflake-solution-architect-agent`, `snowflake-migration-modernization-agent` |
+| **Administration** | `snowflake-platform-administrator-agent` |
+| **Security** | `snowflake-identity-access-security-agent`, `snowflake-network-private-connectivity-agent` |
+| **Governance** | `snowflake-governance-privacy-agent` |
+| **Compliance** | `snowflake-compliance-evidence-auditor-agent` |
+| **FinOps** | `snowflake-finops-cost-governor-agent` |
+| **Performance** | `snowflake-query-performance-engineer-agent` |
+| **Data engineering** | `snowflake-data-engineering-pipelines-agent` |
+| **Streaming** | `snowflake-streaming-ingestion-reliability-agent` |
+| **Analytics** | `snowflake-analytics-semantic-data-product-agent` |
+| **ML** | `snowflake-data-science-ml-agent` |
+| **AI / Cortex** | `snowflake-cortex-ai-agent-security-governor-agent` |
+| **Native Apps / Marketplace** | `snowflake-native-app-marketplace-product-agent` |
+| **BCDR** | `snowflake-bcdr-resilience-agent` |
+| **DevOps / IaC** | `snowflake-devops-iac-release-agent` |
+| **Business value** | `snowflake-business-value-adoption-strategist-agent` |
+| **Live guards (6)** | RBAC grant · auth/network policy · warehouse & cost · data-protection policy · pipeline & streaming · failover promotion |
+
+Per-agent load triggers, tiers, and mutation capability: [`AGENTS.md`](AGENTS.md).
+
+---
+
+## 🔍 Review versus live guard
+
+| | Review specialist | Live guard |
 |---|---|---|
-| `snowflake-rbac-access-governance-at-azure-agent` | Static-review | RBAC governance review — ACCOUNTADMIN/SECURITYADMIN/SYSADMIN role separation, custom least-privilege roles, SoD enforcement, network policy review, Entra OAuth/SSO/SCIM integration posture |
-| `snowflake-data-platform-engineering-at-azure-agent` | Static-review | Data platform architecture review — warehouse sizing, Azure Private Link (Business Critical), storage integration to ADLS Gen2/Blob, dynamic data masking, row-access policies, object tagging, ACCESS_HISTORY auditing |
-| `snowflake-live-rbac-grant-guard-at-azure-agent` | Live-guard (mutating-runtime) | Apply one RBAC GRANT (role/privilege) to one grantee via SQL API; REVOKE rollback; written approval token + PREFLIGHT diff required; denies ACCOUNTADMIN grants, SECURITYADMIN/SYSADMIN escalation, and bulk operations |
+| Execution tier | `static-review` | `mutating-runtime` |
+| Reads | sanitized DDL, config, IaC, and account evidence extracts | the same, plus prior-state capture |
+| Writes | nothing | exactly one approved mutation |
+| Dispatch | by the maestro, freely | **never automatically** — only after explicit written human approval |
+| Deliverable | findings with evidence labels, plus the exact proposed statement | the executed statement, its verification, its negative check, its attestation, and its rollback |
 
-## 🔒 RBAC access governance agent
+A live guard is **not** a smarter review agent. It is a narrowly scoped execution boundary, and it
+is never selected merely because a requested change *could* eventually be executed. A mutation
+request routes to the review specialist first, in `live-guard-gate` mode; the guard is reached only
+after a human has read the blast radius and the rollback and approved in writing.
 
-The `snowflake-rbac-access-governance-at-azure-agent` reviews Snowflake access configurations for:
+**Urgency raises the gate rather than lowering it.** "Production is down, fail over now" is exactly
+the circumstance in which promoting without dependency readiness converts a regional incident into
+a longer, harder, multi-region one.
 
-- **Role hierarchy:** ACCOUNTADMIN, SECURITYADMIN, and SYSADMIN kept separate; no single user holds all three; no production workloads run as ACCOUNTADMIN
-- **Least-privilege custom roles:** object-level privileges granted on custom roles, not on PUBLIC or ACCOUNTADMIN; USAGE + SELECT separated from INSERT/UPDATE/DELETE/TRUNCATE
-- **Segregation of duties (SoD):** role grants reviewed for incompatible privilege combinations; no single role can both create objects and approve production deployments
-- **PUBLIC role restriction:** no sensitive data objects granted to PUBLIC; PUBLIC role privilege inventory reviewed
-- **Network policies:** IP allowlists enforced at account and user level; MFA enforcement confirmed for privileged users
-- **Identity federation:** Entra ID OAuth 2.0 / SSO / SCIM provisioning reviewed; service account OAuth client credential flows verified; no password-based authentication for production service accounts
+Even so, no harness adapter grants any agent on this board an execution tool. A live guard's output
+is the approved, preflighted statement plus its attestation and rollback; a named human operator
+runs it.
 
-## 🏗️ Data platform engineering agent
+---
 
-The `snowflake-data-platform-engineering-at-azure-agent` reviews Snowflake data platform architectures for:
+## 🛡️ Live-system safety
 
-- **Warehouse governance:** virtual warehouse sizing policies; auto-suspend and auto-resume configured; no always-on X-Large warehouses without cost-governance justification
-- **Azure Private Link:** Private Link endpoint confirmed for Business Critical edition; public endpoint disabled where Private Link is in use; VNet service endpoint vs. Private Link distinction clarified
-- **Storage integration:** external stage definitions use storage integration objects (not inline credentials); ADLS Gen2 and Azure Blob Storage integrations reviewed for least-privilege managed identity or SAS token scope
-- **Dynamic data masking:** masking policies applied to columns containing PII/PHI; policy ownership separated from data ownership; conditional masking for role-based reveal reviewed
-- **Row-access policies:** row-level security policies reviewed for performance impact and bypass risk; policy ownership and grant chain audited
-- **Object tagging:** tag-based classification aligned to data sensitivity taxonomy; tag inheritance reviewed across databases, schemas, and tables
-- **ACCESS_HISTORY:** `SNOWFLAKE.ACCOUNT_USAGE.ACCESS_HISTORY` view coverage confirmed; query history retention reviewed for audit and forensic requirements
+Every live guard requires, before a statement is composed: an exact target; the exact account and
+environment; the exact mutation; explicit written human approval; current-state capture; a
+deterministic preflight and dry run; a blast-radius analysis; a least-privilege executor identity;
+idempotency protection; an audit record; verification; a rollback or failback path; and post-change
+evidence.
 
-## 🔐 RBAC grant guard agent (live-guard — mutating-runtime, Phase B)
+Standing permission posture, stated in each guard's `PERMISSIONS.md`:
 
-The `snowflake-live-rbac-grant-guard-at-azure-agent` is a **controlled WRITE** agent that applies exactly one RBAC GRANT (a role-to-role grant or an object privilege to one role/user) to exactly one grantee on a live Snowflake account. It is a Phase B mutating-runtime guard — distinct from the Phase A static-review agents above, which never connect to a live account.
+- `ACCOUNTADMIN` — **forbidden without exception.**
+- `SECURITYADMIN` / `SYSADMIN` — hard stops, forbidden without exception. No approval token, written justification, or incident unlocks them; a mutation that appears to need one means the target lacks a purpose-built owning role
+  before first run.
+- Executor identity — `TYPE = SERVICE` (or `SERVICE_AGENT`), authenticating by key-pair or workload
+  identity federation. Password authentication for a non-human identity is a hard stop.
+- Privileges — scoped to the single target the approval names, and returned when a bounded exercise
+  closes.
 
-**Execution conditions — all must be met before any GRANT is issued:**
-- Written approval token provided by an authorized human approver
-- PREFLIGHT dry-run (`SHOW GRANTS TO ROLE <role>` or `SHOW GRANTS ON <object>`) executed and diff reviewed
-- Target object, privilege, and grantee (role or user) explicitly named
-- REVOKE rollback command staged and confirmed
+Two guards carry an additional refusal that no approval can override:
 
-**What it grants:** a single object privilege (e.g., `USAGE ON DATABASE`, `SELECT ON SCHEMA`, `OPERATE ON WAREHOUSE`) or a single role grant to one grantee — the minimum required for the stated purpose.
+- **auth/network policy guard** — will not tighten reachability until a *surviving administrative
+  path* is demonstrated from login history: a named principal, a location it has actually connected
+  from, and the privilege to execute the inverse. Without that, the rollback would require the
+  access the change removes.
+- **failover promotion guard** — will not promote without a declared incident or drill, a named
+  accountable owner, a data-loss window computed from replication refresh history, dependency
+  readiness confirmed by each owning team, and a stated failback strategy.
 
-**Azure scope:** Azure Private Link (Business Critical edition) enforced; Entra ID OAuth 2.0 / SCIM-provisioned service account as the executing identity; no password-based authentication for the grant session.
+---
 
-**Hard denials (agent refuses regardless of approval):**
-- Any GRANT to or from `ACCOUNTADMIN`
-- Role grants that elevate a principal to `SECURITYADMIN` or `SYSADMIN`
-- Bulk or wildcard grants (more than one grantee or more than one object per operation)
-- `GRANT ALL PRIVILEGES` or account-scoped privilege escalation
-- Any operation that bypasses Entra-federated identity (e.g., legacy password auth)
+## 🔬 Evidence model
 
-## 🎓 Certification anchors
+Every material claim carries one label, and the labels are not interchangeable:
 
-These agents are grounded in the following certification domains (verify current exam availability before citing):
+| Label | Means |
+|---|---|
+| `LIVE-EVIDENCE` | Observed in this account — SHOW output, `ACCOUNT_USAGE`, `ORGANIZATION_USAGE`, `INFORMATION_SCHEMA`, Trust Center |
+| `REPOSITORY-EVIDENCE` | Read from committed artifacts — DDL, Terraform, connector config. Proves intent, not deployed state |
+| `DOCUMENTATION-BASED` | Snowflake documentation establishes platform behaviour. Proves what is supported, never what is configured |
+| `STANDARD-BASED` | An external standard establishes the requirement (CIS, NIST, OWASP, FinOps Foundation, Iceberg spec, regulatory text) |
+| `INFERENCE` | Reasoned from the above, with the reasoning shown |
+| `ESTIMATE` | A number with a stated method and stated error bars |
+| `UNKNOWN` | The evidence does not establish it — a valid, expected answer that is never replaced by a confident guess |
 
-- **SnowPro Core Certification** (Snowflake)
-- **SnowPro Advanced: Data Engineer** (Snowflake)
+The distinction that does the most work: **documentation proves supported platform behaviour; it
+never proves configured account behaviour.** An account's edition, region, enabled bundles,
+authentication enforcement state, and policy attachments are all `UNKNOWN` until account evidence
+establishes them.
 
-## 📛 Naming rationale (`-at-azure`)
+---
 
-All agents in this provider use the `-at-azure` suffix to make the deployment target unambiguous. Snowflake is a multi-cloud platform; these agents are scoped exclusively to Snowflake on Azure (Private Link, ADLS Gen2/Blob storage integration, Entra ID federation). Behaviour specific to AWS or GCP deployments is out of scope.
+## 📚 Skill system
 
-## 🛡️ Operating note
+Each agent has a dedicated skill under `skills/snowflake/<skill-id>/` using progressive disclosure:
+a lean `SKILL.md` carrying purpose, trigger conditions, **when NOT to use**, operating rules, the
+evidence model, the decision workflow, escalation, and the response contract — with deep material
+in lazy-loaded `references/` files that are read only when a task needs them.
 
-- **Phase A (static-review) agents** read configuration exports, Terraform plans, SQL role grant scripts, and network policy definitions; they do not connect to live Snowflake accounts
-- Production-impacting recommendations (role revocations, network policy changes, masking policy enforcement) require explicit human approval and must follow a tested rollback path
-- **Phase B (live-guard) agent** — `snowflake-live-rbac-grant-guard-at-azure-agent` — now exists and is gated: it requires a written approval token, PREFLIGHT dry-run output, account-name and grantee-type confirmation (Entra-federated identity only), and a staged REVOKE rollback path before any GRANT is issued to a live Snowflake account
+References are domain-specific decision knowledge, not bibliographies. Each carries the claims that
+change a decision, the evidence queries that establish them, a time-sensitive table for volatile
+facts with verification dates, and a sources section in which every URL states *what that page
+proves* and what it does not.
+
+`when NOT to use` is mandatory on every skill. Agent systems degrade because each skill explains
+when it applies and none explains when it stops applying.
+
+---
+
+## 📖 Source policy
+
+1. **Tier 1 — primary.** Snowflake documentation, release notes, SQL reference, official Snowflake
+   GitHub repositories including the Terraform provider, official SDKs and connectors, and
+   cloud-provider documentation where Snowflake depends on that cloud's networking or identity.
+2. **Tier 2 — independent standards.** CIS, NIST, OWASP, the FinOps Foundation, the Apache Iceberg
+   specification, and applicable regulatory text — used where a standard, not a vendor, defines the
+   requirement.
+3. **Tier 3 — secondary.** Blogs, forums, and conference material may suggest an operational
+   hypothesis. They never establish Snowflake behaviour where primary documentation exists, and any
+   conclusion drawn from them is labelled as secondary-sourced.
+
+Volatile claims recorded in a reference carry the claim, its status or constraint, a verification
+date, what the source proves, and what it does **not** prove.
+
+---
+
+## 🚦 Routing examples
+
+| Request | Route |
+|---|---|
+| "This dashboard query takes 30 seconds — make the warehouse 4XL" | `query-performance-engineer` + `finops-cost-governor`, in parallel and expected to disagree |
+| "Our bill doubled" | `finops-cost-governor`, decomposing warehouse / idle / serverless / AI / storage / transfer / volume growth before proposing anything |
+| "New Cortex agent over customer data" | `cortex-ai-agent-security-governor` + `identity-access-security`, with governance and business value joining where scope demands |
+| "Snowpipe Streaming for a new project" | `streaming-ingestion-reliability`, which re-verifies current lifecycle guidance before recommending an architecture |
+| "Give our automation ACCOUNTADMIN" | `identity-access-security`, which refuses and returns the least-privilege alternative. No live guard executes |
+| "Block all public access now" | `network-private-connectivity` review first; the auth/network guard only after a surviving admin path is proven |
+| "Production is down, fail over immediately" | `bcdr-resilience` review first; the failover guard only after a declaration, a computed data-loss window, and confirmed dependency readiness |
+| "Replace Databricks entirely with Snowflake" | `migration-modernization` + `business-value-adoption-strategist` — and the board may conclude *do not migrate this workload* |
+| "Build it because Snowflake has the feature" | `business-value-adoption-strategist`, which may return **NO-GO: technically valid, economically unjustified** |
+| "Can you look at our setup and see if anything's off?" | `unclassified` — the maestro asks for the smallest sufficient evidence set rather than guessing |
+
+Executable form: `tests/fixtures/snowflake-maestro-routing/` (27 scenarios — red team, negative
+routing, cross-agent conflict, live-guard gate). Run `npm run validate:maestro-routing`.
+
+---
+
+## ⚠️ Snowflake volatility disclaimer
+
+Snowflake changes quickly, and several facts this board reasons about are volatile by nature:
+GA and preview status, deprecations and behaviour-change bundles, SQL syntax, account parameters,
+service limits, pricing behaviour, edition/cloud/region availability, Terraform provider resource
+stability, driver minimums, authentication enforcement, Cortex capability and model availability,
+connector availability, streaming lifecycle guidance, and catalog/interoperability recommendations.
+
+Reference material here records a verification date against a primary source and states what that
+source does not prove. **Re-verify any volatile fact against current Snowflake documentation before
+encoding it in a long-lived recommendation.** Where sources conflict or appear stale, the board's
+instruction is to report `Status: unresolved` with the action to verify — never to supply a
+plausible date or status that no primary source establishes.
+
+---
 
 ## 📦 Install
 
 ```bash
+# Whole board
 npx vfa-export-agents --platform claude-code --provider snowflake --repo .
+
+# Narrower, role-scoped installs
+npx vfa-export-agents --list-roles
+npx vfa-export-agents --platform claude-code --role snowflake-security-governance-engineer --repo .
 ```
+
+Roles: `snowflake-platform-architect`, `snowflake-security-governance-engineer`,
+`snowflake-finops-performance-engineer`, `snowflake-data-engineer`,
+`snowflake-ai-analytics-engineer`, `snowflake-delivery-resilience-engineer`,
+`snowflake-data-product-manager`. The legacy `azure-snowflake-platform-engineer` role installs the
+three deprecated Azure-scoped agents.
+
+---
+
+## 🔄 Regenerating this board
+
+Agents and skills here are generated from committed data files; behaviour changes only when the
+data changes, and the generator never consults the wall clock.
+
+```bash
+python3 scripts/gen_snowflake_agents.py
+python3 scripts/update-catalog-new-agents.py --provider snowflake
+npm run manifest:write:all && npm run docs-data:write && npm run model-policy:apply
+npm run asset-integrity:write      # last, on its own
+npm run validate
+```
+
+Edit `scripts/snowflake_data/agents/*.json` — never the generated output.

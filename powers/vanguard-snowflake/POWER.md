@@ -1,40 +1,46 @@
 ---
 name: "vanguard-snowflake"
-displayName: "Vanguard Frontier — Snowflake (Azure)"
-description: "Curated Snowflake-on-Azure agents for RBAC access governance and data-platform engineering — static review only, no account or production mutations. Covers role hierarchy and least privilege, ACCOUNTADMIN restriction, SECURITYADMIN/SYSADMIN separation of duties, future grants and managed-access schemas, network policies, key-pair/Entra OAuth/SSO/SCIM authentication, Azure Private Link and storage integration, and masking/row-access/tagging governance. Snowflake and Azure surfaces are drift-prone; agents always verify against current Snowflake and Microsoft Learn documentation before rendering findings."
-keywords: ["snowflake", "azure", "rbac", "least-privilege", "data-governance", "private-link", "static-review"]
+displayName: "Vanguard Frontier — Snowflake"
+description: "A cloud-neutral Snowflake board routed by snowflake-maestro: architecture and account topology, platform administration, identity and effective access, network and private connectivity, governance and privacy controls, independent compliance evidence, FinOps unit economics, query performance, batch pipelines, streaming ingestion reliability, analytical semantics, ML lifecycle, Cortex AI agent security, Native Apps and Marketplace, BCDR, DevOps/IaC, migration, and business value. Review agents are read-only; six approval-gated live guards each execute exactly one mutation behind an explicit written human gate. Snowflake surfaces are drift-prone — agents re-verify GA/preview status, deprecations, edition/cloud/region availability, and provider resource stability against current Snowflake documentation before rendering findings."
+keywords: ["snowflake", "rbac", "least-privilege", "data-governance", "finops", "cortex-ai", "bcdr", "live-guard"]
 author: "VincentChuWaiChow"
 ---
-# Vanguard Frontier — Snowflake (Azure)
+# Vanguard Frontier — Snowflake
 
-Curated Snowflake-on-Azure agents for RBAC access governance and data-platform engineering — static review only, no account or production mutations. Covers role hierarchy and least privilege, ACCOUNTADMIN restriction, SECURITYADMIN/SYSADMIN separation of duties, future grants and managed-access schemas, network policies, key-pair/Entra OAuth/SSO/SCIM authentication, Azure Private Link and storage integration, and masking/row-access/tagging governance. Snowflake and Azure surfaces are drift-prone; agents always verify against current Snowflake and Microsoft Learn documentation before rendering findings.
+A cloud-neutral Snowflake board routed by snowflake-maestro: architecture and account topology, platform administration, identity and effective access, network and private connectivity, governance and privacy controls, independent compliance evidence, FinOps unit economics, query performance, batch pipelines, streaming ingestion reliability, analytical semantics, ML lifecycle, Cortex AI agent security, Native Apps and Marketplace, BCDR, DevOps/IaC, migration, and business value. Review agents are read-only; six approval-gated live guards each execute exactly one mutation behind an explicit written human gate. Snowflake surfaces are drift-prone — agents re-verify GA/preview status, deprecations, edition/cloud/region availability, and provider resource stability against current Snowflake documentation before rendering findings.
 
 ## When to engage this Power
 
-Activate when the task references Snowflake (Azure) services, resources, or operations. Do not activate on unrelated requests — narrow keyword matching is required to avoid false activations (Kiro Powers convention).
+Activate when the task references Snowflake services, resources, or operations. Do not activate on unrelated requests — narrow keyword matching is required to avoid false activations (Kiro Powers convention).
 
 ## Routing pattern
 
-- *(no maestro for this provider; reference agents directly under `agents/snowflake/`)*
+- **`snowflake-maestro-agent`** — classifies and routes the task to the right specialist
 
-Reference agents directly from agents/snowflake/ without maestro-based routing.
+Use the maestro as the entry point: classify the task, then dispatch to one specialist or a parallel team of specialists. Never have the maestro itself execute a live mutation.
 
 ## Live-guard agents (gate_mode only)
 
+- `snowflake-live-auth-network-policy-guard-agent` — never auto-dispatched; gate_mode only
+- `snowflake-live-data-protection-policy-guard-agent` — never auto-dispatched; gate_mode only
+- `snowflake-live-failover-promotion-guard-agent` — never auto-dispatched; gate_mode only
+- `snowflake-live-pipeline-streaming-change-guard-agent` — never auto-dispatched; gate_mode only
+- `snowflake-live-rbac-grant-guard-agent` — never auto-dispatched; gate_mode only
 - `snowflake-live-rbac-grant-guard-at-azure-agent` — never auto-dispatched; gate_mode only
+- `snowflake-live-warehouse-cost-change-guard-agent` — never auto-dispatched; gate_mode only
 
 Live-guard agents enforce approval, target confirmation, evidence capture, and rollback plans before executing a mutation. They are never auto-dispatched — the maestro must place them in `live-guard-gate` or `runtime-evidence-gate` mode.
 
 ## Invariants
 
-- Static review only — agents never request account credentials, key-pair private keys, OAuth secrets, or customer data, and never mutate a Snowflake account or Azure resource.
-- Enforce least privilege: custom business-function roles under SYSADMIN, restrict ACCOUNTADMIN to a minimum of controlled users, never grant sensitive privileges to PUBLIC, separate SECURITYADMIN (grants) from SYSADMIN (objects).
-- Service accounts use key-pair or Entra OAuth (never passwords); enforce network policies and MFA for human users.
-- Production role/grant/policy/warehouse changes are live-guard gated — never auto-dispatched; require explicit approval, scope confirmation, and rollback plan.
+- Review agents are static review only — they never request account credentials, private keys, OAuth or programmatic access tokens, account locators, or customer data, and never mutate a Snowflake account.
+- Documentation proves supported platform behaviour, never configured account behaviour: edition, region, enabled bundles, authentication enforcement, and policy attachment are UNKNOWN until account evidence establishes them.
+- Enforce least privilege: narrow custom roles, ACCOUNTADMIN forbidden for automation without exception, no GRANT ALL PRIVILEGES, no grants to PUBLIC, no unbounded future grants, and no password authentication for non-human identities.
+- Live guards are never auto-dispatched: each executes exactly one mutation after explicit written human approval naming account, environment, target, mutation, and accepted blast radius, with prior-state capture, preflight, verification, and a rollback path.
 
 ## Where the agents live
 
-Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic) marketplace. For this provider, see `agents/snowflake/` in that repository. All 3 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
+Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic) marketplace. For this provider, see `agents/snowflake/` in that repository. All 28 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
 
 ## Companion install paths
 

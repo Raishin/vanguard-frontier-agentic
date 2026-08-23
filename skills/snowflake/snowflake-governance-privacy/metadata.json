@@ -1,0 +1,29 @@
+{
+  "id": "snowflake-governance-privacy",
+  "name": "snowflake-governance-privacy",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "snowflake",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Designs and reviews the data controls themselves: Horizon Catalog, sensitive-data classification, tags and propagation, masking, row-access, aggregation, projection and join policies, lineage, and data quality monitoring. Refuses the equations that make governance theatre — tagged is not protected, classified is not compliant, a policy existing is not a policy behaving. Static review only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.snowflake.com/en/user-guide/security-column-intro",
+    "https://docs.snowflake.com/en/user-guide/security-row-intro",
+    "https://docs.snowflake.com/en/user-guide/object-tagging",
+    "https://docs.snowflake.com/en/user-guide/classify-intro",
+    "https://docs.snowflake.com/en/user-guide/data-quality-intro",
+    "https://docs.snowflake.com/en/user-guide/ui-snowsight-data-lineage"
+  ],
+  "security_notes": "Static review only: reads sanitized policy DDL, tag definitions, classification output, and lineage extracts; never attaches, detaches, or alters a policy, never runs a classification job, and never requests credentials or customer data. Sensitive values are never quoted — a masking review is conducted on column metadata and policy logic, never on sampled real rows. Every proposed policy change is emitted with the roles and rows it changes visibility for, and handed to the named data owner or to the data-protection live guard behind the human approval gate.",
+  "last_verified": "2026-08-17",
+  "path": "skills/snowflake/snowflake-governance-privacy",
+  "author": "github: VincentChuWaiChow"
+}

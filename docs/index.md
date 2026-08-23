@@ -57,6 +57,7 @@ Supported harnesses: Claude Code, Codex, GitHub Copilot, Cursor, Gemini CLI, Kir
 | Page | Description |
 |------|-------------|
 | [Contributing](contributing/) | How to add docs, conventions, local preview |
+| [Agentic Delegation](agentic-delegation/) | How work is split across models, and the executable workflow that encodes it |
 | [GitHub Pages Setup](github-pages/) | How the docs site is built and deployed |
 | [Roadmap](roadmap/) | Current state, planned work, how to propose changes |
 

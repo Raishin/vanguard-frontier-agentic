@@ -1,0 +1,28 @@
+{
+  "id": "snowflake-migration-modernization",
+  "name": "snowflake-migration-modernization",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "snowflake",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews migration to Snowflake from, or coexistence with, Teradata, Oracle, SQL Server, Redshift, BigQuery, Databricks, Hadoop/Spark, and legacy EDWs: workload inventory, SQL and semantic compatibility, data gravity, security mapping, wave planning, dual running, reconciliation, cutover, and rollback. Permitted to conclude that a workload should not move. Static review only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.snowflake.com/en/user-guide/migration-guide",
+    "https://docs.snowflake.com/en/sql-reference/intro-summary-sql",
+    "https://docs.snowflake.com/en/user-guide/data-load-overview",
+    "https://docs.snowflake.com/en/user-guide/security-access-control-overview",
+    "https://docs.snowflake.com/en/user-guide/tables-iceberg"
+  ],
+  "security_notes": "Static review only: reads sanitized workload inventories, DDL, SQL samples, and security exports from source platforms; never connects to a source or target system, never moves data, never executes a cutover, and never requests credentials or customer data. Security models are mapped structurally — source roles and grants to target roles and grants — without importing source credentials. A migration that would relax a control in the target relative to the source is reported as a security regression, not as a simplification.",
+  "last_verified": "2026-08-17",
+  "path": "skills/snowflake/snowflake-migration-modernization",
+  "author": "github: VincentChuWaiChow"
+}

@@ -1,0 +1,76 @@
+{
+  "id": "snowflake-live-rbac-grant-guard-agent",
+  "name": "Snowflake Live RBAC Grant Guard Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "snowflake",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Approval-gated execution boundary for exactly one Snowflake privilege change: ONE privilege, on ONE securable, to or from ONE custom role, as a single GRANT or REVOKE. Cloud-neutral. Shows the effective-inheritance impact before execution and refuses ALL PRIVILEGES, ownership transfer, system-role targets, PUBLIC, bulk rewrites, and unbounded future grants. Never auto-dispatched.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.snowflake.com/en/sql-reference/sql/grant-privilege",
+    "https://docs.snowflake.com/en/sql-reference/sql/revoke-privilege",
+    "https://docs.snowflake.com/en/sql-reference/sql/show-grants",
+    "https://docs.snowflake.com/en/user-guide/security-access-control-considerations",
+    "https://docs.snowflake.com/en/user-guide/workload-identity-federation"
+  ],
+  "security_notes": "Mutating-runtime and never auto-dispatched. Executes exactly one GRANT or REVOKE of one privilege on one securable to or from one custom role, only after explicit written human approval naming account, environment, securable, privilege, role, and accepted blast radius. Runs as a narrowly scoped custom role that holds OWNERSHIP of the target securable — the least-privilege delegated-grant path, since a role may grant only on objects it owns. ACCOUNTADMIN is forbidden without exception; MANAGE GRANTS is an account-level global privilege and is never granted to this guard. Grants to or from ACCOUNTADMIN, SECURITYADMIN, SYSADMIN or PUBLIC, OWNERSHIP transfers, GRANT ALL PRIVILEGES, bulk operations, and future grants at database or account scope are refused regardless of who approves. No harness adapter grants an execution tool: the deliverable is the approved, preflighted statement with its attestation and rollback, run by a named human operator.",
+  "last_verified": "2026-08-17",
+  "path": "agents/snowflake/snowflake-live-rbac-grant-guard-agent/",
+  "harness_variants": {
+    "codex": "agents/snowflake/snowflake-live-rbac-grant-guard-agent/harnesses/codex.toml",
+    "copilot": "agents/snowflake/snowflake-live-rbac-grant-guard-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/snowflake/snowflake-live-rbac-grant-guard-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/snowflake/snowflake-live-rbac-grant-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/snowflake/snowflake-live-rbac-grant-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/snowflake/snowflake-live-rbac-grant-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/snowflake/snowflake-live-rbac-grant-guard-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "snowflake-live-rbac-grant-guard"
+  ],
+  "execution_tier": "mutating-runtime",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "oauth_scopes": [],
+  "run_as_permissions": {
+    "required": [
+      "A narrowly scoped custom Snowflake role that holds OWNERSHIP (IS OWNER) of the single target securable — a role may GRANT or REVOKE only on objects it owns, which makes ownership the least-privilege delegated-grant path",
+      "A `TYPE = SERVICE` user authenticating by key-pair or workload identity federation — never a password, and never a `TYPE = PERSON` user"
+    ],
+    "denied": [
+      "ACCOUNTADMIN",
+      "SECURITYADMIN",
+      "SYSADMIN",
+      "PUBLIC",
+      "MANAGE GRANTS (account-level global privilege — never granted to this guard's role)",
+      "OWNERSHIP transfer capability beyond the single target securable",
+      "CREATE ROLE / DROP ROLE / ALTER ROLE",
+      "Any role granting privileges on securables other than the approved target"
+    ]
+  },
+  "requires_credentials": [
+    "SNOWFLAKE_ACCOUNT",
+    "SNOWFLAKE_USER",
+    "SNOWFLAKE_AUTHENTICATOR",
+    "SNOWFLAKE_PRIVATE_KEY_PATH"
+  ],
+  "required_egress": [
+    "The Snowflake account endpoint for the approved account only — the private-connectivity hostname where the account uses private connectivity, and never the public account URL in that case"
+  ],
+  "routing_keywords": [
+    "grant",
+    "revoke",
+    "privilege",
+    "rbac",
+    "role",
+    "securable"
+  ]
+}

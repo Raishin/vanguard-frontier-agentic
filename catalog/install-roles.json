@@ -64,56 +64,6 @@
         "working-capital-advisor"
       ]
     },
-    "android-kotlin-engineer": {
-      "label": "Android Kotlin Engineer",
-      "description": "Static review for Android apps in Kotlin: lifecycle-aware architecture and state, Jetpack Compose UI correctness and accessibility, MASVS-aligned security and privacy, measured runtime performance and reliability (startup, jank, ANR, Baseline Profiles), coroutine/Flow reliability, and test architecture. Static review only — never builds, installs, instruments, or ships an app.",
-      "agents": [
-        "kotlin-maestro-agent",
-        "kotlin-android-architecture-agent",
-        "kotlin-compose-ui-quality-accessibility-agent",
-        "kotlin-android-security-privacy-agent",
-        "kotlin-android-performance-reliability-agent",
-        "kotlin-coroutines-flow-reliability-agent",
-        "kotlin-test-architecture-agent"
-      ],
-      "skills": [
-        "kotlin-maestro",
-        "kotlin-android-architecture",
-        "kotlin-compose-ui-quality-accessibility",
-        "kotlin-android-security-privacy",
-        "kotlin-android-performance-reliability",
-        "kotlin-coroutines-flow-reliability",
-        "kotlin-test-architecture"
-      ]
-    },
-    "azure-databricks-platform-engineer": {
-      "label": "Azure Databricks Platform Engineer",
-      "description": "Static-review governance and engineering for Azure Databricks: Unity Catalog least-privilege grants and admin-role separation, plus lakehouse engineering (medallion, ADLS Gen2 external locations via managed identity, cluster policies, secret scopes, network isolation). Advisory only; production grant/role/policy/cluster changes are live-guard gated and require explicit human approval.",
-      "agents": [
-        "databricks-unity-catalog-governance-at-azure-agent",
-        "databricks-lakehouse-engineering-at-azure-agent",
-        "databricks-live-unity-catalog-grant-guard-at-azure-agent"
-      ],
-      "skills": [
-        "databricks-unity-catalog-governance-at-azure",
-        "databricks-lakehouse-engineering-at-azure",
-        "databricks-live-unity-catalog-grant-guard-at-azure"
-      ]
-    },
-    "azure-snowflake-platform-engineer": {
-      "label": "Azure Snowflake Platform Engineer",
-      "description": "Static-review governance and engineering for Snowflake on Azure: RBAC least privilege (ACCOUNTADMIN restriction, SECURITYADMIN/SYSADMIN separation of duties, network policies, Entra OAuth/SSO/SCIM) and data-platform engineering (warehouses, Azure Private Link/storage integration, masking/row-access/tagging governance). Advisory only; production role/grant/policy/warehouse changes are live-guard gated and require explicit human approval.",
-      "agents": [
-        "snowflake-rbac-access-governance-at-azure-agent",
-        "snowflake-data-platform-engineering-at-azure-agent",
-        "snowflake-live-rbac-grant-guard-at-azure-agent"
-      ],
-      "skills": [
-        "snowflake-rbac-access-governance-at-azure",
-        "snowflake-data-platform-engineering-at-azure",
-        "snowflake-live-rbac-grant-guard-at-azure"
-      ]
-    },
     "cloud-ai-platform-engineer": {
       "label": "Cloud AI Platform Engineer",
       "description": "Build, deploy, harden, and govern AI / GenAI platforms on NVIDIA, GCP Vertex/Gemini, Huawei ModelArts, and adjacent stacks. Covers GenAI guardrails, agentic platform review, model promotion gating, CUDA / TensorRT / Triton review, and MLOps pipelines.",
@@ -1058,110 +1008,6 @@
         "dotnet-aspire-cloud-native-review"
       ]
     },
-    "frontend-engineer": {
-      "label": "Frontend Engineer",
-      "description": "Enterprise frontend engineering across frameworks (React, Next.js, Angular, Vue, Svelte/SvelteKit) and cross-cutting platform concerns — web-platform foundations, HTML semantics, CSS architecture, JavaScript/TypeScript, state management, routing, SSR/hydration/streaming, API/BFF integration, performance and Core Web Vitals, PWA/offline, accessibility (WCAG 2.2), frontend security (DOM XSS/CSP, auth/session), observability/RUM, internationalization, browser compatibility, testing and visual regression, design-system governance, build tooling and bundling, monorepo DX, package governance, migration/modernization, product analytics/experimentation, and cost-to-serve FinOps. Review-oriented and advisory; static-review skills never execute application code.",
-      "agents": [
-        "accessibility-wcag-agent",
-        "ai-assisted-frontend-review-agent",
-        "angular-specialist-agent",
-        "api-integration-bff-agent",
-        "browser-compatibility-agent",
-        "build-tooling-bundling-agent",
-        "css-architecture-agent",
-        "design-systems-governance-agent",
-        "enterprise-red-team-review-agent",
-        "frontend-board-chair-agent",
-        "frontend-finops-cost-to-serve-agent",
-        "frontend-maestro-agent",
-        "frontend-migration-modernization-agent",
-        "frontend-observability-rum-agent",
-        "frontend-platform-architect-agent",
-        "frontend-security-agent",
-        "html-semantics-agent",
-        "internationalization-localization-agent",
-        "javascript-runtime-agent",
-        "monorepo-dx-agent",
-        "nextjs-specialist-agent",
-        "package-governance-agent",
-        "product-analytics-experimentation-agent",
-        "pwa-offline-capability-agent",
-        "react-specialist-agent",
-        "routing-navigation-agent",
-        "ssr-hydration-streaming-agent",
-        "state-management-data-flow-agent",
-        "svelte-sveltekit-specialist-agent",
-        "testing-quality-engineering-agent",
-        "typescript-contracts-agent",
-        "visual-regression-agent",
-        "vue-specialist-agent",
-        "web-performance-core-vitals-agent",
-        "web-platform-foundation-agent",
-        "revenue-critical-journey-integrity-agent"
-      ],
-      "skills": [
-        "ai-generated-frontend-code-review",
-        "angular-architecture-signals-review",
-        "angular-ssr-hydration-review",
-        "angular-template-sanitizer-security-review",
-        "api-integration-contract-review",
-        "browser-compatibility-review",
-        "build-tooling-vite-webpack-review",
-        "bundle-budget-code-splitting-review",
-        "core-web-vitals-triage",
-        "critical-rendering-path-review",
-        "css-architecture-design-system-review",
-        "design-token-governance-review",
-        "e2e-testing-playwright-review",
-        "edge-cache-data-bleed-review",
-        "enterprise-red-team-review",
-        "framework-upgrade-risk-review",
-        "frontend-auth-session-security-review",
-        "frontend-bff-boundary-review",
-        "frontend-board-chair",
-        "frontend-dom-xss-csp-review",
-        "frontend-error-boundary-resilience-review",
-        "frontend-finops-cost-to-serve-review",
-        "frontend-maestro",
-        "frontend-migration-modernization-plan",
-        "frontend-observability-rum-instrumentation",
-        "frontend-platform-architecture-review",
-        "frontend-testing-strategy-review",
-        "graphql-client-security-review",
-        "html-semantics-accessibility-review",
-        "i18n-l10n-readiness-review",
-        "javascript-runtime-async-review",
-        "legacy-jquery-to-modern-framework-review",
-        "microfrontend-boundary-review",
-        "monorepo-package-governance-review",
-        "nextjs-app-router-data-fetching-review",
-        "nextjs-rendering-caching-review",
-        "nextjs-server-security-review",
-        "nuxt-fullstack-security-review",
-        "pci-payment-ui-security-review",
-        "product-analytics-experimentation-review",
-        "pwa-offline-readiness-review",
-        "react-component-architecture-review",
-        "react-rsc-data-boundary-review",
-        "react-state-effects-review",
-        "routing-navigation-review",
-        "service-worker-cache-strategy-review",
-        "ssr-hydration-streaming-diagnosis",
-        "state-management-decision-review",
-        "sveltekit-actions-load-security-review",
-        "sveltekit-progressive-enhancement-review",
-        "sveltekit-routing-load-review",
-        "tree-shaking-dead-code-review",
-        "typescript-contracts-review",
-        "visual-regression-storybook-review",
-        "vue-composition-api-architecture-review",
-        "vue-router-navigation-security-review",
-        "vue-ssr-security-review",
-        "vue-state-store-security-review",
-        "wcag-22-accessibility-audit",
-        "revenue-critical-journey-integrity-review"
-      ]
-    },
     "java-application-review-engineer": {
       "label": "Java Application Review Engineer",
       "description": "Adversarial, evidence-first static review of Java/JVM applications: JDK-estate lifecycle and upgrade risk, virtual-thread and concurrency correctness, JVM performance and GC, containerized-JVM sizing, Spring/Quarkus/Micronaut production readiness, Spring Security authorization and Actuator exposure, untrusted-deserialization/parser security, JPA/Hibernate data-access performance, transaction and cross-resource consistency, schema-migration deploy safety, Kafka delivery reliability, resilience-pattern composition, JVM test architecture, and the application-server license-exit portfolio decision. A java-maestro router plus static-review specialists; every agent reads source and sanitized configuration only and never builds, runs, invokes a JDK, opens a database or broker connection, or contacts a live system.",
@@ -1198,126 +1044,6 @@
         "java-spring-security",
         "java-test-architecture",
         "java-transaction-and-consistency"
-      ]
-    },
-    "kotlin-backend-engineer": {
-      "label": "Kotlin Backend Engineer",
-      "description": "Static review for server-side Kotlin services on Ktor or Spring: language and null-safety correctness, coroutine and Flow reliability (structured concurrency, dispatchers, context propagation), backend production readiness, kotlinx.serialization wire contracts, coroutine-aware test architecture, and Gradle build health. Static review only — never builds, deploys, or contacts a live system.",
-      "agents": [
-        "kotlin-maestro-agent",
-        "kotlin-language-api-correctness-agent",
-        "kotlin-coroutines-flow-reliability-agent",
-        "kotlin-backend-production-readiness-agent",
-        "kotlin-serialization-wire-contract-agent",
-        "kotlin-test-architecture-agent",
-        "kotlin-gradle-build-engineering-agent"
-      ],
-      "skills": [
-        "kotlin-maestro",
-        "kotlin-language-api-correctness",
-        "kotlin-coroutines-flow-reliability",
-        "kotlin-backend-production-readiness",
-        "kotlin-serialization-wire-contract",
-        "kotlin-test-architecture",
-        "kotlin-gradle-build-engineering"
-      ]
-    },
-    "kotlin-engineering-leader": {
-      "label": "Kotlin Engineering Leader",
-      "description": "Static review for Kotlin technology-portfolio and modernization decisions: Java-to-Kotlin estate modernization sequencing and reversibility, the Kotlin Multiplatform adopt-or-not portfolio decision, public library API/ABI governance, and dependency/release supply-chain integrity. Decision and review only — never migrates, publishes, signs, or contacts a live system, and expresses business impact only with evidence, never invented ROI.",
-      "agents": [
-        "kotlin-maestro-agent",
-        "kotlin-estate-modernization-governor-agent",
-        "kotlin-kmp-portfolio-decision-agent",
-        "kotlin-library-api-abi-governance-agent",
-        "kotlin-supply-chain-release-integrity-agent"
-      ],
-      "skills": [
-        "kotlin-maestro",
-        "kotlin-estate-modernization-governor",
-        "kotlin-kmp-portfolio-decision",
-        "kotlin-library-api-abi-governance",
-        "kotlin-supply-chain-release-integrity"
-      ]
-    },
-    "kotlin-library-maintainer": {
-      "label": "Kotlin Library Maintainer",
-      "description": "Static review for Kotlin library authors: public API/ABI evolution and binary/source compatibility, language and null-safety correctness, coroutine/Flow reliability for library APIs, kotlinx.serialization wire-contract stability, test architecture, and dependency/publication supply-chain integrity. Static review only — never publishes or signs a release.",
-      "agents": [
-        "kotlin-maestro-agent",
-        "kotlin-library-api-abi-governance-agent",
-        "kotlin-language-api-correctness-agent",
-        "kotlin-coroutines-flow-reliability-agent",
-        "kotlin-serialization-wire-contract-agent",
-        "kotlin-test-architecture-agent",
-        "kotlin-supply-chain-release-integrity-agent"
-      ],
-      "skills": [
-        "kotlin-maestro",
-        "kotlin-library-api-abi-governance",
-        "kotlin-language-api-correctness",
-        "kotlin-coroutines-flow-reliability",
-        "kotlin-serialization-wire-contract",
-        "kotlin-test-architecture",
-        "kotlin-supply-chain-release-integrity"
-      ]
-    },
-    "kotlin-multiplatform-engineer": {
-      "label": "Kotlin Multiplatform Engineer",
-      "description": "Static review for Kotlin Multiplatform work: the adopt/don't-adopt portfolio decision, source-set and expect/actual boundary and Swift/Objective-C interop (including Kotlin/Native runtime), language correctness, coroutine/Flow reliability, kotlinx.serialization wire contracts, and Gradle build health. Static review only — decides and reviews, never builds or publishes.",
-      "agents": [
-        "kotlin-maestro-agent",
-        "kotlin-kmp-portfolio-decision-agent",
-        "kotlin-kmp-boundary-interop-agent",
-        "kotlin-language-api-correctness-agent",
-        "kotlin-coroutines-flow-reliability-agent",
-        "kotlin-serialization-wire-contract-agent",
-        "kotlin-gradle-build-engineering-agent"
-      ],
-      "skills": [
-        "kotlin-maestro",
-        "kotlin-kmp-portfolio-decision",
-        "kotlin-kmp-boundary-interop",
-        "kotlin-language-api-correctness",
-        "kotlin-coroutines-flow-reliability",
-        "kotlin-serialization-wire-contract",
-        "kotlin-gradle-build-engineering"
-      ]
-    },
-    "kotlin-platform-build-engineer": {
-      "label": "Kotlin Platform & Build Engineer",
-      "description": "Static review for the Kotlin engineering system: Gradle build-graph quality, configuration and build cache, incremental compilation and convention plugins, CI throughput, dependency verification/locking and release supply-chain integrity, library API/ABI governance, and test architecture. Static review only — never runs a build, signs, or publishes an artifact.",
-      "agents": [
-        "kotlin-maestro-agent",
-        "kotlin-gradle-build-engineering-agent",
-        "kotlin-supply-chain-release-integrity-agent",
-        "kotlin-library-api-abi-governance-agent",
-        "kotlin-test-architecture-agent"
-      ],
-      "skills": [
-        "kotlin-maestro",
-        "kotlin-gradle-build-engineering",
-        "kotlin-supply-chain-release-integrity",
-        "kotlin-library-api-abi-governance",
-        "kotlin-test-architecture"
-      ]
-    },
-    "kotlin-security-engineer": {
-      "label": "Kotlin Security Engineer",
-      "description": "Static review for Kotlin/Android security posture: MASVS-aligned Android security and privacy, kotlinx.serialization polymorphic-deserialization and wire-contract safety, dependency verification/plugin-trust supply-chain integrity, and coroutine security-context propagation. Static review only — defers generic backend vulnerabilities to the application-security board and never contacts a live system.",
-      "agents": [
-        "kotlin-maestro-agent",
-        "kotlin-android-security-privacy-agent",
-        "kotlin-serialization-wire-contract-agent",
-        "kotlin-supply-chain-release-integrity-agent",
-        "kotlin-coroutines-flow-reliability-agent"
-      ],
-      "skills": [
-        "kotlin-maestro",
-        "kotlin-android-security-privacy",
-        "kotlin-serialization-wire-contract",
-        "kotlin-supply-chain-release-integrity",
-        "kotlin-coroutines-flow-reliability"
       ]
     },
     "kubernetes-admission-security-engineer": {
@@ -1559,150 +1285,6 @@
         "analytics-data-minimization-review"
       ]
     },
-    "microsoft-365-d365-platform-advisor": {
-      "label": "Microsoft 365 & Dynamics 365 Platform Advisor",
-      "description": "Static-review advisory across the Microsoft cloud business surface: Microsoft 365 governance, identity (Entra/Conditional Access), security and compliance (Purview, Defender XDR), collaboration, Microsoft 365 Copilot readiness, Power Platform governance, and Dynamics 365 ERP/CRM. Routes through the Microsoft maestro layer to M365, D365, Power Platform, and Copilot specialists. Advisory only — never mutates a tenant or production environment; production-impacting actions are live-guard gated and require explicit human approval.",
-      "agents": [
-        "microsoft-maestro-agent",
-        "m365-maestro-agent",
-        "d365-maestro-agent",
-        "power-platform-maestro-agent",
-        "copilot-governance-maestro-agent",
-        "m365-copilot-readiness-governance-agent",
-        "m365-identity-zero-trust-agent",
-        "power-platform-governance-dataverse-security-agent",
-        "d365-success-by-design-governance-agent",
-        "d365-security-sod-governance-agent",
-        "d365-data-migration-cutover-agent",
-        "d365-finance-close-to-report-agent",
-        "d365-supply-chain-plan-to-produce-agent",
-        "d365-sales-revenue-operations-agent",
-        "d365-field-service-to-cash-agent",
-        "d365-customer-service-contact-center-agent",
-        "microsoft-business-impact-value-realization-agent",
-        "power-platform-alm-pipelines-agent",
-        "copilot-studio-agent-governance-alm-agent",
-        "power-automate-automation-risk-review-agent",
-        "fabric-power-bi-business-insights-governance-agent",
-        "m365-purview-data-security-compliance-agent",
-        "m365-defender-xdr-security-operations-agent",
-        "m365-intune-endpoint-management-agent",
-        "m365-teams-collaboration-governance-agent",
-        "m365-exchange-sharepoint-information-governance-agent",
-        "d365-customer-insights-journeys-agent",
-        "d365-fno-developer-extension-agent",
-        "d365-integration-dual-write-agent",
-        "m365-tenant-governance-agent",
-        "m365-backup-bcdr-data-resilience-agent",
-        "m365-licensing-ea-optimization-agent",
-        "d365-project-operations-agent",
-        "d365-commerce-agent",
-        "fabric-data-engineering-agent",
-        "fabric-analytics-engineering-agent",
-        "m365-live-identity-posture-guard-agent",
-        "d365-live-security-role-guard-agent",
-        "d365-live-record-field-update-guard-agent",
-        "m365-live-sensitivity-label-apply-guard-agent"
-      ],
-      "skills": [
-        "microsoft-maestro",
-        "m365-maestro",
-        "d365-maestro",
-        "power-platform-maestro",
-        "copilot-governance-maestro",
-        "m365-copilot-readiness-governance",
-        "m365-identity-zero-trust",
-        "power-platform-governance-dataverse-security",
-        "d365-success-by-design-governance",
-        "d365-security-sod-governance",
-        "d365-data-migration-cutover",
-        "d365-finance-close-to-report",
-        "d365-supply-chain-plan-to-produce",
-        "d365-sales-revenue-operations",
-        "d365-field-service-to-cash",
-        "d365-customer-service-contact-center",
-        "microsoft-business-impact-value-realization",
-        "power-platform-alm-pipelines",
-        "copilot-studio-agent-governance-alm",
-        "power-automate-automation-risk-review",
-        "fabric-power-bi-business-insights-governance",
-        "m365-purview-data-security-compliance",
-        "m365-defender-xdr-security-operations",
-        "m365-intune-endpoint-management",
-        "m365-teams-collaboration-governance",
-        "m365-exchange-sharepoint-information-governance",
-        "d365-customer-insights-journeys",
-        "d365-fno-developer-extension",
-        "d365-integration-dual-write",
-        "m365-tenant-governance",
-        "m365-backup-bcdr-data-resilience",
-        "m365-licensing-ea-optimization",
-        "d365-project-operations",
-        "d365-commerce",
-        "fabric-data-engineering",
-        "fabric-analytics-engineering",
-        "m365-live-identity-posture-guard",
-        "d365-live-security-role-guard",
-        "d365-live-record-field-update-guard",
-        "m365-live-sensitivity-label-apply-guard"
-      ]
-    },
-    "microsoft-collaboration-endpoint-admin": {
-      "label": "Microsoft Collaboration & Endpoint Administrator",
-      "description": "Static-review administration of the Microsoft 365 collaboration and endpoint estate: Microsoft Intune device/app management and compliance, Microsoft Teams collaboration & communications governance, and Exchange Online / SharePoint Online / OneDrive information governance (including SharePoint Advanced Management oversharing controls). Advisory only; tenant-wide sharing/compliance/Conditional-Access-impacting policy changes and device wipe/retire actions are live-guard gated and require explicit human approval.",
-      "agents": [
-        "m365-intune-endpoint-management-agent",
-        "m365-teams-collaboration-governance-agent",
-        "m365-exchange-sharepoint-information-governance-agent",
-        "m365-tenant-governance-agent"
-      ],
-      "skills": [
-        "m365-intune-endpoint-management",
-        "m365-teams-collaboration-governance",
-        "m365-exchange-sharepoint-information-governance",
-        "m365-tenant-governance"
-      ]
-    },
-    "microsoft-data-analytics-engineer": {
-      "label": "Microsoft Data & Analytics Engineer",
-      "description": "Static-review data and analytics engineering on Microsoft Fabric and Power BI: Fabric data engineering (Lakehouse/OneLake, Spark, pipelines, Dataflows Gen2, medallion, Real-Time Intelligence, Direct Lake), Fabric analytics engineering (data warehouse T-SQL, dimensional/semantic modeling, DAX), and Fabric/Power BI business-insights governance (semantic-model trust, RLS/OLS, workspace governance). Advisory only; production capacity, pipeline-run, warehouse-schema, semantic-model deployment, RLS, and workspace-role changes are live-guard gated and require explicit human approval.",
-      "agents": [
-        "fabric-data-engineering-agent",
-        "fabric-analytics-engineering-agent",
-        "fabric-power-bi-business-insights-governance-agent"
-      ],
-      "skills": [
-        "fabric-data-engineering",
-        "fabric-analytics-engineering",
-        "fabric-power-bi-business-insights-governance"
-      ]
-    },
-    "microsoft-security-compliance-engineer": {
-      "label": "Microsoft Security & Compliance Engineer",
-      "description": "Static-review security and compliance engineering across the Microsoft 365 estate: Microsoft Entra Zero Trust & Conditional Access, Microsoft 365 Copilot data-exposure readiness, Microsoft Purview data security & compliance (DLP, sensitivity labels, retention, Insider Risk, eDiscovery, Audit, DSPM for AI), and Microsoft Defender XDR security operations. Advisory only; production identity, DLP/label/retention, eDiscovery-hold, and containment actions are live-guard gated and require explicit human approval.",
-      "agents": [
-        "m365-identity-zero-trust-agent",
-        "m365-copilot-readiness-governance-agent",
-        "m365-purview-data-security-compliance-agent",
-        "m365-defender-xdr-security-operations-agent",
-        "m365-backup-bcdr-data-resilience-agent",
-        "m365-live-identity-posture-guard-agent",
-        "d365-live-security-role-guard-agent",
-        "d365-live-record-field-update-guard-agent",
-        "m365-live-sensitivity-label-apply-guard-agent"
-      ],
-      "skills": [
-        "m365-identity-zero-trust",
-        "m365-copilot-readiness-governance",
-        "m365-purview-data-security-compliance",
-        "m365-defender-xdr-security-operations",
-        "m365-backup-bcdr-data-resilience",
-        "m365-live-identity-posture-guard",
-        "d365-live-security-role-guard",
-        "d365-live-record-field-update-guard",
-        "m365-live-sensitivity-label-apply-guard"
-      ]
-    },
     "netsuite-platform-advisor": {
       "label": "Oracle NetSuite Platform Advisor",
       "description": "Enterprise NetSuite architecture, operations, compliance, and implementation — platform configuration, SuiteScript development, SDF deployment, integrations (REST/SOAP), authentication (OAuth2/TBA), financial controls, audit and SOX compliance, multi-subsidiary management, and least-privilege identity governance. Advisory only — never executes live mutations without separate authorization.",
@@ -1759,348 +1341,6 @@
         "netsuite-suitefoundation-skill",
         "netsuite-suitescript-secure-code-review-skill",
         "netsuite-web-services-integration-skill"
-      ]
-    },
-    "php-platform-engineer": {
-      "label": "PHP Platform Engineer",
-      "description": "Static-review board for PHP platform engineering — PHP application security (unserialize/session/upload), Composer dependency supply-chain governance, runtime version/EOL readiness with OPcache/PHP-FPM hardening, and WordPress plugin/theme/REST/block security — routed by the PHP maestro to the narrowest specialist. Advisory only: never executes payloads, installs packages, or mutates runtime or production.",
-      "agents": [
-        "php-maestro-agent",
-        "php-application-security-agent",
-        "composer-supply-chain-agent",
-        "php-runtime-upgrade-readiness-agent",
-        "wordpress-security-agent"
-      ],
-      "skills": [
-        "php-maestro",
-        "php-session-upload-deserialization-review",
-        "composer-audit-supply-chain-review",
-        "php-runtime-eol-opcache-fpm-review",
-        "wordpress-rest-block-security-review"
-      ]
-    },
-    "python-application-engineer": {
-      "label": "Python Application Engineer",
-      "description": "Static review for Python application engineers routed through the Python maestro: type contracts and gradual typing, web-service production readiness (FastAPI/Django/Flask), database access and transactions, application-security defects, and test quality. Static review only — never runs, deploys, or contacts a live system.",
-      "agents": [
-        "python-maestro-agent",
-        "python-language-contracts-typing-agent",
-        "python-web-service-production-readiness-agent",
-        "python-data-access-transaction-agent",
-        "python-application-security-agent",
-        "python-testing-quality-engineering-agent"
-      ],
-      "skills": [
-        "python-maestro",
-        "python-language-contracts-typing",
-        "python-web-service-production-readiness",
-        "python-data-access-transaction",
-        "python-application-security",
-        "python-testing-quality-engineering"
-      ]
-    },
-    "python-application-review-engineer": {
-      "label": "Python Application Review Engineer",
-      "description": "Static review of Python applications routed through the Python maestro across the full 20-agent board — application-security, async/concurrency, packaging supply chain, numerical correctness, type contracts, web-service readiness, data access, distributed tasks, testing, runtime-estate modernization, performance/memory, free-threading, native extensions, container/serverless runtime, data pipelines, ML production, observability, developer tooling, and business-critical automation governance. Static review only.",
-      "agents": [
-        "python-application-security-agent",
-        "python-async-concurrency-reliability-agent",
-        "python-business-critical-automation-governance-agent",
-        "python-container-serverless-runtime-agent",
-        "python-data-access-transaction-agent",
-        "python-data-pipeline-reliability-agent",
-        "python-developer-tooling-build-agent",
-        "python-distributed-task-reliability-agent",
-        "python-estate-modernization-governor-agent",
-        "python-free-threading-parallelism-agent",
-        "python-language-contracts-typing-agent",
-        "python-maestro-agent",
-        "python-ml-ai-production-agent",
-        "python-native-extension-interop-agent",
-        "python-numerical-scientific-correctness-agent",
-        "python-observability-sre-agent",
-        "python-packaging-supply-chain-agent",
-        "python-performance-memory-agent",
-        "python-testing-quality-engineering-agent",
-        "python-web-service-production-readiness-agent"
-      ],
-      "skills": [
-        "python-application-security",
-        "python-async-concurrency-reliability",
-        "python-business-critical-automation-governance",
-        "python-container-serverless-runtime",
-        "python-data-access-transaction",
-        "python-data-pipeline-reliability",
-        "python-developer-tooling-build",
-        "python-distributed-task-reliability",
-        "python-estate-modernization-governor",
-        "python-free-threading-parallelism",
-        "python-language-contracts-typing",
-        "python-maestro",
-        "python-ml-ai-production",
-        "python-native-extension-interop",
-        "python-numerical-scientific-correctness",
-        "python-observability-sre",
-        "python-packaging-supply-chain",
-        "python-performance-memory",
-        "python-testing-quality-engineering",
-        "python-web-service-production-readiness"
-      ]
-    },
-    "python-automation-governance-lead": {
-      "label": "Python Automation Governance Lead",
-      "description": "Static review for governance of business-critical Python automation routed through the Python maestro: automation ownership and controls, distributed task reliability, data-pipeline reliability, and application security. Maps controls and exposure; makes no accounting/legal/regulatory conclusions. Static review only.",
-      "agents": [
-        "python-maestro-agent",
-        "python-business-critical-automation-governance-agent",
-        "python-distributed-task-reliability-agent",
-        "python-data-pipeline-reliability-agent",
-        "python-application-security-agent"
-      ],
-      "skills": [
-        "python-maestro",
-        "python-business-critical-automation-governance",
-        "python-distributed-task-reliability",
-        "python-data-pipeline-reliability",
-        "python-application-security"
-      ]
-    },
-    "python-data-engineer": {
-      "label": "Python Data Engineer",
-      "description": "Static review for Python data engineers routed through the Python maestro: data-pipeline reliability (idempotency, backfills, schema evolution), numerical/scientific correctness, database access and transactions, and distributed task reliability. Static review only.",
-      "agents": [
-        "python-maestro-agent",
-        "python-data-pipeline-reliability-agent",
-        "python-data-access-transaction-agent",
-        "python-numerical-scientific-correctness-agent",
-        "python-distributed-task-reliability-agent"
-      ],
-      "skills": [
-        "python-maestro",
-        "python-data-pipeline-reliability",
-        "python-data-access-transaction",
-        "python-numerical-scientific-correctness",
-        "python-distributed-task-reliability"
-      ]
-    },
-    "python-engineering-leader": {
-      "label": "Python Engineering Leader",
-      "description": "Portfolio-level static review for Python engineering leaders routed through the Python maestro: runtime-estate modernization and upgrade sequencing, business-critical automation governance, developer-tooling and gate efficacy, and performance posture. Static review only.",
-      "agents": [
-        "python-maestro-agent",
-        "python-estate-modernization-governor-agent",
-        "python-business-critical-automation-governance-agent",
-        "python-developer-tooling-build-agent",
-        "python-performance-memory-agent"
-      ],
-      "skills": [
-        "python-maestro",
-        "python-estate-modernization-governor",
-        "python-business-critical-automation-governance",
-        "python-developer-tooling-build",
-        "python-performance-memory"
-      ]
-    },
-    "python-library-maintainer": {
-      "label": "Python Library Maintainer",
-      "description": "Static review for Python library maintainers routed through the Python maestro: type contracts and public API stability, packaging and supply-chain integrity, native-extension interop and ABI, developer tooling efficacy, and test quality. Static review only.",
-      "agents": [
-        "python-maestro-agent",
-        "python-language-contracts-typing-agent",
-        "python-packaging-supply-chain-agent",
-        "python-native-extension-interop-agent",
-        "python-developer-tooling-build-agent",
-        "python-testing-quality-engineering-agent"
-      ],
-      "skills": [
-        "python-maestro",
-        "python-language-contracts-typing",
-        "python-packaging-supply-chain",
-        "python-native-extension-interop",
-        "python-developer-tooling-build",
-        "python-testing-quality-engineering"
-      ]
-    },
-    "python-live-audit-and-compliance-reviewer": {
-      "label": "Python Live Audit and Compliance Reviewer",
-      "description": "Read-only live control-plane audit and compliance review routed through the live governance maestro: control-evidence collection, policy-gate control mapping, continuous control testing, and exception review. Contains NO mutating agents — reviews and tests controls, never executes changes, and never declares compliance.",
-      "agents": [
-        "python-live-governance-maestro-agent",
-        "python-live-control-evidence-agent",
-        "python-live-policy-gate-agent",
-        "python-live-continuous-control-testing-agent",
-        "python-live-exception-governance-agent"
-      ],
-      "skills": [
-        "python-live-governance-maestro",
-        "python-live-control-evidence",
-        "python-live-policy-gate",
-        "python-live-continuous-control-testing",
-        "python-live-exception-governance"
-      ]
-    },
-    "python-live-automation-control-owner": {
-      "label": "Python Live Automation Control Owner",
-      "description": "Live control-plane governance of business-critical automation routed through the live governance maestro: job control, identity/approval authority, control-evidence, and exception governance. Separates permission from authority and execution from approval; records time-boxed exceptions with owners and expiry.",
-      "agents": [
-        "python-live-governance-maestro-agent",
-        "python-live-job-control-agent",
-        "python-live-identity-authority-agent",
-        "python-live-control-evidence-agent",
-        "python-live-exception-governance-agent"
-      ],
-      "skills": [
-        "python-live-governance-maestro",
-        "python-live-job-control",
-        "python-live-identity-authority",
-        "python-live-control-evidence",
-        "python-live-exception-governance"
-      ]
-    },
-    "python-live-data-operator": {
-      "label": "Python Live Data Operator",
-      "description": "Live control-plane data operations routed through the live governance maestro: governed database change, pipeline backfill/reprocessing, distributed job control with technical and business idempotency, and change planning with reconciliation and rollback. Mutating operators are live-guard gated; no unbounded or ad-hoc production data mutation.",
-      "agents": [
-        "python-live-governance-maestro-agent",
-        "python-live-data-change-control-agent",
-        "python-live-job-control-agent",
-        "python-live-change-plan-agent"
-      ],
-      "skills": [
-        "python-live-governance-maestro",
-        "python-live-data-change-control",
-        "python-live-job-control",
-        "python-live-change-plan"
-      ]
-    },
-    "python-live-ml-governance-operator": {
-      "label": "Python Live ML Governance Operator",
-      "description": "Live control-plane ML governance routed through the live governance maestro: immutable model-artifact promotion with risk classification and evaluation evidence, control-evidence collection, policy-gate AI-risk checks, and rollback. Makes no EU AI Act conformity or compliance determination — those are owner determinations.",
-      "agents": [
-        "python-live-governance-maestro-agent",
-        "python-live-model-promotion-control-agent",
-        "python-live-control-evidence-agent",
-        "python-live-policy-gate-agent",
-        "python-live-rollback-and-recovery-agent"
-      ],
-      "skills": [
-        "python-live-governance-maestro",
-        "python-live-model-promotion-control",
-        "python-live-control-evidence",
-        "python-live-policy-gate",
-        "python-live-rollback-and-recovery"
-      ]
-    },
-    "python-live-platform-operator": {
-      "label": "Python Live Platform Operator",
-      "description": "Live control-plane operations for platform reliability, routed through the live governance maestro: runtime inventory, read-only diagnostics, continuous control testing, bounded release control, and pre-approved rollback. Mutating operators are live-guard gated — never auto-dispatched; every R3+ action requires independent approval, JIT credentials, and audit evidence.",
-      "agents": [
-        "python-live-governance-maestro-agent",
-        "python-live-system-inventory-agent",
-        "python-live-runtime-control-agent",
-        "python-live-continuous-control-testing-agent",
-        "python-live-release-control-agent",
-        "python-live-rollback-and-recovery-agent"
-      ],
-      "skills": [
-        "python-live-governance-maestro",
-        "python-live-system-inventory",
-        "python-live-runtime-control",
-        "python-live-continuous-control-testing",
-        "python-live-release-control",
-        "python-live-rollback-and-recovery"
-      ]
-    },
-    "python-live-security-operator": {
-      "label": "Python Live Security Operator",
-      "description": "Live control-plane security operations routed through the live governance maestro: identity and authority verification, bounded dependency remediation (branch/PR), policy-gate evaluation, control-evidence collection, and continuous control testing. Read-only by default; the one mutating operator (code remediation) is live-guard gated and cannot merge or deploy.",
-      "agents": [
-        "python-live-governance-maestro-agent",
-        "python-live-identity-authority-agent",
-        "python-live-code-remediation-agent",
-        "python-live-policy-gate-agent",
-        "python-live-control-evidence-agent",
-        "python-live-continuous-control-testing-agent"
-      ],
-      "skills": [
-        "python-live-governance-maestro",
-        "python-live-identity-authority",
-        "python-live-code-remediation",
-        "python-live-policy-gate",
-        "python-live-control-evidence",
-        "python-live-continuous-control-testing"
-      ]
-    },
-    "python-ml-engineer": {
-      "label": "Python ML Engineer",
-      "description": "Static review for Python ML engineers routed through the Python maestro: ML production correctness (training-serving skew, leakage, artifact safety, reproducibility), numerical correctness, data-pipeline reliability, and test quality. Static review only.",
-      "agents": [
-        "python-maestro-agent",
-        "python-ml-ai-production-agent",
-        "python-numerical-scientific-correctness-agent",
-        "python-data-pipeline-reliability-agent",
-        "python-testing-quality-engineering-agent"
-      ],
-      "skills": [
-        "python-maestro",
-        "python-ml-ai-production",
-        "python-numerical-scientific-correctness",
-        "python-data-pipeline-reliability",
-        "python-testing-quality-engineering"
-      ]
-    },
-    "python-platform-reliability-engineer": {
-      "label": "Python Platform Reliability Engineer",
-      "description": "Static review of Python runtime and platform reliability routed through the Python maestro: asyncio event-loop reliability, container/serverless runtime (PID 1, signals, shutdown), in-application observability, performance and memory, free-threaded adoption, and runtime-estate modernization. Static review only.",
-      "agents": [
-        "python-maestro-agent",
-        "python-async-concurrency-reliability-agent",
-        "python-container-serverless-runtime-agent",
-        "python-observability-sre-agent",
-        "python-performance-memory-agent",
-        "python-free-threading-parallelism-agent",
-        "python-estate-modernization-governor-agent"
-      ],
-      "skills": [
-        "python-maestro",
-        "python-async-concurrency-reliability",
-        "python-container-serverless-runtime",
-        "python-observability-sre",
-        "python-performance-memory",
-        "python-free-threading-parallelism",
-        "python-estate-modernization-governor"
-      ]
-    },
-    "python-reliability-data-engineer": {
-      "label": "Python Reliability and Data Engineer",
-      "description": "Static review of Python runtime reliability and data correctness routed through the Python maestro: asyncio event-loop reliability, numerical/scientific correctness, database access and transactions (session/transaction scope, N+1, pooling, migrations), and distributed task reliability (idempotency, retries, dead-letters). Static review only — never runs the service, the calculation, or a live connection.",
-      "agents": [
-        "python-maestro-agent",
-        "python-async-concurrency-reliability-agent",
-        "python-numerical-scientific-correctness-agent",
-        "python-data-access-transaction-agent",
-        "python-distributed-task-reliability-agent"
-      ],
-      "skills": [
-        "python-maestro",
-        "python-async-concurrency-reliability",
-        "python-numerical-scientific-correctness",
-        "python-data-access-transaction",
-        "python-distributed-task-reliability"
-      ]
-    },
-    "python-security-engineer": {
-      "label": "Python Security Engineer",
-      "description": "Static review of the Python attack surface routed through the Python maestro: application-security sinks (unsafe deserialization, subprocess/shell injection, SSRF, secrets, cryptography misuse) and software-supply-chain integrity (dependency locking, hash-checking, index trust, dependency confusion). Static review only — never installs, runs, or exploits code.",
-      "agents": [
-        "python-maestro-agent",
-        "python-application-security-agent",
-        "python-packaging-supply-chain-agent"
-      ],
-      "skills": [
-        "python-maestro",
-        "python-application-security",
-        "python-packaging-supply-chain"
       ]
     },
     "qa-test-quality-engineer": {
@@ -2295,20 +1535,764 @@
         "sap-ai-governance-security-architecture-protocol"
       ]
     },
-    "typescript-agentic-contract-engineer": {
-      "label": "TypeScript Agentic Contract Engineer",
-      "description": "Static review of TypeScript agent and automation contracts: MCP tool schema fidelity against handler behavior, protocol version and error contracts, validation at every point external data enters the program, and governance of privileged automation. Static review only — never executes a tool, a script, or a migration.",
+    "microsoft-365-d365-platform-advisor": {
+      "label": "Microsoft 365 & Dynamics 365 Platform Advisor",
+      "description": "Static-review advisory across the Microsoft cloud business surface: Microsoft 365 governance, identity (Entra/Conditional Access), security and compliance (Purview, Defender XDR), collaboration, Microsoft 365 Copilot readiness, Power Platform governance, and Dynamics 365 ERP/CRM. Routes through the Microsoft maestro layer to M365, D365, Power Platform, and Copilot specialists. Advisory only — never mutates a tenant or production environment; production-impacting actions are live-guard gated and require explicit human approval.",
       "agents": [
-        "typescript-maestro-agent",
-        "typescript-mcp-tool-contract-agent",
-        "typescript-runtime-boundary-contract-agent",
-        "typescript-business-critical-automation-governance-agent"
+        "microsoft-maestro-agent",
+        "m365-maestro-agent",
+        "d365-maestro-agent",
+        "power-platform-maestro-agent",
+        "copilot-governance-maestro-agent",
+        "m365-copilot-readiness-governance-agent",
+        "m365-identity-zero-trust-agent",
+        "power-platform-governance-dataverse-security-agent",
+        "d365-success-by-design-governance-agent",
+        "d365-security-sod-governance-agent",
+        "d365-data-migration-cutover-agent",
+        "d365-finance-close-to-report-agent",
+        "d365-supply-chain-plan-to-produce-agent",
+        "d365-sales-revenue-operations-agent",
+        "d365-field-service-to-cash-agent",
+        "d365-customer-service-contact-center-agent",
+        "microsoft-business-impact-value-realization-agent",
+        "power-platform-alm-pipelines-agent",
+        "copilot-studio-agent-governance-alm-agent",
+        "power-automate-automation-risk-review-agent",
+        "fabric-power-bi-business-insights-governance-agent",
+        "m365-purview-data-security-compliance-agent",
+        "m365-defender-xdr-security-operations-agent",
+        "m365-intune-endpoint-management-agent",
+        "m365-teams-collaboration-governance-agent",
+        "m365-exchange-sharepoint-information-governance-agent",
+        "d365-customer-insights-journeys-agent",
+        "d365-fno-developer-extension-agent",
+        "d365-integration-dual-write-agent",
+        "m365-tenant-governance-agent",
+        "m365-backup-bcdr-data-resilience-agent",
+        "m365-licensing-ea-optimization-agent",
+        "d365-project-operations-agent",
+        "d365-commerce-agent",
+        "fabric-data-engineering-agent",
+        "fabric-analytics-engineering-agent",
+        "m365-live-identity-posture-guard-agent",
+        "d365-live-security-role-guard-agent",
+        "d365-live-record-field-update-guard-agent",
+        "m365-live-sensitivity-label-apply-guard-agent"
       ],
       "skills": [
-        "typescript-maestro",
-        "typescript-mcp-tool-contract",
-        "typescript-runtime-boundary-contract",
-        "typescript-business-critical-automation-governance"
+        "microsoft-maestro",
+        "m365-maestro",
+        "d365-maestro",
+        "power-platform-maestro",
+        "copilot-governance-maestro",
+        "m365-copilot-readiness-governance",
+        "m365-identity-zero-trust",
+        "power-platform-governance-dataverse-security",
+        "d365-success-by-design-governance",
+        "d365-security-sod-governance",
+        "d365-data-migration-cutover",
+        "d365-finance-close-to-report",
+        "d365-supply-chain-plan-to-produce",
+        "d365-sales-revenue-operations",
+        "d365-field-service-to-cash",
+        "d365-customer-service-contact-center",
+        "microsoft-business-impact-value-realization",
+        "power-platform-alm-pipelines",
+        "copilot-studio-agent-governance-alm",
+        "power-automate-automation-risk-review",
+        "fabric-power-bi-business-insights-governance",
+        "m365-purview-data-security-compliance",
+        "m365-defender-xdr-security-operations",
+        "m365-intune-endpoint-management",
+        "m365-teams-collaboration-governance",
+        "m365-exchange-sharepoint-information-governance",
+        "d365-customer-insights-journeys",
+        "d365-fno-developer-extension",
+        "d365-integration-dual-write",
+        "m365-tenant-governance",
+        "m365-backup-bcdr-data-resilience",
+        "m365-licensing-ea-optimization",
+        "d365-project-operations",
+        "d365-commerce",
+        "fabric-data-engineering",
+        "fabric-analytics-engineering",
+        "m365-live-identity-posture-guard",
+        "d365-live-security-role-guard",
+        "d365-live-record-field-update-guard",
+        "m365-live-sensitivity-label-apply-guard"
+      ]
+    },
+    "microsoft-security-compliance-engineer": {
+      "label": "Microsoft Security & Compliance Engineer",
+      "description": "Static-review security and compliance engineering across the Microsoft 365 estate: Microsoft Entra Zero Trust & Conditional Access, Microsoft 365 Copilot data-exposure readiness, Microsoft Purview data security & compliance (DLP, sensitivity labels, retention, Insider Risk, eDiscovery, Audit, DSPM for AI), and Microsoft Defender XDR security operations. Advisory only; production identity, DLP/label/retention, eDiscovery-hold, and containment actions are live-guard gated and require explicit human approval.",
+      "agents": [
+        "m365-identity-zero-trust-agent",
+        "m365-copilot-readiness-governance-agent",
+        "m365-purview-data-security-compliance-agent",
+        "m365-defender-xdr-security-operations-agent",
+        "m365-backup-bcdr-data-resilience-agent",
+        "m365-live-identity-posture-guard-agent",
+        "d365-live-security-role-guard-agent",
+        "d365-live-record-field-update-guard-agent",
+        "m365-live-sensitivity-label-apply-guard-agent"
+      ],
+      "skills": [
+        "m365-identity-zero-trust",
+        "m365-copilot-readiness-governance",
+        "m365-purview-data-security-compliance",
+        "m365-defender-xdr-security-operations",
+        "m365-backup-bcdr-data-resilience",
+        "m365-live-identity-posture-guard",
+        "d365-live-security-role-guard",
+        "d365-live-record-field-update-guard",
+        "m365-live-sensitivity-label-apply-guard"
+      ]
+    },
+    "microsoft-collaboration-endpoint-admin": {
+      "label": "Microsoft Collaboration & Endpoint Administrator",
+      "description": "Static-review administration of the Microsoft 365 collaboration and endpoint estate: Microsoft Intune device/app management and compliance, Microsoft Teams collaboration & communications governance, and Exchange Online / SharePoint Online / OneDrive information governance (including SharePoint Advanced Management oversharing controls). Advisory only; tenant-wide sharing/compliance/Conditional-Access-impacting policy changes and device wipe/retire actions are live-guard gated and require explicit human approval.",
+      "agents": [
+        "m365-intune-endpoint-management-agent",
+        "m365-teams-collaboration-governance-agent",
+        "m365-exchange-sharepoint-information-governance-agent",
+        "m365-tenant-governance-agent"
+      ],
+      "skills": [
+        "m365-intune-endpoint-management",
+        "m365-teams-collaboration-governance",
+        "m365-exchange-sharepoint-information-governance",
+        "m365-tenant-governance"
+      ]
+    },
+    "microsoft-data-analytics-engineer": {
+      "label": "Microsoft Data & Analytics Engineer",
+      "description": "Static-review data and analytics engineering on Microsoft Fabric and Power BI: Fabric data engineering (Lakehouse/OneLake, Spark, pipelines, Dataflows Gen2, medallion, Real-Time Intelligence, Direct Lake), Fabric analytics engineering (data warehouse T-SQL, dimensional/semantic modeling, DAX), and Fabric/Power BI business-insights governance (semantic-model trust, RLS/OLS, workspace governance). Advisory only; production capacity, pipeline-run, warehouse-schema, semantic-model deployment, RLS, and workspace-role changes are live-guard gated and require explicit human approval.",
+      "agents": [
+        "fabric-data-engineering-agent",
+        "fabric-analytics-engineering-agent",
+        "fabric-power-bi-business-insights-governance-agent"
+      ],
+      "skills": [
+        "fabric-data-engineering",
+        "fabric-analytics-engineering",
+        "fabric-power-bi-business-insights-governance"
+      ]
+    },
+    "azure-databricks-platform-engineer": {
+      "label": "Azure Databricks Platform Engineer",
+      "description": "Static-review governance and engineering for Azure Databricks: Unity Catalog least-privilege grants and admin-role separation, plus lakehouse engineering (medallion, ADLS Gen2 external locations via managed identity, cluster policies, secret scopes, network isolation). Advisory only; production grant/role/policy/cluster changes are live-guard gated and require explicit human approval.",
+      "agents": [
+        "databricks-unity-catalog-governance-at-azure-agent",
+        "databricks-lakehouse-engineering-at-azure-agent",
+        "databricks-live-unity-catalog-grant-guard-at-azure-agent"
+      ],
+      "skills": [
+        "databricks-unity-catalog-governance-at-azure",
+        "databricks-lakehouse-engineering-at-azure",
+        "databricks-live-unity-catalog-grant-guard-at-azure"
+      ]
+    },
+    "azure-snowflake-platform-engineer": {
+      "label": "Azure Snowflake Platform Engineer",
+      "description": "Static-review governance and engineering for Snowflake on Azure: RBAC least privilege (ACCOUNTADMIN restriction, SECURITYADMIN/SYSADMIN separation of duties, network policies, Entra OAuth/SSO/SCIM) and data-platform engineering (warehouses, Azure Private Link/storage integration, masking/row-access/tagging governance). Advisory only, with one approval-gated live guard covering exactly one mutation: a single GRANT or REVOKE. Policy, warehouse, data-protection, pipeline, and failover changes are NOT gated by this role — it installs no guard that owns them. Superseded by the cloud-neutral snowflake roles, whose guards cover those mutations; these Azure-scoped assets are `lifecycle: deprecated` and retained for continuity.",
+      "agents": [
+        "snowflake-rbac-access-governance-at-azure-agent",
+        "snowflake-data-platform-engineering-at-azure-agent",
+        "snowflake-live-rbac-grant-guard-at-azure-agent"
+      ],
+      "skills": [
+        "snowflake-rbac-access-governance-at-azure",
+        "snowflake-data-platform-engineering-at-azure",
+        "snowflake-live-rbac-grant-guard-at-azure"
+      ]
+    },
+    "frontend-engineer": {
+      "label": "Frontend Engineer",
+      "description": "Enterprise frontend engineering across frameworks (React, Next.js, Angular, Vue, Svelte/SvelteKit) and cross-cutting platform concerns — web-platform foundations, HTML semantics, CSS architecture, JavaScript/TypeScript, state management, routing, SSR/hydration/streaming, API/BFF integration, performance and Core Web Vitals, PWA/offline, accessibility (WCAG 2.2), frontend security (DOM XSS/CSP, auth/session), observability/RUM, internationalization, browser compatibility, testing and visual regression, design-system governance, build tooling and bundling, monorepo DX, package governance, migration/modernization, product analytics/experimentation, and cost-to-serve FinOps. Review-oriented and advisory; static-review skills never execute application code.",
+      "agents": [
+        "accessibility-wcag-agent",
+        "ai-assisted-frontend-review-agent",
+        "angular-specialist-agent",
+        "api-integration-bff-agent",
+        "browser-compatibility-agent",
+        "build-tooling-bundling-agent",
+        "css-architecture-agent",
+        "design-systems-governance-agent",
+        "enterprise-red-team-review-agent",
+        "frontend-board-chair-agent",
+        "frontend-finops-cost-to-serve-agent",
+        "frontend-maestro-agent",
+        "frontend-migration-modernization-agent",
+        "frontend-observability-rum-agent",
+        "frontend-platform-architect-agent",
+        "frontend-security-agent",
+        "html-semantics-agent",
+        "internationalization-localization-agent",
+        "javascript-runtime-agent",
+        "monorepo-dx-agent",
+        "nextjs-specialist-agent",
+        "package-governance-agent",
+        "product-analytics-experimentation-agent",
+        "pwa-offline-capability-agent",
+        "react-specialist-agent",
+        "routing-navigation-agent",
+        "ssr-hydration-streaming-agent",
+        "state-management-data-flow-agent",
+        "svelte-sveltekit-specialist-agent",
+        "testing-quality-engineering-agent",
+        "typescript-contracts-agent",
+        "visual-regression-agent",
+        "vue-specialist-agent",
+        "web-performance-core-vitals-agent",
+        "web-platform-foundation-agent",
+        "revenue-critical-journey-integrity-agent"
+      ],
+      "skills": [
+        "ai-generated-frontend-code-review",
+        "angular-architecture-signals-review",
+        "angular-ssr-hydration-review",
+        "angular-template-sanitizer-security-review",
+        "api-integration-contract-review",
+        "browser-compatibility-review",
+        "build-tooling-vite-webpack-review",
+        "bundle-budget-code-splitting-review",
+        "core-web-vitals-triage",
+        "critical-rendering-path-review",
+        "css-architecture-design-system-review",
+        "design-token-governance-review",
+        "e2e-testing-playwright-review",
+        "edge-cache-data-bleed-review",
+        "enterprise-red-team-review",
+        "framework-upgrade-risk-review",
+        "frontend-auth-session-security-review",
+        "frontend-bff-boundary-review",
+        "frontend-board-chair",
+        "frontend-dom-xss-csp-review",
+        "frontend-error-boundary-resilience-review",
+        "frontend-finops-cost-to-serve-review",
+        "frontend-maestro",
+        "frontend-migration-modernization-plan",
+        "frontend-observability-rum-instrumentation",
+        "frontend-platform-architecture-review",
+        "frontend-testing-strategy-review",
+        "graphql-client-security-review",
+        "html-semantics-accessibility-review",
+        "i18n-l10n-readiness-review",
+        "javascript-runtime-async-review",
+        "legacy-jquery-to-modern-framework-review",
+        "microfrontend-boundary-review",
+        "monorepo-package-governance-review",
+        "nextjs-app-router-data-fetching-review",
+        "nextjs-rendering-caching-review",
+        "nextjs-server-security-review",
+        "nuxt-fullstack-security-review",
+        "pci-payment-ui-security-review",
+        "product-analytics-experimentation-review",
+        "pwa-offline-readiness-review",
+        "react-component-architecture-review",
+        "react-rsc-data-boundary-review",
+        "react-state-effects-review",
+        "routing-navigation-review",
+        "service-worker-cache-strategy-review",
+        "ssr-hydration-streaming-diagnosis",
+        "state-management-decision-review",
+        "sveltekit-actions-load-security-review",
+        "sveltekit-progressive-enhancement-review",
+        "sveltekit-routing-load-review",
+        "tree-shaking-dead-code-review",
+        "typescript-contracts-review",
+        "visual-regression-storybook-review",
+        "vue-composition-api-architecture-review",
+        "vue-router-navigation-security-review",
+        "vue-ssr-security-review",
+        "vue-state-store-security-review",
+        "wcag-22-accessibility-audit",
+        "revenue-critical-journey-integrity-review"
+      ]
+    },
+    "php-platform-engineer": {
+      "label": "PHP Platform Engineer",
+      "description": "Static-review board for PHP platform engineering — PHP application security (unserialize/session/upload), Composer dependency supply-chain governance, runtime version/EOL readiness with OPcache/PHP-FPM hardening, and WordPress plugin/theme/REST/block security — routed by the PHP maestro to the narrowest specialist. Advisory only: never executes payloads, installs packages, or mutates runtime or production.",
+      "agents": [
+        "php-maestro-agent",
+        "php-application-security-agent",
+        "composer-supply-chain-agent",
+        "php-runtime-upgrade-readiness-agent",
+        "wordpress-security-agent"
+      ],
+      "skills": [
+        "php-maestro",
+        "php-session-upload-deserialization-review",
+        "composer-audit-supply-chain-review",
+        "php-runtime-eol-opcache-fpm-review",
+        "wordpress-rest-block-security-review"
+      ]
+    },
+    "kotlin-backend-engineer": {
+      "label": "Kotlin Backend Engineer",
+      "description": "Static review for server-side Kotlin services on Ktor or Spring: language and null-safety correctness, coroutine and Flow reliability (structured concurrency, dispatchers, context propagation), backend production readiness, kotlinx.serialization wire contracts, coroutine-aware test architecture, and Gradle build health. Static review only — never builds, deploys, or contacts a live system.",
+      "agents": [
+        "kotlin-maestro-agent",
+        "kotlin-language-api-correctness-agent",
+        "kotlin-coroutines-flow-reliability-agent",
+        "kotlin-backend-production-readiness-agent",
+        "kotlin-serialization-wire-contract-agent",
+        "kotlin-test-architecture-agent",
+        "kotlin-gradle-build-engineering-agent"
+      ],
+      "skills": [
+        "kotlin-maestro",
+        "kotlin-language-api-correctness",
+        "kotlin-coroutines-flow-reliability",
+        "kotlin-backend-production-readiness",
+        "kotlin-serialization-wire-contract",
+        "kotlin-test-architecture",
+        "kotlin-gradle-build-engineering"
+      ]
+    },
+    "android-kotlin-engineer": {
+      "label": "Android Kotlin Engineer",
+      "description": "Static review for Android apps in Kotlin: lifecycle-aware architecture and state, Jetpack Compose UI correctness and accessibility, MASVS-aligned security and privacy, measured runtime performance and reliability (startup, jank, ANR, Baseline Profiles), coroutine/Flow reliability, and test architecture. Static review only — never builds, installs, instruments, or ships an app.",
+      "agents": [
+        "kotlin-maestro-agent",
+        "kotlin-android-architecture-agent",
+        "kotlin-compose-ui-quality-accessibility-agent",
+        "kotlin-android-security-privacy-agent",
+        "kotlin-android-performance-reliability-agent",
+        "kotlin-coroutines-flow-reliability-agent",
+        "kotlin-test-architecture-agent"
+      ],
+      "skills": [
+        "kotlin-maestro",
+        "kotlin-android-architecture",
+        "kotlin-compose-ui-quality-accessibility",
+        "kotlin-android-security-privacy",
+        "kotlin-android-performance-reliability",
+        "kotlin-coroutines-flow-reliability",
+        "kotlin-test-architecture"
+      ]
+    },
+    "kotlin-multiplatform-engineer": {
+      "label": "Kotlin Multiplatform Engineer",
+      "description": "Static review for Kotlin Multiplatform work: the adopt/don't-adopt portfolio decision, source-set and expect/actual boundary and Swift/Objective-C interop (including Kotlin/Native runtime), language correctness, coroutine/Flow reliability, kotlinx.serialization wire contracts, and Gradle build health. Static review only — decides and reviews, never builds or publishes.",
+      "agents": [
+        "kotlin-maestro-agent",
+        "kotlin-kmp-portfolio-decision-agent",
+        "kotlin-kmp-boundary-interop-agent",
+        "kotlin-language-api-correctness-agent",
+        "kotlin-coroutines-flow-reliability-agent",
+        "kotlin-serialization-wire-contract-agent",
+        "kotlin-gradle-build-engineering-agent"
+      ],
+      "skills": [
+        "kotlin-maestro",
+        "kotlin-kmp-portfolio-decision",
+        "kotlin-kmp-boundary-interop",
+        "kotlin-language-api-correctness",
+        "kotlin-coroutines-flow-reliability",
+        "kotlin-serialization-wire-contract",
+        "kotlin-gradle-build-engineering"
+      ]
+    },
+    "kotlin-platform-build-engineer": {
+      "label": "Kotlin Platform & Build Engineer",
+      "description": "Static review for the Kotlin engineering system: Gradle build-graph quality, configuration and build cache, incremental compilation and convention plugins, CI throughput, dependency verification/locking and release supply-chain integrity, library API/ABI governance, and test architecture. Static review only — never runs a build, signs, or publishes an artifact.",
+      "agents": [
+        "kotlin-maestro-agent",
+        "kotlin-gradle-build-engineering-agent",
+        "kotlin-supply-chain-release-integrity-agent",
+        "kotlin-library-api-abi-governance-agent",
+        "kotlin-test-architecture-agent"
+      ],
+      "skills": [
+        "kotlin-maestro",
+        "kotlin-gradle-build-engineering",
+        "kotlin-supply-chain-release-integrity",
+        "kotlin-library-api-abi-governance",
+        "kotlin-test-architecture"
+      ]
+    },
+    "kotlin-library-maintainer": {
+      "label": "Kotlin Library Maintainer",
+      "description": "Static review for Kotlin library authors: public API/ABI evolution and binary/source compatibility, language and null-safety correctness, coroutine/Flow reliability for library APIs, kotlinx.serialization wire-contract stability, test architecture, and dependency/publication supply-chain integrity. Static review only — never publishes or signs a release.",
+      "agents": [
+        "kotlin-maestro-agent",
+        "kotlin-library-api-abi-governance-agent",
+        "kotlin-language-api-correctness-agent",
+        "kotlin-coroutines-flow-reliability-agent",
+        "kotlin-serialization-wire-contract-agent",
+        "kotlin-test-architecture-agent",
+        "kotlin-supply-chain-release-integrity-agent"
+      ],
+      "skills": [
+        "kotlin-maestro",
+        "kotlin-library-api-abi-governance",
+        "kotlin-language-api-correctness",
+        "kotlin-coroutines-flow-reliability",
+        "kotlin-serialization-wire-contract",
+        "kotlin-test-architecture",
+        "kotlin-supply-chain-release-integrity"
+      ]
+    },
+    "kotlin-security-engineer": {
+      "label": "Kotlin Security Engineer",
+      "description": "Static review for Kotlin/Android security posture: MASVS-aligned Android security and privacy, kotlinx.serialization polymorphic-deserialization and wire-contract safety, dependency verification/plugin-trust supply-chain integrity, and coroutine security-context propagation. Static review only — defers generic backend vulnerabilities to the application-security board and never contacts a live system.",
+      "agents": [
+        "kotlin-maestro-agent",
+        "kotlin-android-security-privacy-agent",
+        "kotlin-serialization-wire-contract-agent",
+        "kotlin-supply-chain-release-integrity-agent",
+        "kotlin-coroutines-flow-reliability-agent"
+      ],
+      "skills": [
+        "kotlin-maestro",
+        "kotlin-android-security-privacy",
+        "kotlin-serialization-wire-contract",
+        "kotlin-supply-chain-release-integrity",
+        "kotlin-coroutines-flow-reliability"
+      ]
+    },
+    "kotlin-engineering-leader": {
+      "label": "Kotlin Engineering Leader",
+      "description": "Static review for Kotlin technology-portfolio and modernization decisions: Java-to-Kotlin estate modernization sequencing and reversibility, the Kotlin Multiplatform adopt-or-not portfolio decision, public library API/ABI governance, and dependency/release supply-chain integrity. Decision and review only — never migrates, publishes, signs, or contacts a live system, and expresses business impact only with evidence, never invented ROI.",
+      "agents": [
+        "kotlin-maestro-agent",
+        "kotlin-estate-modernization-governor-agent",
+        "kotlin-kmp-portfolio-decision-agent",
+        "kotlin-library-api-abi-governance-agent",
+        "kotlin-supply-chain-release-integrity-agent"
+      ],
+      "skills": [
+        "kotlin-maestro",
+        "kotlin-estate-modernization-governor",
+        "kotlin-kmp-portfolio-decision",
+        "kotlin-library-api-abi-governance",
+        "kotlin-supply-chain-release-integrity"
+      ]
+    },
+    "python-application-review-engineer": {
+      "label": "Python Application Review Engineer",
+      "description": "Static review of Python applications routed through the Python maestro across the full 20-agent board — application-security, async/concurrency, packaging supply chain, numerical correctness, type contracts, web-service readiness, data access, distributed tasks, testing, runtime-estate modernization, performance/memory, free-threading, native extensions, container/serverless runtime, data pipelines, ML production, observability, developer tooling, and business-critical automation governance. Static review only.",
+      "agents": [
+        "python-application-security-agent",
+        "python-async-concurrency-reliability-agent",
+        "python-business-critical-automation-governance-agent",
+        "python-container-serverless-runtime-agent",
+        "python-data-access-transaction-agent",
+        "python-data-pipeline-reliability-agent",
+        "python-developer-tooling-build-agent",
+        "python-distributed-task-reliability-agent",
+        "python-estate-modernization-governor-agent",
+        "python-free-threading-parallelism-agent",
+        "python-language-contracts-typing-agent",
+        "python-maestro-agent",
+        "python-ml-ai-production-agent",
+        "python-native-extension-interop-agent",
+        "python-numerical-scientific-correctness-agent",
+        "python-observability-sre-agent",
+        "python-packaging-supply-chain-agent",
+        "python-performance-memory-agent",
+        "python-testing-quality-engineering-agent",
+        "python-web-service-production-readiness-agent"
+      ],
+      "skills": [
+        "python-application-security",
+        "python-async-concurrency-reliability",
+        "python-business-critical-automation-governance",
+        "python-container-serverless-runtime",
+        "python-data-access-transaction",
+        "python-data-pipeline-reliability",
+        "python-developer-tooling-build",
+        "python-distributed-task-reliability",
+        "python-estate-modernization-governor",
+        "python-free-threading-parallelism",
+        "python-language-contracts-typing",
+        "python-maestro",
+        "python-ml-ai-production",
+        "python-native-extension-interop",
+        "python-numerical-scientific-correctness",
+        "python-observability-sre",
+        "python-packaging-supply-chain",
+        "python-performance-memory",
+        "python-testing-quality-engineering",
+        "python-web-service-production-readiness"
+      ]
+    },
+    "python-security-engineer": {
+      "label": "Python Security Engineer",
+      "description": "Static review of the Python attack surface routed through the Python maestro: application-security sinks (unsafe deserialization, subprocess/shell injection, SSRF, secrets, cryptography misuse) and software-supply-chain integrity (dependency locking, hash-checking, index trust, dependency confusion). Static review only — never installs, runs, or exploits code.",
+      "agents": [
+        "python-maestro-agent",
+        "python-application-security-agent",
+        "python-packaging-supply-chain-agent"
+      ],
+      "skills": [
+        "python-maestro",
+        "python-application-security",
+        "python-packaging-supply-chain"
+      ]
+    },
+    "python-reliability-data-engineer": {
+      "label": "Python Reliability and Data Engineer",
+      "description": "Static review of Python runtime reliability and data correctness routed through the Python maestro: asyncio event-loop reliability, numerical/scientific correctness, database access and transactions (session/transaction scope, N+1, pooling, migrations), and distributed task reliability (idempotency, retries, dead-letters). Static review only — never runs the service, the calculation, or a live connection.",
+      "agents": [
+        "python-maestro-agent",
+        "python-async-concurrency-reliability-agent",
+        "python-numerical-scientific-correctness-agent",
+        "python-data-access-transaction-agent",
+        "python-distributed-task-reliability-agent"
+      ],
+      "skills": [
+        "python-maestro",
+        "python-async-concurrency-reliability",
+        "python-numerical-scientific-correctness",
+        "python-data-access-transaction",
+        "python-distributed-task-reliability"
+      ]
+    },
+    "python-application-engineer": {
+      "label": "Python Application Engineer",
+      "description": "Static review for Python application engineers routed through the Python maestro: type contracts and gradual typing, web-service production readiness (FastAPI/Django/Flask), database access and transactions, application-security defects, and test quality. Static review only — never runs, deploys, or contacts a live system.",
+      "agents": [
+        "python-maestro-agent",
+        "python-language-contracts-typing-agent",
+        "python-web-service-production-readiness-agent",
+        "python-data-access-transaction-agent",
+        "python-application-security-agent",
+        "python-testing-quality-engineering-agent"
+      ],
+      "skills": [
+        "python-maestro",
+        "python-language-contracts-typing",
+        "python-web-service-production-readiness",
+        "python-data-access-transaction",
+        "python-application-security",
+        "python-testing-quality-engineering"
+      ]
+    },
+    "python-platform-reliability-engineer": {
+      "label": "Python Platform Reliability Engineer",
+      "description": "Static review of Python runtime and platform reliability routed through the Python maestro: asyncio event-loop reliability, container/serverless runtime (PID 1, signals, shutdown), in-application observability, performance and memory, free-threaded adoption, and runtime-estate modernization. Static review only.",
+      "agents": [
+        "python-maestro-agent",
+        "python-async-concurrency-reliability-agent",
+        "python-container-serverless-runtime-agent",
+        "python-observability-sre-agent",
+        "python-performance-memory-agent",
+        "python-free-threading-parallelism-agent",
+        "python-estate-modernization-governor-agent"
+      ],
+      "skills": [
+        "python-maestro",
+        "python-async-concurrency-reliability",
+        "python-container-serverless-runtime",
+        "python-observability-sre",
+        "python-performance-memory",
+        "python-free-threading-parallelism",
+        "python-estate-modernization-governor"
+      ]
+    },
+    "python-data-engineer": {
+      "label": "Python Data Engineer",
+      "description": "Static review for Python data engineers routed through the Python maestro: data-pipeline reliability (idempotency, backfills, schema evolution), numerical/scientific correctness, database access and transactions, and distributed task reliability. Static review only.",
+      "agents": [
+        "python-maestro-agent",
+        "python-data-pipeline-reliability-agent",
+        "python-data-access-transaction-agent",
+        "python-numerical-scientific-correctness-agent",
+        "python-distributed-task-reliability-agent"
+      ],
+      "skills": [
+        "python-maestro",
+        "python-data-pipeline-reliability",
+        "python-data-access-transaction",
+        "python-numerical-scientific-correctness",
+        "python-distributed-task-reliability"
+      ]
+    },
+    "python-ml-engineer": {
+      "label": "Python ML Engineer",
+      "description": "Static review for Python ML engineers routed through the Python maestro: ML production correctness (training-serving skew, leakage, artifact safety, reproducibility), numerical correctness, data-pipeline reliability, and test quality. Static review only.",
+      "agents": [
+        "python-maestro-agent",
+        "python-ml-ai-production-agent",
+        "python-numerical-scientific-correctness-agent",
+        "python-data-pipeline-reliability-agent",
+        "python-testing-quality-engineering-agent"
+      ],
+      "skills": [
+        "python-maestro",
+        "python-ml-ai-production",
+        "python-numerical-scientific-correctness",
+        "python-data-pipeline-reliability",
+        "python-testing-quality-engineering"
+      ]
+    },
+    "python-library-maintainer": {
+      "label": "Python Library Maintainer",
+      "description": "Static review for Python library maintainers routed through the Python maestro: type contracts and public API stability, packaging and supply-chain integrity, native-extension interop and ABI, developer tooling efficacy, and test quality. Static review only.",
+      "agents": [
+        "python-maestro-agent",
+        "python-language-contracts-typing-agent",
+        "python-packaging-supply-chain-agent",
+        "python-native-extension-interop-agent",
+        "python-developer-tooling-build-agent",
+        "python-testing-quality-engineering-agent"
+      ],
+      "skills": [
+        "python-maestro",
+        "python-language-contracts-typing",
+        "python-packaging-supply-chain",
+        "python-native-extension-interop",
+        "python-developer-tooling-build",
+        "python-testing-quality-engineering"
+      ]
+    },
+    "python-automation-governance-lead": {
+      "label": "Python Automation Governance Lead",
+      "description": "Static review for governance of business-critical Python automation routed through the Python maestro: automation ownership and controls, distributed task reliability, data-pipeline reliability, and application security. Maps controls and exposure; makes no accounting/legal/regulatory conclusions. Static review only.",
+      "agents": [
+        "python-maestro-agent",
+        "python-business-critical-automation-governance-agent",
+        "python-distributed-task-reliability-agent",
+        "python-data-pipeline-reliability-agent",
+        "python-application-security-agent"
+      ],
+      "skills": [
+        "python-maestro",
+        "python-business-critical-automation-governance",
+        "python-distributed-task-reliability",
+        "python-data-pipeline-reliability",
+        "python-application-security"
+      ]
+    },
+    "python-engineering-leader": {
+      "label": "Python Engineering Leader",
+      "description": "Portfolio-level static review for Python engineering leaders routed through the Python maestro: runtime-estate modernization and upgrade sequencing, business-critical automation governance, developer-tooling and gate efficacy, and performance posture. Static review only.",
+      "agents": [
+        "python-maestro-agent",
+        "python-estate-modernization-governor-agent",
+        "python-business-critical-automation-governance-agent",
+        "python-developer-tooling-build-agent",
+        "python-performance-memory-agent"
+      ],
+      "skills": [
+        "python-maestro",
+        "python-estate-modernization-governor",
+        "python-business-critical-automation-governance",
+        "python-developer-tooling-build",
+        "python-performance-memory"
+      ]
+    },
+    "python-live-platform-operator": {
+      "label": "Python Live Platform Operator",
+      "description": "Live control-plane operations for platform reliability, routed through the live governance maestro: runtime inventory, read-only diagnostics, continuous control testing, bounded release control, and pre-approved rollback. Mutating operators are live-guard gated — never auto-dispatched; every R3+ action requires independent approval, JIT credentials, and audit evidence.",
+      "agents": [
+        "python-live-governance-maestro-agent",
+        "python-live-system-inventory-agent",
+        "python-live-runtime-control-agent",
+        "python-live-continuous-control-testing-agent",
+        "python-live-release-control-agent",
+        "python-live-rollback-and-recovery-agent"
+      ],
+      "skills": [
+        "python-live-governance-maestro",
+        "python-live-system-inventory",
+        "python-live-runtime-control",
+        "python-live-continuous-control-testing",
+        "python-live-release-control",
+        "python-live-rollback-and-recovery"
+      ]
+    },
+    "python-live-security-operator": {
+      "label": "Python Live Security Operator",
+      "description": "Live control-plane security operations routed through the live governance maestro: identity and authority verification, bounded dependency remediation (branch/PR), policy-gate evaluation, control-evidence collection, and continuous control testing. Read-only by default; the one mutating operator (code remediation) is live-guard gated and cannot merge or deploy.",
+      "agents": [
+        "python-live-governance-maestro-agent",
+        "python-live-identity-authority-agent",
+        "python-live-code-remediation-agent",
+        "python-live-policy-gate-agent",
+        "python-live-control-evidence-agent",
+        "python-live-continuous-control-testing-agent"
+      ],
+      "skills": [
+        "python-live-governance-maestro",
+        "python-live-identity-authority",
+        "python-live-code-remediation",
+        "python-live-policy-gate",
+        "python-live-control-evidence",
+        "python-live-continuous-control-testing"
+      ]
+    },
+    "python-live-data-operator": {
+      "label": "Python Live Data Operator",
+      "description": "Live control-plane data operations routed through the live governance maestro: governed database change, pipeline backfill/reprocessing, distributed job control with technical and business idempotency, and change planning with reconciliation and rollback. Mutating operators are live-guard gated; no unbounded or ad-hoc production data mutation.",
+      "agents": [
+        "python-live-governance-maestro-agent",
+        "python-live-data-change-control-agent",
+        "python-live-job-control-agent",
+        "python-live-change-plan-agent"
+      ],
+      "skills": [
+        "python-live-governance-maestro",
+        "python-live-data-change-control",
+        "python-live-job-control",
+        "python-live-change-plan"
+      ]
+    },
+    "python-live-ml-governance-operator": {
+      "label": "Python Live ML Governance Operator",
+      "description": "Live control-plane ML governance routed through the live governance maestro: immutable model-artifact promotion with risk classification and evaluation evidence, control-evidence collection, policy-gate AI-risk checks, and rollback. Makes no EU AI Act conformity or compliance determination — those are owner determinations.",
+      "agents": [
+        "python-live-governance-maestro-agent",
+        "python-live-model-promotion-control-agent",
+        "python-live-control-evidence-agent",
+        "python-live-policy-gate-agent",
+        "python-live-rollback-and-recovery-agent"
+      ],
+      "skills": [
+        "python-live-governance-maestro",
+        "python-live-model-promotion-control",
+        "python-live-control-evidence",
+        "python-live-policy-gate",
+        "python-live-rollback-and-recovery"
+      ]
+    },
+    "python-live-automation-control-owner": {
+      "label": "Python Live Automation Control Owner",
+      "description": "Live control-plane governance of business-critical automation routed through the live governance maestro: job control, identity/approval authority, control-evidence, and exception governance. Separates permission from authority and execution from approval; records time-boxed exceptions with owners and expiry.",
+      "agents": [
+        "python-live-governance-maestro-agent",
+        "python-live-job-control-agent",
+        "python-live-identity-authority-agent",
+        "python-live-control-evidence-agent",
+        "python-live-exception-governance-agent"
+      ],
+      "skills": [
+        "python-live-governance-maestro",
+        "python-live-job-control",
+        "python-live-identity-authority",
+        "python-live-control-evidence",
+        "python-live-exception-governance"
+      ]
+    },
+    "python-live-audit-and-compliance-reviewer": {
+      "label": "Python Live Audit and Compliance Reviewer",
+      "description": "Read-only live control-plane audit and compliance review routed through the live governance maestro: control-evidence collection, policy-gate control mapping, continuous control testing, and exception review. Contains NO mutating agents — reviews and tests controls, never executes changes, and never declares compliance.",
+      "agents": [
+        "python-live-governance-maestro-agent",
+        "python-live-control-evidence-agent",
+        "python-live-policy-gate-agent",
+        "python-live-continuous-control-testing-agent",
+        "python-live-exception-governance-agent"
+      ],
+      "skills": [
+        "python-live-governance-maestro",
+        "python-live-control-evidence",
+        "python-live-policy-gate",
+        "python-live-continuous-control-testing",
+        "python-live-exception-governance"
       ]
     },
     "typescript-application-review-engineer": {
@@ -2365,6 +2349,154 @@
         "typescript-static-enforcement-policy",
         "typescript-estate-modernization-governor",
         "typescript-engineering-economics"
+      ]
+    },
+    "typescript-agentic-contract-engineer": {
+      "label": "TypeScript Agentic Contract Engineer",
+      "description": "Static review of TypeScript agent and automation contracts: MCP tool schema fidelity against handler behavior, protocol version and error contracts, validation at every point external data enters the program, and governance of privileged automation. Static review only — never executes a tool, a script, or a migration.",
+      "agents": [
+        "typescript-maestro-agent",
+        "typescript-mcp-tool-contract-agent",
+        "typescript-runtime-boundary-contract-agent",
+        "typescript-business-critical-automation-governance-agent"
+      ],
+      "skills": [
+        "typescript-maestro",
+        "typescript-mcp-tool-contract",
+        "typescript-runtime-boundary-contract",
+        "typescript-business-critical-automation-governance"
+      ]
+    },
+    "snowflake-platform-architect": {
+      "label": "Snowflake Platform Architect",
+      "description": "End-to-end Snowflake architecture and operability: account and organization topology, workload placement and isolation, edition/cloud/region constraints, interoperability and catalog choice, the running estate's parameters, ownership and drift, and migration or coexistence with an existing data platform. Static review only — proposes structure and operating procedure, never applies a change to an account.",
+      "agents": [
+        "snowflake-maestro-agent",
+        "snowflake-solution-architect-agent",
+        "snowflake-platform-administrator-agent",
+        "snowflake-migration-modernization-agent",
+        "snowflake-business-value-adoption-strategist-agent"
+      ],
+      "skills": [
+        "snowflake-maestro",
+        "snowflake-solution-architect",
+        "snowflake-platform-administrator",
+        "snowflake-migration-modernization",
+        "snowflake-business-value-adoption-strategist"
+      ]
+    },
+    "snowflake-security-governance-engineer": {
+      "label": "Snowflake Security and Governance Engineer",
+      "description": "Snowflake identity, reachability, data protection, and audit evidence: effective access across role hierarchy, ownership and future grants; authentication policies, MFA, federation, SERVICE and SERVICE_AGENT identities; network policies and private connectivity with lockout prevention; masking, row-access, classification and lineage; and independent evidence that a control operated across an audit period. Static review plus three approval-gated live guards, each owning exactly one mutation: a single grant or revoke, a single auth or network policy change, and a single masking or row-access policy attach, detach, or replace.",
+      "agents": [
+        "snowflake-maestro-agent",
+        "snowflake-identity-access-security-agent",
+        "snowflake-network-private-connectivity-agent",
+        "snowflake-governance-privacy-agent",
+        "snowflake-compliance-evidence-auditor-agent",
+        "snowflake-live-rbac-grant-guard-agent",
+        "snowflake-live-auth-network-policy-guard-agent",
+        "snowflake-live-data-protection-policy-guard-agent"
+      ],
+      "skills": [
+        "snowflake-maestro",
+        "snowflake-identity-access-security",
+        "snowflake-network-private-connectivity",
+        "snowflake-governance-privacy",
+        "snowflake-compliance-evidence-auditor",
+        "snowflake-live-rbac-grant-guard",
+        "snowflake-live-auth-network-policy-guard",
+        "snowflake-live-data-protection-policy-guard"
+      ]
+    },
+    "snowflake-finops-performance-engineer": {
+      "label": "Snowflake FinOps and Performance Engineer",
+      "description": "Snowflake unit economics and query performance as one accountable pair: warehouse, serverless, AI and storage spend, budgets versus resource monitors, query and tag attribution, idle compute and anomaly investigation, alongside Query Profile diagnosis, pruning, spilling, queueing, clustering and acceleration economics. Static review plus one approval-gated live guard for a single warehouse or cost-governance change.",
+      "agents": [
+        "snowflake-maestro-agent",
+        "snowflake-finops-cost-governor-agent",
+        "snowflake-query-performance-engineer-agent",
+        "snowflake-business-value-adoption-strategist-agent",
+        "snowflake-live-warehouse-cost-change-guard-agent"
+      ],
+      "skills": [
+        "snowflake-maestro",
+        "snowflake-finops-cost-governor",
+        "snowflake-query-performance-engineer",
+        "snowflake-business-value-adoption-strategist",
+        "snowflake-live-warehouse-cost-change-guard"
+      ]
+    },
+    "snowflake-data-engineer": {
+      "label": "Snowflake Data Engineer",
+      "description": "Snowflake pipeline and ingestion correctness rather than job completion: batch and ELT loading, Streams, Tasks, Dynamic Tables and achieved target lag, Snowpark transformations, idempotency and reconciliation, plus Snowpipe and Snowpipe Streaming architecture, channel and offset semantics, connector migration, and silent-loss detection. Static review plus one approval-gated live guard for a single pipeline or ingestion change.",
+      "agents": [
+        "snowflake-maestro-agent",
+        "snowflake-data-engineering-pipelines-agent",
+        "snowflake-streaming-ingestion-reliability-agent",
+        "snowflake-analytics-semantic-data-product-agent",
+        "snowflake-live-pipeline-streaming-change-guard-agent"
+      ],
+      "skills": [
+        "snowflake-maestro",
+        "snowflake-data-engineering-pipelines",
+        "snowflake-streaming-ingestion-reliability",
+        "snowflake-analytics-semantic-data-product",
+        "snowflake-live-pipeline-streaming-change-guard"
+      ]
+    },
+    "snowflake-ai-analytics-engineer": {
+      "label": "Snowflake AI and Analytics Engineer",
+      "description": "Snowflake analytical semantics, ML lifecycle governance, and the AI trust boundary: metric and KPI contracts, semantic views and the Cortex Analyst boundary, Snowpark ML reproducibility and drift, and the security review of Cortex Agents, tools, MCP connectors, retrieval corpora, prompt injection, exfiltration paths and AI cost per successful task. Static review only.",
+      "agents": [
+        "snowflake-maestro-agent",
+        "snowflake-analytics-semantic-data-product-agent",
+        "snowflake-data-science-ml-agent",
+        "snowflake-cortex-ai-agent-security-governor-agent",
+        "snowflake-governance-privacy-agent"
+      ],
+      "skills": [
+        "snowflake-maestro",
+        "snowflake-analytics-semantic-data-product",
+        "snowflake-data-science-ml",
+        "snowflake-cortex-ai-agent-security-governor",
+        "snowflake-governance-privacy"
+      ]
+    },
+    "snowflake-delivery-resilience-engineer": {
+      "label": "Snowflake Delivery and Resilience Engineer",
+      "description": "How Snowflake changes ship and how the estate recovers: the official Terraform provider and its stable-versus-preview split, provider upgrades, plan review, CI/CD and environment promotion, drift and behaviour-change bundles, alongside replication and failover groups, Client Redirect, RPO/RTO tracked as requested/feasible/proven, dependency readiness and failback. Static review plus the approval-gated failover promotion guard, which is never auto-dispatched.",
+      "agents": [
+        "snowflake-maestro-agent",
+        "snowflake-devops-iac-release-agent",
+        "snowflake-bcdr-resilience-agent",
+        "snowflake-platform-administrator-agent",
+        "snowflake-live-failover-promotion-guard-agent"
+      ],
+      "skills": [
+        "snowflake-maestro",
+        "snowflake-devops-iac-release",
+        "snowflake-bcdr-resilience",
+        "snowflake-platform-administrator",
+        "snowflake-live-failover-promotion-guard"
+      ]
+    },
+    "snowflake-data-product-manager": {
+      "label": "Snowflake Data Product Manager",
+      "description": "Snowflake engineering as a sellable, supportable product: Native App architecture, application roles and requested privileges, the provider/consumer trust boundary, security-review readiness, listing and publication requirements, pricing and monetization architecture, version and patch lifecycle, supportability economics, and whether the initiative removes a business constraint anyone owns. Static review only.",
+      "agents": [
+        "snowflake-maestro-agent",
+        "snowflake-native-app-marketplace-product-agent",
+        "snowflake-business-value-adoption-strategist-agent",
+        "snowflake-analytics-semantic-data-product-agent",
+        "snowflake-governance-privacy-agent"
+      ],
+      "skills": [
+        "snowflake-maestro",
+        "snowflake-native-app-marketplace-product",
+        "snowflake-business-value-adoption-strategist",
+        "snowflake-analytics-semantic-data-product",
+        "snowflake-governance-privacy"
       ]
     }
   }
