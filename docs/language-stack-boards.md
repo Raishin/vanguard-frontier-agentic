@@ -714,6 +714,61 @@ mutation surface has two owners; they remain installable via the legacy
 
 ---
 
+### Databricks
+
+The `databricks` board is static-review throughout. It pairs a router with review
+specialists covering the lakehouse surface — platform architecture, Unity Catalog
+governance, identity and network security, data protection, Lakeflow pipelines, streaming,
+data quality, SQL performance, AI/BI Genie, MLOps, GenAI engineering and evaluation,
+developer platform, reliability, cost, and value realization. No agent on it carries an
+execution tool: mutation is reachable only through the pre-existing Unity Catalog grant
+guard, which is never auto-dispatched.
+
+Unlike `snowflake`, this board's Azure-scoped agents are **not** deprecated. The three
+`*-at-azure` assets are actively maintained and coexist with the cloud-neutral board,
+owning the deployment detail it deliberately does not duplicate — Entra ID federation,
+ADLS Gen2 wiring via Access Connector managed identity, and VNet-level isolation. Because
+they are live rather than retired, they are counted in every figure below; the board is
+described by what the catalog can derive, not by a hand-typed cloud-neutral subtotal.
+
+| Property | Value |
+|----------|-------|
+| `provider` | `databricks` |
+| ID prefix | `databricks-*` |
+| Agent directory | `agents/databricks/` |
+| Skill directory | `skills/databricks/` |
+| Agents | <!-- count:board:databricks:agents -->20<!-- /count --> (<!-- count:board:databricks:router -->1<!-- /count --> router + <!-- count:board:databricks:review -->18<!-- /count --> review specialists + <!-- count:board:databricks:guards -->1<!-- /count --> live guard) |
+| Skills | <!-- count:board:databricks:skills -->20<!-- /count --> (1:1 companion skill per agent) |
+| Install roles | `databricks-platform-engineer`, `databricks-solution-architect`, `databricks-data-engineer`, `databricks-analytics-engineer`, `databricks-governance-security-engineer`, `databricks-ml-engineer`, `databricks-genai-engineer`, `databricks-sre`, `databricks-finops-engineer` |
+| Execution tier | `static-review` (<!-- count:board:databricks:static -->19<!-- /count --> agents — router + specialists) / `mutating-runtime` (the <!-- count:board:databricks:guards -->1<!-- /count --> Unity Catalog grant guard) |
+
+**Example agents**
+
+| Agent | Scope |
+|-------|-------|
+| `databricks-maestro-agent` | Router; classifies on seven axes (intent, business context, artifact type, blast radius, required evidence, implied runtime authority, specialist ownership) and dispatches a single specialist or at most four in parallel. Never answers a Databricks question and never dispatches the live guard |
+| `databricks-unity-catalog-governance-agent` | Three-level namespace, GRANT inheritance and privilege cascades, single-owner-per-securable design, workspace-catalog binding in ISOLATED mode, governed tags, storage credentials, audit completeness |
+| `databricks-data-protection-privacy-agent` | Row filters and column masks with their UDF cost implications, ABAC policies, classification, DELETE/MERGE/VACUUM/REORG coordination for GDPR erasure, Delta Sharing egress, residency, customer-managed keys |
+| `databricks-lakeflow-pipeline-engineering-agent` | Lakeflow Spark Declarative Pipelines, medallion layering, liquid clustering, Auto Loader ingestion |
+| `databricks-genai-evaluation-observability-agent` | MLflow Tracing, built-in judges, and regression detection — separated from agent authoring so evaluation is not graded by the same agent that built the thing |
+| `databricks-value-realization-agent` | The economic counterweight. Refuses to state a number without a measured baseline, and names attribution limits and kill conditions rather than asserting ROI |
+
+**Live guard**
+
+| Live guard | Allowed mutation | Maximum scope |
+|-------|-------|-------|
+| `databricks-live-unity-catalog-grant-guard-at-azure-agent` | one GRANT or REVOKE | one securable · one principal · one privilege |
+
+The guard requires a written approval token and a dry-run preflight, captures prior state,
+and names its `REVOKE`/`GRANT` rollback before executing. It is reachable only in
+`live-guard-gate` mode; the routing grader asserts it is never auto-dispatched.
+
+Routing, the live-guard gate, and negative routing are covered by the scenarios in
+`tests/fixtures/databricks-maestro-routing/`. The board is documented in full at
+[The Databricks Board](databricks-board/).
+
+---
+
 ## How to use language/stack boards
 
 ### Discovery via install roles

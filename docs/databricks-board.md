@@ -1,6 +1,6 @@
 # The Databricks Board
 
-> **Status:** Cloud-neutral board covering 17 static-review agents across data engineering, analytics, AI/ML, platform governance, and reliability. All agents carry `execution_tier: static-review` and no execution tools. Mutation is reachable only through a pre-existing live guard (`databricks-live-unity-catalog-grant-guard-at-azure-agent`) for Unity Catalog grants, which is never auto-dispatched. Lifecycle: experimental.
+> **Status:** Cloud-neutral board across data engineering, analytics, AI/ML, platform governance, and reliability. The `databricks` provider holds <!-- count:board:databricks:agents -->20<!-- /count --> agents in total — <!-- count:board:databricks:router -->1<!-- /count --> router, <!-- count:board:databricks:review -->18<!-- /count --> review specialists, and <!-- count:board:databricks:guards -->1<!-- /count --> live guard — of which <!-- count:board:databricks:static -->19<!-- /count --> carry `execution_tier: static-review` and declare no execution tools. Mutation is reachable only through a pre-existing live guard (`databricks-live-unity-catalog-grant-guard-at-azure-agent`) for Unity Catalog grants, which is never auto-dispatched. Lifecycle: experimental.
 
 ---
 
@@ -22,7 +22,7 @@ Three design principles guide the board:
 
 ## Cloud-neutral vs Azure-specific
 
-The Databricks ecosystem has two agent sets: this cloud-neutral board (17 agents) and three hand-authored Azure-specific agents that predate it.
+The Databricks ecosystem has two agent sets: this cloud-neutral board and the hand-authored Azure-specific `*-at-azure` agents that predate it, named individually below. Unlike the Snowflake board's Azure predecessors, these are **not** deprecated — they are actively maintained and counted in every figure on this page.
 
 **Cloud-neutral agents** (this board):
 - Own platform design, governance, data engineering, analytics, and operations on Databricks, independent of cloud.
@@ -107,7 +107,7 @@ Every agent on this board is T0. Any task implying authority above T0 leaves the
 
 ## Role bundles
 
-Each role curates a subset of the 17 agents suited to a specific practitioner function. Roles are not "install the whole board" — they are designed for a focused career path.
+Each role curates a subset of the board's agents suited to a specific practitioner function. Roles are not "install the whole board" — they are designed for a focused career path.
 
 | Role ID | Label | Agents | Focus |
 |---|---|---|---|
@@ -125,7 +125,7 @@ Each role curates a subset of the 17 agents suited to a specific practitioner fu
 
 ## Safety posture
 
-All 17 agents carry `execution_tier: static-review` and declare no execution tools. This is enforced by `tests/validate-agent-tool-tiers.py`: any agent in the Databricks board attempting to declare a mutation tool, SQL execution capability, or API invocation is rejected at validation time.
+All <!-- count:board:databricks:static -->19<!-- /count --> static-review agents declare no execution tools. This is enforced by `tests/validate-agent-tool-tiers.py`: any agent in the Databricks board attempting to declare a mutation tool, SQL execution capability, or API invocation is rejected at validation time.
 
 Mutation is reachable only through a pre-existing live guard:
 
@@ -155,7 +155,7 @@ Every claim in this board is grounded in one of four sources, listed in order of
 
 4. **API library documentation** — MLflow client library, Databricks SDK, and Terraform provider documentation were cross-checked against official Databricks service docs when there was potential divergence between feature descriptions (service docs) and call signatures (library docs). MLflow client API signatures were additionally verified via Context7 because library docs are the authoritative source for SDK behaviour and service docs sometimes describe the feature at a higher level.
 
-All 17 agents carry a documented security_notes field stating that they never request credentials, customer data, or workspace URLs; never execute SQL or API calls; and never access live systems. Every agent defaults to static review and escalates any mutation request to the live-guard gate or to the appropriate specialist.
+Every agent on this board carries a documented security_notes field stating that they never request credentials, customer data, or workspace URLs; never execute SQL or API calls; and never access live systems. Every agent defaults to static review and escalates any mutation request to the live-guard gate or to the appropriate specialist.
 
 ---
 
@@ -175,7 +175,7 @@ npm run validate
 
 **Step-by-step:**
 
-1. **`python3 scripts/gen_databricks_agents.py`** — Regenerates agent metadata files from the 17 data files in `scripts/databricks_data/agents/`. Never touches the three pre-existing Azure agents.
+1. **`python3 scripts/gen_databricks_agents.py`** — Regenerates agent metadata files from the per-agent data files in `scripts/databricks_data/agents/`. Never touches the three pre-existing Azure agents.
 
 2. **`python3 scripts/update-catalog-new-agents.py --provider databricks`** — Adds newly generated agents to `catalog/agents.json`, updating the full catalog metadata.
 

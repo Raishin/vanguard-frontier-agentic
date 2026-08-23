@@ -72,9 +72,15 @@ const TARGETS = [
   "docs/language-stack-boards.md",
   "docs/configuration.md",
   "docs/marketplace-model.md",
+  "docs/databricks-board.md",
   "tests/fixtures/README.md",
   "index.md",
 ];
+
+// README.md is deliberately NOT a target. `manifest:write:all` runs this generator and
+// generate-readme-counts.mjs concurrently (`&` … `wait`), so two writers on one file would
+// race. README keeps a single owner; its per-provider figures use that generator's own
+// `count:provider:<slug>` namespace, which this generator's marker regex cannot match.
 
 // ---------------------------------------------------------------------------
 // Collect stats from the repository
