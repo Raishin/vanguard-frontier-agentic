@@ -63,14 +63,21 @@ LIVE_GUARD_RE = re.compile(r"(^|-)(live-|.+-guard|.+-destruction)", re.IGNORECAS
 # taxonomy, so a date cannot re-enter through a hand edit either.
 DATE_SHAPED = re.compile(r"^\d{4}(-\d{2}){0,2}$")
 
+# The destructive/promotion-intent regex every provider shares unless overridden.
+# Named so a provider extending it (see `databricks` below) composes rather than
+# copies — a copy would silently stop tracking changes to the shared baseline.
+GATE_INTENT_DEFAULT = (
+    r"(destroy|delete|terminate|rollout to prod|rollout to production|approve.*production|"
+    r"promote.*to (?:prod|production)|key destruction|policy change in prod|"
+    r"mutate (?:rbac|iam|policy)|change-set.*apply|live (?:apply|push|deploy)|"
+    r"force[- ]push.*main|drop\s+(?:table|database)|swap\s+production\s+slot)"
+)
+
 # Provider-specific live-guard intent regex (used by the generic grader).
 GATE_INTENT = {
     # All providers share a common destructive/promotion-intent regex unless
     # overridden. The grader matches case-insensitively.
-    "default": r"(destroy|delete|terminate|rollout to prod|rollout to production|approve.*production|"
-               r"promote.*to (?:prod|production)|key destruction|policy change in prod|"
-               r"mutate (?:rbac|iam|policy)|change-set.*apply|live (?:apply|push|deploy)|"
-               r"force[- ]push.*main|drop\s+(?:table|database)|swap\s+production\s+slot)",
+    "default": GATE_INTENT_DEFAULT,
     # TypeScript opts out of the gate entirely (`None` omits the key, matching
     # hr/legal/netsuite, whose taxonomies carry no `live_guard_intent` either).
     # The gate exists to stop a router auto-dispatching to a *live-mutating*
@@ -85,6 +92,31 @@ GATE_INTENT = {
     # specialist that holds no execution tool and refuses by contract — one
     # extra hop to the right answer. Precision wins on this board.
     "typescript": None,
+    # Databricks extends the default with Unity Catalog privilege mutation. The
+    # board registers a live guard whose entire purpose is a single GRANT or
+    # REVOKE, and the shared default matches none of that vocabulary — so
+    # "Grant SELECT on the production catalog to the analysts group" scored as an
+    # ordinary governance question and routed to a static specialist, leaving the
+    # guard unreachable through the one operation it exists to gate.
+    #
+    # The addition keys on actual privilege names rather than the bare words
+    # `grant`/`revoke`, because this board's static specialists exist to review
+    # the privilege *model*: "Review our Unity Catalog GRANT privilege model"
+    # must keep routing to the governance specialist, while "GRANT SELECT ON ..."
+    # must hit the gate. Requiring a named privilege after the verb separates the
+    # two without a lookbehind.
+    "databricks": (
+        GATE_INTENT_DEFAULT[:-1]
+        + r"|\b(?:grant|revoke)\s+(?:all\s+privileges|select|modify|usage|"
+        r"use\s+(?:catalog|schema)|create\s+\w+|execute|read\s+volume|write\s+volume|"
+        # `ownership`/`owner` are deliberately absent: they are not GRANTable
+        # privileges, so "grant ownership" only ever appears as a noun phrase in a
+        # governance *design* question. Ownership transfer has real syntax
+        # (`ALTER ... OWNER TO`) and is matched by its own branch below.
+        r"manage)\b"
+        + r"|\balter\s+(?:[\w.`]+\s+){1,3}owner\s+to\b"
+        + r"|\bmake\s+\S+\s+(?:a\s+)?(?:metastore|account|workspace)\s+admin\b)"
+    ),
     # Terraform narrows the gate instead of dropping it. The default regex fires
     # on the bare words `destroy` and `delete`, which are this board's own subject
     # matter: `terraform-plan-blast-radius-agent` exists precisely to review the

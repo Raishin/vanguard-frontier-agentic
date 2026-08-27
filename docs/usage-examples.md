@@ -270,6 +270,36 @@ npx vfa-export-agents --platform claude-code --role microsoft-collaboration-endp
 npx vfa-export-agents --platform claude-code --role microsoft-data-analytics-engineer --repo .
 ```
 
+### Databricks board roles
+
+The cloud-neutral Databricks board ships nine curated roles. Each installs five
+to six agents, not the whole board — pick the one whose decisions you actually
+own. See [The Databricks Board](../databricks-board/) for the full contract.
+
+```bash
+# Platform: account/workspace topology, identity boundary, bundles, reliability, cost
+npx vfa-export-agents --platform claude-code --role databricks-platform-engineer --repo .
+
+# Governance & security: Unity Catalog privileges, identity, masking, residency
+npx vfa-export-agents --platform claude-code --role databricks-governance-security-engineer --repo .
+
+# Data engineering: Lakeflow pipelines, streaming recovery, data quality
+npx vfa-export-agents --platform claude-code --role databricks-data-engineer --repo .
+
+# Analytics: SQL warehouse performance, AI/BI Genie, metric views
+npx vfa-export-agents --platform claude-code --role databricks-analytics-engineer --repo .
+
+# GenAI: agent framework, Databricks AI Search retrieval, MLflow evaluation
+npx vfa-export-agents --platform claude-code --role databricks-genai-engineer --repo .
+
+# FinOps: billing system tables, tag attribution, budgets, value realization
+npx vfa-export-agents --platform claude-code --role databricks-finops-engineer --repo .
+```
+
+Also available: `databricks-solution-architect`, `databricks-ml-engineer`, and
+`databricks-sre`. The older `azure-databricks-platform-engineer` role remains for
+the Azure-specific `-at-azure` agents.
+
 ### When a request leaves the Microsoft estate
 
 The Microsoft maestro **deflects** rather than guesses. "Review my S3 bucket

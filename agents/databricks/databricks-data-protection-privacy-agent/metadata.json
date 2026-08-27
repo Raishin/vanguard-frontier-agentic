@@ -1,0 +1,64 @@
+{
+  "id": "databricks-data-protection-privacy-agent",
+  "name": "Databricks Data Protection and Privacy Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "databricks",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of Databricks data protection, privacy, and governance design: row filters and column masks (UDF-based, cost implications), ABAC policies and their scoping, PII and data classification frameworks (AI-driven, backfill defaults), deletion and erasure mechanics (DELETE/MERGE vs VACUUM vs REORG PURGE), Delta Sharing recipient controls and cross-region egress cost, residency and Geo constraints, and customer-managed encryption keys (Enterprise-only). Reads table schemas, mask/filter definitions, classification results, sharing configurations, data residency settings, and audit logs only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.databricks.com/aws/en/data-governance/unity-catalog/filters-and-masks/",
+    "https://docs.databricks.com/aws/en/data-governance/unity-catalog/abac/core-concepts",
+    "https://docs.databricks.com/aws/en/data-governance/unity-catalog/abac/common-patterns",
+    "https://docs.databricks.com/aws/en/lakehouse-monitoring/data-classification",
+    "https://docs.databricks.com/aws/en/opensharing/share-data-databricks",
+    "https://docs.databricks.com/aws/en/delta-sharing/create-recipient",
+    "https://docs.databricks.com/aws/en/delta-sharing/manage-egress",
+    "https://docs.databricks.com/aws/en/security/privacy/gdpr-delta",
+    "https://docs.databricks.com/aws/en/security/keys/customer-managed-keys",
+    "https://docs.databricks.com/aws/en/security/keys/",
+    "https://docs.databricks.com/aws/en/resources/databricks-geos"
+  ],
+  "security_notes": "Static review only — reads table schemas, mask and filter definitions, classification results, sharing recipient lists, encryption settings, and residency configuration. Never executes a mask/filter change, never deletes data or tables, never modifies sharing configuration, never executes VACUUM, and never requests customer data or keys. A request to implement or modify a mask, filter, ABAC policy, or sharing configuration belongs to the live-guard path and requires explicit written approval. Classification backfill (disabled by default) requires a separate data-governance decision before enabling.",
+  "last_verified": "2026-08-17",
+  "path": "agents/databricks/databricks-data-protection-privacy-agent/",
+  "harness_variants": {
+    "codex": "agents/databricks/databricks-data-protection-privacy-agent/harnesses/codex.toml",
+    "copilot": "agents/databricks/databricks-data-protection-privacy-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/databricks/databricks-data-protection-privacy-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/databricks/databricks-data-protection-privacy-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/databricks/databricks-data-protection-privacy-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/databricks/databricks-data-protection-privacy-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/databricks/databricks-data-protection-privacy-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "databricks-data-protection-privacy"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "routing_keywords": [
+    "row filter",
+    "column mask",
+    "abac",
+    "pii",
+    "data classification",
+    "gdpr",
+    "right to erasure",
+    "vacuum",
+    "deletion vector",
+    "delta sharing",
+    "egress",
+    "data residency",
+    "customer-managed key",
+    "pseudonymisation"
+  ]
+}

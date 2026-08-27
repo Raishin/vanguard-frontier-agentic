@@ -463,6 +463,12 @@ changed. If a command fails, report the RAW error and stop rather than continuin
 
 HARD CONSTRAINTS:
 - Run ONLY the commands listed above.
+- NEVER run \`npm run maestro-routing:write\`, even if it appears in the list above or
+  looks relevant. Its main() loops every provider that owns a *-maestro skill, and
+  write_provider() unlinks every file under that provider's inputs/ and expected/
+  before rebuilding — so a single-provider change silently deletes other providers'
+  hand-curated fixtures. If a routing fixture genuinely needs regenerating, report
+  that it is required and stop; the orchestrator runs it under a scoped restore.
 - Do NOT hand-edit any generated file; if output looks wrong, report it.
 - Do NOT run the gate suite and do NOT commit anything.`,
     { label: 'regenerate', phase: 'Regenerate', model: 'haiku', effort: 'low' },
@@ -513,8 +519,11 @@ log(
 // ---------------------------------------------------------------- 6. gate
 //
 // Doctrine template (c): Haiku runs the suite and reports RAW failure output.
-// asset-integrity:write runs LAST and only when everything else is green — the
-// manifest must hash a settled tree (CLAUDE.md ordering caveat).
+// Order is generators -> asset-integrity:write -> validate, per CLAUDE.md's Definition
+// of done. The refresh must come BEFORE validate, not after: validate includes
+// validate:asset-integrity, so gating the refresh on a green validate is unsatisfiable
+// for any change touching a hashed path. It still runs after the generators so it
+// hashes a settled tree (the CLAUDE.md ordering caveat).
 
 phase('Gate')
 

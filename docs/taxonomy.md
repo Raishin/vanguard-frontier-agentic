@@ -58,8 +58,9 @@ non-cloud **topical and language/stack boards**: `frontend`, `marketing`, `dotne
 enum value, a shared ID prefix (`dotnet-*`, `hr-*`, `legal-*`, `salesforce-*`,
 `netsuite-*`, `sap-*`, `microsoft-*`, `databricks-*`, `snowflake-*`, etc.),
 and a dedicated topical directory under `agents/` and `skills/`. `microsoft`
-covers the Microsoft 365 and Dynamics 365 estate; `databricks` and `snowflake`
-cover data and analytics platforms on Azure.
+covers the Microsoft 365 and Dynamics 365 estate; `databricks` ships a
+cloud-neutral lakehouse and AI board alongside three Azure-specific `-at-azure`
+assets, and `snowflake` covers the Snowflake data platform on Azure.
 
 A topical board earns its own `provider` value once it ships a coherent
 agent/skill set; until then a board uses `provider: generic` (the `qa` board

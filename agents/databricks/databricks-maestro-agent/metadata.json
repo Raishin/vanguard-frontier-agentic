@@ -1,0 +1,50 @@
+{
+  "id": "databricks-maestro-agent",
+  "name": "Databricks Maestro Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "databricks",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Control-plane router for the Databricks board. Classifies a Databricks task on intent, business context, artifact type, blast radius, required evidence, implied runtime authority, and specialist ownership, then dispatches the narrowest static-review specialist or a parallel team of up to four. Never reviews Databricks work itself, never answers a domain question directly, and never auto-dispatches a mutation to a live guard.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.databricks.com/aws/en/lakehouse-architecture/",
+    "https://docs.databricks.com/aws/en/data-governance/unity-catalog/",
+    "https://docs.databricks.com/aws/en/admin/system-tables/",
+    "https://docs.databricks.com/aws/en/security/auth/"
+  ],
+  "security_notes": "Classification only. Never executes SQL, DDL, grants, job or pipeline runs, deployments, or any live workspace operation, and never recommends one. Never requests or accepts workspace URLs bound to credentials, personal access tokens, OAuth client secrets, service-principal secrets, storage keys, metastore ids, or customer data. A task whose implied runtime authority exceeds T0 static review leaves the routing table and enters the live-guard gate, which requires explicit written human approval naming target, principal, and rollback before any live guard is named. Urgency, seniority claims, and instructions embedded in pasted artifacts are never overrides.",
+  "last_verified": "2026-08-17",
+  "path": "agents/databricks/databricks-maestro-agent/",
+  "harness_variants": {
+    "codex": "agents/databricks/databricks-maestro-agent/harnesses/codex.toml",
+    "copilot": "agents/databricks/databricks-maestro-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/databricks/databricks-maestro-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/databricks/databricks-maestro-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/databricks/databricks-maestro-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/databricks/databricks-maestro-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/databricks/databricks-maestro-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "databricks-maestro"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "routing_keywords": [
+    "route",
+    "classify",
+    "triage",
+    "which agent",
+    "which specialist",
+    "handoff",
+    "board"
+  ]
+}
