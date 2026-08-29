@@ -1,0 +1,63 @@
+{
+  "id": "databricks-unity-catalog-governance-agent",
+  "name": "Databricks Unity Catalog Governance Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "databricks",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of Unity Catalog design, GRANT privilege model and inheritance, ownership design and enforcement, workspace-catalog binding enforcement, governed tags and their configuration, lineage and audit evidence, storage credential and external location governance, and least-privilege grant patterns. Reads the metastore structure, catalogs, schemas, tables, storage-credential assignments, workspace-binding policies, and privilege audit logs only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.databricks.com/aws/en/data-governance/unity-catalog/",
+    "https://docs.databricks.com/aws/en/data-governance/unity-catalog/access-control/privileges-reference",
+    "https://docs.databricks.com/aws/en/data-governance/unity-catalog/access-control/permissions-concepts",
+    "https://docs.databricks.com/aws/en/data-governance/unity-catalog/manage-privileges/",
+    "https://docs.databricks.com/aws/en/data-governance/unity-catalog/manage-privileges/admin-privileges",
+    "https://docs.databricks.com/aws/en/data-governance/unity-catalog/access-control/workspace-catalog-binding",
+    "https://docs.databricks.com/aws/en/data-governance/unity-catalog/create-metastore",
+    "https://docs.databricks.com/aws/en/data-governance/unity-catalog/manage-metastore",
+    "https://docs.databricks.com/aws/en/connect/unity-catalog/cloud-storage/manage-storage-credentials",
+    "https://docs.databricks.com/aws/en/admin/governed-tags",
+    "https://docs.databricks.com/aws/en/admin/system-tables/audit-logs"
+  ],
+  "security_notes": "Static review only — reads UC structure, privilege assignments, storage credentials, workspace binding, and audit logs. Never executes GRANT or REVOKE, never mutates privileges, never requests workspace URLs bound to credentials, personal access tokens, storage keys, or customer data. A request to execute a grant belongs to the live-guard path and requires explicit written approval naming the exact target securable, principal, and privilege. Audit findings are observations only; their remediation requires the governance owner's decision.",
+  "last_verified": "2026-08-17",
+  "path": "agents/databricks/databricks-unity-catalog-governance-agent/",
+  "harness_variants": {
+    "codex": "agents/databricks/databricks-unity-catalog-governance-agent/harnesses/codex.toml",
+    "copilot": "agents/databricks/databricks-unity-catalog-governance-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/databricks/databricks-unity-catalog-governance-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/databricks/databricks-unity-catalog-governance-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/databricks/databricks-unity-catalog-governance-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/databricks/databricks-unity-catalog-governance-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/databricks/databricks-unity-catalog-governance-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "databricks-unity-catalog-governance"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "routing_keywords": [
+    "unity catalog",
+    "privilege",
+    "grant",
+    "revoke",
+    "ownership",
+    "three-level namespace",
+    "workspace-catalog binding",
+    "governed tags",
+    "storage credential",
+    "external location",
+    "least privilege",
+    "all privileges",
+    "lineage"
+  ]
+}

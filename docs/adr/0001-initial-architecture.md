@@ -93,7 +93,7 @@ tests/validate-maestro-routing.py            (Layer 1 validation)
 - **Simple one-off usage**: The three-layer structure is heavier than a flat file of prompts. Small deployments pay an overhead.
 - **Dynamic routing**: The Maestro router uses fixture-based validation, not ML-based intent classification. New intents require new fixtures.
 - **Cross-provider operations**: A task spanning AWS + Azure requires routing to multiple specialists. The architecture does not natively support multi-agent orchestration at the catalog level.
-- **Catalog growth**: At 404 skills and 426 agents, the catalog is already large. Validation time scales linearly.
+- **Catalog growth**: At the time of this decision (404 skills, 426 agents) the catalog was already large, and it has grown since. Validation time scales linearly.
 
 ### Risks
 

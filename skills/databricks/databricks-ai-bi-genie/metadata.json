@@ -1,0 +1,34 @@
+{
+  "id": "databricks-ai-bi-genie",
+  "name": "databricks-ai-bi-genie",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "databricks",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review of AI/BI Genie agent design, semantic layer grounding, and dashboard permission consequences: Genie agent scoping and table budget (30-table limit), instructions and trusted-asset caching, metric-view semantics and correctness, dashboard limits and rendering consequences, benchmark design and honest accuracy reading, and the critical 'Individual data' versus 'Share data' permission decision—which determines whether row filters and column masks apply per viewer or are bypassed.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.databricks.com/aws/en/ai-bi/",
+    "https://docs.databricks.com/aws/en/ai-bi/admin",
+    "https://docs.databricks.com/aws/en/genie-agents/set-up",
+    "https://docs.databricks.com/aws/en/genie-agents/monitor",
+    "https://docs.databricks.com/aws/en/genie/benchmarks",
+    "https://docs.databricks.com/aws/en/business-semantics/metric-views/",
+    "https://docs.databricks.com/aws/en/uc-semantics/",
+    "https://docs.databricks.com/aws/en/dashboards/limits"
+  ],
+  "security_notes": "Static review of agent and dashboard configuration, schema, metric definitions, and benchmark results only; never executes any agent query, never invokes Genie, never runs a dashboard, and never requests workspace URLs, credentials, tokens, or customer data. The 'Share data' permission setting is a security boundary: it determines whether row-level security (row filters, column masks) is enforced per viewer or completely bypassed. This single setting has the highest consequence for data exposure and must be highlighted in any review.",
+  "last_verified": "2026-08-17",
+  "path": "skills/databricks/databricks-ai-bi-genie",
+  "author": "github: VincentChuWaiChow",
+  "companion_agents": [
+    "databricks-ai-bi-genie-agent"
+  ]
+}

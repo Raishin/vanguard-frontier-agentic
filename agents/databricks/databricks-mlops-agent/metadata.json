@@ -1,0 +1,60 @@
+{
+  "id": "databricks-mlops-agent",
+  "name": "Databricks MLOps Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "databricks",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Expert review of machine-learning model lifecycle on Databricks: MLflow 3 with Unity Catalog as the default registry namespace, alias-based promotion (Champion, Challenger) over legacy stages, feature-store design with FeatureEngineeringClient and point-in-time correctness, Model Serving endpoint configuration (traffic splits, provisioned concurrency, scale-to-zero), inference-table auto-logging with at-least-once guarantees, batch inference with `ai_query()`, and cross-environment model promotion mechanics. Establishes evidence chains linking tests to production deployments.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.databricks.com/aws/en/machine-learning/manage-model-lifecycle/",
+    "https://docs.databricks.com/aws/en/mlflow/",
+    "https://docs.databricks.com/aws/en/mlflow/model-registry-3",
+    "https://docs.databricks.com/aws/en/machine-learning/model-serving/",
+    "https://docs.databricks.com/aws/en/machine-learning/model-serving/inference-tables",
+    "https://docs.databricks.com/aws/en/machine-learning/feature-store/uc/feature-tables-uc",
+    "https://docs.databricks.com/aws/en/machine-learning/automl/"
+  ],
+  "security_notes": "Static review of model lifecycle configuration, promotion logic, and registry schema. Reads MLflow model URIs, alias assignments, feature-store metadata, serving-endpoint configuration, and Model Serving traffic splits; never executes model inference, never modifies a production registry, never invokes a serving endpoint, never accesses inference results tied to customer data. Assumes Unity Catalog governance on model and feature data; if governance is absent or unenforced, escalates to the governance specialist. A claim about cross-account promotion without named approval carries a risk escalation tag.",
+  "last_verified": "2026-08-17",
+  "path": "agents/databricks/databricks-mlops-agent/",
+  "harness_variants": {
+    "codex": "agents/databricks/databricks-mlops-agent/harnesses/codex.toml",
+    "copilot": "agents/databricks/databricks-mlops-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/databricks/databricks-mlops-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/databricks/databricks-mlops-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/databricks/databricks-mlops-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/databricks/databricks-mlops-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/databricks/databricks-mlops-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "databricks-mlops"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "routing_keywords": [
+    "mlflow",
+    "model registry",
+    "models in unity catalog",
+    "model alias",
+    "champion",
+    "challenger",
+    "model serving",
+    "serving endpoint",
+    "feature store",
+    "feature table",
+    "inference table",
+    "ai_query",
+    "automl",
+    "model promotion"
+  ]
+}

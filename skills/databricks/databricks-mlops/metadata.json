@@ -1,0 +1,33 @@
+{
+  "id": "databricks-mlops",
+  "name": "databricks-mlops",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "databricks",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Expert review of machine-learning model lifecycle on Databricks: MLflow 3 with Unity Catalog as the default registry namespace, alias-based promotion (Champion, Challenger) over legacy stages, feature-store design with FeatureEngineeringClient and point-in-time correctness, Model Serving endpoint configuration (traffic splits, provisioned concurrency, scale-to-zero), inference-table auto-logging with at-least-once guarantees, batch inference with `ai_query()`, and cross-environment model promotion mechanics. Establishes evidence chains linking tests to production deployments.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.databricks.com/aws/en/machine-learning/manage-model-lifecycle/",
+    "https://docs.databricks.com/aws/en/mlflow/",
+    "https://docs.databricks.com/aws/en/mlflow/model-registry-3",
+    "https://docs.databricks.com/aws/en/machine-learning/model-serving/",
+    "https://docs.databricks.com/aws/en/machine-learning/model-serving/inference-tables",
+    "https://docs.databricks.com/aws/en/machine-learning/feature-store/uc/feature-tables-uc",
+    "https://docs.databricks.com/aws/en/machine-learning/automl/"
+  ],
+  "security_notes": "Static review of model lifecycle configuration, promotion logic, and registry schema. Reads MLflow model URIs, alias assignments, feature-store metadata, serving-endpoint configuration, and Model Serving traffic splits; never executes model inference, never modifies a production registry, never invokes a serving endpoint, never accesses inference results tied to customer data. Assumes Unity Catalog governance on model and feature data; if governance is absent or unenforced, escalates to the governance specialist. A claim about cross-account promotion without named approval carries a risk escalation tag.",
+  "last_verified": "2026-08-17",
+  "path": "skills/databricks/databricks-mlops",
+  "author": "github: VincentChuWaiChow",
+  "companion_agents": [
+    "databricks-mlops-agent"
+  ]
+}

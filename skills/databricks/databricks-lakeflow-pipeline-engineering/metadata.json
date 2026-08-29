@@ -1,0 +1,35 @@
+{
+  "id": "databricks-lakeflow-pipeline-engineering",
+  "name": "databricks-lakeflow-pipeline-engineering",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "databricks",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review of Lakeflow Spark Declarative Pipelines (formerly Delta Live Tables) design: medallion layering strategy, Lakeflow Jobs orchestration and task dependencies, Delta table layout (liquid clustering vs Z-order vs partitioning, deletion vectors, Predictive Optimization), Auto Loader versus COPY INTO choice, schema evolution and `_rescued_data` handling, materialized view versus streaming table selection, and backfill strategy. Reads pipeline source, table metadata, and job definitions only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.databricks.com/aws/en/ldp",
+    "https://docs.databricks.com/aws/en/ldp/concepts/where-is-dlt",
+    "https://docs.databricks.com/aws/en/delta-live-tables/develop",
+    "https://docs.databricks.com/aws/en/delta-live-tables/configure-pipeline",
+    "https://docs.databricks.com/aws/en/tables/clustering",
+    "https://docs.databricks.com/aws/en/delta/optimize",
+    "https://docs.databricks.com/aws/en/optimizations/predictive-optimization",
+    "https://docs.databricks.com/aws/en/ingestion/cloud-object-storage/auto-loader/",
+    "https://docs.databricks.com/aws/en/lakehouse/medallion"
+  ],
+  "security_notes": "Static review only — reads pipeline source files, table metadata, job definitions, and medallion architecture design; never executes pipelines, never runs queries, never accesses customer data or production workspaces, and never requests credentials, tokens, storage keys, or workspace URLs. A claim about a feature's availability (Liquid Clustering, Predictive Optimization on a given tier) is verified against the official docs, not assumed from product marketing.",
+  "last_verified": "2026-08-17",
+  "path": "skills/databricks/databricks-lakeflow-pipeline-engineering",
+  "author": "github: VincentChuWaiChow",
+  "companion_agents": [
+    "databricks-lakeflow-pipeline-engineering-agent"
+  ]
+}

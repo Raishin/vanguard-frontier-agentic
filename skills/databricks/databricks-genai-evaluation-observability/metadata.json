@@ -1,0 +1,34 @@
+{
+  "id": "databricks-genai-evaluation-observability",
+  "name": "databricks-genai-evaluation-observability",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "databricks",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Expert review of generative-AI evaluation, tracing, and observability on Databricks: MLflow Tracing instrumentation and span design, trace storage choice and governance, `mlflow.genai.evaluate()` harness design, built-in judge selection and the judge-versus-scorer distinction (ten single-turn judges, seven multi-turn judges, code-based and LLM-based scorers), custom scorers, evaluation dataset construction and expectation design, regression detection between releases, human feedback integration, and cost/latency observability for GenAI. Treats every LLM judge as an instrument with error, never ground truth.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.databricks.com/aws/en/mlflow3/genai/",
+    "https://docs.databricks.com/aws/en/mlflow3/genai/tracing",
+    "https://docs.databricks.com/aws/en/mlflow3/genai/eval-monitor/",
+    "https://docs.databricks.com/aws/en/mlflow3/genai/eval-monitor/concepts/scorers",
+    "https://docs.databricks.com/aws/en/mlflow3/genai/eval-monitor/concepts/judges/",
+    "https://docs.databricks.com/aws/en/mlflow3/genai/getting-started/",
+    "https://docs.databricks.com/aws/en/ai-gateway/cost-observability",
+    "https://docs.databricks.com/aws/en/admin/system-tables/"
+  ],
+  "security_notes": "Static review of evaluation and tracing design. Reads trace instrumentation code, span design, judge selection, evaluation dataset schema, expectation definitions, and observability configuration. Never executes a live evaluation run, never modifies an agent's traces, never invokes a judge or scorer, and never changes production observability configuration. Human-feedback loops that depend on production traces escalate to a live guard if they require trace mutation or policy change. Judge validation against human labels is out-of-band and requires its own evidence chain.",
+  "last_verified": "2026-08-17",
+  "path": "skills/databricks/databricks-genai-evaluation-observability",
+  "author": "github: VincentChuWaiChow",
+  "companion_agents": [
+    "databricks-genai-evaluation-observability-agent"
+  ]
+}

@@ -343,7 +343,7 @@ def validate_guarded_live_kubernetes_agents() -> None:
 
 
 # Adapter files that prove a harness actually ships, mapped to the `harnesses` value
-# that must then be declared. Kiro has two adapter files but one harness value.
+# that must then be declared.
 HARNESS_ADAPTER_FILES = {
     "codex.toml": "codex",
     "copilot.agent.md": "copilot",
@@ -354,40 +354,63 @@ HARNESS_ADAPTER_FILES = {
     "kiro-cli.agent.json": "kiro",
 }
 
+# Kiro is the one harness whose single `harnesses` value covers TWO adapter files, and the
+# exporter emits both. Collapsing them into one set member would let a half-shipped Kiro
+# adapter pass: with only kiro-ide.agent.md present, `kiro` is still in the on-disk set, the
+# declaration matches, and the export later fails on the missing kiro-cli.agent.json. So the
+# pair is checked explicitly rather than through the collapsed mapping.
+KIRO_REQUIRED_FILES = ("kiro-ide.agent.md", "kiro-cli.agent.json")
+
 
 def validate_harness_declarations() -> None:
-    """Every agent's declared `harnesses` must match the adapters it actually ships.
+    """Every agent's `harnesses` must match the adapters it ships AND the catalog entry.
 
-    Both directions are errors, for different reasons:
+    Three independent failures, each of which has actually happened or was one edit away:
 
-      * UNDER-declared (adapter file on disk, harness absent from `harnesses`) makes a
-        shipped adapter invisible to everything that filters on the catalog. This is not
-        hypothetical: ionos, ovhcloud, and scaleway each shipped all seven adapter files
-        while declaring only codex and claude-code, so `generate-kiro-powers.mjs` — which
-        discovers providers by looking for `kiro` in `harnesses` — silently omitted three
-        real Kiro Powers from the generated index, and the exporter would not have offered
-        those providers for copilot, cursor, gemini, or kiro either.
+      * UNDER-declared (adapter on disk, harness absent from `harnesses`) makes a shipped
+        adapter invisible to everything that filters on the catalog. ionos, ovhcloud, and
+        scaleway each shipped all seven adapter files while declaring only codex and
+        claude-code, so generate-cursor-plugin.mjs omitted 18 real cursor adapters and
+        generate-kiro-powers.mjs dropped three real Kiro Powers.
 
-      * OVER-declared (harness claimed, no adapter file) promises an install path that
-        does not exist, which fails at the user's `vfa-export-agents` invocation rather
-        than here.
+      * OVER-declared (harness claimed, no adapter file) promises an install path that does
+        not exist, failing at the user's `vfa-export-agents` rather than here.
 
-    Keyed on the adapter files themselves, so it stays true no matter how the catalog is
-    regenerated.
+      * CATALOG DRIFT (metadata.json and catalog/agents.json disagree). catalog/agents.json
+        has no full regenerator — only an upsert — so fixing metadata.json does NOT update
+        it, and the catalog is what every generator actually reads. Checking metadata
+        against disk alone would report success while the original user-facing breakage
+        remained. This is not hypothetical: resyncing those 18 catalog entries was a
+        separate manual step from fixing their metadata.
     """
     problems: list[str] = []
+
+    catalog_harnesses: dict[str, list] = {}
+    catalog_agents = load_json(ROOT / "catalog" / "agents.json")
+    if isinstance(catalog_agents, dict):
+        catalog_agents = catalog_agents.get("agents", [])
+    for entry in catalog_agents:
+        if isinstance(entry, dict) and entry.get("type") == "agent":
+            catalog_harnesses[entry["id"]] = entry.get("harnesses") or []
+
     for metadata_path in sorted(ROOT.glob("agents/*/*/metadata.json")):
         data = load_json(metadata_path)
+        agent_id = data.get("id", metadata_path.parent.name)
         declared = set(data.get("harnesses") or [])
         harness_dir = metadata_path.parent / "harnesses"
+        present_files = (
+            {entry.name for entry in harness_dir.iterdir() if entry.is_file()}
+            if harness_dir.is_dir()
+            else set()
+        )
         on_disk = {
-            HARNESS_ADAPTER_FILES[entry.name]
-            for entry in harness_dir.iterdir()
-            if entry.is_file() and entry.name in HARNESS_ADAPTER_FILES
-        } if harness_dir.is_dir() else set()
+            HARNESS_ADAPTER_FILES[name]
+            for name in present_files
+            if name in HARNESS_ADAPTER_FILES
+        }
         # "other" is a catalog-only escape hatch with no adapter file of its own.
         declared.discard("other")
-        agent_id = data.get("id", metadata_path.parent.name)
+
         if on_disk - declared:
             problems.append(
                 f"{agent_id}: ships adapters for {sorted(on_disk - declared)} "
@@ -398,9 +421,33 @@ def validate_harness_declarations() -> None:
                 f"{agent_id}: declares harnesses {sorted(declared - on_disk)} "
                 f"with no matching adapter file"
             )
+
+        # Kiro's two adapter files are checked as a pair, not through the collapsed value.
+        kiro_missing = [f for f in KIRO_REQUIRED_FILES if f not in present_files]
+        if "kiro" in declared and kiro_missing:
+            problems.append(
+                f"{agent_id}: declares the kiro harness but is missing {sorted(kiro_missing)} "
+                f"— both Kiro adapter files are required"
+            )
+        if kiro_missing and len(kiro_missing) == 1:
+            problems.append(
+                f"{agent_id}: ships a partial Kiro adapter — has "
+                f"{sorted(set(KIRO_REQUIRED_FILES) - set(kiro_missing))}, missing {kiro_missing}"
+            )
+
+        # The catalog is what the generators read; metadata alone proves nothing about them.
+        if agent_id in catalog_harnesses:
+            if sorted(catalog_harnesses[agent_id]) != sorted(data.get("harnesses") or []):
+                problems.append(
+                    f"{agent_id}: catalog/agents.json declares "
+                    f"{sorted(catalog_harnesses[agent_id])} but metadata.json declares "
+                    f"{sorted(data.get('harnesses') or [])} — resync the catalog entry"
+                )
+
     assert_true(
         not problems,
-        "harness declarations disagree with shipped adapters:\n  - " + "\n  - ".join(problems),
+        "harness declarations disagree with shipped adapters or the catalog:\n  - "
+        + "\n  - ".join(problems),
     )
 
 

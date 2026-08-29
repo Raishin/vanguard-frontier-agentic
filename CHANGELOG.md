@@ -1,3 +1,407 @@
+## 🛡️ v3.11.0 — *Provenance · Policy · Portability*
+_Released 2026-08-27_
+
+> _Curated multi-cloud, zero-trust agent marketplace — `AWS` · `Azure` · `OCI` · `GCP` · `Terraform`._
+> Least privilege, live evidence, safe rollback paths.
+
+**Release type:** New capabilities — review the sections below before upgrading.
+
+* **databricks:** add data-driven board generator and agent specifications ([`ee2261b`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/ee2261bd3358d6a2ca9fb42e31efc16ff86c6654))
+Adds scripts/gen_databricks_agents.py and the 17 per-agent JSON data files it
+renders. Follows the established board pattern (typescript/python/kotlin/
+netsuite): judgment lives in committed data, the generator only renders
+structure, so behaviour changes only on a committed data change and never on
+ambient state.
+
+The skill template extends the existing house style with Scope, Decision
+workflow, Evidence requirements, Context7 MCP policy, Official documentation
+policy, Security boundaries, Runtime authority (T0-T3), and Production caveats
+sections, without introducing any new frontmatter field.
+
+developer_instructions is emitted as a single-line escaped TOML basic string
+rather than a triple-quoted block: the governed-tag prohibited-character list
+contains a literal backslash, which a basic multi-line string parses as an
+invalid escape sequence.
+
+Every documentation URL encoded here was fetched and confirmed to return HTTP
+200 against current Databricks documentation.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+* **databricks:** add role bundles and maestro routing fixtures ([`7042c4f`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/7042c4f7b850e83f2e2662cb0b86f7a84cc6d300))
+Nine curated role bundles (platform-engineer, data-engineer, analytics-engineer,
+governance-security-engineer, ml-engineer, genai-engineer, sre, finops-engineer,
+solution-architect), each installing five to six agents rather than the whole
+board. Every new agent is covered by at least one role, satisfying
+validate:install-coverage.
+
+Adds the databricks maestro routing fixture: 18 domains, 23 scenarios, with the
+existing live grant guard correctly classified as a live guard so it is only
+reachable in live-guard-gate mode and never auto-dispatched.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+* **databricks:** generate the cloud-neutral Databricks board ([`b2fb81e`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/b2fb81e0f931940ffef978fb3f62eba8a81e71d7))
+Seventeen static-review agents with 1:1 companion skills, each with seven
+harness adapters, rendered from the committed data files.
+
+Control plane: maestro. Platform and governance: platform-architecture,
+unity-catalog-governance, identity-network-security, data-protection-privacy.
+Data engineering: lakeflow-pipeline-engineering, streaming-reliability,
+data-quality-observability. Analytics: sql-performance, ai-bi-genie. AI/ML:
+mlops, genai-agent-engineering, genai-evaluation-observability. Platform
+operations: developer-platform, platform-reliability, finops-cost. Business
+outcome: value-realization.
+
+All seventeen are execution_tier static-review; none carries an execution tool.
+Mutation remains reachable only through the existing live-guard path.
+
+This board is cloud-neutral and coexists with the three hand-authored
+*-at-azure Databricks assets, which keep Entra ID federation, ADLS Gen2,
+Access Connector, and VNet specifics; the generator never touches them and
+each new agent names the Azure agents in its handoff list.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+* **workflows:** add the agentic-delegation ultracode workflow with Context7 verification ([`14ed0cb`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/14ed0cbf8ea46becf6c67fb48b5bff59dbf013ae))
+Adds .claude/workflows/agentic-delegation.js — this repo's delegation doctrine
+as an executable Workflow pipeline, with Context7 MCP grounding as a
+first-class phase rather than an afterthought.
+
+Phases: Recon (Haiku Explore, one narrow question each, citations required) and
+Context7 (resolve + query per library surface) run as independent branches;
+Author (Sonnet writers against exact file-scoped specs) and Verify (an
+independent refuter per change) run as a pipeline so a spec's refuter starts as
+soon as that spec is written; then Gates (raw failure output, asset-integrity
+last) and Synthesis. The workflow never commits.
+
+The Context7 phase encodes the distinction that matters: "contradicted" means
+Context7 positively shows something different and is a defect; "notCovered"
+means Context7 returned no evidence and is uncorroborated, never disproven.
+Context7 serves retrieved snippets, not a complete API inventory, so treating
+absence as disproof would "correct" documented content into incorrectness. The
+output schema is shaped to make that mistake hard. When the MCP cannot be
+reached an agent returns NOT_AVAILABLE and the claims stay unknown; it never
+substitutes memory or a web fetch, and never fabricates MCP evidence.
+
+Caps are enforced (5 recon, 5 libraries, 6 specs) and anything dropped is
+logged, so a truncated run never reads as full coverage.
+
+Verified by running it: 4 agents, 0 errors. It corroborated three Delta Lake
+claims already in the Databricks board (ALTER TABLE ... CLUSTER BY not
+rewriting data, deletion-vector semantics, REORG ... APPLY (PURGE) before
+VACUUM) and surfaced a real imprecision in the Lakeflow skill, now fixed: the
+board named the @dp.table() and @dp.materialized_view() decorators without
+distinguishing them from create_streaming_table, which is the explicit
+streaming-table API. It also established that the "from pyspark import
+pipelines as dp" alias and CLUSTER BY AUTO are Databricks-documented but not
+corroborated by the Apache Spark / Delta Lake library references — recorded as
+a layer-boundary caveat rather than dropped.
+
+CLAUDE.md gains two pointers: how to invoke the workflow, and why
+version-sensitive API claims belong in Context7 rather than service docs.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+* **databricks:** address Codex review — gate ordering, grant gating, tier definitions ([`8ee1c7e`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/8ee1c7e855c883b972e4972e391322e465d48d33))
+Six review findings fixed, two declined with reasons (see the PR thread).
+
+.claude/workflows/agentic-delegation.js — three fixes, one of them a real bug:
+- The Gates phase ran "npm run validate" first and refreshed the integrity
+  manifest last, conditional on every prior gate being green. For any change
+  touching a hashed path that is unsatisfiable: validate:asset-integrity fails on
+  the stale manifest, which then blocks the refresh that would have fixed it. The
+  phase now runs content generators first, asset-integrity:write on its own
+  second, and validate third — the order CLAUDE.md's Definition of done already
+  specifies.
+- The gate agent was told to work from a hardcoded absolute checkout path. It now
+  works from the repository root, which is its working directory.
+- The gate phase ran whenever specs were supplied, ignoring an explicit
+  gates: false. The condition is now solely a.gates !== false.
+- The gate agent is also now told not to run maestro-routing:write, for the
+  blast-radius reason below.
+
+tests/_generate_maestro_routing_fixtures.py — the shared live_guard_intent regex
+matches no privilege vocabulary, so "Grant SELECT on the production catalog to
+the analysts group" scored as an ordinary governance question and routed to a
+static specialist. The Unity Catalog grant guard was unreachable through the one
+operation it exists to gate. Adds a databricks override that composes with the
+shared default rather than copying it, keyed on actual privilege names
+(SELECT, MODIFY, USAGE, USE CATALOG/SCHEMA, CREATE x, EXECUTE, READ/WRITE VOLUME,
+MANAGE, ALL PRIVILEGES) plus ALTER ... OWNER TO and admin elevation.
+
+Keying on privilege names rather than the bare verbs is what keeps the board's own
+subject matter routable: "Review our Unity Catalog GRANT privilege model" must
+still reach the governance specialist. `ownership`/`owner` are deliberately not in
+the privilege list — they are not GRANTable, so "grant ownership" only ever occurs
+as a noun phrase; including them regressed a generated happy-path fixture, which
+is how the over-match was caught.
+
+Probes: GRANT, REVOKE, and ALTER ... OWNER TO now gate to the live guard; four
+design-shaped questions still route to specialists; no live guard appears in a
+non-gate mode.
+
+scripts/gen_databricks_agents.py — the documented regeneration chain recommended
+npm run maestro-routing:write without warning that its main() loops every provider
+and write_provider() deletes all of that provider's fixtures before rebuilding.
+Removed from the chain; the docstring now explains the blast radius and gives the
+scoped command sequence.
+
+scripts/generate-kiro-powers.mjs — the Power now activates for a cloud-neutral
+board but still carried "Prefer Azure managed identities", which is inapplicable on
+AWS or GCP. Replaced with per-cloud workload identity guidance (Azure Access
+Connector managed identity, AWS IAM role via storage credential, GCP service
+account) surfaced through a Unity Catalog storage credential, and an instruction to
+name the cloud before recommending a mechanism.
+
+docs/databricks-board.md — two real defects:
+- The page said "17 specialist agents" (it is one maestro plus sixteen
+  specialists) and then "15 domain specialists" three lines later. Both removed in
+  favour of pointing at the board table as authoritative.
+- The page defined T1 as "design approval" and escalated at "T2+", while every
+  generated skill on the board defines T1 as read-only runtime and the maestro
+  escalates above T0. The page now carries the same T0-T3 ladder as the shipped
+  contracts, and states that needing even a read-only workspace query already
+  exceeds T0.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+* **databricks:** correct MLflow API surfaces verified against Context7 ([`f984adf`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/f984adfcf56de50f96c8b6b6339e79a405036f1b))
+Cross-checked the board's version-sensitive client APIs against the Context7
+MCP (/websites/mlflow_genai, /mlflow/mlflow v3.1.4, /websites/databricks,
+/databricks/databricks-sdk-py, /databricks/cli,
+/databricks/terraform-provider-databricks). Two encoded claims were wrong and
+would have produced runtime failures for anyone following them:
+
+- mlflow.genai.evaluate takes data=, predict_fn= and scorers=. The board said
+  evaluate(eval_data, scorers, prediction_fn); two of those keyword names do
+  not exist and raise an unexpected-keyword error. Confirmed against four
+  independent Context7 snippets.
+- Built-in judges import from mlflow.genai.scorers, not mlflow.genai.judges.
+  That namespace holds custom-judge construction via make_judge. The board
+  named mlflow.genai.judges.Correctness, which does not resolve.
+
+Corroborated and left unchanged: the ten single-turn and seven multi-turn judge
+names, Correctness requiring expected_facts or expected_response, the
+<provider>:/<model-name> model form, @mlflow.trace, mlflow.start_span,
+mlflow.<library>.autolog(), FeatureEngineeringClient and its methods with
+timeseries_columns, similarity_search parameters, WorkspaceClient, the
+databricks.yml bundle surface, and databricks/databricks as the Terraform
+provider source.
+
+Added from Context7 evidence: development-mode deployments automatically pause
+scheduled jobs; a built-in judge is directly callable for spot-checking; run_as
+propagation from bundle level into job and pipeline resources.
+
+Each affected skill's Context7 policy now records what was corroborated, what
+rests on Databricks documentation alone, and that absence from a Context7
+result is uncorroborated rather than disproven. No Terraform provider version
+is pinned anywhere: Context7 and the public registry reported different current
+versions, so the board resolves it at recommendation time instead of guessing.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+* **docs:** derive every Databricks count, and restore the rows my merge reverted ([`900be96`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/900be96bf2b80f5414bd570308100dffc9291733))
+Two things, one of them a defect I introduced.
+
+THE REGRESSION. Resolving README.md with `--theirs` in the previous merge was
+wrong. The generators that ran afterwards refresh the count markers and the
+provider-reference table, so the tree looked settled and every gate passed --
+but README's two narrative provider tables and its repository-tree comment are
+hand-written prose, which no generator touches. The Databricks rows silently
+reverted to the pre-board text: "Databricks (Azure) | 3", describing two
+Azure specialists and a guard, for a board that has shipped 20 agents since.
+Restored from 1d41153c.
+
+That same inspection found master's Snowflake rows stale in exactly the same
+* **readme:** generate the repository-tree agent counts, and add the directory it omitted ([`e040fb4`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/e040fb454c8235b202482335f01980670c0460a7))
+Closes the gap left in the previous commit: README's agents/ tree listed a
+literal count for every directory, hand-typed, with nothing checking it.
+
+The tree sits inside a ```text fence, where an HTML comment marker renders as
+visible text -- which is why it was skipped before. So the markers wrap the
+fence instead of living inside it, and generate-readme-counts.mjs rewrites the
+number on each directory line in place. Descriptions stay hand-written prose and
+are preserved verbatim; only the count and its agent/agents pluralisation are
+generated.
+
+A correction to what I reported last time. I said the tree's Databricks entry was
+"correct at 20 but still hand-typed, like every sibling". The first half was
+right and the counts were in fact all accurate -- but the tree was NOT merely
+hand-typed-and-correct: agents/cross-functional/ was missing from it entirely.
+One agent, revenue-critical-journey-integrity-agent, undocumented in the layout
+since it does not belong to any provider board. Added by hand, since the
+description is prose the generator cannot invent.
+
+A near-miss worth recording, because it would have made things worse. My first
+audit keyed the tree on the `provider` field and reported four defects: finops
+and qa as phantom entries, generic and multi-cloud as missing, kubernetes stale
+at 15-vs-16. All four were artefacts of the wrong lens. The tree documents the
+DIRECTORY layout, and directory does not equal provider here: agents/finops/
+holds agents whose provider is kubernetes or multi-cloud, agents/qa/ holds agents
+whose provider is generic, and `generic`/`multi-cloud` are provider values with
+no directory at all. Keying the generator on provider would have rewritten four
+accurate lines into wrong ones and deleted two correct entries. The generator
+keys on directories, and the reasoning is in a comment above it so the next
+person does not repeat the mistake.
+
+agents/velero/ is a directory with a README and no agents. It is correctly absent
+from the tree, and the generator excludes zero-agent directories so it is not
+reported as missing.
+
+Fails closed both ways: a tree line naming a directory that holds no agents, or a
+directory holding agents that the tree never lists, exits 1 and names the
+offenders. It does not attempt to add or delete lines itself -- each carries a
+hand-written description, so the honest failure is to stop and say which line is
+needed.
+
+Probes. Positive: a databricks count seeded at 999 regenerates to 20, and
+cross-functional seeded at "5 agents" regenerates to "1 agent", so pluralisation
+follows the data rather than the typist. Negative: deleting the cross-functional
+line fails with "missing from the tree", and adding a velero line fails with
+"lists director(y|ies) with no agents" -- both in write mode and in --check, so
+validate:readme-counts enforces it in CI and not just locally. README verified
+byte-identical to its pre-probe state afterwards.
+
+Gates: npm run validate exit 0, codespell 0, markdownlint 0 issues across 8224
+files. No tools/vfa-tui change, so the cargo gates do not apply.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+* **vfa-tui:** derive infer_provider from the Provider enum instead of a hand-written match ([`0ee30b0`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/0ee30b0f060cca86ad426979f17ab45bd4556e7f))
+The coverage engine's infer_provider() mapped an asset path's provider directory
+to a Provider variant through a hand-maintained match arm per provider. That list
+had rotted: it covered thirteen providers while the catalog ships forty-five, so
+databricks, snowflake, sap, microsoft, nvidia, claude, marketing, the CNCF boards
+(kyverno, istio, argocd, cilium, opentelemetry, prometheus, falco, sigstore,
+cert-manager, fluxcd, backstage, velero), the European clouds (alibaba, huawei,
+ovhcloud, ionos, scaleway, hetzner, contabo), and the business-function boards
+(hr, legal, salesforce, netsuite, accounting, finance, dotnet, multi-cloud) all
+fell through to the `_ => Provider::Generic` arm.
+
+Because the fallback is Generic rather than an error, the misattribution was
+invisible: those assets were silently bucketed as Generic in the federation
+coverage matrix instead of failing loudly. Adding a databricks arm would have
+fixed one symptom and left the other twenty-nine.
+
+infer_provider now resolves the directory component through Provider's own
+kebab-case serde representation, mirroring the existing Display impl which
+already round-trips through serde. Adding a Provider variant is now sufficient;
+there is no second list to drift.
+
+Behaviour change worth noting: `agents/oci/...` previously resolved to
+Provider::Oracle because the old match conflated the two. Provider::Oci exists
+and `oci` is a distinct catalog provider, so it now resolves to Provider::Oci.
+The `k8s` directory shorthand is preserved as an explicit alias, since it is a
+filesystem convention rather than a catalog provider value.
+
+Adds three tests, one of which is the point: infer_provider_covers_every_catalog_provider
+reads catalog/agents.json, collects the distinct provider values, and asserts each
+is inferable from its asset path. It is derived from the catalog rather than from a
+second hand-written list, so it fails when a provider is added without a matching
+variant instead of silently degrading. It skips when the catalog is not reachable,
+so building the crate outside the monorepo is unaffected.
+
+Gates: cargo fmt --check, cargo clippy --all-targets --locked -D warnings, and
+cargo test --locked all pass (1056 tests).
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+* **databricks:** document the board in the README and the Jekyll site ([`c54930f`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/c54930f9ada7ad1a51637552baa72b444f26e650))
+The generated surfaces (README count markers, provider table, docs/_data/catalog.yml)
+were already refreshed by the generators. This commit updates the hand-written prose
+those generators never touch, which was still describing a 3-agent Azure-only board.
+
+README.md:
+- Opening blurb no longer calls Databricks "Azure-ecosystem"; it is now a
+  cloud-neutral lakehouse/AI board alongside the Azure-specific Snowflake board.
+- Skills and agents tables: the two "Databricks (Azure) | 3" rows now describe all
+  20 agents, split into the 17-agent cloud-neutral board and the 3 Azure-specific
+  assets.
+- Repository tree comment updated from 3 agents to 20 with the domain list.
+
+New docs/databricks-board.md — a per-board page in the style of the NetSuite
+portfolio page: why the board exists, the cloud-neutral versus Azure-specific
+coexistence contract, the grouped agent table, the maestro's seven classification
+axes and four routing outcomes with worked examples, the nine role bundles, the
+safety posture and the gates that enforce it, evidence discipline, and the
+regeneration command sequence. Linked from the docs index.
+
+docs/language-stack-boards.md:
+- Role table gains the nine databricks-* roles; the older role is relabelled
+  "databricks (Azure)" so the two are distinguishable.
+- Execution-tier table splits databricks into the cloud-neutral static-review board
+  and the Azure live guard, and the sentence claiming python was "the one governed
+  exception" is corrected — sap, microsoft, and the databricks grant guard also ship
+  live agents, each behind the live-guard contract. That sentence was already
+  understating those boards before this change.
+
+docs/taxonomy.md, docs/integrations/installation-guide.md: Databricks is no longer
+described as Azure-only.
+
+docs/usage-examples.md: adds a Databricks board roles section with copy-pasteable
+export commands, noting roles install five to six agents rather than the whole board.
+
+scripts/generate-kiro-powers.mjs: the databricks Power entry described an Azure-only
+lakehouse board. Updated at the generator (never in the generated POWER.md) and
+regenerated. Frontmatter stays within the five fields validate:kiro-powers permits.
+
+Role counts and agent ids in the new page were verified programmatically against
+catalog/agents.json and catalog/install-roles.json rather than transcribed; the
+role table carries the installable role id, not just a display label, so a reader
+can copy it straight into the export CLI.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+* **jekyll:** replace stale hardcoded catalog counts with Liquid variables ([`d3c0f8e`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/d3c0f8ec44963cb712b1f89a992a1ec13ac2a585))
+The generated markers were already current -- readme-counts:write and
+docs-data:write both reported no changes, and the provider invariant holds
+(provider_list == providers-with-agents == 45, databricks present in both).
+The staleness was in hand-written prose that predates several catalog waves.
+
+docs/marketplace-model.md -- nine hardcoded counts, all wrong:
+- "331 agent adapter paths" (Claude Code) and "331 cursor agent adapter
+  paths" -- actual 697.
+- "14 per-provider Powers" and two "35 Powers" claims -- actual 45.
+- "17-gate npm run validate suite" and "all 17 gates" -- actual 23.
+Each now reads from site.data.catalog rather than restating a number, except
+the one inside a bash fence, which now says "every validate:* gate" so a
+copied command carries no count at all.
+
+docs/configuration.md -- the gate table was both stale and incomplete. The
+header claimed 17 gates over a 20-row table, and four gates that npm run
+validate actually executes were missing entirely: validate:skill-coherence,
+validate:model-policy, validate:frontend-security-detection, and
+validate:agent-tool-tiers. A reader auditing CI coverage from this page would
+have concluded those four do not exist. The table is now the full 24-step
+sequence in the order npm run validate invokes them (23 validate:* scripts
+plus manifest:check, which is not a validate:* script and is why the table
+count and the catalog count legitimately differ by one). The routing-scenario
+count is templated too.
+
+docs/adr/0001-initial-architecture.md -- "At 404 skills and 426 agents, the
+catalog is already large" now reads as the dated observation it is. An
+accepted ADR records a decision in its own context, so the numbers stay;
+they are just no longer phrased as current.
+
+Two findings from the audit were rejected after checking the catalog:
+- docs/databricks-board.md's four "17 agents" statements are correct. The
+  provider has 20 agents, but three carry the -at-azure suffix and predate
+  this board; 20 - 3 = 17 cloud-neutral, which is exactly what the page says
+  and scopes itself to.
+
+---
+
+### 📥 Install
+```bash
+npm install @raishin/vanguard-frontier-agentic@3.11.0
+```
+
+### 🔐 Supply-chain provenance
+Every release ships a build attestation (SLSA provenance) and an SBOM. Verify the tag with `gh attestation verify` before installing.
+
+**Full changelog:** https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/compare/v3.10.0...v3.11.0
+
 ## 🛡️ v3.10.0 — *Provenance · Policy · Portability*
 _Released 2026-08-22_
 
@@ -9852,7 +10256,7 @@ Collateral: regenerate asset-integrity.json, plugin manifests
 
 ## 🔴 v2.0.0 — *Zero-Trust Scope Enforcement* &mdash; 2026-05-16
 
-> _Provider-scoped exports are now strict and auditable. 712 agents · 737 skills · 45 providers · 67 roles_
+> _Provider-scoped exports are now strict and auditable. 729 agents · 754 skills · 45 providers · 76 roles_
 >
 > This release closes a class of privilege-escalation bugs in the export CLI and hardens the
 > entire provider-scope boundary from user input through to CI attestation.

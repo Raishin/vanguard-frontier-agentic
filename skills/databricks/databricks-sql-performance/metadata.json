@@ -1,0 +1,34 @@
+{
+  "id": "databricks-sql-performance",
+  "name": "databricks-sql-performance",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "databricks",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review of SQL warehouse and query performance: warehouse type and sizing for concurrency, Photon and Predictive I/O applicability, three-tier caching semantics and when a cached result is misleading, query-profile reading for skew and spill, data layout for read performance via liquid clustering and data skipping, materialized-view refresh semantics. Evidence: warehouse configuration, query profiles, schema, query text, and system.query.history only. Never executes queries live.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.databricks.com/aws/en/compute/sql-warehouse/warehouse-types",
+    "https://docs.databricks.com/aws/en/compute/sql-warehouse/warehouse-behavior",
+    "https://docs.databricks.com/aws/en/compute/sql-warehouse/create",
+    "https://docs.databricks.com/aws/en/compute/photon",
+    "https://docs.databricks.com/aws/en/sql/user/queries/query-caching",
+    "https://docs.databricks.com/aws/en/sql/user/queries/query-profile",
+    "https://docs.databricks.com/aws/en/sql/user/queries/query-history",
+    "https://docs.databricks.com/aws/en/tables/clustering"
+  ],
+  "security_notes": "Static review only — reads warehouse config, schema definition, query text, query profiles, query history exports, and ANALYZE output; never executes any query, never invokes SQL, never connects to a live warehouse, and never requests credentials, tokens, storage keys, or customer data. Caching can mask data freshness; the agent flags when a cached result may be stale or when result-cache invalidation is tied to a schema change not visible in query text alone. Performance claims are always scoped to a specific warehouse type (serverless, pro, classic) and compute configuration stated by the user.",
+  "last_verified": "2026-08-17",
+  "path": "skills/databricks/databricks-sql-performance",
+  "author": "github: VincentChuWaiChow",
+  "companion_agents": [
+    "databricks-sql-performance-agent"
+  ]
+}

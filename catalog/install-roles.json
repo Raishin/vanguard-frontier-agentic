@@ -814,6 +814,172 @@
         "terraform-module-contract"
       ]
     },
+    "databricks-analytics-engineer": {
+      "label": "Databricks Analytics Engineer",
+      "description": "Deliver and review governed analytics on Databricks: SQL warehouse performance and data layout for reads, AI/BI Dashboards and Genie agents grounded in metric views, data quality and freshness evidence, and the pipelines producing the serving tables. Static review only.",
+      "agents": [
+        "databricks-maestro-agent",
+        "databricks-sql-performance-agent",
+        "databricks-ai-bi-genie-agent",
+        "databricks-data-quality-observability-agent",
+        "databricks-lakeflow-pipeline-engineering-agent"
+      ],
+      "skills": [
+        "databricks-maestro",
+        "databricks-sql-performance",
+        "databricks-ai-bi-genie",
+        "databricks-data-quality-observability",
+        "databricks-lakeflow-pipeline-engineering"
+      ]
+    },
+    "databricks-data-engineer": {
+      "label": "Databricks Data Engineer",
+      "description": "Build and review Databricks data engineering: Lakeflow Spark Declarative Pipelines and Lakeflow Jobs, Delta table layout and ingestion, Structured Streaming correctness and recovery, pipeline expectations and monitoring, and the query performance of what the pipelines produce. Static review only.",
+      "agents": [
+        "databricks-maestro-agent",
+        "databricks-lakeflow-pipeline-engineering-agent",
+        "databricks-streaming-reliability-agent",
+        "databricks-data-quality-observability-agent",
+        "databricks-sql-performance-agent"
+      ],
+      "skills": [
+        "databricks-maestro",
+        "databricks-lakeflow-pipeline-engineering",
+        "databricks-streaming-reliability",
+        "databricks-data-quality-observability",
+        "databricks-sql-performance"
+      ]
+    },
+    "databricks-finops-engineer": {
+      "label": "Databricks FinOps Engineer",
+      "description": "Attribute and control Databricks spend: billing system-table evidence and correct price joins, tag attribution coverage and its documented gaps, DBU uptime semantics, budgets and compute policies, the query and workload tuning that reduces cost, and whether the spend has a measurable business outcome. Static review only.",
+      "agents": [
+        "databricks-maestro-agent",
+        "databricks-finops-cost-agent",
+        "databricks-sql-performance-agent",
+        "databricks-platform-reliability-agent",
+        "databricks-value-realization-agent"
+      ],
+      "skills": [
+        "databricks-maestro",
+        "databricks-finops-cost",
+        "databricks-sql-performance",
+        "databricks-platform-reliability",
+        "databricks-value-realization"
+      ]
+    },
+    "databricks-genai-engineer": {
+      "label": "Databricks GenAI Engineer",
+      "description": "Build and review generative AI on Databricks: Mosaic AI Agent Framework authoring, retrieval on Databricks AI Search, Unity Catalog functions and MCP tools, Unity AI Gateway policy, MLflow Tracing and GenAI evaluation, model serving lifecycle, and natural-language BI over governed data. Static review only.",
+      "agents": [
+        "databricks-maestro-agent",
+        "databricks-genai-agent-engineering-agent",
+        "databricks-genai-evaluation-observability-agent",
+        "databricks-mlops-agent",
+        "databricks-ai-bi-genie-agent"
+      ],
+      "skills": [
+        "databricks-maestro",
+        "databricks-genai-agent-engineering",
+        "databricks-genai-evaluation-observability",
+        "databricks-mlops",
+        "databricks-ai-bi-genie"
+      ]
+    },
+    "databricks-governance-security-engineer": {
+      "label": "Databricks Governance and Security Engineer",
+      "description": "Govern and secure Databricks: Unity Catalog namespace and privilege design, identity federation and admin separation, network and secret boundaries, row filters, column masks, classification, sharing egress, residency, and the platform topology those controls sit on. Static review only — never executes a GRANT.",
+      "agents": [
+        "databricks-maestro-agent",
+        "databricks-unity-catalog-governance-agent",
+        "databricks-identity-network-security-agent",
+        "databricks-data-protection-privacy-agent",
+        "databricks-platform-architecture-agent"
+      ],
+      "skills": [
+        "databricks-maestro",
+        "databricks-unity-catalog-governance",
+        "databricks-identity-network-security",
+        "databricks-data-protection-privacy",
+        "databricks-platform-architecture"
+      ]
+    },
+    "databricks-ml-engineer": {
+      "label": "Databricks ML Engineer",
+      "description": "Build and review machine learning on Databricks: MLflow 3 with models in Unity Catalog, alias-based promotion, feature engineering and point-in-time correctness, Mosaic AI Model Serving, evaluation and tracing, bundle-driven promotion, and the data quality the models depend on. Static review only.",
+      "agents": [
+        "databricks-maestro-agent",
+        "databricks-mlops-agent",
+        "databricks-genai-evaluation-observability-agent",
+        "databricks-developer-platform-agent",
+        "databricks-data-quality-observability-agent"
+      ],
+      "skills": [
+        "databricks-maestro",
+        "databricks-mlops",
+        "databricks-genai-evaluation-observability",
+        "databricks-developer-platform",
+        "databricks-data-quality-observability"
+      ]
+    },
+    "databricks-platform-engineer": {
+      "label": "Databricks Platform Engineer",
+      "description": "Design and review the cloud-neutral Databricks platform: account and workspace topology, identity and network boundary, Declarative Automation Bundles and CI/CD, operational reliability from system tables, and platform cost control. Static review only — never mutates a workspace.",
+      "agents": [
+        "databricks-maestro-agent",
+        "databricks-platform-architecture-agent",
+        "databricks-identity-network-security-agent",
+        "databricks-developer-platform-agent",
+        "databricks-platform-reliability-agent",
+        "databricks-finops-cost-agent"
+      ],
+      "skills": [
+        "databricks-maestro",
+        "databricks-platform-architecture",
+        "databricks-identity-network-security",
+        "databricks-developer-platform",
+        "databricks-platform-reliability",
+        "databricks-finops-cost"
+      ]
+    },
+    "databricks-solution-architect": {
+      "label": "Databricks Solution Architect",
+      "description": "Shape a Databricks solution end to end: platform topology and segmentation, Unity Catalog governance model, pipeline and medallion design, the ML and model lifecycle, and a value case with a real baseline, named owner, attribution limits, and kill condition. Static review only.",
+      "agents": [
+        "databricks-maestro-agent",
+        "databricks-platform-architecture-agent",
+        "databricks-unity-catalog-governance-agent",
+        "databricks-lakeflow-pipeline-engineering-agent",
+        "databricks-mlops-agent",
+        "databricks-value-realization-agent"
+      ],
+      "skills": [
+        "databricks-maestro",
+        "databricks-platform-architecture",
+        "databricks-unity-catalog-governance",
+        "databricks-lakeflow-pipeline-engineering",
+        "databricks-mlops",
+        "databricks-value-realization"
+      ]
+    },
+    "databricks-sre": {
+      "label": "Databricks Site Reliability Engineer",
+      "description": "Operate Databricks reliably: system-table operational evidence, job and pipeline run reliability, cluster policies and compute guardrails, quota headroom, managed disaster recovery and failover discipline, streaming recovery semantics, deployment safety, and warehouse performance under load. Static review only.",
+      "agents": [
+        "databricks-maestro-agent",
+        "databricks-platform-reliability-agent",
+        "databricks-streaming-reliability-agent",
+        "databricks-developer-platform-agent",
+        "databricks-sql-performance-agent"
+      ],
+      "skills": [
+        "databricks-maestro",
+        "databricks-platform-reliability",
+        "databricks-streaming-reliability",
+        "databricks-developer-platform",
+        "databricks-sql-performance"
+      ]
+    },
     "dotnet-application-review-engineer": {
       "label": ".NET Application Review Engineer",
       "description": "Static review of .NET applications: C# and runtime correctness, ASP.NET Core API architecture, authentication and authorization, EF Core data access, test quality, CI and NuGet supply-chain integrity, performance and Native AOT readiness, in-application OpenTelemetry wiring, and .NET Aspire cloud-native posture. A dotnet-maestro router plus nine static-review specialists; every agent reads source and sanitized configuration only and never builds, runs, migrates, or contacts a live system.",
