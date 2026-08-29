@@ -33,7 +33,7 @@ Beyond cloud infrastructure, Vanguard Frontier ships agents for Legal, HR, Marke
 
 The **Legal + HR ecosystem is the proof of concept** for cross-functional agentic coordination. Here's why it matters:
 
-- **28 specialist agents** (13 Legal + 15 HR, each with a maestro router) handle the most legally exposed, audit-heavy, escalation-aware domains in an organization
+- **<!-- count:board:legal+hr:agents -->28<!-- /count --> specialist agents** (<!-- count:board:legal:agents -->13<!-- /count --> Legal + <!-- count:board:hr:agents -->15<!-- /count --> HR, each with a maestro router) handle the most legally exposed, audit-heavy, escalation-aware domains in an organization
 - **3 cross-functional protocol skills** (`legal-hr-routing-protocol`, `legal-hr-case-capsule`, `legal-hr-risk-taxonomy`) define how agents hand off, escalate, and coordinate across organizational boundaries
 - **Real handoff scenarios:** whistleblower reports → both Legal (privilege) and HR (investigation) own it; wrongful-termination exposure → Legal flags risk, HR confirms readiness before execution; data breach → Legal holds, HR freezes personnel actions
 - **Audit-ready design:** every handoff is logged; every escalation has a named decision owner; every irreversible action routes to a human

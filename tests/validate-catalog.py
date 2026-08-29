@@ -451,6 +451,45 @@ def validate_harness_declarations() -> None:
     )
 
 
+def validate_tui_provider_enum() -> None:
+    """Every catalog provider must have a variant in the vfa-tui `Provider` enum.
+
+    tools/vfa-tui deserializes catalog/agents.json into a serde enum with
+    `deny_unknown_fields`, so a provider the enum does not know makes the whole catalog
+    fail to load and the TUI unusable. A Rust test already asserts this — but CI's
+    vfa-tui workflow is path-filtered to `tools/vfa-tui/**` (see
+    .github/workflows/vfa-tui-ci.yml), so a catalog-only PR that adds a provider never
+    triggers it and merges green while leaving the TUI broken. CLAUDE.md documents that
+    trap and asks contributors to remember `cargo test`; this makes remembering
+    unnecessary, because `npm run validate` is not path-filtered.
+
+    Parsed, never executed: variant names are read with a regex and converted to the
+    kebab-case slugs serde produces via `rename_all`, plus any explicit `rename = "..."`.
+    """
+    enum_path = ROOT / "tools" / "vfa-tui" / "src" / "models" / "provider.rs"
+    if not enum_path.exists():
+        # The TUI is optional to the catalog's correctness; absence is not a catalog error.
+        return
+    source = enum_path.read_text(encoding="utf8")
+    variants = re.findall(r"^\s{4}([A-Z][A-Za-z0-9]*),\s*$", source, re.MULTILINE)
+    slugs = {re.sub(r"(?<!^)(?=[A-Z])", "-", v).lower() for v in variants}
+    slugs |= set(re.findall(r'rename\s*=\s*"([a-z0-9-]+)"', source))
+
+    providers = set()
+    for entry in load_json(ROOT / "catalog" / "agents.json"):
+        if isinstance(entry, dict) and entry.get("provider"):
+            providers.add(entry["provider"])
+
+    missing = sorted(providers - slugs)
+    assert_true(
+        not missing,
+        "catalog providers with no variant in tools/vfa-tui/src/models/provider.rs: "
+        + f"{missing}. The TUI deserializes catalog/agents.json with a strict enum, so "
+        + "the catalog will fail to load entirely. Add the variant (kebab-case serde) and "
+        + "run `cargo test` in tools/vfa-tui.",
+    )
+
+
 def main() -> int:
     errors: list[str] = []
     seen_ids: set[str] = set()
@@ -475,6 +514,10 @@ def main() -> int:
         errors.append(str(exc))
     try:
         validate_harness_declarations()
+    except AssertionError as exc:
+        errors.append(str(exc))
+    try:
+        validate_tui_provider_enum()
     except AssertionError as exc:
         errors.append(str(exc))
     try:
