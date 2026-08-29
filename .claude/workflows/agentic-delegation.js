@@ -44,6 +44,14 @@ const GENERATORS = Array.isArray(input.generators) ? input.generators : []
 // validate; this is that order.
 const INTEGRITY_REFRESH = 'npm run asset-integrity:write'
 
+// `gates` accepts two shapes, because README.md documents one and the pipeline needs the
+// other:
+//   false      -> skip the gate phase entirely (an author/verify-only pass)
+//   string[]   -> run exactly these commands instead of the defaults
+//   omitted    -> the defaults below
+// Treating it as an array ONLY meant `gates: false` fell through to the defaults and the
+// gates ran anyway — a documented escape hatch that silently did nothing.
+const GATES_DISABLED = input.gates === false
 const BASE_GATES = Array.isArray(input.gates) && input.gates.length
   ? input.gates
   : [
@@ -525,9 +533,13 @@ log(
 // for any change touching a hashed path. It still runs after the generators so it
 // hashes a settled tree (the CLAUDE.md ordering caveat).
 
-phase('Gate')
+// A caller who passed `gates: false` asked for an author/verify-only pass. Skipping is
+// reported rather than silent: a run with no gate evidence must never read like a green one.
+if (GATES_DISABLED) log('Gate phase SKIPPED — caller passed gates: false. No gate evidence in this run.')
 
-const gateResult = await agent(
+const gateResult = GATES_DISABLED ? null : await (async () => {
+  phase('Gate')
+  return agent(
   `Run this repository's gate suite and report results. This is a verify pass.
 
 Run these IN THIS EXACT ORDER, and report one entry per command, using the command
@@ -560,6 +572,7 @@ HARD CONSTRAINTS:
 - Do NOT attempt to fix a failing gate — report it and stop.`,
   { label: 'gate:suite', phase: 'Gate', model: 'haiku', effort: 'low', schema: GATE_SCHEMA },
 )
+})()
 
 // ---------------------------------------------------------------- return
 //
