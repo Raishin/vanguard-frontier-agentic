@@ -40,11 +40,22 @@ With no `args` it runs a recon plus gate health check. Every field is optional:
 | `task` | string | One line of context passed to every writer. |
 | `questions` | string[] | Recon questions, one agent each. Max 5. |
 | `libraries` | object[] | Context7 surfaces: `{name, query, claims[]}`. Max 5. |
-| `specs` | object[] | Writing tasks: `{paths[], instruction, conventions, acceptance}`. Max 6. |
-| `gates` | boolean | Set `false` to skip the gate phase. Defaults on. |
+| `files` | string[] | Paths the work is scoped to. Shown to recon and spec agents, and used to decide whether the cargo gates are in scope. |
+| `generators` | string[] | Commands that turn generator inputs into shipped output. Run in their own phase between implementation and verification, so verification reads real output rather than stale artifacts. |
+| `gates` | `false` \| string[] | `false` skips the gate phase entirely. An array replaces the default gate commands. Omitted runs the defaults. |
 
 Anything beyond a cap is dropped **loudly** via `log()` — a truncated run must
 never read as full coverage.
+
+`specs` is **not** a caller input. Writing tasks are produced by the Spec phase,
+which is orchestrator-tier by design: deciding what to change and which files it
+touches is the judgment the doctrine keeps out of the delegates. Scope the run
+with `files` and let the Spec phase derive the specs.
+
+Skipping the gates does not make a run look finished. With `gates: false` the
+returned `gatesGreen` is `false`, `missingGates` lists every command that was
+never run, and `blocked` stays `true` — an author-only pass reports itself as
+carrying no gate evidence rather than as green.
 
 ### Why Context7 is a phase and not a footnote
 

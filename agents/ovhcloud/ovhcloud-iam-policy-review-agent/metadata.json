@@ -3,7 +3,14 @@
   "name": "OVHcloud IAM Policy Review",
   "type": "agent",
   "provider": "ovhcloud",
-  "harnesses": ["codex", "claude-code"],
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
   "summary": "Advisory agent for reviewing OVHcloud IAM policies, conditional access rules (IP, tag, expiration), identity groups, and URN-scoped permissions.",
   "source_type": "original",
   "official_docs": [
@@ -16,9 +23,16 @@
   "path": "agents/ovhcloud/ovhcloud-iam-policy-review-agent",
   "version": "0.1.0",
   "author": "github: VincentChuWaiChow",
-  "companion_skills": ["ovhcloud-iam-policy-review"],
+  "companion_skills": [
+    "ovhcloud-iam-policy-review"
+  ],
   "harness_variants": {
     "codex": "agents/ovhcloud/ovhcloud-iam-policy-review-agent/harnesses/codex.toml",
-    "claude-code": "agents/ovhcloud/ovhcloud-iam-policy-review-agent/harnesses/claude-code.agent.md"
+    "copilot": "agents/ovhcloud/ovhcloud-iam-policy-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/ovhcloud/ovhcloud-iam-policy-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/ovhcloud/ovhcloud-iam-policy-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/ovhcloud/ovhcloud-iam-policy-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/ovhcloud/ovhcloud-iam-policy-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/ovhcloud/ovhcloud-iam-policy-review-agent/harnesses/kiro-cli.agent.json"
   }
 }

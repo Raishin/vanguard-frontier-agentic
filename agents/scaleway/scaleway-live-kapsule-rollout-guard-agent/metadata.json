@@ -3,7 +3,14 @@
   "name": "Scaleway Live Kapsule Rollout Guard",
   "type": "agent",
   "provider": "scaleway",
-  "harnesses": ["codex", "claude-code"],
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
   "summary": "Approval-gated live-guard agent for Scaleway Kapsule cluster and node pool mutations: enforces PDB audit, cluster health evidence, and rollback plan before any control-plane or node pool change.",
   "source_type": "original",
   "official_docs": [
@@ -18,9 +25,16 @@
   "path": "agents/scaleway/scaleway-live-kapsule-rollout-guard-agent",
   "version": "0.1.0",
   "author": "github: VincentChuWaiChow",
-  "companion_skills": ["scaleway-live-kapsule-rollout-guard"],
+  "companion_skills": [
+    "scaleway-live-kapsule-rollout-guard"
+  ],
   "harness_variants": {
     "codex": "agents/scaleway/scaleway-live-kapsule-rollout-guard-agent/harnesses/codex.toml",
-    "claude-code": "agents/scaleway/scaleway-live-kapsule-rollout-guard-agent/harnesses/claude-code.agent.md"
+    "copilot": "agents/scaleway/scaleway-live-kapsule-rollout-guard-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/scaleway/scaleway-live-kapsule-rollout-guard-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/scaleway/scaleway-live-kapsule-rollout-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/scaleway/scaleway-live-kapsule-rollout-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/scaleway/scaleway-live-kapsule-rollout-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/scaleway/scaleway-live-kapsule-rollout-guard-agent/harnesses/kiro-cli.agent.json"
   }
 }

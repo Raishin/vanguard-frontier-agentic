@@ -3,7 +3,14 @@
   "name": "OVHcloud Cost FinOps Analyst",
   "type": "agent",
   "provider": "ovhcloud",
-  "harnesses": ["codex", "claude-code"],
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
   "summary": "Advisory agent for OVHcloud Public Cloud cost analysis, commitment tracking, idle resource identification, and FinOps governance across projects and regions.",
   "source_type": "original",
   "official_docs": [
@@ -16,9 +23,16 @@
   "path": "agents/ovhcloud/ovhcloud-cost-finops-analyst-agent",
   "version": "0.1.0",
   "author": "github: VincentChuWaiChow",
-  "companion_skills": ["ovhcloud-cost-finops-analyst"],
+  "companion_skills": [
+    "ovhcloud-cost-finops-analyst"
+  ],
   "harness_variants": {
     "codex": "agents/ovhcloud/ovhcloud-cost-finops-analyst-agent/harnesses/codex.toml",
-    "claude-code": "agents/ovhcloud/ovhcloud-cost-finops-analyst-agent/harnesses/claude-code.agent.md"
+    "copilot": "agents/ovhcloud/ovhcloud-cost-finops-analyst-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/ovhcloud/ovhcloud-cost-finops-analyst-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/ovhcloud/ovhcloud-cost-finops-analyst-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/ovhcloud/ovhcloud-cost-finops-analyst-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/ovhcloud/ovhcloud-cost-finops-analyst-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/ovhcloud/ovhcloud-cost-finops-analyst-agent/harnesses/kiro-cli.agent.json"
   }
 }

@@ -3,7 +3,14 @@
   "name": "Scaleway IAM Policy Review",
   "type": "agent",
   "provider": "scaleway",
-  "harnesses": ["codex", "claude-code"],
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
   "summary": "Advisory agent for reviewing Scaleway IAM bindings, API key governance, service account scopes, application secrets, and organization/project-level permission sets.",
   "source_type": "original",
   "official_docs": [
@@ -17,9 +24,16 @@
   "path": "agents/scaleway/scaleway-iam-policy-review-agent",
   "version": "0.1.0",
   "author": "github: VincentChuWaiChow",
-  "companion_skills": ["scaleway-iam-policy-review"],
+  "companion_skills": [
+    "scaleway-iam-policy-review"
+  ],
   "harness_variants": {
     "codex": "agents/scaleway/scaleway-iam-policy-review-agent/harnesses/codex.toml",
-    "claude-code": "agents/scaleway/scaleway-iam-policy-review-agent/harnesses/claude-code.agent.md"
+    "copilot": "agents/scaleway/scaleway-iam-policy-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/scaleway/scaleway-iam-policy-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/scaleway/scaleway-iam-policy-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/scaleway/scaleway-iam-policy-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/scaleway/scaleway-iam-policy-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/scaleway/scaleway-iam-policy-review-agent/harnesses/kiro-cli.agent.json"
   }
 }

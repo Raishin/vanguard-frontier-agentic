@@ -342,6 +342,154 @@ def validate_guarded_live_kubernetes_agents() -> None:
             )
 
 
+# Adapter files that prove a harness actually ships, mapped to the `harnesses` value
+# that must then be declared.
+HARNESS_ADAPTER_FILES = {
+    "codex.toml": "codex",
+    "copilot.agent.md": "copilot",
+    "claude-code.agent.md": "claude-code",
+    "cursor.agent.md": "cursor",
+    "gemini.agent.md": "gemini",
+    "kiro-ide.agent.md": "kiro",
+    "kiro-cli.agent.json": "kiro",
+}
+
+# Kiro is the one harness whose single `harnesses` value covers TWO adapter files, and the
+# exporter emits both. Collapsing them into one set member would let a half-shipped Kiro
+# adapter pass: with only kiro-ide.agent.md present, `kiro` is still in the on-disk set, the
+# declaration matches, and the export later fails on the missing kiro-cli.agent.json. So the
+# pair is checked explicitly rather than through the collapsed mapping.
+KIRO_REQUIRED_FILES = ("kiro-ide.agent.md", "kiro-cli.agent.json")
+
+
+def validate_harness_declarations() -> None:
+    """Every agent's `harnesses` must match the adapters it ships AND the catalog entry.
+
+    Three independent failures, each of which has actually happened or was one edit away:
+
+      * UNDER-declared (adapter on disk, harness absent from `harnesses`) makes a shipped
+        adapter invisible to everything that filters on the catalog. ionos, ovhcloud, and
+        scaleway each shipped all seven adapter files while declaring only codex and
+        claude-code, so generate-cursor-plugin.mjs omitted 18 real cursor adapters and
+        generate-kiro-powers.mjs dropped three real Kiro Powers.
+
+      * OVER-declared (harness claimed, no adapter file) promises an install path that does
+        not exist, failing at the user's `vfa-export-agents` rather than here.
+
+      * CATALOG DRIFT (metadata.json and catalog/agents.json disagree). catalog/agents.json
+        has no full regenerator — only an upsert — so fixing metadata.json does NOT update
+        it, and the catalog is what every generator actually reads. Checking metadata
+        against disk alone would report success while the original user-facing breakage
+        remained. This is not hypothetical: resyncing those 18 catalog entries was a
+        separate manual step from fixing their metadata.
+    """
+    problems: list[str] = []
+
+    catalog_harnesses: dict[str, list] = {}
+    catalog_agents = load_json(ROOT / "catalog" / "agents.json")
+    if isinstance(catalog_agents, dict):
+        catalog_agents = catalog_agents.get("agents", [])
+    for entry in catalog_agents:
+        if isinstance(entry, dict) and entry.get("type") == "agent":
+            catalog_harnesses[entry["id"]] = entry.get("harnesses") or []
+
+    for metadata_path in sorted(ROOT.glob("agents/*/*/metadata.json")):
+        data = load_json(metadata_path)
+        agent_id = data.get("id", metadata_path.parent.name)
+        declared = set(data.get("harnesses") or [])
+        harness_dir = metadata_path.parent / "harnesses"
+        present_files = (
+            {entry.name for entry in harness_dir.iterdir() if entry.is_file()}
+            if harness_dir.is_dir()
+            else set()
+        )
+        on_disk = {
+            HARNESS_ADAPTER_FILES[name]
+            for name in present_files
+            if name in HARNESS_ADAPTER_FILES
+        }
+        # "other" is a catalog-only escape hatch with no adapter file of its own.
+        declared.discard("other")
+
+        if on_disk - declared:
+            problems.append(
+                f"{agent_id}: ships adapters for {sorted(on_disk - declared)} "
+                f"but does not declare them in harnesses"
+            )
+        if declared - on_disk:
+            problems.append(
+                f"{agent_id}: declares harnesses {sorted(declared - on_disk)} "
+                f"with no matching adapter file"
+            )
+
+        # Kiro's two adapter files are checked as a pair, not through the collapsed value.
+        kiro_missing = [f for f in KIRO_REQUIRED_FILES if f not in present_files]
+        if "kiro" in declared and kiro_missing:
+            problems.append(
+                f"{agent_id}: declares the kiro harness but is missing {sorted(kiro_missing)} "
+                f"— both Kiro adapter files are required"
+            )
+        if kiro_missing and len(kiro_missing) == 1:
+            problems.append(
+                f"{agent_id}: ships a partial Kiro adapter — has "
+                f"{sorted(set(KIRO_REQUIRED_FILES) - set(kiro_missing))}, missing {kiro_missing}"
+            )
+
+        # The catalog is what the generators read; metadata alone proves nothing about them.
+        if agent_id in catalog_harnesses:
+            if sorted(catalog_harnesses[agent_id]) != sorted(data.get("harnesses") or []):
+                problems.append(
+                    f"{agent_id}: catalog/agents.json declares "
+                    f"{sorted(catalog_harnesses[agent_id])} but metadata.json declares "
+                    f"{sorted(data.get('harnesses') or [])} — resync the catalog entry"
+                )
+
+    assert_true(
+        not problems,
+        "harness declarations disagree with shipped adapters or the catalog:\n  - "
+        + "\n  - ".join(problems),
+    )
+
+
+def validate_tui_provider_enum() -> None:
+    """Every catalog provider must have a variant in the vfa-tui `Provider` enum.
+
+    tools/vfa-tui deserializes catalog/agents.json into a serde enum with
+    `deny_unknown_fields`, so a provider the enum does not know makes the whole catalog
+    fail to load and the TUI unusable. A Rust test already asserts this — but CI's
+    vfa-tui workflow is path-filtered to `tools/vfa-tui/**` (see
+    .github/workflows/vfa-tui-ci.yml), so a catalog-only PR that adds a provider never
+    triggers it and merges green while leaving the TUI broken. CLAUDE.md documents that
+    trap and asks contributors to remember `cargo test`; this makes remembering
+    unnecessary, because `npm run validate` is not path-filtered.
+
+    Parsed, never executed: variant names are read with a regex and converted to the
+    kebab-case slugs serde produces via `rename_all`, plus any explicit `rename = "..."`.
+    """
+    enum_path = ROOT / "tools" / "vfa-tui" / "src" / "models" / "provider.rs"
+    if not enum_path.exists():
+        # The TUI is optional to the catalog's correctness; absence is not a catalog error.
+        return
+    source = enum_path.read_text(encoding="utf8")
+    variants = re.findall(r"^\s{4}([A-Z][A-Za-z0-9]*),\s*$", source, re.MULTILINE)
+    slugs = {re.sub(r"(?<!^)(?=[A-Z])", "-", v).lower() for v in variants}
+    slugs |= set(re.findall(r'rename\s*=\s*"([a-z0-9-]+)"', source))
+
+    providers = set()
+    for entry in load_json(ROOT / "catalog" / "agents.json"):
+        if isinstance(entry, dict) and entry.get("provider"):
+            providers.add(entry["provider"])
+
+    missing = sorted(providers - slugs)
+    assert_true(
+        not missing,
+        "catalog providers with no variant in tools/vfa-tui/src/models/provider.rs: "
+        + f"{missing}. The TUI deserializes catalog/agents.json with a strict enum, so "
+        + "the catalog will fail to load entirely. Add the variant (kebab-case serde) and "
+        + "run `cargo test` in tools/vfa-tui.",
+    )
+
+
 def main() -> int:
     errors: list[str] = []
     seen_ids: set[str] = set()
@@ -362,6 +510,14 @@ def main() -> int:
         errors.append(str(exc))
     try:
         validate_codex_harness_adapters()
+    except AssertionError as exc:
+        errors.append(str(exc))
+    try:
+        validate_harness_declarations()
+    except AssertionError as exc:
+        errors.append(str(exc))
+    try:
+        validate_tui_provider_enum()
     except AssertionError as exc:
         errors.append(str(exc))
     try:
