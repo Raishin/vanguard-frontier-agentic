@@ -1,3 +1,234 @@
+## 🛡️ v3.11.1 — *Provenance · Policy · Portability*
+_Released 2026-08-29_
+
+> _Curated multi-cloud, zero-trust agent marketplace — `AWS` · `Azure` · `OCI` · `GCP` · `Terraform`._
+> Least privilege, live evidence, safe rollback paths.
+
+**Release type:** Maintenance & hardening.
+
+* **catalog:** close the false green, the Kiro pair hole, and catalog drift ([`97bd4f6`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/97bd4f679fa51d3a0761521033a3dda0876b39a6))
+Merges origin/master (PR #154's Databricks board, releases up to v0.0.14) and
+addresses all three Codex findings on this PR. All three were correct.
+
+The TARGETS conflict this branch predicted did materialise, and git unioned it
+correctly on its own: docs/databricks-board.md from master plus agents/README.md
+and agents/AGENTS.md from here, eight targets in total. Verified rather than
+assumed, because picking a side would have silently dropped a document from the
+count gate while leaving its markers in place.
+
+FALSE GREEN (Codex, scripts/generate-board-counts.mjs). Adding the two agents/
+index files to TARGETS did not make their counts checked — only their markers.
+agents/AGENTS.md carried 22 navigation headings with literal counts that the
+gate never looked at, so `--check` reported every count current while six were
+wrong: AWS 43 (actually 47), Azure 32 (36), OCI 35 (39), Kubernetes 13,
+cert-manager 4 (1), and FinOps 1. Codex named four; the sweep found six. Exactly
+the failure this whole change set exists to prevent — a guarantee that looks
+enforced and is not.
+
+Converting them needed a new marker scope rather than the existing one. These
+headings link to a DIRECTORY, and directory is not provider here: agents/
+kubernetes/ holds 15 agents while the kubernetes provider has 16 (one lives in
+agents/finops/), and agents/finops/ holds 4 agents while `finops` is not a
+provider at all. A count:board:finops:agents marker would have failed closed on
+an unknown provider, and count:board:kubernetes:agents would have printed 16
+next to a link to a directory containing 15. So generate-board-counts.mjs gains
+a third scope, count:dir:<slug>:agents, keyed on agents/<slug>/*/metadata.json,
+failing closed on a directory that holds no agents. All 22 headings now resolve
+from it.
+
+KIRO PAIR (Codex, tests/validate-catalog.py). kiro-ide.agent.md and
+kiro-cli.agent.json both mapped to the single `kiro` value, so a half-shipped
+adapter passed: with only kiro-ide present, `kiro` was still in the on-disk set,
+the declaration matched, and the export would fail later on the missing file.
+The pair is now checked explicitly, both when `kiro` is declared and whenever
+exactly one of the two files exists.
+
+CATALOG DRIFT (Codex, tests/validate-catalog.py). The gate compared metadata.json
+against disk and stopped there, but catalog/agents.json is what every generator
+actually reads, and it has no full regenerator — only an upsert. So metadata
+could be fixed while the catalog stayed stale, generate-cursor-plugin.mjs would
+still omit the agent, and the gate would report success. This is not
+hypothetical: resyncing those 18 catalog entries was a separate manual step from
+fixing their metadata in the previous commit, and nothing would have caught it
+being skipped. The gate now asserts parity between the two.
+
+Probes, all four negative and all firing:
+- Deleting kiro-cli.agent.json while leaving the declaration -> "declares the
+  kiro harness but is missing ['kiro-cli.agent.json']" plus the partial-adapter
+  message.
+- Reverting one catalog entry's harnesses -> "catalog/agents.json declares
+  [...] but metadata.json declares [...] — resync the catalog entry".
+- Drifting count:dir:aws:agents to 99 -> "file says 99, repository says 47".
+- Pointing a marker at a non-existent directory -> "unknown directory
+  \"notadir\" ... no agents/notadir/*/metadata.json found".
+Working tree verified free of probe residue afterwards.
+
+Kiro Powers coverage confirmed complete on this branch: 45 providers with
+agents, 45 with kiro adapters declared, 45 Powers on disk, and no gap in either
+direction. Before this PR it was 42 Powers for 45 providers.
+
+Gates on the merged tree: npm run validate exit 0 (100 markers across 8
+documents, 1487 catalog entries), codespell 0, markdownlint 0 issues across 8224
+files, and in tools/vfa-tui — which the merge touched — cargo fmt --check, cargo
+clippy --all-targets -D warnings, and cargo test --locked with 1067 passing.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+* **catalog:** declare the adapters that ship, and gate the mismatch ([`4215d2a`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/4215d2aa05f540b7b1ae925af8f66da6ddccca19))
+Started as stale counts in agents/README.md and powers/README.md. The counts
+were a symptom; the cause is a catalog-integrity bug with a user-facing
+consequence.
+
+THE BUG. Every agent under agents/ionos/, agents/ovhcloud/, and
+agents/scaleway/ ships all seven harness adapters on disk — codex, copilot,
+claude-code, cursor, gemini, kiro-ide, kiro-cli — while its metadata.json
+declared only codex and claude-code. 18 agents, 3 providers, the same 4
+harnesses missing from each. A repo-wide audit found no other case, and zero
+over-declarations anywhere.
+
+Nothing caught it because nothing compared the two. validate-catalog.py checked
+that harness VALUES are legal, never that they match the adapters on disk.
+
+What the under-declaration actually cost:
+
+- .cursor-plugin/plugin.json omitted 18 cursor.agent.md files that were sitting
+  in the tree. Cursor users could not install a single ionos, ovhcloud, or
+  scaleway agent — the adapters existed and the manifest never mentioned them.
+  That is the whole diff on that file: 18 insertions, no deletions.
+- generate-kiro-powers.mjs discovers providers by looking for `kiro` in
+  harnesses, so it dropped these three. powers/README.md — a GENERATED file —
+  therefore claimed 42 Kiro Powers while 45 shipped, and its tree omitted the
+  three. The three POWER.md files were orphaned: present, valid, and no longer
+  regenerated by the tool that owns them.
+
+The fix is at the source: declare what ships. metadata.json `harnesses` and
+`harness_variants` are now derived from the adapter files actually present, so
+the declaration cannot be more or less than the truth. catalog/agents.json was
+resynced for the same 18 entries — it has no full regenerator, only an upsert,
+so it does not pick this up on its own.
+
+Proof of no content loss: after registering the three providers, the generator
+rewrites all 45 POWER.md files and `git status` shows no POWER.md modified. The
+three orphans regenerate byte-identical to what was on disk, which is what makes
+bringing them back under generator ownership safe rather than destructive.
+
+THE GATE. validate_harness_declarations() in tests/validate-catalog.py now fails
+on either direction. Under-declared hides a shipped adapter from everything that
+filters on the catalog; over-declared promises an install path that breaks at the
+user's export instead of in CI. It keys on the adapter files, so it stays true
+however the catalog is regenerated.
+
+Probes: reintroducing the exact original bug fails with "ships adapters for
+['copilot', 'cursor', 'gemini', 'kiro'] but does not declare them"; adding a
+bogus harness fails; deleting a real gemini.agent.md while leaving the
+declaration fails with "declares harnesses ['gemini'] with no matching adapter
+file". The gate also caught me for real mid-work: a probe cleanup reverted the
+ionos fix and validate:catalog went red before I had committed anything.
+
+THE COUNTS. agents/README.md and agents/AGENTS.md were badly stale — "386
+enterprise-grade agents" and "141 agents across 18 providers" against a real 712
+across 45 — and drifted because no generator owned them. Both are now
+board-counts targets, so their figures are markers rather than prose:
+
+  agents/AGENTS.md  141 -> count:global:agents, 18 -> count:global:providers
+  agents/README.md  386 -> count:global:agents; per-provider table cells ->
+                    count:board:<provider>:agents; the CNCF rollup ->
+                    a `+`-joined key over its eleven member providers
+
+Values verified against an independent count off catalog/agents.json rather than
+trusting the generator: GCP was 39 and is 51, Alibaba and Huawei were 30 and are
+43, Terraform was 2 and is 9, Multi-cloud was 1 and is 3, Kubernetes was 15 and
+is 16. Drifting a marker to 99 fails validate:board-counts with "file says 99,
+repository says 51".
+
+One prose correction alongside it: the CNCF row listed Velero among its agents.
+Velero ships skills and no agents, so it is excluded from the count and the row
+now says so instead of implying otherwise.
+
+Two claims left alone deliberately. The "all 127 agents" line in agents/AGENTS.md
+sits inside a ```fence where an HTML marker renders as visible text, so it now
+reads "every agent" rather than carrying a number nothing can maintain. And
+docs/salesforce-portfolio.md's "20 agents" is correct, not stale: the file is an
+explicit Wave 1 scaffolding record, and the portfolio is 30 = 20 Wave 1 + 10
+Wave 3.
+
+Gates: npm run validate exit 0, codespell 0, markdownlint 0 issues across 8018
+files. No tools/vfa-tui change, so the cargo gates do not apply.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+* **catalog:** gate the vfa-tui provider enum, and derive the last stale board count ([`37fea0c`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/37fea0ce8db4a06805b5c78f11d1e9b98c66eb2f))
+Two things, one of which closes a hole CLAUDE.md documents but nothing enforced.
+
+THE PROVIDER-ENUM HOLE. tools/vfa-tui deserializes catalog/agents.json into a
+serde enum with deny_unknown_fields, so a provider the enum does not know makes
+the entire catalog fail to load and the TUI unusable. A Rust test already asserts
+every catalog provider maps to a variant — but .github/workflows/vfa-tui-ci.yml
+triggers only on `tools/vfa-tui/**`, so a catalog-only PR that adds a provider
+never runs it. CLAUDE.md names this trap explicitly and asks contributors to
+remember `cargo test`. Remembering is not a control.
+
+validate_tui_provider_enum() in tests/validate-catalog.py now asserts the parity
+from the catalog side, inside `npm run validate`, which is not path-filtered. It
+parses the variant names and converts them to the kebab-case slugs serde
+produces (plus any explicit rename), never executing the Rust. If the TUI is
+absent it returns rather than failing — the TUI is optional to the catalog's
+correctness.
+
+Probe: commenting out the `Databricks` variant fails with "catalog providers
+with no variant in tools/vfa-tui/src/models/provider.rs: ['databricks']". Also
+confirmed from the other side that today's tree is genuinely consistent: all 45
+catalog providers map to a variant, and the Rust test
+infer_provider_covers_every_catalog_provider passes against the real catalog, so
+databricks deserializes rather than merely appearing in the enum.
+
+THE LAST DRIFTABLE COUNT IN A TARGETS FILE. Swept all eight board-counts targets
+for literal counts sitting outside a marker — the false-green class Codex caught
+— and found five candidates, of which exactly one was a real catalog count:
+agents/README.md's "28 specialist agents (13 Legal + 15 HR)". Correct today, and
+hand-typed, so it would drift the moment either board changes. Now three markers.
+
+The other four were false positives and are deliberately left alone:
+- "1:1 agent-to-skill pairing" — a ratio, not a count.
+- "dispatches <=4 specialists in parallel" — a policy cap on parallelism.
+- "5 (2 board-specific + 3 cross-functional)" — the composition of one role's
+  skill bundle, not a catalog total.
+- "3 skills" in the cross-functional row — it names all three on the same line,
+  so it is self-verifying, and no marker scope expresses "these three named
+  skills".
+
+NOT SHIPPED, AND WHY. I also prototyped a blanket gate that would fail on any
+literal catalog count anywhere in the docs. It is the obvious generalisation and
+it is a bad idea in this repo: across all markdown it flags 1142 occurrences in
+281 files, overwhelmingly in CHANGELOG.md, ADRs, dated plans, and eval reports
+that are deliberately frozen records of what was true when written. Even narrowed
+to the eight enforced targets its precision was one real finding in five. A
+blocking gate at that signal-to-noise needs a suppression list, and a stale
+suppression list is the same disease it was meant to cure. The enforcement that
+does work is the existing one: a file in TARGETS has its counts derived, and the
+sweep above is worth repeating by hand when a target is added.
+
+Gates: npm run validate exit 0 (103 markers across 8 documents, 1487 catalog
+entries), codespell 0, markdownlint 0 issues across 8224 files. No tools/vfa-tui
+source change, so the cargo gates do not apply; the provider tests were run
+anyway (26 passing) to prove the enum claim rather than assert it.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+* **workflows:** honor gates:false, and make the input table match the code ([`9c464e7`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/9c464e7e069e888178e64a6a6eeac3918f231d7e))
+
+---
+
+### 📥 Install
+```bash
+npm install @raishin/vanguard-frontier-agentic@3.11.1
+```
+
+### 🔐 Supply-chain provenance
+Every release ships a build attestation (SLSA provenance) and an SBOM. Verify the tag with `gh attestation verify` before installing.
+
+**Full changelog:** https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/compare/v3.11.0...v3.11.1
+
 ## 🛡️ v3.11.0 — *Provenance · Policy · Portability*
 _Released 2026-08-27_
 
