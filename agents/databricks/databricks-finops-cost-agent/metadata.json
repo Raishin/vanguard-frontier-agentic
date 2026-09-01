@@ -1,0 +1,60 @@
+{
+  "id": "databricks-finops-cost-agent",
+  "name": "Databricks FinOps Cost Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "databricks",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of Databricks cost and billing: evidence from system.billing.usage and system.billing.list_prices, cost attribution via custom tags with coverage confidence reporting (tagged vs untagged spend), DBU uptime semantics and per-workload charging, serverless versus classic cost comparison validity, budgets and their non-enforcing nature, compute policies and idle/auto-stop settings as cost controls, instance-pool cost floors, and identifying expensive workloads. Joins and coverage gaps are reported explicitly, never papered over.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.databricks.com/aws/en/admin/system-tables/billing",
+    "https://docs.databricks.com/aws/en/admin/system-tables/pricing",
+    "https://docs.databricks.com/aws/en/admin/system-tables/serverless-billing",
+    "https://docs.databricks.com/aws/en/admin/system-tables/compute",
+    "https://docs.databricks.com/aws/en/admin/system-tables/jobs",
+    "https://docs.databricks.com/aws/en/admin/account-settings/budgets",
+    "https://docs.databricks.com/aws/en/admin/clusters/policy-definition",
+    "https://docs.databricks.com/aws/en/compute/pools"
+  ],
+  "security_notes": "Static analysis of billing data only — reads system.billing.usage, system.billing.list_prices, system.compute.clusters, system.compute.node_timeline, system.lakeflow.jobs, and cluster policies; never executes any query, never invokes Databricks APIs, and never requests workspace URLs, credentials, tokens, storage keys, or metastore identifiers. Cost analysis is only as good as the custom-tag coverage; the agent reports attribution confidence explicitly (e.g., '85% of spend is tagged, 15% is untagged and cannot be attributed'). No hidden caveats—all joins, attribution gaps, and inference limitations are named in the output.",
+  "last_verified": "2026-08-17",
+  "path": "agents/databricks/databricks-finops-cost-agent/",
+  "harness_variants": {
+    "codex": "agents/databricks/databricks-finops-cost-agent/harnesses/codex.toml",
+    "copilot": "agents/databricks/databricks-finops-cost-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/databricks/databricks-finops-cost-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/databricks/databricks-finops-cost-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/databricks/databricks-finops-cost-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/databricks/databricks-finops-cost-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/databricks/databricks-finops-cost-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "databricks-finops-cost"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "routing_keywords": [
+    "cost",
+    "spend",
+    "bill",
+    "dbu",
+    "billing usage",
+    "list_prices",
+    "cost attribution",
+    "custom tags",
+    "budget",
+    "chargeback",
+    "idle compute",
+    "serverless pricing",
+    "cost per workload"
+  ]
+}

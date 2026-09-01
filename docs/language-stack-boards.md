@@ -714,6 +714,61 @@ mutation surface has two owners; they remain installable via the legacy
 
 ---
 
+### Databricks
+
+The `databricks` board is static-review throughout. It pairs a router with review
+specialists covering the lakehouse surface — platform architecture, Unity Catalog
+governance, identity and network security, data protection, Lakeflow pipelines, streaming,
+data quality, SQL performance, AI/BI Genie, MLOps, GenAI engineering and evaluation,
+developer platform, reliability, cost, and value realization. No agent on it carries an
+execution tool: mutation is reachable only through the pre-existing Unity Catalog grant
+guard, which is never auto-dispatched.
+
+Unlike `snowflake`, this board's Azure-scoped agents are **not** deprecated. The three
+`*-at-azure` assets are actively maintained and coexist with the cloud-neutral board,
+owning the deployment detail it deliberately does not duplicate — Entra ID federation,
+ADLS Gen2 wiring via Access Connector managed identity, and VNet-level isolation. Because
+they are live rather than retired, they are counted in every figure below; the board is
+described by what the catalog can derive, not by a hand-typed cloud-neutral subtotal.
+
+| Property | Value |
+|----------|-------|
+| `provider` | `databricks` |
+| ID prefix | `databricks-*` |
+| Agent directory | `agents/databricks/` |
+| Skill directory | `skills/databricks/` |
+| Agents | <!-- count:board:databricks:agents -->20<!-- /count --> (<!-- count:board:databricks:router -->1<!-- /count --> router + <!-- count:board:databricks:review -->18<!-- /count --> review specialists + <!-- count:board:databricks:guards -->1<!-- /count --> live guard) |
+| Skills | <!-- count:board:databricks:skills -->20<!-- /count --> (1:1 companion skill per agent) |
+| Install roles | `databricks-platform-engineer`, `databricks-solution-architect`, `databricks-data-engineer`, `databricks-analytics-engineer`, `databricks-governance-security-engineer`, `databricks-ml-engineer`, `databricks-genai-engineer`, `databricks-sre`, `databricks-finops-engineer` |
+| Execution tier | `static-review` (<!-- count:board:databricks:static -->19<!-- /count --> agents — router + specialists) / `mutating-runtime` (the <!-- count:board:databricks:guards -->1<!-- /count --> Unity Catalog grant guard) |
+
+**Example agents**
+
+| Agent | Scope |
+|-------|-------|
+| `databricks-maestro-agent` | Router; classifies on seven axes (intent, business context, artifact type, blast radius, required evidence, implied runtime authority, specialist ownership) and dispatches a single specialist or at most four in parallel. Never answers a Databricks question and never dispatches the live guard |
+| `databricks-unity-catalog-governance-agent` | Three-level namespace, GRANT inheritance and privilege cascades, single-owner-per-securable design, workspace-catalog binding in ISOLATED mode, governed tags, storage credentials, audit completeness |
+| `databricks-data-protection-privacy-agent` | Row filters and column masks with their UDF cost implications, ABAC policies, classification, DELETE/MERGE/VACUUM/REORG coordination for GDPR erasure, Delta Sharing egress, residency, customer-managed keys |
+| `databricks-lakeflow-pipeline-engineering-agent` | Lakeflow Spark Declarative Pipelines, medallion layering, liquid clustering, Auto Loader ingestion |
+| `databricks-genai-evaluation-observability-agent` | MLflow Tracing, built-in judges, and regression detection — separated from agent authoring so evaluation is not graded by the same agent that built the thing |
+| `databricks-value-realization-agent` | The economic counterweight. Refuses to state a number without a measured baseline, and names attribution limits and kill conditions rather than asserting ROI |
+
+**Live guard**
+
+| Live guard | Allowed mutation | Maximum scope |
+|-------|-------|-------|
+| `databricks-live-unity-catalog-grant-guard-at-azure-agent` | one GRANT or REVOKE | one securable · one principal · one privilege |
+
+The guard requires a written approval token and a dry-run preflight, captures prior state,
+and names its `REVOKE`/`GRANT` rollback before executing. It is reachable only in
+`live-guard-gate` mode; the routing grader asserts it is never auto-dispatched.
+
+Routing, the live-guard gate, and negative routing are covered by the scenarios in
+`tests/fixtures/databricks-maestro-routing/`. The board is documented in full at
+[The Databricks Board](databricks-board/).
+
+---
+
 ## How to use language/stack boards
 
 ### Discovery via install roles
@@ -747,6 +802,15 @@ set for a given function.
 | `sap-transformation-operations` | `sap` | 40 | 46 |
 | `microsoft-365-d365-platform-advisor` | `microsoft` | 40 | 40 |
 | `azure-databricks-platform-engineer` | `databricks` | 3 | 3 |
+| `databricks-platform-engineer` | `databricks` | 6 | 6 |
+| `databricks-solution-architect` | `databricks` | 6 | 6 |
+| `databricks-data-engineer` | `databricks` | 5 | 5 |
+| `databricks-analytics-engineer` | `databricks` | 5 | 5 |
+| `databricks-governance-security-engineer` | `databricks` | 5 | 5 |
+| `databricks-ml-engineer` | `databricks` | 5 | 5 |
+| `databricks-genai-engineer` | `databricks` | 5 | 5 |
+| `databricks-sre` | `databricks` | 5 | 5 |
+| `databricks-finops-engineer` | `databricks` | 5 | 5 |
 | `snowflake-platform-architect` | `snowflake` | 5 | 5 |
 | `snowflake-security-governance-engineer` | `snowflake` | 8 | 8 |
 | `snowflake-finops-performance-engineer` | `snowflake` | 5 | 5 |
@@ -954,12 +1018,17 @@ read-only tier. This is a design constraint, not a default.
 | `python` (live control plane) | `read-only-runtime` / `mutating-runtime` | The `python-live-*` agents. Read-only agents perform allowlisted diagnostics and observation; mutating operators are live-guard gated — never auto-dispatched, requiring an independent approval bound to the target, target-scoped JIT credentials, a pre-approved rollback, and an immutable audit event (fail-closed for R3+). The repo ships definitions, contracts, and evals — not a running control plane — and no agent declares compliance. |
 | `sap` | `static-review` | Reads sanitized SAP configuration and ABAP/BTP artifacts; never contacts SAP systems, triggers transports, or mutates landscape data |
 | `microsoft` | `static-review` | Reads sanitized Microsoft 365 and Dynamics 365 configuration; never mutates tenant state, sends messages, or contacts Graph API |
-| `databricks` | `static-review` | Reads sanitized notebooks, job configs, and lakehouse metadata; never runs jobs, mutates clusters, or contacts Databricks REST APIs |
+| `databricks` (cloud-neutral board) | `static-review` | Reads sanitized notebooks, SQL, `databricks.yml`, job/pipeline and cluster-policy JSON, query profiles, and system-table output; never executes DDL/DML, `GRANT`/`REVOKE`, job or pipeline runs, warehouse or cluster changes, or model deployments, and never contacts Databricks REST APIs |
+| `databricks` (Azure live guard) | `mutating-runtime` | The single `databricks-live-unity-catalog-grant-guard-at-azure-agent`. Executes exactly one `GRANT`/`REVOKE` on one securable for one principal, gated by a written approval token, dry-run preflight, prior-state capture, and a named `REVOKE`/`GRANT` rollback; never auto-dispatched |
 | `snowflake` (review board) | `static-review` | The maestro and 18 review specialists. Read sanitized DDL, query plans, grants, policy definitions, and account-evidence extracts; never execute a statement, resize compute, attach a policy, or promote a replication target |
 | `snowflake` (live guards) | `mutating-runtime` | The six `snowflake-live-*` guards. Each executes exactly one approved mutation behind an explicit written human gate with prior-state capture, preflight, verification, and a rollback path — never auto-dispatched. No harness adapter grants them an execution tool: the deliverable is the approved statement, which a named human operator runs |
 
-Static review is the required **default** for language/stack boards. The one
-governed exception is the `python` **live control plane** (`python-live-*`), which
+Static review is the required **default** for language/stack boards. Every
+exception is governed, never ad hoc: a board may ship live agents only behind the
+live-guard contract, and the boards that do — `sap`, `microsoft`, and the Azure
+`databricks` grant guard — each expose a small, named set of single-operation
+guards rather than general mutation authority. The largest and most structured of
+these is the `python` **live control plane** (`python-live-*`), which
 carries `read-only-runtime`/`mutating-runtime` tiers under the controlled-execution
 and audit-evidence contracts in [docs/compliance/](compliance/) and
 [evidence-output-spec.md](evidence-output-spec.md); its mutating operators are

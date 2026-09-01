@@ -1,6 +1,6 @@
 # Agents
 
-Role definitions for repeatable review, architecture, operations, and bounded execution work. **386 enterprise-grade, audit-ready agents** organized in a three-layer ecosystem: maestro routers, domain specialists, and cross-functional protocols.
+Role definitions for repeatable review, architecture, operations, and bounded execution work. **<!-- count:global:agents -->729<!-- /count --> enterprise-grade, audit-ready agents** organized in a three-layer ecosystem: maestro routers, domain specialists, and cross-functional protocols.
 
 ## Three-layer agentic architecture
 
@@ -33,7 +33,7 @@ Beyond cloud infrastructure, Vanguard Frontier ships agents for Legal, HR, Marke
 
 The **Legal + HR ecosystem is the proof of concept** for cross-functional agentic coordination. Here's why it matters:
 
-- **28 specialist agents** (13 Legal + 15 HR, each with a maestro router) handle the most legally exposed, audit-heavy, escalation-aware domains in an organization
+- **<!-- count:board:legal+hr:agents -->28<!-- /count --> specialist agents** (<!-- count:board:legal:agents -->13<!-- /count --> Legal + <!-- count:board:hr:agents -->15<!-- /count --> HR, each with a maestro router) handle the most legally exposed, audit-heavy, escalation-aware domains in an organization
 - **3 cross-functional protocol skills** (`legal-hr-routing-protocol`, `legal-hr-case-capsule`, `legal-hr-risk-taxonomy`) define how agents hand off, escalate, and coordinate across organizational boundaries
 - **Real handoff scenarios:** whistleblower reports → both Legal (privilege) and HR (investigation) own it; wrongful-termination exposure → Legal flags risk, HR confirms readiness before execution; data breach → Legal holds, HR freezes personnel actions
 - **Audit-ready design:** every handoff is logged; every escalation has a named decision owner; every irreversible action routes to a human
@@ -51,21 +51,21 @@ Vanguard Frontier's cloud agent portfolios are organized by execution tier: advi
 
 | Provider | Current status | Agents | Notes |
 | --- | --- | ---: | --- |
-| 🟧 AWS | active | 47 | advisory, repo-write execution, and guarded live-AWS operator agents |
-| 🟥 OCI | active | 39 | advisory and guarded live-OCI operator agents |
-| 🟩 GCP | active | 39 | advisory, live-guard operators, maestro router |
-| 🟦 Azure | active | 36 | advisory and guarded live-Azure operator agents |
-| 🟠 Alibaba Cloud | active | 30 | advisory, live-guard operators, maestro router |
-| 🔴 Huawei Cloud | active | 30 | advisory, live-guard operators, maestro router |
-| ☁️ OVHcloud | active | 6 | maestro router, IAM, FinOps, MCK, network architect, KMS live-guard |
-| 🌐 IONOS Cloud | active | 6 | maestro router, DCD review, GDPR/compliance, K8s, FinOps, DBaaS live-guard |
-| 🇫🇷 Scaleway | active | 6 | maestro router, IAM, Kapsule, FinOps, network, Kapsule rollout live-guard |
-| 🇩🇪 Hetzner Cloud | active | 6 | maestro router, FinOps, infra review, capacity, firewall + server live-guards |
-| 💰 Contabo | active | 6 | maestro router, FinOps, capacity, security hardening, instance + storage live-guards |
-| ☸️ Kubernetes | active | 15 | RBAC, workload identity, PSA, live-guards, maestro |
-| 🟩 Terraform | active | 2 | generic IaC review |
-| 💰 Multi-cloud | limited | 1 | FinOps cross-cloud price advisor |
-| CNCF ecosystem | active | 14 | Kyverno, Argo CD, Istio, Cilium, OTEL, Prometheus, Falco, Sigstore, cert-manager, FluxCD, Backstage, Velero |
+| 🟧 AWS | active | <!-- count:board:aws:agents -->47<!-- /count --> | advisory, repo-write execution, and guarded live-AWS operator agents |
+| 🟥 OCI | active | <!-- count:board:oci:agents -->39<!-- /count --> | advisory and guarded live-OCI operator agents |
+| 🟩 GCP | active | <!-- count:board:gcp:agents -->51<!-- /count --> | advisory, live-guard operators, maestro router |
+| 🟦 Azure | active | <!-- count:board:azure:agents -->36<!-- /count --> | advisory and guarded live-Azure operator agents |
+| 🟠 Alibaba Cloud | active | <!-- count:board:alibaba:agents -->43<!-- /count --> | advisory, live-guard operators, maestro router |
+| 🔴 Huawei Cloud | active | <!-- count:board:huawei:agents -->43<!-- /count --> | advisory, live-guard operators, maestro router |
+| ☁️ OVHcloud | active | <!-- count:board:ovhcloud:agents -->6<!-- /count --> | maestro router, IAM, FinOps, MCK, network architect, KMS live-guard |
+| 🌐 IONOS Cloud | active | <!-- count:board:ionos:agents -->6<!-- /count --> | maestro router, DCD review, GDPR/compliance, K8s, FinOps, DBaaS live-guard |
+| 🇫🇷 Scaleway | active | <!-- count:board:scaleway:agents -->6<!-- /count --> | maestro router, IAM, Kapsule, FinOps, network, Kapsule rollout live-guard |
+| 🇩🇪 Hetzner Cloud | active | <!-- count:board:hetzner:agents -->6<!-- /count --> | maestro router, FinOps, infra review, capacity, firewall + server live-guards |
+| 💰 Contabo | active | <!-- count:board:contabo:agents -->6<!-- /count --> | maestro router, FinOps, capacity, security hardening, instance + storage live-guards |
+| ☸️ Kubernetes | active | <!-- count:board:kubernetes:agents -->16<!-- /count --> | RBAC, workload identity, PSA, live-guards, maestro |
+| 🟩 Terraform | active | <!-- count:board:terraform:agents -->9<!-- /count --> | generic IaC review |
+| 💰 Multi-cloud | limited | <!-- count:board:multi-cloud:agents -->3<!-- /count --> | FinOps cross-cloud price advisor |
+| CNCF ecosystem | active | <!-- count:board:kyverno+argocd+istio+cilium+opentelemetry+prometheus+falco+sigstore+cert-manager+fluxcd+backstage:agents -->12<!-- /count --> | Kyverno, Argo CD, Istio, Cilium, OTEL, Prometheus, Falco, Sigstore, cert-manager, FluxCD, Backstage. Velero ships skills only — no agents — so it is not counted here |
 
 ## Agent tiers
 

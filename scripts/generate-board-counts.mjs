@@ -72,9 +72,17 @@ const TARGETS = [
   "docs/language-stack-boards.md",
   "docs/configuration.md",
   "docs/marketplace-model.md",
+  "docs/databricks-board.md",
   "tests/fixtures/README.md",
   "index.md",
+  "agents/README.md",
+  "agents/AGENTS.md",
 ];
+
+// README.md is deliberately NOT a target. `manifest:write:all` runs this generator and
+// generate-readme-counts.mjs concurrently (`&` … `wait`), so two writers on one file would
+// race. README keeps a single owner; its per-provider figures use that generator's own
+// `count:provider:<slug>` namespace, which this generator's marker regex cannot match.
 
 // ---------------------------------------------------------------------------
 // Collect stats from the repository
@@ -192,12 +200,33 @@ const globals = {
   mcp: jsonLen("catalog/mcp-references.json"),
 };
 
+// Agent counts per DIRECTORY under agents/, which is deliberately NOT the same as per
+// provider. agents/finops/ holds 4 agents whose provider is kubernetes or multi-cloud, so
+// `finops` has a directory but no provider entry at all; agents/qa/ holds agents whose
+// provider is generic. Navigation headings in agents/AGENTS.md link to a DIRECTORY, so a
+// provider-keyed marker would either report the wrong number (kubernetes: 15 on disk, 16
+// by provider) or fail closed on a directory that is not a provider (finops). Hence a
+// third scope.
+const dirStats = new Map();
+{
+  const agentsRoot = path.join(repoRoot, "agents");
+  for (const entry of fs.readdirSync(agentsRoot, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue;
+    const dir = path.join(agentsRoot, entry.name);
+    let n = 0;
+    for (const sub of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (sub.isDirectory() && fs.existsSync(path.join(dir, sub.name, "metadata.json"))) n++;
+    }
+    if (n > 0) dirStats.set(entry.name, n);
+  }
+}
+
 // ---------------------------------------------------------------------------
 // Rewrite the marker spans
 // ---------------------------------------------------------------------------
 
 const markerRe =
-  /<!-- count:(board:([a-z0-9+-]+)|global):([a-z]+) -->(\d+)<!-- \/count -->/g;
+  /<!-- count:(board:([a-z0-9+-]+)|dir:([a-z0-9-]+)|global):([a-z]+) -->(\d+)<!-- \/count -->/g;
 
 const errors = [];
 const pending = [];
@@ -211,11 +240,24 @@ for (const rel of TARGETS) {
   }
   const original = fs.readFileSync(file, "utf8");
 
-  const updated = original.replace(markerRe, (match, scope, providerList, key, current) => {
+  const updated = original.replace(markerRe, (match, scope, providerList, dirName, key, current) => {
     seen += 1;
     let expected;
 
-    if (scope === "global") {
+    if (scope.startsWith("dir:")) {
+      if (key !== "agents") {
+        errors.push(`${rel}: unknown dir key "${key}" in count:${scope}:${key} — only "agents" is defined`);
+        return match;
+      }
+      if (!dirStats.has(dirName)) {
+        errors.push(
+          `${rel}: unknown directory "${dirName}" in count:${scope}:${key} — ` +
+            `no agents/${dirName}/*/metadata.json found`,
+        );
+        return match;
+      }
+      expected = String(dirStats.get(dirName));
+    } else if (scope === "global") {
       if (!(key in globals)) {
         errors.push(`${rel}: unknown global key "${key}" — valid: ${Object.keys(globals).sort().join(", ")}`);
         return match;
@@ -259,7 +301,7 @@ if (errors.length) {
 }
 
 if (seen === 0) {
-  console.error("FAIL: no count:board:* or count:global:* markers found in any target document.");
+  console.error("FAIL: no count:board:*, count:dir:* or count:global:* markers found in any target document.");
   console.error("      The generator is wired in but the documents no longer carry markers,");
   console.error("      which means their counts are unguarded. Restore the markers.");
   process.exit(1);

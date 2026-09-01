@@ -1,6 +1,6 @@
 # AGENTS.md — Navigation Compass
 
-141 agents across 18 providers. This file is the index; load provider files on demand.
+<!-- count:global:agents -->729<!-- /count --> agents across <!-- count:global:providers -->45<!-- /count --> providers. This file is the index; load provider files on demand.
 
 ## File structure
 
@@ -9,7 +9,7 @@ agents/<provider>/<agent-id>/AGENT.md          ← harness-neutral role contract
 agents/<provider>/<agent-id>/harnesses/        ← 7 adapters: codex, copilot, claude-code,
                                                   cursor, gemini, kiro-ide, kiro-cli
 agents/<provider>/<agent-id>/metadata.json     ← catalog mirror
-catalog/agents.json                            ← machine-readable index of all 127 agents
+catalog/agents.json                            ← machine-readable index of every agent
 ```
 
 ## Agent tiers
@@ -24,7 +24,7 @@ Live-guard agents refuse to proceed without: target confirmation (cluster/accoun
 
 ---
 
-## 🟧 AWS — 43 agents → [`agents/aws/AGENTS.md`](aws/AGENTS.md)
+## 🟧 AWS — <!-- count:dir:aws:agents -->47<!-- /count --> agents → [`agents/aws/AGENTS.md`](aws/AGENTS.md)
 
 **Entry point:** load `agents/aws/aws-maestro-agent/AGENT.md` for any AWS task; it routes to the right specialist and back.
 
@@ -49,7 +49,7 @@ Live-guard agents refuse to proceed without: target confirmation (cluster/accoun
 
 ---
 
-## 🟦 Azure — 32 agents → [`agents/azure/AGENTS.md`](azure/AGENTS.md)
+## 🟦 Azure — <!-- count:dir:azure:agents -->36<!-- /count --> agents → [`agents/azure/AGENTS.md`](azure/AGENTS.md)
 
 **Entry point:** load `agents/azure/azure-maestro-agent/AGENT.md` for any Azure task.
 
@@ -74,7 +74,7 @@ Live-guard agents refuse to proceed without: target confirmation (cluster/accoun
 
 ---
 
-## 🟥 OCI — 35 agents → [`agents/oci/AGENTS.md`](oci/AGENTS.md)
+## 🟥 OCI — <!-- count:dir:oci:agents -->39<!-- /count --> agents → [`agents/oci/AGENTS.md`](oci/AGENTS.md)
 
 **Entry point:** load `agents/oci/oci-maestro-agent/AGENT.md` for any OCI task.
 
@@ -97,7 +97,7 @@ Live-guard agents refuse to proceed without: target confirmation (cluster/accoun
 
 ---
 
-## ☁️ OVHcloud — 6 agents → [`agents/ovhcloud/README.md`](ovhcloud/README.md)
+## ☁️ OVHcloud — <!-- count:dir:ovhcloud:agents -->6<!-- /count --> agents → [`agents/ovhcloud/README.md`](ovhcloud/README.md)
 
 **Entry point:** load `agents/ovhcloud/ovhcloud-maestro-agent/AGENT.md` for any OVHcloud task.
 
@@ -114,7 +114,7 @@ Live-guard agents refuse to proceed without: target confirmation (cluster/accoun
 
 ---
 
-## 🌐 IONOS Cloud — 6 agents → [`agents/ionos/README.md`](ionos/README.md)
+## 🌐 IONOS Cloud — <!-- count:dir:ionos:agents -->6<!-- /count --> agents → [`agents/ionos/README.md`](ionos/README.md)
 
 **Entry point:** load `agents/ionos/ionos-maestro-agent/AGENT.md` for any IONOS Cloud task.
 
@@ -131,7 +131,7 @@ Live-guard agents refuse to proceed without: target confirmation (cluster/accoun
 
 ---
 
-## 🇫🇷 Scaleway — 6 agents → [`agents/scaleway/README.md`](scaleway/README.md)
+## 🇫🇷 Scaleway — <!-- count:dir:scaleway:agents -->6<!-- /count --> agents → [`agents/scaleway/README.md`](scaleway/README.md)
 
 **Entry point:** load `agents/scaleway/scaleway-maestro-agent/AGENT.md` for any Scaleway task.
 
@@ -148,7 +148,7 @@ Live-guard agents refuse to proceed without: target confirmation (cluster/accoun
 
 ---
 
-## 🇩🇪 Hetzner Cloud — 6 agents → [`agents/hetzner/README.md`](hetzner/README.md)
+## 🇩🇪 Hetzner Cloud — <!-- count:dir:hetzner:agents -->6<!-- /count --> agents → [`agents/hetzner/README.md`](hetzner/README.md)
 
 **Entry point:** load `agents/hetzner/hetzner-maestro-agent/AGENT.md` for any Hetzner Cloud task.
 
@@ -164,7 +164,7 @@ Live-guard agents refuse to proceed without: target confirmation (cluster/accoun
 
 ---
 
-## 💰 Contabo — 6 agents → [`agents/contabo/README.md`](contabo/README.md)
+## 💰 Contabo — <!-- count:dir:contabo:agents -->6<!-- /count --> agents → [`agents/contabo/README.md`](contabo/README.md)
 
 **Entry point:** load `agents/contabo/contabo-maestro-agent/AGENT.md` for any Contabo task.
 
@@ -180,7 +180,7 @@ Live-guard agents refuse to proceed without: target confirmation (cluster/accoun
 
 ---
 
-## ☸️ Kubernetes — 13 agents → [`agents/kubernetes/README.md`](kubernetes/README.md)
+## ☸️ Kubernetes — <!-- count:dir:kubernetes:agents -->15<!-- /count --> agents → [`agents/kubernetes/README.md`](kubernetes/README.md)
 
 **Entry point:** load `agents/kubernetes/kubernetes-maestro-agent/AGENT.md` — routes to all K8s specialists (including CNCF domain agents below) and enforces the live-guard gate.
 
@@ -202,7 +202,7 @@ Live-guard agents refuse to proceed without: target confirmation (cluster/accoun
 
 ---
 
-## 📊 Prometheus — 1 agent → [`agents/prometheus/README.md`](prometheus/README.md)
+## 📊 Prometheus — <!-- count:dir:prometheus:agents -->1<!-- /count --> agents → [`agents/prometheus/README.md`](prometheus/README.md)
 
 | Agent | Tier | Load when |
 |---|---|---|
@@ -210,7 +210,7 @@ Live-guard agents refuse to proceed without: target confirmation (cluster/accoun
 
 ---
 
-## 🦅 Falco — 1 agent → [`agents/falco/README.md`](falco/README.md)
+## 🦅 Falco — <!-- count:dir:falco:agents -->1<!-- /count --> agents → [`agents/falco/README.md`](falco/README.md)
 
 | Agent | Tier | Load when |
 |---|---|---|
@@ -218,7 +218,7 @@ Live-guard agents refuse to proceed without: target confirmation (cluster/accoun
 
 ---
 
-## 🔏 Sigstore — 1 agent → [`agents/sigstore/README.md`](sigstore/README.md)
+## 🔏 Sigstore — <!-- count:dir:sigstore:agents -->1<!-- /count --> agents → [`agents/sigstore/README.md`](sigstore/README.md)
 
 | Agent | Tier | Load when |
 |---|---|---|
@@ -226,7 +226,7 @@ Live-guard agents refuse to proceed without: target confirmation (cluster/accoun
 
 ---
 
-## 🔐 cert-manager — 4 agents → [`agents/cert-manager/README.md`](cert-manager/README.md)
+## 🔐 cert-manager — <!-- count:dir:cert-manager:agents -->1<!-- /count --> agents → [`agents/cert-manager/README.md`](cert-manager/README.md)
 
 | Agent | Tier | Load when |
 |---|---|---|
@@ -237,7 +237,7 @@ Live-guard agents refuse to proceed without: target confirmation (cluster/accoun
 
 ---
 
-## 🔄 FluxCD — 1 agent → [`agents/fluxcd/README.md`](fluxcd/README.md)
+## 🔄 FluxCD — <!-- count:dir:fluxcd:agents -->1<!-- /count --> agents → [`agents/fluxcd/README.md`](fluxcd/README.md)
 
 | Agent | Tier | Load when |
 |---|---|---|
@@ -245,7 +245,7 @@ Live-guard agents refuse to proceed without: target confirmation (cluster/accoun
 
 ---
 
-## 🎭 Backstage — 1 agent → [`agents/backstage/README.md`](backstage/README.md)
+## 🎭 Backstage — <!-- count:dir:backstage:agents -->1<!-- /count --> agents → [`agents/backstage/README.md`](backstage/README.md)
 
 | Agent | Tier | Load when |
 |---|---|---|
@@ -263,7 +263,7 @@ Live-guard agents refuse to proceed without: target confirmation (cluster/accoun
 
 ---
 
-## 🛡️ Kyverno — 1 agent → [`agents/kyverno/README.md`](kyverno/README.md)
+## 🛡️ Kyverno — <!-- count:dir:kyverno:agents -->1<!-- /count --> agents → [`agents/kyverno/README.md`](kyverno/README.md)
 
 | Agent | Tier | Load when |
 |---|---|---|
@@ -273,7 +273,7 @@ Live-guard agents refuse to proceed without: target confirmation (cluster/accoun
 
 ---
 
-## 🔄 Argo CD — 2 agents → [`agents/argocd/README.md`](argocd/README.md)
+## 🔄 Argo CD — <!-- count:dir:argocd:agents -->2<!-- /count --> agents → [`agents/argocd/README.md`](argocd/README.md)
 
 | Agent | Tier | Load when |
 |---|---|---|
@@ -284,7 +284,7 @@ Live-guard agents refuse to proceed without: target confirmation (cluster/accoun
 
 ---
 
-## 🕸️ Istio — 1 agent → [`agents/istio/README.md`](istio/README.md)
+## 🕸️ Istio — <!-- count:dir:istio:agents -->1<!-- /count --> agents → [`agents/istio/README.md`](istio/README.md)
 
 | Agent | Tier | Load when |
 |---|---|---|
@@ -294,7 +294,7 @@ Live-guard agents refuse to proceed without: target confirmation (cluster/accoun
 
 ---
 
-## 🐝 Cilium — 1 agent → [`agents/cilium/README.md`](cilium/README.md)
+## 🐝 Cilium — <!-- count:dir:cilium:agents -->1<!-- /count --> agents → [`agents/cilium/README.md`](cilium/README.md)
 
 | Agent | Tier | Load when |
 |---|---|---|
@@ -304,7 +304,7 @@ Live-guard agents refuse to proceed without: target confirmation (cluster/accoun
 
 ---
 
-## 📡 OpenTelemetry — 1 agent → [`agents/opentelemetry/README.md`](opentelemetry/README.md)
+## 📡 OpenTelemetry — <!-- count:dir:opentelemetry:agents -->1<!-- /count --> agents → [`agents/opentelemetry/README.md`](opentelemetry/README.md)
 
 | Agent | Tier | Load when |
 |---|---|---|
@@ -312,7 +312,7 @@ Live-guard agents refuse to proceed without: target confirmation (cluster/accoun
 
 ---
 
-## 🟩 Terraform / OpenTofu — 9 agents → [`agents/terraform/README.md`](terraform/README.md)
+## 🟩 Terraform / OpenTofu — <!-- count:dir:terraform:agents -->9<!-- /count --> agents → [`agents/terraform/README.md`](terraform/README.md)
 
 Engine-shared board: one provider covers Terraform and OpenTofu, and every specialist
 names the engine behind any version-sensitive claim. See
@@ -334,7 +334,7 @@ agent after a human gate.
 
 ---
 
-## 💰 FinOps / Multi-cloud — 1 agent → [`agents/finops/README.md`](finops/README.md)
+## 💰 FinOps / Multi-cloud — <!-- count:dir:finops:agents -->4<!-- /count --> agents → [`agents/finops/README.md`](finops/README.md)
 
 | Agent | Tier | Load when |
 |---|---|---|

@@ -1,0 +1,31 @@
+{
+  "id": "databricks-value-realization",
+  "name": "databricks-value-realization",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "databricks",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review of whether a claimed Databricks business outcome is measurable at all, and only then what it is worth. Establishes pain, executive owner, a pre-change baseline, a leading metric, a lagging business KPI, the data required to compute both, the attribution limits, a measurement window, and a kill condition — and refuses to produce a number when the baseline does not exist. Never asserts a currency figure that is not derived from evidence the user supplied.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.databricks.com/aws/en/lakehouse-architecture/well-architected",
+    "https://docs.databricks.com/aws/en/admin/system-tables/billing",
+    "https://docs.databricks.com/aws/en/admin/system-tables/",
+    "https://docs.databricks.com/aws/en/admin/usage/",
+    "https://docs.databricks.com/aws/en/data-governance/unity-catalog/data-quality-monitoring/"
+  ],
+  "security_notes": "Static review only. Never executes queries, jobs, or any workspace operation, and never requests credentials, tokens, workspace URLs, customer records, or personally identifiable data — a value case is built from aggregates and metric definitions, never from row-level customer data. Financial figures are only ever restated from evidence the user supplied or derived from `system.billing.usage` joined to `system.billing.list_prices`; no benchmark, industry average, or vendor-published multiplier is ever presented as this organisation's number.",
+  "last_verified": "2026-08-17",
+  "path": "skills/databricks/databricks-value-realization",
+  "author": "github: VincentChuWaiChow",
+  "companion_agents": [
+    "databricks-value-realization-agent"
+  ]
+}

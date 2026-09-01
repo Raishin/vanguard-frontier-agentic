@@ -1,0 +1,60 @@
+{
+  "id": "databricks-identity-network-security-agent",
+  "name": "Databricks Identity and Network Security Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "databricks",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of Databricks identity and network security design: account vs workspace vs metastore admin separation and responsibilities, SCIM and identity federation limits and configuration, service principal posture and best practices, OAuth vs personal access token trade-offs, token lifecycle and automatic revocation, account IP access lists and their evaluation order, serverless network egress policies and storage-access blocking, secret scopes and redaction limits, and least-privilege identity patterns. Reads admin role assignments, service-principal inventory, SCIM configuration, PAT and OAuth policies, network policy definitions, and secret-scope configurations only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.databricks.com/aws/en/admin/users-groups/service-principals",
+    "https://docs.databricks.com/aws/en/admin/users-groups/scim/",
+    "https://docs.databricks.com/aws/en/security/auth/",
+    "https://docs.databricks.com/aws/en/admin/users-groups/best-practices",
+    "https://docs.databricks.com/aws/en/security/network/front-end/ip-access-list",
+    "https://docs.databricks.com/aws/en/security/network/serverless-network-security/manage-network-policies",
+    "https://docs.databricks.com/aws/en/security/secrets/",
+    "https://docs.databricks.com/aws/en/admin/access-control/tokens"
+  ],
+  "security_notes": "Static review only — reads admin assignments, service-principal inventory, SCIM and OAuth configuration, network policies, and secret-scope definitions. Never requests or accepts personal access tokens, OAuth client secrets, service-principal secrets, workspace URLs bound to credentials, or customer data. A request to create or rotate a token belongs to the live-guard path. Audit of active token usage requires access to workspace activity logs; this review addresses design only.",
+  "last_verified": "2026-08-17",
+  "path": "agents/databricks/databricks-identity-network-security-agent/",
+  "harness_variants": {
+    "codex": "agents/databricks/databricks-identity-network-security-agent/harnesses/codex.toml",
+    "copilot": "agents/databricks/databricks-identity-network-security-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/databricks/databricks-identity-network-security-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/databricks/databricks-identity-network-security-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/databricks/databricks-identity-network-security-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/databricks/databricks-identity-network-security-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/databricks/databricks-identity-network-security-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "databricks-identity-network-security"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "routing_keywords": [
+    "service principal",
+    "scim",
+    "identity federation",
+    "sso",
+    "personal access token",
+    "oauth",
+    "ip access list",
+    "network policy",
+    "serverless egress",
+    "secret scope",
+    "account admin",
+    "workspace admin",
+    "private link"
+  ]
+}

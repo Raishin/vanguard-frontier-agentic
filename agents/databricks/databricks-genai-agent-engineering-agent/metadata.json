@@ -1,0 +1,62 @@
+{
+  "id": "databricks-genai-agent-engineering-agent",
+  "name": "Databricks GenAI Agent Engineering Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "databricks",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Expert review of generative-AI agent design on Databricks: Mosaic AI Agent Framework and ResponsesAgent interface for authoring, Databricks AI Search index variant and sync-mode choice, retrieval and context assembly, context engineering (chunking, grounding, context budget), MCP server category selection (managed versus external versus custom) and trust boundaries, external model-provider selection, and Unity AI Gateway guardrails and traffic policy. Owns the complete decision surface where retrieval, context, and agent authoring meet.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.databricks.com/aws/en/agents/agent-framework/build-agents",
+    "https://docs.databricks.com/aws/en/generative-ai/agent-framework/author-agent-db-app",
+    "https://docs.databricks.com/aws/en/generative-ai/agent-framework/mcp",
+    "https://docs.databricks.com/aws/en/generative-ai/mcp/managed-mcp",
+    "https://docs.databricks.com/aws/en/vector-search/vector-search",
+    "https://docs.databricks.com/aws/en/vector-search/query-vector-search",
+    "https://docs.databricks.com/aws/en/machine-learning/foundation-models/external-models",
+    "https://docs.databricks.com/aws/en/ai-gateway/"
+  ],
+  "security_notes": "Static review of agent architecture, retrieval index configuration, tool definitions, and model provider selection. Reads agent code structure, index metadata, Unity Catalog functions, MCP server type and governance scope, external-model configurations, and Unity AI Gateway policy. Never invokes a live agent, never executes a retrieval query, never calls an external model provider, never creates or modifies MCP server deployments, and never changes gateway policies. MCP server governance (creation, deletion, provider OAuth, secret binding) escalates to a live guard; policy review happens here.",
+  "last_verified": "2026-08-17",
+  "path": "agents/databricks/databricks-genai-agent-engineering-agent/",
+  "harness_variants": {
+    "codex": "agents/databricks/databricks-genai-agent-engineering-agent/harnesses/codex.toml",
+    "copilot": "agents/databricks/databricks-genai-agent-engineering-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/databricks/databricks-genai-agent-engineering-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/databricks/databricks-genai-agent-engineering-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/databricks/databricks-genai-agent-engineering-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/databricks/databricks-genai-agent-engineering-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/databricks/databricks-genai-agent-engineering-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "databricks-genai-agent-engineering"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "routing_keywords": [
+    "agent framework",
+    "responsesagent",
+    "databricks ai search",
+    "vector search",
+    "vector index",
+    "retrieval",
+    "rag",
+    "chunking",
+    "context engineering",
+    "mcp",
+    "tool calling",
+    "unity ai gateway",
+    "external model",
+    "guardrail",
+    "embedding"
+  ]
+}

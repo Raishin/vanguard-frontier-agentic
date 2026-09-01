@@ -2,18 +2,18 @@
 # Do NOT edit manually — run: node scripts/generate-docs-data.mjs
 # This file is the single source of truth for all catalog counts in Jekyll docs.
 
-agents: 712
-skills: 737
+agents: 729
+skills: 754
 providers: 45
 mcp_references: 3
 rules: 1
 workflows: 1
-install_roles: 67
+install_roles: 76
 validation_gates: 25
 agent_directories: 49
 skill_directories: 49
 maestro_scenarios: 357
-version: "3.9.0"
+version: "3.10.0"
 
 # Provider list (flat)
 provider_list:
@@ -178,7 +178,7 @@ provider_taxonomy:
   - category: "Data & Analytics Platforms"
     providers:
       - name: "databricks"
-        agents: 3
+        agents: 20
       - name: "snowflake"
         agents: 28
 
@@ -200,6 +200,15 @@ role_list:
   - "cloud-platform-engineer"
   - "cloud-security-engineer"
   - "cloud-solutions-architect"
+  - "databricks-analytics-engineer"
+  - "databricks-data-engineer"
+  - "databricks-finops-engineer"
+  - "databricks-genai-engineer"
+  - "databricks-governance-security-engineer"
+  - "databricks-ml-engineer"
+  - "databricks-platform-engineer"
+  - "databricks-solution-architect"
+  - "databricks-sre"
   - "dotnet-application-review-engineer"
   - "frontend-engineer"
   - "java-application-review-engineer"

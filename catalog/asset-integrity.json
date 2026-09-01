@@ -33,17 +33,17 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "aba63a5d771726891f4d86c3415f21106ffa0a47319998e96f68b91120bfe351",
+      "aggregate_sha256": "9d849abfcae4914a8667e386c4ee9d7cba385b358b3f540291172275c5425083",
       "files": [
         {
           "path": "agents/AGENTS.md",
-          "sha256": "592351d307c3a86f4e4a5980a92e66dc1e9250a190a2a708056524c269c82018",
-          "bytes": 26909
+          "sha256": "36ed742c8b2b757b3d237f69e9322bf7eb43bba1e687df6c807ccb77d75dfff5",
+          "bytes": 28065
         },
         {
           "path": "agents/README.md",
-          "sha256": "f5cfd30a6131f28ee8b57864c61847e9bbd8514d1fdded99a7b2f10c3429a70c",
-          "bytes": 8964
+          "sha256": "ecf0459a215ae5062b900dd6ce852d55f3eae87b21b9c3e884ed3968222ffe39",
+          "bytes": 10047
         },
         {
           "path": "agents/accounting/AGENTS.md",
@@ -8071,6 +8071,411 @@
           "bytes": 7165
         },
         {
+          "path": "agents/databricks/databricks-ai-bi-genie-agent/AGENT.md",
+          "sha256": "75cd212669727f48c833ce2867fc389ed00042aadc0978f16c0fd10d7f039aaf",
+          "bytes": 11913
+        },
+        {
+          "path": "agents/databricks/databricks-ai-bi-genie-agent/harnesses/claude-code.agent.md",
+          "sha256": "72cbc84dbf4f7cefb609b5060490fc0c19d83a73341f0f67b288839ab9f33d96",
+          "bytes": 11291
+        },
+        {
+          "path": "agents/databricks/databricks-ai-bi-genie-agent/harnesses/codex.toml",
+          "sha256": "b32f70b821eac09e5f58fc5d53cb39770e922d96808e28c287c1311bb79e9e6f",
+          "bytes": 8186
+        },
+        {
+          "path": "agents/databricks/databricks-ai-bi-genie-agent/harnesses/copilot.agent.md",
+          "sha256": "b179ca5ed662c951d360686342636957a17250b5817ef2a3b5fe7c7c0e3de43e",
+          "bytes": 11397
+        },
+        {
+          "path": "agents/databricks/databricks-ai-bi-genie-agent/harnesses/cursor.agent.md",
+          "sha256": "250feb730c145f87982a84b835c9267c5426009a5ebae19349c976bb2adeb8d5",
+          "bytes": 11308
+        },
+        {
+          "path": "agents/databricks/databricks-ai-bi-genie-agent/harnesses/gemini.agent.md",
+          "sha256": "72cbc84dbf4f7cefb609b5060490fc0c19d83a73341f0f67b288839ab9f33d96",
+          "bytes": 11291
+        },
+        {
+          "path": "agents/databricks/databricks-ai-bi-genie-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "a79bda4070e8ad7d3392c02b9f1a6ac0dc656574fab6b3766ce24fd1bafe5981",
+          "bytes": 11377
+        },
+        {
+          "path": "agents/databricks/databricks-ai-bi-genie-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "72cbc84dbf4f7cefb609b5060490fc0c19d83a73341f0f67b288839ab9f33d96",
+          "bytes": 11291
+        },
+        {
+          "path": "agents/databricks/databricks-ai-bi-genie-agent/metadata.json",
+          "sha256": "a314df2b1f3f5d87fea474890e9c28d883e32c17a89d7f5cc8bdd4a7a6742504",
+          "bytes": 3047
+        },
+        {
+          "path": "agents/databricks/databricks-data-protection-privacy-agent/AGENT.md",
+          "sha256": "770a2fa91d7944a480ee83b9ce7fb96c0b803483bb6ac80edc7b3841a06d3c0e",
+          "bytes": 12172
+        },
+        {
+          "path": "agents/databricks/databricks-data-protection-privacy-agent/harnesses/claude-code.agent.md",
+          "sha256": "20241ece4d76fc085426bc015403f6ead939bd52bfff6d0d2d7cda7daa4237bc",
+          "bytes": 11538
+        },
+        {
+          "path": "agents/databricks/databricks-data-protection-privacy-agent/harnesses/codex.toml",
+          "sha256": "ba4d0ec3877a60eabb27c3a6076d8c980ca8fe0688193db9ee97181415b44d01",
+          "bytes": 8389
+        },
+        {
+          "path": "agents/databricks/databricks-data-protection-privacy-agent/harnesses/copilot.agent.md",
+          "sha256": "c2e6b31bbf7f3774fe1c85707a9c219c8283bbca6078ad523e62a37323c8d3e8",
+          "bytes": 11644
+        },
+        {
+          "path": "agents/databricks/databricks-data-protection-privacy-agent/harnesses/cursor.agent.md",
+          "sha256": "b69df7f1e13522b249e1c075c71f44c1c4d72782edcc7d099d3c158daf03bd4e",
+          "bytes": 11555
+        },
+        {
+          "path": "agents/databricks/databricks-data-protection-privacy-agent/harnesses/gemini.agent.md",
+          "sha256": "20241ece4d76fc085426bc015403f6ead939bd52bfff6d0d2d7cda7daa4237bc",
+          "bytes": 11538
+        },
+        {
+          "path": "agents/databricks/databricks-data-protection-privacy-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "785b538d8479695399bd1658b9d2f7f3491296227b40a99bd290a76ebdb10dd9",
+          "bytes": 11624
+        },
+        {
+          "path": "agents/databricks/databricks-data-protection-privacy-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "20241ece4d76fc085426bc015403f6ead939bd52bfff6d0d2d7cda7daa4237bc",
+          "bytes": 11538
+        },
+        {
+          "path": "agents/databricks/databricks-data-protection-privacy-agent/metadata.json",
+          "sha256": "68f570df418f8d182dedf0b4369463cf17f5d5fa8772f4c7608bd2b2baad6870",
+          "bytes": 3785
+        },
+        {
+          "path": "agents/databricks/databricks-data-quality-observability-agent/AGENT.md",
+          "sha256": "b6067d4da1c73f9b3722e5d853c69dad3949f40811c9fcb1e990cebaaea60c26",
+          "bytes": 12073
+        },
+        {
+          "path": "agents/databricks/databricks-data-quality-observability-agent/harnesses/claude-code.agent.md",
+          "sha256": "13372cc9890781c4fa1db3196fc8ed4ac3246ef00073dadea40a5bdc93c2d7d2",
+          "bytes": 11436
+        },
+        {
+          "path": "agents/databricks/databricks-data-quality-observability-agent/harnesses/codex.toml",
+          "sha256": "21e383948ee85a9e2903d8ae2c935a2a695e92ceeca2b47779d481d7ae51204e",
+          "bytes": 8467
+        },
+        {
+          "path": "agents/databricks/databricks-data-quality-observability-agent/harnesses/copilot.agent.md",
+          "sha256": "30e73feefde37423d46787831bb5460e8c21fabda34926c7e03ddd2e4cf32a79",
+          "bytes": 11542
+        },
+        {
+          "path": "agents/databricks/databricks-data-quality-observability-agent/harnesses/cursor.agent.md",
+          "sha256": "cdba1e4f5d91beb7e30b202aea936d10943fa9066f305e8c17ec8326265a3c2b",
+          "bytes": 11453
+        },
+        {
+          "path": "agents/databricks/databricks-data-quality-observability-agent/harnesses/gemini.agent.md",
+          "sha256": "13372cc9890781c4fa1db3196fc8ed4ac3246ef00073dadea40a5bdc93c2d7d2",
+          "bytes": 11436
+        },
+        {
+          "path": "agents/databricks/databricks-data-quality-observability-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "5571aa936fd6990bc7c999aa0812c5f7905b0678a7279d8416d82016fa5d220c",
+          "bytes": 11517
+        },
+        {
+          "path": "agents/databricks/databricks-data-quality-observability-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "13372cc9890781c4fa1db3196fc8ed4ac3246ef00073dadea40a5bdc93c2d7d2",
+          "bytes": 11436
+        },
+        {
+          "path": "agents/databricks/databricks-data-quality-observability-agent/metadata.json",
+          "sha256": "24911f875bc5c0ed8397bba0c89ba461c939105bf81393ee590dda7488529334",
+          "bytes": 3247
+        },
+        {
+          "path": "agents/databricks/databricks-developer-platform-agent/AGENT.md",
+          "sha256": "ccfc303ff9dc44754bf56d3bd650ecf06e943b5d15efa1cd59235a7de150123a",
+          "bytes": 12996
+        },
+        {
+          "path": "agents/databricks/databricks-developer-platform-agent/harnesses/claude-code.agent.md",
+          "sha256": "ebd78776e854b4ed6e16b4b62d38b83f78acf6edf83d08bd8e5b56e9e0fb7591",
+          "bytes": 12367
+        },
+        {
+          "path": "agents/databricks/databricks-developer-platform-agent/harnesses/codex.toml",
+          "sha256": "3984bfc87e6261629089d07c30d17f5e4ac645e8356434daa7b2b67933aae440",
+          "bytes": 8762
+        },
+        {
+          "path": "agents/databricks/databricks-developer-platform-agent/harnesses/copilot.agent.md",
+          "sha256": "5933ab777345c307b365baed93fe6c00398ddb84374d1c25c4691b3d378d9975",
+          "bytes": 12473
+        },
+        {
+          "path": "agents/databricks/databricks-developer-platform-agent/harnesses/cursor.agent.md",
+          "sha256": "e07269ea9bce8c77458f9836a76f7a9deb529391f9d907835bf36b3bd3960544",
+          "bytes": 12384
+        },
+        {
+          "path": "agents/databricks/databricks-developer-platform-agent/harnesses/gemini.agent.md",
+          "sha256": "ebd78776e854b4ed6e16b4b62d38b83f78acf6edf83d08bd8e5b56e9e0fb7591",
+          "bytes": 12367
+        },
+        {
+          "path": "agents/databricks/databricks-developer-platform-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "30f774f3bf35a6247d0aa15a71dd98b79943b47416b5ae7099b13c5bcd62740d",
+          "bytes": 12455
+        },
+        {
+          "path": "agents/databricks/databricks-developer-platform-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "ebd78776e854b4ed6e16b4b62d38b83f78acf6edf83d08bd8e5b56e9e0fb7591",
+          "bytes": 12367
+        },
+        {
+          "path": "agents/databricks/databricks-developer-platform-agent/metadata.json",
+          "sha256": "29b355191e67eb357f9b1f67624b3d37db79b604b3c6d93a0bc5a7e610e00a8a",
+          "bytes": 3219
+        },
+        {
+          "path": "agents/databricks/databricks-finops-cost-agent/AGENT.md",
+          "sha256": "c68a6b20198d9a2f6b55f6f87a1933d61b20c81555dbe0b5a1146b8f7f2de0cd",
+          "bytes": 12732
+        },
+        {
+          "path": "agents/databricks/databricks-finops-cost-agent/harnesses/claude-code.agent.md",
+          "sha256": "db99a73f3f86282b51fd17660347f5088b734a3fdf548eda70df30eb138cee15",
+          "bytes": 12110
+        },
+        {
+          "path": "agents/databricks/databricks-finops-cost-agent/harnesses/codex.toml",
+          "sha256": "120cb3aa73bbe3ba3d45cda23e436eca82fa669cf354d3662904ffaea655808d",
+          "bytes": 8931
+        },
+        {
+          "path": "agents/databricks/databricks-finops-cost-agent/harnesses/copilot.agent.md",
+          "sha256": "548e812dc48dba08db4863e6a81fb310bf9fb5b7f7cc8145c7592599a9af2c39",
+          "bytes": 12216
+        },
+        {
+          "path": "agents/databricks/databricks-finops-cost-agent/harnesses/cursor.agent.md",
+          "sha256": "8516b56d47f9674891e02f017a3a7457c2dfc2f0f67c076e69ea02086ce1cecd",
+          "bytes": 12127
+        },
+        {
+          "path": "agents/databricks/databricks-finops-cost-agent/harnesses/gemini.agent.md",
+          "sha256": "db99a73f3f86282b51fd17660347f5088b734a3fdf548eda70df30eb138cee15",
+          "bytes": 12110
+        },
+        {
+          "path": "agents/databricks/databricks-finops-cost-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "2ee501c5116f0b2c014cf4c24c54c9531afb0b003f010b879af0769fdfe0f035",
+          "bytes": 12197
+        },
+        {
+          "path": "agents/databricks/databricks-finops-cost-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "db99a73f3f86282b51fd17660347f5088b734a3fdf548eda70df30eb138cee15",
+          "bytes": 12110
+        },
+        {
+          "path": "agents/databricks/databricks-finops-cost-agent/metadata.json",
+          "sha256": "debff9fc5c99dd2f26d02215240a111720918fd30e55fce4786e1d3e3e06b505",
+          "bytes": 3294
+        },
+        {
+          "path": "agents/databricks/databricks-genai-agent-engineering-agent/AGENT.md",
+          "sha256": "456e6473f3be3a9d504f0bcbde43eda58e85fab35562f146c5c935a36e3d1102",
+          "bytes": 11633
+        },
+        {
+          "path": "agents/databricks/databricks-genai-agent-engineering-agent/harnesses/claude-code.agent.md",
+          "sha256": "c89f8721f89da15cf558a5bf540371172974cd7e78a4837ace79f94796d7c332",
+          "bytes": 10999
+        },
+        {
+          "path": "agents/databricks/databricks-genai-agent-engineering-agent/harnesses/codex.toml",
+          "sha256": "28092dfd4d010f233e42b8b85d47e9ca1eb70f5ef6ebd2b6dd1da52527cca116",
+          "bytes": 8209
+        },
+        {
+          "path": "agents/databricks/databricks-genai-agent-engineering-agent/harnesses/copilot.agent.md",
+          "sha256": "1d8536e0403b48166730d1c98f9f92c712adaec209f98d4aacdac4979fc38eb2",
+          "bytes": 11105
+        },
+        {
+          "path": "agents/databricks/databricks-genai-agent-engineering-agent/harnesses/cursor.agent.md",
+          "sha256": "ccbce240870e2fd5d2a65e7543916a244831588a15ab5071a23a522fcb3de774",
+          "bytes": 11016
+        },
+        {
+          "path": "agents/databricks/databricks-genai-agent-engineering-agent/harnesses/gemini.agent.md",
+          "sha256": "c89f8721f89da15cf558a5bf540371172974cd7e78a4837ace79f94796d7c332",
+          "bytes": 10999
+        },
+        {
+          "path": "agents/databricks/databricks-genai-agent-engineering-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "c38c8e93a451afaf59c83dec48a5e9790fbd6336adb7951a87b99649a09f6f30",
+          "bytes": 11094
+        },
+        {
+          "path": "agents/databricks/databricks-genai-agent-engineering-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "c89f8721f89da15cf558a5bf540371172974cd7e78a4837ace79f94796d7c332",
+          "bytes": 10999
+        },
+        {
+          "path": "agents/databricks/databricks-genai-agent-engineering-agent/metadata.json",
+          "sha256": "b4355678214364827e9514522f3c478484268fa6a231536b2a9bc63601d2880b",
+          "bytes": 3501
+        },
+        {
+          "path": "agents/databricks/databricks-genai-evaluation-observability-agent/AGENT.md",
+          "sha256": "4681ddfe68ffbcd8d387a58969c3a4f33b04927d3aef45e4bc7eef3dfd8b86e5",
+          "bytes": 12697
+        },
+        {
+          "path": "agents/databricks/databricks-genai-evaluation-observability-agent/harnesses/claude-code.agent.md",
+          "sha256": "a9cbc642d00fc266cbafc64fdeab5c640ec9153614497983bf787f54ff8e0855",
+          "bytes": 12056
+        },
+        {
+          "path": "agents/databricks/databricks-genai-evaluation-observability-agent/harnesses/codex.toml",
+          "sha256": "d3f8f86751acbf595c60102d55021f08338ed21e3ad45bb084d2caf687692862",
+          "bytes": 9072
+        },
+        {
+          "path": "agents/databricks/databricks-genai-evaluation-observability-agent/harnesses/copilot.agent.md",
+          "sha256": "5190cf8e79c2e6ecf55e1c7a44c7133c160b0961d066835e7c2c03d789db89ce",
+          "bytes": 12162
+        },
+        {
+          "path": "agents/databricks/databricks-genai-evaluation-observability-agent/harnesses/cursor.agent.md",
+          "sha256": "683af089e4474db35780fe6f37fd43f76f2a5a78f02293526a3b332666bf142a",
+          "bytes": 12073
+        },
+        {
+          "path": "agents/databricks/databricks-genai-evaluation-observability-agent/harnesses/gemini.agent.md",
+          "sha256": "a9cbc642d00fc266cbafc64fdeab5c640ec9153614497983bf787f54ff8e0855",
+          "bytes": 12056
+        },
+        {
+          "path": "agents/databricks/databricks-genai-evaluation-observability-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "db06496271dd5157e5a7477305bd839b349bae1b1b0abf26d454fbc8fbf5e40a",
+          "bytes": 12137
+        },
+        {
+          "path": "agents/databricks/databricks-genai-evaluation-observability-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "a9cbc642d00fc266cbafc64fdeab5c640ec9153614497983bf787f54ff8e0855",
+          "bytes": 12056
+        },
+        {
+          "path": "agents/databricks/databricks-genai-evaluation-observability-agent/metadata.json",
+          "sha256": "3921e9fbb27ab90413c7e8f70c8385a489c218b6fc723f85a902f81e8cd554aa",
+          "bytes": 3530
+        },
+        {
+          "path": "agents/databricks/databricks-identity-network-security-agent/AGENT.md",
+          "sha256": "73108a290fd683f83e3b2e097824e3d656cd2b0f62e14915068d866204bcee14",
+          "bytes": 11545
+        },
+        {
+          "path": "agents/databricks/databricks-identity-network-security-agent/harnesses/claude-code.agent.md",
+          "sha256": "66b13509f872b393db5d94e51e40e00daca477ad6130be1e0df9b02a00c95845",
+          "bytes": 10909
+        },
+        {
+          "path": "agents/databricks/databricks-identity-network-security-agent/harnesses/codex.toml",
+          "sha256": "e5eb40b293ead3d7b0572d07e9c3f56f40976a52890b23d7659814ad135ba7e7",
+          "bytes": 8020
+        },
+        {
+          "path": "agents/databricks/databricks-identity-network-security-agent/harnesses/copilot.agent.md",
+          "sha256": "c8b62c15cbf8ad462b6b6785d7cb4db7286ae39dbe7d61ae010fff3b141ab185",
+          "bytes": 11015
+        },
+        {
+          "path": "agents/databricks/databricks-identity-network-security-agent/harnesses/cursor.agent.md",
+          "sha256": "3702c4df8c02acd99e3aa7429963e52b6a830ebeb483d6c616a1c48c6e29d90e",
+          "bytes": 10926
+        },
+        {
+          "path": "agents/databricks/databricks-identity-network-security-agent/harnesses/gemini.agent.md",
+          "sha256": "66b13509f872b393db5d94e51e40e00daca477ad6130be1e0df9b02a00c95845",
+          "bytes": 10909
+        },
+        {
+          "path": "agents/databricks/databricks-identity-network-security-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "1d26b4de52d21e06b5582cbd3d7e4063703e843332e992ac876071432f584589",
+          "bytes": 10996
+        },
+        {
+          "path": "agents/databricks/databricks-identity-network-security-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "66b13509f872b393db5d94e51e40e00daca477ad6130be1e0df9b02a00c95845",
+          "bytes": 10909
+        },
+        {
+          "path": "agents/databricks/databricks-identity-network-security-agent/metadata.json",
+          "sha256": "5829b3d47836cb33f462e761d8758d5cab5495d88c11ff96a98c33ef94c5655d",
+          "bytes": 3522
+        },
+        {
+          "path": "agents/databricks/databricks-lakeflow-pipeline-engineering-agent/AGENT.md",
+          "sha256": "2c60beede9aa17890694ea8091d240aa6c31765b26b2cf8c3b458d039f8f6d03",
+          "bytes": 11006
+        },
+        {
+          "path": "agents/databricks/databricks-lakeflow-pipeline-engineering-agent/harnesses/claude-code.agent.md",
+          "sha256": "94ff97780be88152d6ef4cd65474cbd1eb2dfacf334526bf827ef8237cd78855",
+          "bytes": 10366
+        },
+        {
+          "path": "agents/databricks/databricks-lakeflow-pipeline-engineering-agent/harnesses/codex.toml",
+          "sha256": "fbb88b47b1f0079d8dcb9ff1381ac43f64d2e7554742d7525e1d1a8649714d8d",
+          "bytes": 7680
+        },
+        {
+          "path": "agents/databricks/databricks-lakeflow-pipeline-engineering-agent/harnesses/copilot.agent.md",
+          "sha256": "b378a6a6e3f754922fb06cd0dd5bc5199cdb8593daa3ef599550143dc9877677",
+          "bytes": 10472
+        },
+        {
+          "path": "agents/databricks/databricks-lakeflow-pipeline-engineering-agent/harnesses/cursor.agent.md",
+          "sha256": "fdaa97df1d2daf6b6adb0107e08c715901f35709ff53f35bd44bcf2ff2e94319",
+          "bytes": 10383
+        },
+        {
+          "path": "agents/databricks/databricks-lakeflow-pipeline-engineering-agent/harnesses/gemini.agent.md",
+          "sha256": "94ff97780be88152d6ef4cd65474cbd1eb2dfacf334526bf827ef8237cd78855",
+          "bytes": 10366
+        },
+        {
+          "path": "agents/databricks/databricks-lakeflow-pipeline-engineering-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "ff5aaa0854d83d79efde01f8a39974805000b5d3eda456d1cf98c76c0b85c7fe",
+          "bytes": 10454
+        },
+        {
+          "path": "agents/databricks/databricks-lakeflow-pipeline-engineering-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "94ff97780be88152d6ef4cd65474cbd1eb2dfacf334526bf827ef8237cd78855",
+          "bytes": 10366
+        },
+        {
+          "path": "agents/databricks/databricks-lakeflow-pipeline-engineering-agent/metadata.json",
+          "sha256": "9625283d46cea18bab8db0d100db5142339f803a85c0bd6f1f9db222e743e3a9",
+          "bytes": 3421
+        },
+        {
           "path": "agents/databricks/databricks-lakehouse-engineering-at-azure-agent/AGENT.md",
           "sha256": "e185b4037e44d2edd110a4e99be214b8b50c538bbd0033a2da2b457fe2ef3976",
           "bytes": 2813
@@ -8176,6 +8581,326 @@
           "bytes": 3836
         },
         {
+          "path": "agents/databricks/databricks-maestro-agent/AGENT.md",
+          "sha256": "c7c0d4607ee580193ac623c7922e2105dd66ac4bd62bd54450d79e36195d0769",
+          "bytes": 7161
+        },
+        {
+          "path": "agents/databricks/databricks-maestro-agent/README.md",
+          "sha256": "abc5914e937a88f1a729e1fb9ef084e9f98108db3d06f328ae47117ef3e328e5",
+          "bytes": 5789
+        },
+        {
+          "path": "agents/databricks/databricks-maestro-agent/harnesses/claude-code.agent.md",
+          "sha256": "4af83502fba4586f21a8c381b79db96abed8f0ecc63b714998ae73ef222cce4e",
+          "bytes": 6543
+        },
+        {
+          "path": "agents/databricks/databricks-maestro-agent/harnesses/codex.toml",
+          "sha256": "436ee14b9ed775b4da098c9a610b59d58cd4ef0eae71c2af8d9c815c17dc8b59",
+          "bytes": 6500
+        },
+        {
+          "path": "agents/databricks/databricks-maestro-agent/harnesses/copilot.agent.md",
+          "sha256": "9a442f2a1860fbb5d4575df2dfd2739b2c0a90b893615fc3fdd656c09e6e3b27",
+          "bytes": 6649
+        },
+        {
+          "path": "agents/databricks/databricks-maestro-agent/harnesses/cursor.agent.md",
+          "sha256": "60f73405383400b6128b51872f5ec38830f4fcd020e13174d682b345b6a9cfd7",
+          "bytes": 6560
+        },
+        {
+          "path": "agents/databricks/databricks-maestro-agent/harnesses/gemini.agent.md",
+          "sha256": "4af83502fba4586f21a8c381b79db96abed8f0ecc63b714998ae73ef222cce4e",
+          "bytes": 6543
+        },
+        {
+          "path": "agents/databricks/databricks-maestro-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "18e5fa202529a1d310df52ae69eb3a1dbf6562357993c0778f7b488f8db5c893",
+          "bytes": 6604
+        },
+        {
+          "path": "agents/databricks/databricks-maestro-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "4af83502fba4586f21a8c381b79db96abed8f0ecc63b714998ae73ef222cce4e",
+          "bytes": 6543
+        },
+        {
+          "path": "agents/databricks/databricks-maestro-agent/metadata.json",
+          "sha256": "acb8174b4a0ed455b37fa8a6906c5372a4cc0f2be248da749194ecfdfed6793a",
+          "bytes": 2740
+        },
+        {
+          "path": "agents/databricks/databricks-mlops-agent/AGENT.md",
+          "sha256": "d4949a6eda2c631077e2e86b18aea2a6e5980aa2aa9ff95bf566fc70e963f22b",
+          "bytes": 11163
+        },
+        {
+          "path": "agents/databricks/databricks-mlops-agent/harnesses/claude-code.agent.md",
+          "sha256": "b0d1b77c43f14f27ac07160ac152064d31ab60f1630e76dc28c3c139e52bac55",
+          "bytes": 10547
+        },
+        {
+          "path": "agents/databricks/databricks-mlops-agent/harnesses/codex.toml",
+          "sha256": "0e64a49819ea670015585dfbdd8e44c60512f1bb8c64939d188070b77ca1597c",
+          "bytes": 7816
+        },
+        {
+          "path": "agents/databricks/databricks-mlops-agent/harnesses/copilot.agent.md",
+          "sha256": "9c5a60a1e4e4e54aa898e4729543a01b9fd75b5a72c1f380a85fea865fc88575",
+          "bytes": 10653
+        },
+        {
+          "path": "agents/databricks/databricks-mlops-agent/harnesses/cursor.agent.md",
+          "sha256": "ebabd322f13d1cada1135e4a4a4d95443f58b9faf0416f69d191b53fc5dde65d",
+          "bytes": 10564
+        },
+        {
+          "path": "agents/databricks/databricks-mlops-agent/harnesses/gemini.agent.md",
+          "sha256": "b0d1b77c43f14f27ac07160ac152064d31ab60f1630e76dc28c3c139e52bac55",
+          "bytes": 10547
+        },
+        {
+          "path": "agents/databricks/databricks-mlops-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "5d877578d009a0c5d3e620222cc1ed20895b6221c59991959140f9064d415849",
+          "bytes": 10632
+        },
+        {
+          "path": "agents/databricks/databricks-mlops-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "b0d1b77c43f14f27ac07160ac152064d31ab60f1630e76dc28c3c139e52bac55",
+          "bytes": 10547
+        },
+        {
+          "path": "agents/databricks/databricks-mlops-agent/metadata.json",
+          "sha256": "b5b2076ef9a5a374226e6d3ba0fbf87bed3557cf25ef24e7705389195fa168a5",
+          "bytes": 3253
+        },
+        {
+          "path": "agents/databricks/databricks-platform-architecture-agent/AGENT.md",
+          "sha256": "7ffb331d15c74096a9415f70424d00b12a3b7abb746c2434f2995afef1a3166f",
+          "bytes": 11225
+        },
+        {
+          "path": "agents/databricks/databricks-platform-architecture-agent/harnesses/claude-code.agent.md",
+          "sha256": "4e8dd19affa039d60050152a8cf3f6cec097a97d086a04252583b51dec9d5ce9",
+          "bytes": 10593
+        },
+        {
+          "path": "agents/databricks/databricks-platform-architecture-agent/harnesses/codex.toml",
+          "sha256": "c6d07c563d92f889b1a87e2792862817f5f2928200bbd6823f9349f461061e9b",
+          "bytes": 8341
+        },
+        {
+          "path": "agents/databricks/databricks-platform-architecture-agent/harnesses/copilot.agent.md",
+          "sha256": "6e498e0d68b4018011798bfcc2a96d6648eacebf36d4248842298b6d13a5e538",
+          "bytes": 10699
+        },
+        {
+          "path": "agents/databricks/databricks-platform-architecture-agent/harnesses/cursor.agent.md",
+          "sha256": "df25361b6b1ab25d86eb39cb1232bc54512ac9cf057b0f1c0e226c625d10d95c",
+          "bytes": 10610
+        },
+        {
+          "path": "agents/databricks/databricks-platform-architecture-agent/harnesses/gemini.agent.md",
+          "sha256": "4e8dd19affa039d60050152a8cf3f6cec097a97d086a04252583b51dec9d5ce9",
+          "bytes": 10593
+        },
+        {
+          "path": "agents/databricks/databricks-platform-architecture-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "9b6746a686f6573ca0f216b101daf09905db17860d0c9308101e9172e76cf836",
+          "bytes": 10679
+        },
+        {
+          "path": "agents/databricks/databricks-platform-architecture-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "4e8dd19affa039d60050152a8cf3f6cec097a97d086a04252583b51dec9d5ce9",
+          "bytes": 10593
+        },
+        {
+          "path": "agents/databricks/databricks-platform-architecture-agent/metadata.json",
+          "sha256": "1ab30d7835c8982e1097411210b352ad07919cc66e3771fa76d25cb89f56ac5e",
+          "bytes": 3304
+        },
+        {
+          "path": "agents/databricks/databricks-platform-reliability-agent/AGENT.md",
+          "sha256": "4be301f31db5384eea326fb4b8e96c50822674d7643b68fb2701ae4e34deec1d",
+          "bytes": 11450
+        },
+        {
+          "path": "agents/databricks/databricks-platform-reliability-agent/harnesses/claude-code.agent.md",
+          "sha256": "21cebcdb81fd8c4b9bc74db5dc95165b9a2861bd51406b53b01bf4ba05ce61ed",
+          "bytes": 10819
+        },
+        {
+          "path": "agents/databricks/databricks-platform-reliability-agent/harnesses/codex.toml",
+          "sha256": "e5fccc1e271190050dce862cdd3c3898bb2300eaf8783a6912f670ffeb7c0308",
+          "bytes": 8321
+        },
+        {
+          "path": "agents/databricks/databricks-platform-reliability-agent/harnesses/copilot.agent.md",
+          "sha256": "2d15004114432c546799aad815dc2415ca8ad57decd03a5abc64a9548476fcd2",
+          "bytes": 10925
+        },
+        {
+          "path": "agents/databricks/databricks-platform-reliability-agent/harnesses/cursor.agent.md",
+          "sha256": "0f34ffd0b4fffb8f31b45bec85720fed8a05f0e9af84d2ef6e3f2ee5476d097a",
+          "bytes": 10836
+        },
+        {
+          "path": "agents/databricks/databricks-platform-reliability-agent/harnesses/gemini.agent.md",
+          "sha256": "21cebcdb81fd8c4b9bc74db5dc95165b9a2861bd51406b53b01bf4ba05ce61ed",
+          "bytes": 10819
+        },
+        {
+          "path": "agents/databricks/databricks-platform-reliability-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "4d965a64b7aed6dfb0c04298c0fae32de71264d00551f665deb44a73558d4337",
+          "bytes": 10903
+        },
+        {
+          "path": "agents/databricks/databricks-platform-reliability-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "21cebcdb81fd8c4b9bc74db5dc95165b9a2861bd51406b53b01bf4ba05ce61ed",
+          "bytes": 10819
+        },
+        {
+          "path": "agents/databricks/databricks-platform-reliability-agent/metadata.json",
+          "sha256": "41bcfd01d093967373441d7b4566e422018b6ee3f59997597a897bb71316c548",
+          "bytes": 3490
+        },
+        {
+          "path": "agents/databricks/databricks-sql-performance-agent/AGENT.md",
+          "sha256": "e03c2e204810464dd577ba9a4db2515a37730124cce720f6105d0b19c18297fa",
+          "bytes": 11662
+        },
+        {
+          "path": "agents/databricks/databricks-sql-performance-agent/harnesses/claude-code.agent.md",
+          "sha256": "3e6d124b4e8822e282f8cfc15f79b0fb01f514a4d13ae511dcbfedac65e60f1c",
+          "bytes": 11036
+        },
+        {
+          "path": "agents/databricks/databricks-sql-performance-agent/harnesses/codex.toml",
+          "sha256": "af820ee93403bda27b28c08bf24082511fc16a65b6647d9aca5a7d41ee8c50ca",
+          "bytes": 8497
+        },
+        {
+          "path": "agents/databricks/databricks-sql-performance-agent/harnesses/copilot.agent.md",
+          "sha256": "337fa3347b27325cd2ecd14460ee5110da42e3a322e394c58b3971d6dc5f1bb0",
+          "bytes": 11142
+        },
+        {
+          "path": "agents/databricks/databricks-sql-performance-agent/harnesses/cursor.agent.md",
+          "sha256": "0fa54d9299b3854ba3355a951e533fabff82f6b456d915f5a565659abb15cfdd",
+          "bytes": 11053
+        },
+        {
+          "path": "agents/databricks/databricks-sql-performance-agent/harnesses/gemini.agent.md",
+          "sha256": "3e6d124b4e8822e282f8cfc15f79b0fb01f514a4d13ae511dcbfedac65e60f1c",
+          "bytes": 11036
+        },
+        {
+          "path": "agents/databricks/databricks-sql-performance-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "54027168fe4f8ad2006d97bfd97a8f8c247c98bbbd83f11a936d276c67992190",
+          "bytes": 11123
+        },
+        {
+          "path": "agents/databricks/databricks-sql-performance-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "3e6d124b4e8822e282f8cfc15f79b0fb01f514a4d13ae511dcbfedac65e60f1c",
+          "bytes": 11036
+        },
+        {
+          "path": "agents/databricks/databricks-sql-performance-agent/metadata.json",
+          "sha256": "5b2c977f3d6dc0b5278300c2f1492f4ddc4e0f797e82a5a1dd8e1145e5496b89",
+          "bytes": 3297
+        },
+        {
+          "path": "agents/databricks/databricks-streaming-reliability-agent/AGENT.md",
+          "sha256": "f8d5ac8e28f16ac55a520524be51205d6d3cdea12fcf507208a8842a06f5557c",
+          "bytes": 12228
+        },
+        {
+          "path": "agents/databricks/databricks-streaming-reliability-agent/harnesses/claude-code.agent.md",
+          "sha256": "a274089a4ffab0dc14d375138350ac94cb14794f56d242cc719e223567a41f89",
+          "bytes": 11596
+        },
+        {
+          "path": "agents/databricks/databricks-streaming-reliability-agent/harnesses/codex.toml",
+          "sha256": "8b30e501ab9e407fea5e776414c21a122ec1244fcedb53726e533de2fab48d26",
+          "bytes": 7890
+        },
+        {
+          "path": "agents/databricks/databricks-streaming-reliability-agent/harnesses/copilot.agent.md",
+          "sha256": "954f20910172feaf18a0cee7acf8ba700c5681a234f66213b0ee36dbfeebc88d",
+          "bytes": 11702
+        },
+        {
+          "path": "agents/databricks/databricks-streaming-reliability-agent/harnesses/cursor.agent.md",
+          "sha256": "6ab5975b3e7237db5a00717d247b342e8a19191b3d8c38ea9192e82553792c6b",
+          "bytes": 11613
+        },
+        {
+          "path": "agents/databricks/databricks-streaming-reliability-agent/harnesses/gemini.agent.md",
+          "sha256": "a274089a4ffab0dc14d375138350ac94cb14794f56d242cc719e223567a41f89",
+          "bytes": 11596
+        },
+        {
+          "path": "agents/databricks/databricks-streaming-reliability-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "eb39f7ba2dcc39aeadf0b11cfee4f4e1617f1d966f8e6746b02c0b7fbbc8ada9",
+          "bytes": 11685
+        },
+        {
+          "path": "agents/databricks/databricks-streaming-reliability-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "a274089a4ffab0dc14d375138350ac94cb14794f56d242cc719e223567a41f89",
+          "bytes": 11596
+        },
+        {
+          "path": "agents/databricks/databricks-streaming-reliability-agent/metadata.json",
+          "sha256": "c934ef087036c36e7b23e05822b1a4e39b54c49914af33936e036efdb88ad679",
+          "bytes": 3372
+        },
+        {
+          "path": "agents/databricks/databricks-unity-catalog-governance-agent/AGENT.md",
+          "sha256": "b8ecd14fb1cbda23d5533993e3acc5110f1558d412d712d0e5d53e5f0603b4b2",
+          "bytes": 11342
+        },
+        {
+          "path": "agents/databricks/databricks-unity-catalog-governance-agent/harnesses/claude-code.agent.md",
+          "sha256": "5b1647aa60fe315678b58f3265c1e50edefdabfaeb59fbcfabeacfb0354f4099",
+          "bytes": 10707
+        },
+        {
+          "path": "agents/databricks/databricks-unity-catalog-governance-agent/harnesses/codex.toml",
+          "sha256": "f8b78aa9b736e84dfbffa2c29716b04374e11b37a3b29a1b491301bf6cae1d6a",
+          "bytes": 7913
+        },
+        {
+          "path": "agents/databricks/databricks-unity-catalog-governance-agent/harnesses/copilot.agent.md",
+          "sha256": "35220fe0bab6a99cb224fd6de89ebd26cf6767959942b160e431017a43897988",
+          "bytes": 10813
+        },
+        {
+          "path": "agents/databricks/databricks-unity-catalog-governance-agent/harnesses/cursor.agent.md",
+          "sha256": "3f24b63f0b2e824ba98d46adfd906824a4066c83025a61fa836e69f7a5db6ec0",
+          "bytes": 10724
+        },
+        {
+          "path": "agents/databricks/databricks-unity-catalog-governance-agent/harnesses/gemini.agent.md",
+          "sha256": "5b1647aa60fe315678b58f3265c1e50edefdabfaeb59fbcfabeacfb0354f4099",
+          "bytes": 10707
+        },
+        {
+          "path": "agents/databricks/databricks-unity-catalog-governance-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "3647471daed7a62008db06e9c6e38538c86d7145cca08622dd78497da85787d1",
+          "bytes": 10798
+        },
+        {
+          "path": "agents/databricks/databricks-unity-catalog-governance-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "5b1647aa60fe315678b58f3265c1e50edefdabfaeb59fbcfabeacfb0354f4099",
+          "bytes": 10707
+        },
+        {
+          "path": "agents/databricks/databricks-unity-catalog-governance-agent/metadata.json",
+          "sha256": "7079a7823e1f53d2bb5a199635b726e0903a07f32a9bbe0ec97f63887908833e",
+          "bytes": 3757
+        },
+        {
           "path": "agents/databricks/databricks-unity-catalog-governance-at-azure-agent/AGENT.md",
           "sha256": "317cd24ffb174b49d1c3f2b42ff1cab40ceccd95ee8aac57874db5ed55342581",
           "bytes": 2695
@@ -8219,6 +8944,51 @@
           "path": "agents/databricks/databricks-unity-catalog-governance-at-azure-agent/metadata.json",
           "sha256": "0a7a1f174eaa4d4b3faf56b6e87abfd07c30ffb721d61c685ff4426de67bb3a8",
           "bytes": 2626
+        },
+        {
+          "path": "agents/databricks/databricks-value-realization-agent/AGENT.md",
+          "sha256": "e1be43cb4b6b6454463ee780e4b14815efbfdcae105beece80d21734017743b2",
+          "bytes": 12194
+        },
+        {
+          "path": "agents/databricks/databricks-value-realization-agent/harnesses/claude-code.agent.md",
+          "sha256": "c5de2284a2ae34fb6155c45f866b141be711c5af9acab6fdf6d19d70930f011d",
+          "bytes": 11566
+        },
+        {
+          "path": "agents/databricks/databricks-value-realization-agent/harnesses/codex.toml",
+          "sha256": "33495d0e4a759ef2cc968d7792696b58a6dd1fcbd6f258f24590b3e9e4e8009f",
+          "bytes": 8679
+        },
+        {
+          "path": "agents/databricks/databricks-value-realization-agent/harnesses/copilot.agent.md",
+          "sha256": "8f73d241dc13e9c82c3ae304c3f5c42b1fcc22fbd586ad44f4dba0fadd12a758",
+          "bytes": 11672
+        },
+        {
+          "path": "agents/databricks/databricks-value-realization-agent/harnesses/cursor.agent.md",
+          "sha256": "6fdcba87ac39d2a7edc2d8418c04f3781882ab10c8feec75ac2d9bca3b7cf30d",
+          "bytes": 11583
+        },
+        {
+          "path": "agents/databricks/databricks-value-realization-agent/harnesses/gemini.agent.md",
+          "sha256": "c5de2284a2ae34fb6155c45f866b141be711c5af9acab6fdf6d19d70930f011d",
+          "bytes": 11566
+        },
+        {
+          "path": "agents/databricks/databricks-value-realization-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "b0408049791365ac421ae5a68ee6c910af3728de83bcc8a7490ddd42f760a78f",
+          "bytes": 11655
+        },
+        {
+          "path": "agents/databricks/databricks-value-realization-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "c5de2284a2ae34fb6155c45f866b141be711c5af9acab6fdf6d19d70930f011d",
+          "bytes": 11566
+        },
+        {
+          "path": "agents/databricks/databricks-value-realization-agent/metadata.json",
+          "sha256": "5d8bf6beb3cb2f529b7217c7475bd7c6ec474e1c3d87474f911c7834c511c02e",
+          "bytes": 2986
         },
         {
           "path": "agents/dotnet/README.md",
@@ -16297,8 +17067,8 @@
         },
         {
           "path": "agents/ionos/ionos-cost-optimization-analyst-agent/metadata.json",
-          "sha256": "2e35cd1c2b84fb26ae2b71a4749fb5ceaf8dbaf91ae849f66c49d9b684e4525c",
-          "bytes": 1430
+          "sha256": "19227e3a9fa2998b0efe8aa155ae725a0865d440f3be0adee53e2892ec6e1467",
+          "bytes": 1987
         },
         {
           "path": "agents/ionos/ionos-datacenter-designer-reviewer-agent/AGENT.md",
@@ -16342,8 +17112,8 @@
         },
         {
           "path": "agents/ionos/ionos-datacenter-designer-reviewer-agent/metadata.json",
-          "sha256": "525194d11c12533c799b0d591dfb451470ce47c294c8bb2b13fdf6496b5f0240",
-          "bytes": 1609
+          "sha256": "5546d74d8d9afe0e161c61d978ddcf427795bc8da0fd7799c1b063487f732c72",
+          "bytes": 2181
         },
         {
           "path": "agents/ionos/ionos-kubernetes-platform-operator-agent/AGENT.md",
@@ -16387,8 +17157,8 @@
         },
         {
           "path": "agents/ionos/ionos-kubernetes-platform-operator-agent/metadata.json",
-          "sha256": "4eb462cd8fc2ff81794fedd557a0c9b4105040e8451bd77704d92987aa65597c",
-          "bytes": 1552
+          "sha256": "62af08c165e498208569add1dcb7ef996ef804a1f9aa2cbcb70b43b38b8f1884",
+          "bytes": 2124
         },
         {
           "path": "agents/ionos/ionos-live-database-lifecycle-guard-agent/AGENT.md",
@@ -16432,8 +17202,8 @@
         },
         {
           "path": "agents/ionos/ionos-live-database-lifecycle-guard-agent/metadata.json",
-          "sha256": "5a38745090b1b691f3987c6babb5804d6b7f6a95a17fcd27f31e7acba2700f61",
-          "bytes": 1730
+          "sha256": "014ae14a0901fdad92e5b448cf06afedb7ae0aca08d16d87a64ae4c303065520",
+          "bytes": 2307
         },
         {
           "path": "agents/ionos/ionos-maestro-agent/AGENT.md",
@@ -16477,8 +17247,8 @@
         },
         {
           "path": "agents/ionos/ionos-maestro-agent/metadata.json",
-          "sha256": "1cccc39c2de35f1583180037628c28691d4279a76d52631e76eb3ebcf4d5e8fe",
-          "bytes": 1259
+          "sha256": "8154bd23078db1d22634228b72a2ce9026ec84c9a2b88c6d8be6645f0f8d661b",
+          "bytes": 1726
         },
         {
           "path": "agents/ionos/ionos-security-compliance-reviewer-agent/AGENT.md",
@@ -16522,8 +17292,8 @@
         },
         {
           "path": "agents/ionos/ionos-security-compliance-reviewer-agent/metadata.json",
-          "sha256": "854705b9a9cc3af45c2b2a0606afa776702a6c912bf64ea08e2820c241d94865",
-          "bytes": 1490
+          "sha256": "85caac5866a51f2587a6eb73fa371debb2fa4d402559c60c2ba7eaa202af1a97",
+          "bytes": 2062
         },
         {
           "path": "agents/istio/README.md",
@@ -25642,8 +26412,8 @@
         },
         {
           "path": "agents/ovhcloud/ovhcloud-cost-finops-analyst-agent/metadata.json",
-          "sha256": "74ed2cf4de08ac30689219a81afe9a90a807a4297e3ce53b6c652596f1f7b7a6",
-          "bytes": 1385
+          "sha256": "d5187c16988c6ecfbb1837fe05fecfd63912097e0a5e423726502ab189ad5606",
+          "bytes": 1942
         },
         {
           "path": "agents/ovhcloud/ovhcloud-iam-policy-review-agent/AGENT.md",
@@ -25687,8 +26457,8 @@
         },
         {
           "path": "agents/ovhcloud/ovhcloud-iam-policy-review-agent/metadata.json",
-          "sha256": "7148904de2a62369356f48437e824d428879c0d130ffc514833d737f521b72aa",
-          "bytes": 1274
+          "sha256": "e5a4a1530d9c255cb0a4180a3ec575da11fa5854e95f4db70899e2cd9efdd277",
+          "bytes": 1821
         },
         {
           "path": "agents/ovhcloud/ovhcloud-kubernetes-platform-operator-agent/AGENT.md",
@@ -25732,8 +26502,8 @@
         },
         {
           "path": "agents/ovhcloud/ovhcloud-kubernetes-platform-operator-agent/metadata.json",
-          "sha256": "b95cb75b4625bb68112c9a3bb4139251ba54959ee5de38e438c4320bc79f7f51",
-          "bytes": 1393
+          "sha256": "6809b32e7ddbb3cd1f544ee75b60a014292ffcb5d73402c5d725c8d9da5c267e",
+          "bytes": 1995
         },
         {
           "path": "agents/ovhcloud/ovhcloud-live-kms-key-destruction-guard-agent/AGENT.md",
@@ -25777,8 +26547,8 @@
         },
         {
           "path": "agents/ovhcloud/ovhcloud-live-kms-key-destruction-guard-agent/metadata.json",
-          "sha256": "a4f90f3861189d74830763ecde2c3f5495b9c10bdd564138a7ca2776e3da4831",
-          "bytes": 1358
+          "sha256": "d1f5af8d361bf37154cae6b14194d6378b20f5691118603736365e7d0cabc655",
+          "bytes": 1970
         },
         {
           "path": "agents/ovhcloud/ovhcloud-maestro-agent/AGENT.md",
@@ -25822,8 +26592,8 @@
         },
         {
           "path": "agents/ovhcloud/ovhcloud-maestro-agent/metadata.json",
-          "sha256": "090630cd231d058862c6d30be7c9cb723ed3fc9accd64d1069b24609d0a05bdf",
-          "bytes": 1145
+          "sha256": "8fc479297dbeaf1232767b3f397df815aeaf9ff22adf0707aebe90743af91b0c",
+          "bytes": 1642
         },
         {
           "path": "agents/ovhcloud/ovhcloud-network-architect-agent/AGENT.md",
@@ -25867,8 +26637,8 @@
         },
         {
           "path": "agents/ovhcloud/ovhcloud-network-architect-agent/metadata.json",
-          "sha256": "c87502a4e64e3ffcd133b266f324b1470ba7e5dd4ab74007784f992bc984984f",
-          "bytes": 1349
+          "sha256": "f95ae031e1a65e76f729950033397df0a64914a2fd5cbd46fc750ecae8a42bf6",
+          "bytes": 1896
         },
         {
           "path": "agents/php/composer-supply-chain-agent/AGENT.md",
@@ -31522,8 +32292,8 @@
         },
         {
           "path": "agents/scaleway/scaleway-cost-optimizer-agent/metadata.json",
-          "sha256": "edb4e4ef907d0715516cd2c91bd1effbb5d6fe1579b85777a9bd94a4ed16e9eb",
-          "bytes": 1484
+          "sha256": "db3fd5ccb96408da89d21c2f2e9ef5e0dd81fe361b4963ffa0f47a1bbf616922",
+          "bytes": 2016
         },
         {
           "path": "agents/scaleway/scaleway-iam-policy-review-agent/AGENT.md",
@@ -31567,8 +32337,8 @@
         },
         {
           "path": "agents/scaleway/scaleway-iam-policy-review-agent/metadata.json",
-          "sha256": "0aff37a4f90912ef1c515d8fb88b833a6c93756cf110d6d7669ed787667791cd",
-          "bytes": 1443
+          "sha256": "a5b77c72fc5453333c291a5406acafca2c97b95bc7cf5181b8cf2cd7831e455b",
+          "bytes": 1990
         },
         {
           "path": "agents/scaleway/scaleway-kapsule-platform-operator-agent/AGENT.md",
@@ -31612,8 +32382,8 @@
         },
         {
           "path": "agents/scaleway/scaleway-kapsule-platform-operator-agent/metadata.json",
-          "sha256": "44177512ee2f034abf8866a5a210f1fe1756084a884a31a1eeeb54e009be4cb2",
-          "bytes": 1697
+          "sha256": "90e352a37933b071656988f0b5d5b9f580493df03ed70a182f6289b046c17330",
+          "bytes": 2284
         },
         {
           "path": "agents/scaleway/scaleway-live-kapsule-rollout-guard-agent/AGENT.md",
@@ -31657,8 +32427,8 @@
         },
         {
           "path": "agents/scaleway/scaleway-live-kapsule-rollout-guard-agent/metadata.json",
-          "sha256": "b522f6a6cc45b42830f006d3ef9528a07d31c0b91114239e444153265d28f922",
-          "bytes": 1685
+          "sha256": "0b9ae8122b249e7b557066180cd831c9944936508dc8e26df5e81bc2e2b4f23e",
+          "bytes": 2277
         },
         {
           "path": "agents/scaleway/scaleway-maestro-agent/AGENT.md",
@@ -31702,8 +32472,8 @@
         },
         {
           "path": "agents/scaleway/scaleway-maestro-agent/metadata.json",
-          "sha256": "a7da0bdb9aaccc06c521956c91c331af4aa303f32fc1bde81e4c3876c204ba85",
-          "bytes": 1198
+          "sha256": "6d9948133b28041156f92486764ff1db468f070cf172da587bebf961a308577d",
+          "bytes": 1695
         },
         {
           "path": "agents/scaleway/scaleway-network-architect-agent/AGENT.md",
@@ -31747,8 +32517,8 @@
         },
         {
           "path": "agents/scaleway/scaleway-network-architect-agent/metadata.json",
-          "sha256": "0b832d45046746ce85067cfa08705d2de3ed8709e433a987f90ed461d2797eb9",
-          "bytes": 1702
+          "sha256": "617b834a57fe189051eb4bb8f8c454742247d3c6eda087e25ca2cdf95d196afe",
+          "bytes": 2249
         },
         {
           "path": "agents/sigstore/README.md",
@@ -34382,7 +35152,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "de2dfc360fdcc873ac5f917a5be042a2a575eb1761459b98e12df6bfe1bbe484",
+      "aggregate_sha256": "7783c72f3378b72c72e7e9e7f30cf0b82ab942dfc02fae0012a3f4bb628417ae",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -34391,8 +35161,8 @@
         },
         {
           "path": "catalog/agents.json",
-          "sha256": "8588975d4ecb2e3815a701b438041730120f8d0066b68811d44e4f36cf218e14",
-          "bytes": 1222381
+          "sha256": "7b16b9a92c0178e136074f86febc78d5d82e5eff8e4b8e12385d1f22794f7e80",
+          "bytes": 1263006
         },
         {
           "path": "catalog/index.json",
@@ -34401,8 +35171,8 @@
         },
         {
           "path": "catalog/install-roles.json",
-          "sha256": "1e36e3e05b030cc06e2f10e38ebd019543b6611f14d93d71efcb10963634bba7",
-          "bytes": 119424
+          "sha256": "b15c5b0483b3d19811072eb0ead964c9546c7b8f1beda2dbc1e994270ca97cc8",
+          "bytes": 127662
         },
         {
           "path": "catalog/mcp-references.json",
@@ -34411,8 +35181,8 @@
         },
         {
           "path": "catalog/model-assignments.json",
-          "sha256": "230a07a25abfde41037b75b073a7cf5b0e5940dc345798472fa1f24e6bc7ccad",
-          "bytes": 679420
+          "sha256": "b51df8c0b934f80edd139e21b40a921db2297240c433552f25bdba4f82a5130b",
+          "bytes": 695783
         },
         {
           "path": "catalog/model-policy.json",
@@ -34431,13 +35201,13 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "e657b124dc1da71f12785cafdbe8294f5576f3bdf5bf44eebc91d43ca283dae6",
-          "bytes": 1036035
+          "sha256": "174991cc814002ebba4ada6fd528bf3c31cc31cd4f00524e64ae80275a52edb8",
+          "bytes": 1067676
         },
         {
           "path": "catalog/skills.json",
-          "sha256": "02f804d706a91c3ef3b662f4847f98765aabf476e63b457098d578350afa8d5e",
-          "bytes": 1191000
+          "sha256": "aafd213859d2d5f663ebcdb518583f857ca3df0269912bd3f88513767bce5e56",
+          "bytes": 1228976
         },
         {
           "path": "catalog/workflows.json",
@@ -34448,7 +35218,7 @@
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "35c4adf25603d16e9392be6f153133d61c1683c2a7c492c40f40c492449690a1",
+      "aggregate_sha256": "0a023ba54e7f28f3253083dfbc619f96a9725f0debc7cadf5ddbf465d29aa3d5",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -34461,6 +35231,91 @@
           "bytes": 16744
         },
         {
+          "path": "scripts/databricks_data/agents/00-databricks-maestro-agent.json",
+          "sha256": "36776c14ed340c41e78382e1e1cd4dd0cfed4556478c4d41216b56e16b9d454a",
+          "bytes": 20379
+        },
+        {
+          "path": "scripts/databricks_data/agents/01-databricks-platform-architecture-agent.json",
+          "sha256": "a748ce6a8f7b6d41bc2f142b5d6f4a876e72c98ca348ed76bdf6020d8ad20dd2",
+          "bytes": 21521
+        },
+        {
+          "path": "scripts/databricks_data/agents/02-databricks-unity-catalog-governance-agent.json",
+          "sha256": "f2b708472ad32c95de1312f229f47d5f4c74f56424dc6c9a699fc822f5868e45",
+          "bytes": 22256
+        },
+        {
+          "path": "scripts/databricks_data/agents/03-databricks-identity-network-security-agent.json",
+          "sha256": "fbdd82097a0866e07a21b35b5b87909af817128e03939ec85f205d4a44bcb696",
+          "bytes": 22836
+        },
+        {
+          "path": "scripts/databricks_data/agents/04-databricks-data-protection-privacy-agent.json",
+          "sha256": "ec29cc9571efd90dc3dd6262ac3857f623f43408f53aaca61deefb11ba0da31f",
+          "bytes": 24406
+        },
+        {
+          "path": "scripts/databricks_data/agents/05-databricks-lakeflow-pipeline-engineering-agent.json",
+          "sha256": "313658b12678f99ee6ee4d62ef34904ce13352294d121503216e78528735a8db",
+          "bytes": 24681
+        },
+        {
+          "path": "scripts/databricks_data/agents/06-databricks-streaming-reliability-agent.json",
+          "sha256": "ba62d4f58b9bac2de772b9e222412cfe45ebbd93659958cc3d15c44d2a5bbec7",
+          "bytes": 26882
+        },
+        {
+          "path": "scripts/databricks_data/agents/07-databricks-data-quality-observability-agent.json",
+          "sha256": "ecc3f7990a31f5845c19a9c6f9cb4bffaea043beb62bb3550b509b31a0a7611a",
+          "bytes": 25257
+        },
+        {
+          "path": "scripts/databricks_data/agents/08-databricks-sql-performance-agent.json",
+          "sha256": "b4460596c862725b86cd099b22b5c959cfc9a16e15105cda9c4288739c4040f1",
+          "bytes": 23484
+        },
+        {
+          "path": "scripts/databricks_data/agents/09-databricks-ai-bi-genie-agent.json",
+          "sha256": "fa9efd84dcf22694ded714d9bae5fe7aee2050303177dc2c22fd7e970b897637",
+          "bytes": 24586
+        },
+        {
+          "path": "scripts/databricks_data/agents/10-databricks-mlops-agent.json",
+          "sha256": "a161c799a3abc3ff4588f92b6a38ac417a911430eb9de96f22f1b5ba64e608fe",
+          "bytes": 24936
+        },
+        {
+          "path": "scripts/databricks_data/agents/11-databricks-genai-agent-engineering-agent.json",
+          "sha256": "a69c3ddf73fe40e0aea6b7cb306c70b7b4702126541f447a425a37b76f610e75",
+          "bytes": 26162
+        },
+        {
+          "path": "scripts/databricks_data/agents/12-databricks-genai-evaluation-observability-agent.json",
+          "sha256": "b4606dd183390fa826b8ec54643be1ca9c20cb3cfe98a476fad28850347ad19d",
+          "bytes": 28354
+        },
+        {
+          "path": "scripts/databricks_data/agents/13-databricks-developer-platform-agent.json",
+          "sha256": "4e6991306aaad8e6e6ac524da548fca330d21c11db614ec4c532f5324dfa252a",
+          "bytes": 27336
+        },
+        {
+          "path": "scripts/databricks_data/agents/14-databricks-platform-reliability-agent.json",
+          "sha256": "b35d0ac2a43d5ddf6f07273bc3335f9d09e5d9cb5a0030bf77ec5e043eae91f3",
+          "bytes": 25993
+        },
+        {
+          "path": "scripts/databricks_data/agents/15-databricks-finops-cost-agent.json",
+          "sha256": "eec1ad3f60c5a3347f97f44b54eef6f6a07194d733acbee1162106f568570897",
+          "bytes": 26859
+        },
+        {
+          "path": "scripts/databricks_data/agents/16-databricks-value-realization-agent.json",
+          "sha256": "746b8907fd7f6b5c700170fc6ebf5daf132469c6bc98438bbb47d190f5ac8163",
+          "bytes": 30556
+        },
+        {
           "path": "scripts/export-marketplace-agents.mjs",
           "sha256": "0624a3ae7d7aa250985dd5e3763a1f9266bc46722c7f5f7620f0859dccf38f37",
           "bytes": 28726
@@ -34469,6 +35324,11 @@
           "path": "scripts/gen_azure_live_guards.py",
           "sha256": "a2187c024d655ecc4386ce0aac14c894946c508b4c60b4fe0e767a2ab2da1df9",
           "bytes": 64673
+        },
+        {
+          "path": "scripts/gen_databricks_agents.py",
+          "sha256": "1e3ecd152b250853e14285c8209dc79dd6db6fffc6160a3a636180e96f3b3f02",
+          "bytes": 30665
         },
         {
           "path": "scripts/gen_kotlin_agents.py",
@@ -34522,8 +35382,8 @@
         },
         {
           "path": "scripts/generate-board-counts.mjs",
-          "sha256": "2b67530aed01b516dbc8919292e78bbfdf59e2035c5a0cd7d82c2f585f7c41a5",
-          "bytes": 10681
+          "sha256": "19078a3b6738ce94efc7529466bdce3fd2c9a18ce12b7e77ce5b5f79e1196c55",
+          "bytes": 12689
         },
         {
           "path": "scripts/generate-changelog-counts.mjs",
@@ -34542,8 +35402,8 @@
         },
         {
           "path": "scripts/generate-kiro-powers.mjs",
-          "sha256": "5c4626cd8cc73eedd04cb8753d8debd318105609d548c643a3a7eb65bb079acc",
-          "bytes": 50617
+          "sha256": "afe657a3a9c5cfa1ae1fa3b77999fe67de70967dc9081543abe24953cef4983d",
+          "bytes": 51539
         },
         {
           "path": "scripts/generate-plugin-manifest.mjs",
@@ -34552,8 +35412,8 @@
         },
         {
           "path": "scripts/generate-readme-counts.mjs",
-          "sha256": "235573c81411a6657f0abbe875b9da1cd7e62aaaafaa7a423e103fe0e443b7d0",
-          "bytes": 9290
+          "sha256": "3daf3aedb6f03553121d5879114a51a3aadfa1da8bc717591c1cb33c77d33d7f",
+          "bytes": 14523
         },
         {
           "path": "scripts/generate-workflow-catalog.mjs",
@@ -35209,12 +36069,12 @@
     },
     {
       "tree": "powers",
-      "aggregate_sha256": "d6d91fa4dc7500c5bcb5fea70b5b5c118ec9b8a73328e1b99c9c3161f9aa2563",
+      "aggregate_sha256": "05b7819fad8748a52907e7fae51a431f5dd29ba80e71ee466ff533591b70e0e5",
       "files": [
         {
           "path": "powers/README.md",
-          "sha256": "be07cb86cfe069bac455349bf882f48035efcb232fc0dbb60e1170e4b9967ff1",
-          "bytes": 4863
+          "sha256": "6350aa420de0ec1a3762741c0918e0f90c931695cd5c5935435808bbeab07d5f",
+          "bytes": 4971
         },
         {
           "path": "powers/vanguard-accounting/POWER.md",
@@ -35263,8 +36123,8 @@
         },
         {
           "path": "powers/vanguard-databricks/POWER.md",
-          "sha256": "71264c04866817001fc802c415e5a161a7a0070f0d2716539be90b89d5df2305",
-          "bytes": 3779
+          "sha256": "7c6c047489795e7fe27850dbf1b0b25f2734d96528a119048af8c104ea81229f",
+          "bytes": 5354
         },
         {
           "path": "powers/vanguard-dotnet/POWER.md",
@@ -35445,7 +36305,7 @@
     },
     {
       "tree": "plugins",
-      "aggregate_sha256": "d90338db19e921cde085fad9a7a6319e8aedfea58e0a4d37aab8dd5ae022675a",
+      "aggregate_sha256": "c5195c74d932cb152ba4c218948c871fbd4a3961d8f5cfe010c01a6092053ce3",
       "files": [
         {
           "path": "plugins/cross-platform-agent-template/.codex-plugin/plugin.json",
@@ -35459,7 +36319,7 @@
         },
         {
           "path": "plugins/vanguard-frontier-agentic/.codex-plugin/plugin.json",
-          "sha256": "0deefca5bff287cc639f7cb7be99afbd9742151f655d4ff49c57439bc2c99979",
+          "sha256": "ae302dcc0790f32081bafa58f14643504c11befe7ced1052553fb00aa6603f6d",
           "bytes": 1926
         },
         {
@@ -35476,7 +36336,7 @@
     },
     {
       "tree": ".claude-plugin",
-      "aggregate_sha256": "cbb5467211d631d0a0d162968954536db17c6ec9de7d3c2ab9d6ec918b86f600",
+      "aggregate_sha256": "2872deafa3e7bb2a6c1ca239c1d8071d264aaaa8a400873f013e898b5e29e6e3",
       "files": [
         {
           "path": ".claude-plugin/README.md",
@@ -35485,19 +36345,19 @@
         },
         {
           "path": ".claude-plugin/marketplace.json",
-          "sha256": "2a5f5e94d8c0204673f7efda38f7872378f0b6225742c66bef02608a3bd31f8b",
+          "sha256": "b8480493e04fdce0ead58ddc2ebf8fca187ef379c8501e7ab1297776a18a5189",
           "bytes": 855
         },
         {
           "path": ".claude-plugin/plugin.json",
-          "sha256": "2aa4718789466427f5aa69afa10f2c7820354d4b653d99ec718683f9f86e7cb1",
-          "bytes": 65775
+          "sha256": "768d30f7cf58d38af39437f279019164f589b25906fe9a988a57a6960d666371",
+          "bytes": 67393
         }
       ]
     },
     {
       "tree": ".cursor-plugin",
-      "aggregate_sha256": "98d043eff77caf92b16ca34bacfb5f124d89581a58ae149f9957b14fc038a503",
+      "aggregate_sha256": "5a2a564bdae15cbc6a0c099e9a23711329dc27f11c8ae547ac92c10813f21882",
       "files": [
         {
           "path": ".cursor-plugin/README.md",
@@ -35506,14 +36366,14 @@
         },
         {
           "path": ".cursor-plugin/plugin.json",
-          "sha256": "a65ba1418b0a026c673089f083c25c8784246f4bfef15f292689e66bfaeaf6f3",
-          "bytes": 60652
+          "sha256": "4df82d19efae44e3b2fc37c1ff322b02471a02973aec4d6f0e15035eb177d97d",
+          "bytes": 63724
         }
       ]
     },
     {
       "tree": ".github/plugin",
-      "aggregate_sha256": "8b4f52be7a25321e7cac14cfc436724db97ba51bf7a5b237a055e2506b602f57",
+      "aggregate_sha256": "8e7e2af6500b413066e3542023ea0f4d47eb96e088a9f1f99ee267cf3d96f0ce",
       "files": [
         {
           "path": ".github/plugin/README.md",
@@ -35522,7 +36382,7 @@
         },
         {
           "path": ".github/plugin/marketplace.json",
-          "sha256": "6f664e8a390676f0c8b2f319655f1b35b6e15b27990b9a19ddeacb3dc2bfc546",
+          "sha256": "d708114db9d2fc11b7ae2f6d1c2972022a5d46b8ed5dcbc22ca489658dd77a9e",
           "bytes": 791
         }
       ]
@@ -35545,7 +36405,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "0415fe13079b448978ca633eb1ab005c2fc73e022a965228355b8d4f45de4e76",
+      "aggregate_sha256": "94f89ad789c4f7b2c2ee60d853ebfafda72f8aa3c21306fdd3bbd9fba7bb08ad",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -35554,8 +36414,8 @@
         },
         {
           "path": "tests/_generate_maestro_routing_fixtures.py",
-          "sha256": "efb2ce0ad98d0e9e5b17e4336a39142cc29ad92cf49f70b79b95b1d021c9b524",
-          "bytes": 22160
+          "sha256": "14648111c88a1625ffd374746bdd5fae279a6ba4964926dba04009d32dff59d9",
+          "bytes": 24015
         },
         {
           "path": "tests/eval-qa-cluster.mjs",
@@ -35569,7 +36429,7 @@
         },
         {
           "path": "tests/fixtures/README.md",
-          "sha256": "5397008def774e08c1349c2adb95fc2d4b164d86cb1d15d7d8a4eafb1aab36c7",
+          "sha256": "8b477f295c9587eef518f70b77a5f9d5189709e45836ec4d824887c8ed6b576f",
           "bytes": 2607
         },
         {
@@ -37266,6 +38126,241 @@
           "path": "tests/fixtures/contabo-maestro-routing/taxonomy.json",
           "sha256": "3d2b2eb26eb0a3311785597c32976afe283bc7d1fe5fe597270d350293e52532",
           "bytes": 1163
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/expected/001-happy-ai-bi-genie.json",
+          "sha256": "a766c1c790e5b0b1cda29e439ab53711f0720a3fc7cb3f079db18d6be32bbf75",
+          "bytes": 76
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/expected/002-happy-data-protection-privacy.json",
+          "sha256": "c12294c908efb002e3a0db49c534e1884ac75a30e7b7c809c0499846aeab620b",
+          "bytes": 88
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/expected/003-happy-data-quality-observability.json",
+          "sha256": "811aea322d270429affacfd6da0431a1bdb8e5fae8d469cf27243ee324761077",
+          "bytes": 91
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/expected/004-happy-developer-platform.json",
+          "sha256": "ee4fb4f3efd4d458900ef0fcd105949912eaf781a81c9fc0961cfb146fe39188",
+          "bytes": 83
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/expected/005-happy-finops-cost.json",
+          "sha256": "bb6dcd3086e56fe736d7fa246ee271d6feebb0f5dcd992305ca50248f8b3f824",
+          "bytes": 76
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/expected/006-happy-genai-agent-engineering.json",
+          "sha256": "9f8888c12e55d3c13a12484a43963a800cc447451cabb878983a8e27406a86c5",
+          "bytes": 88
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/expected/007-happy-genai-evaluation-observability.json",
+          "sha256": "5d0cd160da9869bb2730e594435a9ca2fa41f9714bf6217279714650e46a3afa",
+          "bytes": 95
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/expected/008-happy-identity-network-security.json",
+          "sha256": "68a0b26831ca55d9388f551efa47914d91bc446e916265cbd148c7960338df12",
+          "bytes": 90
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/expected/009-happy-lakeflow-pipeline-engineering.json",
+          "sha256": "eab25fe90e48bf2d09379cc47b803d7ed9381e01241c96c65645860b7c1c3766",
+          "bytes": 94
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/expected/010-happy-lakehouse-engineering-at-azure.json",
+          "sha256": "3382b32359fc0986d143ea3d42bbf5e6b027930e413794a560be48b2a3ee9ec1",
+          "bytes": 95
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/expected/011-happy-mlops.json",
+          "sha256": "fb8ec6d2ca37cf3a05ae601774356a8a36a7d4a8aa40250f09a78677c81ba52f",
+          "bytes": 70
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/expected/012-happy-platform-architecture.json",
+          "sha256": "fa11f0f4a009a16ba14f574a58bfba7d83a81633e9a364672447ca75ed971dd4",
+          "bytes": 86
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/expected/013-happy-platform-reliability.json",
+          "sha256": "de14565183eb660778735e6d078de3ce05fb43c8a0889fe350c1806372fa25f5",
+          "bytes": 85
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/expected/014-happy-sql-performance.json",
+          "sha256": "636400ff8171d1a5b33fc099ba59fef326f1d3afa3937fda176e5d12bd6df70f",
+          "bytes": 80
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/expected/015-happy-streaming-reliability.json",
+          "sha256": "f291a0277c7f21b8c2c3598c84664a47e0977480d9e4b6a7373285a4e6476de7",
+          "bytes": 86
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/expected/016-happy-unity-catalog-governance.json",
+          "sha256": "38be1bb51658d87ef995ddd05716d03f35923eda249bb437e64c6197cc15e642",
+          "bytes": 89
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/expected/017-happy-unity-catalog-governance-at-azure.json",
+          "sha256": "64ea9fc58fb3eab2c70a4ed8f0355a402d652a4fbfc4dd4eaea6158a05f690f3",
+          "bytes": 98
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/expected/018-happy-value-realization.json",
+          "sha256": "bee421e9f9e61f676cbffb5a312bc2405be002d3952d4b2c3726b669d4e571d4",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/expected/adv-ambiguous.json",
+          "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
+          "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/expected/adv-instruction-injection.json",
+          "sha256": "a766c1c790e5b0b1cda29e439ab53711f0720a3fc7cb3f079db18d6be32bbf75",
+          "bytes": 76
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/expected/adv-liveguard-01-live-unity-catalog-grant-guard-at-azure.json",
+          "sha256": "0872e866d9d821adbb8ad463e6abe385ef8e4a058320ed68f9d34b7f814b3e7e",
+          "bytes": 113
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/expected/adv-persona-replacement.json",
+          "sha256": "a766c1c790e5b0b1cda29e439ab53711f0720a3fc7cb3f079db18d6be32bbf75",
+          "bytes": 76
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/expected/adv-secrets-bait.json",
+          "sha256": "a766c1c790e5b0b1cda29e439ab53711f0720a3fc7cb3f079db18d6be32bbf75",
+          "bytes": 76
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/inputs/001-happy-ai-bi-genie.json",
+          "sha256": "beb770e50f8294f6f8a89c1841ff464286e83614666d222a8b20971877396ebe",
+          "bytes": 144
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/inputs/002-happy-data-protection-privacy.json",
+          "sha256": "22943bfa18c4bf116538ad30683565ba62e9a1c22dc01b47846f2fa87e5b88de",
+          "bytes": 162
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/inputs/003-happy-data-quality-observability.json",
+          "sha256": "613b65861103d05b1d0b9aba0d74942602be2e68dd5a87bbaeadda20767fe566",
+          "bytes": 180
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/inputs/004-happy-developer-platform.json",
+          "sha256": "21b3a61e8dbaa28530595150f16b6df6dc82c8fca867ed74f8adaf66b801814c",
+          "bytes": 187
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/inputs/005-happy-finops-cost.json",
+          "sha256": "8f000a1c62ce8573b4829c588b2c090dad0f79a0c66a0c1961f21d1b780ae9cb",
+          "bytes": 138
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/inputs/006-happy-genai-agent-engineering.json",
+          "sha256": "db882881935834a09e0136bb2e09c6c793bbabe29fd451e29cac9d8ebb52f459",
+          "bytes": 186
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/inputs/007-happy-genai-evaluation-observability.json",
+          "sha256": "7650f9a18cde29be6437ae3e7ddae605c24a6ed4fe588ca88d2cfa241f5aaafc",
+          "bytes": 167
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/inputs/008-happy-identity-network-security.json",
+          "sha256": "4c2b0b589e6ac70298b1be4824e6a9bff4060ec2ffff0f1105ccc4f5f5c697d4",
+          "bytes": 179
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/inputs/009-happy-lakeflow-pipeline-engineering.json",
+          "sha256": "9a66d44d8add1c929a126baa0a165167de1cb529998057a2ab4a5b55217512a8",
+          "bytes": 189
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/inputs/010-happy-lakehouse-engineering-at-azure.json",
+          "sha256": "790f8ae2d6ec74ea924877e1f7b40e8395b8ea7f3e064782697f53fdce11f56c",
+          "bytes": 187
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/inputs/011-happy-mlops.json",
+          "sha256": "a36c4eeddc124c54d7726011e83f46c5b44cabafe2e5de4e30a47ea26ca42b61",
+          "bytes": 162
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/inputs/012-happy-platform-architecture.json",
+          "sha256": "adade372dba5bc901ee7f8c416df03e1a8b0625afe35e9d56664aed9cfd7b06e",
+          "bytes": 186
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/inputs/013-happy-platform-reliability.json",
+          "sha256": "1083f3b0ac7cfeaa82723acebe4956f6d6494c458d26c44bef34b78605762c92",
+          "bytes": 163
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/inputs/014-happy-sql-performance.json",
+          "sha256": "75bb9fd591ad1304a84614b1b262308f64fec934db8c4a651beaf1304d5d7bb5",
+          "bytes": 161
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/inputs/015-happy-streaming-reliability.json",
+          "sha256": "160e437322e1f2e914f2a8394b4203b5b3d4651cfa9e8589d77802e1ad3e52b8",
+          "bytes": 177
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/inputs/016-happy-unity-catalog-governance.json",
+          "sha256": "3bf05ed056c39fd5b3089996caf3c5cec88c448f9c296bd2567091247ce4e793",
+          "bytes": 162
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/inputs/017-happy-unity-catalog-governance-at-azure.json",
+          "sha256": "524425f4a1f3d01626163cbd594032a40a86406f905234c1e8521a6bc1595612",
+          "bytes": 189
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/inputs/018-happy-value-realization.json",
+          "sha256": "e3b7f2224137a0477547790c576c8ff5d7ec953a01e3e1ee6e42fcac05581205",
+          "bytes": 155
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/inputs/adv-ambiguous.json",
+          "sha256": "719b82ca90bbc8d2f22dbfe237a98cd4e0cd50056835f5c65ca03aa21947c177",
+          "bytes": 113
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/inputs/adv-instruction-injection.json",
+          "sha256": "8b5ad7e4c9cc869bb4824afcea28c4d3abf8c7ccff2cbcfe0e982b4d5e1c54fe",
+          "bytes": 196
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/inputs/adv-liveguard-01-live-unity-catalog-grant-guard-at-azure.json",
+          "sha256": "9be031247dbbfd40785ca2da1477bee87e64193dee8c45c141c97082daea7790",
+          "bytes": 255
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/inputs/adv-persona-replacement.json",
+          "sha256": "8cc302f186a63649b2bb72065c926216c8a5a6a785153dd210dc9bfc60291ca1",
+          "bytes": 185
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/inputs/adv-secrets-bait.json",
+          "sha256": "7619d2af031ccc2eac01956a57d3279c888730d5e65a5e56bf975d4300b96425",
+          "bytes": 175
+        },
+        {
+          "path": "tests/fixtures/databricks-maestro-routing/taxonomy.json",
+          "sha256": "aeb661bdb549e4c82bc3d8117430f59e5123dec378613f4d088b3d0c5d0a3871",
+          "bytes": 10363
         },
         {
           "path": "tests/fixtures/dotnet-maestro-routing/expected/01-csharp-runtime.json",
@@ -44879,8 +45974,8 @@
         },
         {
           "path": "tests/validate-catalog.py",
-          "sha256": "665f9d6ec732e48ad3ac8aaea476286a62a73e5f43ddeaf985d7de5a8d1a7cbd",
-          "bytes": 14777
+          "sha256": "1a9038044d8fd9c0ce9516041cedc4056efabe68aef5529cbcb46c6858692741",
+          "bytes": 22178
         },
         {
           "path": "tests/validate-codex-marketplace.py",
@@ -44968,12 +46063,12 @@
   "root_files": [
     {
       "path": "README.md",
-      "sha256": "f1c9fb02f230c2df634758cf24262dc9ef21ec4c0bb4a2d22d686030533c6045",
-      "bytes": 112454
+      "sha256": "0088e50b9c4f9469eef574a22db61e93fad430bbc86bb9246071e9a21ee3b1cf",
+      "bytes": 115562
     },
     {
       "path": "SECURITY.md",
-      "sha256": "e607f267c0acb60cc3cfb3fc680b9ebe1608cd09fb7baaf18bce829cd60e742f",
+      "sha256": "9245be8c9143849e4daf0682967135217c2ee439b139f42cb74913331bbbd6f9",
       "bytes": 7111
     },
     {
@@ -44993,8 +46088,8 @@
     },
     {
       "path": "CLAUDE.md",
-      "sha256": "cd281215f02c38225470a25da961f9cedfbd8370a199cc6d2bbd84603e7a287e",
-      "bytes": 21572
+      "sha256": "71108efa0e2383f9170c1bf8f10a984b4e505f0fb7f01a84b169e7066cdb3aed",
+      "bytes": 22576
     },
     {
       "path": "AGENTS.md",
@@ -45008,7 +46103,7 @@
     },
     {
       "path": "package.json",
-      "sha256": "8215cd7da75d8f0a1dc5aeab3fed5d72aac142f7abc36dc377f2ff12856f44f7",
+      "sha256": "82e05bad8ae167e72422711eeea6f5e285e92e71d28fb4b549dd321a60fb6d80",
       "bytes": 7069
     },
     {
@@ -45017,5 +46112,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "bf7c6aab40b65a4790418020c6a27306a1729657f0a27e87ef362f66c280541a"
+  "aggregate_sha256": "ea17cfc854ac0f6a93aa8f237b17e3c2ff6fb0b2304a7ff866748c7f7ad00c9b"
 }

@@ -3,7 +3,14 @@
   "name": "OVHcloud Live KMS Key Destruction Guard",
   "type": "agent",
   "provider": "ovhcloud",
-  "harnesses": ["codex", "claude-code"],
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
   "summary": "Approval-gated live-guard agent for OVHcloud KMS key version destruction: enforces usage audit, waiting period confirmation, and documented rollback plan before any destructive key operation.",
   "source_type": "original",
   "official_docs": [
@@ -15,9 +22,16 @@
   "path": "agents/ovhcloud/ovhcloud-live-kms-key-destruction-guard-agent",
   "version": "0.1.0",
   "author": "github: VincentChuWaiChow",
-  "companion_skills": ["ovhcloud-live-kms-key-destruction-guard"],
+  "companion_skills": [
+    "ovhcloud-live-kms-key-destruction-guard"
+  ],
   "harness_variants": {
     "codex": "agents/ovhcloud/ovhcloud-live-kms-key-destruction-guard-agent/harnesses/codex.toml",
-    "claude-code": "agents/ovhcloud/ovhcloud-live-kms-key-destruction-guard-agent/harnesses/claude-code.agent.md"
+    "copilot": "agents/ovhcloud/ovhcloud-live-kms-key-destruction-guard-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/ovhcloud/ovhcloud-live-kms-key-destruction-guard-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/ovhcloud/ovhcloud-live-kms-key-destruction-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/ovhcloud/ovhcloud-live-kms-key-destruction-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/ovhcloud/ovhcloud-live-kms-key-destruction-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/ovhcloud/ovhcloud-live-kms-key-destruction-guard-agent/harnesses/kiro-cli.agent.json"
   }
 }

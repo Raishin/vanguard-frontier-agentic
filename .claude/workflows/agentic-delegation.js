@@ -44,6 +44,14 @@ const GENERATORS = Array.isArray(input.generators) ? input.generators : []
 // validate; this is that order.
 const INTEGRITY_REFRESH = 'npm run asset-integrity:write'
 
+// `gates` accepts two shapes, because README.md documents one and the pipeline needs the
+// other:
+//   false      -> skip the gate phase entirely (an author/verify-only pass)
+//   string[]   -> run exactly these commands instead of the defaults
+//   omitted    -> the defaults below
+// Treating it as an array ONLY meant `gates: false` fell through to the defaults and the
+// gates ran anyway — a documented escape hatch that silently did nothing.
+const GATES_DISABLED = input.gates === false
 const BASE_GATES = Array.isArray(input.gates) && input.gates.length
   ? input.gates
   : [
@@ -463,6 +471,12 @@ changed. If a command fails, report the RAW error and stop rather than continuin
 
 HARD CONSTRAINTS:
 - Run ONLY the commands listed above.
+- NEVER run \`npm run maestro-routing:write\`, even if it appears in the list above or
+  looks relevant. Its main() loops every provider that owns a *-maestro skill, and
+  write_provider() unlinks every file under that provider's inputs/ and expected/
+  before rebuilding — so a single-provider change silently deletes other providers'
+  hand-curated fixtures. If a routing fixture genuinely needs regenerating, report
+  that it is required and stop; the orchestrator runs it under a scoped restore.
 - Do NOT hand-edit any generated file; if output looks wrong, report it.
 - Do NOT run the gate suite and do NOT commit anything.`,
     { label: 'regenerate', phase: 'Regenerate', model: 'haiku', effort: 'low' },
@@ -513,12 +527,19 @@ log(
 // ---------------------------------------------------------------- 6. gate
 //
 // Doctrine template (c): Haiku runs the suite and reports RAW failure output.
-// asset-integrity:write runs LAST and only when everything else is green — the
-// manifest must hash a settled tree (CLAUDE.md ordering caveat).
+// Order is generators -> asset-integrity:write -> validate, per CLAUDE.md's Definition
+// of done. The refresh must come BEFORE validate, not after: validate includes
+// validate:asset-integrity, so gating the refresh on a green validate is unsatisfiable
+// for any change touching a hashed path. It still runs after the generators so it
+// hashes a settled tree (the CLAUDE.md ordering caveat).
 
-phase('Gate')
+// A caller who passed `gates: false` asked for an author/verify-only pass. Skipping is
+// reported rather than silent: a run with no gate evidence must never read like a green one.
+if (GATES_DISABLED) log('Gate phase SKIPPED — caller passed gates: false. No gate evidence in this run.')
 
-const gateResult = await agent(
+const gateResult = GATES_DISABLED ? null : await (async () => {
+  phase('Gate')
+  return agent(
   `Run this repository's gate suite and report results. This is a verify pass.
 
 Run these IN THIS EXACT ORDER, and report one entry per command, using the command
@@ -551,6 +572,7 @@ HARD CONSTRAINTS:
 - Do NOT attempt to fix a failing gate — report it and stop.`,
   { label: 'gate:suite', phase: 'Gate', model: 'haiku', effort: 'low', schema: GATE_SCHEMA },
 )
+})()
 
 // ---------------------------------------------------------------- return
 //

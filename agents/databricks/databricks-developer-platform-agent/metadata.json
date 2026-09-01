@@ -1,0 +1,59 @@
+{
+  "id": "databricks-developer-platform-agent",
+  "name": "Databricks Developer Platform Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "databricks",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Review Declarative Automation Bundles (legacy: DAB) structure, targets, and deployment posture: bundle.yml configuration shape and resource scope, deployment-mode design and its runtime consequences, run-as identity boundaries and non-admin limitations, bundle variables and their deployment-time-only constraint, CLI authentication paths and OAuth posture, Terraform-versus-direct-deployment trade-offs, Git folder flows for promotion, and CI/CD gate design for safe job and pipeline promotion.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.databricks.com/aws/en/dev-tools/bundles",
+    "https://docs.databricks.com/aws/en/dev-tools/bundles/reference",
+    "https://docs.databricks.com/aws/en/dev-tools/bundles/deployment-modes",
+    "https://docs.databricks.com/aws/en/dev-tools/bundles/run-as",
+    "https://docs.databricks.com/aws/en/dev-tools/bundles/variables",
+    "https://docs.databricks.com/aws/en/dev-tools/cli/bundle-commands",
+    "https://docs.databricks.com/aws/en/dev-tools/cli/authentication",
+    "https://docs.databricks.com/aws/en/dev-tools/terraform/"
+  ],
+  "security_notes": "Static review of bundle configuration, authentication setup, and promotion workflows. Never executes bundle commands, never triggers deployments, never accepts workspace URLs bound to credentials, personal access tokens, OAuth client secrets, service-principal secrets, or storage keys. Reviews intended deployment target and promotion path; a claim about production readiness that cannot be verified against the written bundle configuration and the stated Git/CI/CD flow is labeled assumption, never confirmed.",
+  "last_verified": "2026-08-17",
+  "path": "agents/databricks/databricks-developer-platform-agent/",
+  "harness_variants": {
+    "codex": "agents/databricks/databricks-developer-platform-agent/harnesses/codex.toml",
+    "copilot": "agents/databricks/databricks-developer-platform-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/databricks/databricks-developer-platform-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/databricks/databricks-developer-platform-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/databricks/databricks-developer-platform-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/databricks/databricks-developer-platform-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/databricks/databricks-developer-platform-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "databricks-developer-platform"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "routing_keywords": [
+    "asset bundle",
+    "declarative automation bundle",
+    "databricks.yml",
+    "bundle deploy",
+    "bundle target",
+    "run_as",
+    "deployment mode",
+    "databricks cli",
+    "terraform provider",
+    "git folder",
+    "ci/cd",
+    "environment promotion"
+  ]
+}
