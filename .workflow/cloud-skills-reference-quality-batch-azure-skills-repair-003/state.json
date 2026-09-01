@@ -1,0 +1,38 @@
+{
+  "id": "cloud-skills-reference-quality-batch-azure-skills-repair-003",
+  "provider": "azure",
+  "asset_type": "skills",
+  "status": "validated",
+  "items": [
+    "skills/azure/azure-identity-governance-review",
+    "skills/azure/azure-key-vault-secret-lifecycle-auditor",
+    "skills/azure/azure-keyvault-certificate-issuer-review",
+    "skills/azure/azure-landing-zone-architect",
+    "skills/azure/azure-live-aks-rollout-guard"
+  ],
+  "documentation_evidence": [
+    "https://learn.microsoft.com/entra/architecture/ops-guide-govern",
+    "https://learn.microsoft.com/entra/id-governance/scenarios/least-privileged",
+    "https://learn.microsoft.com/azure/key-vault/general/secure-key-vault",
+    "https://learn.microsoft.com/azure/key-vault/general/soft-delete-overview",
+    "https://learn.microsoft.com/azure/key-vault/certificates/secure-certificates",
+    "https://learn.microsoft.com/azure/key-vault/certificates/overview-renew-certificate",
+    "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-areas",
+    "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/",
+    "https://learn.microsoft.com/azure/aks/upgrade-aks-node-pools-rolling",
+    "https://learn.microsoft.com/azure/aks/upgrade-options"
+  ],
+  "generated": [
+    "catalog/skill-manifest.json",
+    "catalog/asset-integrity.json"
+  ],
+  "validation": {
+    "heading_audit": "pass",
+    "prohibited_wording_grep": "pass",
+    "aws_diff_guard": "pass",
+    "validate_skill_schema": "pass",
+    "manifest_check": "pass",
+    "validate_asset_integrity": "pass",
+    "full_validate": "pass"
+  }
+}

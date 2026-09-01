@@ -1,0 +1,36 @@
+{
+  "id": "cloud-skills-reference-quality-batch-azure-skills-repair-002",
+  "provider": "azure",
+  "asset_type": "skills",
+  "status": "validated",
+  "items": [
+    "skills/azure/azure-cosmosdb-platform-operator",
+    "skills/azure/azure-cost-estimation-review",
+    "skills/azure/azure-cost-optimization-governor",
+    "skills/azure/azure-entra-id-specialist",
+    "skills/azure/azure-governance-policy-guardrails"
+  ],
+  "documentation_evidence": [
+    "https://learn.microsoft.com/azure/reliability/reliability-cosmos-db",
+    "https://learn.microsoft.com/azure/cosmos-db/failover-considerations-for-private-endpoints",
+    "https://learn.microsoft.com/azure/cost-management-billing/costs/pricing-calculator",
+    "https://learn.microsoft.com/azure/cost-management-billing/understand/plan-manage-costs",
+    "https://learn.microsoft.com/entra/identity/conditional-access/plan-conditional-access",
+    "https://learn.microsoft.com/entra/id-protection/concept-workload-identity-risk",
+    "https://learn.microsoft.com/azure/governance/policy/how-to/policy-safe-deployment-practices",
+    "https://learn.microsoft.com/azure/governance/policy/how-to/remediate-resources"
+  ],
+  "generated": [
+    "catalog/skill-manifest.json",
+    "catalog/asset-integrity.json"
+  ],
+  "validation": {
+    "heading_audit": "pass",
+    "prohibited_wording_grep": "pass",
+    "aws_diff_guard": "pass",
+    "validate_skill_schema": "pass",
+    "manifest_check": "pass",
+    "validate_asset_integrity": "pass",
+    "full_validate": "pass"
+  }
+}

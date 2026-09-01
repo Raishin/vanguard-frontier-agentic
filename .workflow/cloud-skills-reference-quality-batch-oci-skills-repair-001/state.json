@@ -1,0 +1,43 @@
+{
+  "id": "cloud-skills-reference-quality-batch-oci-skills-repair-001",
+  "provider": "oci",
+  "asset_type": "skills",
+  "status": "validated",
+  "items": [
+    "skills/oci/oci-autonomous-database-architect",
+    "skills/oci/oci-certificates-issuer-review",
+    "skills/oci/oci-cloud-guard-responder",
+    "skills/oci/oci-compute-instance-agent-operator",
+    "skills/oci/oci-compute-platform-operator"
+  ],
+  "documentation_evidence": [
+    "https://docs.oracle.com/en-us/iaas/Content/Database/Concepts/adboverview.htm",
+    "https://docs.oracle.com/iaas/Content/certificates/overview.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/certificatespolicyreference.htm",
+    "https://docs.oracle.com/en-us/iaas/cloud-guard/home.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/cloud-guard/using/cg-concepts.htm",
+    "https://docs.oracle.com/iaas/Content/Compute/Tasks/instances.htm",
+    "https://docs.oracle.com/iaas/Content/Compute/Tasks/launchinginstance.htm"
+  ],
+  "oci_api_evidence": [
+    "db autonomous-database list help",
+    "certs-mgmt certificate-authority list help",
+    "certs-mgmt certificate list help",
+    "cloud-guard problem list help",
+    "instance-agent command list help",
+    "compute instance list help"
+  ],
+  "generated": [
+    "catalog/skill-manifest.json",
+    "catalog/asset-integrity.json"
+  ],
+  "validation": {
+    "agentcore_standard_audit": "pass",
+    "prohibited_wording_grep": "pass",
+    "aws_diff_guard": "pass",
+    "validate_skill_schema": "pass",
+    "manifest_check": "pass",
+    "validate_asset_integrity": "pass",
+    "full_validate": "pass"
+  }
+}

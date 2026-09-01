@@ -1,0 +1,37 @@
+{
+  "id": "cloud-skills-reference-quality-batch-azure-skills-repair-005",
+  "provider": "azure",
+  "asset_type": "skills",
+  "status": "validated",
+  "items": [
+    "skills/azure/azure-live-pim-jit-activation-guard",
+    "skills/azure/azure-maestro",
+    "skills/azure/azure-migrate-landing-zone-cutover",
+    "skills/azure/azure-network-topology-review",
+    "skills/azure/azure-observability-investigator"
+  ],
+  "documentation_evidence": [
+    "https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-resource-roles-activate-your-roles",
+    "https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-deployment-plan",
+    "https://learn.microsoft.com/azure/cloud-adoption-framework/migrate/execute-migration",
+    "https://learn.microsoft.com/azure/migration/migrate-to-azure",
+    "https://learn.microsoft.com/azure/architecture/networking/architecture/hub-spoke",
+    "https://learn.microsoft.com/azure/virtual-network-manager/concept-connectivity-configuration",
+    "https://learn.microsoft.com/azure/azure-monitor/fundamentals/overview",
+    "https://learn.microsoft.com/azure/azure-monitor/alerts/alerts-overview",
+    "https://learn.microsoft.com/azure/azure-monitor/logs/best-practices-logs"
+  ],
+  "generated": [
+    "catalog/skill-manifest.json",
+    "catalog/asset-integrity.json"
+  ],
+  "validation": {
+    "heading_audit": "pass",
+    "prohibited_wording_grep": "pass",
+    "aws_diff_guard": "pass",
+    "validate_skill_schema": "pass",
+    "manifest_check": "pass",
+    "validate_asset_integrity": "pass",
+    "full_validate": "pass"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "batch": "azure-skills-007",
+  "provider": "azure",
+  "asset_type": "skills",
+  "status": "validated",
+  "targets": [
+    "skills/azure/azure-role-selector",
+    "skills/azure/azure-security-posture-hardening",
+    "skills/azure/azure-subscription-resource-organization",
+    "skills/azure/azure-waf-cost-optimization-review",
+    "skills/azure/azure-waf-reliability-review"
+  ],
+  "evidence": "Microsoft Learn documentation through configured documentation tools; no live Azure state sampled in this batch",
+  "validation": {
+    "structural_batch007_grader": "passed",
+    "prohibited_wording_grep": "passed_no_matches",
+    "validate_skill_schema": "passed",
+    "manifest_check": "passed",
+    "validate_asset_integrity": "passed",
+    "validate": "passed",
+    "aws_scope_guard": "passed_no_paths"
+  },
+  "generated": [
+    "catalog/skill-manifest.json",
+    "catalog/asset-integrity.json"
+  ]
+}

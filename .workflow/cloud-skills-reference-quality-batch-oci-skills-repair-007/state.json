@@ -1,0 +1,25 @@
+{
+  "provider": "oci",
+  "asset_type": "skills",
+  "batch": "oci-skills-repair-007",
+  "date": "2026-06-05",
+  "status": "validated",
+  "items": [
+    "skills/oci/oci-recovery-service-operator",
+    "skills/oci/oci-registry-artifact-governor",
+    "skills/oci/oci-resource-search-inventory-analyst",
+    "skills/oci/oci-security-compliance-reviewer",
+    "skills/oci/oci-solution-architect"
+  ],
+  "validation": {
+    "structural_audit": "pass",
+    "aws_diff_guard": "pass",
+    "validate_skill_schema": "pass",
+    "manifest_check": "pass",
+    "validate_asset_integrity": "pass",
+    "validate": "pass",
+    "validate_log": "/tmp/vfa-validate-oci-skills-repair-007.log"
+  },
+  "remaining_oci_skill_gaps": 6,
+  "committed": false
+}

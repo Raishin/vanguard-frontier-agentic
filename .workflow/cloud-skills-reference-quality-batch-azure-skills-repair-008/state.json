@@ -1,0 +1,30 @@
+{
+  "id": "cloud-skills-reference-quality-batch-azure-skills-repair-008",
+  "provider": "azure",
+  "asset_type": "skills",
+  "status": "validated",
+  "items": [
+    "skills/azure/azure-waf-security-review"
+  ],
+  "documentation_evidence": [
+    "https://learn.microsoft.com/azure/well-architected/security/principles",
+    "https://learn.microsoft.com/azure/well-architected/security/checklist",
+    "https://learn.microsoft.com/security/benchmark/azure/introduction",
+    "https://learn.microsoft.com/azure/defender-for-cloud/concept-regulatory-compliance",
+    "https://learn.microsoft.com/azure/defender-for-cloud/secure-score-security-controls",
+    "https://learn.microsoft.com/azure/defender-for-cloud/review-security-recommendations"
+  ],
+  "generated": [
+    "catalog/skill-manifest.json",
+    "catalog/asset-integrity.json"
+  ],
+  "validation": {
+    "agentcore_standard_audit": "pass",
+    "prohibited_wording_grep": "pass",
+    "aws_diff_guard": "pass",
+    "validate_skill_schema": "pass",
+    "manifest_check": "pass",
+    "validate_asset_integrity": "pass",
+    "full_validate": "pass"
+  }
+}

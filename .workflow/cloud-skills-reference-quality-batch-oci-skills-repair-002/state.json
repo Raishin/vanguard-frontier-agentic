@@ -1,0 +1,48 @@
+{
+  "id": "cloud-skills-reference-quality-batch-oci-skills-repair-002",
+  "provider": "oci",
+  "asset_type": "skills",
+  "status": "validated",
+  "items": [
+    "skills/oci/oci-cost-finops-analyst",
+    "skills/oci/oci-database-platform-dba",
+    "skills/oci/oci-dbtools-sql-analyst",
+    "skills/oci/oci-devops-container-platform-engineer",
+    "skills/oci/oci-exadata-database-architect"
+  ],
+  "documentation_evidence": [
+    "https://docs.oracle.com/iaas/Content/Billing/Concepts/costanalysisoverview.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/Billing/Tasks/managingbudgets.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/Database/Concepts/overview.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/Database-Tools/home.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/Database-Tools/dbtools_topic-using_the_sql_worksheet.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/ContEng/home.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/devops/using/home.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/Registry/home.htm",
+    "https://docs.oracle.com/en/engineered-systems/exadata-cloud-service/ecscm/exadata-database-service-dedicated-infrastructure-administrators-guide.pdf",
+    "https://docs.oracle.com/en/engineered-systems/exadata-database-exascale/exdxs/exadata-database-service-exascale-infrastructure-users-guide.pdf"
+  ],
+  "oci_api_evidence": [
+    "usage-api usage-summary request-summarized-usages help",
+    "budgets budget budget list help",
+    "db system list help",
+    "dbtools connection list help",
+    "ce cluster list help",
+    "devops project list help",
+    "artifacts container repository list help",
+    "db cloud-exa-infra list help"
+  ],
+  "generated": [
+    "catalog/skill-manifest.json",
+    "catalog/asset-integrity.json"
+  ],
+  "validation": {
+    "agentcore_standard_audit": "pass",
+    "prohibited_wording_grep": "pass",
+    "aws_diff_guard": "pass",
+    "validate_skill_schema": "pass",
+    "manifest_check": "pass",
+    "validate_asset_integrity": "pass",
+    "full_validate": "pass"
+  }
+}

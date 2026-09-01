@@ -1,0 +1,43 @@
+{
+  "id": "cloud-skills-reference-quality-batch-azure-skills-repair-007",
+  "provider": "azure",
+  "asset_type": "skills",
+  "status": "validated",
+  "items": [
+    "skills/azure/azure-role-selector",
+    "skills/azure/azure-security-posture-hardening",
+    "skills/azure/azure-subscription-resource-organization",
+    "skills/azure/azure-waf-cost-optimization-review",
+    "skills/azure/azure-waf-reliability-review"
+  ],
+  "documentation_evidence": [
+    "https://learn.microsoft.com/azure/role-based-access-control/role-assignments-steps#step-2-select-the-appropriate-role",
+    "https://learn.microsoft.com/azure/role-based-access-control/built-in-roles",
+    "https://learn.microsoft.com/azure/role-based-access-control/rbac-and-directory-admin-roles",
+    "https://learn.microsoft.com/azure/defender-for-cloud/secure-score-security-controls",
+    "https://learn.microsoft.com/azure/defender-for-cloud/concept-cloud-security-posture-management",
+    "https://learn.microsoft.com/azure/defender-for-cloud/review-security-recommendations",
+    "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org",
+    "https://learn.microsoft.com/azure/governance/management-groups/overview",
+    "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/resource-tagging",
+    "https://learn.microsoft.com/azure/well-architected/cost-optimization/principles",
+    "https://learn.microsoft.com/azure/well-architected/cost-optimization/checklist",
+    "https://learn.microsoft.com/azure/cost-management-billing/costs/tutorial-acm-opt-recommendations",
+    "https://learn.microsoft.com/azure/well-architected/reliability/checklist",
+    "https://learn.microsoft.com/azure/reliability/concept-business-continuity-high-availability-disaster-recovery",
+    "https://learn.microsoft.com/azure/well-architected/reliability/disaster-recovery"
+  ],
+  "generated": [
+    "catalog/skill-manifest.json",
+    "catalog/asset-integrity.json"
+  ],
+  "validation": {
+    "heading_audit": "pass",
+    "prohibited_wording_grep": "pass",
+    "aws_diff_guard": "pass",
+    "validate_skill_schema": "pass",
+    "manifest_check": "pass",
+    "validate_asset_integrity": "pass",
+    "full_validate": "pass"
+  }
+}

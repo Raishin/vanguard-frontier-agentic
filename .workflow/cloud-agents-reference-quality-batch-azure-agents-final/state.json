@@ -1,0 +1,37 @@
+{
+  "id": "cloud-agents-reference-quality-batch-azure-agents-final",
+  "provider": "azure",
+  "asset_type": "agents",
+  "batch_size": 1,
+  "status": "validated_uncommitted",
+  "started_at": "2026-06-05",
+  "validated_at": "2026-06-05",
+  "targets": [
+    "agents/azure/azure-waf-security-review-agent"
+  ],
+  "evidence": {
+    "documentation": "Microsoft Learn documentation through the user configured documentation MCP",
+    "live_or_configured_environment": "none used in committed docs; no tenant-specific claims made"
+  },
+  "generated": [
+    ".claude-plugin/plugin.json",
+    ".cursor-plugin/plugin.json",
+    "powers/vanguard-azure/POWER.md",
+    "catalog/asset-integrity.json"
+  ],
+  "validation": {
+    "structural_agentcore_check": "passed",
+    "prohibited_wording_check": "passed",
+    "aws_diff_check": "passed",
+    "validate_agent_schema": "passed",
+    "validate_plugin_manifest": "passed",
+    "validate_kiro_powers": "passed",
+    "validate_multi_harness_marketplace": "passed",
+    "validate_codex_marketplace": "passed",
+    "validate_asset_integrity": "passed",
+    "full_validate": "passed",
+    "full_validate_exit": 0,
+    "full_validate_log": "/tmp/vfa-validate-azure-agent-final.log"
+  },
+  "commit": "not requested"
+}

@@ -1,0 +1,25 @@
+{
+  "provider": "oci",
+  "asset_type": "skills",
+  "batch": "oci-skills-repair-005",
+  "date": "2026-06-05",
+  "status": "validated",
+  "items": [
+    "skills/oci/oci-live-oke-rollout-guard",
+    "skills/oci/oci-live-resource-manager-stack-guard",
+    "skills/oci/oci-live-vault-key-destruction-guard",
+    "skills/oci/oci-load-balancer-traffic-engineer",
+    "skills/oci/oci-maestro"
+  ],
+  "validation": {
+    "structural_audit": "pass",
+    "aws_diff_guard": "pass",
+    "validate_skill_schema": "pass",
+    "manifest_check": "pass",
+    "validate_asset_integrity": "pass",
+    "validate": "pass",
+    "validate_log": "/tmp/vfa-validate-oci-skills-repair-005.log"
+  },
+  "remaining_oci_skill_gaps": 16,
+  "committed": false
+}

@@ -1,0 +1,23 @@
+{
+  "batch": "azure-skills-003",
+  "provider": "azure",
+  "asset_type": "skills",
+  "status": "validated_not_committed",
+  "targets": [
+    "skills/azure/azure-identity-governance-review",
+    "skills/azure/azure-key-vault-secret-lifecycle-auditor",
+    "skills/azure/azure-keyvault-certificate-issuer-review",
+    "skills/azure/azure-landing-zone-architect",
+    "skills/azure/azure-live-aks-rollout-guard"
+  ],
+  "evidence": "Microsoft Learn documentation through configured documentation tools; no tenant state sampled in this batch yet",
+  "validation": {
+    "structural_grader": "PASS",
+    "prohibited_wording_grep": "PASS",
+    "validate_skill_schema": "PASS",
+    "manifest_check": "PASS",
+    "validate_asset_integrity": "PASS",
+    "validate": "PASS",
+    "aws_diff_check": "PASS"
+  }
+}

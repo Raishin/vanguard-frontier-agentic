@@ -1,0 +1,25 @@
+{
+  "provider": "oci",
+  "asset_type": "skills",
+  "batch": "oci-skills-repair-003",
+  "date": "2026-06-05",
+  "status": "validated",
+  "items": [
+    "skills/oci/oci-exadata-platform-architect",
+    "skills/oci/oci-fusion-apps-environment-operator",
+    "skills/oci/oci-goldengate-replication-operator",
+    "skills/oci/oci-identity-access-governor",
+    "skills/oci/oci-iot-digital-twin-engineer"
+  ],
+  "validation": {
+    "structural_audit": "pass",
+    "aws_diff_guard": "pass",
+    "validate_skill_schema": "pass",
+    "manifest_check": "pass",
+    "validate_asset_integrity": "pass",
+    "validate": "pass",
+    "validate_log": "/tmp/vfa-validate-oci-skills-repair-003.log"
+  },
+  "remaining_oci_skill_gaps": 26,
+  "committed": false
+}

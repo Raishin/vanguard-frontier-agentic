@@ -1,0 +1,38 @@
+{
+  "id": "cloud-skills-reference-quality-batch-azure-skills-repair-004",
+  "provider": "azure",
+  "asset_type": "skills",
+  "status": "validated",
+  "items": [
+    "skills/azure/azure-live-app-service-slot-swap-guard",
+    "skills/azure/azure-live-arm-deployment-stack-guard",
+    "skills/azure/azure-live-cost-budget-action-guard",
+    "skills/azure/azure-live-entra-role-assignment-guard",
+    "skills/azure/azure-live-keyvault-rotation-purge-guard"
+  ],
+  "documentation_evidence": [
+    "https://learn.microsoft.com/azure/app-service/deploy-staging-slots",
+    "https://learn.microsoft.com/azure/app-service/deploy-best-practices",
+    "https://learn.microsoft.com/azure/azure-resource-manager/bicep/deployment-stacks",
+    "https://learn.microsoft.com/azure/templates/microsoft.resources/deploymentstacks",
+    "https://learn.microsoft.com/azure/cost-management-billing/costs/tutorial-acm-create-budgets",
+    "https://learn.microsoft.com/azure/cost-management-billing/costs/cost-mgt-alerts-monitor-usage-spending",
+    "https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-how-to-activate-role",
+    "https://learn.microsoft.com/graph/api/resources/privilegedidentitymanagementv3-overview?view=graph-rest-1.0",
+    "https://learn.microsoft.com/azure/key-vault/general/soft-delete-overview",
+    "https://learn.microsoft.com/azure/key-vault/general/secure-key-vault"
+  ],
+  "generated": [
+    "catalog/skill-manifest.json",
+    "catalog/asset-integrity.json"
+  ],
+  "validation": {
+    "heading_audit": "pass",
+    "prohibited_wording_grep": "pass",
+    "aws_diff_guard": "pass",
+    "validate_skill_schema": "pass",
+    "manifest_check": "pass",
+    "validate_asset_integrity": "pass",
+    "full_validate": "pass"
+  }
+}

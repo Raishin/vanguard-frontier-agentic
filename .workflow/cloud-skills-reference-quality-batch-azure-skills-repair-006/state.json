@@ -1,0 +1,39 @@
+{
+  "id": "cloud-skills-reference-quality-batch-azure-skills-repair-006",
+  "provider": "azure",
+  "asset_type": "skills",
+  "status": "validated",
+  "items": [
+    "skills/azure/azure-platform-automation-devops",
+    "skills/azure/azure-private-endpoint-adoption-planner",
+    "skills/azure/azure-rbac-review",
+    "skills/azure/azure-resilience-bcdr-review",
+    "skills/azure/azure-resource-health-incident-triage"
+  ],
+  "documentation_evidence": [
+    "https://learn.microsoft.com/devops/deliver/iac-github-actions",
+    "https://learn.microsoft.com/azure/azure-resource-manager/bicep/deployment-stacks",
+    "https://learn.microsoft.com/azure/private-link/private-endpoint-dns-integration",
+    "https://learn.microsoft.com/azure/private-link/private-endpoint-dns",
+    "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/private-link-and-dns-integration-at-scale",
+    "https://learn.microsoft.com/azure/role-based-access-control/best-practices",
+    "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-setup-guide/manage-access",
+    "https://learn.microsoft.com/azure/reliability/concept-business-continuity-high-availability-disaster-recovery",
+    "https://learn.microsoft.com/azure/well-architected/reliability/disaster-recovery",
+    "https://learn.microsoft.com/azure/service-health/resource-health-overview",
+    "https://learn.microsoft.com/azure/service-health/resource-health-alert-monitor-guide"
+  ],
+  "generated": [
+    "catalog/skill-manifest.json",
+    "catalog/asset-integrity.json"
+  ],
+  "validation": {
+    "heading_audit": "pass",
+    "prohibited_wording_grep": "pass",
+    "aws_diff_guard": "pass",
+    "validate_skill_schema": "pass",
+    "manifest_check": "pass",
+    "validate_asset_integrity": "pass",
+    "full_validate": "pass"
+  }
+}

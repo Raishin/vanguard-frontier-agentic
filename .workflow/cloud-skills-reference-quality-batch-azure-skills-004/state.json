@@ -1,0 +1,23 @@
+{
+  "batch": "azure-skills-004",
+  "provider": "azure",
+  "asset_type": "skills",
+  "status": "validated_not_committed",
+  "targets": [
+    "skills/azure/azure-live-app-service-slot-swap-guard",
+    "skills/azure/azure-live-arm-deployment-stack-guard",
+    "skills/azure/azure-live-cost-budget-action-guard",
+    "skills/azure/azure-live-entra-role-assignment-guard",
+    "skills/azure/azure-live-keyvault-rotation-purge-guard"
+  ],
+  "evidence": "Microsoft Learn documentation through configured documentation tools; no live Azure state sampled in this batch",
+  "validation": {
+    "structural_grader": "PASS",
+    "prohibited_wording_grep": "PASS",
+    "validate_skill_schema": "PASS",
+    "manifest_check": "PASS",
+    "validate_asset_integrity": "PASS",
+    "validate": "PASS",
+    "aws_diff_check": "PASS"
+  }
+}

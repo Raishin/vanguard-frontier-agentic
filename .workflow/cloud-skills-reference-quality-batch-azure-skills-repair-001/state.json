@@ -1,0 +1,36 @@
+{
+  "id": "cloud-skills-reference-quality-batch-azure-skills-repair-001",
+  "provider": "azure",
+  "asset_type": "skills",
+  "status": "validated",
+  "items": [
+    "skills/azure/azure-ai-foundry-ops-governor",
+    "skills/azure/azure-aks-platform-operator",
+    "skills/azure/azure-app-service-production-readiness",
+    "skills/azure/azure-cosmosdb-application-developer",
+    "skills/azure/azure-cosmosdb-performance-investigator"
+  ],
+  "documentation_evidence": [
+    "https://learn.microsoft.com/azure/foundry/concepts/architecture",
+    "https://learn.microsoft.com/azure/architecture/reference-architectures/containers/aks/baseline-aks",
+    "https://learn.microsoft.com/azure/app-service/deploy-best-practices",
+    "https://learn.microsoft.com/azure/app-service/monitor-instances-health-check",
+    "https://learn.microsoft.com/azure/app-service/manage-backup",
+    "https://learn.microsoft.com/azure/cosmos-db/query-metrics",
+    "https://learn.microsoft.com/azure/cosmos-db/monitor-normalized-request-units",
+    "https://learn.microsoft.com/azure/cosmos-db/transactional-batch"
+  ],
+  "generated": [
+    "catalog/skill-manifest.json",
+    "catalog/asset-integrity.json"
+  ],
+  "validation": {
+    "heading_audit": "pass",
+    "prohibited_wording_grep": "pass",
+    "aws_diff_guard": "pass",
+    "validate_skill_schema": "pass",
+    "manifest_check": "pass",
+    "validate_asset_integrity": "pass",
+    "full_validate": "pass"
+  }
+}

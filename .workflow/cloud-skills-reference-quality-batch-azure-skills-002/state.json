@@ -1,0 +1,25 @@
+{
+  "provider": "azure",
+  "asset_type": "skills",
+  "batch": "002",
+  "status": "validated_not_committed",
+  "date": "2026-06-04",
+  "items": [
+    "skills/azure/azure-cosmosdb-platform-operator",
+    "skills/azure/azure-cost-estimation-review",
+    "skills/azure/azure-cost-optimization-governor",
+    "skills/azure/azure-entra-id-specialist",
+    "skills/azure/azure-governance-policy-guardrails"
+  ],
+  "validation": {
+    "structural_grader": "pass",
+    "prohibited_wording_grep": "pass",
+    "manifest_write": "pass",
+    "asset_integrity_write": "pass",
+    "validate_skill_schema": "pass",
+    "manifest_check": "pass",
+    "validate_asset_integrity": "pass",
+    "full_validate": "pass",
+    "aws_diff_check": "pass"
+  }
+}

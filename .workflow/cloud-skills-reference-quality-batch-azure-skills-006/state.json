@@ -1,0 +1,27 @@
+{
+  "batch": "azure-skills-006",
+  "provider": "azure",
+  "asset_type": "skills",
+  "status": "validated",
+  "targets": [
+    "skills/azure/azure-platform-automation-devops",
+    "skills/azure/azure-private-endpoint-adoption-planner",
+    "skills/azure/azure-rbac-review",
+    "skills/azure/azure-resilience-bcdr-review",
+    "skills/azure/azure-resource-health-incident-triage"
+  ],
+  "evidence": "Microsoft Learn documentation through configured documentation tools; no live Azure state sampled in this batch",
+  "validation": {
+    "structural_batch006_grader": "passed",
+    "prohibited_wording_grep": "passed_no_matches",
+    "validate_skill_schema": "passed",
+    "manifest_check": "passed",
+    "validate_asset_integrity": "passed",
+    "validate": "passed",
+    "aws_scope_guard": "passed_no_paths"
+  },
+  "generated": [
+    "catalog/skill-manifest.json",
+    "catalog/asset-integrity.json"
+  ]
+}

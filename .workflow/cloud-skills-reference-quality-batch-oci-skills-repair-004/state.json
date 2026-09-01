@@ -1,0 +1,25 @@
+{
+  "provider": "oci",
+  "asset_type": "skills",
+  "batch": "oci-skills-repair-004",
+  "date": "2026-06-05",
+  "status": "validated",
+  "items": [
+    "skills/oci/oci-limits-capacity-planner",
+    "skills/oci/oci-live-autonomous-db-lifecycle-guard",
+    "skills/oci/oci-live-cost-budget-runaway-guard",
+    "skills/oci/oci-live-iam-policy-compartment-guard",
+    "skills/oci/oci-live-network-security-rule-guard"
+  ],
+  "validation": {
+    "structural_audit": "pass",
+    "aws_diff_guard": "pass",
+    "validate_skill_schema": "pass",
+    "manifest_check": "pass",
+    "validate_asset_integrity": "pass",
+    "validate": "pass",
+    "validate_log": "/tmp/vfa-validate-oci-skills-repair-004.log"
+  },
+  "remaining_oci_skill_gaps": 21,
+  "committed": false
+}

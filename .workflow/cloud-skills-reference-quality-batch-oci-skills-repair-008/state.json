@@ -1,0 +1,22 @@
+{
+  "id": "cloud-skills-reference-quality-batch-oci-skills-repair-008",
+  "status": "validated",
+  "provider": "oci",
+  "asset_type": "skills",
+  "items": [
+    "oci-storage-backup-steward",
+    "oci-support-incident-coordinator",
+    "oci-waf-cost-optimization-review",
+    "oci-waf-reliability-review",
+    "oci-waf-security-review",
+    "oracle-oci-mcp-grounded-advisor"
+  ],
+  "batch_size_note": "final provider-slice cleanup processed six because six OCI skill gaps remained",
+  "validation": {
+    "validate_skill_schema": "pass",
+    "manifest_check": "pass",
+    "validate_asset_integrity": "pass",
+    "npm_validate": "pass",
+    "oci_skill_gap_audit": "pass"
+  }
+}
