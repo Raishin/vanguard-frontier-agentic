@@ -6,7 +6,7 @@
     "codex": {
       "reasoning_key": "model_reasoning_effort",
       "reasoning_efforts": ["none", "minimal", "low", "medium", "high", "xhigh", "max"],
-      "reasoning_note": "Codex validates effort at runtime against each model's advertised supportedReasoningEfforts (model/list); the registry narrows per model family below. o-series models predate none/minimal/xhigh; \"max\" is advertised only by the gpt-6 and gpt-5.6 families.",
+      "reasoning_note": "Codex validates effort at runtime against each model's advertised supportedReasoningEfforts (model/list); the registry narrows per model family below. o-series models predate none/minimal/xhigh; \"max\" is advertised only by the gpt-6 and gpt-5.6 families. The Codex ReasoningEffort enum carries None|Minimal|Low|Medium|High|XHigh|Max|Ultra|Persistent plus a Custom(String) fallback, and the config schema types the key as a free-form non-empty string, so the harness itself does not reject a value — the narrowing here is what makes an unsupported pairing fail at check time instead of at the provider.",
       "namespaces": [
         {
           "id": "openai",
@@ -16,6 +16,7 @@
           "model_provider": null,
           "sources": [
             "Context7 /openai/codex references/latest-model.md (current model map)",
+            "Context7 /openai/codex codex-rs/core/config.schema.json + codex-rs/protocol/src/openai_models.rs (verified 2026-09-05)",
             "https://developers.openai.com/codex",
             "https://developers.openai.com/api/docs/models (GPT-6 + GPT-5.6 families, verified 2026-09-05)"
           ],
@@ -50,7 +51,7 @@
           "model_provider": "ollama",
           "requires_provider_table": true,
           "reasoning_efforts": ["none", "low", "medium", "high", "max"],
-          "reasoning_note": "Ollama's OpenAI-compatible /v1/chat/completions documents reasoning_effort with values none|low|medium|high|max (verified 2026-09-05), so the vocabulary here mirrors that endpoint exactly — note it has no minimal and no xhigh. Per-model support is narrower than the endpoint union (gpt-oss documents low|medium|high; glm-5.3 documents low|high|max), and this is an open namespace so the registry cannot gate per model. Codex CLI passthrough of model_reasoning_effort to a custom provider is not documented upstream; like requires_provider_table, the registry records the intent and the operator verifies the route locally.",
+          "reasoning_note": "Ollama's OpenAI-compatible /v1/chat/completions documents reasoning_effort with values none|low|medium|high|max (verified 2026-09-05), so the vocabulary here mirrors that endpoint exactly — note it has no minimal and no xhigh. Per-model support is narrower than the endpoint union (gpt-oss documents low|medium|high; glm-5.3 documents low|high|max), and this is an open namespace so the registry cannot gate per model. Codex applies model_reasoning_effort globally rather than per provider (it is a single Option<ReasoningEffort> on the config, and model_provider_id is likewise global), so the value is not stripped when the active provider is a custom one; the operator still confirms their local server honours it.",
           "sources": [
             "https://docs.ollama.com/api/openai-compatibility",
             "Context7 /openai/codex model-provider-info (Ollama base_url/wire_api)",
@@ -78,11 +79,12 @@
           "membership": "open",
           "model_provider": "openrouter",
           "requires_provider_table": true,
-          "reasoning_efforts": [],
-          "reasoning_note": "OpenRouter accepts reasoning_effort per model on its own API, but Codex CLI passthrough to custom providers is not documented; pinning reasoning_effort onto an OpenRouter-routed model fails check.",
+          "reasoning_efforts": ["none", "minimal", "low", "medium", "high", "xhigh", "max"],
+          "reasoning_note": "OpenRouter documents reasoning.effort / reasoning_effort with none|minimal|low|medium|high|xhigh|max — the same seven values as the codex harness vocabulary (verified 2026-09-05). As with the ollama namespace, Codex applies model_reasoning_effort globally rather than per provider, so it is not stripped on a custom route. Per-model support is narrower than this union and cannot be gated in an open namespace, so an unsupported pairing surfaces at the provider rather than at check time.",
           "sources": [
             "https://openrouter.ai/docs/api/api-reference/models/get-a-model-by-its-slug",
-            "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens"
+            "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens",
+            "Context7 /openai/codex codex-rs/core/config.schema.json + codex-rs/protocol/src/openai_models.rs (verified 2026-09-05)"
           ],
           "examples": ["anthropic/claude-sonnet-4.5", "openai/gpt-4o", "google/gemini-2.5-pro"]
         }
