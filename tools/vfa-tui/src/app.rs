@@ -152,26 +152,38 @@ impl ModelPolicyBuilderState {
     pub fn refresh_choices(&mut self, registry: Option<&ModelRegistry>) {
         let harness = self.harness();
 
+        // Remember whether the box currently holds a *picked* entry: if the
+        // new harness does not offer it, carrying the text over would hand the
+        // script a model it is certain to reject (pick gpt-6-astra on codex,
+        // cycle to claude-code). A free-typed value is never dropped — the
+        // caller clears `model_choice_index` before an edit for that reason.
+        let was_picked = self.model_choice_index.is_some();
+
         self.model_choices = registry
             .map(|r| r.choices_for_harness(harness))
             .unwrap_or_default();
-        // A picked index only means anything while it still names the model in
-        // the box; a harness switch or an edit invalidates it.
-        self.model_choice_index = self
+        let matched = self
             .model_choices
             .iter()
             .position(|c| c.model == self.model)
             .filter(|_| !self.model.is_empty());
+        if was_picked && matched.is_none() {
+            self.model.clear();
+        }
+        self.model_choice_index = matched;
 
+        let harness_has_reasoning = match registry {
+            Some(r) => r.supports_reasoning(harness),
+            None => harness == "codex",
+        };
         let efforts: Vec<String> = match registry {
-            Some(r) if !r.supports_reasoning(harness) => Vec::new(),
+            _ if !harness_has_reasoning => Vec::new(),
             Some(r) if self.model.is_empty() || self.model == "auto" => r.harness_efforts(harness),
             Some(r) => r.efforts_for(harness, &self.model),
-            None if harness == "codex" => MODEL_POLICY_REASONING_FALLBACK
+            None => MODEL_POLICY_REASONING_FALLBACK
                 .iter()
                 .map(|s| (*s).to_string())
                 .collect(),
-            None => Vec::new(),
         };
 
         let previous = self
@@ -181,7 +193,13 @@ impl ModelPolicyBuilderState {
             .unwrap_or_else(|| MODEL_POLICY_REASONING_UNCHANGED.to_string());
 
         let mut cycle = vec![MODEL_POLICY_REASONING_UNCHANGED.to_string()];
-        if !efforts.is_empty() {
+        // "auto" is offered whenever the *harness* has a reasoning field, even
+        // when the selected model supports no effort value. It clears the
+        // managed field, and that is exactly what an operator needs when
+        // moving a rule onto such a model: the engine rejects the inherited
+        // effort with "set reasoning to auto", so collapsing the cycle to
+        // "(unchanged)" would make its own remediation unreachable.
+        if harness_has_reasoning {
             cycle.push("auto".to_string());
             cycle.extend(efforts);
         }
@@ -192,10 +210,18 @@ impl ModelPolicyBuilderState {
         self.reasoning_cycle = cycle;
     }
 
-    /// Whether the current (harness, model) pair can express a reasoning
-    /// effort at all.
+    /// Whether the reasoning field can be cycled at all — true when the
+    /// harness has a reasoning field, even if the selected model accepts no
+    /// concrete effort (`auto` is still reachable to clear it).
     pub fn reasoning_supported(&self) -> bool {
         self.reasoning_cycle.len() > 1
+    }
+
+    /// True when the harness has a reasoning field but the selected model
+    /// accepts no concrete effort — the cycle holds only "(unchanged)" and
+    /// "auto".
+    pub fn reasoning_clear_only(&self) -> bool {
+        self.reasoning_cycle.len() == 2
     }
 
     /// The reasoning value currently shown for the focused field.
@@ -926,6 +952,8 @@ impl App {
                 }
                 2 => {
                     self.model_policy_state.model.pop();
+                    // An edited value is free text, not a picked entry.
+                    self.model_policy_state.model_choice_index = None;
                     self.refresh_model_policy_choices();
                 }
                 _ => {}
@@ -939,6 +967,8 @@ impl App {
                 },
                 2 => {
                     self.model_policy_state.model.push(c);
+                    // An edited value is free text, not a picked entry.
+                    self.model_policy_state.model_choice_index = None;
                     self.refresh_model_policy_choices();
                 }
                 _ => {}
@@ -1025,15 +1055,10 @@ impl App {
                         (self.model_policy_state.reasoning_index + 1) % len;
                 } else {
                     let harness = self.model_policy_state.harness();
-                    let msg = if self.model_policy_state.model.is_empty() {
-                        format!("The {harness} harness has no reasoning-effort field")
-                    } else {
-                        format!(
-                            "\"{}\" has no reasoning-effort support on {harness}",
-                            self.model_policy_state.model
-                        )
-                    };
-                    self.status_message = Some((msg, Instant::now()));
+                    self.status_message = Some((
+                        format!("The {harness} harness has no reasoning-effort field"),
+                        Instant::now(),
+                    ));
                 }
             }
             4 => self.model_policy_state.dry_run = !self.model_policy_state.dry_run,
@@ -1503,6 +1528,10 @@ impl App {
     pub fn reload_catalog(&mut self) {
         self.catalog = CatalogStore::load(&self.workspace_root);
         self.update_filtered();
+        // The builder caches its pickers; a reload that changes (or removes)
+        // catalog/model-registry.json must rebuild them, or the view would go
+        // on offering values the freshly loaded registry no longer verifies.
+        self.refresh_model_policy_choices();
         let msg = if self.catalog.load_errors.is_empty() {
             "Catalog reloaded".to_string()
         } else {
@@ -1525,6 +1554,9 @@ impl App {
     ) -> crate::catalog::store::ReloadOutcome {
         let outcome = self.catalog.reload_file(path);
         self.update_filtered();
+        // Same reason as reload_catalog: keep the cached pickers in step with
+        // whatever the store now holds.
+        self.refresh_model_policy_choices();
         self.mark_dirty();
         outcome
     }
@@ -2720,16 +2752,20 @@ impl App {
                 None => format!("{} (typed — validated by model-policy.mjs)", state.model),
             }
         };
-        let reasoning_display = if state.reasoning_supported() {
+        let reasoning_display = if state.reasoning_clear_only() {
+            format!(
+                "{}   [auto only — \"{}\" supports no effort on {harness}]",
+                state.reasoning_display(),
+                state.model
+            )
+        } else if state.reasoning_supported() {
             format!(
                 "{}   [{}]",
                 state.reasoning_display(),
                 state.reasoning_cycle[1..].join(" ")
             )
-        } else if state.model.is_empty() {
-            format!("n/a ({harness} has no reasoning-effort field)")
         } else {
-            format!("n/a (\"{}\" supports no effort on {harness})", state.model)
+            format!("n/a ({harness} has no reasoning-effort field)")
         };
 
         let focused = state.focused_field;
@@ -4009,9 +4045,99 @@ mod tests {
         app.model_policy_state.model = "claude-haiku-4-5".to_string();
         app.refresh_model_policy_choices();
         assert!(
-            !app.model_policy_state.reasoning_supported(),
-            "claude-haiku-4-5 declares an empty reasoning_efforts list"
+            app.model_policy_state.reasoning_clear_only(),
+            "claude-haiku-4-5 declares an empty reasoning_efforts list, so only auto remains"
         );
+        assert_eq!(
+            app.model_policy_state.reasoning_cycle,
+            vec!["(unchanged)".to_string(), "auto".to_string()]
+        );
+    }
+
+    #[test]
+    fn model_policy_keeps_auto_for_models_without_effort_support() {
+        // scripts/model-policy.mjs rejects an inherited effort on such a model
+        // with "set reasoning to auto" — so auto has to stay reachable, or the
+        // builder cannot perform the engine's own remedy. The floating `haiku`
+        // alias is gated like the pinned ids and must behave the same way.
+        let mut app = make_app();
+        app.handle_key_event(key_event(KeyCode::Char('m')));
+        app.model_policy_state.focused_field = 1;
+        app.handle_key_event(key_event(KeyCode::Char(' ')));
+        assert_eq!(app.model_policy_state.harness(), "claude-code");
+
+        for model in ["claude-haiku-4-5", "haiku"] {
+            app.model_policy_state.model = model.to_string();
+            app.refresh_model_policy_choices();
+            assert!(
+                app.model_policy_state
+                    .reasoning_cycle
+                    .iter()
+                    .any(|e| e == "auto"),
+                "{model} must still offer auto to clear an inherited effort"
+            );
+            assert!(
+                app.model_policy_state.reasoning_supported(),
+                "{model} must remain cyclable so auto can be selected"
+            );
+        }
+
+        // Selecting auto emits --reasoning auto, which is what clears the field.
+        app.model_policy_state.reasoning_index = 1;
+        let cmd = app.model_policy_state.command();
+        assert_eq!(cmd.reasoning.as_deref(), Some("auto"));
+    }
+
+    #[test]
+    fn model_policy_harness_change_drops_a_model_the_new_harness_lacks() {
+        let mut app = make_app();
+        app.handle_key_event(key_event(KeyCode::Char('m')));
+        app.model_policy_state.model = "gpt-6-astra".to_string();
+        app.refresh_model_policy_choices();
+        assert!(app.model_policy_state.selected_choice().is_some());
+
+        // codex -> claude-code: gpt-6-astra is not offered there, so carrying
+        // the text over would hand the script a value it must reject.
+        app.model_policy_state.focused_field = 1;
+        app.handle_key_event(key_event(KeyCode::Char(' ')));
+        assert_eq!(app.model_policy_state.harness(), "claude-code");
+        assert!(
+            app.model_policy_state.model.is_empty(),
+            "a picked model absent from the new harness must be cleared, got {:?}",
+            app.model_policy_state.model
+        );
+    }
+
+    #[test]
+    fn model_policy_harness_change_keeps_free_typed_text() {
+        // Only *picked* entries are dropped; a value the operator typed is
+        // theirs to keep (open namespaces cannot be enumerated).
+        let mut app = make_app();
+        app.handle_key_event(key_event(KeyCode::Char('m')));
+        app.model_policy_state.focused_field = 2;
+        for c in ["q", "w", "e"] {
+            app.handle_key_event(key_event(KeyCode::Char(c.chars().next().unwrap())));
+        }
+        assert_eq!(app.model_policy_state.model, "qwe");
+        app.model_policy_state.focused_field = 1;
+        app.handle_key_event(key_event(KeyCode::Char(' ')));
+        assert_eq!(app.model_policy_state.model, "qwe");
+    }
+
+    #[test]
+    fn model_policy_pickers_refresh_after_a_catalog_reload() {
+        // The builder caches its choices; a reload must rebuild them or the
+        // view keeps offering values the new registry no longer verifies.
+        let mut app = make_app();
+        app.handle_key_event(key_event(KeyCode::Char('m')));
+        let before = app.model_policy_state.model_choices.len();
+        assert!(before > 0);
+
+        app.model_policy_state.model_choices.clear();
+        app.model_policy_state.reasoning_cycle = vec!["(unchanged)".to_string()];
+        app.reload_catalog();
+        assert_eq!(app.model_policy_state.model_choices.len(), before);
+        assert!(app.model_policy_state.reasoning_supported());
     }
 
     #[test]

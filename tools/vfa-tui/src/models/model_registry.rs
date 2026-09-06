@@ -171,6 +171,33 @@ impl ModelChoice {
     }
 }
 
+/// Follow a `retired` model's `successor` chain within its namespace to the
+/// entry the policy engine will actually project, so effort narrowing is read
+/// off that model rather than the retired one.
+///
+/// Bounded by the namespace size and guarded against a cycle or a dangling
+/// successor: either simply stops, returning the last entry reached, which is
+/// the conservative choice — the script re-validates regardless.
+fn resolve_successor<'a>(ns: &'a RegistryNamespace, model: &'a RegistryModel) -> &'a RegistryModel {
+    let mut current = model;
+    for _ in 0..ns.models.len() {
+        if current.status() != ModelStatus::Retired {
+            break;
+        }
+        let Some(successor) = current.successor.as_deref() else {
+            break;
+        };
+        let Some(next) = ns.models.iter().find(|m| m.id == successor) else {
+            break;
+        };
+        if next.id == current.id {
+            break;
+        }
+        current = next;
+    }
+    current
+}
+
 impl ModelRegistry {
     pub fn harness(&self, harness: &str) -> Option<&RegistryHarness> {
         self.harnesses.get(harness)
@@ -215,7 +242,15 @@ impl ModelRegistry {
                 .unwrap_or_else(|| hdef.reasoning_efforts.clone());
 
             for m in &ns.models {
-                let efforts = m
+                // A "retired" model is not what the engine validates against:
+                // resolveAll in scripts/model-policy.mjs substitutes the
+                // documented successor (chain-followed) and checks the effort
+                // against *that* model. Mirror it, or the picker would offer
+                // the retired entry's vocabulary for a pin the script resolves
+                // elsewhere — offering a value the script then rejects, or
+                // hiding one it would accept.
+                let effective = resolve_successor(ns, m);
+                let efforts = effective
                     .reasoning_efforts
                     .clone()
                     .unwrap_or_else(|| ns_efforts.clone());
@@ -427,6 +462,64 @@ mod tests {
                 .label_suffix(),
             ""
         );
+    }
+
+    #[test]
+    fn retired_model_takes_its_successors_efforts() {
+        // The engine projects the successor for a retired pin and validates the
+        // effort against it, so the picker must narrow the same way.
+        let json = r#"{
+          "manifest_version": 1,
+          "last_refreshed": "2026-09-05",
+          "harnesses": {
+            "codex": {
+              "reasoning_key": "model_reasoning_effort",
+              "reasoning_efforts": ["none", "low", "medium", "high", "xhigh", "max"],
+              "namespaces": [
+                {
+                  "id": "openai",
+                  "match": "^gpt-[a-z0-9.-]*$",
+                  "membership": "closed",
+                  "models": [
+                    { "id": "gpt-dead", "reasoning_efforts": ["low"], "last_verified": "2026-09-05", "status": "retired", "successor": "gpt-mid" },
+                    { "id": "gpt-mid", "reasoning_efforts": ["medium"], "last_verified": "2026-09-05", "status": "retired", "successor": "gpt-live" },
+                    { "id": "gpt-live", "reasoning_efforts": ["none", "high", "max"], "last_verified": "2026-09-05" },
+                    { "id": "gpt-loop", "reasoning_efforts": ["low"], "last_verified": "2026-09-05", "status": "retired", "successor": "gpt-loop" },
+                    { "id": "gpt-dangling", "reasoning_efforts": ["low"], "last_verified": "2026-09-05", "status": "retired", "successor": "gpt-missing" }
+                  ]
+                }
+              ]
+            },
+            "claude-code": { "reasoning_key": "effort", "reasoning_efforts": ["high"], "namespaces": [
+              { "id": "alias", "match": "^opus$", "membership": "closed", "models": [{ "id": "opus", "last_verified": "2026-09-05" }] } ] },
+            "cursor": { "reasoning_key": null, "reasoning_efforts": [], "namespaces": [
+              { "id": "named", "match": "^[a-z0-9-]+$", "membership": "closed", "models": [{ "id": "composer-2", "last_verified": "2026-09-05" }] } ] }
+          }
+        }"#;
+        let reg: ModelRegistry = serde_json::from_str(json).expect("parse");
+        // Chain is followed to the end, not one hop.
+        assert_eq!(
+            reg.efforts_for("codex", "gpt-dead"),
+            vec!["none", "high", "max"]
+        );
+        assert_eq!(
+            reg.efforts_for("codex", "gpt-mid"),
+            vec!["none", "high", "max"]
+        );
+        // A live model is untouched.
+        assert_eq!(
+            reg.efforts_for("codex", "gpt-live"),
+            vec!["none", "high", "max"]
+        );
+        // A self-referential or dangling successor must terminate, not hang.
+        assert_eq!(reg.efforts_for("codex", "gpt-loop"), vec!["low"]);
+        assert_eq!(reg.efforts_for("codex", "gpt-dangling"), vec!["low"]);
+        // The retired entry still renders as retired in the picker.
+        assert!(reg
+            .choice_for("codex", "gpt-dead")
+            .unwrap()
+            .label_suffix()
+            .contains("retired -> gpt-mid"));
     }
 
     #[test]

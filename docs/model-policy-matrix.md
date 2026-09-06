@@ -33,8 +33,8 @@ Codex validates effort at runtime against each model's advertised `supportedReas
 | Namespace | Shape / pattern | Membership | `model_provider` projected | Reasoning support | Examples |
 |---|---|---|---|---|---|
 | `openai` | `^(gpt-\|o[0-9])[a-z0-9.-]*$` | closed (enumerated below) | *(none — default provider)* | Per-model, see table below | `gpt-5.5`, `o3` |
-| `ollama` | `^[a-z0-9][a-z0-9._-]*:[a-z0-9][a-z0-9._-]*$` (explicit `name:tag`; a bare floating-`:latest` name is rejected by shape) | open (shape only) | `ollama` | `none`, `low`, `medium`, `high`, `max` (no `minimal`, no `xhigh`) — mirrors Ollama's OpenAI-compatible `/v1/chat/completions` endpoint; per-model support is narrower and not enforced by this open namespace | `deepseek-r1:14b`, `qwen3:32b`, `glm-5.3:cloud`, `gpt-oss:120b`, `llama3.3:70b` |
-| `openrouter` | `^[a-z0-9][a-z0-9.-]*/[a-z0-9][a-z0-9._-]*(:(free\|extended\|nitro\|thinking))?$` (`author/model`, optional variant suffix) | open (shape only) | `openrouter` | `none`, `minimal`, `low`, `medium`, `high`, `xhigh`, `max` — the full harness vocabulary, matching OpenRouter's documented `reasoning.effort` enum; per-model support is narrower and not enforced by this open namespace | `anthropic/claude-sonnet-4.5`, `openai/gpt-4o`, `google/gemini-2.5-pro` |
+| `ollama` | `^[a-z0-9][a-z0-9._-]*:[a-z0-9][a-z0-9._-]*$` (explicit `name:tag`; a bare floating-`:latest` name is rejected by shape) | open (shape only) | `ollama` | None — pinning `reasoning_effort` fails check. Ollama documents the field on `/v1/chat/completions`, but this route is `wire_api responses` and `reasoning_effort` is absent from the fields Ollama lists for `/v1/responses` | `deepseek-r1:14b`, `qwen3:32b`, `glm-5.3:cloud`, `gpt-oss:120b`, `llama3.3:70b` |
+| `openrouter` | `^[a-z0-9][a-z0-9.-]*/[a-z0-9][a-z0-9._-]*(:(free\|extended\|nitro\|thinking))?$` (`author/model`, optional variant suffix) | open (shape only) | `openrouter` | None — pinning `reasoning_effort` fails check. OpenRouter documents the field on its chat-completions surface; its Responses route, which this namespace uses, is unverified | `anthropic/claude-sonnet-4.5`, `openai/gpt-4o`, `google/gemini-2.5-pro` |
 
 Namespaces are matched in this order, so a value must clear the `openai` pattern before falling through to `ollama` or `openrouter`.
 
@@ -88,7 +88,7 @@ Registry model entries carry three optional lifecycle fields: `status` (`availab
 
 Warnings surface in three places: the `model-policy.mjs` CLI (`check`/`apply`/`report`/`set`) prints one aggregated `WARNING: ...` line per distinct message with an affected-assignment count; the `model_warning` (and, for `retired`, `model_fallback_from`) field is written into every affected entry of `catalog/model-assignments.json`; and the `vfa-tui` agent detail view renders a styled `warning` row directly under the affected harness row.
 
-The `vfa-tui` Model Policy Builder reads `catalog/model-registry.json` directly to populate its model picker and to narrow the reasoning-effort cycle per (harness, model) — previously the builder used a free-text model field and a hardcoded effort union that was gated to the codex harness only.
+The `vfa-tui` Model Policy Builder reads `catalog/model-registry.json` directly to populate its model picker and to narrow the reasoning-effort cycle per (harness, model) — previously the builder used a free-text model field and a hardcoded effort union that was gated to the codex harness only. It resolves a `retired` entry's efforts through the `successor` chain so the picker narrows against the model the engine will actually project, and always offers `auto` where the harness has a reasoning field, since clearing an inherited effort is the documented remedy when a rule moves onto a model that supports none.
 
 ## claude-code
 
@@ -96,7 +96,7 @@ The `vfa-tui` Model Policy Builder reads `catalog/model-registry.json` directly 
 
 | Field | Config key | Vocabulary |
 |---|---|---|
-| Model | `model:` in subagent frontmatter | `sonnet` \| `opus` \| `haiku` \| `fable` \| `inherit`, or a pinned `claude-*` ID |
+| Model | `model:` in subagent frontmatter | `sonnet` \| `opus` \| `haiku` \| `fable` \| `inherit`, or a pinned `claude-*` ID. The alias namespace is enumerated rather than shape-only, so `haiku` carries the same empty `reasoning_efforts` as the pinned Claude Haiku 4.5 ids instead of inheriting the full vocabulary |
 | Reasoning effort | `effort:` in subagent frontmatter | `low` \| `medium` \| `high` \| `xhigh` \| `max` (not supported for Claude Haiku 4.5 — see below) |
 
 ### Namespace table
@@ -125,7 +125,7 @@ The `vfa-tui` Model Policy Builder reads `catalog/model-registry.json` directly 
 
 ### Effort vocabulary and fallback
 
-`effort` is a subagent frontmatter field (registry `reasoning_key: effort`) with harness vocabulary `low`, `medium`, `high`, `xhigh`, `max`. [code.claude.com/docs/en/sub-agents](https://code.claude.com/docs/en/sub-agents) states available levels depend on the model, and the [models overview](https://platform.claude.com/docs/en/about-claude/models/overview) lists Claude Haiku 4.5 as not supporting effort at all — so `claude-haiku-4-5` and `claude-haiku-4-5-20251001` carry an empty `reasoning_efforts` list in the registry and fail closed on any `effort` value. Every other model in the `anthropic` namespace accepts the full harness vocabulary; Claude Code falls back gracefully to the highest supported level when a specific level isn't available.
+`effort` is a subagent frontmatter field (registry `reasoning_key: effort`) with harness vocabulary `low`, `medium`, `high`, `xhigh`, `max`. [code.claude.com/docs/en/sub-agents](https://code.claude.com/docs/en/sub-agents) states available levels depend on the model, and the [models overview](https://platform.claude.com/docs/en/about-claude/models/overview) lists Claude Haiku 4.5 as not supporting effort at all — so `claude-haiku-4-5`, `claude-haiku-4-5-20251001` and the floating `haiku` alias all carry an empty `reasoning_efforts` list in the registry and fail closed on any `effort` value. `auto` remains valid for them — it clears the managed field, which is how a rule moves onto such a model. Every other model in the `anthropic` namespace accepts the full harness vocabulary; Claude Code falls back gracefully to the highest supported level when a specific level isn't available.
 
 An invalid `model` value is not caught at startup — it surfaces as an HTTP 404 at request time, which is exactly the class of failure this registry exists to prevent before it reaches the provider.
 
@@ -167,8 +167,8 @@ Source: [cursor.com/docs/subagents](https://cursor.com/docs/subagents).
 | Harness / provider | Bad-model error observed | Reasoning-unsupported behavior |
 |---|---|---|
 | codex → OpenAI | HTTP 404, `error.code: "model_not_found"`, `error.type: "invalid_request_error"` | Codex validates effort against the model's advertised `supportedReasoningEfforts` at runtime; a mismatched pairing is rejected |
-| codex → Ollama | Request fails against the local Ollama server (no such model pulled) — not an OpenAI-shaped 404 | Ollama's OpenAI-compatible endpoint documents `none`\|`low`\|`medium`\|`high`\|`max`; the registry enforces that namespace-wide vocabulary but cannot narrow it per model in this open namespace, so an operator can still pin an effort a specific pulled model doesn't honor |
-| codex → OpenRouter | HTTP 404 on an unrecognized slug | OpenRouter documents the same seven effort values as the harness vocabulary; `model_reasoning_effort` is a global Codex config key rather than a per-provider one, so it is not stripped on a custom route. An effort the specific routed model does not support surfaces at OpenRouter, not at check time |
+| codex → Ollama | Request fails against the local Ollama server (no such model pulled) — not an OpenAI-shaped 404 | The field is documented for `/v1/chat/completions` but not for `/v1/responses`, which is the route this namespace configures; Codex would send it and the route would drop it silently, so the registry gives the namespace an empty `reasoning_efforts` list and fails closed |
+| codex → OpenRouter | HTTP 404 on an unrecognized slug | Same fail-closed treatment as Ollama, for the same reason: the documented effort field belongs to the chat-completions surface, and the Responses route this namespace configures is unverified |
 | claude-code | HTTP 404 at request time (not caught at subagent startup) | `effort` degrades gracefully to the highest level the resolved model supports on every model except Claude Haiku 4.5, which the registry gates to an empty `reasoning_efforts` list and fails closed at policy-check time |
 | cursor | `ConfigurationError` | N/A — no reasoning field is projected for Cursor |
 

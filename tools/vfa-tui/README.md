@@ -132,7 +132,7 @@ Builder flow:
 - **Scope** — `Space`/`Enter` cycles kind (`All` → `Provider` → `Role` → `Agent`); type the ID
 - **Harness** — cycles `codex` → `claude-code` → `cursor`
 - **Model** — `Space`/`Enter` cycles the models `catalog/model-registry.json` verifies for the selected harness (closed-namespace allowlists first, then the advisory examples of open namespaces such as local Ollama tags), wrapping through a free-text slot; typing still accepts any value, since open namespaces are too large to enumerate. `auto` clears the managed field, empty leaves it untouched
-- **Reasoning** — cycles `(unchanged)` / `auto` / the efforts the registry verifies for the selected harness *and* model. The vocabulary narrows model-first: a model's own `reasoning_efforts` wins, else its namespace's, else the harness's. Harnesses with no reasoning field (`cursor`) and models that support none (for example `claude-haiku-4-5`) collapse the cycle and say why
+- **Reasoning** — cycles `(unchanged)` / `auto` / the efforts the registry verifies for the selected harness *and* model. The vocabulary narrows model-first: a model's own `reasoning_efforts` wins, else its namespace's, else the harness's. Harnesses with no reasoning field (`cursor`) collapse the cycle and say why; a model that supports no effort (for example `claude-haiku-4-5`) keeps `auto`, since clearing an inherited effort is what the engine asks for in that case
 - **Dry Run** — defaults to on; previews changes before writing
 - **Refresh Integrity** — defaults to on; runs `npm run asset-integrity:write` after a successful apply
 - `[ Continue ]` shows the exact command to be run, then the output view streams the subprocess

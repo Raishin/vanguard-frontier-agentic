@@ -50,12 +50,13 @@
           "membership": "open",
           "model_provider": "ollama",
           "requires_provider_table": true,
-          "reasoning_efforts": ["none", "low", "medium", "high", "max"],
-          "reasoning_note": "Ollama's OpenAI-compatible /v1/chat/completions documents reasoning_effort with values none|low|medium|high|max (verified 2026-09-05), so the vocabulary here mirrors that endpoint exactly — note it has no minimal and no xhigh. Per-model support is narrower than the endpoint union (gpt-oss documents low|medium|high; glm-5.3 documents low|high|max), and this is an open namespace so the registry cannot gate per model. Codex applies model_reasoning_effort globally rather than per provider (it is a single Option<ReasoningEffort> on the config, and model_provider_id is likewise global), so the value is not stripped when the active provider is a custom one; the operator still confirms their local server honours it.",
+          "reasoning_efforts": [],
+          "reasoning_note": "Fails closed, and the route is why. Ollama documents reasoning_effort (none|low|medium|high|max) on /v1/chat/completions, but this namespace routes through wire_api responses, and the supported request fields Ollama lists for /v1/responses are model, instructions, tools, stream, temperature, top_p, max_output_tokens, previous_response_id, conversation and truncation — reasoning_effort is absent. Codex would send the field and the route would drop it silently, which is the exact failure this registry exists to catch. That Codex applies model_reasoning_effort globally rather than per provider answers whether it is sent, not whether the route accepts it. Re-open this only on evidence about /v1/responses itself.",
           "sources": [
             "https://docs.ollama.com/api/openai-compatibility",
             "Context7 /openai/codex model-provider-info (Ollama base_url/wire_api)",
-            "https://ollama.com/library (tag lists per model page, verified 2026-09-05)"
+            "https://ollama.com/library (tag lists per model page, verified 2026-09-05)",
+            "https://docs.ollama.com/api/openai-compatibility (per-endpoint supported request fields, verified 2026-09-05)"
           ],
           "examples": [
             "deepseek-r1:8b",
@@ -79,12 +80,11 @@
           "membership": "open",
           "model_provider": "openrouter",
           "requires_provider_table": true,
-          "reasoning_efforts": ["none", "minimal", "low", "medium", "high", "xhigh", "max"],
-          "reasoning_note": "OpenRouter documents reasoning.effort / reasoning_effort with none|minimal|low|medium|high|xhigh|max — the same seven values as the codex harness vocabulary (verified 2026-09-05). As with the ollama namespace, Codex applies model_reasoning_effort globally rather than per provider, so it is not stripped on a custom route. Per-model support is narrower than this union and cannot be gated in an open namespace, so an unsupported pairing surfaces at the provider rather than at check time.",
+          "reasoning_efforts": [],
+          "reasoning_note": "Fails closed for the same route reason as the ollama namespace. OpenRouter documents reasoning.effort / reasoning_effort with none|minimal|low|medium|high|xhigh|max on its chat-completions surface, but this namespace routes through wire_api responses and no equivalent field list has been verified for OpenRouter's Responses route. Absence of evidence about that route is not evidence the field is honoured, so the registry stays closed here until the Responses endpoint itself is checked.",
           "sources": [
             "https://openrouter.ai/docs/api/api-reference/models/get-a-model-by-its-slug",
-            "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens",
-            "Context7 /openai/codex codex-rs/core/config.schema.json + codex-rs/protocol/src/openai_models.rs (verified 2026-09-05)"
+            "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens (chat-completions surface; Responses route unverified)"
           ],
           "examples": ["anthropic/claude-sonnet-4.5", "openai/gpt-4o", "google/gemini-2.5-pro"]
         }
@@ -97,10 +97,17 @@
       "namespaces": [
         {
           "id": "alias",
-          "description": "Version-floating aliases resolved by Claude Code to maintained defaults; always valid.",
+          "description": "Version-floating aliases resolved by Claude Code to maintained defaults. Enumerated rather than shape-only so that per-alias effort narrowing is expressible: the alias namespace is matched before the pinned anthropic namespace, so leaving it open would let model \"haiku\" inherit the full harness vocabulary and bypass the empty reasoning_efforts carried by the pinned Claude Haiku 4.5 ids.",
           "match": "^(sonnet|opus|haiku|fable|inherit)$",
-          "membership": "open",
-          "sources": ["https://code.claude.com/docs/en/sub-agents"]
+          "membership": "closed",
+          "sources": ["https://code.claude.com/docs/en/sub-agents", "https://platform.claude.com/docs/en/about-claude/models/overview"],
+          "models": [
+            { "id": "sonnet", "last_verified": "2026-09-05", "note": "floating alias for the maintained Sonnet default" },
+            { "id": "opus", "last_verified": "2026-09-05", "note": "floating alias for the maintained Opus default" },
+            { "id": "haiku", "reasoning_efforts": [], "last_verified": "2026-09-05", "source": "https://platform.claude.com/docs/en/about-claude/models/overview", "note": "resolves to Claude Haiku 4.5, which does not support effort; gated here so the alias matches the pinned ids" },
+            { "id": "fable", "last_verified": "2026-09-05", "note": "floating alias for the maintained Fable default" },
+            { "id": "inherit", "last_verified": "2026-09-05", "note": "uses the main conversation's model" }
+          ]
         },
         {
           "id": "anthropic",
